@@ -4,6 +4,9 @@ title: Home
 ---
 
 <div class="posts">
+{% for post in site.categories %}
+  <h3>{{ post.category }} {{ post.date }}<h3 />
+{% endfor %}
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
@@ -14,7 +17,7 @@ title: Home
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    <hr />
   </div>
   {% endfor %}
 </div>
