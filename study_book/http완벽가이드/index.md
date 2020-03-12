@@ -1,122 +1,62 @@
-﻿---
+---
 layout: post
-title: Example content
+title: Http 완벽가이드 같이 읽기
 ---
 
+ ### 근본 찾기 프로젝트
+ 2019년 27의 나이로 뒤늦게 개발의 시작한 저를 괴롭히는 강박은 근본적인 지식이 부족하다는 것이었습니다. Java스택을 이용한 웹 개발 프로젝트, MERN 스택을 사용한 웹 개발 프로젝트, C# Winform을 활용한 PC클라이언트 개발 등 응용 스킬은 전공자들 보다 잘 따라한다고 생각하는데 스스로가 생각해도 근본적인 지식이 부족하다고 생각했습니다. 
 
-<div class="message">
-  Http완벽가이드1
-</div>
+ Http 완벽가이드 스터디는 프로그래밍의 근본을 찾기위한 프로젝트 중 하나입니다.
+{{ site.url }}/public/image/http완벽가이드.png
+{% site.url %}/public/image/http완벽가이드.png
 
-Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+![http완벽가이드.png][{{ site.url }}/public/image/http완벽가이드.png]:출처
 
-> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+![http완벽가이드.png][{% site.url %}/public/image/http완벽가이드.png]:출처
 
-Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+![http완벽가이드.png][https://ntz4kiseung.github.io/public/image/http완벽가이드.png]:출처
 
-## Inline HTML elements
+### 포스팅 구성
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+ 포스팅이 처음이라 구성을 어떻게 할지 고민했습니다. 정말 단순히 요약하는 방식으로 가야하는지, 기존 내용을 토대로 어느정도 재구성 해도 되는지, 제 사견은 얼마나 붙여도 되는지, 사견을 붙이면 책 내용과 혼동을 주진 않을지 걱정됐습니다.
 
-- **To bold text**, use `<strong>`.
-- *To italicize text*, use `<em>`.
-- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-- Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
-- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+ 포스팅의 첫번째 목적은 어디까지나 저의 학습입니다. 대학생활을 돌아보면, 강의를 듣거나 책을 읽고 그걸 자신만의 언어로 정리하는 것은 저에게 매우 유효했습니다. 물론, 제 언어로 풀어 내는 과정에서 약간의 오역이 있기도 했지만 그걸 감수할 수 있을 만큼 성공적인 학습 방법이었습니다.
 
-Most of these elements are styled by browsers with few modifications on our part.
+ 따라서, 본 포스팅은 책을 읽고 정리하면서 제가 이해한 대로 재구성하고 사견을 붙이는 방식으로 진행될 것입니다. 비슷한 수준의 사람들끼리 모여 스터디를 할 때 서로에게 자신의 파트를 설명해주는 느낌으로 읽어주시면 좋을 것 같습니다! :smiley: 
 
-## Heading
 
-Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
-### Code
+###  목록
 
-Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
+1. [HTTP 개관][/Http완벽가이드1]
+2. [URL과 리소스][/Http완벽가이드2]
+3. [HTTP 메세지][/Http완벽가이드3]
+4. [커넥션 관리][/Http완벽가이드4]
+5. [웹 서버][]
+6. [프록시][]
+7. [캐시][]
+8. [통합점: 게이트웨이, 터널, 릴레이][]
+9. [웹 로봇][]
+10. [HTTP/2.0][]
+11. [클라이언트 식별과 쿠키][]
+12. [기본 인증][]
+13. [다이제스트 인증][]
+14. [보안 HTTP][]
+15. [엔터티와 인코딩][]
+16. [국제화][]
+17. [내용 협상과 트랜스코딩][]
+18. [웹 호스팅][]
+19. [배포 시스템][]
+20. [리다이렉션과 부하 균형][]
+21. [로깅과 사용 추적][]
 
-{% highlight js %}
-// Example can be run directly in your JavaScript console
 
-// Create a function that takes two arguments and returns the sum of those arguments
-var adder = new Function("a", "b", "return a + b");
 
-// Call the function
-adder(2, 6);
-// > 8
-{% endhighlight %}
+### 느낀점
 
-Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+ HTTP에 관련한 지식들은 여기저기 주워듣고 어깨너머 듣고 해서 많은 지식들이 정리가 안된채로 굴러다니고 있었는데 본 책을 읽은 뒤엔 갈팡질팡 하던 지식들이 '너의 역할은 이거고, 너의 자리는 여기야' 라는 것 처럼 HTTP 완벽가이드 지식 프레임워크에 쏙쏙 들어가는 느낌이었습니다.
 
-### Lists
+ 책은 읽는 사람의 수준에 따라 달리보이기 때문에 나중에 경험을더 쌓고 다시봐도 좋을 것 같습니다.
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
 
-* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-* Donec id elit non mi porta gravida at eget metus.
-* Nulla vitae elit libero, a pharetra augue.
 
-Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-
-1. Vestibulum id ligula porta felis euismod semper.
-2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-3. Maecenas sed diam eget risus varius blandit sit amet non magna.
-
-Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
-
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
-
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
-
-### Tables
-
-Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
-
------
-
-Want to see something else added? <a href="https://github.com/poole/poole/issues/new">Open an issue.</a>
