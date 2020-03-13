@@ -7,14 +7,6 @@ title: Http 완벽가이드 같이 읽기
  2019년 27의 나이로 뒤늦게 개발의 시작한 저를 괴롭히는 강박은 근본적인 지식이 부족하다는 것이었습니다. Java스택을 이용한 웹 개발 프로젝트, MERN 스택을 사용한 웹 개발 프로젝트, C# Winform을 활용한 PC클라이언트 개발 등 응용 스킬은 전공자들 보다 잘 따라한다고 생각하는데 스스로가 생각해도 근본적인 지식이 부족하다고 생각했습니다. 
 
  Http 완벽가이드 스터디는 프로그래밍의 근본을 찾기위한 프로젝트 중 하나입니다.
-{{ site.url }}/public/image/http완벽가이드.png
-{% site.url %}/public/image/http완벽가이드.png
-
-![http완벽가이드.png][{{ site.url }}/public/image/http완벽가이드.png]:출처
-
-![http완벽가이드.png][{% site.url %}/public/image/http완벽가이드.png]:출처
-
-![http완벽가이드.png][https://ntz4kiseung.github.io/public/image/http완벽가이드.png]:출처
 
 ### 포스팅 구성
 
