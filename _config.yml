@@ -12,6 +12,7 @@ url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 paginate:            5
 gems:                [jekyll-paginate]
+plugins:		[jekyll-paginate]
 
 # About/contact
 author:

@@ -1,0 +1,14 @@
+I"d<p>https://gracefulprograming.tistory.com/111</p>
+
+<p>https://twpower.github.io/64-use-chown-to-subfiles-and-subfolders</p>
+
+<p>https://anipage.tistory.com/838</p>
+
+<p>현재 디렉터리 안 파일들의 목록 및 권한 탐색</p>
+
+<p>ls -l</p>
+
+<p>현재 디렉터리 아래 파일들만 권한 변경</p>
+
+<p>find -type f -exec chmod -v 666 {} \;</p>
+:ET

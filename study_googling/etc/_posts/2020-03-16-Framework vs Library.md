@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [짧] 프레임워크(Framework) vs 라이브러리(Library)
+title: 프레임워크(Framework) vs 라이브러리(Library)
 ---
 
 ### 프레임워크(Framework) vs 라이브러리(Library) :fire::fire::fire:

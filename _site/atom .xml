@@ -4,13 +4,2486 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-13T10:29:22+09:00</updated>
+ <updated>2020-03-17T21:39:33+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>윈도우에서 수정한 우분투-리눅스 파일 권한 수정</title>
+   <link href="http://localhost:4000/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/"/>
+   <updated>2020-03-17T00:00:00+09:00</updated>
+   <id>http://localhost:4000/study_googling/jekyll/권한문제</id>
+   <content type="html">&lt;p&gt;https://gracefulprograming.tistory.com/111&lt;/p&gt;
+
+&lt;p&gt;https://twpower.github.io/64-use-chown-to-subfiles-and-subfolders&lt;/p&gt;
+
+&lt;p&gt;https://anipage.tistory.com/838&lt;/p&gt;
+
+&lt;p&gt;현재 디렉터리 안 파일들의 목록 및 권한 탐색&lt;/p&gt;
+
+&lt;p&gt;ls -l&lt;/p&gt;
+
+&lt;p&gt;현재 디렉터리 아래 파일들만 권한 변경&lt;/p&gt;
+
+&lt;p&gt;find -type f -exec chmod -v 666 {} \;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Github Page Emoji</title>
+   <link href="http://localhost:4000/study_googling/etc/Github-Page-Emoji/"/>
+   <updated>2020-03-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/study_googling/etc/Github Page Emoji</id>
+   <content type="html">&lt;p&gt;Thanks for ‘https://gist.github.com/rxaviers/7360908’ ​ :fire::fire::fire:&lt;/p&gt;
+
+&lt;p&gt;People&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;:bowtie: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bowtie:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:smile: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smile:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:laughing: &lt;code class=&quot;highlighter-rouge&quot;&gt;:laughing:&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:blush: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blush:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:smiley: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smiley:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:relaxed: &lt;code class=&quot;highlighter-rouge&quot;&gt;:relaxed:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:smirk: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smirk:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heart_eyes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heart_eyes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:kissing_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kissing_heart:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:kissing_closed_eyes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kissing_closed_eyes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:flushed: &lt;code class=&quot;highlighter-rouge&quot;&gt;:flushed:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:relieved: &lt;code class=&quot;highlighter-rouge&quot;&gt;:relieved:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:satisfied: &lt;code class=&quot;highlighter-rouge&quot;&gt;:satisfied:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:grin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wink: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wink:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:stuck_out_tongue_winking_eye: &lt;code class=&quot;highlighter-rouge&quot;&gt;:stuck_out_tongue_winking_eye:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:stuck_out_tongue_closed_eyes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:stuck_out_tongue_closed_eyes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:grinning: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grinning:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:kissing: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kissing:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:kissing_smiling_eyes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kissing_smiling_eyes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:stuck_out_tongue: &lt;code class=&quot;highlighter-rouge&quot;&gt;:stuck_out_tongue:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sleeping: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sleeping:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:worried: &lt;code class=&quot;highlighter-rouge&quot;&gt;:worried:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:frowning: &lt;code class=&quot;highlighter-rouge&quot;&gt;:frowning:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:anguished: &lt;code class=&quot;highlighter-rouge&quot;&gt;:anguished:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:open_mouth: &lt;code class=&quot;highlighter-rouge&quot;&gt;:open_mouth:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:grimacing: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grimacing:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:confused: &lt;code class=&quot;highlighter-rouge&quot;&gt;:confused:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hushed: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hushed:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:expressionless: &lt;code class=&quot;highlighter-rouge&quot;&gt;:expressionless:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:unamused: &lt;code class=&quot;highlighter-rouge&quot;&gt;:unamused:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sweat_smile: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sweat_smile:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sweat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sweat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:disappointed_relieved: &lt;code class=&quot;highlighter-rouge&quot;&gt;:disappointed_relieved:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:weary: &lt;code class=&quot;highlighter-rouge&quot;&gt;:weary:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pensive: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pensive:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:disappointed: &lt;code class=&quot;highlighter-rouge&quot;&gt;:disappointed:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:confounded: &lt;code class=&quot;highlighter-rouge&quot;&gt;:confounded:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fearful: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fearful:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cold_sweat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cold_sweat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:persevere: &lt;code class=&quot;highlighter-rouge&quot;&gt;:persevere:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cry:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sob: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sob:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:joy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:joy:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:astonished: &lt;code class=&quot;highlighter-rouge&quot;&gt;:astonished:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:scream: &lt;code class=&quot;highlighter-rouge&quot;&gt;:scream:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:neckbeard: &lt;code class=&quot;highlighter-rouge&quot;&gt;:neckbeard:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tired_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tired_face:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:angry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:angry:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rage: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rage:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:triumph: &lt;code class=&quot;highlighter-rouge&quot;&gt;:triumph:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sleepy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sleepy:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:yum: &lt;code class=&quot;highlighter-rouge&quot;&gt;:yum:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mask: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mask:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sunglasses: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sunglasses:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dizzy_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dizzy_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:imp: &lt;code class=&quot;highlighter-rouge&quot;&gt;:imp:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:smiling_imp: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smiling_imp:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:neutral_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:neutral_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_mouth: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_mouth:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:innocent: &lt;code class=&quot;highlighter-rouge&quot;&gt;:innocent:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:alien: &lt;code class=&quot;highlighter-rouge&quot;&gt;:alien:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:yellow_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:yellow_heart:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:blue_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blue_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:purple_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:purple_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heart:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:green_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:green_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:broken_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:broken_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heartbeat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heartbeat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:heartpulse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heartpulse:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:two_hearts: &lt;code class=&quot;highlighter-rouge&quot;&gt;:two_hearts:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:revolving_hearts: &lt;code class=&quot;highlighter-rouge&quot;&gt;:revolving_hearts:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cupid: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cupid:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sparkling_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sparkling_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sparkles: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sparkles:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:star: &lt;code class=&quot;highlighter-rouge&quot;&gt;:star:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:star2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:star2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dizzy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dizzy:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:boom: &lt;code class=&quot;highlighter-rouge&quot;&gt;:boom:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:collision: &lt;code class=&quot;highlighter-rouge&quot;&gt;:collision:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:anger: &lt;code class=&quot;highlighter-rouge&quot;&gt;:anger:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:exclamation: &lt;code class=&quot;highlighter-rouge&quot;&gt;:exclamation:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:question: &lt;code class=&quot;highlighter-rouge&quot;&gt;:question:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:grey_exclamation: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grey_exclamation:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:grey_question: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grey_question:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:zzz: &lt;code class=&quot;highlighter-rouge&quot;&gt;:zzz:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dash: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dash:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sweat_drops: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sweat_drops:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:notes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:notes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:musical_note: &lt;code class=&quot;highlighter-rouge&quot;&gt;:musical_note:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:fire: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fire:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hankey: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hankey:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:poop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:poop:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:shit: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shit:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:+1: &lt;code class=&quot;highlighter-rouge&quot;&gt;:+1:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:thumbsup: &lt;code class=&quot;highlighter-rouge&quot;&gt;:thumbsup:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:-1: &lt;code class=&quot;highlighter-rouge&quot;&gt;:-1:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:thumbsdown: &lt;code class=&quot;highlighter-rouge&quot;&gt;:thumbsdown:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ok_hand: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ok_hand:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:punch: &lt;code class=&quot;highlighter-rouge&quot;&gt;:punch:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:facepunch: &lt;code class=&quot;highlighter-rouge&quot;&gt;:facepunch:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fist: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fist:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:v: &lt;code class=&quot;highlighter-rouge&quot;&gt;:v:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wave: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wave:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hand: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hand:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:raised_hand: &lt;code class=&quot;highlighter-rouge&quot;&gt;:raised_hand:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:open_hands: &lt;code class=&quot;highlighter-rouge&quot;&gt;:open_hands:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:point_up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:point_up:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:point_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:point_down:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:point_left: &lt;code class=&quot;highlighter-rouge&quot;&gt;:point_left:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:point_right: &lt;code class=&quot;highlighter-rouge&quot;&gt;:point_right:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:raised_hands: &lt;code class=&quot;highlighter-rouge&quot;&gt;:raised_hands:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pray: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pray:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:point_up_2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:point_up_2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clap: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clap:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:muscle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:muscle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:metal: &lt;code class=&quot;highlighter-rouge&quot;&gt;:metal:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:fu: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fu:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:walking: &lt;code class=&quot;highlighter-rouge&quot;&gt;:walking:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:runner: &lt;code class=&quot;highlighter-rouge&quot;&gt;:runner:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:running: &lt;code class=&quot;highlighter-rouge&quot;&gt;:running:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:couple: &lt;code class=&quot;highlighter-rouge&quot;&gt;:couple:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:family: &lt;code class=&quot;highlighter-rouge&quot;&gt;:family:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:two_men_holding_hands: &lt;code class=&quot;highlighter-rouge&quot;&gt;:two_men_holding_hands:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:two_women_holding_hands: &lt;code class=&quot;highlighter-rouge&quot;&gt;:two_women_holding_hands:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dancer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dancer:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:dancers: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dancers:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ok_woman: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ok_woman:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_good: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_good:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:information_desk_person: &lt;code class=&quot;highlighter-rouge&quot;&gt;:information_desk_person:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:raising_hand: &lt;code class=&quot;highlighter-rouge&quot;&gt;:raising_hand:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bride_with_veil: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bride_with_veil:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:person_with_pouting_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:person_with_pouting_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:person_frowning: &lt;code class=&quot;highlighter-rouge&quot;&gt;:person_frowning:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bow: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bow:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:couplekiss: &lt;code class=&quot;highlighter-rouge&quot;&gt;:couplekiss:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:couple_with_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:couple_with_heart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:massage: &lt;code class=&quot;highlighter-rouge&quot;&gt;:massage:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:haircut: &lt;code class=&quot;highlighter-rouge&quot;&gt;:haircut:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:nail_care: &lt;code class=&quot;highlighter-rouge&quot;&gt;:nail_care:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:boy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:boy:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:girl: &lt;code class=&quot;highlighter-rouge&quot;&gt;:girl:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:woman: &lt;code class=&quot;highlighter-rouge&quot;&gt;:woman:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:man: &lt;code class=&quot;highlighter-rouge&quot;&gt;:man:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:baby: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baby:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:older_woman: &lt;code class=&quot;highlighter-rouge&quot;&gt;:older_woman:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:older_man: &lt;code class=&quot;highlighter-rouge&quot;&gt;:older_man:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:person_with_blond_hair: &lt;code class=&quot;highlighter-rouge&quot;&gt;:person_with_blond_hair:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:man_with_gua_pi_mao: &lt;code class=&quot;highlighter-rouge&quot;&gt;:man_with_gua_pi_mao:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:man_with_turban: &lt;code class=&quot;highlighter-rouge&quot;&gt;:man_with_turban:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:construction_worker: &lt;code class=&quot;highlighter-rouge&quot;&gt;:construction_worker:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cop:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:angel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:angel:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:princess: &lt;code class=&quot;highlighter-rouge&quot;&gt;:princess:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:smiley_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smiley_cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:smile_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smile_cat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:heart_eyes_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heart_eyes_cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:kissing_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kissing_cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:smirk_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smirk_cat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:scream_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:scream_cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:crying_cat_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:crying_cat_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:joy_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:joy_cat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:pouting_cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pouting_cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:japanese_ogre: &lt;code class=&quot;highlighter-rouge&quot;&gt;:japanese_ogre:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:japanese_goblin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:japanese_goblin:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:see_no_evil: &lt;code class=&quot;highlighter-rouge&quot;&gt;:see_no_evil:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hear_no_evil: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hear_no_evil:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:speak_no_evil: &lt;code class=&quot;highlighter-rouge&quot;&gt;:speak_no_evil:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:guardsman: &lt;code class=&quot;highlighter-rouge&quot;&gt;:guardsman:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:skull: &lt;code class=&quot;highlighter-rouge&quot;&gt;:skull:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:feet: &lt;code class=&quot;highlighter-rouge&quot;&gt;:feet:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:lips: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lips:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:kiss: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kiss:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:droplet: &lt;code class=&quot;highlighter-rouge&quot;&gt;:droplet:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ear: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ear:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:eyes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eyes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:nose: &lt;code class=&quot;highlighter-rouge&quot;&gt;:nose:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tongue: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tongue:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:love_letter: &lt;code class=&quot;highlighter-rouge&quot;&gt;:love_letter:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bust_in_silhouette: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bust_in_silhouette:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:busts_in_silhouette: &lt;code class=&quot;highlighter-rouge&quot;&gt;:busts_in_silhouette:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:speech_balloon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:speech_balloon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:thought_balloon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:thought_balloon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:feelsgood: &lt;code class=&quot;highlighter-rouge&quot;&gt;:feelsgood:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:finnadie: &lt;code class=&quot;highlighter-rouge&quot;&gt;:finnadie:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:goberserk: &lt;code class=&quot;highlighter-rouge&quot;&gt;:goberserk:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:godmode: &lt;code class=&quot;highlighter-rouge&quot;&gt;:godmode:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hurtrealbad: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hurtrealbad:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rage1: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rage1:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rage2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rage2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rage3: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rage3:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rage4: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rage4:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:suspect: &lt;code class=&quot;highlighter-rouge&quot;&gt;:suspect:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:trollface: &lt;code class=&quot;highlighter-rouge&quot;&gt;:trollface:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Nature&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;:sunny: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sunny:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:umbrella: &lt;code class=&quot;highlighter-rouge&quot;&gt;:umbrella:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:cloud: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cloud:&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:snowflake: &lt;code class=&quot;highlighter-rouge&quot;&gt;:snowflake:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:snowman: &lt;code class=&quot;highlighter-rouge&quot;&gt;:snowman:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:zap: &lt;code class=&quot;highlighter-rouge&quot;&gt;:zap:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cyclone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cyclone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:foggy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:foggy:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ocean: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ocean:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dog: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dog:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mouse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mouse:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:hamster: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hamster:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rabbit: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rabbit:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wolf: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wolf:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:frog: &lt;code class=&quot;highlighter-rouge&quot;&gt;:frog:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tiger: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tiger:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:koala: &lt;code class=&quot;highlighter-rouge&quot;&gt;:koala:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bear: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bear:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pig: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pig:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pig_nose: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pig_nose:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cow: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cow:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:boar: &lt;code class=&quot;highlighter-rouge&quot;&gt;:boar:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:monkey_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:monkey_face:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:monkey: &lt;code class=&quot;highlighter-rouge&quot;&gt;:monkey:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:horse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:horse:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:racehorse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:racehorse:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:camel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:camel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sheep: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sheep:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:elephant: &lt;code class=&quot;highlighter-rouge&quot;&gt;:elephant:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:panda_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:panda_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:snake: &lt;code class=&quot;highlighter-rouge&quot;&gt;:snake:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bird: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bird:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:baby_chick: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baby_chick:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hatched_chick: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hatched_chick:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hatching_chick: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hatching_chick:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:chicken: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chicken:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:penguin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:penguin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:turtle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:turtle:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bug: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bug:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:honeybee: &lt;code class=&quot;highlighter-rouge&quot;&gt;:honeybee:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ant: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ant:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:beetle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:beetle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:snail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:snail:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:octopus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:octopus:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tropical_fish: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tropical_fish:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fish: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fish:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:whale: &lt;code class=&quot;highlighter-rouge&quot;&gt;:whale:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:whale2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:whale2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dolphin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dolphin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cow2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cow2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ram: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ram:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:water_buffalo: &lt;code class=&quot;highlighter-rouge&quot;&gt;:water_buffalo:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tiger2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tiger2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rabbit2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rabbit2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dragon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dragon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:goat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:goat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rooster: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rooster:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dog2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dog2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:pig2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pig2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mouse2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mouse2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ox: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ox:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:dragon_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dragon_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:blowfish: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blowfish:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:crocodile: &lt;code class=&quot;highlighter-rouge&quot;&gt;:crocodile:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:dromedary_camel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dromedary_camel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:leopard: &lt;code class=&quot;highlighter-rouge&quot;&gt;:leopard:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cat2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cat2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:poodle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:poodle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:paw_prints: &lt;code class=&quot;highlighter-rouge&quot;&gt;:paw_prints:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bouquet: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bouquet:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cherry_blossom: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cherry_blossom:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tulip: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tulip:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:four_leaf_clover: &lt;code class=&quot;highlighter-rouge&quot;&gt;:four_leaf_clover:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rose: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rose:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sunflower: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sunflower:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hibiscus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hibiscus:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:maple_leaf: &lt;code class=&quot;highlighter-rouge&quot;&gt;:maple_leaf:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:leaves: &lt;code class=&quot;highlighter-rouge&quot;&gt;:leaves:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fallen_leaf: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fallen_leaf:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:herb: &lt;code class=&quot;highlighter-rouge&quot;&gt;:herb:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mushroom: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mushroom:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cactus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cactus:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:palm_tree: &lt;code class=&quot;highlighter-rouge&quot;&gt;:palm_tree:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:evergreen_tree: &lt;code class=&quot;highlighter-rouge&quot;&gt;:evergreen_tree:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:deciduous_tree: &lt;code class=&quot;highlighter-rouge&quot;&gt;:deciduous_tree:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:chestnut: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chestnut:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:seedling: &lt;code class=&quot;highlighter-rouge&quot;&gt;:seedling:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:blossom: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blossom:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ear_of_rice: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ear_of_rice:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:shell: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shell:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:globe_with_meridians: &lt;code class=&quot;highlighter-rouge&quot;&gt;:globe_with_meridians:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sun_with_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sun_with_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:full_moon_with_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:full_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:new_moon_with_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:new_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:new_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:new_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:waxing_crescent_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:waxing_crescent_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:first_quarter_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:first_quarter_moon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:waxing_gibbous_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:waxing_gibbous_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:full_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:full_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:waning_gibbous_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:waning_gibbous_moon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:last_quarter_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:last_quarter_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:waning_crescent_moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:waning_crescent_moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:last_quarter_moon_with_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:last_quarter_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:first_quarter_moon_with_face: &lt;code class=&quot;highlighter-rouge&quot;&gt;:first_quarter_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:moon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:moon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:earth_africa: &lt;code class=&quot;highlighter-rouge&quot;&gt;:earth_africa:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:earth_americas: &lt;code class=&quot;highlighter-rouge&quot;&gt;:earth_americas:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:earth_asia: &lt;code class=&quot;highlighter-rouge&quot;&gt;:earth_asia:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:volcano: &lt;code class=&quot;highlighter-rouge&quot;&gt;:volcano:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:milky_way: &lt;code class=&quot;highlighter-rouge&quot;&gt;:milky_way:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:partly_sunny: &lt;code class=&quot;highlighter-rouge&quot;&gt;:partly_sunny:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:octocat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:octocat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:squirrel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:squirrel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Objects&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;:bamboo: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bamboo:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:gift_heart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gift_heart:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:dolls: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dolls:&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:school_satchel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:school_satchel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mortar_board: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mortar_board:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:flags: &lt;code class=&quot;highlighter-rouge&quot;&gt;:flags:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:fireworks: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fireworks:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sparkler: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sparkler:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wind_chime: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wind_chime:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rice_scene: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rice_scene:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:jack_o_lantern: &lt;code class=&quot;highlighter-rouge&quot;&gt;:jack_o_lantern:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ghost: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ghost:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:santa: &lt;code class=&quot;highlighter-rouge&quot;&gt;:santa:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:christmas_tree: &lt;code class=&quot;highlighter-rouge&quot;&gt;:christmas_tree:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:gift: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gift:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bell: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bell:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_bell: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_bell:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tanabata_tree: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tanabata_tree:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tada: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tada:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:confetti_ball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:confetti_ball:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:balloon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:balloon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:crystal_ball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:crystal_ball:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cd: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cd:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dvd: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dvd:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:floppy_disk: &lt;code class=&quot;highlighter-rouge&quot;&gt;:floppy_disk:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:camera: &lt;code class=&quot;highlighter-rouge&quot;&gt;:camera:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:video_camera: &lt;code class=&quot;highlighter-rouge&quot;&gt;:video_camera:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:movie_camera: &lt;code class=&quot;highlighter-rouge&quot;&gt;:movie_camera:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:computer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:computer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tv: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tv:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:iphone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:iphone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:phone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:phone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:telephone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:telephone:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:telephone_receiver: &lt;code class=&quot;highlighter-rouge&quot;&gt;:telephone_receiver:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pager: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pager:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fax: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fax:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:minidisc: &lt;code class=&quot;highlighter-rouge&quot;&gt;:minidisc:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:vhs: &lt;code class=&quot;highlighter-rouge&quot;&gt;:vhs:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sound: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sound:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:speaker: &lt;code class=&quot;highlighter-rouge&quot;&gt;:speaker:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mute: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mute:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:loudspeaker: &lt;code class=&quot;highlighter-rouge&quot;&gt;:loudspeaker:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:mega: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mega:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hourglass: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hourglass:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hourglass_flowing_sand: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hourglass_flowing_sand:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:alarm_clock: &lt;code class=&quot;highlighter-rouge&quot;&gt;:alarm_clock:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:watch: &lt;code class=&quot;highlighter-rouge&quot;&gt;:watch:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:radio: &lt;code class=&quot;highlighter-rouge&quot;&gt;:radio:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:satellite: &lt;code class=&quot;highlighter-rouge&quot;&gt;:satellite:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:loop:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mag: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mag:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:mag_right: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mag_right:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:unlock: &lt;code class=&quot;highlighter-rouge&quot;&gt;:unlock:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:lock: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lock:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:lock_with_ink_pen: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lock_with_ink_pen:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:closed_lock_with_key: &lt;code class=&quot;highlighter-rouge&quot;&gt;:closed_lock_with_key:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:key: &lt;code class=&quot;highlighter-rouge&quot;&gt;:key:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bulb: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bulb:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:flashlight: &lt;code class=&quot;highlighter-rouge&quot;&gt;:flashlight:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:high_brightness: &lt;code class=&quot;highlighter-rouge&quot;&gt;:high_brightness:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:low_brightness: &lt;code class=&quot;highlighter-rouge&quot;&gt;:low_brightness:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:electric_plug: &lt;code class=&quot;highlighter-rouge&quot;&gt;:electric_plug:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:battery: &lt;code class=&quot;highlighter-rouge&quot;&gt;:battery:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:calling: &lt;code class=&quot;highlighter-rouge&quot;&gt;:calling:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:email: &lt;code class=&quot;highlighter-rouge&quot;&gt;:email:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mailbox: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mailbox:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:postbox: &lt;code class=&quot;highlighter-rouge&quot;&gt;:postbox:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bath: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bath:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bathtub: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bathtub:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:shower: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shower:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:toilet: &lt;code class=&quot;highlighter-rouge&quot;&gt;:toilet:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wrench: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wrench:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:nut_and_bolt: &lt;code class=&quot;highlighter-rouge&quot;&gt;:nut_and_bolt:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hammer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hammer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:seat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:seat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:moneybag: &lt;code class=&quot;highlighter-rouge&quot;&gt;:moneybag:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:yen: &lt;code class=&quot;highlighter-rouge&quot;&gt;:yen:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dollar: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dollar:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:pound: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pound:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:euro: &lt;code class=&quot;highlighter-rouge&quot;&gt;:euro:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:credit_card: &lt;code class=&quot;highlighter-rouge&quot;&gt;:credit_card:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:money_with_wings: &lt;code class=&quot;highlighter-rouge&quot;&gt;:money_with_wings:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:e-mail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:e-mail:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:inbox_tray: &lt;code class=&quot;highlighter-rouge&quot;&gt;:inbox_tray:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:outbox_tray: &lt;code class=&quot;highlighter-rouge&quot;&gt;:outbox_tray:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:envelope: &lt;code class=&quot;highlighter-rouge&quot;&gt;:envelope:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:incoming_envelope: &lt;code class=&quot;highlighter-rouge&quot;&gt;:incoming_envelope:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:postal_horn: &lt;code class=&quot;highlighter-rouge&quot;&gt;:postal_horn:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mailbox_closed: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mailbox_closed:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mailbox_with_mail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mailbox_with_mail:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:mailbox_with_no_mail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mailbox_with_no_mail:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:door: &lt;code class=&quot;highlighter-rouge&quot;&gt;:door:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:smoking: &lt;code class=&quot;highlighter-rouge&quot;&gt;:smoking:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bomb: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bomb:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:gun: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gun:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hocho: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hocho:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:pill: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pill:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:syringe: &lt;code class=&quot;highlighter-rouge&quot;&gt;:syringe:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:page_facing_up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:page_facing_up:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:page_with_curl: &lt;code class=&quot;highlighter-rouge&quot;&gt;:page_with_curl:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bookmark_tabs: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bookmark_tabs:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bar_chart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bar_chart:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:chart_with_upwards_trend: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chart_with_upwards_trend:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:chart_with_downwards_trend: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chart_with_downwards_trend:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:scroll: &lt;code class=&quot;highlighter-rouge&quot;&gt;:scroll:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clipboard: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clipboard:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:calendar: &lt;code class=&quot;highlighter-rouge&quot;&gt;:calendar:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:date: &lt;code class=&quot;highlighter-rouge&quot;&gt;:date:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:card_index: &lt;code class=&quot;highlighter-rouge&quot;&gt;:card_index:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:file_folder: &lt;code class=&quot;highlighter-rouge&quot;&gt;:file_folder:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:open_file_folder: &lt;code class=&quot;highlighter-rouge&quot;&gt;:open_file_folder:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:scissors: &lt;code class=&quot;highlighter-rouge&quot;&gt;:scissors:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pushpin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pushpin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:paperclip: &lt;code class=&quot;highlighter-rouge&quot;&gt;:paperclip:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:black_nib: &lt;code class=&quot;highlighter-rouge&quot;&gt;:black_nib:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pencil2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pencil2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:straight_ruler: &lt;code class=&quot;highlighter-rouge&quot;&gt;:straight_ruler:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:triangular_ruler: &lt;code class=&quot;highlighter-rouge&quot;&gt;:triangular_ruler:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:closed_book: &lt;code class=&quot;highlighter-rouge&quot;&gt;:closed_book:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:green_book: &lt;code class=&quot;highlighter-rouge&quot;&gt;:green_book:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:blue_book: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blue_book:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:orange_book: &lt;code class=&quot;highlighter-rouge&quot;&gt;:orange_book:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:notebook: &lt;code class=&quot;highlighter-rouge&quot;&gt;:notebook:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:notebook_with_decorative_cover: &lt;code class=&quot;highlighter-rouge&quot;&gt;:notebook_with_decorative_cover:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ledger: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ledger:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:books: &lt;code class=&quot;highlighter-rouge&quot;&gt;:books:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bookmark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bookmark:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:name_badge: &lt;code class=&quot;highlighter-rouge&quot;&gt;:name_badge:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:microscope: &lt;code class=&quot;highlighter-rouge&quot;&gt;:microscope:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:telescope: &lt;code class=&quot;highlighter-rouge&quot;&gt;:telescope:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:newspaper: &lt;code class=&quot;highlighter-rouge&quot;&gt;:newspaper:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:football: &lt;code class=&quot;highlighter-rouge&quot;&gt;:football:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:basketball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:basketball:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:soccer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:soccer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:baseball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baseball:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tennis: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tennis:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:8ball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:8ball:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rugby_football: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rugby_football:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bowling: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bowling:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:golf: &lt;code class=&quot;highlighter-rouge&quot;&gt;:golf:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mountain_bicyclist: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mountain_bicyclist:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bicyclist: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bicyclist:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:horse_racing: &lt;code class=&quot;highlighter-rouge&quot;&gt;:horse_racing:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:snowboarder: &lt;code class=&quot;highlighter-rouge&quot;&gt;:snowboarder:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:swimmer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:swimmer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:surfer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:surfer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ski: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ski:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:spades: &lt;code class=&quot;highlighter-rouge&quot;&gt;:spades:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hearts: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hearts:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clubs: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clubs:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:diamonds: &lt;code class=&quot;highlighter-rouge&quot;&gt;:diamonds:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:gem: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gem:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ring: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ring:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:trophy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:trophy:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:musical_score: &lt;code class=&quot;highlighter-rouge&quot;&gt;:musical_score:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:musical_keyboard: &lt;code class=&quot;highlighter-rouge&quot;&gt;:musical_keyboard:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:violin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:violin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:space_invader: &lt;code class=&quot;highlighter-rouge&quot;&gt;:space_invader:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:video_game: &lt;code class=&quot;highlighter-rouge&quot;&gt;:video_game:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:black_joker: &lt;code class=&quot;highlighter-rouge&quot;&gt;:black_joker:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:flower_playing_cards: &lt;code class=&quot;highlighter-rouge&quot;&gt;:flower_playing_cards:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:game_die: &lt;code class=&quot;highlighter-rouge&quot;&gt;:game_die:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:dart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mahjong: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mahjong:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clapper: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clapper:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:memo: &lt;code class=&quot;highlighter-rouge&quot;&gt;:memo:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pencil: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pencil:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:book: &lt;code class=&quot;highlighter-rouge&quot;&gt;:book:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:art: &lt;code class=&quot;highlighter-rouge&quot;&gt;:art:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:microphone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:microphone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:headphones: &lt;code class=&quot;highlighter-rouge&quot;&gt;:headphones:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:trumpet: &lt;code class=&quot;highlighter-rouge&quot;&gt;:trumpet:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:saxophone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:saxophone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:guitar: &lt;code class=&quot;highlighter-rouge&quot;&gt;:guitar:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:shoe: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shoe:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sandal: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sandal:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:high_heel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:high_heel:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:lipstick: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lipstick:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:boot: &lt;code class=&quot;highlighter-rouge&quot;&gt;:boot:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:shirt: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shirt:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tshirt: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tshirt:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:necktie: &lt;code class=&quot;highlighter-rouge&quot;&gt;:necktie:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:womans_clothes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:womans_clothes:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:dress: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dress:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:running_shirt_with_sash: &lt;code class=&quot;highlighter-rouge&quot;&gt;:running_shirt_with_sash:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:jeans: &lt;code class=&quot;highlighter-rouge&quot;&gt;:jeans:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:kimono: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kimono:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bikini: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bikini:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ribbon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ribbon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tophat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tophat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:crown: &lt;code class=&quot;highlighter-rouge&quot;&gt;:crown:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:womans_hat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:womans_hat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:mans_shoe: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mans_shoe:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:closed_umbrella: &lt;code class=&quot;highlighter-rouge&quot;&gt;:closed_umbrella:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:briefcase: &lt;code class=&quot;highlighter-rouge&quot;&gt;:briefcase:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:handbag: &lt;code class=&quot;highlighter-rouge&quot;&gt;:handbag:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pouch: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pouch:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:purse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:purse:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:eyeglasses: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eyeglasses:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fishing_pole_and_fish: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fishing_pole_and_fish:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:coffee: &lt;code class=&quot;highlighter-rouge&quot;&gt;:coffee:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tea: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tea:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sake: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sake:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:baby_bottle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baby_bottle:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:beer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:beer:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:beers: &lt;code class=&quot;highlighter-rouge&quot;&gt;:beers:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cocktail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cocktail:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tropical_drink: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tropical_drink:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wine_glass: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wine_glass:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fork_and_knife: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fork_and_knife:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:pizza: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pizza:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hamburger: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hamburger:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fries: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fries:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:poultry_leg: &lt;code class=&quot;highlighter-rouge&quot;&gt;:poultry_leg:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:meat_on_bone: &lt;code class=&quot;highlighter-rouge&quot;&gt;:meat_on_bone:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:spaghetti: &lt;code class=&quot;highlighter-rouge&quot;&gt;:spaghetti:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:curry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:curry:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fried_shrimp: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fried_shrimp:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bento: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bento:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sushi: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sushi:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fish_cake: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fish_cake:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rice_ball: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rice_ball:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rice_cracker: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rice_cracker:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rice: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rice:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ramen: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ramen:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:stew: &lt;code class=&quot;highlighter-rouge&quot;&gt;:stew:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:oden: &lt;code class=&quot;highlighter-rouge&quot;&gt;:oden:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:dango: &lt;code class=&quot;highlighter-rouge&quot;&gt;:dango:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:egg: &lt;code class=&quot;highlighter-rouge&quot;&gt;:egg:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bread: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bread:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:doughnut: &lt;code class=&quot;highlighter-rouge&quot;&gt;:doughnut:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:custard: &lt;code class=&quot;highlighter-rouge&quot;&gt;:custard:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:icecream: &lt;code class=&quot;highlighter-rouge&quot;&gt;:icecream:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ice_cream: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ice_cream:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:shaved_ice: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shaved_ice:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:birthday: &lt;code class=&quot;highlighter-rouge&quot;&gt;:birthday:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cake: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cake:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cookie: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cookie:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:chocolate_bar: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chocolate_bar:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:candy: &lt;code class=&quot;highlighter-rouge&quot;&gt;:candy:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:lollipop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lollipop:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:honey_pot: &lt;code class=&quot;highlighter-rouge&quot;&gt;:honey_pot:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:apple: &lt;code class=&quot;highlighter-rouge&quot;&gt;:apple:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:green_apple: &lt;code class=&quot;highlighter-rouge&quot;&gt;:green_apple:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tangerine: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tangerine:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:lemon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:lemon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cherries: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cherries:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:grapes: &lt;code class=&quot;highlighter-rouge&quot;&gt;:grapes:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:watermelon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:watermelon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:strawberry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:strawberry:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:peach: &lt;code class=&quot;highlighter-rouge&quot;&gt;:peach:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:melon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:melon:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:banana: &lt;code class=&quot;highlighter-rouge&quot;&gt;:banana:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pear: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pear:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pineapple: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pineapple:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sweet_potato: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sweet_potato:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:eggplant: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eggplant:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tomato: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tomato:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:corn: &lt;code class=&quot;highlighter-rouge&quot;&gt;:corn:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Places&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;:house: &lt;code class=&quot;highlighter-rouge&quot;&gt;:house:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:house_with_garden: &lt;code class=&quot;highlighter-rouge&quot;&gt;:house_with_garden:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:school: &lt;code class=&quot;highlighter-rouge&quot;&gt;:school:&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:office: &lt;code class=&quot;highlighter-rouge&quot;&gt;:office:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:post_office: &lt;code class=&quot;highlighter-rouge&quot;&gt;:post_office:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hospital: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hospital:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bank: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bank:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:convenience_store: &lt;code class=&quot;highlighter-rouge&quot;&gt;:convenience_store:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:love_hotel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:love_hotel:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:hotel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hotel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wedding: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wedding:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:church: &lt;code class=&quot;highlighter-rouge&quot;&gt;:church:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:department_store: &lt;code class=&quot;highlighter-rouge&quot;&gt;:department_store:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:european_post_office: &lt;code class=&quot;highlighter-rouge&quot;&gt;:european_post_office:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:city_sunrise: &lt;code class=&quot;highlighter-rouge&quot;&gt;:city_sunrise:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:city_sunset: &lt;code class=&quot;highlighter-rouge&quot;&gt;:city_sunset:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:japanese_castle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:japanese_castle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:european_castle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:european_castle:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:tent: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tent:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:factory: &lt;code class=&quot;highlighter-rouge&quot;&gt;:factory:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tokyo_tower: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tokyo_tower:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:japan: &lt;code class=&quot;highlighter-rouge&quot;&gt;:japan:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mount_fuji: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mount_fuji:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sunrise_over_mountains: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sunrise_over_mountains:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sunrise: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sunrise:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:stars: &lt;code class=&quot;highlighter-rouge&quot;&gt;:stars:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:statue_of_liberty: &lt;code class=&quot;highlighter-rouge&quot;&gt;:statue_of_liberty:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bridge_at_night: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bridge_at_night:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:carousel_horse: &lt;code class=&quot;highlighter-rouge&quot;&gt;:carousel_horse:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rainbow: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rainbow:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ferris_wheel: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ferris_wheel:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fountain: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fountain:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:roller_coaster: &lt;code class=&quot;highlighter-rouge&quot;&gt;:roller_coaster:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ship: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ship:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:speedboat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:speedboat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:boat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:boat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sailboat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sailboat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rowboat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rowboat:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:anchor: &lt;code class=&quot;highlighter-rouge&quot;&gt;:anchor:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rocket: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rocket:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:airplane: &lt;code class=&quot;highlighter-rouge&quot;&gt;:airplane:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:helicopter: &lt;code class=&quot;highlighter-rouge&quot;&gt;:helicopter:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:steam_locomotive: &lt;code class=&quot;highlighter-rouge&quot;&gt;:steam_locomotive:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tram: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tram:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mountain_railway: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mountain_railway:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bike: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bike:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:aerial_tramway: &lt;code class=&quot;highlighter-rouge&quot;&gt;:aerial_tramway:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:suspension_railway: &lt;code class=&quot;highlighter-rouge&quot;&gt;:suspension_railway:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:mountain_cableway: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mountain_cableway:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tractor: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tractor:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:blue_car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:blue_car:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:oncoming_automobile: &lt;code class=&quot;highlighter-rouge&quot;&gt;:oncoming_automobile:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:car:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:red_car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:red_car:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:taxi: &lt;code class=&quot;highlighter-rouge&quot;&gt;:taxi:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:oncoming_taxi: &lt;code class=&quot;highlighter-rouge&quot;&gt;:oncoming_taxi:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:articulated_lorry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:articulated_lorry:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bus:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:oncoming_bus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:oncoming_bus:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:rotating_light: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rotating_light:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:police_car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:police_car:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:oncoming_police_car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:oncoming_police_car:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fire_engine: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fire_engine:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ambulance: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ambulance:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:minibus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:minibus:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:truck: &lt;code class=&quot;highlighter-rouge&quot;&gt;:truck:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:train: &lt;code class=&quot;highlighter-rouge&quot;&gt;:train:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:station: &lt;code class=&quot;highlighter-rouge&quot;&gt;:station:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:train2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:train2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:bullettrain_front: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bullettrain_front:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bullettrain_side: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bullettrain_side:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:light_rail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:light_rail:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:monorail: &lt;code class=&quot;highlighter-rouge&quot;&gt;:monorail:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:railway_car: &lt;code class=&quot;highlighter-rouge&quot;&gt;:railway_car:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:trolleybus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:trolleybus:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ticket: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ticket:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fuelpump: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fuelpump:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:vertical_traffic_light: &lt;code class=&quot;highlighter-rouge&quot;&gt;:vertical_traffic_light:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:traffic_light: &lt;code class=&quot;highlighter-rouge&quot;&gt;:traffic_light:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:warning: &lt;code class=&quot;highlighter-rouge&quot;&gt;:warning:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:construction: &lt;code class=&quot;highlighter-rouge&quot;&gt;:construction:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:beginner: &lt;code class=&quot;highlighter-rouge&quot;&gt;:beginner:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:atm: &lt;code class=&quot;highlighter-rouge&quot;&gt;:atm:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:slot_machine: &lt;code class=&quot;highlighter-rouge&quot;&gt;:slot_machine:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:busstop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:busstop:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:barber: &lt;code class=&quot;highlighter-rouge&quot;&gt;:barber:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:hotsprings: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hotsprings:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:checkered_flag: &lt;code class=&quot;highlighter-rouge&quot;&gt;:checkered_flag:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:crossed_flags: &lt;code class=&quot;highlighter-rouge&quot;&gt;:crossed_flags:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:izakaya_lantern: &lt;code class=&quot;highlighter-rouge&quot;&gt;:izakaya_lantern:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:moyai: &lt;code class=&quot;highlighter-rouge&quot;&gt;:moyai:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:circus_tent: &lt;code class=&quot;highlighter-rouge&quot;&gt;:circus_tent:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:performing_arts: &lt;code class=&quot;highlighter-rouge&quot;&gt;:performing_arts:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:round_pushpin: &lt;code class=&quot;highlighter-rouge&quot;&gt;:round_pushpin:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:triangular_flag_on_post: &lt;code class=&quot;highlighter-rouge&quot;&gt;:triangular_flag_on_post:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:jp: &lt;code class=&quot;highlighter-rouge&quot;&gt;:jp:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:kr: &lt;code class=&quot;highlighter-rouge&quot;&gt;:kr:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cn: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cn:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:us: &lt;code class=&quot;highlighter-rouge&quot;&gt;:us:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:fr: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fr:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:es: &lt;code class=&quot;highlighter-rouge&quot;&gt;:es:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:it: &lt;code class=&quot;highlighter-rouge&quot;&gt;:it:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ru: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ru:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:gb: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gb:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:uk: &lt;code class=&quot;highlighter-rouge&quot;&gt;:uk:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:de: &lt;code class=&quot;highlighter-rouge&quot;&gt;:de:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Symbols&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;:one: &lt;code class=&quot;highlighter-rouge&quot;&gt;:one:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:two: &lt;code class=&quot;highlighter-rouge&quot;&gt;:two:&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;:three: &lt;code class=&quot;highlighter-rouge&quot;&gt;:three:&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:four: &lt;code class=&quot;highlighter-rouge&quot;&gt;:four:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:five: &lt;code class=&quot;highlighter-rouge&quot;&gt;:five:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:six: &lt;code class=&quot;highlighter-rouge&quot;&gt;:six:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:seven: &lt;code class=&quot;highlighter-rouge&quot;&gt;:seven:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:eight: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eight:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:nine: &lt;code class=&quot;highlighter-rouge&quot;&gt;:nine:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:keycap_ten: &lt;code class=&quot;highlighter-rouge&quot;&gt;:keycap_ten:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:1234: &lt;code class=&quot;highlighter-rouge&quot;&gt;:1234:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:zero: &lt;code class=&quot;highlighter-rouge&quot;&gt;:zero:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:hash: &lt;code class=&quot;highlighter-rouge&quot;&gt;:hash:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:symbols: &lt;code class=&quot;highlighter-rouge&quot;&gt;:symbols:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_backward: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_backward:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_down:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_forward: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_forward:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_left: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_left:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:capital_abcd: &lt;code class=&quot;highlighter-rouge&quot;&gt;:capital_abcd:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:abcd: &lt;code class=&quot;highlighter-rouge&quot;&gt;:abcd:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:abc: &lt;code class=&quot;highlighter-rouge&quot;&gt;:abc:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_lower_left: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_lower_left:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_lower_right: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_lower_right:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_right: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_right:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_up:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_upper_left: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_upper_left:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_upper_right: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_upper_right:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_double_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_double_down:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_double_up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_double_up:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_down_small: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_down_small:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_heading_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_heading_down:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_heading_up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_heading_up:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:leftwards_arrow_with_hook: &lt;code class=&quot;highlighter-rouge&quot;&gt;:leftwards_arrow_with_hook:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_right_hook: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_right_hook:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:left_right_arrow: &lt;code class=&quot;highlighter-rouge&quot;&gt;:left_right_arrow:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrow_up_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_up_down:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:arrow_up_small: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrow_up_small:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrows_clockwise: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrows_clockwise:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:arrows_counterclockwise: &lt;code class=&quot;highlighter-rouge&quot;&gt;:arrows_counterclockwise:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:rewind: &lt;code class=&quot;highlighter-rouge&quot;&gt;:rewind:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:fast_forward: &lt;code class=&quot;highlighter-rouge&quot;&gt;:fast_forward:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:information_source: &lt;code class=&quot;highlighter-rouge&quot;&gt;:information_source:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ok: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ok:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:twisted_rightwards_arrows: &lt;code class=&quot;highlighter-rouge&quot;&gt;:twisted_rightwards_arrows:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:repeat: &lt;code class=&quot;highlighter-rouge&quot;&gt;:repeat:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:repeat_one: &lt;code class=&quot;highlighter-rouge&quot;&gt;:repeat_one:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:new: &lt;code class=&quot;highlighter-rouge&quot;&gt;:new:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:top: &lt;code class=&quot;highlighter-rouge&quot;&gt;:top:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:up: &lt;code class=&quot;highlighter-rouge&quot;&gt;:up:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cool: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cool:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:free: &lt;code class=&quot;highlighter-rouge&quot;&gt;:free:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ng: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ng:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cinema: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cinema:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:koko: &lt;code class=&quot;highlighter-rouge&quot;&gt;:koko:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:signal_strength: &lt;code class=&quot;highlighter-rouge&quot;&gt;:signal_strength:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u5272: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u5272:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u5408: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u5408:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:u55b6: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u55b6:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u6307: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u6307:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u6708: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u6708:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:u6709: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u6709:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u6e80: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u6e80:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u7121: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u7121:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:u7533: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u7533:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u7a7a: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u7a7a:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:u7981: &lt;code class=&quot;highlighter-rouge&quot;&gt;:u7981:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:sa: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sa:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:restroom: &lt;code class=&quot;highlighter-rouge&quot;&gt;:restroom:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mens: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mens:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:womens: &lt;code class=&quot;highlighter-rouge&quot;&gt;:womens:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:baby_symbol: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baby_symbol:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_smoking: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_smoking:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:parking: &lt;code class=&quot;highlighter-rouge&quot;&gt;:parking:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wheelchair: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wheelchair:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:metro: &lt;code class=&quot;highlighter-rouge&quot;&gt;:metro:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:baggage_claim: &lt;code class=&quot;highlighter-rouge&quot;&gt;:baggage_claim:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:accept: &lt;code class=&quot;highlighter-rouge&quot;&gt;:accept:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wc: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wc:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:potable_water: &lt;code class=&quot;highlighter-rouge&quot;&gt;:potable_water:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:put_litter_in_its_place: &lt;code class=&quot;highlighter-rouge&quot;&gt;:put_litter_in_its_place:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:secret: &lt;code class=&quot;highlighter-rouge&quot;&gt;:secret:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:congratulations: &lt;code class=&quot;highlighter-rouge&quot;&gt;:congratulations:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:m: &lt;code class=&quot;highlighter-rouge&quot;&gt;:m:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:passport_control: &lt;code class=&quot;highlighter-rouge&quot;&gt;:passport_control:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:left_luggage: &lt;code class=&quot;highlighter-rouge&quot;&gt;:left_luggage:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:customs: &lt;code class=&quot;highlighter-rouge&quot;&gt;:customs:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ideograph_advantage: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ideograph_advantage:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:cl: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cl:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sos: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sos:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:id: &lt;code class=&quot;highlighter-rouge&quot;&gt;:id:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:no_entry_sign: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_entry_sign:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:underage: &lt;code class=&quot;highlighter-rouge&quot;&gt;:underage:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_mobile_phones: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_mobile_phones:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:do_not_litter: &lt;code class=&quot;highlighter-rouge&quot;&gt;:do_not_litter:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:non-potable_water: &lt;code class=&quot;highlighter-rouge&quot;&gt;:non-potable_water:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_bicycles: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_bicycles:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:no_pedestrians: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_pedestrians:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:children_crossing: &lt;code class=&quot;highlighter-rouge&quot;&gt;:children_crossing:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:no_entry: &lt;code class=&quot;highlighter-rouge&quot;&gt;:no_entry:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:eight_spoked_asterisk: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eight_spoked_asterisk:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:eight_pointed_black_star: &lt;code class=&quot;highlighter-rouge&quot;&gt;:eight_pointed_black_star:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heart_decoration: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heart_decoration:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:vs: &lt;code class=&quot;highlighter-rouge&quot;&gt;:vs:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:vibration_mode: &lt;code class=&quot;highlighter-rouge&quot;&gt;:vibration_mode:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:mobile_phone_off: &lt;code class=&quot;highlighter-rouge&quot;&gt;:mobile_phone_off:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:chart: &lt;code class=&quot;highlighter-rouge&quot;&gt;:chart:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:currency_exchange: &lt;code class=&quot;highlighter-rouge&quot;&gt;:currency_exchange:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:aries: &lt;code class=&quot;highlighter-rouge&quot;&gt;:aries:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:taurus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:taurus:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:gemini: &lt;code class=&quot;highlighter-rouge&quot;&gt;:gemini:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:cancer: &lt;code class=&quot;highlighter-rouge&quot;&gt;:cancer:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:leo: &lt;code class=&quot;highlighter-rouge&quot;&gt;:leo:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:virgo: &lt;code class=&quot;highlighter-rouge&quot;&gt;:virgo:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:libra: &lt;code class=&quot;highlighter-rouge&quot;&gt;:libra:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:scorpius: &lt;code class=&quot;highlighter-rouge&quot;&gt;:scorpius:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:sagittarius: &lt;code class=&quot;highlighter-rouge&quot;&gt;:sagittarius:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:capricorn: &lt;code class=&quot;highlighter-rouge&quot;&gt;:capricorn:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:aquarius: &lt;code class=&quot;highlighter-rouge&quot;&gt;:aquarius:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:pisces: &lt;code class=&quot;highlighter-rouge&quot;&gt;:pisces:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ophiuchus: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ophiuchus:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:six_pointed_star: &lt;code class=&quot;highlighter-rouge&quot;&gt;:six_pointed_star:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:negative_squared_cross_mark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:negative_squared_cross_mark:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:a: &lt;code class=&quot;highlighter-rouge&quot;&gt;:a:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:b: &lt;code class=&quot;highlighter-rouge&quot;&gt;:b:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:ab: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ab:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:o2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:o2:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:diamond_shape_with_a_dot_inside: &lt;code class=&quot;highlighter-rouge&quot;&gt;:diamond_shape_with_a_dot_inside:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:recycle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:recycle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:end: &lt;code class=&quot;highlighter-rouge&quot;&gt;:end:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:on: &lt;code class=&quot;highlighter-rouge&quot;&gt;:on:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:soon: &lt;code class=&quot;highlighter-rouge&quot;&gt;:soon:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock1: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock1:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock130: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock130:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock10: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock10:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock1030: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock1030:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock11: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock11:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock1130: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock1130:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock12: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock12:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock1230: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock1230:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock2: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock2:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock230: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock230:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock3: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock3:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock330: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock330:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock4: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock4:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock430: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock430:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock5: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock5:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock530: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock530:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock6: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock6:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock630: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock630:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock7: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock7:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock730: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock730:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock8: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock8:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock830: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock830:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:clock9: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock9:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:clock930: &lt;code class=&quot;highlighter-rouge&quot;&gt;:clock930:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_dollar_sign: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_dollar_sign:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:copyright: &lt;code class=&quot;highlighter-rouge&quot;&gt;:copyright:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:registered: &lt;code class=&quot;highlighter-rouge&quot;&gt;:registered:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:tm: &lt;code class=&quot;highlighter-rouge&quot;&gt;:tm:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:x: &lt;code class=&quot;highlighter-rouge&quot;&gt;:x:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_exclamation_mark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_exclamation_mark:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:bangbang: &lt;code class=&quot;highlighter-rouge&quot;&gt;:bangbang:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:interrobang: &lt;code class=&quot;highlighter-rouge&quot;&gt;:interrobang:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:o: &lt;code class=&quot;highlighter-rouge&quot;&gt;:o:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_multiplication_x: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_multiplication_x:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:heavy_plus_sign: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_plus_sign:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_minus_sign: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_minus_sign:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_division_sign: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_division_sign:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:white_flower: &lt;code class=&quot;highlighter-rouge&quot;&gt;:white_flower:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:100: &lt;code class=&quot;highlighter-rouge&quot;&gt;:100:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:heavy_check_mark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:heavy_check_mark:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:ballot_box_with_check: &lt;code class=&quot;highlighter-rouge&quot;&gt;:ballot_box_with_check:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:radio_button: &lt;code class=&quot;highlighter-rouge&quot;&gt;:radio_button:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:link: &lt;code class=&quot;highlighter-rouge&quot;&gt;:link:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:curly_loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;:curly_loop:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:wavy_dash: &lt;code class=&quot;highlighter-rouge&quot;&gt;:wavy_dash:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:part_alternation_mark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:part_alternation_mark:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:trident: &lt;code class=&quot;highlighter-rouge&quot;&gt;:trident:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:black_square: &lt;code class=&quot;highlighter-rouge&quot;&gt;:black_square:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:white_square: &lt;code class=&quot;highlighter-rouge&quot;&gt;:white_square:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:white_check_mark: &lt;code class=&quot;highlighter-rouge&quot;&gt;:white_check_mark:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:black_square_button: &lt;code class=&quot;highlighter-rouge&quot;&gt;:black_square_button:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:white_square_button: &lt;code class=&quot;highlighter-rouge&quot;&gt;:white_square_button:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:black_circle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:black_circle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:white_circle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:white_circle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:red_circle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:red_circle:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:large_blue_circle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:large_blue_circle:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:large_blue_diamond: &lt;code class=&quot;highlighter-rouge&quot;&gt;:large_blue_diamond:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:large_orange_diamond: &lt;code class=&quot;highlighter-rouge&quot;&gt;:large_orange_diamond:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:small_blue_diamond: &lt;code class=&quot;highlighter-rouge&quot;&gt;:small_blue_diamond:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:small_orange_diamond: &lt;code class=&quot;highlighter-rouge&quot;&gt;:small_orange_diamond:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:small_red_triangle: &lt;code class=&quot;highlighter-rouge&quot;&gt;:small_red_triangle:&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:small_red_triangle_down: &lt;code class=&quot;highlighter-rouge&quot;&gt;:small_red_triangle_down:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;:shipit: &lt;code class=&quot;highlighter-rouge&quot;&gt;:shipit:&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>프레임워크(Framework) vs 라이브러리(Library)</title>
+   <link href="http://localhost:4000/study_googling/etc/Framework-vs-Library/"/>
+   <updated>2020-03-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/study_googling/etc/Framework vs Library</id>
+   <content type="html">&lt;h3 id=&quot;프레임워크framework-vs-라이브러리library-firefirefire&quot;&gt;프레임워크(Framework) vs 라이브러리(Library) :fire::fire::fire:&lt;/h3&gt;
+
+&lt;p&gt;예전에 면접 질문들을 정리하다가 Framework와 Library의 차이에 대해 생각해보게 됐습니다.&lt;/p&gt;
+
+&lt;p&gt;여기저기 글을 찾아 헤메던 와중 가장 알기 쉽고 간단하게 정리된 문장을 발견했습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;**라이브러리와 프레임워크의 차이는 제어 흐름에 대한 주도성이 누구에게/어디에 있는가이다.**&lt;/u&gt;&lt;/p&gt;
+
+&lt;p&gt;블로그 이곳 저곳에 흩어져 있던 말이라 어떤 분이 처음 하신 말인지 출처를 찾아 봤더니… &lt;strong&gt;『거꾸로 배우는 소프트웨어 개발 - 이호종』&lt;/strong&gt; 이라는 책이 출처인것 같습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프레임워크&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프레임워크는 프로그램이 흐르는 틀을 제공해줍니다. 개발자의 역할은 프레임워크님이 잘 굴러갈 수 있게 채워줘야 할 부분을 채워주는 것입니다.&lt;/strong&gt; 프로그램 흐름에 대한 제어권은 프레임워크님에게 있습니다.&lt;/p&gt;
+
+&lt;p&gt;스프링 프레임워크를 사용하는데 왜 ‘Dispatcher Servlet’이 ‘Handler Mapping’을 찾아가고 ‘Handler Adapter’를 찾아가고 ‘View Resolver’를 찾아가는지 이유를 알 필요는 있지만 애써 건드릴 필요는 없습니다. 전체적인 흐름은 프레임워크님에게 맡겨 줍시다. :&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;라이브러리&lt;/strong&gt; :hammer:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;라이브러리는 반면 프로그램을 다루는데 필요한 도구들을 제공해줍니다. 프로그램이 전체적으로 어떻게 돌아갈지 결정하는건 개발자 본인입니다.&lt;/strong&gt; 스프링 프레임워크가 없어도 개발자가 원하는대로 진행되는 웹 서비스를 만들 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;Java에서 제공하는 소켓 API는(라이브러리가 아니라 api긴 하지만…) TCP 통신을 할때 유용한 도구 입니다. 이 소켓 API를 잘 휘두루면 본인이 원하는 대로 흘러가는 웹 서비스를 만들 수 있습니다. 주도권은 온전히 개발자에게 있습니다.(책임도.. :weary:)&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>프록시</title>
+   <link href="http://localhost:4000/study_book/http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C6/"/>
+   <updated>2020-03-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/study_book/http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C/Http완벽가이드6</id>
+   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;61-웹-중개자&quot;&gt;6.1. 웹 중개자&lt;/h3&gt;
+
+&lt;p&gt;쿠팡, 11번가와 같은 인터넷 쇼핑몰은 소비자와 판매자 사이를 중개해줍니다. 소비자 입장에선 똑같이 돈을 주고 물건을 받는것이지만 인터넷 쇼핑몰을 이용하면 쇼핑몰이 제공하는 다양한 기능(상품 비교, 장바구니 등)을 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;프록시는 클라이언트와 서버를 중개해줍니다. 클라이언트와 서버 사이에 놓여 여러가지 기능들을 제공해줍니다. 클라이언트와 서버 사이에 있기 때문에 프록시는 클라이언트와 통신할땐 서버처럼, 서버와 통신할 땐 클라이언트 처럼 행동합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;611-개인-프록시와-공유-프록시&quot;&gt;6.1.1. 개인 프록시와 공유 프록시&lt;/h4&gt;
+
+&lt;p&gt;프록시는 하나의 클라이언트가 하나를 독점적으로 쓸 수도 있고 여러 클라이언트가 공유할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;공용 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만 대부분의 프록시는 사실 공용 프록시입니다. 클라이언트마다 프록시를 할당해 관리하는 것 보다 하나의 큰 프록시를 관리하는게 효율이 더 높기 때문입니다. 그리고 캐시 프록시 서버 같은 프록시는 공통된 요청을 빠르게 처리할 수 있기 때문에 사용자가 많을수록 유리하기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;개인 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;개인 프록시는 흔하지 않지만 꾸준히 사용됩니다. 주로 클라이언트의 PC에 설치되어 실행 됩니다. 인터넷 브라우저 자체적으로 개인 프록시를 운영하기도 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;612-프록시-대-게이트웨이&quot;&gt;6.1.2. 프록시 대 게이트웨이&lt;/h4&gt;
+
+&lt;p&gt;그런데 클라이언트와 서버 사이를 중개해주는 것이 하나 더 있습니다. 바로 게이트웨이입니다. 앞 장에서 살짝 살펴보았고 이후 8장에서 더 자세히 살펴볼 것입니다.&lt;/p&gt;
+
+&lt;p&gt;일반적으로 프록시와 게이트웨이의 차이점은 같은 프로토콜을 연결하는지, 다른 프로토콜을 연결하는 지입니다. 프록시는 같은 프로토콜을 사용해 클라이언트와 서버를 중개하고, 게이트웨이는 메세지를 받아 다른 프로토콜의 메세지로 전환해줍니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 사실 프록시와 게이트웨이의 경계는 모호합니다. 프록시는 다른 버전의 HTTP 프로토콜끼리도 중개해야 하기 때문에(클라이언트마다 HTTP 버전이 다르므로) 프로토콜을 변환하기도 합니다. 그리고 상용 프록시들은 SSL 보안 프로토콜, SOCKS 방화벽, FTP접근 등 게이트웨이가 하는 역할까지 지원합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;62-왜-프록시를-사용하는가&quot;&gt;6.2. 왜 프록시를 사용하는가?&lt;/h3&gt;
+
+&lt;p&gt;프로시가 사용되는 몇 가지 예를 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;어린이 필터&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;어린이들이 주로 사용하는 학교의 PC 같은 경우엔 유해한 사이트를 차단하는 프록시를 설정해둘수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;문서 접근 제어자&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;대기업 같이 권한이 계층화 되어있는 곳에선 부서별로, 직급별로 열람 가능한 문서를 제한할 수 있습니다. 모든 클라이언트가 중앙 프록시 서버를 거칠 수 있도록 하고, 중앙 프록시 서버에서 요청마다 접근을 제어하고 audit trail(감사 추적)을 할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;보안 방화벽&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;보안용 프록시를 설치해 들어오는 요청에 바이러스가 있는지 검사할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;웹 캐시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;서버에 걸리는 부담을 줄이고 클라이언트들이 응답을 빠르게 얻을 수 있도록 서버 안에 자주 열람되는 리소스들의 사본을 모아 프록시에 저장해 놓을 수도 있습니다. 이를 웹 캐시라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;대리 프록시(Surrogate)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;대리 프록시는 웹 서버인것 처럼 위장합니다. 요청을 받아 요청받은 리소스의 위치를 찾기 위해 다른 서버들과 통신합니다. 웹 서버의 성능 개선을 목적으로 쓰이기 때문에 흔히 서버 가속기라고 불리기도 합니다. 콘텐츠 라우팅기능과 결합되어 분산 네트워크를 구성하기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;콘텐츠 라우터&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;콘텐츠 라우터는 클라이언트나 콘텐츠 종류에 따라 요청을 특정 웹 서버로 유도합니다. 예를들어 높은 성능을 위해 추가로 돈을 지불할 수 있는 웹 서비스에선 추가 지불한 클라이언트들의 요청은 더 빨리 응답해줄 수 있는 웹 캐시로 전달해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;트랜스코더&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;트랜스코더는 본문의 포맷을 수정하는 프록시입니다. GIF 파일을 JPG 파일로 압축하거나, 일반 텍스트 파일을 더 압축할 수도 있고, 텍스트 파일을 특정 언어로 변환할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;익명화 프록시(Anonymizer)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP 메세지에서 클라이언트를 식별할 수 있는 특성들을 제거하고 전달해주는 프록시입니다. User-Agent헤더에서 사용자의 컴퓨터와 OS종류를 제거하고, IP주소, From헤더, Referer헤더, Cookie헤더 등을 제거해줍니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;63-프록시는-어디에-있는가&quot;&gt;6.3. 프록시는 어디에 있는가&lt;/h3&gt;
+
+&lt;p&gt;프록시가 어떤 역할을 하는지는 알았으니 이번엔 프록시가 구체적으로 어디에 있고, 언제 네트워크 아키텍처상에 배치되는지 알아보겠습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;631-프록시-서버-배치&quot;&gt;6.3.1. 프록시 서버 배치&lt;/h4&gt;
+
+&lt;p&gt;프록시는 클라이언트-서버 사이면 어느 곳에든 배치 될 수 있는데 아래와 같은 방법들로 배치할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LAN과 WAN사이 : 출구(Egress) 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;로컬 네트워크(LAN, Local Area Network)가 WAN(Wide Area Network)에 들어가는 지점에 위치해 회사안의 보안을 강화할 수도 있고 어린이들이 유해 사이트에 노출되지 않게 할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ISP(Internet Service Provider)접근 지점 : 접근(입구) 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ISP란 KT, SK 텔레콤과 같이 인터넷을 제공해주는 업체를 말합니다. 주로 인터넷 속도 개선을 위해 사용하는 캐시 프록시를 예로 들 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;웹 서버 바로 앞 : 대리 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;대리 프록시는 웹 서버 바로 앞에 위치해 요청을 처리하고 서버에서 리소스를 가져와야 할 때만 서버까지 요청을 보냅니다. 주로 캐시 프록시를 예로 들 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 교환 프록시&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;네트워크들 사이에 위치해서 트래픽의 혼잡을 완하하고 감시하기도 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;632-프록시-계층&quot;&gt;6.3.2. 프록시 계층&lt;/h4&gt;
+
+&lt;p&gt;프록시는 여러개를 거칠 수도 있습니다. 만약&lt;/p&gt;
+
+&lt;p&gt;클라이언트 -&amp;gt; 프록시1 -&amp;gt; 프록시2 -&amp;gt; 프록시3 -&amp;gt; 서버&lt;/p&gt;
+
+&lt;p&gt;관계가 있다면 프록시2는 프록시1의 인바운드 프록시이며 ‘부모’프록시라고 부릅니다. 반대로 프록시2는 프록시3의 아웃바운드 프록시이며 ‘자식’프록시라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프락시 계층 콘텐츠 라우팅&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;프록시가 계층을 이루고 있을때 프록시A는 항상 프록시B로 요청을 보낼 수도 있고(프록시 계층이 정적이다) 조건에 따라 다른 프록시들로 라우팅 할 수도 있습니다.(프록시 계층이 동적이다.)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;부하 균형
+ 자식 프록시는 부하를 분산하기 위해 부모 프록시들의 작업량을 파악해 부하가 적게 걸리는 부모쪽으로 라우팅 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;지리적 인접성에 근거한 라우팅
+ 원 서버의 각 지역을 담당하는 부모쪽으로 라우팅할 수 있습니다. 2020년 3월 16일 기준으로 구글 클라우드 서비스는 전세계 21개 지역에 서버를 두고 있습니다. 서울도 있습니다.&lt;/li&gt;
+  &lt;li&gt;프로토콜/타입 라우팅
+ 요청 URI에 근거해 라우팅을 할 수 있습니다. FTP프로토콜로 온 요청을 파일 서버로 라우팅 한다던가, 이미지 파일 요청이 왔을때 이미지 서버로 라우팅할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;유료 서비스 가입자를 위한 라우팅
+ 빠른 성능을 위해 추가금액을 낸 이용자를 위해 가까운 것에 캐시 프록시를 만들어 캐시 프록시에서 바로 리소스를 제공해줄 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;633-어떻게-프록시가-트래픽을-처리하는가&quot;&gt;6.3.3. 어떻게 프록시가 트래픽을 처리하는가&lt;/h4&gt;
+
+&lt;p&gt;그런데 지금까지 학습한 바에 따르면 우리는 분명 원 서버로 URL 요청을 보낼텐데 어떻게 그 요청이 프록시로 가는 걸까요&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;클라이언트 수정&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;웹 브라우저같은 웹 클라이언트들은 수동 혹은 자동 프록시 설정을 지원합니다. 클라이언트 어플리케이션에서 특정 프록시를 거치도록 설정 됐거나, 설정 하게되면 사용자의 요청은 프록시로 먼저 가게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 수정&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;네트워크를 관리하는 업체에선 트래픽을 가로채 프록시로 보낼 수 있습니다. 이 방법을 사용하면 클라이언트 입장에선 자신의 요청이 프록시를 거쳐온건지, 바로 서버로 갔다온건지 알 수 없습니다. 이를 하기 위해 스위칭 장치와 라우팅 장치가 필요합니다. 이런 프록시를 인터셉트 프록시라고 부릅니다.
+ (투명 프록시(transparent proxy) 라고도 하지만 HTTP 명세에서 transparent는 ‘행위의 의미를 변경하지 않는다’라는 뜻으로 쓰이기 때문에 본 책에선 투명 프록시 대신 인터셉트 프록시라고 표현했습니다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DNS 이름 공간을 수정&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;사용자가 URL에 호스트명을 입력하면 DNS 서버가 이를 호스트의 IP로 변환해줍니다. 이 과정에서 호스트 명을 호스트의 원 서버 IP가 아닌 프록시의 IP로 변환되게 설정한다면 요청을 프록시로 보낼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;웹 서버를 수정 - 리다이렉션&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;웹 서버에서 프록시로 리다이렉션 시킬 수도 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;64-클라이언트-프록시-설정&quot;&gt;6.4. 클라이언트 프록시 설정&lt;/h3&gt;
+
+&lt;p&gt;앞서 웹 브라우저같은 클라이언트 어플리케이션을 수정해 요청을 프록시로 보낼 수 있다고 했습니다. 거의 모든 현대 브라우저에선 프록시를 사용할 수 있도록 여러가지 설정 방법을 제공하고 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;641-클라이언트-프록시-설정-수동&quot;&gt;6.4.1. 클라이언트 프록시 설정: 수동&lt;/h4&gt;
+
+&lt;p&gt;사용자가 브라우저의 설정 탭에서 수동으로 프록시 설정을 할 수 있습니다. (크롬 프록시 설정 : https://www.itopening.com/2413/)&lt;/p&gt;
+
+&lt;h4 id=&quot;642-클라이언트-프록시-설정-pac-파일&quot;&gt;6.4.2. 클라이언트 프록시 설정: PAC 파일&lt;/h4&gt;
+
+&lt;p&gt;수동으로 프록시를 설정하는 방법은 쉽지만 한계가 있습니다. 하나의 프록시만 설정할 수 있고, 지정한 프록시가 장애를 일으킬때의 대안도 없으며, 기업같은 곳에선 프록시를 바꿀때마다 모든 사용자가 각자 프록시 설정을 바꿔야 합니다.&lt;/p&gt;
+
+&lt;p&gt;PAC(Proxy Auto-Configuration)파일은 말 그대로 프록시를 자동으로 Configuration해주는 파일입니다. PAC파일은 FindProxyForUrl(url, host)라는 함수를 구현한 자바스크립트 파일입니다. PAC파일의 URI를 브라우저에 수동으로 설정해두면, 브라우저는 PAC 파일의 로직에 따라 동적으로 프록시를 찾습니다.&lt;/p&gt;
+
+&lt;p&gt;기업같은 곳에서 PAC파일을 한 곳에서 관리하고 모든 사용자가 그 PAC파일의 URI만 안다면 언제든지 PAC 파일을 사용자와 관계 없이 업데이트 할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;PAC 파일은 .pac확장자를 갖고 MIME 타입은 ‘application/x-ns-proxy-autoconfig’ 입니다. PAC파일에서 정의해야 하는 FindProxyForUrl 함수는 아래중 하나를 리턴해야 합니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;return 값&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DIRECT&lt;/td&gt;
+      &lt;td&gt;프록시 없이 직접 연결한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PROXY host:port&lt;/td&gt;
+      &lt;td&gt;지정한 프록시를 사용한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SOCKS host:port&lt;/td&gt;
+      &lt;td&gt;지정한 SOCKS 서버를 사용한다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;아래는 프로토콜에 따라 프록시를 달리해주는 PAC 파일 사례입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FindProxyURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;PROXY http-proxy.mydomain.com:8080&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ftp:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;PROXY ftp-proxy.mydomain.com:8080&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;DIRECT&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;643-클라이언트-프록시-설정-wpad&quot;&gt;6.4.3. 클라이언트 프록시 설정: WPAD&lt;/h4&gt;
+
+&lt;p&gt;하지만 여기서 끝나지 않고 이 PAC파일의 설정 자체도 동적으로 할 수 있습니다. WPAD(Web Proxy Autodiscovery Protocol)는 프로토콜중 하나이며 자동으로 PAC 파일을 찾아줍니다. 대부분의 브라우저에서 지원해줍니다.&lt;/p&gt;
+
+&lt;p&gt;자동으로 PAC 파일을 찾는 방법엔 몇가지 정형화된 기법이 있습니다. 브라우저는 몇 가지 PAC 파일 탐색 기법을 차례대로 성공할때 까지 수행합니다.&lt;/p&gt;
+
+&lt;p&gt;WPAD명세에선 다음의 순서대로 기법들을 정의하고 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;동적 호스트 발견 규약(DHCP, Dynamic Host Configuration Protocol)&lt;/li&gt;
+  &lt;li&gt;서비스 위치 규약(SLP, Service Location Protocol)&lt;/li&gt;
+  &lt;li&gt;DNS 잘 알려진 호스트명&lt;/li&gt;
+  &lt;li&gt;DNS SRV 레코드&lt;/li&gt;
+  &lt;li&gt;DNS TXT 레코드 안의 서비스 URI&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;20장에서 더 자세히 알아볼 것입니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;65-프록시-요청의-미묘한-특징들&quot;&gt;6.5. 프록시 요청의 미묘한 특징들&lt;/h3&gt;
+
+&lt;p&gt;프록시에게 하는 요청은 서버에 하는 요청과 약간 다른 특징을 갖습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;651-프록시-uri는-서버-uri와-다르다&quot;&gt;6.5.1. 프록시 URI는 서버 URI와 다르다&lt;/h4&gt;
+
+&lt;p&gt;클라이언트가 웹 서버로 바로 요청을 보낼땐 아래와 같이 부분 URI를 갖을 수 있습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GET /index.html HTTP/1.0
+User-Agent : SuperBrowser v1.3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;하지만 프록시로 요청을 보낼땐 다음과 같이 완전한 URI를 갖습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GET http://www.marys-antiques.com/index.html HTTP/1.0
+User-Agent : SuperBrowser v1.3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;인터넷의 초창기 시절 클라이언트는 서버와 직접 대화했습니다. 가상 호스팅도, 프록시도 없었습니다. 이렇게 직접 대화하는 환경에서 서버는 자신의 호스트명, 포트번호를 알고 있기 때문에 클라이언트쪽에선 불필요한 정보 발송을 피하기 위해 스킴과 호스트를 생략한 부분 URI를 보냈습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 프록시, 게이트웨이가 등장하며 부분 URI는 문제가 됐습니다. 프록시로 보내기 위해선 프록시 서버의 호스트명을 명시해야 했고, 게이트웨이에선 스킴을 읽어 어떤 프로토콜인지 식별해야 했기 때문입니다.&lt;/p&gt;
+
+&lt;p&gt;이를 해결하기 위해서 HTTP/1.0에선 프록시 요청의 경우 완전한 URI를 보내기로 하였습니다. HTTP/1.1 부턴 프록시, 서버 모두 완전한 URI를 요구하지만 아직 많은 레거시 클라이언트들이 부분 URI를 보냅니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;652-가상-호스팅에서-일어나는-같은-문제&quot;&gt;6.5.2. 가상 호스팅에서 일어나는 같은 문제&lt;/h4&gt;
+
+&lt;p&gt;가상 호스팅은 물리적으론 같은 웹 서버를 공유하지만 여러 도메인을 호스팅하는 방식을 말합니다. 앞서 언급한 부분 URI는 가상 호스팅 환경에서도 문제가 됐습니다.&lt;/p&gt;
+
+&lt;p&gt;프록시에선 완전한 URI를 요구하는 것으로 문제를 해결했지만 가상 호스팅에선 호스트와 포트 정보가 담겨있는 Host 헤더를 요구하는 것으로 해결했습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;653-인터셉트-프록시는-부분-uri를-받는다&quot;&gt;6.5.3. 인터셉트 프록시는 부분 URI를 받는다.&lt;/h4&gt;
+
+&lt;p&gt;6.5.1. 에서 프록시 요청은 완전한 URI를 요구한다고 했습니다. 하지만 클라이언트가 자신이 프록시와 대화하는지 모르면서 프록시와 대화할 수도 있습니다. 대리프록시, 인터셉트 프록시가 그 예입니다. 이때, 클라이언트는 자신이 원 서버와 대화한다고 생각하고 부분 URI를 보낼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;대리 프록시는 앞서 설명했듯이 원 서버의 호스트명과 IP를 사용하기 때문에 문제될 것이 없고, 원 서버의 IP는 대리 프록시가 알고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;인터셉트 프록시는 네트워크 사이에서 서버로 가는 트래픽을 가로채기 때문에 부분 URI를 얻게 됩니다.(그래서 어떻게 되는지…)&lt;/p&gt;
+
+&lt;h4 id=&quot;654-프록시는-프록시-요청과-서버-요청을-모두-다룰-수-있다&quot;&gt;6.5.4. 프록시는 프록시 요청과 서버 요청을 모두 다룰 수 있다.&lt;/h4&gt;
+
+&lt;p&gt;다목적 프록시라면 완전한 URI와 부분 URI 모두를 다룰 수 있어야 합니다. 어떻게 다루는 지는 아래와 같은 프로세스를 따릅니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;완전한 URI가 주어졌다면 그것을 사용합니다.&lt;/li&gt;
+  &lt;li&gt;부분 URI가 주어졌고 Host헤더가 있다면, Host 헤더를 이용해 원 서버의 이름과 포트번호를 알아냅니다.&lt;/li&gt;
+  &lt;li&gt;부분 URI가 주어졌으나 Host 헤더가 없다면 다음과 같은 경우의 수가 있습니다.
+    &lt;ol&gt;
+      &lt;li&gt;프록시가 대리 프록시라면, 프록시에 원 서버 주소와 포트번호가 설정되어 있을 것입니다.&lt;/li&gt;
+      &lt;li&gt;이전에 인터셉트 프록시가 가로챘던 트래픽을 받았고, 이전에 가로챈 인터셉터 프록시가 해당 트래픽에 원 IP주소와 포트번호를 설정해두었다면 그 IP와 포트번호를 사용합니다.&lt;/li&gt;
+      &lt;li&gt;모두 실패했다면 에러 메세지를 반환합니다.(Host헤더를 지원하는 최신 브라우저로 업그레이드 하라는 에러 메세지)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;655-전송-중-uri-변경&quot;&gt;6.5.5. 전송 중 URI 변경&lt;/h4&gt;
+
+&lt;p&gt;영향이 없을 것 같은 사소한 URI 변경도 문제를 일으킬 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;몇몇 프록시는 URI를 다음 홉으로 보내기 전에 포트번호를 기본 포트인 ‘:80’으로 설정한다던가, 잘못 사용된 예약어를 올바르게 교체하는 것 같은 표준 형식으로의 ‘정규화’를 진행합니다. 이런 변형도 상호운용성 문제를 일으킬 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;프록시는 최대한 관대하게 메세지를 받아 넘겨야 합니다.&lt;/p&gt;
+
+&lt;p&gt;특히 HTTP명세에서 일반적인 인터셉트 프록시가 URI를 전달할때 절대 경로를 고쳐 쓰는 것을 금지합니다.(빈 경로를 ‘/’로 교체하는 건 허용합니다.)&lt;/p&gt;
+
+&lt;h4 id=&quot;656-uri-클라이언트-자동확장과-호스트명-분석hostname-resolution&quot;&gt;6.5.6. URI 클라이언트 자동확장과 호스트명 분석(Hostname Resolution)&lt;/h4&gt;
+
+&lt;p&gt;브라우저는 프록시의 존재 여부에 따라 요청 URI를 다르게 분석합니다. 프록시가 없다면 사용자가 입력한 URI에서 호스트명을 찾고 그에 대응하는 IP 주소들을 연결에 성공할 때까지 시도합니다.&lt;/p&gt;
+
+&lt;p&gt;호스트가 발견되지 않는다면 브라우저는 사용자가 호스트명을 완전히 입력하지 않은 것으로 간주하고 2장에서 살펴봤던 URL 확장을 시도합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;657-프록시-없는-uri-분석uri-resolution&quot;&gt;6.5.7. 프록시 없는 URI 분석(URI Resolution)&lt;/h4&gt;
+
+&lt;p&gt;6.5.6.에서 명시적인 프록시가 없을 때의 과정을 사례를 들어 알아보겠습니다. 사용자가 URI에 ‘Oreilly’를 입력한 상황입니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자가 ‘Oreilly’를 입력합니다.&lt;/li&gt;
+  &lt;li&gt;브라우저는 DNS로 호스트 ‘Oreilly’를 찾습니다. -&amp;gt; 실패&lt;/li&gt;
+  &lt;li&gt;브라우저는 ‘Oreilly’를 확장합니다.
+3.1. 앞에 ‘www’, 뒤에 ‘com’을 붙여 ‘www.oreilly.com’로 URI를 확장했습니다.
+3.2. DNS로 ‘www.oreilly.com’을 찾습니다. -&amp;gt; 성공, IP주소 받음&lt;/li&gt;
+  &lt;li&gt;브라우저는 알아낸 IP주소들에 대해 성공할 때까지 접속을 시도합니다. -&amp;gt; 성공했다면 커넥션을 맺습니다.&lt;/li&gt;
+  &lt;li&gt;요청을 보내고 응답을 받습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;658-명시적인-프록시를-사용할-때의-uri-분석&quot;&gt;6.5.8. 명시적인 프록시를 사용할 때의 URI 분석&lt;/h4&gt;
+
+&lt;p&gt;6.5.6. 에서 명시적인 프록시를 사용한다면 브라우저가 제공하는 URI 확장 없이 요청이 진행됩니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자가 ‘Oreilly’를 입력합니다.&lt;/li&gt;
+  &lt;li&gt;브라우저는 사용하기로 설정된 프록시의 호스트 명과 DNS를 이용해 프록시의 IP를 알아냅니다.&lt;/li&gt;
+  &lt;li&gt;브라우저와 프록시가 커넥션을 맺습니다.&lt;/li&gt;
+  &lt;li&gt;브라우저는 기본 스킴과 경로만 추가해 프록시로 ‘http://oreilly/’라는 요청을 보냅니다.&lt;/li&gt;
+  &lt;li&gt;이후로는 프록시에 따라 달라집니다. URI 확장을 시도하는 프록시도 있지만 대부분 확장하지 않고 에러를 돌려줄 것입니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;659-인터셉트-프록시를-이용한-uri-분석&quot;&gt;6.5.9. 인터셉트 프록시를 이용한 URI 분석&lt;/h4&gt;
+
+&lt;p&gt;앞서 인터셉터 프록시는 클라이언트 입장에서 본인이 프록시와 대화하는지 모른다고 하였습니다. 그렇기 때문에 6.5.6.의 과정에서 인터셉트 프록시가 개입한다면 클라이언트는 URI 확장을 시도합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자가 ‘Oreilly’를 입력합니다.&lt;/li&gt;
+  &lt;li&gt;브라우저는 DNS로 호스트 ‘Oreilly’를 찾습니다. -&amp;gt; 실패&lt;/li&gt;
+  &lt;li&gt;브라우저는 ‘Oreilly’를 확장합니다.
+3.1. 앞에 ‘www’, 뒤에 ‘com’을 붙여 ‘www.oreilly.com’로 URI를 확장했습니다.
+3.2. DNS로 ‘www.oreilly.com’을 찾습니다. -&amp;gt; 성공, IP주소 받음&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;하지만 여기서 프록시가 없을 때와 인터셉트 프록시가 개입할때가 다른 과정을 보입니다. 프록시가 없을 땐 받아온 IP들중 연결에 성공할 때까지 접속을 시도합니다. 하지만 인터셉트 프록시가 개입하면 첫 번째 접속 시도로 끝납니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;브라우저가 첫 번째 접속을 시도하고 그 시도를 인터셉트 프록시가 가로챕니다. 브라우저는 첫 번째 접속 시도가 성공했다고 생각합니다.&lt;/li&gt;
+  &lt;li&gt;인터셉트 프록시가 원 서버와 대화할 준비가 되었을때 프록시는 원 서버에 장애가 있다는 것을 알게 됩니다.&lt;/li&gt;
+  &lt;li&gt;인터셉트 프록시는 Host헤더를 찾아 DNS를 이용해 접속 시도할 수 있는 IP를 다시 받아 오던지, Host헤더가 없다면 요청 받은 IP를 역방향 DNS 룩업을 시행해 호스트명을 알아낸뒤 다시 다른 IP들을 알아옵니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;66-메세지-추적&quot;&gt;6.6. 메세지 추적&lt;/h3&gt;
+
+&lt;p&gt;오늘날에 웹 요청이 서버로 가기 까지 둘 이상의 프록시를 지나는건 매우 흔한 일입니다. 프록시가 흔해지며 프록시를 넘나드는 메세지의 흐름을 추적하고 문제점을 찾아내는 것이 중요해 졌습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;661-via-헤더&quot;&gt;6.6.1. Via 헤더&lt;/h4&gt;
+
+&lt;p&gt;Via헤더 필드는 메세지가 지나는 중간 노드(프록시 및 게이트웨이)의 정보를 나열해줍니다. 한 노드를 지날 때 마다 해당 노드에 대한 정보가 Via 목록의 끝에 추가되어야 합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Via : 1.1 proxy-62.irenes-isp.net, 1.0 cache.joes-hardware.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위의 Via헤더 예시는 해당 메세지가 두개의 프록시를 거쳤음을 말해줍니다. 첫번째 프록시는 HTTP/1.1을 구현하는 proxy-62.irenes-isp.net 이라는 프록시이고 두번째는 HTTP/1.0을 구현하는 cache.joes-hardware.com 이라는 프록시입니다.&lt;/p&gt;
+
+&lt;p&gt;프록시는 또한 네트워크의 라우팅 루프(마지막 목적지를 찾지 못하고 계속 looping 하는 현상)를 탐지하기 위해 Via 헤더를 사용할 수 있습니다. 프록시에서 받은 요청을 다른 곳으로 보낼때 자신의 정보를 Via헤더에 추가해야 하는데 추가 하기 전에 Via 헤더를 탐색해 라우팅 루프가 발견되는지 검사할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 문법&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Via 헤더 필드는 쉼표로 구분된 경유지(Waypoint)의 목록입니다.
+ 각 경유지는 개별 프록시, 게이트웨이를 나타내며 프로토콜과 주소에 대한 정보를 담고 있습니다. 프로토콜 이름을 기입 할 수 있으며 기입 안한경우엔 HTTP로 간주합니다. 프로토콜 버전과 경유지 이름은 필수이며 선택적으로 코멘트를 추가할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 문법 - 프로토콜 이름&lt;/strong&gt;
+ 각 waypoint가 수신한 프로토콜입니다. HTTP라면 생략 가능하고 버전앞에 ‘/’로 구분되어 붙습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 문법 - 프로토콜 버전&lt;/strong&gt;
+ 수신한 메세지의 프로토콜 버전입니다. 필수적으로 기입되어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 문법 - 노드 이름&lt;/strong&gt;
+ 중개자의 호스트와 포트번호입니다. 포트번호는 생략 가능하며 이 경우 사용하는 프로토콜의 기본 포트로 간주합니다. 가명으로 대체할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 문법 - 노드 코멘트&lt;/strong&gt;
+ 선택사항이며 자유롭게 기입할 수 있지만 주로 벤더나 버전 정보, 프록시에서 일어난 이벤트에 대한 진단 정보등을 넣습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via 요청과 응답 경로&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;요청, 응답 모두 Via 헤더를 갖습니다. TCP 커넥션의 경우 대부분 응답 메세지는 요청과 같은 경로로 되돌아갑니다. 요청시에 프록시 A, B, C를 지났다면 응답시엔 대부분 프록시 C, B, A를 지납니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via와 게이트웨이&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;현대의 프록시는 게이트웨이의 기능도 같이 제공할 수 있습니다. Via 헤더엔 이런 프로토콜 변환이 기록되기 때문에 클라이언트 쪽에서 해당 프록시에 프로토콜 변환 기능이 있는지 확인할 수 있습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GET ftp://http-guide.com/pub/welcom.txt HTTP/1.0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위와 같은 요청을 프록시로 보냈고 프록시가 FTP서버에 FTP 요청을 보내고 받아온 FTP응답을 HTTP로 변환해 클라이언트에게 돌려줍니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;HTTP/1.0 200 OK
+Date : Sun, 11 Nov 2001 21:01:59 GMT
+&lt;strong&gt;Via : FTP/1.0 proxy.irenes-isp.net (Traffic-Server/5.0.1-17882 [cMsf])&lt;/strong&gt;
+Last-modified : Sun, 11 Nov 2001 21:05:24 GMT
+Content-type : text/plain&lt;/p&gt;
+
+  &lt;p&gt;Hi there~ This is FTP Server&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Via헤더에 기록된 수신 프로토콜이 FTP라는 것에 주의합시다. 클라이언트가 처음 FTP요청을 보냈기에 수신한 프로토콜이 기재됐습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Server 헤더와 Via헤더&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Server 헤더는 최종적인 목적지 서버가 사용하는 소프트웨어를 알려줍니다. 클라이언트가 요청한 원 서버를 위한 헤더입니다. 프록시에선 이 Server 헤더를 건드리면 안됩니다. 프록시가 무슨 소프트웨어를 사용하는지는 Via헤더의 코멘트에 기록하면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Via가 개인정보 보호와 보안에 미치는 영향&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;프록시가 방화벽의 일부인 경우엔 프록시 뒤에 있는 호스트의 이름과 포트를 전달해서는 안됩니다. 이때 프록시는 호스트 명을 적당한 가명으로 교체할 수 있습니다. 아래와 같이 말이죠.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Via: 1.0 foo, 1.1 devirus.company.com, 1.1 access-logger.company.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 Via 헤더를&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Via: 1.0 foo, 1.1 concealed-stuff&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위와 같이 여러개의 경유지를 하나로 합쳐 숨길 수 있습니다. 하지만 이렇게 합쳐 숨기기 위해선 경유지들이 모두 같은 조직의 통제하에 있고 호스트가 이미 가명으로 교체되었어야 합니다. 그리고 수신된 프로토콜이 다를땐 다른 프로토콜들을 합쳐선 안됩니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;662-trace-메서드&quot;&gt;6.6.2. TRACE 메서드&lt;/h4&gt;
+
+&lt;p&gt;앞 장에서 TRACE 메서드의 역할을 알아본적이 있습니다. TRACE 요청이 목적지 서버에 도착했을 때(혹은 바로 알아볼 Max-Forward값이 0인 요청을 받은 서버), 서버는 요청 메세지를 응답 메세지 본문에 넣어 응답 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Max-Forward&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Max-Forward 헤더는 TRACE요청이나 OPTIONS 요청에서 프록시 홉의 갯수를 제한할 수 있습니다. 메세지가 프록시 들을 계속 무한 루프 도는지 테스트 할 때나, 프록시 연쇄 중간의 특정 프록시 서버들의 효과를 체크할 때 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;Max-Forward헤더는 이 메세지가 앞으로 몇 개의 홉을 더 거칠수 있는지를 말해주는 값을 가지고 있습니다. Max-Forward값이 0이라면 수신 프록시는 자신이 목적지 서버가 아니더라도 인바운드 방향으로 전달하지 말고 클라이언트 쪽으로 응답을 보내야 합니다.&lt;/p&gt;
+
+&lt;p&gt;받은 Max-Forward값이 0이 아니면 다음 홉으로 전달시 Max-Forward 값을 1 줄여 보내야 합니다.&lt;/p&gt;
+
+&lt;p&gt;그리고 이런 Max-Forward가 작동하기 위해선 모든 프록시나 게이트웨이가 이 Max-Forward를 지원해야 합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;67-프록시-인증&quot;&gt;6.7. 프록시 인증&lt;/h3&gt;
+
+&lt;p&gt;프록시는 접근 제어 장치로 사용될 수 있습니다. 사용자가 유효한 접근 권한 자격을 프록시에 제출하지 않으면 프록시에서 요청을 차단할 수 있는데 이를 ‘프록시 인증’ 메커니즘 이라고 합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;제한된 콘텐츠에 대한 요청이 프록시에 도착.&lt;/li&gt;
+  &lt;li&gt;프록시는 접근 자격을 요구하는 407 Proxy Authorization Required 상태코드와 자격 제출 방식을 설명해주는 Proxy-Authenticate 헤더 필드를 클라이언트에게 보냅니다.&lt;/li&gt;
+  &lt;li&gt;407 응답을 받은 클라리언트는 로컬 DB를 찾던지, 사용자에게 물어보던지 여러 방식으로 요구 자격을 수집합니다.&lt;/li&gt;
+  &lt;li&gt;자격을 얻었다면 자격을 Proxy-Authenticate 헤더에 담아 다시 요청을 보냅니다.&lt;/li&gt;
+  &lt;li&gt;자격이 유효하다면 프록시는 다음 홉으로 메세지를 전달하고 유효하지 않다면 407응답을 보냅니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;프록시 인증은 인증에 참여하는 프록시가 프록시 연쇄상에 여러개 있을 경우 잘 작동하지 않습니다.(Proxy-Authenticate에 있는 값이 여러 프록시 인증 중 어디에 쓰여야 될지 모르므로.) 이를 해결하기 위해 프록시 연쇄의 특정 경유지와 인증 자격을 짝지어주는 HTTP 기능 확장이 제안 됐지만 많이 구현되진 않았습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;68-프록시-상호운용성&quot;&gt;6.8. 프록시 상호운용성&lt;/h3&gt;
+
+&lt;p&gt;클라이언트, 서버, 프록시들은 각기 다른 프로토콜, 프로토콜 버전, 벤더 등을 가지고 있습니다. 따라서 이런 많은 기기들간의 상호운용성 문제는 항상 중요합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;681-지원하지-않는-헤더와-메서드-다루기&quot;&gt;6.8.1. 지원하지 않는 헤더와 메서드 다루기&lt;/h4&gt;
+
+&lt;p&gt;기본적으로 프록시가 자신이 이해할 수 없는 메서드와 헤더를 만난다면 관대하게 그대로 보존해 전달해야 합니다. HTTP 명세에선 메서드와 헤더의 확장을 허용하기 때문에 항상 자신이 이해하지 못하는 메서드와 헤더를 염두에 두어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;같은 이름의 헤더필드가 여러개 온다면 이 헤더필드의 상대적인 순서 역시 그대로 보존해야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;682-options-어떤-기능을-지원하는지-알아보기&quot;&gt;6.8.2. OPTIONS: 어떤 기능을 지원하는지 알아보기&lt;/h4&gt;
+
+&lt;p&gt;앞 장에서 OPTIONS는 서버에게 특정 리소스에 대해 어떤 메서드를 지원하는지 묻는 메서드라고 했습니다.&lt;/p&gt;
+
+&lt;p&gt;OPTIONS 요청을 받은 서버는 특정 리소스에 대해 가능한 기능을 서술하는 여러 헤더를 추가할 수 있지만 HTTP/1.1 명세에서 정의한 헤더는 Allow 헤더 뿐입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;683-allow-헤더&quot;&gt;6.8.3. Allow 헤더&lt;/h4&gt;
+
+&lt;p&gt;기본적으로 Allow 헤더는 OPTIONS 요청에 대해 응답하기 위한 헤더입니다. 식별되는 자원에 대해 OPTIONS 요청을 하면 서버는 그 리소스에 지원되는 메서드나 서버가 지원하는 모든 메서드(요청 URI가 *인 경우)를 열거합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Allow : GET, HEAD, PUT&lt;/p&gt;
+
+  &lt;p&gt;-&amp;gt; 요청 리소스에 대해 GET, HEAD, PUT 요청이 가능하다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그런데 Allow 헤더가 요청에도 사용될 수 있습니다. 이때 Allow 헤더는 새 리소스가 지원했으면 하는 메서드를 추천하기 위해 사용되지만 서버가 이를 지원할 의무는 없습니다.&lt;/p&gt;
+
+&lt;p&gt;프록시가 Allow에 있는 메서드를 이해할 수 없다고 해서 Allow 헤더를 수정하면 안됩니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>웹 서버</title>
+   <link href="http://localhost:4000/study_book/http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C5/"/>
+   <updated>2020-03-15T00:00:00+09:00</updated>
+   <id>http://localhost:4000/study_book/http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C/Http완벽가이드5</id>
+   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;51-다채로운-웹-서버&quot;&gt;5.1. 다채로운 웹 서버&lt;/h3&gt;
+
+&lt;p&gt;이번 장에선 웹 서버에 관해 간단하게 알아볼 것입니다.&lt;/p&gt;
+
+&lt;p&gt;웹 서버는 기능, 형태, 크기가 정말 다양합니다. 열 줄 짜리 스크립트가 될 수도 있고 50mb짜리 상용 엔진도 있으며, 전자기기 작은 기판에 설치된 서버도 있습니다. 이런 다양한 웹 서버들이 있지만 공통적으로 클라이언트의 HTTP 요청을 받고 처리해 리소스를 돌려주는 일을 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;511-웹-서버-구현&quot;&gt;5.1.1. 웹 서버 구현&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 HTTP 프로토콜을 구현해 클라이언트와 통신하며, 웹 리소스를 관리하고 서버 스스로를 관리합니다. 운영체제와 함께 TCP 커넥션 관리에 참여하기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;운영체제는 웹 서버가 올라가있는 하드웨어를 관리하고, TCP/IP 네트워크를 지원해주며, 웹 리소스를 관리하기 위한 파일 시스템, 연산활동을 위한 프로세스 관리를 제공합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;512-다목적-소프트웨어-웹-서버&quot;&gt;5.1.2. 다목적 소프트웨어 웹 서버&lt;/h4&gt;
+
+&lt;p&gt;세상엔 수 만개의 웹 서버들이 존재합니다. 하지만 그중 주로 사용되는건 몇 가지에 꼽힙니다. 아래 netcraft에서 조사한 웹 서버 시장 점유율을 보시죠.&lt;/p&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;p&gt;출처 : https://news.netcraft.com/archives/2019/09/27/september-2019-web-server-survey.html&lt;/p&gt;
+
+&lt;p&gt;2019년 8월 까지의 데이터가 담겼는데 아파치 웹 서버의 장기집권이 끝나고 웹 서버의 춘추전국시대가 벌어지는 중인것 같습니다. 하지만 수 만개의 웹 서버중 nginx(32.7%), Apache(29.0%), Microsoft(14.7%)가 전체중 75%가량 차지합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;513-임베디드-웹-서버&quot;&gt;5.1.3. 임베디드 웹 서버&lt;/h4&gt;
+
+&lt;p&gt;임베디드 웹 서버는 전자기기에 내장될 목적으로 만들어진 작원 웹 서버입니다. 공유기를 구입하고 비밀번호 등을 설정하기 위해 공유기 관리자 페이지에 들어가게 되는데 이때 들어가는 웹 페이지는 공유기의 임베디드 웹 서버에서 운영중인 페이지입니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;52-간단한-펄-웹-서버&quot;&gt;5.2. 간단한 펄 웹 서버&lt;/h3&gt;
+
+&lt;p&gt;가장 많이 알려진 아파치 웹 서버의 코어는 50,000줄이 넘는 코드로 이루어져 있습니다. HTTP/1.1의 기능들을 모두 지원하려면 방대한 양의 코드들이 들어갈 수 밖에 없습니다. 하지만 정말 최소한의 기능만 갖는 웹 서버는 30줄로도 가능합니다. 아래 코드가 Perl 언어로 작성한 30줄 짜리 웹 서버 코드입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-perl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/perl&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Carp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;FileHandle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# (1) 명령줄에서 덮어쓰지 않는 이상 8080 포트를 기본으로 사용한다.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;@ARGV&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+
+&lt;span class=&quot;c1&quot;&gt;# (2) 로컬 TCP소켓을 생성하고 커넥션을 기다리도록(listen) 설정한다.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$proto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getprotobyname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;('&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;tcp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;');&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PF_INET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;SOCK_STREAM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$proto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;die&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;setsockopt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;SOL_SOCKET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;die&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;sockaddr_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;INADDR_ANY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;die&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;SOMAXCONN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;die&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# (3) 시작 메세지를 출력한다.&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;lt;&amp;lt;&amp;lt;Type-O-Serve Accepting on Port %d&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&quot;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;# (4) 커넥션 C를 기다린다.&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$cport_caddr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;accept&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$caddr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;sockaddr_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cport_caddr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;autoflush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+ &lt;span class=&quot;c1&quot;&gt;# (5) 누구로부터의 커넥션인지 출력한다.&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$cname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;gethostbyaddr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$caddr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;AF_INET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;lt;&amp;lt;&amp;lt;Request From '%s'&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&quot;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+ &lt;span class=&quot;c1&quot;&gt;# (6) 빈 줄이 나올 때까지 요청 메세지를 읽어서 화면에 출력한다.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;screen&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/^\r/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+ &lt;span class=&quot;c1&quot;&gt;# (7) 응답 메세지를 위한 프롬프트를 만들고, 응답줄을 입력 받는다.&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;# &quot;.&quot; 하나만으로 되어 있는 줄이 입력되기 전까지, 입력된 줄을 클라이언트에게 보낸다.&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;lt;&amp;lt;&amp;lt;Type Response Followed by '.'&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&quot;);&lt;/span&gt;
+
+ &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;STDIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;s/\r//&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;s/\n//&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/^\./&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&quot;;&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 펄 서버는 ‘type-o-serve’라고 이름 붙인 펄 프로그램 입니다. HTTP 요청이 오면 콘솔창에 받은 요청이 출력되고, 콘솔에 타이핑한 텍스트가 HTTP 응답으로 전송되는 간단한 서버입니다. 코드가 간단하고 책에서 단계별로 주석도 잘 적어주셨기 때문에 쉽게 이해할 수 있을 것입니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;53-진짜-웹-서버가-하는-일&quot;&gt;5.3. 진짜 웹 서버가 하는 일&lt;/h3&gt;
+
+&lt;p&gt;상용 웹 서버는 위의 펄 서버와 비교할 수 없을 만큼 다양한 일을 합니다. 하지만 모든 웹 서버가 하는 일은 아래와 같은 과정을 따른다고 할 수 있습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;커넥션을 맺는다 : 클라이언트의 접속을 받아들이거나, 원치 않는 클라이언트라면 닫는다.&lt;/li&gt;
+  &lt;li&gt;요청을 받는다 : HTTP 요청 메세지를 네트워크로부터 읽어 들인다.&lt;/li&gt;
+  &lt;li&gt;요청을 처리한다 : 요청 메세지를 해석하고 행동을 취한다.&lt;/li&gt;
+  &lt;li&gt;리소스에 접근한다 : 메세지에서 지정한 리소스에 접근한다.&lt;/li&gt;
+  &lt;li&gt;응답을 만든다 : 올바른 헤더를 포함한 HTTP 응답 메세지를 생성한다.&lt;/li&gt;
+  &lt;li&gt;응답을 보낸다 : 응답을 클라이언트에게 돌려준다.&lt;/li&gt;
+  &lt;li&gt;트랜잭션을 로그로 남긴다 : 로그 파일에 트랜잭션 완료에 대한 기록을 남긴다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;뒤로는 각 단계들에 대해 살펴보겠습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;54-단계1--클라이언트-커넥션-수락&quot;&gt;5.4. 단계1 : 클라이언트 커넥션 수락&lt;/h3&gt;
+
+&lt;p&gt;한 클라이언트에 대해 이미 커넥션이 열려있다면 그 커넥션을 계속 사용할 수 있지만, 새로운 클라이언트가 연결을 요청한다면 새 커넥션을 열 필요가 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;541-새-커넥션-다루기&quot;&gt;5.4.1. 새 커넥션 다루기&lt;/h4&gt;
+
+&lt;p&gt;클라이언트가 TCP 커넥션 요청을 보내오면 서버는 커넥션을 수락하고 커넥션에서 IP를 추출해 상대방이 어떤 클라이언트인지 확인합니다.(이런 TCP 커넥션들을 소켓이라고 부릅니다.) 새 커넥션이 생성되고 받아들여지면 서버는 새 커넥션을 커넥션 목록에 추가하고 데이터를 받을 준비를 합니다.&lt;/p&gt;
+
+&lt;p&gt;웹 서버는 어떤 커넥션이든 마음대로 거절하거나 닫을 수 있습니다. 금지할 IP 주소나 호스트명을 미리 정해두면 여기서 오는 모든 커넥션을 거절할 수 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;542-클라이언트-호스트-명-식별&quot;&gt;5.4.2. 클라이언트 호스트 명 식별&lt;/h4&gt;
+
+&lt;p&gt;서버가 특정 호스트명의 접근을 막거나 로그를 남길때 어디서 온 로그인지 보기쉽게 남겨야할 필요가 있습니다. 이때 서버는 reverse DNS 를 이용해 클라이언트의 IP를 호스트명으로 변환할 수 있습니다. 이 작업을 Hostname Lookup 이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이 작업은 시간이 꽤 걸리는 작업이라 트랜잭션을 지연시킬 수 있습니다. 따라서 이 작업은 서버에 따라 꺼두기도 하고 특정 리소스에 대해서만 켜기도 합니다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Apache&quot;&gt;HostnameLookups off
+&amp;lt;File ~ &quot;\.(html|htm|cgi)$&quot;&amp;gt;
+	HostnameLookups on
+&amp;lt;/File&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위 코드는 아파치에서 html, htm, cgi 리소스들만 Hostname Lookup을 실시하고 나머지는 하지 않는다는 설정 코드입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;543-ident를-통해-클라이언트-사용자-알아내기&quot;&gt;5.4.3. ident를 통해 클라이언트 사용자 알아내기&lt;/h4&gt;
+
+&lt;p&gt;클라이언트를 식별하는 방법엔 ident 프로토콜을 사용하는 방법도 있습니다. 간단히 설명하자면 클라이언트 식별을 위한 전용 커넥션을 생성하고 요청, 응답해 클라이언트를 식별하는 방법입니다. 과정은 다음과 같습니다.&lt;/p&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트가 HTTP 커넥션을 요청합니다.&lt;/li&gt;
+  &lt;li&gt;서버는 클라이언트의 커넥션 요청을 받아들입니다.&lt;/li&gt;
+  &lt;li&gt;서버는 클라이언트의 ident 서버 포트(113번으로 정해져있으며 처음 클라이언트가 요청할때 사용한 포트와 다른 포트입니다.)로 커넥션을 요청합니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 커넥션을 받아들이면 서버가 사용자를 식별할 요청을 보냅니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;사내 망에선 종종 사용되지만 공공 인터넷에선 다음과 같은 이유로 사용이 되지 않습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트가 ident 프로토콜을 지원해야 합니다.&lt;/li&gt;
+  &lt;li&gt;HTTP 트랜잭션을 지연시킵니다.&lt;/li&gt;
+  &lt;li&gt;방화벽에서 서버의 ident 커넥션 요청이 막힐 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;ident 프로토콜은 가상 IP 주소를 잘 지원하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;프라이버시 침해의 우려도 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;55-단계2--요청-메세지-수신&quot;&gt;5.5. 단계2 : 요청 메세지 수신&lt;/h3&gt;
+
+&lt;p&gt;커넥션을 맺은 뒤에 서버는 데이터가 오길 기다립니다. 커넥션에 데이터가 들어오면 앞 장에서 살펴본 HTTP 메세지의 구성을 고려해 데이터를 HTTP 메세지로 파싱합니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;요청 메서드, URI, 버전번호를 파싱합니다. 각 값은 공백으로 분리되어 있고 요청줄의 끝은 CRLF로 끝납니다.&lt;/li&gt;
+  &lt;li&gt;헤더들을 파싱합니다. 각 헤더는 CRLF로 끝납니다.&lt;/li&gt;
+  &lt;li&gt;헤더의 끝을 의미하는 CRLF 끝나는 빈줄을 찾아 헤더 파싱을 끝냅니다.&lt;/li&gt;
+  &lt;li&gt;이후 엔터티 본문이 있다면 읽어 들입니다.(이때, 헤더에 Content-Length가 있다면 그만큼 읽어냅니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IP패킷들은 순서와 상관없이 불규칙하게 전달됩니다. 따라서 웹 서버는 파싱 가능할때까지 IP패킷의 데이터들을 메모리에 임시 저장해 놓을 수 있어야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;551-메세지의-내부-표현&quot;&gt;5.5.1. 메세지의 내부 표현&lt;/h4&gt;
+
+&lt;p&gt;웹 서버에 따라 요청 메세지를 다루기 쉽게 따로 자료 구조를 만들어 저장합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;552-커넥션-입력출력-처리-아키텍처&quot;&gt;5.5.2. 커넥션 입력/출력 처리 아키텍처&lt;/h4&gt;
+
+&lt;p&gt;포털 사이트 같이 사용자가 많은 웹 서버들은 그 많은 사용자와 하나 이상의 커넥션을 맺고 있습니다. 어떤 사용자는 10초에 한 번씩 요청을 보내고 어떤 사용자는 1초에 한 번씩 보냅니다. 그리고 어떤 사용자는 웹 크롤러를 사용해 1초에 10번씩 요청을 보냅니다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 많은 사용자들의 커넥션들을 효율적으로 처리하기 위해 커넥션 입/출력 처리 기술도 발전해 왔습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;단일 스레드 웹 서버&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;처음은 단일 스레드 웹 서버였을 것입니다. 한 번에 하나의 커넥션만 처리하는 단일 스레드 웹 서버는 당연히 성능이 형편 없어 테스트 및 교육용이나 임베디드 서버 같은 극히 일부의 서버에서만 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;멀티프로세스와 멀티스레드 웹 서버&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;여러 요청을 동시에 처리하기 위해 멀티프로세스/스레드 서버가 사용됩니다. 프로세스/스레드는 필요할때마다 생성할 수도 있고 미리 만들어 놓고 기다릴 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;각각 커넥션 마다 프로세스/스레드를 할당 할 수 있지만 이렇게 된다면 너무 많은 메모리를 낭비하게 될 것입니다. 멀티프로세스/스레드를 사용하는 웹 서버들은 프로세스/스레드 수에 제한을 걸어 놓습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;다중 I/O 서버&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;방금 설명한 멀티프로세스/스레드 서버는 단일 스레드보단 좋지만 한계가 있습니다. 하나의 커넥션이 생성되었지만 실제로 그 커넥션에 들어오는 요청이 없더라도 프로세스/스레드는 그 커넥션을 보면서 데이터가 오길 기다려야하기 때문입니다. 이를 해결하기 위한 방법이 입출력 다중화(multiplexing)입니다.&lt;/p&gt;
+
+&lt;p&gt;하나의 커넥션은 ‘입력 -&amp;gt; 처리 -&amp;gt; 출력’ 으로 동작한다고 볼 수 있습니다. 그런데 처리중엔 입력, 출력에서 쓰이는 함수가 봉쇄(block) 됩니다. #@$#@$@#$ 추가 설명 필요&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;다중 멀티스레드 웹 서버&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;56-단계3--요청-처리&quot;&gt;5.6. 단계3 : 요청 처리&lt;/h3&gt;
+
+&lt;p&gt;요청을 처리하는 과정은 뒷 장들에서 나올 주제중 대부분이기 때문에 이번 장에선 생략하겠습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;57-단계4--리소스의-매핑과-접근&quot;&gt;5.7. 단계4 : 리소스의 매핑과 접근&lt;/h3&gt;
+
+&lt;p&gt;웹 서버는 리소스를 주고 받게 해주는 서버입니다. 이 리소스에는 이미지 파일, html 페이지 같은 고정된 리소스도 있지만 php, jsp, asp와 같이 리소스 생성 어플리케이션을 통해 만들어지는 동적인 리소스도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;웹 서버가 리소스를 알맞게 제공하기 위해선 클라이언트의 요청 URI에서 그에 맞는 리소스나 리소스 생성기를 찾아야 합니다. 이런 과정을 리소스 맵핑이라고 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;571-docroot&quot;&gt;5.7.1. Docroot&lt;/h4&gt;
+
+&lt;p&gt;리소스 맵핑의 가장 단순한 형태는 URI로 파일 자체를 가리키는 것입니다. 그런데 그 파일들은 어느 디렉토리에 위치해 있을까요?&lt;/p&gt;
+
+&lt;p&gt;스프링 프레임워크를 사용해 보았다면 클라이언트는 ‘WebContent’ 폴더 안에 있는 것들만 접근 할 수 있다라는 얘기를 많이 들어보셨을 것입니다. 이렇게 일반적으로 웹 서버 파일 시스템의 특별한 폴더를 웹 리소스를 올려두기 위해 예약해둡니다. 이 폴더를 문서 루트, docroot 라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;웹 서버는 URI에서 호스트명 뒤의 리소스 경로를 가져와 docroot 뒤에 붙입니다. 아래와 같은 요청이 왔다고 하면&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;요청 URI : http://www.joes-hardware.com/specials/saw-blade.gif
+리소스 경로 : /specials/saw-blade.gif&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;웹 서버의 docroot에 따라 docroot/specials/saw-blade.gif 리소스를 찾아 갑니다.&lt;/p&gt;
+
+&lt;p&gt;이 docroot는 사용하는 웹 서버에서 기본적으로 설정해 두기도 하고 따로 설정 파일을 통해 docroot를 지정할 수도 있습니다. 많이 사용하는 아파치 웹 서버의 경우 httpd.conf 파일에 아래와 같은 줄을 추가해 설정할 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DocumentRoot /usr/local/httpd/files
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;웹 서버는 상대 URL이 docroot를 벗어나 파일 시스템의 다른 부분을 가리킬 수 없게 조심해야 합니다. 예를들어 다음과 같이 docroot의 상위 디렉토리를 찾는 요청이 왔다고 해서 실제 docroot의 상위 디렉토리를 찾아가면 안됩니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://www.joes-hardware.com/../&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;가상 호스팅된 docroot&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;가상 호스팅은 하나의 물리적 웹 서버에 여러 도메인을 호스팅 하는 것입니다. 가상 호스팅 환경에선 호스팅된 각각의 서버마다 분리된 docroot를 설정해줍니다. 설정은 매우 간단합니다. 많이 사용되는 아파치의 경우 아래와 같이 설정 됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;VirtualHost www.joes-hardware.com&amp;gt;
+	ServerName www.joes-hardware.com
+	DocumentRoot /docs/joe
+	TransferLog /logs/joe.access_log
+	ErrorLog /logs/joe.error_log
+&amp;lt;/VirtualHost&amp;gt;
+
+&amp;lt;VirtualHost www.marys-antiques.com&amp;gt;
+	ServerName www.marys-antiques.com
+	DocumentRoot /docs/mary
+	TransferLog /logs/mary.access_log
+	ErrorLog /logs/mary.error_log
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;가상 호스팅에 대해선 18장에서 더 자세히 이어집니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;사용자 홈 디렉터리 docroots&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;docroots를 활용하면 사용자들이 한 대의 웹 서버에서 각자 자신의 웹 사이트를 만들 수 있습니다. ‘/~’ 뒤에 이름이 오는 것으로 시작하는 URI들이 그 예입니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;요청 메세지A : GET /~bob/index.html HTTP/1.0
+-&amp;gt; 가리키는 리소스 : /home/bob/public_html&lt;/p&gt;
+
+  &lt;p&gt;요청 메세지B : GET /~betty/index.html HTTP/1.0
+-&amp;gt; 가리키는 리소스 : home/betty/public_html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;572-디렉터리-목록&quot;&gt;5.7.2. 디렉터리 목록&lt;/h4&gt;
+
+&lt;p&gt;URL은 리소스 파일을 가리키는게 아니라 디렉터리 자체를 가리킬 수도 있습니다. 이를 디렉터리 URL 이라고 합니다. 대부분 웹 서버는 디렉터리 URL 요청을 받았을때 다음과 같은 행동을 취합니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;에러를 반환&lt;/li&gt;
+  &lt;li&gt;디렉터리 대신 특별한 ‘색인 파일’을 반환&lt;/li&gt;
+  &lt;li&gt;디렉터리를 탐색한 뒤 그 내용을 담은 HTML 페이지를 반환&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;대부분의 웹 서버는 디렉터리 URL을 받으면 해당 디렉터리 안의 ‘index.html’  혹은 ‘index.htm’ 파일을 찾습니다. 그리고 그 파일이 존재한다면 반환합니다.&lt;/p&gt;
+
+&lt;p&gt;아파치 웹 서버에선 이렇게 디렉터리 URL이 왔을때 기본적으로 찾을 파일의 이름 집합을 설정할 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DirectoryIndex index.html index.htm home.html home.htm index.cgi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 설정하면 나열된 순서대로 파일을 찾아보고 나온다면 그 파일을 반환합니다.&lt;/p&gt;
+
+&lt;p&gt;그런데 만약 기본 색인 파일을 찾을 수 없다면 어떻게 할까요? 많은 웹 서버는 요청받은 디렉터리 안의 파일들의 크기, 변경일, 파일에 대한 링크 등을 열거한 HTML 파일을 반환합니다. 하지만 이 방식은 클라이언트에게 숨겨야 할 파일도 노출할 수 있으니 조심해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;아파치 웹 서버에선 다음과 같은 설정으로 디렉터리 색인 파일 자동 생성을 끌 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Options -Indexes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;573-동적-콘텐츠-리소스-매핑&quot;&gt;5.7.3. 동적 콘텐츠 리소스 매핑&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 URI를 동적 리소스에 맵핑할 수도 있습니다. 웹 서버중 웹 어플리케이션 서버(WAS, Web Application Server)라고 불리는 것들은 웹 서버와 백엔드 어플리케이션을 연결해줍니다.&lt;/p&gt;
+
+&lt;p&gt;국내에서 많이 사용되는 기술 스택인 ‘아파치 - 톰캣 - 자바 서블릿’이 이런 동적 콘텐츠 맵핑의 하나라고 볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;아파치에서 URI에 따라 프로그램의 경로를 맵핑 시킬 수 있습니다. 다음 아파치 설정을 보겠습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ScriptAlias /cgi-bin/ /usr/local/etc/httpd/cgi-programs/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 설정은 URI 경로가 ‘/cgi-bin/’ 으로 시작한다면, ‘/usr/local/etc/httpd/cgi-programs/’ 에서 프로그램을 찾아 실행하라는 의미 입니다. 여기에 덧붙여&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AddHandler cgi-script .cgi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같은 설정을 추가해 특정 확장자의 파일만 실행 되도록 설정할 수 있습니다. 위 설정은 ‘.cgi’ 로 끝나는 모든 웹 리소스는 실행되어야 함을 명시하는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;CGI는 서버사이드 어플리케이션을 실행하기 위한 간단한 인터페이스인데 웹의 초창기에 많이 사용되었습니다. CGI 자체는 Common Gateway Interface로 웹 서버와 웹 어플리케이션 서버간 데이터를 주고받는데 도움을 주는 인터페이스입니다. 이 CGI를 따라 작성된 프로그램을 CGI 프로그램이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt;오늘날엔 asp, jsp 같은 애플리케이션 서버가 cgi를 대체하고 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;574-서버사이드-인클루드server-side-includes-ssi&quot;&gt;5.7.4. 서버사이드 인클루드(Server-Side Includes, SSI)&lt;/h4&gt;
+
+&lt;p&gt;서버사이드 인클루드는 서버가 생성하거나 가지고 있는 HTML 파일을 클라이언트에게 보내기 직전에 html 안에 있던 변수 값들을 치환하는 것을 말합니다.&lt;/p&gt;
+
+&lt;p&gt;SSI를 가지고 있는 html파일은 대부분 ‘.shtml’ 이라는 확장자가 붙습니다.&lt;/p&gt;
+
+&lt;p&gt;자바 스택을 이용해 웹 페이지를 만들어 보았다면 jsp 페이지에&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;% include file=&quot;/css/bootstrap.css&quot; %&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이런 &amp;lt;% ~~ %&amp;gt; 태그를 본적이 있을 것입니다. 이런 태그들이 클라이언트에게 보내지기 직전에 치환되는 변수들이며 이런 과정을 SSI라고 합니다.&lt;/p&gt;
+
+&lt;p&gt;많은 웹 서버가 이 SSI를 지원합니다. 동적 컨텐츠를 만들 수 있는 쉬운 방법중 하나입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;575-접근-제어&quot;&gt;5.7.5. 접근 제어&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 각 리소스에 접근 제어를 설정할 수도 있습니다. 접근이 제어된 리소스에 요청이 올 경우 웹 서버는 클라이언트의 IP에 근거해 접근을 제어하던가, 리소스에 접근하기 위한 비밀번호를 물어보던가 등을 할 수 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;58-단계5--응답-만들기&quot;&gt;5.8. 단계5 : 응답 만들기&lt;/h3&gt;
+
+&lt;p&gt;요청을 받았다면 응답을 해야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;581-응답-엔터티&quot;&gt;5.8.1. 응답 엔터티&lt;/h4&gt;
+
+&lt;p&gt;응답 메세지에 엔터티 본문이 있다면, 응답 메세지엔 다음과 같은 것들이 포함되어야 합니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;응답 본문의 MIME 타입을 서술하는 Content-Type 헤더&lt;/li&gt;
+  &lt;li&gt;응답 본문의 길이를 서술하는 Content-Length 헤더&lt;/li&gt;
+  &lt;li&gt;실제 응답 본문&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;582-mime-타입-결정하기&quot;&gt;5.8.2. MIME 타입 결정하기&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 응답 본문의 MIME 타입을 결정해야 하는 책임이 있습니다. MIME 타입을 결정하는 방법엔 다음과 같은 것들이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mime.types&lt;/strong&gt;
+ 파일 이름의 확장자를 사용하는 방법입니다. 확장자를 그대로 사용하는 것은 아니고, 웹 서버별로 확장자별 MIME 타입이 담겨 있는 파일을 탐색해 확장자에 맞는 MIME 타입을 맵핑해 줍니다. 가장 흔히 쓰이는 방법입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;매직 타이핑(Magic Typing)&lt;/strong&gt;
+ 한편, 확장자가 없는 파일이 있을 수도 있습니다. 아파치 웹 서버에선 파일의 내용을 검사해 특정 패턴을 추출할 수 있습니다. 이 패턴을 매직 파일(패턴과 MIME 타입을 맵핑해주는 테이블)에 맵핑해 MIME 타입을 찾아냅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;유형 명시(Explicit typing)&lt;/strong&gt;
+ 특정 파일 혹은 특정 디렉토리 안의 파일들을 파일 확장자나 내용에 상관 없이 어떤 MIME 타입을 갖도록 명시할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;유형 협상(Type negotiation)&lt;/strong&gt;
+ 한 리소스가 여러 MIME 타입에 맵핑 될 수도 있습니다. 이때 웹 서버가 협상 과정을 통해 사용하기 가장 좋은 MIME 타입을 판별해 설정할 수도 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;583-리다이렉션&quot;&gt;5.8.3. 리다이렉션&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 성공 대신 리다이렉션을 응답하기도 합니다. 리다이렉션이 사용되는 경우는 다음과 같습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;영구히 리소스가 옮겨진 경우&lt;/strong&gt;
+ 리소스의 위치가 옮겨지거나 이름이 바뀌었을 수 있습니다. 이때 웹 서버는 클라이언트에게 리소스의 URL이 바뀌었으니 북마크를 새로 갱신하라고 말해줄 수 있습니다. 이때 ‘301 Moved Permanently’ 코드가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;임시로 리소스가 옮겨진 경우&lt;/strong&gt;
+ 리소스가 영구히 옮겨진게 아니라 잠시 옮겨지거나 이름이 변경될 수도 있습니다. 이때, 리다이렉션은 필요하지만 방금 전 처럼 북마크를 갱신할 필요는 없습니다. 이럴땐 ‘303 See Other’ 이나 ‘307 Temporary Redirect’ 코드가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;URL 증강&lt;/strong&gt;
+ 서버는 문맥 정보를 포함시키기 위해 재작성된 URL로 리다이렉션 시키기도 합니다. 그러면 클라이언트는 다시 작성된 fat URL을 따라 다시 요청 합니다. 이때도 ‘303 See Other’이나 ‘307 Temporary Redirect’ 코드가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;부하 균형&lt;/strong&gt;
+ 과부하된 서버가 요청을 받으면 부하가 덜 걸린 서버로 리다이렉션 시킬수도 있습니다. 이때도 ‘303 See Other’이나 ‘307 Temporary Redirect’ 코드가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;친밀한 다른 서버가 있을 때&lt;/strong&gt;
+ 웹 서버들은 사용자에 대한 정보를 가지고 있을 수 있습니다. 한 서버가 요청을 받았을때, 클라이언트의 정보를 가지고 있는 서버로 리다이렉션 시킬 수 있습니다. 이때도 ‘303 See Other’이나 ‘307 Temporary Redirect’ 코드가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;디렉터리 이름 정규화&lt;/strong&gt;
+ 클라이언트가 디렉터리 이름에 대해 URI 요청을 하는데 ‘/’를 바뜨렸다면, 대부분의 웹 서버는 클라이언트를 ‘/’를 추가한 새로운 URI로 리다이렉션 시킵니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;59-단계6--응답-보내기&quot;&gt;5.9. 단계6 : 응답 보내기&lt;/h3&gt;
+
+&lt;p&gt;대게 한 서버는 여러 클라이언트를 상대하며 여러 커넥션을 가지고 있습니다. 그중 어떤 커넥션은 놀고 있을 수 있고 어떤 커넥션은 데이터를 보내고 있으며 어떤 커넥션은 데이터를 받고 있을 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;요청을 받을때와 마찬가지로 응답을 보낼때도 커넥션 상태들을 추적해 효율적으로 전송해야 합니다. 특히, 비지속 커넥션은 응답을 보낸뒤에 바로 커넥션을 닫으면 되기 때문에 비교적 간단하지만 지속 커넥션의 경우 더 주의해야 합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;510-단계7--로깅&quot;&gt;5.10. 단계7 : 로깅&lt;/h3&gt;
+
+&lt;p&gt;트랜잭션이 완료되면 트랜잭션의 수행 결과를 로그 파일에 기록합니다. 대부분의 웹 서버는 기본적으로 제공하는 로깅 방식과 설정들이 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;p&gt;매 장을 읽으면 그동안 머릿속에 자유롭게 돌아다니던 지식의 조각들이 제 자리를 찾아가는 것을 느낍니다. ‘How to use’를 알고 있던 것들이 ‘How it works’와 연결되는 과정이 즐겁습니다.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>커넥션 관리</title>
@@ -22,91 +2495,569 @@
 
 &lt;h3 id=&quot;41-tcp-커넥션&quot;&gt;4.1. TCP 커넥션&lt;/h3&gt;
 
+&lt;p&gt;이번 장에선 HTTP 통신을 사용하기 위한 기저인 TCP 커넥션에 대해 알아볼 것입니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP는 어떻게 TCP 통신을 사용하는지&lt;/li&gt;
+  &lt;li&gt;네트워크 지연의 원인인 TCP 커넥션의 지연, 병목, 막힘이 무엇인지&lt;/li&gt;
+  &lt;li&gt;지연을 해결하기 위한 병렬커넥션, keep-alive 커넥션, 커넥션 파이프라인이 무엇인지&lt;/li&gt;
+  &lt;li&gt;커넥션 관리를 위해 따라야 할 몇 가지 규칙들&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위와 같은 것들을 알아볼 것입니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;1장에서도 설명드렸듯이 모든 HTTP 통신은 TCP/IP 통신을 기반으로 이루어집니다. HTTP는 데이터가 손실되지 않는 안전한 통신인데, 이 ‘안전한’을 TCP가 보장해줍니다.&lt;/p&gt;
+
+&lt;p&gt;TCP/IP 커넥션이 맺어지면 HTTP 메세지들은 손실, 손상되지 않고 순서가 바뀌지도 않습니다. 이번 절에선 TCP/IP가 어떻게 데이터를 보장해주는지알아볼 것입니다.&lt;/p&gt;
+
+&lt;p&gt;웹 브라우저 입장에서 TCP 커넥션을 이용한 HTTP 통신은 다음과 같은 과정으로 이루어집니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;브라우저가 URL에서 호스트 명을 추출합니다. 
+(ex - http://www.joes-hardware.com:80/power-tools.html -&amp;gt; www.joes-hardware.com)&lt;/li&gt;
+  &lt;li&gt;브라우저가 DNS(Domain Name System)을 이용해 호스트명에 대한 IP 주소를 찾습니다. 
+(ex - www.joes-hardware.com -&amp;gt; 202.43.78.3)&lt;/li&gt;
+  &lt;li&gt;브라우저가 URL에서 포트번호를 얻습니다. 
+(ex - http://www.joes-hardware.com:80/power-tools.html -&amp;gt; 80)&lt;/li&gt;
+  &lt;li&gt;브라우저가 호스트명의 포트 번호로 TCP 커넥션을 생성합니다.&lt;/li&gt;
+  &lt;li&gt;브라우저가 서버로 요청 HTTP메세지를 보냅니다.&lt;/li&gt;
+  &lt;li&gt;브라우저가 서버에서 온 응답 HTTP 메세지를 읽습니다.&lt;/li&gt;
+  &lt;li&gt;브라우저가 커넥션을 끊습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h4 id=&quot;411-신뢰할-수-있는-데이터-전송-통로인-tcp&quot;&gt;4.1.1. 신뢰할 수 있는 데이터 전송 통로인 TCP&lt;/h4&gt;
+
+&lt;p&gt;TCP에 대해 깊게 이해하기 위해선 따로 책 한권이 필요할 정도입니다.(저자추천 도서: 『TCP/IP Illustrated』 - W.Richard Stevens)&lt;/p&gt;
+
+&lt;p&gt;4.1. 절에선 어떻게 TCP가 작동하고 데이터를 보장하는지 간략히 알아볼 것입니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;412-tcp-스트림은-세그먼트로-나뉘어-ip-패킷을-통해-전송된다&quot;&gt;4.1.2. TCP 스트림은 세그먼트로 나뉘어 IP 패킷을 통해 전송된다&lt;/h4&gt;
 
+&lt;p&gt;TCP는 HTTP 메세지를 통째로 전송하지 않습니다. IP 패킷(== IP 데이터그램)이라는 작은 조각으로 나눠 데이터를 전송합니다.&lt;/p&gt;
+
+&lt;p&gt;패킷이라는 작은 조각으로 나누는 이유는 서킷 통신과 패킷 통신에 대해 알아야 합니다. https://brunch.co.kr/@wangho/6에 정말 잘 정리되어 있습니다. 간단히 말해 기존의 서킷 통신은 전화처럼 연결이 된 상대하고만 통신이 가능하고 그 외의 사람은 연결이 끝날때 까지 기다려야 하는데, 패킷 통신은 각자가 보낸 조각 패킷들을 받아서 조합하기 때문에 한 사람이 어떤 사람과 통신 중에 다른 사람이 끼어들어도 패킷들 사이에 다른 사람의 패킷이 들어올 수 있어 여러명과 통신이 가능하다는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;TCP는 HTTP 메세지를 세그먼트라는 단위로 나눠 IP 패킷에 담아 전달합니다. 이 과정은 osi 7계층에서 네트워크 계층, 전송 계층에서 일어나기 때문에 애플리케이션 계층을 다루는 개발자에겐 보이지 않습니다.&lt;/p&gt;
+
+&lt;p&gt;IP 패킷은 아래와 같은 그림처럼 이루어져 있습니다.&lt;/p&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;p&gt;크게 IP 패킷 헤더(보통 20 Byte), TCP 세그먼트 헤더(보통 20 Byte), TCP 데이터 조각으로 이루어져 있는데 각자의 역할이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;IP 패킷 헤더는 발신지에서 목적지로 IP 패킷이 이동하는데 필요한 정보를 가지고 있습니다. 하나의 HTTP 메세지는 여러 IP 패킷으로 잘려 IP 패킷 헤더를 이용해 목적지에 도착합니다. 이때, 도착한 순서나 각 패킷들이 손상 없이 잘 도착했는지는 보장할 수 없습니다.&lt;/p&gt;
+
+&lt;p&gt;이걸 보장해주기 위해 필요한게 TCP 세그먼트 헤더입니다. TCP 세그먼트 헤더의 속성들로 조각난 IP 패킷의 순서를 맞추고, 손실된 데이터가 발견되면 해당 데이터를 다시 요청합니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;413-tcp-커넥션-유지하기&quot;&gt;4.1.3. TCP 커넥션 유지하기&lt;/h4&gt;
 
+&lt;p&gt;하나의 컴퓨터는 여러개의 TCP 커넥션을 가지고 있습니다. 포트 번호마다 여러개의 커넥션이 생성될 수 있습니다. 이런 여러개의 TCP 커넥션은&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;발신지 IP 주소, 발신지 포트, 수신지 IP 주소, 수신지 포트&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;위 네가지 값으로 식별됩니다. 네 가지 값이 같다면 같은 커넥션이라고 볼 수 있습니다. 한 포트에 여러 커넥션이 생성될 수 있지만 네 가지 값이 모두 같아야만 같은 커넥션이라고 합니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;414-tcp-소켓-프로그래밍&quot;&gt;4.1.4. TCP 소켓 프로그래밍&lt;/h4&gt;
+
+&lt;p&gt;이런 TCP를 개발자가 직접 조작할 수도 있습니다. 이를 도와주는게 각 운영체제에서 지원하는 TCP 관련 API 입니다. 이를 흔히 소켓 API라고 부릅니다. 소켓 API는 유닉스에서 처음 개발됐지만 현재는 대부분의 운영체제에서 지원합니다.&lt;/p&gt;
+
+&lt;p&gt;아래는 소켓 API의 주요 인터페이스입니다. 물론 API도 필요 없이 더 저수준의 언어로 TCP를 조작할 수도 있겠지만… 그건 나중에.. 각 운영체제에서 제공하는 소켓 API는 개발자들에게 TCP/IP에 관한 세부사항(핸드셰이킹, IP 패킷의 분할 및 재조립 등 .. )을 숨기지만 TCP/IP를 조작 할 수 있게 도와줍니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;소켓 API&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;s = socket(&lt;parameters&gt;)&lt;/parameters&gt;&lt;/td&gt;
+      &lt;td&gt;연결되지 않은 익명의 새로운 소켓 생성&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;bind(s, &lt;local IP:port=&quot;&quot;&gt;)&lt;/local&gt;&lt;/td&gt;
+      &lt;td&gt;소켓에 로컬 IP, 포트 번호와 인터페이스 할당&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;connect(s, &lt;remote IP:port=&quot;&quot;&gt;)&lt;/remote&gt;&lt;/td&gt;
+      &lt;td&gt;로컬의 소켓과 원격 호스트, 포트 사이에 TCP 커넥션 생성&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;listen(s, …)&lt;/td&gt;
+      &lt;td&gt;커넥션을 받아들이기 위해 로컬 소켓에 허용함을 표시&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;s2 = accpet(s)&lt;/td&gt;
+      &lt;td&gt;누군가 로컬 포트에 커넥션을 맺기 기다림&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;n = read(s, buffer, n)&lt;/td&gt;
+      &lt;td&gt;소켓으로부터 버퍼에 n바이트 읽기 시도&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;n = write(s, buffer, n)&lt;/td&gt;
+      &lt;td&gt;소켓으로부터 버퍼에 n바이트 쓰기 시도&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;close(s)&lt;/td&gt;
+      &lt;td&gt;TCP 커넥션을 완전히 끊음&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;shutdown(s, &lt;side&gt;)&lt;/side&gt;&lt;/td&gt;
+      &lt;td&gt;TCP 커넥션의 입출력만 닫음&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getsockopt(s, …)&lt;/td&gt;
+      &lt;td&gt;내부 소켓 설정 옵션값을 읽음&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;setsockopt(s, …)&lt;/td&gt;
+      &lt;td&gt;내부 소켓 설정 옵션값을 변경&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;위의 소켓 api를 기반으로 클라이언트와 서버의 TCP 통신을 대략적으로 그려보면 다음과 같습니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;클라이언트&lt;/th&gt;
+      &lt;th&gt;서버&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;1. 새로운 소켓을 만든다(socket)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;2. 80포트로 소켓을 묶는다(bind)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;3. 소켓 커넥션을 허가한다(listen)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;4. 커넥션을 기다린다(accept)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1. 요청 URL에서 IP 주소와 포트를 얻는다&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2. 새로운 소켓을 생성한다(socket)&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3. 서버의 IP:포트로 연결한다(connect)&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;5. 커넥션 인식 및 연결 확인 메세지를 보낸다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4. 연결 성공&lt;/td&gt;
+      &lt;td&gt;6. 요청을 읽기 시작한다(read)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5. HTTP 요청을 보낸다(write)&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6. HTTP 응답을 기다린다(read)&lt;/td&gt;
+      &lt;td&gt;7. 요청 메세지를 처리한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;8. 응답을 보낸다.(write)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7. 응답을 처리한다.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;8. 커넥션을 닫는다(close)&lt;/td&gt;
+      &lt;td&gt;9. 커넥션을 닫는다(close)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;42-tcp의-성능에-대한-고려&quot;&gt;4.2. TCP의 성능에 대한 고려&lt;/h3&gt;
 
+&lt;p&gt;HTTP는 osi 7계층에서 TCP 바로 위의 계층이기 때문에 HTTP의 성능은 TCP 성능에 직접적으로 영향을 받습니다.&lt;/p&gt;
+
+&lt;p&gt;이번 절에선 TCP 성능 (주로 성능 저하의 원인)에 대해 알아볼 것입니다. TCP 프로토콜 내부를 자세히 알아야 하는 절이고 많은 개발자들은 이걸 직접 다룰 일은 드물 것입니다. 하지만 본 스터디는 근본 지식을 위한 스터디이므로 저는 한번 훑어보도록 하겠습니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;421-http-트랜잭션-지연&quot;&gt;4.2.1. HTTP 트랜잭션 지연&lt;/h4&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;p&gt;위의 그림과 같이 HTTP 요청을 처리하는 시간은 요청을 전송하고 응답을 전송하는 시간에 비해 짧습니다. 대부분의 HTTP 지연은 TCP 네트워크의 지연 때문에 발생합니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP 지연에는 다음과 같은 원인들이 있습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;처음 방문하는 호스트의 경우 DNS을 이용해 호스트명을 IP로 변환하는 과정. 과거에는 수십초가 걸림(현재는 인터넷 인프라의 발전으로 대부분 밀리초 단위로 DNS 이름 분석이 끝난다 - 옮긴이)&lt;/li&gt;
+  &lt;li&gt;새로운 커넥션을 만들고 설정하는 시간. 과거엔 1~2초가 걸림 (역시 인터넷 인프라의 발전으로 대부분 1초 미만으로 끝난다.)&lt;/li&gt;
+  &lt;li&gt;요청 메세지 전송&lt;/li&gt;
+  &lt;li&gt;요청 처리 및 응답 메세지 전송&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h4 id=&quot;422-성능-관련-중요-요소&quot;&gt;4.2.2. 성능 관련 중요 요소&lt;/h4&gt;
 
+&lt;p&gt;지금부턴 다음과 같은 일반적인 TCP 관련 지연에 대해 살펴봅니다. 고성능의 HTTP 소프트웨어를 개발해야 한다면 각 항목을 모두 이해해야 합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;TCP 커넥션의 핸드셰이크 설정&lt;/li&gt;
+  &lt;li&gt;TCP의 slow start : 본래는 인터넷의 혼잡을 제어하기 위해 사용되지만 지연의 원인이 되기도 합니다.&lt;/li&gt;
+  &lt;li&gt;Nagle 알고리즘 : 작은 데이터를 모아 한번에 전송하기 위해 만들어진 알고리즘이지만 지연의 원인이 되기도 합니다.&lt;/li&gt;
+  &lt;li&gt;TCP의 편승(piggyback) 확인응답(acknowledgment)을 위한 확인응답 지연 : 이 역시 확인응답이라는 메세지를 다른 데이터에 편승 시킬 목적이었으나 지연의 원인이 되기도 합니다.&lt;/li&gt;
+  &lt;li&gt;TIME_WAIT 지연과 포트고갈&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h4 id=&quot;423-tcp-커넥션-핸드셰이크-지연&quot;&gt;4.2.3. TCP 커넥션 핸드셰이크 지연&lt;/h4&gt;
+
+&lt;p&gt;핸드셰이크는 악수죠. TCP 커넥션 핸드셰이크는 정말 직관적으로 잘 이해되는 단어 같습니다. 새로운 TCP 커넥션을 맺을 때 두 TCP 소프트웨어는 커넥션을 맺기 위해 IP 패킷을 교환합니다.&lt;/p&gt;
+
+&lt;p&gt;다음 그림과 설명은 TCP 커넥션이 핸드셰이크를 하는 순서입니다.&lt;/p&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트는 ‘SYN’이라는 플래그를 가진 작은 TCP 패킷을 보낸다.(40~60 Byte) SYN 플래그는 커넥션 생성 요청을 뜻한다.&lt;/li&gt;
+  &lt;li&gt;서버가 그 커넥션을 받으면 몇 가지 커넥션 매개변수를 산출해 ‘SYN’과 ‘ACK’ 플래그가 담긴 TCP 패킷을 클라이언트에게 보낸다. SYN+ACK 플래그는 커넥션 생성 요청이 승낙 됐다는 것을 뜻한다.&lt;/li&gt;
+  &lt;li&gt;SYN+ACK 플래그를 가진 TCP 패킷을 받은 클라이언트는 승낙을 확인했다는 뜻의 ACK 플래그를 가진 확인 응답 신호를 보낸다. 오늘날 TCP는 이 확인 응답 신호를 실질적으로 보내야할 데이터와 같이 보낸다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;주고받아야할 데이터의 크기가 작은 HTTP 트랜잭션들은 통신시간의 50%이상을 실제 데이터 전송이 아니라 TCP 커넥션을 구성하는데 사용합니다. (하나의 IP 패킷은 인터넷상에서 수백 바이트, 로컬에선 1500바이트 정도 됩니다.)&lt;/p&gt;
+
+&lt;p&gt;이미 존재하는 커넥션을 재활용 하는 방식으로 이런 지연을 최소화 하는데 이는 뒤에서 살펴볼 것입니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;424-확인응답-지연&quot;&gt;4.2.4. 확인응답 지연&lt;/h4&gt;
 
+&lt;p&gt;앞서 하나의 HTTP 메세지는 여러 세그먼트단위로 나뉘고 IP 패킷에 담겨 전송되고, TCP는 각 세그먼트의 순서와 손상 여부를 검사한다고 했습니다. 이렇게 HTTP 메세지를 잘 받은걸 확인한 후에 확인응답 패킷을 송신자에게 반환합니다.&lt;/p&gt;
+
+&lt;p&gt;그리고 송신자는 특정 시간 안에 확인응답을 받지 못하면 패킷 전송에 오류가 있다는 것으로 간주해 데이터를 다시 전송하게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;위 과정에서 보내는 확인응답은 크기가 작습니다. 그래서 보통 TCP는 확인응답이 가야할 방향으로 송출되는 데이터 패킷에 확인응답을 같이 태워보냅니다. 이를 편승(piggyback)시킨다고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;편승하기 위해서 구현된 많은 ‘확인응답 지연’ 알고리즘은 다음과 같이 동작합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;보낼 확인응답을 특정시간(0.1~0.2초) 동안 버퍼에 저장한다.&lt;/li&gt;
+  &lt;li&gt;편승할 송출 데이터 패킷을 찾는다.&lt;/li&gt;
+  &lt;li&gt;일정 시간 안에 송출 데이터 패킷을 찾지 못하면 확인응답만 별도의 패킷으로 전송한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;서로 데이터 전송이 활발한 커넥션의 경우에 문제가 없겠지만 주고받는게 적은 통신에선 오히려 편승할 데이터 패킷을 찾는 과정에 시간을 버리는 일이 빈번합니다.&lt;/p&gt;
+
+&lt;p&gt;운영체제에 따라 이 확인응답 지연 관련 기능을 수정할수도 있지만 조심히 건드려야 할것입니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;425-tcp-느린-시작slow-start&quot;&gt;4.2.5. TCP 느린 시작(slow start)&lt;/h4&gt;
+
+&lt;p&gt;TCP의 slow start는 생성 초기엔 커넥션의 최대 속도를 제한하고 데이터가 성공적으로 전송됨에 따라 속도 제한을 높이는 것입니다. 이는 인터넷의 급작스러운 부하나 혼잡을 방지하기 위해 도입되었습니다.&lt;/p&gt;
+
+&lt;p&gt;속도 제한은 한번에 전송 가능한 패킷의 수로 제어 합니다. 패킷이 성공적으로 전달되면 추가로 2개의 패킷을 더 전송할 수 있는 권한을 얻게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;2개를 보냈다가 성공적으로 전달되면 다음엔 4개를 보낼 수 있게되는 방식입니다. 이렇게 점진적으로 전달 패킷 양을 늘리는걸 ‘Opening the congestion window’라고 부르고 어느 정도 데이터를 주고 받은 커넥션을 ‘튜닝된’ 커넥션이라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;새로운 커넥션은 튜닝된 커넥션보다 느리기 때문에(한 번에 보낼 수 있는 최대 패킷수가 제한되기 때문에) 커넥션을 재사용하지 않는다면 TCP의 slow start 때문에 네트워크 지연이 발생할수 있습니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;426-네이글nagle-알고리즘과-tcp_nodelay&quot;&gt;4.2.6. 네이글(Nagle) 알고리즘과 TCP_NODELAY&lt;/h4&gt;
 
+&lt;p&gt;앞서 보았듯이 실제로 전송해야할 데이터가 얼마가 되든 IP 패킷으로 전송하기위해선 IP 패킷 헤더, TCP 세그먼트 헤더, 플래그등을 포함합니다. 따라서 전송해야할 데이터가 작다면 실제 보낼 데이터보다 헤더값들이 더 큰 상황이 발생할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;네이글 알고리즘은 이런 작은 패킷들을 하나로 합쳐 전송하는 역할을 합니다. 네이글 알고리즘은 다음과 같은 순서로 이루어집니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;전에 전송한 패킷에 아직 확인응답을 못받은 경우 전송할 데이터들을 버퍼에 쌓아둔다.&lt;/li&gt;
+  &lt;li&gt;쌓아둔 데이터가 세그먼트의 최대크기 만큼 쌓이면 하나의 패킷으로 전송한다.&lt;/li&gt;
+  &lt;li&gt;전에 전송한 패킷들이 모두 확인응답을 받아 확인응답을 기다리는 패킷들이 없다면, 버퍼에 쌓는 데이터가 세그머느의 최대 크기가 되지 않더라도 하나의 패킷으로 전송한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;네이글 알고리즘 역시 네트워크의 지연을 줄이고자 하는 목적으로 도입됐지만 오히려 네트워크 지연을 발생시키기도 합니다. 앞으로 생길지 말지 모르는 데이터를 하염없이 기다리며 지연됩니다.&lt;/p&gt;
+
+&lt;p&gt;그리고 이 네이글 알고리즘은 앞서 본 확인응답 지연과 같이 쓰이면 성능이 매우 떨어지기도 합니다. 확인응답 지연은 패킷을 자주 주고받아 확인응답을 다른 패킷에 편승시켜야 하는데, 네이글 알고리즘은 작은 패킷들은 안보내고 모으고 있으니 서로 역효과를 발생시키게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP 어플리케이션 수준에서 HTTP 스택에 TCP_NODELAY 파라미터 값을 설정하면 네이글 알고리즘을 비활성화 할 수 있습니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;427-time_wait의-누적과-포트-고갈&quot;&gt;4.2.7. TIME_WAIT의 누적과 포트 고갈&lt;/h4&gt;
+
+&lt;p&gt;TIME_WAIT의 누적과 포트 고갈은 실제 상황에서 발생할 가능성은 낮지만 발생시엔 심각한 성능 저하를 일으킵니다. 그렇다면 포트고갈은 왜 일어나는 것 인지 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;TCP 커넥션의 종단(end-point)에서 TCP 커넥션을 끊으면 커넥션의 IP 주소와 포트번호를 메모리의 제어영역(control block)에 기록해두고 해당 주소와 포트번호는 일정 시간 동안 사용하지 않게합니다. 이를 TIME_WAIT라고 하고 보통 세그먼트의 최대 생명주기의 두배(2MSL) 정도 유지하며 2MSL은 과거엔 2분, 현재는 1분 이내입니다.&lt;/p&gt;
+
+&lt;p&gt;TIME_WAIT를 하는 이유는 이전 커넥션과 관련된 패킷이 이전 커넥션과 같은 IP, 포트를 갖는 새로운 커넥션에 들어오는 것을 방지하는 것입니다. 그래서 세그먼트의 생명주기의 두배정도를 기다리는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 요즘엔 라우터들이 향상되어 커넥션이 닫힌 후에 중복 패킷이 생기는 경우는 거의 없습니다.&lt;/p&gt;
+
+&lt;p&gt;처음에 이 포트 고갈은 실제 상황에서 발생할 가능성이 낮다고 했습니다. 실제 상황보다 성능 테스트 시에 발생할 가능성이 높습니다. 커넥션에 관해 설명할때&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;발신지 IP주소, 발신지 포트, 목적지 IP주소, 목적지 포트&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;4가지가 모두 같아야 같은 커넥션이라고 했습니다. 실제 상황에선 한 발신지에서 많은 트랜잭션을 단시간에 보내는 경우는 드물기 때문에 실제론 잘 발생하지 않습니다. 오히려 발신지의 IP와 포트가 제한된 채로 많은 트랜잭션을 발생시켜 테스트하는 성능 테스트 단계에서 발생하기 쉽습니다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;43-http-커넥션-관리&quot;&gt;4.3. HTTP 커넥션 관리&lt;/h3&gt;
 
+&lt;p&gt;이번 절에선 커넥션을 생성하고 최적화하는데 필요한 HTTP 기술을 알아볼 것입니다. HTTP의 Connection 헤더에 대해 알아보고 이를 최적화 하는 방법을 알아 볼 것입니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;431-흔히-잘못-이해하는-connection-헤더&quot;&gt;4.3.1. 흔히 잘못 이해하는 Connection 헤더&lt;/h4&gt;
 
+&lt;p&gt;클라이언트의 요청은 바로 목적지 서버로 들어가지 않고 여러 프록시를 거칠 수 있습니다. 이때를&lt;/p&gt;
+
+  	클라이언트 - 프록시1 - 프록시2 - 서버
+
+&lt;p&gt;순서로 통신이 이루어진다고 가정하면, 클라이언트와 프록시1 둘 간에만 적용될 옵션을 지정할 수 있습니다. 이를 hop-by-hop 헤더라고 합니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP메세지의 Connection헤더는 세가지 종류의 토큰이 올 수 있습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;HTTP 헤더 필드 명 : 해당 커넥션에서만 사용되는 HTTP 헤더를 나열합니다. 다음 커넥션에선 해당 HTTP 헤더를 삭제하고 보냅니다.&lt;/li&gt;
+  &lt;li&gt;임시적인 토큰 : 커넥션에 대한 비표준 옵션입니다.&lt;/li&gt;
+  &lt;li&gt;close : 커넥션 작업이 완료되면 종료되어야 한다는 뜻입니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;예시를 보겠습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;HTTP/1.1 200 OK
+Cache-control : max-age=3600
+Connection : meter, close, bill-my-credit-card
+Meter : max-uses=3, max-refuses=6, dont-report&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위는 서버에서 프록시쪽으로 갈 수 있는 응답 메세지 입니다. 이 중 Connection 헤더를 보면 meter 토큰이 있고 아래에 Meter라는 HTTP 헤더가 있습니다. 여기서 meter 헤더는 해당 커넥션에서만 사용되고 다음 커넥션으로 갈땐 Meter 헤더가 삭제 되어야 한다는 뜻입니다.&lt;/p&gt;
+
+&lt;p&gt;bill-my-credit-card는 커넥션에서 사용하기 위해 만든 비표준 옵션이라고 볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;추가적으로 Connection 헤더에 기술되지 않더라도 기본적으로 hop-by-hop 헤더인 HTTP 헤더들도 있습니다. Proxy-Authenticate, Proxy-Connection, Transfer-Encoding, Upgrade 같은 헤더들이 그것입니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;432-순차적인-트랜잭션-처리에-의한-지연&quot;&gt;4.3.2. 순차적인 트랜잭션 처리에 의한 지연&lt;/h4&gt;
+
+&lt;p&gt;3개의 이미지가 있는 웹페이지를 연다고 가정해보겠습니다. 이 웹페이지를 열기 위해선 4번의 HTTP 트랜잭션이 필요합니다. (HTML을 가져오는 트랜잭션 1개 + 3개의 이미지를 가져오는 각각의 트랜잭션)&lt;/p&gt;
+
+&lt;p&gt;각 트랜잭션들이 새로운 커넥션이 필요하다면(HTML과 각 이미지를 호스팅하는 서버가 다르거나 포트가 다를 경우) 핸드셰이킹 지연과 TCP slow start 지연이 추가로 발생합니다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 순차적으로 4개의 트랜잭션을 처리할 경우 물리적으로 지연이 발생할 뿐 아니라 사용자 입장에서 이미지가 로드될때까지 빈 화면을 바라봐야 하는 심리적인 지연도 있습니다. (뒤에서 살펴볼 병렬적으로 이미지를 받아오는 방식이 더 느릴때도 있지만 사용자는 그래도 동시에 로드되는걸 좋아한다고 합니다!)&lt;/p&gt;
+
+&lt;p&gt;또한 특정 브라우저들의 경우엔 이미지의 크기를 알기 전엔 HTML의 뼈대조차 안그려주는 브라우저도 있습니다. (html 태그 상에서 width와 height를 지정해주면 해결되긴 합니다.)&lt;/p&gt;
+
+&lt;p&gt;이렇게 발생하는 지연을 해결하기 위해 아래와 같은 방법들을 사용하고 앞으로 하나씩 알아보겠습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;병렬 커넥션 : 여러개의 TCP 커넥션을 통한 동시 HTTP 요청&lt;/li&gt;
+  &lt;li&gt;지속 커넥션 : 커넥션을 맺고 끊는 데서 발생하는 지연을 제거하기 위한 TCP 커넥션의 재활용&lt;/li&gt;
+  &lt;li&gt;파이프라인 커넥션 : 공유 TCP 커넥션을 통한 병렬 HTTP 요청&lt;/li&gt;
+  &lt;li&gt;다중 커넥션 : 요청과 응답들에 대한 중재(아직 실험적인 기술)&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;44-병렬-커넥션&quot;&gt;4.4. 병렬 커넥션&lt;/h3&gt;
 
+&lt;p&gt;병렬 커넥션은 말 그대로 여러개의 커넥션을 맺어 여러개의 HTTP 트랜잭션을 병렬로 처리하는 것입니다. 병렬 ‘커넥션’이기 때문에 가져와야할 리소스가 다른 호스트나 포트에 있어야 합니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;441-병렬-커넥션은-페이지를-더-빠르게-내려-받는다&quot;&gt;4.4.1. 병렬 커넥션은 페이지를 더 빠르게 내려 받는다&lt;/h4&gt;
+
+&lt;p&gt;하나의 커넥션은 HTTP 요청을 보내고 응답을 기다립니다. 그 기다리는 시간동안 다른 커넥션을 만들고 다른 요청을 보냅니다. 이렇게 하기 위해선 충분한 인터넷 대역폭이 확보되어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;그림 요망&lt;/p&gt;
+
+&lt;p&gt;이렇게 인터넷 대역폭이 충분하고 한 커넥션이 지연되는 시간이 있을때, 하나가 지연될때 다른 커넥션을 작동시켜 지연시간을 겹치게 만들 수 있습니다. 이렇게 하면 일반적으론 더 빠르게 웹 페이지를 받아올 수 있습니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;442-병렬-커넥션이-항상-더-빠르지는-않다&quot;&gt;4.4.2. 병렬 커넥션이 항상 더 빠르지는 않다&lt;/h4&gt;
 
+&lt;p&gt;하지만 병렬 커넥션이 항상 빠르지는 않습니다. 앞서 말했듯이 충분한 인터넷 대역폭이 확보되어야 하는데 인터넷 대역폭이 극히 작아 하나의 커넥션만으로 버겁다면 병렬적으로 커넥션을 사용할 수 없습니다. (오히려 여러 커넥션을 만들어야 되니 그로 인한 지연이 더 발생할 수 있습니다.)&lt;/p&gt;
+
+&lt;p&gt;그리고 커넥션을 여러개 생성하는건 메모리의 문제로 이어질 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;또한, 복잡한 웹페이지의 경우엔 수십~수백개의 객체를 포함하는데 이를 수백개의 병렬 커넥션으로 연결할 순 없습니다. 서버쪽에서 거부하기 때문에 과도한 수의 커넥션이 맺어지면 서버쪽에서 임의로 끊을 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;사실 서버쪽에서 거부하기 전에 사용자가 사용하는 브라우저 자체에서 병렬 커넥션의 수를 제한합니다.(최신 브라우저들은 대부분 6~8개의 병렬 커넥션을 지원합니다. - 옮긴이)&lt;/p&gt;
+
 &lt;h4 id=&quot;443-병렬-커넥션은-더-빠르게-느껴질-수-있다&quot;&gt;4.4.3. 병렬 커넥션은 더 빠르게 ‘느껴질 수’ 있다&lt;/h4&gt;
+
+&lt;p&gt;이렇게 실제로 병렬 커넥션이 더 느릴 수도 있습니다. 하지만 사용자는 병렬 커넥션을 더 선호합니다. 앞서 말했듯이 빈 화면을 보고있는 것보단 동시에 로드되는 과정을 지켜볼때 사용자는 더 빠르다고 생각합니다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 사용자의 심리적인 부분을 고려하는 것도 중요합니다. 옮긴이에 따르면, 이미지 같은 것을 로드할때 처음엔 저화질 이미지를 로드해 보여주고 후에 고화질을 받아 보여주는 방식도 사용자의 심리적인 면을 고려하는 것중 하나라고 합니다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;45-지속-커넥션&quot;&gt;4.5. 지속 커넥션&lt;/h3&gt;
 
+&lt;p&gt;대부분의 웹 사이트를 이용할 때 웹 클라이언트는 같은 사이트에 여러 개의 커넥션을 맺습니다. 하나의 웹 페이지를 띄우기 위해 가져와야할 많은 리소스들이 같은 서버에 있는 경우 그 서버에 또 요청을 하게 됩니다. 이를 ‘site locality’ 라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;이를 위해 HTTP/1.1에선 처리가 완료된 후에도 TCP 커넥션을 유지합니다. 이를 ‘지속 커넥션’이라고 부르고 지속 커넥션을 이용하면 여러 번 커넥션을 맺을 때 발생할 수 있는 헨드셰이킹 지연, TCP slow start 지연을 방지해 더 빠르게 리소스를 가져올 수 있습니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;451-지속-커넥션-vs-병렬-커넥션&quot;&gt;4.5.1. 지속 커넥션 vs 병렬 커넥션&lt;/h4&gt;
+
+&lt;p&gt;병렬 커넥션의 장, 단점은 앞에서 살펴보았고 지속 커넥션의 장점은 방금 살펴보았습니다. 하지만 지속 커넥션이 장점만 갖는건 아닙니다. 지속 커넥션 관리가 제대로 되지 않을 경우, 연결된 상태의 커넥션이 계속 쌓여 클라이언트, 서버 양쪽에 리소스를 낭비할 것입니다.&lt;/p&gt;
+
+&lt;p&gt;사실 가장 좋은 방법은 병렬 커넥션과 지속 커넥션을 같이 사용하는 것입니다. 요즘의 많은 웹 어플리케이션은 적은 수의 병렬 커넥션을 사용하며 각 커넥션을 지속 커넥션으로 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;쉽게 볼 수 있는 지속 커넥션엔 두 가지가 있습니다. HTTP/1.0+ 에서 사용되는 ‘keep alive’ 커넥션이 있고 HTTP/1.1 에서 사용되는 ‘지속’ 커넥션이 있습니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;452-http10의-keep-alive-커넥션&quot;&gt;4.5.2. HTTP/1.0+의 Keep-Alive 커넥션&lt;/h4&gt;
 
+&lt;p&gt;HTTP/1.0에서는 지속 커넥션이 없었습니다. 당시에 실험적인 수준이었던 keep-alive 커넥션을 지원하기 위해 HTTP/1.0+로 확장 됩니다.&lt;/p&gt;
+
+&lt;p&gt;keep-alive 커넥션은 처음 등장한 지속 커넥션이어서 그런지 설계상 문제가 있었습니다. 하지만 아직도 많은 클라이언트와 서버들은 keep-alive 커넥션을 사용합니다. (&lt;strong&gt;책이 집필 된 지 오래돼서 아직도 이 문장이 유효한지 잘 모르겠습니다.&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;p&gt;keep-alive의 설계상 문제는 HTTP/1.1 에서 수정되어 새로운 지속 커넥션으로 바뀌었습니다. 그리고 keep-alive 자체는 HTTP/1.1 명세에 빠졌습니다. 머지않아 레거시로만 남게 될 것 같습니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;453-keep-alive-동작&quot;&gt;4.5.3. Keep-Alive 동작&lt;/h4&gt;
+
+&lt;p&gt;keep-alive가 HTTP/1.1 명세에서 공식적으로 빠졌더라도 아직 많은 웹 클라이언트와 서버가 keep-alive를 사용중이고 레거시와의 호환성은 개발자에겐 피할 수 없는 숙명이므로 keep-alive가 어떻게 동작하는지 알아보겠습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트가 요청시 ‘Connection:Keep-Alive’ 헤더를 포함시킵니다.&lt;/li&gt;
+  &lt;li&gt;‘Connection:Keep-Alive’헤더를 받은 서버가 이 지속 커넥션을 수락하고자 한다면 응답 메세지에도 ‘Connection:Keep-Alive’헤더 를 포함시킵니다.&lt;/li&gt;
+  &lt;li&gt;응답 메세지에서 ‘Connection:Keep-Alive’헤더를 확인한 클라이언트는 지속 커넥션을 유지합니다. 만약 응답 메세지에서 ‘Connection:Keep-Alive’를 찾지 못했다면 서버가 커넥션을 끊을 것이라 추정하게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;여기서 ‘Connection:Keep-Alive’ 헤더는 커넥션을 유지하기 바라는 요청일 뿐이고 해당 헤더를 포함시켰다고 해서 keep-alive 커넥션이 만들어질거라는 보장은 없습니다. 또한, 언제든지 keep-alive 커넥션은 끊어질 수 있습니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;454-keep-alive-옵션&quot;&gt;4.5.4. Keep-Alive 옵션&lt;/h4&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;Connection : Keep-Alive
+Keep-Alive : max=5, timeout=120&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위에서 처럼 Keep-Alive 헤더를 추가해 keep-alive에 대한 옵션 사항을 줄 수도 있습니다. 위의 예시에서 max 파라미터는 몇 개의 HTTP 트랜잭션을 처리할 때 까지 커넥션을 유지할 것인지를 나타냅니다. timeout 파라미터는 이 커넥션이 얼마간 유지될 것인지를 나타냅니다. 이 외에도 다양한 파라미터를 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 ‘Connection:Keep-Alive’헤더가 keep-alive 커넥션을 보장하지 못하는 것 처럼 Keep-Alive 헤더에 옵션을 적었다고 해서 그렇게 동작할 것이라는 보장은 없습니다.&lt;/p&gt;
+
+&lt;p&gt;끝으로 Keep-Alive 헤더는 ‘Connection:Keep-Alive’ 헤더가 있을때만 유효합니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;455-keep-alive-커넥션-제한과-규칙&quot;&gt;4.5.5. Keep-Alive 커넥션 제한과 규칙&lt;/h4&gt;
 
+&lt;p&gt;앞에서 살펴본 것들과 뒤에서 살펴볼 keep-alive의 제한이나 규칙등을 정리해보겠습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;keep-alive는 기본적으로 적용되는 것이 아닙니다.  Connection:Keep-Alive 요청 헤더를 보내야 합니다.&lt;/li&gt;
+  &lt;li&gt;keep-alive를 유지하려면 계속 요청과 응답에서 Connection:Keep-Alive 헤더를 유지해야 합니다. 클라이언트가 Connection:Keep-Alive를 보내지 않으면 서버는 keep-alive 커넥션을 끊을 것입니다.&lt;/li&gt;
+  &lt;li&gt;서버가 Connection:Keep-Alive를 보내지 않으면 클라이언트는 서버가 keep-alive 커넥션을 끊을 것이라 생각합니다.&lt;/li&gt;
+  &lt;li&gt;keep-alive 커넥션에서 Content-Length의 값을 알려주는 것은 매우 중요합니다. Content-Length를 알아야만 메세지의 끝과 시작점을 알 수 있기 때문입니다.&lt;/li&gt;
+  &lt;li&gt;정석대로라면 keep-alive 커넥션은 Connection 헤더를 인식하지 못하는 프록시와는 연결되면 안됩니다. 뒤에서 설명할 dumb 프록시로 인한 문제가 발생할 수 있기 때문입니다. 하지만 현실적으론 쉽지 않습니다.&lt;/li&gt;
+  &lt;li&gt;기술적으론 HTTP/1.0 을 따르는 곳에서 오는 모든 Connection 헤더 필드는 무시해야 합니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트는 응답을 전부 받기 전에 커넥션이 끊어진다면 다시 요청을 보낼 준비를 하고 있어야 합니다.&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h4 id=&quot;456-keep-alive와-멍청한dumb-프록시&quot;&gt;4.5.6. Keep-Alive와 멍청한(dumb) 프록시&lt;/h4&gt;
+
+&lt;p&gt;dumb 프록시에 관한 문제는 Connection 헤더를 이해못하는 구형 프록시 때문에 발생합니다. 발생 과정을 살펴보겠습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트 - dumb proxy - 서버 간의 통신 상황입니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 Connection : Keep-Alive 헤더를 포함한 요청을 보냅니다.&lt;/li&gt;
+  &lt;li&gt;dumb 프록시는 Connection : Keep-Alive 헤더를 단순히 확장 헤더로 취급하고 서버에 그대로 전달 합니다.
+앞서 살펴봤듯이 Connection 헤더는 hop-by-hop 헤더로써, 다음 서버로 전송되면 안됩니다.&lt;/li&gt;
+  &lt;li&gt;서버는 Connection : Keep-Alive 헤더가 담긴 메세지를 받고 문제가 없는 경우에 keep-alive 커넥션에 동의하고 Connection : Keep-Alive 헤더를 포함한 응답 메세지를 보냅니다.&lt;/li&gt;
+  &lt;li&gt;dumb 프록시는 이번에도 Connection : Keep-Alive 헤더를 확장 헤더로 취급해 그대로 클라이언트에게 전달합니다.&lt;/li&gt;
+  &lt;li&gt;그리고 dumb 프록시는 keep-alive를 이해하지 못하기 때문에 서버가 커넥션을 끊기를 기다립니다. 하지만 서버는 keep-alive 커넥션에 동의했기 때문에 커넥션을 끊지 않습니다.&lt;/li&gt;
+  &lt;li&gt;Connection : Keep-Alive 헤더가 담긴 응답을 받은 클라이언트는 keep-alive가 맺어졌다고 생각하고 다음 요청을 프록시에 보냅니다.
+하지만 프록시는 같은 커넥션에서 다른 요청이 또 올거라 예상하지 못하기 때문에 클라이언트의 다음 요청은 무시됩니다. 클라이언트는 계속 기다리게 됩니다.&lt;/li&gt;
+  &lt;li&gt;dumb 프록시가 중간을 어지럽혔기 때문에 클라이언트나 서버는 타임아웃이 나서 커넥션이 끊길때 까지 기다리게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;위의 모든 상황은 dumb 프록시가 다음으로 넘기지 말아야 할 Connection 헤더를 넘겨 일어난 일입니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;457-proxy-connection-살펴보기&quot;&gt;4.5.7. Proxy-Connection 살펴보기&lt;/h4&gt;
 
 &lt;h4 id=&quot;458-http11의-지속-커넥션&quot;&gt;4.5.8. HTTP/1.1의 지속 커넥션&lt;/h4&gt;
 
+&lt;p&gt;앞에서 많은 시간을 들여 keep-alive 커넥션에 대해 알아봤지만 사실 keep-alive는 deprecated된 기술입니다. HTTP/1.1에선 keep-alive보다 향상된 지속 커넥션을 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.1의 지속 커넥션은 기본적으로 활성화되어 있습니다. keep-alive가 기본적으로 비활성이던 것과는 정반대입니다. HTTP/1.1의 지속 커넥션은 모든 커넥션을 지속 커넥션으로 취급하고, 이를 끊으러면 Connection : close 헤더를 보내야 합니다.&lt;/p&gt;
+
+&lt;p&gt;Connection : close 헤더가 없다면 HTTP/1.1을 따르는 웹 어플리케이션들은 지속 커넥션이 유지된다고 생각합니다. 물론, Connection : close를 보내지 않았다고 해서 커넥션이 영원히 유지되는 것은 아닙니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;459-지속-커넥션의-제한과-규칙&quot;&gt;4.5.9. 지속 커넥션의 제한과 규칙&lt;/h4&gt;
+
+&lt;p&gt;HTTP/1.1 지속 커넥션의 특징들을 정리하겠습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클라이언트가 Connection : close헤더를 포함한 요청을 보냈다면 그 커넥션으로 추가 요청을 보낼 순 없다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 추가적으로 요청을 보내지 않을 것이라면 Connection : close헤더를 포함해 마지막 요청을 보내야 한다.&lt;/li&gt;
+  &lt;li&gt;메세지에 길이 정보가 있어야 지속 커넥션을 유지 시킬 수 있다. 즉, Content-Length를 가지고나 chunked transfer encoding 되어 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;HTTP/1.1 프록시는 클라이언트, 서버와 각각 별도의 지속 커넥션을 맺고 관리해야 한다.&lt;/li&gt;
+  &lt;li&gt;HTTP/1.1 프록시는 클라이언트의 HTTP지원 범위를 모른다면 지속 커녁션을 맺으면 안된다.(하지만 이게 잘 지켜지진 않는다.)&lt;/li&gt;
+  &lt;li&gt;HTTP/1.1 기기는 Connection : close 헤더와 관계 없이 언제든 커넥션을 끊을 수 있다.&lt;/li&gt;
+  &lt;li&gt;HTTP/1.1 어플리케이션은 중간에 끊어진 커넥션을 복구할 수 있어야 한다. 다시 보내도 되는 요청이면 다시 보내야 한다.&lt;/li&gt;
+  &lt;li&gt;클라이언트는 커넥션이 비정상적으로 끊어질 것을 대비해 다시 요청을 보낼 준비가 되어있어야 한다.&lt;/li&gt;
+  &lt;li&gt;하나의 클라이언트는 서버의 과부하 방지를 위해 두개 정도의 지속 커넥션을 유지해야 한다. n명의 사용자를 상대하기 위해서 프록시나 서버는 2n개의 커넥션을 유지할 수 있어야 한다.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;46-파이프라인-커넥션&quot;&gt;4.6. 파이프라인 커넥션&lt;/h3&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;파이프라인 : 컴퓨터 과학에서 파이프라인은 한 데이터 처리 단계의 출력이 다음 단계의 입력으로 이어지는 형태로 연결된 구조를 가리킨다. 이렇게 연결된 데이터처리 단계는 한 단계가 서로 동시에, 또는 병렬적으로 수행될 수 있어 효율성의 향상을 꾀할 수 있다. 각 단계 사이의 입출력을 중계하기 위해 버퍼가 사용될 수 있다.  - [위키백과][https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8_(%EC%BB%B4%ED%93%A8%ED%8C%85)]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;HTTP/1.1은 지속 커넥션을 위해 요청을 파이프라이닝 할 수 있습니다. 하나의 요청을 보내고 응답을 기다리는 동안 보낸 요청은 큐에 쌓아두고 새로운 요청을 보내고 또 큐에 쌓는 방식입니다. 대기시간이 긴 네트워크 상황에서 큰 효과를 얻을 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 파이프라이닝엔 다음과 같은 제약 사항들이 있습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;HTTP 클라이어느는 커넥션이 지속 커넥션인지 확인하기 전 까진 파이프라인을 이어서는 안됩니다.&lt;/li&gt;
+  &lt;li&gt;HTTP 응답은 요청 순서와 같게 와야 합니다. HTTP 메세지는 순번이 매개져 있지 않기 때문에 응답이 무작위로 오면 순서에 맞게 정렬시킬 방법이 없습니다.&lt;/li&gt;
+  &lt;li&gt;HTTP 클라이언트는 커넥션이 언제 끊어지더라도 실패한 요청을 다시 보낼 수 있어야 합니다.&lt;/li&gt;
+  &lt;li&gt;POST 요청과 같이 반복해서 보낼때 문제가 생길 수 있는 요청은 파이프라인을 통해 보내면 안됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;47-커넥션-끊기에-대한-미스터리&quot;&gt;4.7. 커넥션 끊기에 대한 미스터리&lt;/h3&gt;
 
+&lt;p&gt;커넥션을 관리(특히 언제, 어떻게 커넥션을 끊는지)에는 명확한 기준도 없고 관련한 기술문서도 많지 않습니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;471-마음대로-커넥션-끊기&quot;&gt;4.7.1. ‘마음대로’ 커넥션 끊기&lt;/h4&gt;
+
+&lt;p&gt;모든 HTTP 클라이언트, 프록시, 서버는 사실 언제든지 TCP 전송 커넥션을 독자적으로 끊을 수 있습니다. 보통은 메세지를 다 보낸 다음 끊게 되지만 이렇게 마음대로 커넥션을 끊어 버리면 HTTP메세지의 중간이 끊기는것 처럼 다양한 문제가 발생할 수 있습니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;472-content-length와-truncation&quot;&gt;4.7.2. Content-Length와 Truncation&lt;/h4&gt;
 
+&lt;p&gt;오래된 HTTP 서버는 ‘커넥션을 끊는다’ == ‘데이터 전송이 끝났다’ 라는 가정하에 개발되어 Content-Length를 가지지 않는 경우가 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 모든 HTTP 응답은 엔터티 본문의 크기를 값는 Content-Length헤더를 가지고 있어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;만약 클라이언트가 실제 엔터티 본문의 크기와 Content-Length의 값이 다른 응답을 받거나, Content-Length 자체를 받지 못했다면 정확한 길이를 다시 물어봐야 합니다. 이때, 발신자가 캐시 프록시였다면 응답을 캐시하면 안됩니다.&lt;/p&gt;
+
 &lt;h4 id=&quot;473-커넥션-끊기의-허용-재시도-멱등성&quot;&gt;4.7.3. 커넥션 끊기의 허용, 재시도, 멱등성&lt;/h4&gt;
+
+&lt;p&gt;앞서 몇번 언급했듯이 커넥션은 에러가 없더라도 언제든지 끊길 수 있습니다. HTTP 어플리케이션들은 이에 대한 대비가 되어있어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;클라이언트의 경우 커넥션이 끊겨 실패한 요청을 다시 보낼 수 있어야 합니다. 이 상황은 파이프라인 커넥션에선 좀 더 복잡해집니다. 응답 대기중인 요청은 큐에 쌓여있지만 모든 응답이 오기전에 커넥션이 끊기면 어느 요청들이 처리됐는지 알수 없습니다.&lt;/p&gt;
+
+&lt;p&gt;이런 상황에서 요청이 어떤 종류의 요청이었는지는 중요합니다. 몇번을 보내도 서버에 영향을 미치지 않는 요청들(앞서 Safe Method라 배운 GET, HEAD)이나 한 번 실행됐는지, 여러번 실행됐는지에 상관없이 같은 결과를 반환하는 요청들(PUT, DELETE 와 같은)은 여러번 보내도 상관없습니다. 이런 부류의 요청을 ‘멱등(idempotent)한’ 요청이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt;POST와 같은 멱등하지 않은 요청을 파이프라인을 통해 요청하다 커넥션이 예상치 못하게 끊어진다면, POST 요청을 다시 보내도 될지 말지 결정할 수 없습니다. 이런 멱등하지않은 요청은 파이프라인 커넥션을 통해 요청하면 안됩니다.&lt;/p&gt;
 
 &lt;h4 id=&quot;474-우아한-커넥션-끊기&quot;&gt;4.7.4. 우아한 커넥션 끊기&lt;/h4&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;p&gt;커넥션은 어깨너머 들은 지식을 정리하기 보단 새로운 지식으로 받아들이는 시간이었던 것 같습니다. 하지만 이 책의 학습 목표는 이런 웹 서비스가 동작하는데에 대한 깊고 근본적인 지식을 탐구하는 것이기 때문에 매우 재밌습니다! :smiley:&lt;/p&gt;
 </content>
  </entry>
  
@@ -2153,9 +5104,9 @@ TCP/IP에 대한 세부 사항은 4장에서 자세히 다룰 예정입니다. 1
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo/Sagyo3/"/>
+   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo/Sagyo3</id>
+   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Sagyo3
 &lt;/div&gt;
@@ -2803,9 +5754,9 @@ TCP/IP에 대한 세부 사항은 4장에서 자세히 다룰 예정입니다. 1
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo/Sagyo2/"/>
+   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo/Sagyo2</id>
+   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Sagyo2
 &lt;/div&gt;
@@ -3453,9 +6404,9 @@ TCP/IP에 대한 세부 사항은 4장에서 자세히 다룰 예정입니다. 1
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo/Sagyo1/"/>
+   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo/Sagyo1</id>
+   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Sagyo1
 &lt;/div&gt;

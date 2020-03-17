@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Sagyo-reboot &middot; 이기승의 techlog!
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+    
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+<a class="sidebar-nav-item category-closed" href="#">projects</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">sagyo</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-book</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">algorithm</a>
+<a class="sidebar-nav-item" href="#">http완벽가이드</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">Java</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">이기승의 techlog!</a>
+            <small>coding panchi</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Sagyo-reboot</h1>
+  <span class="post-date"></span>
+  <h3 id="1-sagyo-plate_with_cutlery">1. Sagyo? :plate_with_cutlery:</h3>
+
+<p>Sagyo 프로젝트는 본격적으로 프로그래밍을 배운 뒤 처음으로 진행해 본 프로젝트입니다. 학원 근처 자주가던 식당이 ‘서교밥집’ 이었고 기획한 프로젝트가 소셜다이닝 웹 어플리케이션이었기 때문에 ‘Sagyo’라고 이름 붙여진 프로젝트입니다.</p>
+
+<blockquote>
+  <p>저희 Sagyo는 기존 소셜 다이닝 웹 서비스들이 좋은 의도에도 불구하고 크게 활성화 되지 못한 이유를 ‘유저간의 신뢰도 확보 실패’라고 진단한 뒤, 기존 소셜 다이닝 웹 어플리케이션의 기능을 구현하면서 유저간의 신뢰도 확보 수단을 추가한 웹 서비스입니다.</p>
+</blockquote>
+
+<p>위와 같은 거창한 개요를 가지고 시작한 프로젝트이지만 기능적으로 보자면 조금 기능이 많은 게시판 정도 였던것 같습니다.(물론 시각에 따라 기능이 많지 않을 수도 있습니다. :cry:)</p>
+
+<h3 id="2-왜-다시-sagyo를-꺼내는지">2. 왜 다시 Sagyo를 꺼내는지</h3>
+
+<p>시간은 촉박하고 기획해 놓은 기능은 많았기에 <strong>프로젝트 소스의 사소한 부분부터 조금은 치명적인 부분까지 미흡한 점이 많았습니다.</strong></p>
+
+<p>정해진 프로젝트 기간이 끝나고 추후에 부족한 부분들을 수정할 계획이었지만 취업을 하고 나니 아예 뒷전이 되어버렸습니다.</p>
+
+<p>6개월 정도 실무를 겪다가 요즘 시간이 좀 한가해 졌습니다. <strong>그동안 쌓은 지식도 있고, 어깨 너머 주워들은 내용도 있고, 이것들을 적용해 보고 싶어 Sagyo-reboot를 기획하게 됐습니다.</strong></p>
+
+<h3 id="3-sagyo-reboot에선-무엇을-하는지">3. Sagyo-reboot에선 무엇을 하는지</h3>
+
+<p>Sagyo-reboot는 <strong>Sagyo 프로젝트를 다시 정리</strong>해보고, <strong>아쉬운 점을 하나씩 고쳐가는 스터디의 성격이 강한 프로젝트</strong>입니다. 수정 목록은 고정해두지 않고 이것저것 학습해 가며 <strong>수정 목록이 계속 추가되는 끝이 없는 프로젝트</strong>입니다.</p>
+
+<h3 id="4-lets-reboot-sagyo">4. Let’s reboot Sagyo!</h3>
+
+<h4 id="41-sagyo에-대해">4.1. Sagyo에 대해</h4>
+
+<ol>
+  <li>기능 기획 및 나의 역할</li>
+  <li>DB 설계</li>
+  <li></li>
+</ol>
+
+<h4 id="42-sagyo-reboot-firefirefire">4.2. Sagyo-reboot :fire::fire::fire:</h4>
+
+<ol>
+  <li>폴더 정리</li>
+  <li>파일 정리 및 자바스크립트 라이브러리 충돌 해결</li>
+  <li>JWT를 이용한 로그인 인증 방식 변경</li>
+  <li>어노테이션 정리</li>
+  <li>로그 남기기</li>
+  <li>DTO : VO vs Map</li>
+</ol>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
