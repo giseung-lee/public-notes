@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      HTTP 메시지 &middot; 이기승의 techlog!
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+    
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+<a class="sidebar-nav-item category-closed" href="#">projects</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">sagyo</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-book</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">algorithm</a>
+<a class="sidebar-nav-item" href="#">http완벽가이드</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">Java</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">이기승의 techlog!</a>
+            <small>coding panchi</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">HTTP 메시지</h1>
+  <span class="post-date">12 Mar 2020</span>
+  
+<h3 id="들어가며">들어가며</h3>
+
+<p>앞서 HTTP는 ‘배달원’이라고 했습니다. 이번장에서 알아볼 HTTP 메시지는 배달원이 보내는 소포와 같은 역할을 합니다.</p>
+
+<hr />
+
+<h3 id="31-메시지의-흐름">3.1. 메시지의 흐름</h3>
+
+<p>HTTP 메세지는 메세지에 대한 메타 정보와 데이터로 이루어진 데이터의 블록입니다. HTTP 메세지는 클라이언트, 서버, 프록시 사이를 흐릅니다.</p>
+
+<h4 id="311-메시지는-원-서버-방향을-인바운드로-하여-송신된다">3.1.1. 메시지는 원 서버 방향을 인바운드로 하여 송신된다</h4>
+
+<p>인바운드, 아웃바운드는 DB서버를 열어주기 위해 방화벽을 설정해봤다면 한번쯤 마주쳐봤을 용어입니다.</p>
+
+<ul>
+  <li>인바운드 :  HTTP의 요청 방향으로 가는 것 (클라이언트 -&gt; 서버)</li>
+  <li>아웃바운드 : HTTP 요청이 온 방향(응답방향)으로 가는 것 (서버 -&gt; 클라이언트)</li>
+</ul>
+
+<h4 id="312-다운스트림으로-흐르는-메시지">3.1.2. 다운스트림으로 흐르는 메시지</h4>
+
+<p>다운스트림, 업스트림은 인바운드, 아웃바운드와는 별개로 메세지가 흐르는 방향을 말합니다. 모든 메세지는 다운스트림으로 흐릅니다.</p>
+
+<p>예를들어, 아래 그림처럼 클라이언트의 요청이 프록시1, 프록시2, 프록시3을 거쳐 서버로 간다면, 인바운드에서 프록시2는 프록시1의 다운스트림이자 프록시3의 업스트림입니다.
+ 반대로 서버에서 클라이언트로 응답이가는 아웃바운드에선 프록시2는 프록시3의 다운스트림이자 프록시1의 업스트림이 됩니다.</p>
+
+<p>그림요망</p>
+
+<hr />
+
+<h3 id="32-메시지의-각-부분">3.2. 메시지의 각 부분</h3>
+
+<p>메세지는 기본적으로 [ 시작줄 - 헤더 블록 - 본문 ] 으로 이루어져 있습니다.</p>
+
+<ul>
+  <li>시작줄 : 메세지가 어떤 메세지인지를 알려줍니다. (요청인지 응답인지, 요청 및 응답의 상태는 어떤지, HTTP 버전이 무엇인지 등)</li>
+  <li>헤더 블록 : HTTP메세지에 대한 속성들을 가지고 있습니다. (본문의 길이, 인코딩 등..)</li>
+  <li>본문 : 실제 전송할 데이터가 담기는 부분이며, 없을 수도 있습니다.</li>
+</ul>
+
+<p>시작줄과 헤더블록은 CRLF(Carriage Return + Line Feed)로 나뉘어집니다.</p>
+
+<ul>
+  <li>CR (Carriage Return) : 커서를 행의 맨 좌측으로 이동 (ASCII 13번이며, \r 라고도 표현함)</li>
+  <li>
+    <p>LF (Line Feed) : 커서를 아래 행으로 내림 (ASCII 10번이며, \n 라고도 표현함)</p>
+
+    <p><strong>HTTP명세에 등록된 시작줄과 헤더블록을 나누는 문자는 CRLF(\r\n)이지만 견고한 어플리케이션을 만들기 위해선 \n만으로도 시작줄과 헤더블록을 나누도록 해야 합니다. 오래되거나 잘못 만들어진 HTTP 어플리케이션들은 \r\n가 아닌 \n로 시작줄과 헤더블록을 구분하기 때문입니다.</strong></p>
+  </li>
+</ul>
+
+<h4 id="321-메시지-문법">3.2.1. 메시지 문법</h4>
+
+<p>요청 메세지의 형식은 다음과 같습니다.</p>
+
+<blockquote>
+  <메서드> <요청URL> <버전>     GET /test/hi-there.txt HTTP/1.1
+<헤더>                                          Accept: text/*
+                                                     Host: www.joes-hardware.com
+
+<엔터티 본문="">                             생략  
+</엔터티></헤더></버전></요청URL></메서드>
+</blockquote>
+
+<p>응답 메세지의 형식은 다음과 같습니다.</p>
+
+<blockquote>
+  <버전> <상태코드> <사유 구절="">  HTTP/1.0 200 OK
+<헤더>                                             Content-type: text/plain
+                                                         Content-length: 19
+
+<엔터티 본문="">                                Hi, I'm message!
+</엔터티></헤더></사유></상태코드></버전>
+</blockquote>
+
+<ul>
+  <li>메서드 : 클라이언트 입장에서 서버가 수행하길 바라는 동작 (GET, POST, PUT, DELETE …)</li>
+  <li>요청 URL : 요청 리소스의 URL 경로</li>
+  <li>버전 : 메세지에서 사용중인 HTTP 버전</li>
+  <li>상태코드 : 요청의 결과에 대한 상태를 설명하는 세자리 숫자.</li>
+  <li>사유 구절(reason - phrase) : 상태 코드를 설명하는 문구. 정해진 규칙은 없지만 정해진 상태코드의 의미와 맞아야 한다.</li>
+  <li>헤더 : 메세지의 속성들을 설명해주는 ‘이름:값’의 쌍들. 헤더들의 마지막은 빈줄(CRLF)로 끝내 엔터티 본문과 구분지어 준다.</li>
+  <li>엔터티 본문 : 메세지가 전달해야 할 데이터 블록. 생략 가능하다.</li>
+</ul>
+
+<p>엔터티 본문이 생략되더라고 헤더의 마지막은 빈줄(CRLF)로 끝나야 합니다. <strong>하지만 많은 HTTP 어플리케이션들이 엔터티 본문이 없으면 헤더의 마지막에 CRLF를 빠뜨립니다. 이런 어플리케이션들과도 호환될 수 있게 HTTP 어플리케이션을 설계해야 합니다.</strong></p>
+
+<h4 id="322-시작줄">3.2.2. 시작줄</h4>
+
+<p><strong>요청에서 시작줄</strong></p>
+
+<p>메서드, 요청 URL, 버전으로 이루어져 있으며 서버에게 어떤 동작을 수행해줄 것인가를 알려줍니다.</p>
+
+<p><strong>응답에서 시작줄</strong></p>
+
+<p>버전, 상태코드, 사유구절로 이루어져 있으며 수행에 대한 결과를 알려줍니다.</p>
+
+<p><strong>메서드</strong></p>
+
+<p>HTTP 명세에선 아래와 같은 9개의 요청 메서드를 정의하고 있습니다.(https://developer.mozilla.org/ko/docs/Web/HTTP/Methods 추가 참고) 하지만 <strong>모든 HTTP 어플리케이션이 아래의 모든 메서드를 구현한 것은 아니며, 어떤 HTTP 어플리케이션은 HTTP명세에 없는 새로운 메서드를 추가했을 수도 있습니다.(확장 메서드)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">메서드</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">서버에서 어떤 문서를 가져온다. 데이터를 받기만 하는 요청.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">HEAD</td>
+      <td style="text-align: center">GET메서드 요청과 동일한 응답을 요구하지만 응답의 엔터티 본문을 포함하지 않는다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">POST</td>
+      <td style="text-align: center">요청 리소스에 필요한 데이터를 보낼때 쓰인다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PUT</td>
+      <td style="text-align: center">요청 메세지의 엔터티 본문을 서버에 저장한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DELETE</td>
+      <td style="text-align: center">특정 리소스를 삭제한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">CONNECT</td>
+      <td style="text-align: center">요청 리소스를 갖는 서버와 터널을 맺음</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">OPTIONS</td>
+      <td style="text-align: center">서버가 어떤 메서드를 수행할 수 있는지 체크한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">TRACE</td>
+      <td style="text-align: center">메세지가 여러 프록시를 거쳐 서버에 도달하는 과정을 추적한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PATCH</td>
+      <td style="text-align: center">오청 리소스의 부분만 수정하는데 쓰인다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>상태코드</strong></p>
+
+<p>요청의 처리결과를 3자리 숫자로 표현하며, 숫자의 가장 앞자리를 기준으로 처리결과의 분류가 나뉩니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">전체 범위</th>
+      <th style="text-align: center">정의된 범위</th>
+      <th style="text-align: center">분류</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">100~199</td>
+      <td style="text-align: center">100~101</td>
+      <td style="text-align: center">정보</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">200~299</td>
+      <td style="text-align: center">200~206</td>
+      <td style="text-align: center">성공</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">300~399</td>
+      <td style="text-align: center">300~305</td>
+      <td style="text-align: center">리다이렉션</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">400~499</td>
+      <td style="text-align: center">400~415</td>
+      <td style="text-align: center">클라이언트 에러</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">500~599</td>
+      <td style="text-align: center">500~505</td>
+      <td style="text-align: center">서버 에러</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>사용가능한 범위에 비해 실제로 HTTP명세에 공식적으로 정의된 범위는 적습니다. 메서드와 마찬가지로 각각의 HTTP 어플리케이션에서 HTTP명세에 없는 새로운 코드를 정의할 수 있지만 코드의 분류에 맞게 정의하는 것이 바람직 합니다.</p>
+
+<p><strong>사유 구절</strong></p>
+
+<p>상태 코드는 프로그램들이 읽기위한 데이터였다면 사유 구절은 사람들이 읽기위한 상태 코드를 설명하는 문구입니다. 따로 정의된 규칙은 없지만 상태코드를 설명할 수 있어야 합니다.</p>
+
+<p><strong>버전 번호</strong></p>
+
+<p>HTTP 메세지를 보낸 어플리케이션이 어떤 버전의 HTTP를 따르는지를 알려줍니다. 두 가지를 유의해야 합니다.</p>
+
+<ol>
+  <li>버전 번호는 어플리케이션이 지원하는 가장 높은 버전의 HTTP를 알려주는 것이지 해당 HTTP메세지를 그 버전의 HTTP로 해석해 달라는 것이 아닙니다. 
+예를들어, 응답이 HTTP/1.1로 온 것은 응답을 보낸 어플리케이션이 HTTP/1.1 까지 이해할 수 있다는 것이지 이 메세지를 HTTP/1.1로 해석해 달라는 것이 아닙니다.</li>
+  <li>버전 번호는 소수점이 아니라 [정수.정수] 입니다. HTTP/2.22 는 HTTP/2.3 보다 상위 버전입니다.</li>
+</ol>
+
+<h4 id="323-헤더">3.2.3. 헤더</h4>
+
+<p>HTTP 명세에서 정의하는 헤더들이 있고 메서드, 상태코드와 마찬가지로 각 어플리케이션에서 새로운 헤더를 정의할 수 있습니다.
+ 헤더의 종류에 따라 아래와 같이 나뉠 수 있습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">분류</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">일반 헤더</td>
+      <td style="text-align: center">요청, 응답 모두에서 쓰일 수 있는 헤더(ex - Date:Tue, 3 Oct 1997 …)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">요청 헤더</td>
+      <td style="text-align: center">요청에 대한 부가정보를 제공하는 헤더(ex - Accept:text/html)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">응답 헤더</td>
+      <td style="text-align: center">응답에 대한 부가정보를 제공하는 헤더(ex - Server: Tiki-Hut/1.0)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Entity 헤더</td>
+      <td style="text-align: center">엔터티 본문에 대한 부가정보를 제공하는 헤더(ex - Content-Type: text/html)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">확장 헤더</td>
+      <td style="text-align: center">각 어플리케이션이 정의한 HTTP 명세에 없는 헤더</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>헤더의 가독성을 위해 하나의 헤더를 개행할 수 있는데, 이때 아래 줄엔 하나의 스페이스 혹은 탭이 와야 합니다.</p>
+
+<blockquote>
+  <p>Content-Length: 8572
+Server: Test Server
+	Version 1.0</p>
+</blockquote>
+
+<h4 id="324-엔터티-본문">3.2.4. 엔터티 본문</h4>
+
+<p>HTTP메시지가 전송할 데이터이며 이미지, 비디오, HTML, 신용카드 트랜잭션, email 등 다양한 데이터를 포함할 수 있습니다.</p>
+
+<h4 id="325-버전-09-메시지">3.2.5. 버전 0.9 메시지</h4>
+
+<p>사실 지금까진 모드 HTTP/1.0 이상에 대해서만 알아봤습니다. 그 이전 버전인 HTTP/0.9의 메세지는 아래 그림과 같이 요청은 오직 요청 메서드와 URL만, 응답은 엔터티 본문만 존재합니다. HTTP/0.9는 나중에 맞닥드리게 되면 그때 추가로 살펴보는 것이 좋을 것 같습니다.</p>
+
+<p>그림 요망</p>
+
+<hr />
+
+<h3 id="33-메서드">3.3. 메서드</h3>
+
+<p>널리 사용되는 기본적인 메서드들에 대해 알아볼 것입니다. 다시 한 번 말씀드리지만 모든 어플리케이션이 모든 메서드들을 지원하는 것은 아닙니다. 웹 프레임워크를 사용할때 해당 웹 프레임워크는 어떤 메서드들을 지원하는지 아는게 중요할 것 같습니다.</p>
+
+<h4 id="331-안전한-메서드safe-method">3.3.1. 안전한 메서드(Safe Method)</h4>
+
+<p>Safe Method는 결과적으로 <strong>서버에 어떤 리소스의 변화도 줄 수 없는 메서드</strong>들을 말합니다. 일반적으론 GET과 HEAD메서드가 Safe Method에 속합니다.</p>
+
+<p>하지만 Safe Method 자체가 Safe를 보장하진 않습니다. 그건 모두 우리 개발자에게 달렸습니다. HTTP에 대한 이해가 부족해 GET요청에도 리소스를 수정 및 삭제 하게 만든 어플리케이션이 있다면 조금 문제가 있는 어플리케이션일것 같습니다.</p>
+
+<h4 id="332-get">3.3.2. GET</h4>
+
+<p>서버에서 리소스를 가져오기 위해 사용됩니다. HTTP/1.1을 준수하기 위해 필요한 메서드중 하나입니다.</p>
+
+<h4 id="333-head">3.3.3. HEAD</h4>
+
+<p>GET과 동일하게 행동하지만 엔터티 본문을 포함하지 않습니다. 시작줄과 헤더만 가져와 아래와 같은 사항들을 알아 낼 수 있습니다.</p>
+
+<ol>
+  <li>리소스 전체를 가져오지 않고 리소스에 대한 정보를 알아냄(타입, 크기 등..)</li>
+  <li>리소스의 존재 여부를 알 수 있음</li>
+  <li>리소스의 변경 여부를 알 수 있음</li>
+</ol>
+
+<p>요청할 리소스의 크기가 큰 경우에 유용하게 사용할 수 있을 것 같습니다.</p>
+
+<p>HTTP/1.1 준수를 위해 필요한 메서드 중 하나이며, <strong>개발자들은 HEAD의 헤더가 GET의 헤더와 정확히 일치하도록 유의해하며 개발해야 합니다.</strong>(웹 프레임워크에 다시 한 번 감사함을 느낍니다.)</p>
+
+<h4 id="334-put">3.3.4. PUT</h4>
+
+<p>PUT 메서드는 요청의 본문을 요청 URL 대로 서버에 저장하는 역할을 합니다. 이미 존재하는 URL이라면 수정을 합니다. 아래 그림과 같이 말이죠.</p>
+
+<p>그림 요망</p>
+
+<h4 id="335-post">3.3.5. POST</h4>
+
+<p>POST메서드는 서버에 입력 데이터를 전송하기 위해 설계 됐습니다. HTML을 다뤄봤다면 &lt;form&gt;태그에서 모두 본 적이 있을 것입니다.</p>
+
+<h4 id="336-trace">3.3.6. TRACE</h4>
+
+<p>우리의 요청은 서버로 가기전에 여러개의 프록시들을 거칠 수 있습니다. 클라이언트의 입장에서 내가 보낸 요청이 서버에게 어떻게 받아들였는지를 알고 싶을때(프록시에서 요청이 수정될 수 있으므로) 사용하는 것이 TRACE 메서드입니다.</p>
+
+<p>TRACE 메서드는 요청의 목적지인 서버까진 일반적인 요청과 같이 진행됩니다. 서버에서 클라이언트로 응답을 돌려주는 과정에서 부터 loopback 진단이 시작됩니다. 아래 그림과 같이 응답이 오며 어떤 요청에 대한 응답인지를 기록해 클라이언트에서 서버로 가면서 요청들이 어떻게 수정됐는지 진단 할 수 있습니다.</p>
+
+<p>그림요망</p>
+
+<p>요청들의 기록은 응답의 엔터티 본문에 담겨 최종적으로 클라이언트에게 전달됩니다.</p>
+
+<p>TRACE메서드는 한 가지 취약점을 가지고 있습니다. 몇몇 프록시들은 자신이 받은 요청 메서드에 따라 다르게 처리하기도 합니다. 예를들어 어떤 프록시는 POST요청은 바로 서버로 전달하지만 GET 요청은 웹 캐시 프록시로 먼저 보냅니다. 하지만 TRACE메서드를 사용하면 이와 같은 처리를 하지 못합니다.</p>
+
+<p>TRACE 메서드 자체로는 해당 요청이 POST처럼 처리될지, GET처럼 처리될 지 알려주는 메커니즘을 제공하지 않습니다. 이를 어떻게 다룰 지는 각 프록시들이 결정하게 됩니다.</p>
+
+<h4 id="337-options">3.3.7. OPTIONS</h4>
+
+<p>OPTIONS 메소드는 간단합니다. 웹 서버에게 어떤 종류의 메서드를 지원하는 지 물어보는 역할을 합니다. 아래 그림과 같이 말이죠.</p>
+
+<h4 id="338-delete">3.3.8. DELETE</h4>
+
+<p>DELETE 메서드는 말 그대로 리소스의 삭제를 요청합니다. 하지만 DELETE 메서드를 보냈다고 해서 리소스의 삭제가 보장되는건 아닙니다.</p>
+
+<h4 id="339-확장-메서드">3.3.9. 확장 메서드</h4>
+
+<p>확장 메서드는 HTTP 명세에 정의되지 않은 메서드입니다. 아래는 확장 메서드의 사례로, WebDAV HTTP 확장입니다.(19장에서 더 자세히 알아볼 것입니다.)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LOCK</td>
+      <td>사용자가 리소스를 잠글 수 있게 해준다. 예를 들어, 문서를 편집하는 동안 다른 사람이 동시에 같은 문서를 편집하지 못하도록 문서를 잠글 수 있다.</td>
+    </tr>
+    <tr>
+      <td>MKCOL</td>
+      <td>사용자가 문서를 생성할 수 있게 해준다.</td>
+    </tr>
+    <tr>
+      <td>COPY</td>
+      <td>서버에 있는 리소스를 복사한다.</td>
+    </tr>
+    <tr>
+      <td>MOVE</td>
+      <td>서버에 있는 리소스를 옮긴다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="34-상태-코드">3.4. 상태 코드</h3>
+
+<h4 id="341-100199-정보성-상태-코드">3.4.1. 100~199: 정보성 상태 코드</h4>
+
+<p>HTTP/1.1 부터 도입되어서 실제로 정의된 코드는 100, 101 밖에 없습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">상태코드</th>
+      <th style="text-align: center">사유 구절</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">100</td>
+      <td style="text-align: center">Continue</td>
+      <td style="text-align: left">요청의 시작 부분 일부가 받아들여졌으며, <br />클라이언트는 나머지를 계속 이어서 보내야 함을 의미한다. <br />이것을 보낸 후, 서버는 반드시 요청을 받아 응답해야 한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">101</td>
+      <td style="text-align: center">Switching Protocols</td>
+      <td style="text-align: left">클라이언트가 Upgrade 헤더에 나열한 것중 하나로, <br />서버가 프로토콜을 바꾸었음을 의미한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>101 코드는 간단하다. 하지만 100 코드는 더 자세히 알아볼 필요가 있습니다.</p>
+
+<p>100 코드는 클라이언트에서 서버로 엔터티 본문을 전송하기 전에, 서버가 그 엔터티 본문을 받아들일 것인지 확인하는 작업을 최적화 하기 위해 도입됐습니다.</p>
+
+<p><strong>클라이언트 - 100 Continue</strong></p>
+
+<p>상태코드는 응답 메세지에서 볼 수 있는 것입니다. 클라이언트 측에서 100 Continue 응답을 받고 싶다면 “Expect : 100-continue” 헤더를 보내면 됩니다. “Expect : 100-continue” 헤더를 받은 서버는 클라이언트쪽에서 엔터티를 보낼 것이라 생각하게 됩니다.</p>
+
+<p>서버가 100 Continue를 보냈다면 클라이언트는 엔터티 전송을 시작할 것입니다. 하지만 100코드는 HTTP/1.1 부터 도입된 코드이기 때문에 <strong>아직 서버 쪽에서 100 Continue를 보내지 못할 수도 있습니다.</strong> 이때 클라이언트는 계속 기다리는게 아니라 <strong>약간의 타임아웃 이후 100 Continue가 없다면 그냥 엔터티를 전송해야 합니다.</strong></p>
+
+<p><strong>서버 - 100 Continue</strong></p>
+
+<p>서버가 “Expect : 100-continue” 헤더를 받는다면, 100 Continue 혹은 에러 코드로 응답을 해야 합니다.</p>
+
+<p>서버가 100 Continue를 보내기 전에 클라이언트쪽에서 엔터티의 일부나 전체를 받았다면 100 Continue를 보낼 필요 없이 요청에 대한 최종 응답을 보내야 합니다.</p>
+
+<p>서버가 Expect 요청을 받았지만 엔터티 본문을 읽기 전에 요청을 끝내기로 결정했다면 서버는 그냥 응답을 보내고 연결을 닫아서는 안됩니다. 그렇게 하면 클라이언트가 응답을 받을 수 없습니다.(이 부분은 4장을 읽고 다시 부연 설명하겠습니다.)</p>
+
+<p><strong>프록시 - 100 Continue</strong></p>
+
+<p>클라이언트와 서버 사이엔 프록시가 있을 수 있습니다. 그럼 “Expect : 100-continue” 헤더 요청을 프록시가 받는다면 어떻게 될까요?</p>
+
+<ol>
+  <li>next-hop 서버가 HTTP/1.1 을 따르거나 어떤 버전을 따르는지 모를 때 : “Expect : 100-continue” 헤더 요청을 포함해 다음으로 전달.</li>
+  <li>next-hop 서버가 HTTP/1.1 이전 버전의 HTTP를 따를 때 : 417 Expectation Failed 에러를 뱉어야 함</li>
+</ol>
+
+<p>그런데, 클라이언트는 Expect 요청을 보내지 않았지만 프록시가 클라이언트를 대신해 서버로 “Expect : 100-continue” 헤더를 포함시켜 요청을 보낼 수도 있습니다. 이때 프록시가 100 Continue 응답을 받았더라도 100 Continue응답을 클라이언트에 전하면 안됩니다. 클라이언트는 100 Continue응답을 어떻게 다룰 지 모를수 있기 때문이죠.</p>
+
+<h4 id="342-200299-성공-상태-코드">3.4.2. 200~299: 성공 상태 코드</h4>
+
+<p>200번대 상태코드는 요청이 성공했음을 나타내고, 요청의 종류에 따라 성공 코드가 달라집니다.</p>
+
+<p>7가지의 성공 상태 코드가 정의되어 있고 양이 많은 관계로 [여기][]에 따로 기록해두겠습니다.</p>
+
+<h4 id="343-300399-리다이렉션-상태-코드">3.4.3. 300~399: 리다이렉션 상태 코드</h4>
+
+<p>300번대 상태코드는 리다이렉션을 뜻하면 다음과 같은 경우에 사용됩니다.</p>
+
+<ul>
+  <li>클라이언트가 요청한 리소스가 옮겨지거나 변경됐을 때 요청한 리소스를 대신할 다른 대안 응답을 제시
+    <ul>
+      <li>Location 헤더에 새로운 위치를 담아 응답하며, 대부분의 브라우저는 Location헤더를 읽어 옮겨진 위치로 다시 요청한다. (ex - www.java.sun.com 으로 요청을 보내면 301 코드와 함께 Location: http://www.oracle.com/technetwork/java/index.html 헤더가 담겨오며, 브라우저는 Location으로 리다이렉트 한다.)</li>
+    </ul>
+  </li>
+  <li>리소스에 대한 클라이언트의 로컬 복사본이 원래 서버와 비교했을 때 유효한지 확인 할 때
+    <ul>
+      <li>요청할 때 If-Modified-Since: ~~ 같은 헤더와 같이 사용해 해당 시간 이후에 수정된 리소스면 가져올 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>7가지의 라다이렉션 상태 코드가 정의되어 있고 [여기][]에 따로 기록해두겠습니다.</p>
+
+<h4 id="344-400499-클라이언트-에러-상태-코드">3.4.4. 400~499: 클라이언트 에러 상태 코드</h4>
+
+<p>클라이언트측의 잘못으로 리소스를 가져오지 못할때를 알려주는 상태코드 입니다. 가장 흔한 400번대 에러는 존재하지 않는 URL을 요청하는 것으로 404 Not Found는 개발을 한다면 누구나 마주쳤을법한 에러코드 입니다.</p>
+
+<p>로그인등의 권한문제로 인해 발생하는 401 Unauthorized 역시 종종 볼 수 잇는 에러코드 입니다.</p>
+
+<p>18개의 에러코드가 정의되어 있으며 [여기][]에 기록해두겠습니다.</p>
+
+<h4 id="345-500599-서버-에러-상태-코드">3.4.5. 500~599: 서버 에러 상태 코드</h4>
+
+<p>500번대 에러는 반대로 서버측의 잘못으로 요청을 처리하지 못하는 경우입니다. 서버 자체의 문제일 때도 있고 프록시, 게이트웨이 같은 서버의 보조 구성요소에서 발생한 에러일 수도 있습니다.</p>
+
+<p>6가지의 에러코드가 정의되어 있고 [여기][]에 기록해두었습니다.</p>
+
+<hr />
+
+<h3 id="35-헤더">3.5. 헤더</h3>
+
+<p>앞서 말했듯이 헤더는 메세지의 속성을 설명해주며 아래와 같이 크게 5가지로 분류 됩니다.
+|    분류     |                             설명                             |
+| :———: | :———————————————————-: |
+|  일반 헤더  | 요청, 응답 모두에서 쓰일 수 있는 헤더(ex - Date:Tue, 3 Oct 1997 …) |
+|  요청 헤더  | 요청에 대한 부가정보를 제공하는 헤더(ex - Accept:text/html)  |
+|  응답 헤더  | 응답에 대한 부가정보를 제공하는 헤더(ex - Server: Tiki-Hut/1.0) |
+| Entity 헤더 | 엔터티 본문에 대한 부가정보를 제공하는 헤더(ex - Content-Type: text/html) |
+|  확장 헤더  |        각 어플리케이션이 정의한 HTTP 명세에 없는 헤더        |</p>
+
+<h4 id="351-일반-헤더">3.5.1. 일반 헤더</h4>
+
+<p>일반 헤더는 요청, 응답 모두에서 유용한 기본적인 속성들을 가리킵니다.</p>
+
+<p>일반 캐시 헤더 : HTTP/1.0에서 도입된 헤더로, 요청시 마다 매번 서버로 가지 않게 로컬 복사본으로 캐시할 수 있게 해주는 헤더입니다. 최신 HTTP버전엔 매우 많은 캐시 헤더를 가지고 있습니다.</p>
+
+<p>대표적인 헤더들은 [여기][]에 모아뒀습니다.</p>
+
+<h4 id="352-요청-헤더">3.5.2. 요청 헤더</h4>
+
+<p>요청헤더는 요청시에만 사용되고 서버가 클라이언트에게 더 나은 응답을 주기 위해 사용됩니다.</p>
+
+<p>Accept 관련 헤더 : Accept, Accept-Charset, Accept-Language 등의 헤더를 통해 서버에게 클라이언트 자신의 선호와 능력을 알려줄 수 있습니다.</p>
+
+<p>조건부 요청 헤더 : 앞서 100 Continue 코드에서 언급된 Expect 헤더나 300 코드에서 언급된 If-Modified-Since 헤더 같이 클라이언트는 조건을 붙여 서버에게 요청을 할 수 있습니다. 이때 사용 되는 헤더가 조건부 헤더 입니다.</p>
+
+<p>요청 보안 헤더 : HTTP는 자체적으로 간단한 인증 요구/응답 체계를 가지고 있습니다. 이는 HTTP 트랜잭션을 더 안전하게 만들어 줍니다. 14장에서 자세히 알아볼 것입니다. Authorization, Cookie와 같은 헤더가 이때 사용되는 헤더 입니다.</p>
+
+<p>프록시 요청 헤더 : 프록시가 많아지며 프록시와 관련한 헤더 역시 등장했습니다. 6장에서 자세히 알아봅니다. Max-Forwards, Proxy-Connection 등의 헤더가 있습니다.</p>
+
+<p>대표적인 헤더들은 [여기][]에 모아뒀습니다.</p>
+
+<h4 id="353-응답-헤더">3.5.3. 응답 헤더</h4>
+
+<p>응답 헤더는 응답시에 사용되어 클라이언트가 응답을 다루기 쉽게 도와줍니다.</p>
+
+<p>협상 헤더 : 서버에 프랑스어, 독일어로 번역된 같은 HTML문서가 있는 것과 같이 한 요청에 대해 여러 선택지가 있을 경우 HTTP/1.1은 그것들 중 어떤 표현을 택할 것인지 협상하도록 지원해준다. 17장에서 자세히 살펴보며,  Accept-Ranges, Vary와 같은 헤더가 사용됩니다.</p>
+
+<p>응답 보안 헤더 : 요청헤더에서 요청 보안 헤더가 있었듯이 응답에서도 응답 보안헤더가 있습니다. 14장에서 자세히 살펴보며 Proxy-Authenticate, Set-Cookie와 같은 헤더가 있습니다.</p>
+
+<p>대표적인 헤더들은 [여기][]에 모아뒀습니다.</p>
+
+<h4 id="354-엔터티-헤더">3.5.4. 엔터티 헤더</h4>
+
+<p>엔터티 헤더는 요청, 응답 모두 등장할 수 있으며 엔터티에 대한 광범위한 부가정보를 제공합니다.</p>
+
+<p>콘텐츠 관련 헤더 : Content-Base, Content-Language, Content-Location 과 같이 콘텐츠 헤더는 콘텐츠에 대한 구체적인 정보를 제공해줍니다.</p>
+
+<p>엔터티 캐싱 헤더 : 일반 헤더에서 언급된 일반 캐싱 헤더는 언제, 어떻게 캐시가 되어야 하는지 알려줬다면, 엔터티 캐싱 헤더는 리소스의 사본이 유효한지, 캐시된 리소스가 더 이상 유효하지 않게 되는 시점은 언제인지 등 엔터티 캐싱에 대한 정보를 제공합니다. 7장에서 자세히 살펴볼 것입니다.</p>
+
+<p>대표적인 헤더들은 [여기][]에 모아뒀습니다.</p>
+
+<hr />
+
+<h3 id="마치며">마치며</h3>
+
+<p>ajax 보낼때 말곤 헤더는 관찰만 했지 직접 조작해보진 않았습니다. 이렇게 헤더의 종류가 많고 다양하다니! 그리고 3장째 보고 있는데 가장 무서운 점은 모두 뒷장에서 더 자세히 설명해준다는 것입니다. (얼마나 자세히 설명해주시려고… :cry:)</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C9/">
+            웹 로봇
+            <small>19 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C8/">
+            통합점 - 게이트웨이, 터널, 릴레이
+            <small>18 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/">
+            윈도우에서 수정한 우분투-리눅스 파일 권한 수정
+            <small>17 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

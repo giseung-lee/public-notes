@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      통합점 - 게이트웨이, 터널, 릴레이 &middot; 이기승의 techlog!
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+    
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+<a class="sidebar-nav-item category-closed" href="#">projects</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">sagyo</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-book</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">algorithm</a>
+<a class="sidebar-nav-item" href="#">http완벽가이드</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">Java</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">이기승의 techlog!</a>
+            <small>coding panchi</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">통합점 - 게이트웨이, 터널, 릴레이</h1>
+  <span class="post-date">18 Mar 2020</span>
+  
+<h3 id="들어가며">들어가며</h3>
+
+<p>이번 장에선 HTTP 프로토콜이 다른 프로토콜과 만나는 다음 4개의 지점들에 대해 알아볼 것입니다.</p>
+
+<ul>
+  <li>게이트웨이 : 서로 다른 프로토콜과 애플리케이션간의 HTTP인터페이스. 다른 프로토콜이 HTTP로, HTTP가 다른 프로토콜로 변환되는 지점</li>
+  <li>애플리케이션 인터페이스 : 서로 다른 형식의 웹 애플리케이션이 통신하는데 사용</li>
+  <li>터널 : HTTP 커넥션을 통해 다른 프로토콜의 트래픽을 전송</li>
+  <li>릴레이 : 단순한 HTTP 프록시로, 한 번에 한 개의 홉에 데이터를 전달.</li>
+</ul>
+
+<hr />
+
+<h3 id="81-게이트웨이">8.1. 게이트웨이</h3>
+
+<p>웹은 다양하고 많은 리소스를 가지고 있어, 한개의 서버만으론 모든 리소스를 관리하기 힘들어졌습니다. 이에 따라 인터프리터와 같이 리소스를 받기위한 경로를 안내하는 역할의 게이트웨이들이 등장하기 시작했습니다.</p>
+
+<p>게이트웨이의 역할은 리소스와 애플리케이션을 연결하는 것입니다. 게이트웨이는 리소스를 가져올 수 있는 적합한 프로토콜을 사용해 리소스를 가져와 애플리케이션이 원하는 프로토콜로 보내줍니다.</p>
+
+<ul>
+  <li>HTTP/FTP 게이트웨이 : 클라이언트의 HTTP요청이 FTP서버에 있는 파일을 가리킬때 요청은 게이트웨이를 통과해 FTP 서버에서 파일을 가져와 HTTP로 돌려줍니다.</li>
+  <li>HTTP/HTTPS 게이트웨이 : 게이트웨이가 SSL요청을 받고 해독해 HTTP 요청으로 바꿔 원 서버에게 전달합니다. 이런 보안 가속기 게이트웨이는 보통 웹 서버의 바로 앞단에 위치합니다.</li>
+  <li>HTTP/CGI 게이트웨이 : HTTP 요청을 받은 뒤 CGI를 통해 서버 안의 애플리케이션으로 보내고, 받아온 리소스를 다시 HTTP로 돌려줍니다.</li>
+</ul>
+
+<h4 id="811-클라이언트-측-게이트웨이와-서버-측-게이트웨이">8.1.1. 클라이언트 측 게이트웨이와 서버 측 게이트웨이</h4>
+
+<p>앞의 예에서 HTTP/FTP, HTTP/HTTPS, HTTP/CGI와 같이 표현했습니다. 이와 같이 게이트웨이가 변환하는 프로토콜은</p>
+
+<blockquote>
+  <클라이언트 프로토콜="">/<서버 프로토콜="">
+</서버></클라이언트>
+</blockquote>
+
+<p>위와 같이 표현합니다.</p>
+
+<p>그리고 앞으로 ‘서버 측 게이트웨이’와 ‘클라이언트 측 게이트웨이’라는 용어가 등장할 것입니다. 이는 게이트웨이가 어느쪽 역할을 하고 있는지 말해줍니다.</p>
+
+<ul>
+  <li>서버 측 게이트웨이 : <HTTP>/<기타 프로토콜=""></기타></HTTP></li>
+  <li>클라이언트 측 게이트웨이 : <기타 프로토콜="">/<HTTP></HTTP></기타></li>
+</ul>
+
+<hr />
+
+<h3 id="82-프로토콜-게이트웨이">8.2. 프로토콜 게이트웨이</h3>
+
+<p>이번 절에선 네트워크상 클라이언트와 서버를 연결해 주는 게이트웨이를 알아볼 것입니다.(다음 절에선 서버 내에서 서버와 다른 리소스 서버를 연결하는 게이트웨이를 알아 봅니다.)</p>
+
+<h4 id="821-http-서버-측-웹-게이트웨이">8.2.1. HTTP/*: 서버 측 웹 게이트웨이</h4>
+
+<p>서버 측 웹 게이트웨이는 클라이언트의 HTTP 요청을 받아 HTTP가 아닌 다른 프로토콜을 사용하는 서버와 연결해줍니다. HTTP/FTP 게이트웨이나 HTTP/HTTPS 같은 게이트웨이 입니다.</p>
+
+<p>책엔 HTTP/FTP 게이트웨이에 관한 예시가 나와 있습니다.</p>
+
+<p><img src="/public/image/http_the_definitive_guide/http_ftp_gateway.png" alt="http_ftp_gateway" /></p>
+
+<h4 id="822-httphttps-서버-측-보안-게이트웨이">8.2.2. HTTP/HTTPS: 서버 측 보안 게이트웨이</h4>
+
+<p>기업 내부로 들어오는 모든 HTTP 요청을 암호화 하여 고객들의 개인정보를 보호하고 보안을 제공해주는 게이트웨이 입니다.</p>
+
+<p>클라이언트는 일반적인 HTTP URL을 사용하지만 게이트웨이에서 자동으로 사용자의 모든 세션을 암호화 합니다.</p>
+
+<h4 id="823-httpshttp-클라이언트-측-보안-가속-게이트웨이">8.2.3. HTTPS/HTTP: 클라이언트 측 보안 가속 게이트웨이</h4>
+
+<p>요즘은 브라우저에서 기본적으로 http:// 가 아닌 https://를 많이 사용한다는 것은 알 것입니다. 이를 HTTP 서버와 통신시키기 위해선 HTTPS/HTTP 게이트웨이가 필요합니다. 이런 게이트웨이를 ‘보안 가속기’라고 부릅니다.</p>
+
+<p>클라이언트의 암호화된 요청인 HTTPS 요청을 받아들여 이를 해독하고 웹 서버엔 일반 HTTP 요청을 보냅니다.</p>
+
+<p><img src="/public/image/http_the_definitive_guide/https_http_gateway.png" alt="https_http_gateway" /></p>
+
+<p>하지만 옮긴이에 따르면 요즘엔 대부분 SSL 암/복호화 모듈을 서버에 내장한다고 합니다. 로드 밸런서 중에도 SSL 모듈을 내장해 보안 가속기 게이트웨이의 역할을 해준다고 합니다.</p>
+
+<hr />
+
+<h3 id="83-리소스-게이트웨이">8.3. 리소스 게이트웨이</h3>
+
+<p>전 절에서 소개한 게이트웨이는 클라이언트와 서버 사이를 이어주는 게이트웨이였습니다. 한편, 가장 일반적인 형태의 게이트웨이인 애플리케이션 서버는 목적지 서버와 게이트웨이를 한 개의 서버로 결합해주는 역할을 합니다.  클라이언트와 HTTP로 통신하고, 서버 내에 있는 애플리케이션 프로그램들과도 연결됩니다.</p>
+
+<p><img src="/public/image/http_the_definitive_guide/application_server_gateway.png" alt="application_server_gateway" /></p>
+
+<p>위 그림에서 하나의 서버에 두 클라이언트가 각기 다른 요청을 보내고 있습니다. 애플리케이션 서버는 게이트웨이의 API를 이용해 서버 내에 동작하고 있는 프로그램과 연결됩니다.</p>
+
+<ul>
+  <li>
+    <p>클라이언트 A의 요청을 받은 애플리케이션 서버는 API를 이용해 서버내 카메라 관련 프로그램과 통신했습니다. 프로그램이 돌려준 결과물을 클라이언트에게 HTTP로 돌려줍니다.</p>
+  </li>
+  <li>
+    <p>클라이언트 B의 요청을 받은 애플리케이션 서버는 서버 내 전자상거래 어플리케이션과 통신합니다.</p>
+  </li>
+</ul>
+
+<p>애플리케이션 서버가 사용하는 API중 최초로 널리쓰이게된 API는 CGI(Common Gateway Interface)입니다. 전 포스팅이나 앞에서도 계속 언급됐던 기술이죠.</p>
+
+<p>CGI는 말 그대로 인터페이스입니다. 애플리케이션 서버와 서버내 프로그램이 서로 통신할때 필요한 행동들(프로그램 실행, 프로그램 출력 수집, HTTP응답 회신 등…)을 모아놓은 것이죠.</p>
+
+<p>애플리케이션 서버에 요청이 들어오면 서버는 헬퍼 애플리케이션을 생성합니다. 이때 헬퍼 애플리케이션이 CGI를 구현한 프로그램입니다. CGI 프로그램인 헬퍼 어플리케이션이 필요한 데이터를 받고 서버 내 프로그램과 통신해 결과를 받아 서버에 반환합니다.</p>
+
+<h4 id="831-공용-게이트웨이-인터페이스cgi">8.3.1. 공용 게이트웨이 인터페이스(CGI)</h4>
+
+<p>CGI가 하는 역할을 때문에 CGI를 ‘서버 확장’이라고도 합니다. CGI는 최초로 널리쓰인 서버 확장이고 아직까지도  사용됩니다.(물론 책이 쓰여진 2002년 기준이고, 2020년 현재엔 초기 CGI는 찾아보기 힘듭니다.)</p>
+
+<p>CGI 애플리케이션은 Perl, C, Python 등 다양한 언어로 구현할 수 있습니다. 그리고 CGI자체가 단순하여 거의 모든 HTTP 서버가 지원합니다.</p>
+
+<p>CGI 애플리케이션이 어떻게 요청을 처리하는지는 사용자에게 보여지지 않습니다. 진행되는 처리 단계를 감추고, 잘못된 요청 및 데이터로부터 서버를 보호해줍니다.</p>
+
+<p>하지만 역시 단점도 있습니다. 기본적으론 각 요청마다 CGI 프로그램의 프로세스가 하나씩 생깁니다. 요청이 많아지면 이에 따른 부하 역시 커집니다. 이를 해결하고자 새로운 CGI인 Fast CGI등이 개발됐습니다. FastCGI는 데몬(Daemon, 사용자가 직접 제어하지 않고, 백그라운드에서 돌며 여러 작업을 하는 프로그램)으로 실행되어 매 요청마다 프로세스를 생성하지 않습니다.</p>
+
+<p>책이 쓰여진 시점이 아닌 2020년 현재엔 요청마다 CGI 프로세스를 만드는 방식은 거의 안쓰인다고 보면 됩니다.</p>
+
+<h4 id="832-서버-확장-api">8.3.2. 서버 확장 API</h4>
+
+<p>CGI 프로토콜은 구동 중인 서버에 외부 인터프리터가 접속하는 것을 도와줍니다. 하지만 서버 자체의 동작을 바꾸거나, 서버의 처리능력을 더 끌어올리기 위해선 외부에서 서버로 직접 연결할수 있어야 합니다. 이를 위해 만들어진 것이 서버 확장 API입니다.</p>
+
+<p>확장 API는 개발자가 외부에서 자신이 작성한 코드를 서버에 연결하거나, 서버의 컴포넌트를 자신이 만든 것으로 교체할 수 있게 해줍니다.</p>
+
+<p>아파치, 마이크로소프트, 넷스케이프와 같은 대중적인 서버의 대부분은 확장 API를 한개 이상 제공합니다. 서버 확장의 한 가지 예는 마이크로소프트의 프론트페이지 서버 확장(FPSE, FrontPage Server Extension)입니다. FPSE는 클라이언트에서 전송되는 원격 프로시져 호출(RPC, Remote Procedure Call)명령을 인식할 수 있습니다. 클라이언트 쪽에서 서버에 직접 명령을 내릴 수 있는 것이죠. 이 명령이 HTTP에 편승해 옵니다. 19장에서 더 자세히 볼 수 있습니다.</p>
+
+<hr />
+
+<h3 id="84-애플리케이션-인터페이스와-웹-서비스">8.4. 애플리케이션 인터페이스와 웹 서비스</h3>
+
+<p>앞서 살펴본 것 처럼 HTTP는 애플리케이션을 연결하는 도구로 사용됩니다. 이때 항상 생기는 이슈는 두 애플리케이션 사이에서 프로토콜의 인터페이스를 조율하는 일입니다.</p>
+
+<p>HTTP 헤더만으로 표현하기 힘든 정보를 교환해야 할때 HTTP를 확장하기도하고 HTTP위에 프로토콜을 덧씌우기도 합니다. 이는 19장에서 자세히 알아볼것입니다.</p>
+
+<p>인터넷 커뮤니티들에선 웹 어플리케이션들이 서로 통신하는데 사용할 표준과 프로토콜 집합을 계속 개발해오고 있습니다. 이런 기술들은 모두 HTTP같은 웹 표준 기술 위에서 개발됩니다. 이런 기술을 ‘웹 서비스’라고도 합니다.(원래 웹 서비스는 독립적인 웹 어플리케이션 자체를 뜻하지만 이런 기술 역시 웹 서비스라고 불리게 되었습니다.)</p>
+
+<p>대표적인 웹 서비스 기술로는 SOAP(Simple Object Access Protocol)을 통한 XML(eXtensible Markup Language)교환입니다. 애플리케이션끼리 SOAP 프로토콜을 사용해 XML 형식의 데이터를 주고받습니다. 이 방식은 근래(2020년)엔 REST(Representational State Transfer) 방식을 이용한 JSON(JavaScript Object Notation) 교환으로 많이 바뀌었습니다. 개발을 시작한지 얼마 되지 않은 저에겐 SOAP, XML보다 REST, JSON이 더 익숙합니다.</p>
+
+<hr />
+
+<h3 id="85-터널">8.5. 터널</h3>
+
+<p>지금까지 게이트웨이, 웹 서비스에 대해 알아봤습니다. 지금부터 볼 웹 터널은 HTTP프로토콜과 다른 프로토콜을 연결하는 다른 방법입니다.</p>
+
+<p>웹 터널은 쉽게 말해 HTTP 커넥션을 통해 HTTP가 아닌 트래픽을 전송할수 있고, 다른 프로토콜을 HTTP 위에 올릴 수 있는 기술입니다. 주된 사용 이유는 HTTP가 아닌 트래픽을 전송하기 위해서입니다. 만약 HTTP 트래픽만 허용하는 방화벽이 있다면, 일반적인 방법으론 다른 트래픽이 이 방화벽을 넘을 수 없지만 터널을 사용하면 다른 트래픽도 HTTP 처럼 넘길 수 있게 됩니다.</p>
+
+<h4 id="851-connect로-http-터널-커넥션-맺기">8.5.1. CONNECT로 HTTP 터널 커넥션 맺기</h4>
+
+<p>HTTP 커넥션을 통해 다른 트래픽을 넘기기 위해서 우선 HTTP 커넥션을 맺어야 합니다. 커넥션을 맺는데는 CONNECT 메서드가 사용됩니다.</p>
+
+<p>CONNECT 메서드 요청을 받은 게이트웨이는 목적지 서버와 TCP 커넥션을 맺습니다. 그리고 클라이언트와 목적지 서버가 주고받는 데이터들을 무조건 전달합니다.</p>
+
+<p><img src="/public/image/http_the_definitive_guide/tunnel.png" alt="tunnel.png" /></p>
+
+<p>예시 그림은 SSL 트래픽이 터널을 통해 전송되는 SSL 터널을 묘사한 것입니다.</p>
+
+<ol>
+  <li>클라이언트는 게이트웨이에 터널을 연결하기 위해 CONNECT 요청을 보냅니다. 요청 URL은 목적지 서버입니다.</li>
+  <li>CONNECT요청을 받은 게이트웨이가 목적지 서버와 TCP 커넥션을 맺습니다.</li>
+  <li>게이트웨이와 목적지 서버의 TCP 커넥션이 맺어지면 클라이언트에게 준비가 됐다고 메세지를 보냅니다.</li>
+  <li>클라이언트가 메세지를 받았다면 이 시점부터 터널이 연결된 것입니다. 이 HTTP 터널을 통해 전송된 데이터는 위 그림과 같이 TCP 커넥션을 통해 바로 목적지 서버에게 전달되고, 목적지 서버가 응답한 데이터도 바로 클라이언트에게 돌아옵니다.(이때, HTTP 메세지 형식으로 돌아오는게 아니라 보낸 데이터 그대로 돌아온다는걸 주의합시다.)</li>
+</ol>
+
+<p><strong>CONNECT 요청</strong>
+ CONNECT 요청의 문법은 시작줄을 제외하곤 다른 HTTP 메서드와 같습니다. 요청 URI는 목적지 서버의 URI입니다.</p>
+
+<p><strong>CONNECT 응답</strong>
+ 보낸 CONNECT 요청에 대해 200 응답이 오면 터널이 맺어집니다. 이때 200 코드에 대한 사유구절은 보통 ‘Connection Established’를 많이 사용합니다. 
+ 일반적인 HTTP 응답과 달리 Content-Type 헤더를 포함할 필요는 없습니다. 터널이 맺어지면 HTTP 메세지를 전송하는게 아니라 바이트를 그대로 전달하기 때문입니다.</p>
+
+<h4 id="852-데이터-터널링-시간-커넥션-관리">8.5.2. 데이터 터널링, 시간, 커넥션 관리</h4>
+
+<p>터널이 맺어진뒤 터널을 통해 전달되는 데이터는 터널을 맺게 도와준 게이트웨이에선 볼 수 없습니다. 게이트웨이는 패킷의 순서나 흐름을 건드릴 수 없습니다.</p>
+
+<p>터널의 성능을 높이기 위해 클라이언트는 CONNECT 요청을 보내고 이에 대한 응답을 받기 전에 미리 터널 데이터를 전송하기도 합니다. 이 방법은 성공한다면 더 빠른 응답을 얻을 수 있지만, 게이트웨이도 이와 같은 방식에 대응할 수 있도록 준비가 되어 있어야 사용할 수 있습니다.</p>
+
+<h4 id="853-ssl-터널링">8.5.3. SSL 터널링</h4>
+
+<p>웹 터널의 본래 등장 목적은 SSL트래픽을 방화벽 너머로 전달하기 위함입니다. 많은 회사에서 보안을 이유로 모든 트래픽이 패킷들을 필터링하는 라우터 및 프록시를 지나게 해두었습니다. 그런데 SSL 프로토콜은 낡은 방식의 프록시에선 처리되지 않습니다.(요즘엔 내장되어 있습니다.) 따라서 SSL 트래픽을 낡은 방화벽 프록시 뒤로 넘기기 위해 터널이 사용되기 시작했습니다.</p>
+
+<p>하지만 이후 이런 터널은 만들지 않고도 SSL트래픽이 방화벽을 넘을 수 있도록 HTTP에 ‘터널링’기능이 추가 됐습니다. 터널링 기능은 HTTP 메세지에 암호화된 SSL raw 데이터를 담아 전송하는 것입니다. 아래 그림을 보시겠습니다.</p>
+
+<p><img src="/public/image/http_the_definitive_guide/tunneling.png" alt="tunneling.png" /></p>
+
+<p>(a)는 SSL 트래픽이 보안 웹 서버의 443 포트로 바로 들어가는 상황이고 (b)는 SSL 데이터가 HTTP 메세지에 담겨 80 포트로 들어간 다음 SSL 트래픽이 보안 웹 서버로 이어지는 상황입니다.</p>
+
+<p>이런 터널링은 방화벽을 뚫는데 유용하게 사용되지만, 악의적인 트래픽이 방화벽 안으로 유입되는 통로가 되기도 합니다.</p>
+
+<h4 id="854-ssl-터널링-vs-httphttps-게이트웨이">8.5.4. SSL 터널링 vs HTTP/HTTPS 게이트웨이</h4>
+
+<p>앞서 웹 서버에 보안이 필요한 경우 HTTP/HTTPS 게이트웨이를 사용하는 방법을 알아보았습니다. 클라이언트는 일반 요청을 보내고 중간의 게이트웨이가 SSL 인증을 담당하는 방법이었죠. 이 방법엔  다음과 같은 단점이 존재합니다.</p>
+
+<ol>
+  <li>클라이언트-게이트웨이 사이엔 보안이 적용되지 않은 일반 HTTP 커넥션이 맺어져 있습니다.</li>
+  <li>프록시(게이트웨이)가 인증을 담당하고 있기 때문에, 클라이언트는 원격 서버에 직접 SSL 인증을 할 수 없습니다.</li>
+  <li>게이트웨이가 SSL을 완벽하게 지원해야 합니다.</li>
+</ol>
+
+<p>방금 알아본 SSL 터널링은 위와 같은 단점을 해결해줍니다. 클라이언트와 서버가 직접 커넥션을 맺기 때문에 중간에 보안이 취약한 지점이 없어집니다. 중간의 프록시는 암호화된 데이터를 그대로 넘길 뿐입니다.</p>
+
+<h4 id="855-터널-인증">8.5.5. 터널 인증</h4>
+
+<p>하지만 이런 터널을 모든 클라이언트에게 자유롭게 허용한다면 오히려 악의적인 트래픽이 서버로 들어오는 것을 허용하게 됩니다. 게이트웨이에서 클라이언트가 터널을 사용할 수 있는 권한을 갖고 있는지 검사할 수 있습니다.</p>
+
+<p>클라이언트가 적절한 인증 수단 없이 아래와 같은 요청을 보냈다면</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONNECT orders.joes-hardware.com:443 HTTP/1.0
+User-agent: SuperBrowser 4.2
+</code></pre></div></div>
+
+<p>게이트웨이는 다음과 같은 연결 실패 및 인증 요구 메세지를 보내게 됩니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.0 407 Proxy authentication required
+Proxy-authenticate: Basic realm="wormhole"
+</code></pre></div></div>
+
+<p>클라이언트가 아래와 같이 Proxy-authorization 헤더에 적절한 인증 수단을 담아 요청한다면</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONNECT orders.joes-hardware.com:443 HTTP/1.0
+User-agent: SuperBrowser 4.2
+Proxy-authorization: Basic Tnkmwlq31rWERg
+</code></pre></div></div>
+
+<p>게이트웨이는 보안 서버와 커넥션을 맺은 뒤 클라이언트에게 터널 연결 성공 메세지를 보내게 됩니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.0 200 Connection established
+</code></pre></div></div>
+
+<h4 id="856-터널-보안에-대한-고려사항들">8.5.6. 터널 보안에 대한 고려사항들</h4>
+
+<p>터널의 한계 역시 존재합니다. 터널 연결에 성공하면 터널 게이트웨이에선 클라이언트가 이 터널을 올바른 용도로 사용하는지 확인할 방법이 없습니다. 예를들어, 사내 방화벽에 터널을 생성해 게임 트래픽을 사내로 유입할 수도 있습니다.</p>
+
+<p>이런 터널의 오용을 최소화 하기 위해 게이트웨이는 HTTPS 전용포트인 443과 같은 특정 포트만을 터널링에 허용해야 합니다.</p>
+
+<hr />
+
+<h3 id="86-릴레이">8.6. 릴레이</h3>
+
+<p>릴레이는 HTTP 프록시중 하나입니다. 릴레이는 HTTP명세를 준수하지 않고 만들어져 받은 바이트를 거의 맹목적으로 전달합니다.</p>
+
+<p>HTTP메세지는 복잡하기 때문에 메서드관련 로직과 헤더를 처리하는 건 간단한 일은 아닙니다. 릴레이는 이런 상황에서 <strong>단순 필터링이나 진단, 콘텐츠 변환 등의 간단한 작업</strong>만을 수행하고 넘깁니다.</p>
+
+<p>하지만 이런 단순함은 역시 문제를 만들 수 있습니다. 대표적인 문제중 하나가 Connection 헤더를 처리하지 못해 생기는 문제입니다. 이는 이전 장에서 Connection 헤더를 이해하지 못하는 Dumb Proxy문제와 일치합니다. (릴레이도 프록시이기 때문에 정확히 같은 문제입니다.)</p>
+
+<p>복습할겸 Dumb Proxy의 문제의 과정을 다시 한번 짚어보겠습니다.</p>
+
+<ol>
+  <li>클라이언트가 Connetion : Keep-Alive 헤더를 포함한 요청을 보냅니다.</li>
+  <li>릴레이는 Connection 헤더를 이해하지 못하기 때문에 요청을 그대로 서버에 넘깁니다. 하지만, Connection 헤더는 hop by hop 에서만 사용되는 헤더입니다. 다음으로 넘어가기 전에 삭제되어야 하는 헤더입니다. 여기서 문제가 발생합니다.</li>
+  <li>릴레이가 넘긴 Connection : Keep-Alive 헤더는 서버에게 전달됩니다. 서버는 요청을 한 상대방이 지속 커넥션을 원한다고 생각하고 Connection : Keep-Alive 헤더를 담은 응답 메세지를 보내  지속 커넥션을 맺습니다.</li>
+  <li>릴레이는 이 서버의 응답 역시 그대로 클라이언트에게 전달합니다.</li>
+  <li>클라이언트 역시 이 응답을 받고 지속 커넥션이 제대로 이루어졌다고 생각합니다. 그리고 그 커넥션으로 다음 요청을 보냅니다.</li>
+  <li>하지만 릴레이는 Connection에 대해 모르기 때문에 서버쪽으론 커넥션을 닫겠다는 응답을 기다리고 있습니다. 그리고 클라이언트쪽에선 다시 같은 커넥션으로 요청이 올거라 생각하지 않기 때문에 클라이언트쪽을 listen 하고 있지 않습니다.</li>
+  <li>클라이언트가 보낸 요청은 릴레이를 통과하지 못하고 걸려있게 됩니다. 이렇게 시간이 흐르고 커넥션의 유효기간이 끝나면 커넥션이 종료됩니다.</li>
+</ol>
+
+<p>이런 위험을 방지하기 위해 조금 더 똑똑한 릴레이를 만들기도 합니다. 하지만 가장 좋은건 HTTP명세를 준수하는 프록시를 사용하는 것입니다.</p>
+
+<hr />
+
+<h3 id="마치며">마치며</h3>
+
+<p>이번 장은 개념 하나하나 마다 그 개념에 대한 포스팅을 해야되나 싶을 정도로 낯선 개념이 많았던 장이었습니다. 앞까지의 내용들은 어깨너머로 배운 지식들로 잘 조합하고 끼워 맞출 수 있었는데 이제 슬슬 밑천이 드러나는 것 같습니다. :sweat_smile:</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C9/">
+            웹 로봇
+            <small>19 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/">
+            윈도우에서 수정한 우분투-리눅스 파일 권한 수정
+            <small>17 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C7/">
+            웹 캐시
+            <small>17 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

@@ -4,7 +4,7 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-18T16:05:35+09:00</updated>
+ <updated>2020-03-19T16:02:01+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -13,11 +13,417 @@
 
  
  <entry>
+   <title>웹 로봇</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C9/"/>
+   <updated>2020-03-19T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드9</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;p&gt;크롤러는 프로그래밍을 직업으로 하지 않더라도 사회 과학 및 통계를 공부하다 보면 만나게 되는 주제입니다. 많은 학부생 졸업논문의 재료가 되기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;크롤러, 스파이더, 웜, 봇 등 다양한 이름으로 불리는 이런 것들을 통칭해 ‘웹 로봇’이라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;웹 로봇은 사람과 상호작용 없이 연속된 웹 트랜잭션들을 자동으로 수행하는 프로그램들을 말합니다. 이번 장에선 이 웹 로봇에 대해 알아봅니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;91-크롤러와-크롤링&quot;&gt;9.1. 크롤러와 크롤링&lt;/h3&gt;
+
+&lt;p&gt;대표적인 웹 로봇인 웹 크롤러는 웹 페이지 하나를 가져오고, 그 페이지에서 가리키는 모든 웹 페이지를 가져오고, 다시 재귀적으로 반복해서 가져오며 웹을 순회하는 로봇입니다.&lt;/p&gt;
+
+&lt;p&gt;다양한 웹 크롤러가 있지만 검색 엔진의 DB에 저장하기 위해 웹을 돌아다니는 검색 엔진 스파이더들이 가장 복잡한 웹 로봇중 하나입니다.&lt;/p&gt;
+
+&lt;p&gt;크롤러들이 어떻게 동작하는지 알아보겠습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;911-어디에서-시작하는가-루트-집합&quot;&gt;9.1.1. 어디에서 시작하는가: ‘루트 집합’&lt;/h4&gt;
+
+&lt;p&gt;크롤러를 풀어 놓기위해선 출발지점을 주어야 합니다. 크롤러가 방문을 시작하는 출발지점의 URL들을 모아놓은 집합을 루트 집합(root set)이라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/root_set.png&quot; alt=&quot;root_set.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 root set을 설정하는 것은 매우 중요합니다. 웹에 있는 모든 문서를 탐색가능하게 하는 하나의 문서는 없기 때문이죠.&lt;/p&gt;
+
+&lt;p&gt;위 사진의 예를 보겠습니다. A에서 시작한 크롤러는 G, H, I, L, N, S, T, U엔 도달하지 못합니다. 그리고 S, T, U 문서 집합은 왼편의 문서들과 연결점이 없어 고립되어 있습니다. 이런 상황에서 root set을 적절히 설정하지 못하면 놓치는 문서가 발생할 수 있습니다. 위 상황에선 A, G, S이 모든 문서를 탐색 가능하게 하는 최소의 root set 입니다.&lt;/p&gt;
+
+&lt;p&gt;좋은 root set은 아래와 같이 이루어져 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;크고 인기있는 웹 사이트&lt;/li&gt;
+  &lt;li&gt;새로 생성된 페이지들의 목록&lt;/li&gt;
+  &lt;li&gt;자주 링크되지 않는 잘 알려지지 않은 페이지들의 목록&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이런 root set은 고정되어 있지 않고 항상 갱신되며 새로운 크롤링과 크롤러를 위한 시드 목록이 됩니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;912-링크-추출과-상대-링크-정상화&quot;&gt;9.1.2. 링크 추출과 상대 링크 정상화&lt;/h4&gt;
+
+&lt;p&gt;크롤러가 다음 문서로 넘어가기 위해선 현재 문서에 있는 URL 링크들을 알아와야 합니다. 이때 2장에서 알아본 것 처럼 절대 URL과 상대 URL이 있는데, 크롤러는 HTML문서 파싱시 상대 URL을 절대 URL로 변환해야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;913-순환-피하기&quot;&gt;9.1.3. 순환 피하기&lt;/h4&gt;
+
+&lt;p&gt;크롤러를 사용할때 주의해야 할 점은 크롤러가 순환에 빠지지 않도록 하는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/crawler_loop.png&quot; alt=&quot;crawler_loop.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 상황에선 크롤러가 &lt;code class=&quot;highlighter-rouge&quot;&gt;A - B - C - A - B ...&lt;/code&gt; 순환에 빠져버렸습니다.&lt;/p&gt;
+
+&lt;p&gt;이를 피하기 위해선 크롤러들이 어디를 방문 했는지 알아야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;914-루프와-중복&quot;&gt;9.1.4. 루프와 중복&lt;/h4&gt;
+
+&lt;p&gt;크롤러가 순환에 빠지는 상황은 다음과 같은 문제를 야기합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;크롤러가 루프에 빠져 꼼짝 못하게 됩니다.&lt;/li&gt;
+  &lt;li&gt;루프에 빠진 크롤러가 빠르다면 크롤러가 요청을 보낸 서버는 같은 사용자로부터 같은 요청을 반복적으로 받게됩니다. 이는 요청을 보낸 서버에 부담이 될 수 있고, 크롤러가 아닌 실제 사용자가 사용하지 못하는 상황이 발생할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;많은 수의 중복 페이지가 크롤러 서버에 저장됩니다. 잘못 만들어진 크롤러를 사용하면, 검색엔진에서 수백개의 같은 페이지를 보여줄 수도 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;915-빵-부스러기의-흔적&quot;&gt;9.1.5. 빵 부스러기의 흔적&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/number_of_websites.png&quot; alt=&quot;number_of_websites.png&quot; /&gt;[https://news.netcraft.com/archives/2018/08/24/august-2018-web-server-survey.html]&lt;/p&gt;
+
+&lt;p&gt;위는 netcraft에서 조사한 전 세계 hostname 갯수입니다. 본 책에서 인터넷엔 수십억 개의 서로 다른 &lt;strong&gt;웹 페이지&lt;/strong&gt;가 존재한다고 했는데 2002년 기준이기 때문에 얼마나 늘었을가 궁금해 찾아봤습니다.&lt;/p&gt;
+
+&lt;p&gt;2002년엔 hostname이 4000만개 정도 됐는데 이때 서로다른 웹 페이지가 수십억개 였다면, 그래프의 마지막인 2018년 8워엔 hostname만 16억개 입니다. 서로다른 웹페이지수는… 수백억이 되지 않을까 합니다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 많은 각기다른 웹 페이지를 크롤링하고, 중복된 크롤링을 피하기 위해선 어느 URL을 크롤링 했는지 기억해야 합니다. 이를 위해 검색 트리나 해시 테이블과 같은 자료구조를 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;트리와 해시 테이블&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;URL들을 효과적으로 관리하기 위해 검색 트리나 해시 테이블을 사용하는 방법을 사용할수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;느슨한 존재 비트맵(presence bit array)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;공간 사용을 최소화 하기 위해 몇몇 대규모 크롤러들은 presence bit array 와 같은 느슨한 자료구조를 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;URL을 해시함수로 고정된 크기의 숫자로 변환합니다. 그리고 해당 숫자 번째에 presence bit가 있는지 확인합니다. presence bit가 존재하면 해당 URL은 이미 크롤링 했다고 판별 합니다. 이 방법의 경우 URL은 무한하기 때문에 서로 다른 URL이 해시함수를 거쳤을때 같은 수로 변환 될 수도 있습니다. 이땐 페이지 하나를 놓치게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;예전에 해시 테이블을 구현하는 공부를 했었는데 같은 원리 같습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;체크 포인트&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;크롤러가 갑작스럽게 중단될 경우를 대비해 방문한 URL의 목록이 하드디스크에 저장되었는지 확인합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;파티셔닝&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;웹이 커지며 한 대의 컴퓨터에서 하나의 크롤러로 모든 웹을 크롤링 하는건 불가능해졌습니다. 대규모 웹 로봇은 하나의 큰 farm에 여러 컴퓨터에서 여러 크롤러들이 각자 부분을 할당받아 작업합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;916-별칭alias과-로봇-순환&quot;&gt;9.1.6. 별칭(Alias)과 로봇 순환&lt;/h4&gt;
+
+&lt;p&gt;URL은 별칭을 가질 수 있기 때문에 보여지는 URL은 다르지만 실질적으로 같은 웹 페이지를 가리키는 것들이 있습니다. 다음과 같은 사례들입니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;첫 번째 URL&lt;/th&gt;
+      &lt;th&gt;두 번째 URL&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;a&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/bar.html&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com:80/bar.html&lt;/td&gt;
+      &lt;td&gt;기본 포트가 80번일때&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;b&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/~fred&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/%7Fred&lt;/td&gt;
+      &lt;td&gt;이스케이프 문자의 사용/미사용&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;c&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/x.html#early&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/x.htm#middle&lt;/td&gt;
+      &lt;td&gt;태그가 다를때&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;d&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/readme.htm&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/README.HTM&lt;/td&gt;
+      &lt;td&gt;서버가 대소문자를 구분하지 않을때&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;e&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/index.html&lt;/td&gt;
+      &lt;td&gt;기본 페이지가 index.html일때&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;f&lt;/td&gt;
+      &lt;td&gt;http://www.foo.com/index.html&lt;/td&gt;
+      &lt;td&gt;http://209.231.87.45/index.html&lt;/td&gt;
+      &lt;td&gt;아이피 주소&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;917-url-정규화하기&quot;&gt;9.1.7. URL 정규화하기&lt;/h4&gt;
+
+&lt;p&gt;위와 같은 문제를 해결하기 위해 대부분의 웹 크롤러들은 URL을 표준 형식으로 정규화합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;포트번호가 명시되지 않았다면 호스트명에 :80을 추가합니다&lt;/li&gt;
+  &lt;li&gt;PercentEncoding으로 이스케이핑된 문자들을 원래 문자로 바꿉니다(ex - %7 -&amp;gt; ~)&lt;/li&gt;
+  &lt;li&gt;’#’ 태그를 제거합니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;위 방법으로 9.1.6.의 a, b, c는 해결 할 수 있습니다. 하지만 d, e, f의 경우 각 서버마다 아래와 같이 정책이 다르기 때문에 완벽하게 정규화 할 순 없습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;웹 서버가 대소문자를 구분 할 수도 있고 안할수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;기본 페이지를 설정 할 수도 있고 안할수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;가상 호스팅된 서버라면 여러 도메인네임이 같은 IP를 가리키게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;918-파일-시스템-링크-순환&quot;&gt;9.1.8. 파일 시스템 링크 순환&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;심볼릭 링크(Symbolic link)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;다른 파일이나 디렉터리에 대한 참조를 가지고 있는 파일입니다. 윈도우의 바로가기를 생각하면 좋을 것 같습니다.&lt;/p&gt;
+
+&lt;p&gt;이 심볼릭 링크가 URL상에 올라가게 되면 순환을 만들어 낼 수도 있습니다. 대부분 심볼릭 링크로 인한 순환은 개발자의 실수로 일어납니다. 아래와 같은 상황을 보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/symbolic_link.png&quot; alt=&quot;symbolic_link.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;나중에 추가&lt;/p&gt;
+
+&lt;h4 id=&quot;919-동적-가상-웹-공간&quot;&gt;9.1.9. 동적 가상 웹 공간&lt;/h4&gt;
+
+&lt;p&gt;웹 서버는 URL을 받아들일때 동적으로 새로운 리소스를 만들어 돌려줄 수 있습니다. 때문에 몇몇 악의적인 개발자들은 일부러 크롤러를 함정에 빠뜨리기 위해 가상의 URL을 받으면 다른 가상의 URL을 갖는 가상의 HTML문서를 만들어 돌려줄 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;웹 크롤러가 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.trap.com/trap&lt;/code&gt; 으로 요청을 보냈을때, 악의적인 서버는 해당 URL에 따라 다음과 같은 리소스를 동적으로 만들어 돌려줄 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;HTML&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;BODY&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.trap.com/trap2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;trap2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/BODY&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HTML&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 응답을 받은 크롤러는 응답받은 웹 페이지가 가지고 있는 링크인 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.trap.com/trap2&lt;/code&gt;로 요청을 보내게 되고 이 악의적인 사이트는 이번엔&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;HTML&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;BODY&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.trap.com/trap3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;trap3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/BODY&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HTML&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이런 응답을 보내주게 될 것입니다. 이 상황이 안좋은건 크롤러가 요청하는 URL은 계속 바뀌기 때문에 크롤러가 스스로 함정에 걸린지 알아채기 어렵다는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;이런 상황은 &lt;strong&gt;악의적인 함정이 아니고서도 URL에 따라 동적인 링크를 생성하는 곳이면 발생할 수 있습니다.&lt;/strong&gt; 예를들어 어느 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.canlendar.com/2020/03&lt;/code&gt; 과 같이 &lt;strong&gt;년, 월 정보를 갖는 URL을 보내면 이전달과 이후달의 링크가 걸린 달력 웹페이지를 보여주는 웹 페이지&lt;/strong&gt;가 있다고 가정한다면, 해당 웹 페이지는 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.canlendar.com/2020/02&lt;/code&gt; 링크와 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.canlendar.com/2020/04&lt;/code&gt;  링크를 갖는 응답을 돌려주고 크롤러는 과거와 미래의 끝을 보려 끊임없이 달려갈 것입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;9110-루프와-중복-피하기&quot;&gt;9.1.10. 루프와 중복 피하기&lt;/h4&gt;
+
+&lt;p&gt;모든 순환을 피하는 완벽한 방법은 없지만 다음과 같은 방법을 사용해 순환을 줄일 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;URL 정규화&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;앞서 살펴본 URL 정규화 입니다. 같은 리소스를 가리키는 다른 URL을 제거할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;너비 우선 크롤링&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;알고리즘 공부를 해봤다면 DFS/BFS를 아실겁니다. 크롤링도 일종의 그래프 탐색이기 때문에 DFS방식으로 할지 BFS 방식으로 할지 결정할 수 있습니다. 
+ 크롤러가 BFS 방식으로 작동하게 한다면 순환 함정이 있어도 다른 웹사이트들을 모두 들른 다음 함정에 빠지고, 다시 다른 웹사이트를 모두 들른 다음 함정에 빠지게 됩니다. 함정에 빠지면서도 다른 웹 페이지를 탐색할 수 있습니다.
+ 또한, BFS로 설계된 크롤러는 요청하는 서버들에 부담을 줄여줄 수 있습니다. DFS 방식은 한 호스트를 먼저 다 탐색하기 때문에 해당 호스트엔 많은 요청이 가게됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;스로틀링(Throttling)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;크롤러가 한 호스트에 대해 일정 시간동안 가져올 수 있는 페이지의 숫자를 제한할 수 있습니다. 순환에 빠지더라도 미리 설정해둔 페이지수 제한에 걸리면 빠져나올 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;URL 크기 제한&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;일정 길이 이상의 URL을 제한하면 앞서 살펴본 심볼릭 링크로 인한 순환을 막을 수 있습니다. 하지만 이 방법을 사용하면 의도치 않게 놓치게 되는 콘텐츠들이 생기게 됩니다. 특히 근래엔 URL 자체에 여러 정보를 포함하여 길어지는 경우가 많기 때문에 주의해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;URL/사이트 블랙리스트&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;순환을 만들어내거나 악의적인 함정이 있는 것으로 알려진 사이트와 URL 목록을 만들어 해당 목록들을 피할 수 있습니다. 그리고 문제를 일으키는 URL을 발견하면 이 블랙리스트에 추가합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;패턴 발견&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;앞서 설명한 심벌릭 링크때문에 발생하는것 같은 순환은 일정 패턴을 따르게 됩니다. URL 안에서 일정 패턴이 발견되면 이를 거부하는 방법을 사용할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;콘텐츠 지문(fingerprint)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;콘텐츠 지문은 콘텐츠의 중복을 감지하는 더 직접적인 기술입니다. 앞선 방법들이 URL만 검사를 했다면 콘텐츠 지문은 페이지의 콘텐츠중 일부를 얻어 checksum을 계산합니다. 이 checksum은 페이지 내용에 대한 간략한 표현인데 이는 지문처럼 각 콘텐츠를 식별하는 역할을 합니다.
+ 이 checksum을 구하는 방법엔 여러가지가 있습니다. MD5와 같은 메세지 요약함수가 checksum을 구하는 방법입니다.
+ 하지만 이 방법 역시 한계가 있습니다. 해시 함수 처럼 두 페이지가 달라도 checksum이 같을 수도 있습니다. 그리고 같은 컨텐츠에 동적으로 조금씩만 바뀌지만 그 부분이 checksum 함수에 들어가 다른 콘텐츠로 인식할 수도 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;92-로봇의-http&quot;&gt;9.2. 로봇의 HTTP&lt;/h3&gt;
+
+&lt;p&gt;웹 로봇들 역시 기본적으론 HTTP 클라이언트 프로그램입니다. 따라서 HTTP명세를 준수해야 합니다. 하지만 많은 웹 로봇들은 HTTP를 최소한으로만 구현합니다. HTTP/1.1이 있지만 요구사항이 적은 HTTP/1.0을 사용하기도 합니다.(2002년 기준입니다.)&lt;/p&gt;
+
+&lt;h4 id=&quot;921-요청-헤더-식별하기&quot;&gt;9.2.1. 요청 헤더 식별하기&lt;/h4&gt;
+
+&lt;p&gt;최소한으로 구현하는 HTTP 중엔 신원 식별 헤더가 있습니다. 로봇의 능력, 신원, 출신 등을 알려주는 기본적인 헤더들입니다. 기본적인 정보를 알려주면 서버는 크롤러가 식별할 수 있는 형식의 콘텐츠를 돌려줄 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;다음과 같은 식별헤더가 사용됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;User-Agent&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;서버에게 요청을 만든 로봇의 이름을 말해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;From&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;로봇의 사용자/관리자의 이메일 주소를 제공합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Accept&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;서버에게 어떤 미디어 타입을 원하는지 말해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Referer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;현재 요청 URL을 포함한 문서의 URL을 제공합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;922-가상-호스팅&quot;&gt;9.2.2. 가상 호스팅&lt;/h4&gt;
+
+&lt;p&gt;요즘엔 가상 호스팅 환경이 많기 때문에 웹 로봇들은 Host 헤더를 지원할 필요가 있습니다.&lt;/p&gt;
+
+&lt;p&gt;A서버에서 www.joes-hardware.com과 www.foo.com 두 사이트를 가상호스팅 환경하에서 운영한다고 가정해봅시다. 이때 두 사이트의 실제 IP주소는 같게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;만약, 웹 로봇이 www.foo.com에서 크롤링을 하던 도중 아래와 같이 상대 URL을 사용해 Host헤더 없이 요청을 보냈다고 가정합니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /index.html HTTP/1.0
+User-agent : ShopBot 1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 요청을 받은 A서버는 이 요청이 www.joes-hardware.com에게 온건지, www.foo.com 에게 온건지 확인할 수 없습니다. 따라서 A서버는 기본값으로 설정된 사이트의 /index.html을 찾아 돌려줄 것입니다.&lt;/p&gt;
+
+&lt;p&gt;다른 예시로, 어떤 인터넷 뉴스 회사가 정치적으로 진보, 보수인 뉴스를 가르기 위해 두 개의 다른 도메인을 운영중이라고 가정합니다.&lt;/p&gt;
+
+&lt;p&gt;이때, 진보 성향의 블로그를 운영하는 사람이 진보에 관한 뉴스를 크롤링해 당 지지자들에게 메일로 발송하려 합니다. 이때 위와 같은 상황이 발생하면 보수관련 뉴스 한 가득을 보낼 수도 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;923-조건부-요청&quot;&gt;9.2.3. 조건부 요청&lt;/h4&gt;
+
+&lt;p&gt;캐시에 대해 배울때 조건부 요청을 알아본적이 있습니다. 특정 일 이후로 변경되었다면, 혹은 특정 버전이 아니라면 등 조건을 붙여 요청을 받아올 수도 있었습니다.&lt;/p&gt;
+
+&lt;p&gt;웹 로봇에서도 이런 조건부 요청을 구현한 웹 로봇들이 있습니다. 인터넷 검색엔진용 크롤러의 경우 콘텐츠가 변경되었을때만 새로 받아오도록 할 수 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;924-응답-다루기&quot;&gt;9.2.4. 응답 다루기&lt;/h4&gt;
+
+&lt;p&gt;대부분의 웹 로봇의 관심사는 GET 메서드로 요청을 받아오는 것이기 때문에 응답을 자세히 다루는 로봇은 드뭅니다. 그러나 조건부 요청 등 서버와 긴밀한 상호작용이 필요한 로봇들은 HTTP의 응답역시 다뤄야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;상태코드&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;모든 로봇은 200 OK나 404 Not Found는 이해해야합니다. 로봇이 이해할 수 없는 코드라면, 그 코드의 분류에 맞춰 다뤄야 합니다. 
+ 또한 모든 서버가 에러 코드를 적절히 반환하진 않습니다. 에러를 기술하는 메세지를 200 OK로 답장 하는 서버도 있으니 이런 점은 항상 염두해 두어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;엔터티&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;응답을 적절히 다루기 위해 웹 로봇들은 html head 부분에 임베딘됭 정보를 찾기도 합니다. head부분의 meta 태그는 리소스에 대해 서버가 아닌 콘텐츠 저자가 포함시긴 정보입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;HTML&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HEAD&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Refresh&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1; URL=index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/HEAD&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;BODY&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/BODY&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HTML&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 태그는 1초후 index.html로 리다이렉트 하라는 태그입니다. 어떤 서버는 응답을 보내기 전에 html을 파싱해 html안의 meta태그를 http 헤더에 포함시키기도 하지만 어떤 서버는 그렇지 않기 때문에 웹 로봇은 이 엔터디 자체의 정보를 찾아볼수도 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;925-user-agent-타겟팅&quot;&gt;9.2.5. User-Agent 타겟팅&lt;/h4&gt;
+
+&lt;p&gt;웹 서버 개발자라면 실제 사용자뿐 아니라 많은 웹 로봇들이 자신의 사이트에 방문할 것을 예상해야 합니다. 많은 웹 서버들은 콘텐츠를 온전히 보여주기 위해 요청의 브라우저 종류를 감지해 콘텐츠를 최적화해 보내줍니다.&lt;/p&gt;
+
+&lt;p&gt;그런데 웹 로봇에 대한 대처가 잘 안되어 있다면, 브라우저를 사용안하는 웹 로봇에게 “your browser does not support frames” 같은 에러를 돌려줄 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;웹 서버 개발자라면 일반 사용자뿐 아니라 웹 로봇들도 서버를 이용 가능하도록 잘 대처해야 합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;93-부적절하게-동작하는-로봇들&quot;&gt;9.3. 부적절하게 동작하는 로봇들&lt;/h3&gt;
+
+&lt;p&gt;웹 로봇들은 예상과 다르게 행동할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;폭주하는 로봇&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;웹 로봇은 사람과 비교할수 없을 정도로 엄청나게 빠른 속도로 요청을 만들어 냅니다. 이런 로봇이 순환에 빠진채로 한 서버에 계속 요청을 하게 되면 서버에 과부하를 유발해 다른 사람들 역시 사용하지 못하게 될 것입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;오래된 URL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;몇몇 로봇은 이미 가지고있는 URL의 목록들을 방문합니다. 이때 URL 목록이 오래되어 로봇들이 존재하지 않는 URL에 계속 요청을 보낼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;길고 잘못된 URL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;순환 및 개발상 오류로 로봇이 웹사이트에게 크고 의미없는 URL을 요청할 수 있습니다. URL이 많이 길어지면 상대 서버의 처리능력에 영향을 주고 로그를 어지럽힙니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;호기심이 지나친 로봇&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;어떤 로봇들은 사적인 데이터혹은 밖으로 드러나길 원하지 않는 컨텐츠에 대한 URL을 얻어 접근을 시도합니다. 이런 일은 개발자의 실수로 공개되면 안될 URL이 링크로 노출될때 발생합니다. 또, 직접적으로 URL을 노출하지 않더라도 디렉토리 URL로 접근시 index.html같은 기본 페이지를 내놓지 않고 해당 디렉토리 아래있는 콘텐츠들을 보여주는 경우에 발생할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/directory_url.png&quot; alt=&quot;directory_url.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;포스트를 작성하고 있는 jekyll 서버는 디렉토리 url을 요청시 index.html 파일이 없으면 위와 같은 디렉토리 구조를 노출합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/directory_url2.png&quot; alt=&quot;directory_url2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Github page에선 index.html이 없는 디렉토리 url을 요청시 404  Not Found 페이지를 돌려줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;동적 게이트웨이 접근&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;앞 장에서 서버내 프로그램과 연결해주는 게이트웨이를 소개시켜드린바 있습니다. 웹 로봇은 이런 게이트웨이 어플리케이션이 갖는 콘텐츠에 대한 URL요청도 할 수 있습니다. 그런데 대게 이런 콘텐츠들은 특수 목적을 위한 것이어서 처리 비용이 많이드는 편입니다. 서버 개발자들은 이런 로봇들을 좋아하지 않습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;94-로봇-차단하기&quot;&gt;9.4. 로봇 차단하기&lt;/h3&gt;
+
+&lt;h4 id=&quot;941-로봇-차단-표준&quot;&gt;9.4.1. 로봇 차단 표준&lt;/h4&gt;
+
+&lt;h4 id=&quot;942-웹-사이트와-robotstxt-파일들&quot;&gt;9.4.2. 웹 사이트와 robots.txt 파일들&lt;/h4&gt;
+
+&lt;h4 id=&quot;943-robotstxt-파일-포뱃&quot;&gt;9.4.3. robots.txt 파일 포뱃&lt;/h4&gt;
+
+&lt;h4 id=&quot;944-그-외에-알아둘-점&quot;&gt;9.4.4. 그 외에 알아둘 점&lt;/h4&gt;
+
+&lt;h4 id=&quot;945-robotstxt의-캐싱과-만료&quot;&gt;9.4.5. robots.txt의 캐싱과 만료&lt;/h4&gt;
+
+&lt;h4 id=&quot;946-로봇-차단-펄-코드&quot;&gt;9.4.6. 로봇 차단 펄 코드&lt;/h4&gt;
+
+&lt;h4 id=&quot;947-html-로봇-제어-meta-태그&quot;&gt;9.4.7. HTML 로봇 제어 META 태그&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;95-로봇-에티켓&quot;&gt;9.5. 로봇 에티켓&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;96-검색엔진&quot;&gt;9.6. 검색엔진&lt;/h3&gt;
+
+&lt;h4 id=&quot;961-넓게-생각하라&quot;&gt;9.6.1. 넓게 생각하라&lt;/h4&gt;
+
+&lt;h4 id=&quot;962-현대적인-검색엔진의-아키텍처&quot;&gt;9.6.2. 현대적인 검색엔진의 아키텍처&lt;/h4&gt;
+
+&lt;h4 id=&quot;963-풀-텍스트-색인&quot;&gt;9.6.3. 풀 텍스트 색인&lt;/h4&gt;
+
+&lt;h4 id=&quot;964-질의-보내기&quot;&gt;9.6.4. 질의 보내기&lt;/h4&gt;
+
+&lt;h4 id=&quot;965-검색-결과를-정렬하고-보여주기&quot;&gt;9.6.5. 검색 결과를 정렬하고 보여주기&lt;/h4&gt;
+
+&lt;h4 id=&quot;966-스푸핑&quot;&gt;9.6.6. 스푸핑&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>통합점 - 게이트웨이, 터널, 릴레이</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C8/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C8/"/>
    <updated>2020-03-18T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드8</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드8</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
 
 &lt;p&gt;이번 장에선 HTTP 프로토콜이 다른 프로토콜과 만나는 다음 4개의 지점들에 대해 알아볼 것입니다.&lt;/p&gt;
 
@@ -277,9 +683,9 @@ Proxy-authorization: Basic Tnkmwlq31rWERg
  
  <entry>
    <title>윈도우에서 수정한 우분투-리눅스 파일 권한 수정</title>
-   <link href="http://localhost:4000/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/"/>
+   <link href="http://localhost:4000/posts/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/"/>
    <updated>2020-03-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/jekyll/권한문제</id>
+   <id>http://localhost:4000/posts/study_googling/jekyll/권한문제</id>
    <content type="html">&lt;h4 id=&quot;0-코린이들에게-바칩니다&quot;&gt;0. 코린이들에게 바칩니다…&lt;/h4&gt;
 
 &lt;p&gt;윈도우 환경과 리눅스(우분투) 환경을 섞어쓰다 Permission denied 난 저같은 코린이들에게 바칩니다…&lt;/p&gt;
@@ -419,10 +825,11 @@ Proxy-authorization: Basic Tnkmwlq31rWERg
  
  <entry>
    <title>웹 캐시</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C7/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C7/"/>
    <updated>2020-03-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드7</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드7</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
 
 &lt;p&gt;웹 캐시는 자주 쓰이는 문서들의 사본을 자동으로 보관 및 관리하는 HTTP 장치입니다. 요청이 캐시에 왔을때 원하는 리소스의 사본이 존재하면 원 서버까지 요청이 가지 않고 캐시에서 제공됩니다.&lt;/p&gt;
 
@@ -863,9 +1270,9 @@ Expires : Frie, 05 Jul 2020, 05:00:00 GMT&lt;/p&gt;
  
  <entry>
    <title>Github Page Emoji</title>
-   <link href="http://localhost:4000/study_googling/etc/Github-Page-Emoji/"/>
+   <link href="http://localhost:4000/posts/study_googling/etc/Github-Page-Emoji/"/>
    <updated>2020-03-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/etc/Github Page Emoji</id>
+   <id>http://localhost:4000/posts/study_googling/etc/Github Page Emoji</id>
    <content type="html">&lt;p&gt;Thanks for ‘https://gist.github.com/rxaviers/7360908’ ​ :fire::fire::fire:&lt;/p&gt;
 
 &lt;p&gt;People&lt;/p&gt;
@@ -2378,9 +2785,9 @@ Expires : Frie, 05 Jul 2020, 05:00:00 GMT&lt;/p&gt;
  
  <entry>
    <title>프레임워크(Framework) vs 라이브러리(Library)</title>
-   <link href="http://localhost:4000/study_googling/etc/Framework-vs-Library/"/>
+   <link href="http://localhost:4000/posts/study_googling/etc/Framework-vs-Library/"/>
    <updated>2020-03-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/etc/Framework vs Library</id>
+   <id>http://localhost:4000/posts/study_googling/etc/Framework vs Library</id>
    <content type="html">&lt;h3 id=&quot;프레임워크framework-vs-라이브러리library-firefirefire&quot;&gt;프레임워크(Framework) vs 라이브러리(Library) :fire::fire::fire:&lt;/h3&gt;
 
 &lt;p&gt;예전에 면접 질문들을 정리하다가 Framework와 Library의 차이에 대해 생각해보게 됐습니다.&lt;/p&gt;
@@ -2408,10 +2815,12 @@ Expires : Frie, 05 Jul 2020, 05:00:00 GMT&lt;/p&gt;
  
  <entry>
    <title>프록시</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C6/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C6/"/>
    <updated>2020-03-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드6</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드6</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;61-웹-중개자&quot;&gt;6.1. 웹 중개자&lt;/h3&gt;
@@ -2895,10 +3304,12 @@ Content-type : text/plain&lt;/p&gt;
  
  <entry>
    <title>웹 서버</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C5/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C5/"/>
    <updated>2020-03-15T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드5</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드5</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;51-다채로운-웹-서버&quot;&gt;5.1. 다채로운 웹 서버&lt;/h3&gt;
@@ -3315,10 +3726,12 @@ Content-type : text/plain&lt;/p&gt;
  
  <entry>
    <title>커넥션 관리</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C4/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C4/"/>
    <updated>2020-03-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드4</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드4</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;41-tcp-커넥션&quot;&gt;4.1. TCP 커넥션&lt;/h3&gt;
@@ -3891,10 +4304,12 @@ Keep-Alive : max=5, timeout=120&lt;/p&gt;
  
  <entry>
    <title>HTTP 메시지</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C3/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C3/"/>
    <updated>2020-03-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드3</id>
-   <content type="html">&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드3</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
 &lt;p&gt;앞서 HTTP는 ‘배달원’이라고 했습니다. 이번장에서 알아볼 HTTP 메시지는 배달원이 보내는 소포와 같은 역할을 합니다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -4409,12 +4824,12 @@ Server: Test Server
  
  <entry>
    <title>URL과 리소스</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C2/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C2/"/>
    <updated>2020-03-09T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드2</id>
-   <content type="html">&lt;hr /&gt;
-
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드2</id>
+   <content type="html">
 &lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
 &lt;p&gt;앞 장에서 리소스, URI, URL, URN에 대해 간략히 살펴봤었습니다. 이번 장에선 URL과 리소스에 대해 자세히 알아볼 것입니다.&lt;/p&gt;
 
 &lt;p&gt;특정한 하나를 식별해야 하는 것에는 모두 식별하는 체계가 있습니다. 특정한 집을 식별하기 위해 사용되는 주소, 책을 식별하기 위한 ISBN번호, 사람을 식별하기 위한 주민등록번호 등…&lt;/p&gt;
@@ -4724,10 +5139,11 @@ http://www.joes-hardware.com/inventory-check.cgi?item=12731&amp;amp;color=blue&l
  
  <entry>
    <title>1장 HTTP 개관</title>
-   <link href="http://localhost:4000/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C1/"/>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C1/"/>
    <updated>2020-03-03T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/http_the_definitive_guide/Http완벽가이드1</id>
-   <content type="html">&lt;p&gt;&lt;strong&gt;본 포스팅의 첫번째 목적은 제가 학습한 것을 스스로 정리해보며 정리하는 것&lt;/strong&gt;입니다. 따라서 책의 내용을 오해하고 정리했을 소지가 있으니 &lt;strong&gt;제 포스팅에 너무 의존하진 말아주세요.&lt;/strong&gt;(훗날 자신있게 제 포스팅에 의존해 달라고 할 수 있는 날이 왔으면 좋겠습니다!) 내용에 대한 지적은 언제나 환영입니다.&lt;/p&gt;
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드1</id>
+   <content type="html">
+&lt;p&gt;&lt;strong&gt;본 포스팅의 첫번째 목적은 제가 학습한 것을 스스로 정리해보며 정리하는 것&lt;/strong&gt;입니다. 따라서 책의 내용을 오해하고 정리했을 소지가 있으니 &lt;strong&gt;제 포스팅에 너무 의존하진 말아주세요.&lt;/strong&gt;(훗날 자신있게 제 포스팅에 의존해 달라고 할 수 있는 날이 왔으면 좋겠습니다!) 내용에 대한 지적은 언제나 환영입니다.&lt;/p&gt;
 
 &lt;hr /&gt;
 &lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
@@ -5036,9 +5452,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/twitch_chat_anaylsis/TCA3/"/>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA3/"/>
    <updated>2016-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/twitch_chat_anaylsis/TCA3</id>
+   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   TCA3
 &lt;/div&gt;
@@ -5166,9 +5582,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/twitch_chat_anaylsis/TCA2/"/>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA2/"/>
    <updated>2016-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/twitch_chat_anaylsis/TCA2</id>
+   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   TCA2
 &lt;/div&gt;
@@ -5296,9 +5712,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/twitch_chat_anaylsis/TCA1/"/>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1/"/>
    <updated>2016-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/twitch_chat_anaylsis/TCA1</id>
+   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   TCA1
 &lt;/div&gt;
@@ -5426,9 +5842,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/python/Python3/"/>
+   <link href="http://localhost:4000/posts/study_googling/python/Python3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/python/Python3</id>
+   <id>http://localhost:4000/posts/study_googling/python/Python3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Python3s
 &lt;/div&gt;
@@ -5556,9 +5972,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/network/Network3/"/>
+   <link href="http://localhost:4000/posts/study_googling/network/Network3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/network/Network3</id>
+   <id>http://localhost:4000/posts/study_googling/network/Network3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Network3
 &lt;/div&gt;
@@ -5686,9 +6102,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/java/Java3/"/>
+   <link href="http://localhost:4000/posts/study_googling/java/Java3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/java/Java3</id>
+   <id>http://localhost:4000/posts/study_googling/java/Java3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Java3
 &lt;/div&gt;
@@ -5816,9 +6232,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_book/algorithm/Algorithm3/"/>
+   <link href="http://localhost:4000/posts/study_book/algorithm/Algorithm3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/algorithm/Algorithm3</id>
+   <id>http://localhost:4000/posts/study_book/algorithm/Algorithm3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Algorithm3
 &lt;/div&gt;
@@ -5946,9 +6362,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo3/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo3</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Sagyo3
 &lt;/div&gt;
@@ -6076,9 +6492,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/python/Python2/"/>
+   <link href="http://localhost:4000/posts/study_googling/python/Python2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/python/Python2</id>
+   <id>http://localhost:4000/posts/study_googling/python/Python2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Python2
 &lt;/div&gt;
@@ -6206,9 +6622,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/network/Network2/"/>
+   <link href="http://localhost:4000/posts/study_googling/network/Network2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/network/Network2</id>
+   <id>http://localhost:4000/posts/study_googling/network/Network2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Network2
 &lt;/div&gt;
@@ -6336,9 +6752,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/java/Java2/"/>
+   <link href="http://localhost:4000/posts/study_googling/java/Java2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/java/Java2</id>
+   <id>http://localhost:4000/posts/study_googling/java/Java2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Java2
 &lt;/div&gt;
@@ -6466,9 +6882,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_book/algorithm/Algorithm2/"/>
+   <link href="http://localhost:4000/posts/study_book/algorithm/Algorithm2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/algorithm/Algorithm2</id>
+   <id>http://localhost:4000/posts/study_book/algorithm/Algorithm2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Algorithm2
 &lt;/div&gt;
@@ -6596,9 +7012,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo2/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo2</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Sagyo2
 &lt;/div&gt;
@@ -6726,9 +7142,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/python/Python1/"/>
+   <link href="http://localhost:4000/posts/study_googling/python/Python1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/python/Python1</id>
+   <id>http://localhost:4000/posts/study_googling/python/Python1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Python1
 &lt;/div&gt;
@@ -6856,9 +7272,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/network/Network1/"/>
+   <link href="http://localhost:4000/posts/study_googling/network/Network1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/network/Network1</id>
+   <id>http://localhost:4000/posts/study_googling/network/Network1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Network1
 &lt;/div&gt;
@@ -6986,9 +7402,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_googling/java/Java1/"/>
+   <link href="http://localhost:4000/posts/study_googling/java/Java1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_googling/java/Java1</id>
+   <id>http://localhost:4000/posts/study_googling/java/Java1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Java1
 &lt;/div&gt;
@@ -7116,9 +7532,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/study_book/algorithm/Algorithm1/"/>
+   <link href="http://localhost:4000/posts/study_book/algorithm/Algorithm1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/study_book/algorithm/Algorithm1</id>
+   <id>http://localhost:4000/posts/study_book/algorithm/Algorithm1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Algorithms1
 &lt;/div&gt;
@@ -7246,9 +7662,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/projects/sagyo_reboot/Sagyo1/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/projects/sagyo_reboot/Sagyo1</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Sagyo1
 &lt;/div&gt;
