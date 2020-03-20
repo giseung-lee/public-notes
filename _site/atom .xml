@@ -4,13 +4,442 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-19T16:02:01+09:00</updated>
+ <updated>2020-03-20T17:45:13+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>클라이언트 식별과 쿠키</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C11/"/>
+   <updated>2020-03-20T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드11</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;p&gt;이번 장에선 사용자를 식별하여 콘텐츠를 개인화하는 기술들을 알아볼 것입니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;111-개별-접촉&quot;&gt;11.1. 개별 접촉&lt;/h3&gt;
+
+&lt;p&gt;HTTP는 익명으로 사용하며 Stateless합니다.(Stateless : 연결 자체에 대한 정보를 가지지 않고, 매 요청은 일회성이고 독립적임) 하지만 웹 서버는 사용자를 식별하고 싶기 때문에 관련 기술들이 개발되었습니다.&lt;/p&gt;
+
+&lt;p&gt;우리가 사용하는 거의 모든 웹 사이트는 사용자를 식별해 사용자에게 맞는 정보를 제공합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;개별 인사&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;온라인 쇼핑몰 등이 각 사용자들을 위해 특화된 페이지를 만듭니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;사용자 맞춤 추천&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;온라인 쇼핑몰은 고객이 방문한 페이지, 구매 내역들을 추적해 고객이 원할 것이라 예상되는 상품을 추천해줍니다. 생일과 같이 특별한 날엔 그에 맞는 상품을 제시합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;저장된 사용자 정보&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;인터넷으로 상품을 주문시에 매번 주소와 신용카드 정보를 입력하는건 매우 귀찮은 일입니다. 이런 정보를 각 개인별로 저장해 더 편리하게 이용할 수 있게 해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;세션 추적&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP트랜잭션은 기본적으로 Stateless 합니다. 따라서 사용자를 식별하고 추적하기 위해선 다른 방법이 필요합니다. 뒤로는 그 아래와 같은 사용자를 식별하기 위한 방법들을 알아보겠습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용자 식별 관련 정보를 전달하는 HTTP 헤더&lt;/li&gt;
+  &lt;li&gt;클라이언트 IP 주소 추적&lt;/li&gt;
+  &lt;li&gt;사용자 로그인 인증&lt;/li&gt;
+  &lt;li&gt;URL에 식별자를 포함하는 fat URL&lt;/li&gt;
+  &lt;li&gt;식별 정보를 지속해서 유지하는 쿠키&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;112-http-헤더&quot;&gt;11.2. HTTP 헤더&lt;/h3&gt;
+
+&lt;p&gt;아래 7가지 HTTP 헤더는 사용자에 대한 ‘정보’를 전달하는 헤더들입니다. 각 헤더들은 사용자에 대한 ‘정보’를 전달할 뿐 각 헤더 하나만 가지고 사용자를 식별할 순 없습니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;헤더이름&lt;/th&gt;
+      &lt;th&gt;헤더타입&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;From&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt;사용자의 이메일 주소&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;User-Agent&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt;사용자의 브라우저&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Referer&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt;사용자가 현재 링크를타고 온 근원 페이지&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Authorization&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt;사용자의 이름과 비밀번호&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Client-ip&lt;/td&gt;
+      &lt;td&gt;확장(요청)&lt;/td&gt;
+      &lt;td&gt;클라이언트의 IP주소&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;X-Forwarded-For&lt;/td&gt;
+      &lt;td&gt;확장(요청)&lt;/td&gt;
+      &lt;td&gt;클라이언트의 IP주소&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Cookie&lt;/td&gt;
+      &lt;td&gt;확장(요청)&lt;/td&gt;
+      &lt;td&gt;서버가 생성한 ID 라벨&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;이번 절에선 위 3개를 알아보고 밑에 4개는 뒤의 각 절에서 알아볼 것입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;From 헤더&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;사용자의 이메일 주소를 나타냅니다. 이메일로는 각 개인 혹은 단체를 식별해낼 수 있지만 서버가 이를 모아 스팸 메일 등 악의적인 목적으로 사용할 수 있기 때문에 자주 사용되진 않습니다. 웹 로봇같은 경우 로봇이 서버에 문제를 일으킬 경우 메일을 보내라는 뜻에서 From 헤더에 문의메일 주소를 남기기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;User-Agent&lt;/strong&gt; 헤더&lt;/p&gt;
+
+&lt;p&gt;사용자가 쓰고 있는 브라우저의 이름과 버전정보, 간혹 운영체제에 대한 정보까지 보내줍니다. 사용자를 식별할 순 없지만 사용자가 사용하는 환경에 대한 정보를 받아 그 환경에 맞는 최적의 콘텐츠를 제공할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Referer&lt;/strong&gt; 헤더&lt;/p&gt;
+
+&lt;p&gt;현재 페이지로 유입하게한 URL을 가리킵니다. 이 역시 이 헤더 자체로는 사용자를 식별할 수 없지만 사용자의 행동에 대한 정보를 알려줍니다. Referer 헤더의 정보로 통계를 내어 본인 사이트에 사람들이 어떤 경로로 많이 들어오는지, 어떤 주제의 사이트에서 유입이 되는지 등을 파악할 수 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;113-클라이언-트-ip-주소&quot;&gt;11.3. 클라이언 트 IP 주소&lt;/h3&gt;
+
+&lt;p&gt;웹이 막 시작할 시절엔 사용자들이 각자 바뀌지 않는 IP 주소를 가지고 있었습니다. 그래서 초기엔 이런 IP를 이용해 사용자를 식별하려고 했습니다. 기본적으로 HTTP 메세지 자체엔 IP 주소가 없습니다.(IP주소를 담는 Client-ip 같은 헤더는 HTTP 표준이 아닙니다.) 하지만 연결된 TCP 커넥션을 찾아보면 반대쪽의 IP를 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이렇게 IP로 식별하는 방법은 다음과 같은 약점을 갖고 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IP주소는 사용자가 아니라 컴퓨터를 가리킵니다. 가정에서도 여러명이 같은 PC를 사용하며, 공용 PC는 여러 사람이 사용하게 됩니다.&lt;/li&gt;
+  &lt;li&gt;현대의 많은 ISP(Internet Service Provider)에선 동적으로 IP주소를 할당합니다. 로그인한 시간에 따라 사용자는 매번 다른 IP를 받습니다.&lt;/li&gt;
+  &lt;li&gt;보안 강화를 위해 NAT(Network Address Translation) 방화벽을 사용하는 경우가 많습니다. 이 경우 서버가 TCP 커넥션을 살펴 알아낸 IP는 사용자의 IP가 아니라 방화벽의 IP입니다.&lt;/li&gt;
+  &lt;li&gt;현대의 웹에선 클라이언트의 요청이 바로 서버로 가는 경우는 거의 없습니다. 많은 프록시와 게이트웨이를 통과합니다. 이 경우에도 서버는 프록시와 게이트웨이의 IP만 볼 수 있습니다. (이를 해결하려 Client-ip나 X-Forwarded-For HTTP 같은 헤더에 클라이언트의 ip를 담는 프록시도 있으나 표준도 아니고 모든 프록시들이 그렇지도 않습니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위와 같은 이유로 IP는 사용자를 식별하기위해 쓰이지 못합니다. 인트라넷 같은 경우엔 보안 기능을 위해 특정 IP에서 오는 사용자에게만 문서를 전달하기도 합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;114-사용자-로그인&quot;&gt;11.4. 사용자 로그인&lt;/h3&gt;
+
+&lt;p&gt;사용자에게 로그인을 요구하는 건 더 직접적이고 명확한 식별 방법입니다. HTTP는 로그인을 위해 ‘WWW-Authenticate’헤더와 ‘Authorization’ 헤더를 가지고 있습니다. 한번 로그인 해두면 브라우저는 같은 호스트에게 하는 모든 요청은 이 헤더를 함께 보낼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;사용자가 로그인이 필요한 리소스를 요청한다면, 서버는 401 Login Required 응답 코드를 브라우저에게 보낼 수 있습니다. 브라우저는 이 응답을 받으면 로그인 대화상자를 띄워 로그인 정보를 받고 다음 요청부터 Authorization 헤더에 그 정보를 담아 보냅니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 매 사이트들 옮겨 다닐 때마다 아이디와 비밀번호를 기억해 로그인하는건 귀찮은 일입니다. 사용자가 주로 사용하는 아이디를 선점 당할 수도 있습니다. 다음 절?장?에서 이에 대한 대안을 제시합니다.(로그인 유지 말하는건가?)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;115-뚱뚱한-url&quot;&gt;11.5. 뚱뚱한 URL&lt;/h3&gt;
+
+&lt;p&gt;사용자의 URL마다 사용자를 식별할 수 있는 정보를 부여해 계속 추적할 수 있습니다. 이를 fat URL이라고 부릅니다. 보통 식별 정보로는 HTTP 트랜잭션이 쓰입니다. 하나의 HTTP 트랜잭션을 ‘세션’, ‘방문’으로 보고 해당 트랜잭션에 대한 id를 부여합니다.&lt;/p&gt;
+
+&lt;p&gt;그리고 응답을 줄때 사이트 내에 걸려있는 모든 링크들의 마지막에 그 id를 붙여 추적합니다. 예를들어 한 트랜잭션의 정보로 &lt;strong&gt;‘002-1145265-898332’&lt;/strong&gt;라는 id를 만들었다면 응답을 줄때 걸리는 모든 링크 뒤에 &lt;strong&gt;‘http://www….com/…/002-1145265-898332’&lt;/strong&gt;와 같이 id를 붙여 사용자를 계속 추적합니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 fat URL엔 다음과 같은 단점이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;못생긴 URL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;긴 id가 생성되어 URL에 붙으므로 사용자에게 혼란을 줄 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;공유하지 못하는 URL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;fat URL엔 사용자의 세션과 같은 개인정보가 들어 있어 해당 URL을 다른사람에게 공유한다면 자신의 개인정보를 유출하게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;캐시를 사용할 수 없음&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;사용자마다, 같은 사용자도 브라우저를 닫고 다시 켤때마다 URL이 달라지므로 캐싱할 수 없습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;서버 부하 가중&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;서버는 fat url에 해당하는 HTML을 계속 다시 그려야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;이탈&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;사용자 의도치 않게 다른 사이트로 이동하거나 닫아버리면 지속되고 있던 fat URL이 끊기게 됩니다. 쇼핑몰에서 이런 상황이 일어날 경우 담아 놓은 장바구니가 모두 비워질 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;세션 간 지속성의 부재&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;fat URL을 북마킹 하지 않는 이상 로그아웃하면 모든 정보를 잃게 됩니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;116-쿠키&quot;&gt;11.6. 쿠키&lt;/h3&gt;
+
+&lt;p&gt;쿠키는 사용자를 식별하고 세션을 유지하는데 가장 널리 사용되는 방식입니다. 넷스케이프에서 최초로 제작했으며 현재는 모든 브라우저에서 지원합니다.&lt;/p&gt;
+
+&lt;p&gt;쿠키는 캐시와 충돌할 수 있기때문에 대부분의 캐시나 브라우저에선 쿠키에 있는 내용을 캐싱하지 않습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1161-쿠키의-타입&quot;&gt;11.6.1. 쿠키의 타입&lt;/h4&gt;
+
+&lt;p&gt;쿠키는 세션 쿠키와 지속 쿠키로 나뉩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;세션 쿠키(session cookie)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;사이트 관련 설정과 선호사항을 저장하는 임시 쿠키입니다. 브라우저를 닫으면 삭제됩니다. 쿠키의 파키에 대한 파라미터들 중 Discard가 설정되어 있거나, Expires 혹은 Max-Age 파라미터가 없으면 세션쿠키입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;지속 쿠키(persistent cookie)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;브라우저를 닫아도 삭제되지 않습니다. 하드 디스크에 직접 저장되어 다음에 브라우저를 켤때에도 사용됩니다. 주기적으로 방문 하는 사이트의 설정 정보나 로그인 정보가 들어 있습니다. 파기되기까지의 시간을 가리키는 Expires, Max-Age 파라미터가 설정될 수 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1162-쿠키는-어떻게-동작하는가&quot;&gt;11.6.2. 쿠키는 어떻게 동작하는가&lt;/h4&gt;
+
+&lt;p&gt;사용자가 어느 웹 사이트에 처음 방문하면 웹 서버는 사용자를 식별하기 위한 id를 쿠키에 할당합니다. 쿠키는 {이름=값, 이름=값, … , 이름=값} 와 같이 표현되며 응답헤더인 Set-Cookie에 담겨 전송됩니다. Set-Cookie를 받은 브라우저는 쿠키를 저장합니다.&lt;/p&gt;
+
+&lt;p&gt;쿠키는 사용자가 정의한 ‘이름=값’의 리스트이기 때문에 id뿐 아니라 어떤 정보든 포함할 수 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1163-쿠키-상자--클라이언트-측-상태&quot;&gt;11.6.3. 쿠키 상자 : 클라이언트 측 상태&lt;/h4&gt;
+
+&lt;p&gt;쿠키는 서버 관련 정보를 클라이언트에 저장되고, 사용자가 해당 서버에 접근할때 마다 그 정보를 같이 전송됩니다. 브라우저는 이런 쿠키 정보를 저장하고 관리할 책임이 있습니다. 이를 ‘클라이언트 측 상태(State)’ 라고 합니다. HTTP명세에서의 공식 명칭은 HTTP State Management Mechanism입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;구글 크롬 쿠키&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;구글의 크롬 브라우저는 ‘Cookies’ 라는 이름의 SQLite 파일에 쿠키를 저장합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\{Username}\AppData\Local\Google\Chrome\User Data\Default\Cookies&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;따로 설정하지 않았다면 위의 위치에서 파일을 찾을 수 있고, 크롬 브라우저에선 F12를 눌러 나오는 개발자 도구에서 직접 볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/cookies.png&quot; alt=&quot;cookies.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;저의 https://www.github.com/에 대한 쿠키입니다. 전체가 한 쿠키인 것이 아니라 각 행 1개씩이 쿠키 1개입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Expires/Max-Age&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;HttpOnly&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Secure&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;SameSite&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 형식을 갖는 1개의 쿠키가 12개가 있는 것입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1164-사이트마다-각기-다른-쿠키들&quot;&gt;11.6.4. 사이트마다 각기 다른 쿠키들&lt;/h4&gt;
+
+&lt;p&gt;브라우저는 수백, 수천개의 쿠키를 가지고 있지만 이걸 각 사이트마다 모두 보내진 않습니다. 당연히 각 사이트에 필요한 쿠키만 보내게 됩니다. 그럼 어떻게 쿠키들이 다른 사이트를 구분하게 될까요&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;쿠키 Domain 속성&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;위 쿠키 사진을 보시면 ‘Domain’ 컬럼에 ‘github.com’이 보이실 겁니다. 서버에서 쿠키를 생성할때 Set-Cookie 헤더에 Domain 속성을 기술합니다. 위 사진에선 깃허브 서버에서 쿠키를 만들때 ‘github.com’을 넣어 생성한 것입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;쿠키 Path 속성&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;웹 사이트가 크거나 크지 않더라도 성능을 중요시 하는 웹 사이트라면 쿠키에 path를 설정해 사이트의 일부에만 쿠키가 전달되게 할 수 있습니다. 브라우저는 Domain과 path를 조합해 맞는 URL에만 쿠키를 보내게 됩니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1165-쿠키-구성요소&quot;&gt;11.6.5. 쿠키 구성요소&lt;/h4&gt;
+
+&lt;h4 id=&quot;1166-version-0-넷스케이프-쿠키&quot;&gt;11.6.6. Version 0 (넷스케이프) 쿠키&lt;/h4&gt;
+
+&lt;h4 id=&quot;1167-version-1-rfc-2965-쿠키&quot;&gt;11.6.7. Version 1 (RFC 2965) 쿠키&lt;/h4&gt;
+
+&lt;p&gt;쿠키의 변천은 ‘Version 0(넷스케이프 쿠키)’ -&amp;gt; ‘RFC2109 쿠키’ -&amp;gt; ‘Version 1(RFC 2965) 쿠키’ -&amp;gt; ‘RFC 6265 쿠키’ 와 같이 진행됐습니다. 위의 세 절에선 이 변천중 Version 0와 Version 1을 다루고 있는데 Version 1에 지면을 많이 할애했습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 RFC 6265 쿠키가 나오며 RFC 2109 쿠키와 RFC 2965 쿠키는 폐기되었습니다. 변천 내용이 쿠키의 이해에 중요한 부분이면 따로 포스팅해 남기겠지만 작동 방식자체가 바뀌었다기 보단 문법과 속성들이 바뀐것 뿐이라 따라 남기지 않겠습니다.&lt;/p&gt;
+
+&lt;p&gt;대신 버전들에 대해 구글링하다가 쿠키에 대해 심도있고 깔끔하게 정리된 글을 찾았습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://meetup.toast.com/posts/172&quot;&gt;https://meetup.toast.com/posts/172&lt;/a&gt;  이곳을 찾고하면 좋을 것 같습니다.(저도 언젠간 저런 수준의 포스팅을 할 수 있겠죠..?)&lt;/p&gt;
+
+&lt;p&gt;위 포스팅 자체를 정리해 이 포스팅에 포함시킬가도 했으나 이 포스팅에서 포함하기엔 배보다 배꼽이 더 큰 상황인것 같습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1168-쿠키와-세션-추적&quot;&gt;11.6.8. 쿠키와 세션 추적&lt;/h4&gt;
+
+&lt;p&gt;쿠키를 이용해 세션을 추적하는 과정을 예시를 들어 설명하고 있지만 앞에서 이미 많이 서술되었으므로 생략합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1169-쿠키와-캐싱&quot;&gt;11.6.9. 쿠키와 캐싱&lt;/h4&gt;
+
+&lt;p&gt;이번장에서 배운 쿠키의 내용을 캐싱에 그대로 적용하게되면 심각한 문제를 발생할 수 있습니다. 쿠키는 개인정보를 다루는데 이를 캐싱해 다른 사람에게도 그 개인정보를 줄 수 있기 때문입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;캐시되지 말아야 할 문서가 있다면 표시하라&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 문서를 캐시해도 될 지 말 지는 문서의 생산자, 소유자가 가장잘 압니다. 만약 응답할 문서에서 ‘Set-Cookie’헤더만 제외하면 캐싱해도 되는 문서라면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Cache-Control : no-cache=&quot;Set-Cookie&quot;&lt;/code&gt;헤더를 포함시키면 됩니다. 쿠키와 상관 없이 그냥 캐싱해도 된다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Cache-Control : public&lt;/code&gt;헤더를 추가합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Set-Cookie 헤더를 캐시 하는 것에 유의하라&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;캐시는 Set-Cookie헤더를 가진 응답을 캐싱할땐 조심해야 합니다. 응답헤더인 Set-Cookie 헤더는 보내는 정보를 쿠키에 저장하라는 것을 뜻하는데 Set-Cookie헤더를 캐싱해버리면 다른 사람들의 PC에 타인의 개인정보가 저장되기 때문입니다. 또한, Set-Cookie에 있는 사용자를 식별할 id를 여러 사람이 가져가면 서버 입장에서도 사람들을 식별할 수 없게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;반대로, 어떤 캐시는 Set-Cookie 헤더를 모두 지우고 저장하기도 합니다. 개인정보를 보호할 수 있을 것 같지만, Set-Cookie를 받아야할 사용자 조차 못받게 될 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이런 문제에선 캐시가 요청을 받고 서버에 재검사를 보내 Set-Cookie를 받아오는 방법으로 개선할 수 있습니다. 서버가 &lt;code class=&quot;highlighter-rouge&quot;&gt;Cache-Control : must-revalidate, max-age=0&lt;/code&gt;를 썼다는건 캐시에서 보내기 전에 서버를 다시 다녀오라는 뜻입니다.&lt;/p&gt;
+
+&lt;p&gt;또 어떤 보수적인 캐시는 서버측에서 캐시해도 된다고 헤더에 기술해도 Set-Cookie가 있으면 캐시하지 않을 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;어떤 캐시는 Set-Cookie가 있는 이미지는 캐시하지만 텍스트는 캐시하지 않기도 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cookie 헤더를 가지고 있는 요청을 주의하라&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cookie 헤더를 가진 요청에 대한 응답은 개인정보를 포함하고 있을수도 있습니다. 따라서 캐시는 Cookie헤더를 가진 요청에 대한 응답을 캐싱할땐 조심해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;보수적인 캐시는 마찬가지로 Cookie 헤더를 가진 요청에 대한 응답은 모두 캐시하지 않을 수도 있습니다. 앞서 말한것 처럼 이미지는 캐시하고, 텍스트는 캐시하지 않을 수도 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;11610-쿠키-보안-그리고-개인정보&quot;&gt;11.6.10. 쿠키, 보안 그리고 개인정보&lt;/h4&gt;
+
+&lt;p&gt;쿠키가 보안에 취약하다는 얘기도 있으나 과장된 말이라고 생각합니다. 개인정보는 DB에 저장해두고 쿠키로는 DB에 있는 개인정보를 특정할 수 있는 키값만 보내면 중요한 개인정보를 숨길 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;다만 요 근래 사용자의 활동 정보를 무단으로 수집하려는 마케팅 회사등이 더 문제라고 생각합니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;p&gt;예전에 이론적으로 배운 쿠키나 실제 개발할때 사용해본 쿠키를 떠올려봤을때 이번 장은 가볍게 넘어갈 수 있을 것이라 생각했습니다. 하지만 캐시와 함께 엮이니 꽤나 머리가 아프기 시작했습니다. 그리고 앞서 소개해드린 &lt;a href=&quot;https://meetup.toast.com/posts/172&quot;&gt;https://meetup.toast.com/posts/172&lt;/a&gt; 이 포스팅을 읽고나니 이정도의 수준으로 알아야 안다고 할 수 있겠구나라고 생각했습니다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>HTTP/2.0</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C10/"/>
+   <updated>2020-03-20T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드10</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;p&gt;HTTP는 계속 발전합니다. HTTP/1.1의 성능 문제를 개선하기 위해 HTTP/2.0이 만들어졌습니다. HTTP/1.1은 1997년 공식적으로 등장했습니다. HTTP/2는 2014년 12월 표준으로 제안되어 2015년 2월 17일 IESG에서 승인됐습니다. 그리고 &lt;strong&gt;2015년 5월 RFC 7540으로 공식적으로 공개&lt;/strong&gt;됐습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이 &lt;strong&gt;책이 서술하는 시점은 2013년 11월으로 HTTP/2.0의 8번째 초안에 대한 내용&lt;/strong&gt;입니다.(이전 장에서 책이 처음 서술된건 2002년이라고 했는데, HTTP/2부분은 개정하면서 수정된 것 같습니다.) 따라서 책의 내용과 현재가 다를 수 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;101-http20의-등장배경&quot;&gt;10.1. HTTP/2.0의 등장배경&lt;/h3&gt;
+
+&lt;p&gt;HTTP의 역사에 대해 알아봤을때 HTTP/1.1은 급하게 기능을 추가한 HTTP/1.0을 정리하는 역할이 컸다고 했습니다. 이렇게 HTTP/1.1은 구현의 단순성과 접근성에 주안점을 두었기 때문에 성능을 희생시킬 수 밖에 없었습니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.1에선 요청을 보냈을때 그에 대한 응답을 받아야만 그 다음 요청을 보낼 수 있기 때문에 회전 지연(latency)를 피할 수 없었습니다. 이를 해결하기 위해 병렬 커넥션이나 파이프라인 커넥션을 사용했지만 이는 미봉책이었을 뿐, 근본적인 해답은 되지 못했습니다.&lt;/p&gt;
+
+&lt;p&gt;이런 HTTP/1.1의 근본적인 한계를 알고있었는지, HTTP 작업 그룹은 HTTP/1.1이 발표되기도 전인 1997년 7월부터 이미 HTTP/1.1의 이후 버전을 위한 HTTP-NG 프로젝트를 시작했습니다. 그리고 HTTP/1.1의 개발자 중 하나인 로이 필딩(Roy Fielding)은 WAKA라는 프로토콜을 개발했습니다. 또, 마이크로소프트는 S+M(Speed+Mobility)라는 프로토콜을 개발하기 시작했습니다.&lt;/p&gt;
+
+&lt;p&gt;구글도 빠질 수 없겠죠. 구글은 2009년에 SPDY(speedy) 프로토콜을 개발해 발표했습니다. HTTP 속도를 개선하기 위해 헤더를 압축해 대역폭을 절약하고, 한 TCP 커넥션에서 응답을 받기 전에 여러 요청을 동시에 보내기도 하고, 요청이 없어도 서버쪽에서 능동적으로 리소스를 푸시할 수도 있습니다.&lt;/p&gt;
+
+&lt;p&gt;구글의 SPDY는 회전 지연(latency)를 줄이는데 효과적이었고, 2012년 10월 3일, HTTP 작업 그룹은 SPDY를 기반으로 HTTP/2.0을 공식적으로 설계하기 시작했습니다. HTTP작업 그룹은 SPDY 초안을 그대로 가져와 HTTP/2.0작업에 착수하기 시작했습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;102-개요&quot;&gt;10.2. 개요&lt;/h3&gt;
+
+&lt;p&gt;HTTP/2.0 요청과 응답은 길이가 정의된(최대 16383 Byte) 한 개 이상의 프레임에 담깁니다.&lt;/p&gt;
+
+&lt;p&gt;프레임에 담긴 요청과 응답은 스트림을 통해 보내지는데, 한 개의 스트림은 한 쌍의 요청과 응답을 처리합니다. 그리고 하나의 TCP 커넥션 위에 여러개의 스트림이 동시에 만들어질 수 있습니다. 즉, 여러 스트림을 사용하면 요청과 응답을 동시에 처리할 수 있게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;또한 HTTP/2.0은 이 스트림들에 대한 흐름제어, 우선순위 부여가 가능합니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2.0엔 기존의 요청-응답이 아닌 ‘서버 푸시’라는 새로운 모델이 등장합니다. 하나의 요청이 있었다면 다음 요청이 없더라도 서버가 추가적으로 리소스를 푸시할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;물론 HTTP/2.0은 HTTP/1.1과 호환이 될 수 있도록 노력하고 있습니다. 다만, 헤더들의 표현 문법이 조금 달라졌습니다. (ex - Content-Length -&amp;gt; :content-length)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;103-http11과의-차이점&quot;&gt;10.3. HTTP/1.1과의 차이점&lt;/h3&gt;
+
+&lt;h4 id=&quot;1031-프레임&quot;&gt;10.3.1. 프레임&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/http2_frame.png&quot; alt=&quot;http2_frame.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;https://queue.acm.org/detail.cfm?id=2555617&lt;/p&gt;
+
+&lt;p&gt;HTTP/2.0에서 모든 메세지는 위와 같은 프레임에 담겨 전송됩니다. 8바이트 크기의 헤더로 시작해 뒤에 최대 16838 바이트 크기의 페이로드가 옵니다. 프레임 헤더의 각 필드는 다음과 같습니다.(&lt;strong&gt;이 부분이 책과 조금 다른데, 이미지를 찾다 보니 책보다 이후에 업데이트 된 내용인것 같아 위 출처에서 구글링한 내용으로 대체합니다.&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;길이 : 페이로드를 나타내는 16비트 unsigned integer. 이 길이에 프레임 헤더는 포함되지 않습니다.&lt;/li&gt;
+  &lt;li&gt;종류 : 길이 다음 오는 8비트로 표현된 프레임의 종류입니다.&lt;/li&gt;
+  &lt;li&gt;플래그 : 프레임의 종류에 따랑 의미가 달라지는 8비트의 플래그입니다.&lt;/li&gt;
+  &lt;li&gt;R : 예약된 1비트이며 의미가 정의되어있지 않습니다. 항상 0이어야 합니다.&lt;/li&gt;
+  &lt;li&gt;스트림 식별자 : 31비트의 스트림 식별자입니다. 0일 경우 커넥션 전체와 연관된 프레임임을 의미합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HTTP/2.0은 DATA, HEADERS, PRIORITY, RST_STREAM, SETTINGS, PUSH_PROMISE, PING, GOAWAY, WINDOW_UPDATE, CONTINUATION의 10가지 프레임을 정의하고 있습니다. 각 페이로드 형식이나 내용은 프레임에 따라 다릅니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1032-스트림과-멀티플렉싱&quot;&gt;10.3.2. 스트림과 멀티플렉싱&lt;/h4&gt;
+
+&lt;p&gt;스트림이란 HTTP/2.0 커넥션을 통해 클라이언트와 서버 사이에 교환되는 프레임들의 양방향 흐름입니다.&lt;/p&gt;
+
+&lt;p&gt;한 쌍의 HTTP 요청과 응답은 하나의 스트림을 통해 이루어집니다. 요청시 새 스트림을 만들어 HTTP 요청을 보내며, 서버는 같은 스트림으로 응답을 보냅니다. 이후 해당 스트림은 닫히게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.1에선 기본적으로 한 TCP커넥션에선 요청을 보낸 후 응답을 받아야 다음 요청을 보낼 수 있었습니다. 한 웹 페이지를 띄우는데 요청이 많이 필요하지 않았던 과거엔 괜찮았습니다. 하지만 현대의 웹 페이지는 한 페이지를 띄우는 데만 해도 적게는 수십, 많게는 수백번의 요청을 주고받아야 합니다. 이는 심각한 회전  지연을 만듭니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2.0에선 하나의 커넥션에 여러개의 스트림이 동시에 열릴 수 있습니다. 한 페이지를 띄우는데 필요한 여러개의 요청을 응답을 기다릴 필요 없이 동시에 여러 스트림을 열어 보낼 수 있는 것입니니다.&lt;/p&gt;
+
+&lt;p&gt;스트림은 우선순위를 가질 수 있습니다. 프레임의 전송이 느릴때, 웹 브라우저는 중요한 리소스를 요청하는 스트림에 우선순위를 부여해 요청할 수 있습니다. (물론, 이 우선순위대로 응답이 올거란 보장은 없습니다.)&lt;/p&gt;
+
+&lt;p&gt;모든 스트림은 위에서 몬것과 같이 31비트 고유한 식별자를 갖습니다. 클라이언트에 의해 초기화된 스트림은 이 식별자가 홀수여야 하며, 서버가 초기화한 스트림은 짝수여야 합니다. 그리고 새로 만들어진 스트림의 식별자는 해당 커넥션 안에서 이전에 만들어졌거나 예약된 스트림의 식별자보다 커야 합니다. 이 규칙을 어기는 식별자를 받았다면 PROTOCOL_ERROR 를 돌려줘야 합니다.&lt;/p&gt;
+
+&lt;p&gt;서버, 클라이언트 모두 이 스트림은 상대방의 동의 없이 일방적으로 만들 수 있습니다. TCP 커넥션을 여러개 만들때 연결 신호를 주고받느라 소비했던 지연들을 없앨 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2.0 커넥션에서 한 번 사용한 스트림 식별자는 다시 사용할 수 없습니다. 커넥션을 오래 유지하면 스트림의 31비트의 식별자를 모두 사용할 수 있는데, 이땐 커넥션을 다시 맺습니다.&lt;/p&gt;
+
+&lt;p&gt;여러개의 스트림을 사용시 스트림이 블록될 우려가 있는데, HTTP/2.0에선 WINDOW_UPDATE 프레임을 이요한 흐름 제어를 통해 스트림들이 서로 간섭해 망가지는 것을 막아줍니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1033-헤더-압축&quot;&gt;10.3.3. 헤더 압축&lt;/h4&gt;
+
+&lt;p&gt;HTTP/1.1은 헤더를 압축 없이 그냥 보냅니다. 따라서 실제 본문보다 헤더의 크기가 더 큰 경우도 허다합니다.&lt;/p&gt;
+
+&lt;p&gt;이를 개선하기 위해 HTTP/2.0에선 HTTP 헤더를 압축해 전송합니다. 헤더는 HPACK 명세에 정의된 방법으로 압축된 뒤, ‘헤더 블록 조각’으로 쪼개져 전송됩니다. 받는 쪽은 이 조각들을 이어 압축을 풉니다.&lt;/p&gt;
+
+&lt;p&gt;HPACK은 헤더를 압축하고 해제할 때 ‘압축 콘텍스트(compression context)’를 사용합니다. 그런데 이 압축 콘텐스트는 하나의 압축을 풀면 이에 영향을 받아 바뀝니다. 송신측은 메세지를 보낸뒤, 수신측이 이 메세지를 받고 압축을 풀어 압축 콘텍스트가 변경되었을 것이라 추측합니다. 따라서 원활한 통신을 위해선 받은 헤더를 쓰지 않더라도 반드시 합축을 풀어 상호간의 압축 콘텍스트를 유지해야 합니다. 그럴 수 없는 경우라면 COMPREESION_ERROR와 함께 커넥션을 끊어야 합니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1034-서버-푸시&quot;&gt;10.3.4. 서버 푸시&lt;/h4&gt;
+
+&lt;p&gt;HTTP/2.0에선 하나의 요청에 대한 응답으로 여러개의 리소스를 보낼 수 있습니다.(추가 요청이 없어도 일방적으로 응답을 보낼 수 있습니다.) 요청과 응답이 1:1로 대응해야 했던 HTTP/1.1과 달라진 점입니다.&lt;/p&gt;
+
+&lt;p&gt;이 방법은 클라이언트에서 어떤 리소스를 추가 요구할 것인지 예측할 수 있는 상황에서 요구합니다. HTTP/1.1에선 하나의 웹페이지를 띄울때 클라이언트가 응답받은 HTML에서 이미지, 파일들의 URL를 얻어내 다시 요청합니다. 하지만 HTTP/2.0에선 서버쪽에서 HTML을 보내기 전에 미리 추가로 필요한 리소스들을 파악해 같이 전송할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;리소스를 푸시하려는 서버는 클라이언트에게 자원을 푸시할 것임을 PUSH_PROMISE 프레임을 보내 미리 알려주어야 합니다. 클라이언트가 PUSH_PROMISE 프레임을 받게 되면 해당 프레임의 스트림은 클라이언트 입장에선 ‘예약됨(원격)’ 상태가 됩니다. 만약 클라이언트가 거절하고 싶다면 RST_STREAM 프레임을 보내면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;이 PUSH_PROMISE 프레임을 먼저 주는 이유는 서버가 줄 리소스를 클라이언트가 모르고 요청하는 일을 막기 위해서 입니다.&lt;/p&gt;
+
+&lt;p&gt;서버 푸시를 사용할때 주의할 점은 아래와 같습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;중간의 프록시가 추가 리소스를 전달하지 않을 수도 있습니다.(서버 푸시가 구현 안됐거나, 정책적으로 막거나) 그리고 프록시 자체적으로도 클라이언트에게 서버 푸시를 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;서버는 안전하고, 캐시가능하고, 본문을 포함하지 않는 요청에 대해서만 푸시할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;푸시할 리소스는 클라이언트의 본 요청과 연관되어야 합니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트는 서버가 푸시한 리소스를 ‘동일 출처 정책’에 따라 검사해야 합니다.&lt;/li&gt;
+  &lt;li&gt;서버 푸시를 끄고 싶다면 SETTINGS_ENABLE_PUSH를 0으로 설정하면 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;104-알려진-보안-이슈&quot;&gt;10.4. 알려진 보안 이슈&lt;/h3&gt;
+
+&lt;h4 id=&quot;1041-중개자-캡슐화-공격intermediary-encapsulation-attacks&quot;&gt;10.4.1. 중개자 캡슐화 공격(Intermediary Encapsulation Attacks)&lt;/h4&gt;
+
+&lt;p&gt;HTTP/2.0 메세지를 프록시가 HTTP/1.1로 변환할때 메세지의 의미가 바뀔 수 있습니다. HTTP/2.0에선 헤더필드의 이름과 값을 바이너리로 인코딩하기 때문에 헤더 필드에 어떤 문자열도 사용할 수 있습니다. 때문에 번역하는 프록시가 의도적으로 헤더를 바꿀 수 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1042-긴-커넥션-유지로-인한-개인정보-누출-우려&quot;&gt;10.4.2. 긴 커넥션 유지로 인한 개인정보 누출 우려&lt;/h4&gt;
+
+&lt;p&gt;HTTP/2.0에선 기본적으로 클라이언트와 서버의 커넥션이 오래 유지될 것이라고 가정합니다. 이 경우에 개인정보 유출의 위험이 있습니다. 예를들어, 사용자가 브라우저를 사용할때 이전 사용자가 무엇을 주고 받았는지 알아낼 수도 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;p&gt;추가저으로 좋은 링크 (https://developers.google.com/web/fundamentals/performance/http2)[https://developers.google.com/web/fundamentals/performance/http2]&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>웹 로봇</title>
