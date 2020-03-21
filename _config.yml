@@ -14,6 +14,19 @@ imgbase:		'/public/image/'
 paginate:            5
 gems:                [jekyll-paginate]
 plugins:		[jekyll-paginate]
+rootfolder:
+   about : 
+      subfolder : false
+   projects: 
+      tca: 
+         subfolder : false
+      sagyo:
+         subfolder : false
+   study_book :
+      http : 
+         subfolder : false
+      algorithm : 
+         subfolder : false
 
 # About/contact
 author:
