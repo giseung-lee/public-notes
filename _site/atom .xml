@@ -4,13 +4,215 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-23T16:40:29+09:00</updated>
+ <updated>2020-03-24T22:00:45+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>엔터티와 인코딩</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C15/"/>
+   <updated>2020-03-24T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드15</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP는 다음과 같은 것들을 보장해줍니다.
+    &lt;ul&gt;
+      &lt;li&gt;객체가 올바르게 식별되어(콘텐츠의 타입이나 언어 등..) 클라이언트가 콘텐츠를 올바르게 처리할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;객체는 올바르게 압축이 풀릴 것입니다.&lt;/li&gt;
+      &lt;li&gt;객체는 항상 최신을 유지할 것입니다.&lt;/li&gt;
+      &lt;li&gt;사용자의 요구를 만족시킬 것입니다.&lt;/li&gt;
+      &lt;li&gt;네트워크 사이를 빠르고 효율적으로 이동할 것입니다.&lt;/li&gt;
+      &lt;li&gt;조작되지 않고 온전히 도착할 것입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같은 사항들을 보장하기 위해 엔터티와 엔터티 헤더들이 사용됩니다.&lt;/li&gt;
+  &lt;li&gt;이번장에서 배울 내용은 위의 사항을 보장하기 위해 사용되는 것들입니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTTP 메세지 엔터티의 포맷 및 동작방식&lt;/li&gt;
+      &lt;li&gt;HTTP가 엔터티 본문크기를 기술하는 방법&lt;/li&gt;
+      &lt;li&gt;크기를 줄여주는 콘텐츠 인코딩&lt;/li&gt;
+      &lt;li&gt;컨텐츠의 송수신을 위해 수행되는 전송 인코딩(그 중 청크 인코딩)&lt;/li&gt;
+      &lt;li&gt;최신 버전을 유지해주기 위한 태그, 라벨, 시간, 체크섬, 검사기, 기타 헤더 필드&lt;/li&gt;
+      &lt;li&gt;중단된 다운로드를 중간부터 재개할 수 있게 해주는 범위 요청&lt;/li&gt;
+      &lt;li&gt;전에 본 웹페이지를 열때 변경 있는 부분만 요청 할 수 있는 HTTP 델타 인코딩 확장&lt;/li&gt;
+      &lt;li&gt;엔터티의 변조를 체크하는 엔터티 본문의 체크섬&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;151-메세지는-컨테이너-엔터티는-화물&quot;&gt;15.1. 메세지는 컨테이너, 엔터티는 화물&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 메세지가 컨테이너라면 HTTP 엔터티는 그 안의 화물입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.0 200 OK
+Server : Netscape-Enterprise/3.6
+Date : Sun, 17 Sep 2000 00:01:05 GMT
+Content-type : text/plain		-- Entity Header
+Content-length : 18			-- Entity Header
+					-- CRLF : 엔터티 본문 시작 알림
+Hi I'm a message			-- Entity Body
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP/1.1 에선 10가지 주요 엔터티 헤더 필드를 정의했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;Content-Type : 전달된 객체의 종류, 타입&lt;/li&gt;
+      &lt;li&gt;Content-Length : 전달되는 메세지의 길이나 크기&lt;/li&gt;
+      &lt;li&gt;Content-Language : 전달되는 객체와 가장 잘 대응되는 자연어&lt;/li&gt;
+      &lt;li&gt;Content-Encoding : 객체 데이터의 인코딩 방법&lt;/li&gt;
+      &lt;li&gt;Content-Location : 요청 시점 기준 객체의 위치&lt;/li&gt;
+      &lt;li&gt;Content-Range : 해다 엔터티가 부분 엔터티라면 전체의 어느 부분인지&lt;/li&gt;
+      &lt;li&gt;Content-MD5 : 엔터티 본문 콘텐츠에 대한 체크섬&lt;/li&gt;
+      &lt;li&gt;Last-Modified : 서버에서 이 콘텐츠가 생성 및 수정된 날&lt;/li&gt;
+      &lt;li&gt;Expires : 엔터티 데이터가 신선하지 않은 것으로 간주되는 날짜&lt;/li&gt;
+      &lt;li&gt;Allow : 이 리소스에 어느 요청 메서드가 허용되는지&lt;/li&gt;
+      &lt;li&gt;ETag : 해당 인스턴스에 대한 고유한 검사기. (엄밀히 말하자면 엔터티 헤더는 아니지만 엔터티와 관련한 중요한 헤더입니다.)&lt;/li&gt;
+      &lt;li&gt;Cache-Control : 이 문서가 어떻게 캐시되어야 하는지 (역시 엄밀히 말하자면 엔터티 헤더는 아닙니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1511-엔터티-본문&quot;&gt;15.1.1. 엔터티 본문&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;엔터티 본문은 가공되지 않은 raw 데이터입니다. 이를 설명해주기 위해 엔터티 헤더가 필요합니다.&lt;/li&gt;
+  &lt;li&gt;엔터티 본문은 헤더 필드의 끝을 뜻하는 CRLF 줄 바로 다음부터 시작합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;152-content-length-엔터티의-길이&quot;&gt;15.2. Content-Length: 엔터티의 길이&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Content-Length는 엔터티 본문의 크기를 바이트 단위로 나타냅니다.&lt;/li&gt;
+  &lt;li&gt;청크 인코딩으로 전송하지 않는 이상 항상 있어야 합니다.&lt;/li&gt;
+  &lt;li&gt;메세지가 중간에 잘렸는지 감지할 때, 지속 커넥션 상황에서 메세지 사이를 올바르게 분할하기 위해 필요합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1521-잘림-검출&quot;&gt;15.2.1. 잘림 검출&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;과거의 HTTP는 커넥션이 닫힌 걸로 메세지가 끝난걸 확인했습니다.&lt;/li&gt;
+  &lt;li&gt;Content-Length가 없다면 메세지를 모두 수신하고 정상적으로 커넥션이 닫혔는지, 비정상적으로 닫혀 메세지가 중간에 끊겼는지 알 수 없습니다.&lt;/li&gt;
+  &lt;li&gt;캐시가 개입한 상황이라면 캐시는 중간에 잘린 메세지를 캐싱해놓고 계속 클라이언트에게 제공할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1522-잘못된-content-length&quot;&gt;15.2.2. 잘못된 Content-Length&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;잘못된 Content-Length를 가지고 있는건 아예 Content-Length가 없는 것보다 심각한 문제를 야기합니다.&lt;/li&gt;
+  &lt;li&gt;HTTP/1.1 에선 클라이언트 프로그램이 잘못된 Content-Length를 받은 사실을 알게되면 사용자에게 알려주도록 되어 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1523-content-length와-지속-커넥션persistent-connection&quot;&gt;15.2.3. Content-Length와 지속 커넥션(Persistent Connection)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지속커넥션이 기본이된 현재는 Content-Length가 더욱 필수적입니다.&lt;/li&gt;
+  &lt;li&gt;한 커넥션으로 여러 메세지가 오가기 때문에 해당 메세지가 언제 끝나는지 알아야 하기 때문입니다.&lt;/li&gt;
+  &lt;li&gt;다만, 청크 인코딩을 사용할 시엔 Content-Length가 없을 수 있습니다. 청크 인코딩은 15.6.에서 알아볼 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1524-콘텐츠-인코딩&quot;&gt;15.2.4. 콘텐츠 인코딩&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;콘텐츠가 인코딩 되어 있다면 Content-Length는 인코딩 된 길이를 나타냅니다.&lt;/li&gt;
+  &lt;li&gt;간혹 인코딩 전의 Content-Length를 보내는 잘못된 서버도 있으니 주의해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1525-엔터티-본문-길이-판별을-위한-규칙&quot;&gt;15.2.5. 엔터티 본문 길이 판별을 위한 규칙&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;다음은 엔터티 본문의 길이와 끝나는 위치를 판별하는 규칙들입니다. 순서대로 적용되어야 합니다.
+    &lt;ol&gt;
+      &lt;li&gt;HEAD응답과 같이 본문을 갖는게 금지된 특정 HTTP 메세지에선 Content-Length 헤더가 무시됩니다.&lt;/li&gt;
+      &lt;li&gt;메세지가 Transfer-Encoding 헤더를 포함한다면, 엔터티는 ‘0 바이트 청크’라고 불리는 특별한 패턴으로 끝나야 하고 Content-Length는 무시해야 합니다.&lt;/li&gt;
+      &lt;li&gt;메세지에 Transfer-Encoding 헤더가 없고 Content-Length 헤더가 있다면 Content-Length헤더는 본문의 길이를 담습니다.&lt;/li&gt;
+      &lt;li&gt;메세지가 ‘multipart/byteranges’ 미디어 타입을 사용하고 Content-Length가 없다면 해당 메세지는 각자 스스로 크기를 정의할 것입니다. byterages라는 멀티파트 유형은 자신의 크기를 스스로 정하는 유일한 유형입니다. (수신자가 이를 받아들일 수 있는 능력이 있는지 검증한 후 보내야 합니다.)&lt;/li&gt;
+      &lt;li&gt;위의 어느 것에도 해당되지 않으면 엔터티는 커넥션이 닫힐 때 끝납니다.&lt;/li&gt;
+      &lt;li&gt;HTTP/1.0과의 호환을 위해, 엔터티 본문을 갖고 있는 HTTP/1.1 &lt;strong&gt;요청&lt;/strong&gt;은 반드시 Content-Length도 갖고 있어야 합니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;153-엔터티-요약&quot;&gt;15.3. 엔터티 요약&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;154-미디어-타입과-차셋charset&quot;&gt;15.4. 미디어 타입과 차셋(Charset)&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1541-텍스트-매체를-위한-문자-인코딩&quot;&gt;15.4.1. 텍스트 매체를 위한 문자 인코딩&lt;/h4&gt;
+
+&lt;h4 id=&quot;1542-멀티파트-미디어-타입&quot;&gt;15.4.2. 멀티파트 미디어 타입&lt;/h4&gt;
+
+&lt;h4 id=&quot;1543-멀티파트-폼-제출&quot;&gt;15.4.3. 멀티파트 폼 제출&lt;/h4&gt;
+
+&lt;h4 id=&quot;1544-멀티파트-범위-응답&quot;&gt;15.4.4. 멀티파트 범위 응답&lt;/h4&gt;
+
+&lt;h3 id=&quot;155-콘텐츠-인코딩&quot;&gt;15.5. 콘텐츠 인코딩&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1551-콘텐츠-인코딩-과정&quot;&gt;15.5.1. 콘텐츠 인코딩 과정&lt;/h4&gt;
+
+&lt;h4 id=&quot;1552-콘텐츠-인코딩-유형&quot;&gt;15.5.2. 콘텐츠 인코딩 유형&lt;/h4&gt;
+
+&lt;h4 id=&quot;1553-accept-encoding-헤더&quot;&gt;15.5.3. Accept-Encoding 헤더&lt;/h4&gt;
+
+&lt;h3 id=&quot;156-전송-인코딩과-청크-인코딩&quot;&gt;15.6. 전송 인코딩과 청크 인코딩&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1561-안전한-전송&quot;&gt;15.6.1. 안전한 전송&lt;/h4&gt;
+
+&lt;h4 id=&quot;1562-transfer-encoding-헤더&quot;&gt;15.6.2. Transfer-Encoding 헤더&lt;/h4&gt;
+
+&lt;h4 id=&quot;1563-청크-인코딩&quot;&gt;15.6.3. 청크 인코딩&lt;/h4&gt;
+
+&lt;h4 id=&quot;1564-콘텐츠와-전송-인코딩의-조합&quot;&gt;15.6.4. 콘텐츠와 전송 인코딩의 조합&lt;/h4&gt;
+
+&lt;h4 id=&quot;1565-전송-인코딩-규칙&quot;&gt;15.6.5. 전송 인코딩 규칙&lt;/h4&gt;
+
+&lt;h3 id=&quot;157-시간에-따라-바뀌는-인스턴스&quot;&gt;15.7. 시간에 따라 바뀌는 인스턴스&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;158-검사기와-신선도&quot;&gt;15.8. 검사기와 신선도&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1581-신선도&quot;&gt;15.8.1. 신선도&lt;/h4&gt;
+
+&lt;h4 id=&quot;1582-조건부-요청과-검사기&quot;&gt;15.8.2. 조건부 요청과 검사기&lt;/h4&gt;
+
+&lt;h3 id=&quot;159-범위-요청&quot;&gt;15.9. 범위 요청&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;1510-델타-인코딩&quot;&gt;15.10. 델타 인코딩&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;15101-인스턴스-조작-델타-생성기-그리고-델타-적용기&quot;&gt;15.10.1. 인스턴스 조작, 델타 생성기 그리고 델타 적용기&lt;/h4&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+</content>
+ </entry>
  
  <entry>
    <title>보안 HTTP</title>
