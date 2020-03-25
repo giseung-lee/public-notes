@@ -4,13 +4,665 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-24T22:00:45+09:00</updated>
+ <updated>2020-03-25T17:57:07+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>국제화</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C16/"/>
+   <updated>2020-03-25T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드16</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP가 전세계적으로 사용되기 위해선 여러 이슈들이 존재하지만 그중 주요한 두 가지가 ‘문자집합 인코딩’과 ‘언어 태그’입니다.&lt;/li&gt;
+  &lt;li&gt;이번 장에선 다음과 같은 내용을 알아볼 것입니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTTP가 어떻게 여러 언어 문자 체계 및 표준과 상호작용 하는지&lt;/li&gt;
+      &lt;li&gt;문자 인코딩에 관련한 용어, 기술, 표준&lt;/li&gt;
+      &lt;li&gt;언어를 위한 표준 명명 체계 및 표준화된 언어 태그가 어떻게 콘텐츠를 서술하는 지&lt;/li&gt;
+      &lt;li&gt;국제화된 URI의 규칙과 주의사항&lt;/li&gt;
+      &lt;li&gt;날짜 및 그외 국제화 관련 이슈&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;161-국제적인-콘텐츠를-다루기-위해-필요한-http-지원&quot;&gt;16.1. 국제적인 콘텐츠를 다루기 위해 필요한 HTTP 지원&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP의 엔터티 본문은 사실 0, 1로 가득찬 덩어리에 불과합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 0,1의 덩어리들이 각 클라이언트들가 원하는 문자와 언어를 통해 보여지도록 만들어야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서버는 클라이언트 프로그램에게 보낸 문서의 문자와 언어를 Content-Type charset 매개변수와 Content-Language 헤더를 통해 알려줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 서버에게 자신이 어떤 언어를 이해할 수 있고 선호하는 지 Accept-Charset과 Accept-Language 헤더를 통해 알려줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Accept-Language: fr, en;q=0.8
+Accept-Charset: iso-8859-1, utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 예시는 프랑스어와 영어를 이해할 수 있으며 각 선호도는 1.0(기본값), 0.8이고, 문자집합은 iso-8859-1과 utf-8을 이해할 수 있다는 뜻입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;162-문자집합과-http&quot;&gt;16.2. 문자집합과 HTTP&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1621-charset은-글자를-비트로-변환하는-인코딩이다&quot;&gt;16.2.1. Charset은 글자를 비트로 변환하는 인코딩이다.&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Charset은 특정 문자 체계의 문자 &amp;lt;-&amp;gt; 비트 둘을 연결해주는 것입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;11101010 10110000 10000000 &amp;lt;-&amp;gt; 가
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비트 11101010 10110000 10000000를 utf-8로 변환하면 한글 ‘가’가 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Charset 태그는 MIME 문자집합에 표준화되어 있고, IANA가 관리합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Charset은 Content-Type 헤더에 매개변수로 들어갑니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Type: text/html; charset=utf8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1622-문자집합과-인코딩은-어떻게-동작하는가&quot;&gt;16.2.2. 문자집합과 인코딩은 어떻게 동작하는가&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;비트가 특정 문자체계의 문자로 디코딩 되는 과정은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;비트를 인코딩된 문자집합에 따라 일정 단위로 끊어 문자 코드로 변환합니다.(문자집합에 따라 1글자를 몇 바이트로 계산하는지가 달라지며, 일부 문자집합은 가변적으로 계산하기도 합니다.)&lt;/p&gt;
+
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;... 11100001 ... -[iso-8859-6]-&amp;gt; 225
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;문자 집합에서 해당 문자 코드가 어떤 문자를 갖는지 찾습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;225 -[iso-8859-6]-&amp;gt; ف
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP는 해당 문자가 어떻게 표현되는지 관심이 없습니다. 단지 비트 데이터와 어떻게 읽혔으면 좋겠는지를 나타내는 헤더를 전송할 뿐입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비트를 풀어 글자를 표현하는 것은 사용자의 작업 환경(클라이언트 프로그램 및 운영체제)입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1623-잘못된-charset은-잘못된-글자를-낳는다&quot;&gt;16.2.3. 잘못된 charset은 잘못된 글자를 낳는다.&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PC를 사용하면서 알수 없는 특수문자들로 가득한 깨진 문서들을 본 적이 있을 것입니다. charset이 잘못되면 클라이언트는 이해할 수 없는 이상한 글자를 보게 됩니다.&lt;/li&gt;
+  &lt;li&gt;문자 코드 225는 어떤 문잡집합에서 쓰이느냐에 따라 다양하게 바뀔 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;iso-8859-1 서유럽 문자코드에선 á, iso-8859-6 아랍 코드에선 ف , iso-8859-7 그리스어에선 α, iso-8859-8 히브리어에선 ב 를 보여주게 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1624-표준화된-mime-charset-값&quot;&gt;16.2.4. 표준화된 MIME charset 값&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;특정 문자 인코딩과 특정 코딩된 문자집합의 결합을 MIME charset 이라고 합니다.&lt;/li&gt;
+  &lt;li&gt;Content-Type 헤더, Accept-Charset 헤더에서 MIME charset을 사용합니다.&lt;/li&gt;
+  &lt;li&gt;MIME charset은 IANA에서 관리합니다.&lt;/li&gt;
+  &lt;li&gt;자세한 목록은 &lt;a href=&quot;https://www.iana.org/assignments/character-sets/character-sets.xhtml&quot;&gt;IANA 링크&lt;/a&gt;를 소개해드리겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1625-content-type-charset-헤더와-meta-태그&quot;&gt;16.2.5. Content-Type charset 헤더와 META 태그&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹 서버는 클라이언트에게 MIME charset 태그를 Content-Type 헤더에 담아 보냅니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Type : text/html; charset=iso-2022-jp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;만약 Content-Type에 명시되지 않았을 경우 HTML 문서라면 HEAD에서 메타태그를 찾습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;HEAD&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;META&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;HTTP-EQUIV=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Content-Type&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;CONTENT=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html; charset=iso-2022-jp&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;META&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;LANG=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jp&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;TITLE&amp;gt;&lt;/span&gt;Japanese Document&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TITLE&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HEAD&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;BODY&amp;gt;&lt;/span&gt;
+    ...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/BODY&amp;gt;&lt;/span&gt;        
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;만약 HTML문서에 해당 메타태그가 없거나 HTML 문서가 아니라면 텍스트를 스캔하며 문자 인코딩을 추측합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;문자 인코딩 추측에 실패했다면 가장 기본인 iso-8859-1로 간주합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1626-accept-charset-헤더&quot;&gt;16.2.6. Accept-Charset 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 모든 문자집합을 지원하진 않습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;따라서 클라이언트는 서버에게 자신은 어떤 문자집합을 지원하는지 알려줄 필요가 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Accept-Charset 헤더를 통해 그 목록과 선호도를 알려줄 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Accept-Charset: iso-8859-1, utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Content-Charset 이라는 응답헤더는 없다는 것에 주의합시다. 응답헤더는 Content-Type의 charset 매개변수가 이미 존재합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;163-다중언어-문자-인코딩에-대한-지침&quot;&gt;16.3. 다중언어 문자 인코딩에 대한 지침&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;문자 체계에 관련한 용어들은 복잡하고 일관성이 없어 배우기 쉽지 않습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1631-문자집합-용어&quot;&gt;16.3.1. 문자집합 용어&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;문자&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;알파벳 각 글자, 숫자, 구두점 등 글쓰기의 최소 단위. Unicode에서 각각의 문자마다 유일한 이름을 부여했습니다. 모든 Unicode 는 &lt;a href=&quot;https://www.unicode.org/charts/&quot;&gt;여기&lt;/a&gt;에서 확인 가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;글리프(glyph)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;하나의 글자를 표현하기 위한 여러 형태. 한 문자라도 다양한 글리프가 가능합니다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/glyph.png&quot; alt=&quot;glyph.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;코딩된 문자(coded character)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 글자에 할당된 유일한 숫자(문자 코드). 앞서 살펴본 á의 coded character는 225입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;코드 공간(coding space)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;문자 코드 값으로 사용하려고 계획해 둔 정수의 범위. 1바이트 문자라면 0~255&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;코드 너비(code width)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 문자 코드의 (고정된 크기의) 비트 개수&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;사용 가능 문자집합(character repertoire)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;말 그대로 사용 가능한 문자들의 집합.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;코딩된 문자집합(coded character set)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용 가능 문자집합들의 코딩된 문자 집합&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;문자 인코딩 구조(Character Encoding Schemes)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;숫자로된 문자코드를 비트단위로 인코딩/디코딩 하는 알고리즘.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1632-charset은-형편없는-이름이다&quot;&gt;16.3.2. ‘Charset’은 형편없는 이름이다.&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MIME Charset 태그는 사실 문자 집합자체를 의미하는 것이 아닙니다. 비트를 고유한 문자 코드로 맵핑하는 알고리즘의 이름입니다. charset태그에 쓰인 utf8은 utf8 문자 집합자체를 뜻하는게 아니라 비트를 utf8 문자코드로 맵핑하는 알고리즘의 이름입니다.&lt;/li&gt;
+  &lt;li&gt;MIME Charset 태그는 ‘문자 인코딩 구조’와 ‘코딩된 문자집합’ 개념을 합친것인데 사실 용어가 애매해지기 시작합니다.&lt;/li&gt;
+  &lt;li&gt;이미 ‘문자 인코딩 구조’와 ‘코딩된 문자집합’ 두 개념에 대한 표준이 각각 존재합니다.&lt;/li&gt;
+  &lt;li&gt;charset과 관련해선 각 용어들의 의미가 애매하니 charset 관련 문서를 심도있게 다뤄야 한다면 주의해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1633-문자&quot;&gt;16.3.3. 문자&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;문자는 쓰기의 기본 단위입니다.&lt;/li&gt;
+  &lt;li&gt;여기서 말하는 문자는 글꼴이나 스타일에 독립적인 유니크하고 추상화된 의미의 문자입니다.&lt;/li&gt;
+  &lt;li&gt;사람의 필기체에 따라, 운영체제의 글꼴에 따라 한 문자가 다양한 형태로 표현되지만 모두 같은 문자입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1634-글리프glyphs-연자ligatures-그리고-표현-형태&quot;&gt;16.3.4. 글리프(glyphs), 연자(ligatures) 그리고 표현 형태&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;글리프란 한 문자를 표현하는 다양한 형태입니다. 필기체에 따라, 글꼴에 따라 한 문자에 대해 다양한 글리프가 존재합니다.&lt;/li&gt;
+  &lt;li&gt;연자(ligatures)는 쉽게말해 흘려쓰기입니다. 연속된 두 글자를 한 글자처럼 흘려서 쓰는 그런 형태를 연자(ligatures)라고 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1635-코딩된-문자집합coded-character-set&quot;&gt;16.3.5. 코딩된 문자집합(Coded Character Set)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;코딩된 문자집합은 각 정수 값들을 하나의 문자에 대응시킵니다.&lt;/li&gt;
+  &lt;li&gt;몇몇 코딩된 문자집합들을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;US-ASCII: 모든 문자집합의 어머니&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1968년 ‘정보교환을 위한 미국 표준 코드’로 표준화된 문자집합입니다.&lt;/li&gt;
+  &lt;li&gt;0~127까지만 사용해 코드 공간 전체를 표현하는데 7비트뿐이면 되는 문자집합입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;iso-8859&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;유럽의 글자를 표현하기 위한 US-ASCII 의 8비트 확대집합들입니다.&lt;/li&gt;
+  &lt;li&gt;8비트 만으론 모든 유럽의 글자를 표현할 수 없어 지역에따라 다른 iso-8859를 제공합니다.
+    &lt;ul&gt;
+      &lt;li&gt;iso-8859-1 : 서유럽어&lt;/li&gt;
+      &lt;li&gt;iso-8859-2 : 중앙 및 동유럽어&lt;/li&gt;
+      &lt;li&gt;iso-8859-3 : 남유럽어&lt;/li&gt;
+      &lt;li&gt;iso-8859-4 : 북유럽어&lt;/li&gt;
+      &lt;li&gt;iso-8859-5 : 키릴어&lt;/li&gt;
+      &lt;li&gt;iso-8859-6 : 아랍어&lt;/li&gt;
+      &lt;li&gt;iso-8859-7 : 그리스어&lt;/li&gt;
+      &lt;li&gt;iso-8859-8 : 히브리어&lt;/li&gt;
+      &lt;li&gt;iso-8859-9 : 터키어&lt;/li&gt;
+      &lt;li&gt;iso-8859-10 : 노르딕어&lt;/li&gt;
+      &lt;li&gt;iso-8859-15 : 새로운 유로 통화 문자를 포함하기 위한 iso-8859-1의 변형&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;JIS X 0201&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ASCII를 일본어 가타카나 반각문자로 확장한 문자집합입니다.&lt;/li&gt;
+  &lt;li&gt;JIS Roman 이라고도 불립니다.&lt;/li&gt;
+  &lt;li&gt;JIs = Japanese Industrial Standard&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;JIS X 0208 과 JIS X 0212&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JIS X 0201 에서 확장한 가타카나 반각문자는 63개의 표음문자 뿐이었습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 일본엔 훨씬 많은 표의문자들이 존재합니다.&lt;/li&gt;
+  &lt;li&gt;JIS X 0208은 일본식 한자 6,879개를 추가한 최초의 멀티 바이트 문자집합입니다.&lt;/li&gt;
+  &lt;li&gt;JIS X 0212는 6,607개의 문자를 추가했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;UCS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UCS(Universal Character Set)은 전 세계의 모든 글자를 하나의 문자집합으로 통합하려는 표준입니다.&lt;/li&gt;
+  &lt;li&gt;UCS는 iso-10646 으로 정의되며&lt;/li&gt;
+  &lt;li&gt;우리가 잘 알고있는 Unicode는 UCS 표준을 따르는 상업적인 컨소시엄입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1636-문자-인코딩-구조character-encoding-schemes&quot;&gt;16.3.6. 문자 인코딩 구조(Character Encoding Schemes)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;문자 인코딩 구조란 문자 코드를 비트로, 비트를 문자 코드로 바꾸는 알고리즘입니다.&lt;/li&gt;
+  &lt;li&gt;문자 인코딩 구조는 아래 세 종류로 구분할 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;고정폭 : 각 문자를 고정된 길이의 비트로 표현합니다. 빠르지만 공간을 낭비할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;가변폭(비모달) : 문자 코드번호 마다 다른 길이의 비트를 사용합니다. 자주 사용되는 문자의 비트를 줄일 수 있고 추가적인 국제 문자들을 여러 바이트로 표현해 1바이트로만 표현하던 문자집합과의 호환성을 유지할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;가변폭(모달) : 모달 인코딩은 여러 가지 문자집합간의 전환을 위해 사용되는 인코딩입니다. 다른 모드로 전환하기 위해 ‘escape’ 패턴을 사용합니다. 복잡한 만큼 처리하는데엔 가장 많은 시간이 걸립니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;몇 가지 인코딩 scheme을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;8비트&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 문자코드를 8비트 값으로 인코딩 합니다. 256개 문자 범위 안에서만 가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;UTF-8&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;utf-8은 UCS를 위해 설계된 문자 인코딩 scheme 입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비모달 가변길이 인코딩을 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UTF-8에선 1~3바이트로 문자들이 표현됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;인코딩된 첫 바이트의 첫 비트가 0이면 1바이트의 문자입니다. 반대로 1바이트 문자는 첫 비트가 0으로 인코딩 됩니다. 첫 비트가 0이고 나머지 7비트로 문자가 표현되기 때문에 US-ASCII와 호환됩니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0xxxxxxx 
+01100001 -&amp;gt; 61 -&amp;gt; a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;인코딩된 첫 바이트가 110으로 시작하면 2바이트 문자입니다. 이후 바이트는 10으로 시작합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;110xxxxx 10xxxxxx
+11000010 10100101 -&amp;gt; 194 165 -&amp;gt; ¥
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;인코딩된 첫 바이트가 1110이면 3바이트 문자입니다. 이후 바이트는 10으로 시작합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1110xxxx 10xxxxxx 10xxxxxx
+11101010 10110000 10000000 -&amp;gt; 234 176 128 -&amp;gt; 가
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;iso-2022-jp&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;iso-2022-jp는 일본어 인터넷 문서를 위해 널리 사용되는 인코딩입니다.&lt;/li&gt;
+  &lt;li&gt;128보다 작은 값으로만 이루어진 가변길이 모달 인코딩입니다.&lt;/li&gt;
+  &lt;li&gt;자세한 설명은 생략합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;euc-jp&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;또 하나의 인기있는 일본어 인코딩 입니다.&lt;/li&gt;
+  &lt;li&gt;euc는 Extended Unix Code의 약자로, 유닉스에서 아시아 문자를 지원하기 위해 처음 만들어진 문자 인코딩입니다.&lt;/li&gt;
+  &lt;li&gt;euc-jp는 비모달 가변 인코딩입니다.&lt;/li&gt;
+  &lt;li&gt;역시 자세한 설명은 생략합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;euc-kr&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;euc-kr은 한글 인터넷 문서를 위해 사용되는 가변길이 인코딩입니다.&lt;/li&gt;
+  &lt;li&gt;KS X 1003, KS X 1001 두가지 문자 집합을 지원합니다.
+    &lt;ul&gt;
+      &lt;li&gt;KS X 1003은 US-ASCII의 백슬래쉬를 원화 기호로 치환한 것일 뿐입니다.&lt;/li&gt;
+      &lt;li&gt;KS X 1001은 2바이트로 인코딩된 한글, 한자 및 특수문자 집합입니다.&lt;/li&gt;
+      &lt;li&gt;KS X 1001은 2,350자를 구현하고 있어 사실 모든 한글을 표현하기에 부족합니다.&lt;/li&gt;
+      &lt;li&gt;때문에 한글 ‘채움 문자(fill code, 0xA4 와 0xD4)’를 이용해 초성, 중성, 종성을 합쳐 한 단어를 표현가능하게 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;164-언어-태그와-http&quot;&gt;16.4. 언어 태그와 HTTP&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;언어 태그란 각 언어에 이름을 붙인 짧고 표준화된 문자열 입니다. (영어 - en, 한국어 - ko, 프랑스어 - fr)&lt;/li&gt;
+  &lt;li&gt;언어 태그는 표준 언어 뿐 아니라 지역에 따른 언어나(en-US, en-GB) 안 국가내 방언(zh-xiang)을 표현할 수도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1641-content-language-헤더&quot;&gt;16.4.1. Content-Language 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Content-Language 헤더는 언어 태그를 이용해 해당 콘텐츠가 어떤 언어 사용자를 대상으로 하는지 서술합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Language: ko
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Content-Language 헤더는 텍스트 문서뿐 아니라 오디오, 동영상 등 특정 언어 사용자를 구분해야 하는 곳이면 어디든 사용할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Content-Language에 여러 언어를 지정할 수도 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Launguage: ko, en
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1642-accept-language-헤더&quot;&gt;16.4.2. Accept-Language 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트는 Accept-Launguage 헤더를 통해 서버에게 자신이 어떤 언어를 선호하는 지 알려줄 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;서버가 언어별로 다른 리소스를 제공해줄 수 있을 때 유용합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1643-언어-태그의-종류&quot;&gt;16.4.3. 언어 태그의 종류&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;언어 태그는 일반적인 언어 뿐 아니라 아래와 같이 다양한 언어에 사용될 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;일반적인 언어 : ko, en, fr, es&lt;/li&gt;
+      &lt;li&gt;특정 국가의 언어 : en-GB, en-US&lt;/li&gt;
+      &lt;li&gt;방언 : no-bok (노르웨이의 book language)&lt;/li&gt;
+      &lt;li&gt;지방어 : sgn-US-MA (마서스 비니어드 섬의 수화)&lt;/li&gt;
+      &lt;li&gt;그외 다른 언어의 변형이 아닌 표준 언어 : i-navajo (미국 인디언 중 나바호족)&lt;/li&gt;
+      &lt;li&gt;비표준 언어 : x-snowboarder-slang (스노우 보드 타는 사람들 슬랭)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1644-서브태그&quot;&gt;16.4.4. 서브태그&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;언어 태그는 ‘ - ‘으로 분리된 하나 이상의 서브태그로 이루어집니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sgn-US-MA (마서스 버니어드 섬의 수화)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;첫 번째 서브태그는 ‘주 서브태그’라고 불리며 표준화 되어 있습니다. a~z 글자만 포함합니다.&lt;/li&gt;
+      &lt;li&gt;두 번째 서브태그는 선택적이며 자신만의 이름 표준을 따릅니다. 알파벳, 숫자를 포함하며 최대 8자입니다.&lt;/li&gt;
+      &lt;li&gt;세 번째부터의 서브 태그는 따로 표준이 등록되어있지 않습니다. 알파벳, 숫자를 포함하며 최대 8자입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1645-대소문자의-구분-및-표현&quot;&gt;16.4.5. 대소문자의 구분 및 표현&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;모든 태그는 대소문자를 구분하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;다만 관용적으로 언어를 나타낼땐 소문자, 국가를 나타낼땐 대문자를 사용합니다.
+    &lt;ul&gt;
+      &lt;li&gt;‘fr’은 프랑스어로 분류되는 모든 언어를 의미하고, ‘FR’은 국가 프랑스를 의미합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1646-iana-언어-태그-등록&quot;&gt;16.4.6. IANA 언어 태그 등록&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;첫 번째와 두 번째 서브 태그는 여러 표준 문서와 조직에 의해 정의됩니다.&lt;/li&gt;
+  &lt;li&gt;IANA에선 RFC 3066 규칙에 따라 표준 언어 태그의 목록을 관리합니다. (&lt;a href=&quot;https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry&quot;&gt;https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;다음 3개의 절에선 RFC 3066의 언어태그 규칙을 소개해 드리겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1647-첫-번째-서브태그--이름공간&quot;&gt;16.4.7. 첫 번째 서브태그 : 이름공간&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;첫 번째 서브태그엔 다음과 같은 규칙이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;두 글자라면, ISO-639와 ISO-639-1의 표준 언어 코드입니다.&lt;/li&gt;
+      &lt;li&gt;세 글자라면, ISO-639-2 표준과 확장의 표준 언어 코드입니다.&lt;/li&gt;
+      &lt;li&gt;‘i’ 라면, IANA에 등록된 언어 코드 입니다.&lt;/li&gt;
+      &lt;li&gt;‘x’라면, 특정 개인이나 집단 전용의 비표준 확장 서브태그 입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes&quot;&gt;https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes&lt;/a&gt;에서 ISO-639-1, 2의 목록을 확인할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1648-두-번째-서브태그--이름공간&quot;&gt;16.4.8. 두 번째 서브태그 : 이름공간&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;두 번째 서브태그엔 다음과 같은 규칙이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;두 글자라면, ISO-3166에 정의된 국가/지역입니다.&lt;/li&gt;
+      &lt;li&gt;3~8 글자라면, IANA에 등록된 것입니다.&lt;/li&gt;
+      &lt;li&gt;한 글자라면, 뭔가 잘못된 것입니다.(??? 서양식 조크인가 봅니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes&quot;&gt;https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes&lt;/a&gt;에서 ISO-3166 목록을 확인할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1649-나머지-서브태그--이름공간&quot;&gt;16.4.9. 나머지 서브태그 : 이름공간&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;세 번째와 그 이후의 서브태그는 8자 이하의 알파벳, 숫자로만 이루어져야 한다는것을 제외하면 다른 규칙은 없습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;16410-선호-언어-설정하기&quot;&gt;16.4.10. 선호 언어 설정하기&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;브라우저에서 선호 언어를 설정할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;165-국제화된-uri&quot;&gt;16.5. 국제화된 URI&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;책이 작성되던 때의 URI는 오직 US-ASCII만 가능했습니다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;하지만 현재는 RFC 3986에서 UTF-8 문자를 URI에 이용하는 방법을 명시해 다양한 문자를 문제없이 사용할 수 있습니다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1651-국제적-가독성-vs-의미-있는-문자들&quot;&gt;16.5.1. 국제적 가독성 vs 의미 있는 문자들&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;과거의 URI 설계자들은 URI가 어떤 환경에서도 조작하고 공유하기 쉬웠으면 했고, 동시에 모두가 사용하기 쉽고 기억하기 쉬웠으면 했습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 둘은 충돌을 일으켰습니다.&lt;/li&gt;
+  &lt;li&gt;조작하고 공유하기 쉽게 하기 위해 US-ASCII 문자셋만을 URI에 허용했는데 이는 비영어권 사람들에겐 매우 불편한 URI가 되었습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 URI 설계자들은 모든 문자를 포함해 의미있는 URI를 만드는 것 보다 가독성과 공유 가능성에 더 무게를 두어 US-ASCII 문자셋만 허용하게 됐었습니다.(과거 얘기입니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1652-uri에서-사용될-수-있는-문자들&quot;&gt;16.5.2. URI에서 사용될 수 있는 문자들&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;URI에서 사용될 수 있는 문자들은 US-ASCII의 문자들 중 아래와 같은 것들입니다.
+    &lt;ul&gt;
+      &lt;li&gt;예약되지 않은 문자 : [  A~Z  a~z  0~9  -  _  .   !  ~  *  ‘  (  )  ]&lt;/li&gt;
+      &lt;li&gt;예약된 문자 : [  ;  /  ?  :  @  &amp;amp;  =  +  $  ,  ]&lt;/li&gt;
+      &lt;li&gt;이스케이프 : [  % &lt;HEX&gt; &lt;HEX&gt;  ]&lt;/HEX&gt;&lt;/HEX&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1653-이스케이핑과-역이스케이핑unescaping&quot;&gt;16.5.3. 이스케이핑과 역이스케이핑(unescaping)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;URI에선 예약된 문자나 지원하지 않는 문자들을 표현하기위해 ‘이스케이핑’을 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이스케이핑은 %뒤에 해당 문자의 16진수를 붙여 표현하는 것입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;' ' (공백) -&amp;gt; 32 (US-ASCII) -&amp;gt; %20 (Escaping)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이런 이스케이핑을 퍼센트 인코딩이라고도 부릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이스케이핑된 URI를 받으면 반대로 언이스케이핑을 할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;%20 (Escaping) -&amp;gt; 32 (US-ASCII) -&amp;gt; ' ' (공백)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;언이스케이핑을 두 번 하지 않도록 주의합시다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1654-국제-문자들을-이스케이핑-하기&quot;&gt;16.5.4. 국제 문자들을 이스케이핑 하기&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;US-ASCII에 없는 국제 문자들을 위와 같은 방법으로 이스케이핑 할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;책이 쓰여질 시점엔 이스케이핑 값이 US-ASCII인 0~127에 들어야 했지만 지금은 아닙니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UTF-8 인코딩 체계를 통해 모든 문자를 이스케이핑 할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;%EA%B0%80 -&amp;gt; 234 176 128 (UTF-8) -&amp;gt; 가
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;166-기타-고려사항&quot;&gt;16.6. 기타 고려사항&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1661-헤더와-명세에-맞지-않는-데이터&quot;&gt;16.6.1. 헤더와 명세에 맞지 않는 데이터&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 헤더는 반드시 US-ASCII 문자집합으로 이루어져야 합니다.&lt;/li&gt;
+  &lt;li&gt;간혹 US-ASCII 문자집합을 벗어나는 문자로 헤더를 구성하는 애플리케이션이 있으니 주의해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1662-날짜&quot;&gt;16.6.2. 날짜&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 명세에선 GMT 날짜 형식을 명확히 정의하고 있습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 역시 날자 형식을 지키지 않는 애플리케이션이 있으니 주의해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1663-도메인-이름&quot;&gt;16.6.3. 도메인 이름&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Internationalizing Domain Name 을 이용해 다양한 문자를 도메인 이름에 포함 시킬 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이는 웹브라우저들이 지원하는 punycode를 통해 가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;punycode란 유니코드 문자열을 호스트명에서 사용가능한 문자로 바꾸는 방법으로 RFC 3492에 정의되어 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;한글.com -&amp;gt; xn--bj0bj06e.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;간단한 내용이라 어렵지 않게 읽은 것 같습니다.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>엔터티와 인코딩</title>
@@ -150,57 +802,571 @@ Hi I'm a message			-- Entity Body
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;메세지가 전송중 변조 되는 경우를 감지하기 위해 송신자가 메세지 본문에 대한 체크섬을 만들어 보냅니다.&lt;/li&gt;
+  &lt;li&gt;수신자는 자신이 받은 본문으로 체크섬을 만들어 송신자가 보낸 체크섬과 비교해 메세지의 변조 여부를 알아냅니다.&lt;/li&gt;
+  &lt;li&gt;해당 방법은 엔터티의 본문과 엔터티 요약 헤더를 모두 교체하는 악의적인 공격은 막을 수 없지만 의도치 않게 메세지가 변경되는 것을 감지할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;엔터티는 ‘원문 -&amp;gt; 콘텐츠 인코딩 -&amp;gt; 전송 인코딩’ 순으로 인코딩 되는데 체크섬을 위한 요약은 콘텐츠 인코딩이 된 다음, 전송 인코딩이 되기 전에 일어납니다.&lt;/li&gt;
+  &lt;li&gt;Content-MD5 헤더는 엔터티 본문에 MD5 알고리즘을 적용해 얻은 요약을 보여줍니다. (하지만 MD5 요약은 잘 쓰이지 않습니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;154-미디어-타입과-차셋charset&quot;&gt;15.4. 미디어 타입과 차셋(Charset)&lt;/h3&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;Content-Type 헤더엔 엔터티 본문의 MIME 타입이 기술됩니다.&lt;/li&gt;
+  &lt;li&gt;MIME 타입은 Internet Assigned Numbers Authority, IANA 에서 관리합니다.&lt;/li&gt;
+  &lt;li&gt;MIME 타입은 원본 엔터티 본문의 타입을 명시하기 때문에 콘텐츠 인코딩을 거치더라도 인코딩 전의 타입을 명시해야 합니다.&lt;/li&gt;
+  &lt;li&gt;MIME 타입은 ‘maintype/subtype’으로 나타내지며 자주 쓰이는 MIME 타입들은 아래와 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;미디어 타입&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;text/html&lt;/td&gt;
+      &lt;td&gt;HTML문서&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;text/plain&lt;/td&gt;
+      &lt;td&gt;플레인 텍스트 문서&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;image/gif&lt;/td&gt;
+      &lt;td&gt;GIF 이미지&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;image/jpeg&lt;/td&gt;
+      &lt;td&gt;JPEG 이미지&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;audio/x-wav&lt;/td&gt;
+      &lt;td&gt;WAV 음향 데이터를 포함&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;model/vrml&lt;/td&gt;
+      &lt;td&gt;3차원 VRML 모델&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;application/vnd.ms-powerpoint&lt;/td&gt;
+      &lt;td&gt;MS 파워포인트&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;multipart/byteranges&lt;/td&gt;
+      &lt;td&gt;여러 부분으로 나뉜 엔터티 본문 중 특정 범위(바이트 단위)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;message/http&lt;/td&gt;
+      &lt;td&gt;완전한 HTTP 메세지 (TRACE 메서드에서 사용)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
 &lt;h4 id=&quot;1541-텍스트-매체를-위한-문자-인코딩&quot;&gt;15.4.1. 텍스트 매체를 위한 문자 인코딩&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;하나의 타입 안에서도 더 자세히 기술하기 위해 매개변수를 사용할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;아래와 같이 charset으로 html의 인코딩 타입을 알려줄 수 있습니다. charset에 대해선 16장에서 더 자세히 다룹니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Type: text/html; charset=iso-8859-4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;1542-멀티파트-미디어-타입&quot;&gt;15.4.2. 멀티파트 미디어 타입&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;멀티파트 타입은 여러 메세지가 하나의 복합 메세지로 보내지는 것입니다. 각 메세지는 자신을 서술하는 헤더를 갖습니다.&lt;/li&gt;
+  &lt;li&gt;멀티파트 본문은 주로 HTML form 제출이나 문서의 일부분을 전송하는 경우에만 쓰입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1543-멀티파트-폼-제출&quot;&gt;15.4.3. 멀티파트 폼 제출&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;HTTP form 을 이용해 텍스트 및 파일 등을 같이 전송 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;HTTP form에 2개의 input 태그가 있고 1개엔 텍스트 ‘Sally’가, 1개엔 ‘imagefile.gif’라는 이미지 파일을 담아 전송하는 상황을 가정합시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Type: multipart/form-data; boundary=AaB03x
+--AaB03x
+Content-Disposition: form-data; name=&quot;submit-name&quot;
+Sally
+--AaB03x
+Content-Disposition: form-data; name=&quot;files&quot;
+Content-Type: multipart/mixed; boundary=BbC04y
+--BbC04y
+Content-Disposition: file; filename=&quot;essayfile.txt&quot;
+Content-Type: text/plain
+...contents of essayfile.txt...
+--BbC04y
+Content-Disposition: file; filename=&quot;imagefile.gif&quot;
+Content-Type: image/gif
+Content-Transfer-Encoding: binary
+...contents of imagefile.gif...
+--BbC04y--
+--AaB03x-- 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위와 같은 메세지를 보내게 되는데 위의 Content-Type헤더의 boundary가 각 메세지들의 구분자로 사용됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1544-멀티파트-범위-응답&quot;&gt;15.4.4. 멀티파트 범위 응답&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;멀티파트로 응답이 올 수도 있습니다. 이 경우 요청에 따라 각각 다른 범위의 응답이 올 수 있는데 15.9.에서 자세히 다루겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;155-콘텐츠-인코딩&quot;&gt;15.5. 콘텐츠 인코딩&lt;/h3&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;전송 시간을 줄이기 위해, 콘텐츠를 암호화 하기 위해 등 여러 이유로 콘텐츠를 보내기전 인코딩을 수행할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1551-콘텐츠-인코딩-과정&quot;&gt;15.5.1. 콘텐츠 인코딩 과정&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;콘텐츠 인코딩의 개략적인 과정은 다음과 같습니다
+    &lt;ol&gt;
+      &lt;li&gt;웹 서버가 Content-Type과 Content-Length를 포함해 원본 응답 메세지를 만듭니다.&lt;/li&gt;
+      &lt;li&gt;콘텐츠 인코딩 서버(원 서버가 될 수도 있고 프록시가 될 수도 있습니다.)에서 인코딩된 메세지를 만듭니다. Content-Type은 같지만 Content-Length는 다를 수 있습니다. Content-Encoding 헤더에 인코딩 방식을 추가해 알려줍니다.&lt;/li&gt;
+      &lt;li&gt;인코딩된 콘텐츠를 전송합니다.&lt;/li&gt;
+      &lt;li&gt;수신한 클라이언트는 Content-Encoding에서 적절한 디코딩 방법을 찾아 디코딩합니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;1552-콘텐츠-인코딩-유형&quot;&gt;15.5.2. 콘텐츠 인코딩 유형&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;HTTP에선 몇 가지 표준 인코딩 유형을 정하고 있고, 확장 인코딩으로 추가하는 것도 가능합니다.&lt;/li&gt;
+  &lt;li&gt;각 인코딩 유형은 IANA에서 관리하고 있습니다.&lt;/li&gt;
+  &lt;li&gt;주로 쓰이는 콘텐츠 인코딩은 다음과 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;콘텐츠 인코딩&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;gzip&lt;/td&gt;
+      &lt;td&gt;GNU zip 인코딩. 특히 많이 쓰이는 압축 알고리즘&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;compress&lt;/td&gt;
+      &lt;td&gt;유닉스 파일 압축 프로그램인 ‘compress’가 실행됨&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;deflate&lt;/td&gt;
+      &lt;td&gt;zlib 포맷으로 압축&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;identity&lt;/td&gt;
+      &lt;td&gt;엔터티에 어떤 인코딩도 수행되지 않음. Content-Encoding 헤더가 없다면 이 값으로 간주&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
 &lt;h4 id=&quot;1553-accept-encoding-헤더&quot;&gt;15.5.3. Accept-Encoding 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Accept-Encoding 헤더를 통해 클라이언트가 자신이 선호하는 인코딩 방법을 서버에게 알려줄 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;Accept-Encoding 헤더가 없다면 어떤 인코딩이든 받을 수 있는 것으로 간주합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Accept-Encoding : compress, gzip
+Accept-Encoding : 
+Accept-Encoding : *
+Accept-Encoding : compress;q=0.5, gzip;q=1.0
+Accept-Encoding : gzip;q=1.0, identity;q=0.5, *;q=0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 인코딩 방법은 ‘, ‘ 로 구분되며 ‘ * ‘는 ‘그외 모두’를 의미합니다.&lt;/li&gt;
+  &lt;li&gt;인코딩 방법에 ‘ ; ‘를 구분자로 두고 설정한 q값은 선호도를 나타냅니다. 0은 선호하지 않음, 1은 선호함을 뜻합니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;156-전송-인코딩과-청크-인코딩&quot;&gt;15.6. 전송 인코딩과 청크 인코딩&lt;/h3&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;앞서 알아본 콘텐츠 인코딩은 콘텐츠의 포맷과 연관되어 있으며 엔터티 본문을 인코딩 합니다.&lt;/li&gt;
+  &lt;li&gt;지금 알아볼 전송 인코딩은 콘텐츠의 포맷과는 무관하며 네트워크를 통해 전송되기 위해 본문만이 아니라 메세지 전체에 구조적인 변경을 하는 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1561-안전한-전송&quot;&gt;15.6.1. 안전한 전송&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;모든 프로토콜에서 전송 인코딩은 ‘안전한 전송’을 위해 존재했습니다.&lt;/li&gt;
+  &lt;li&gt;HTTP에선 ‘안전한 전송’의 초점을 다른데에 맞추고 있습니다. HTTP에서 메세지의 본문이 문제를 일으키는 경우는 몇가지 밖에 없는데 그중 두가지는 아래와 같습니다. (책 원문을 읽어봐도 뭔가 내용이 매끄럽지가 않습니다.)
+    &lt;ul&gt;
+      &lt;li&gt;알 수 없는 크기 : 몇몇 인코더는 콘텐츠를 생성하기 전에 메세지 본문의 최종 크기를 판단 할 수 없습니다. Content-Length를 정해줄 수 없기 때문에 데이터의 끝을 알리는 특별한 꼬리말을 붙이기도 하는데 지속 커넥션 상에서 문제를 일으킬 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;보안 : 요즘은 SSL 같이 전송계층 위에서 보안이 이루어지기 때문에 보안을 위한 전송 인코딩은 잘 이루어지지 않지만, 전송 인코딩으로 메세지를 알아보기 어렵게 뒤섞기도 했었습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;1562-transfer-encoding-헤더&quot;&gt;15.6.2. Transfer-Encoding 헤더&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;전송 인코딩을 위해 사용되는 헤더는 두 개 뿐입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Transfer-Encoding : 안전한 전송을 위해 어떤 인코딩이 사용됐는지 클라이언트에게 알려줍니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: Apache/3.0
+... 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;TE : 클라이언트가 서버에게 자신이 어떤 전송 인코딩을 사용할 수 있는지 알려줍니다. Accept-Encoding 처럼 q로 표현되는 선호도를 가질 수 있습니다. 다만 HTTP/1.1에선 chucked 인코딩엔 0.0의 q를 갖는걸 허용하지 않습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /new_products.html HTTP/1.1
+Host: www.joes-hardware.com
+User-Agent: Mozilla/4.61 [en] (WinNT; I)
+TE: trailers;q=0.5, chunked;q=1.0
+... 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1563-청크-인코딩&quot;&gt;15.6.3. 청크 인코딩&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;청크 인코딩이란 한 메세지를 일정 크기의 청크로 쪼개 순차적으로 전송하는 방법입니다.&lt;/li&gt;
+  &lt;li&gt;일정 크기로 쪼개 보내기 때문에 메세지 전체 크기를 알 필요가 없습니다.&lt;/li&gt;
+  &lt;li&gt;동적 생성되는 컨텐츠에 유용하게 사용됩니다.&lt;/li&gt;
+  &lt;li&gt;메세지 전체를 다루는 전송 인코딩의 하나이며, 본문만 다뤘던 멀티파트 인코딩과 헷갈리면 안됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;청크와 지속 커넥션&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지속 커넥션은 메세지간의 구분 지점을 알아야 하기 때문에 Content-Length를 반드시 알아야 했습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 콘텐츠가 동적으로 생성되면 보내기 전에 Content-Length를 알아내기 힘듭니다.&lt;/li&gt;
+  &lt;li&gt;청크 인코딩은 동적으로 생성되는 본문의 일부를 버퍼에 담다가 모인 덩어리를 보냅니다.&lt;/li&gt;
+  &lt;li&gt;생성되는 모든 본문을 전송할때까지 반복하며 크기가 0인 청크로 본문이 끝났음을 알립니다.&lt;/li&gt;
+  &lt;li&gt;각 청크는 아래와 같이 16진수로 표현된 바이트 길이와 CRLF, 데이터로 이루어져 있습니다.&lt;/li&gt;
+  &lt;li&gt;마지막엔 길이가 0인 청크를 보내 전송이 끝났음을 알려야 합니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 청크 인코딩된 데이터를 서버로 보낼 수도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/chuncked.png&quot; alt=&quot;chuncked.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;청크 인코딩된 메세지의 트레일러&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;트레일러란 메세지가 만들어지기 시작할 땐 값을 알수 없는 헤더들을 담는 곳입니다.(Contetn-MD5 헤더의 경우 문서가 생성되어야 요약을 계산할 수 있습니다.)&lt;/li&gt;
+  &lt;li&gt;트레일러는 청크 메세지 끝에 따라올 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;아래 두 조건 중 하나를 만족하면 트레일러를 추가할 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트의 TE 헤더에 트레일러를 받아들일 수 있음이 명시된 경우&lt;/li&gt;
+      &lt;li&gt;트레일러에 있는 정보들이 클라이언트가 무시하고 버려도 되는 경우(선택적인 메타데이터들)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;1564-콘텐츠와-전송-인코딩의-조합&quot;&gt;15.6.4. 콘텐츠와 전송 인코딩의 조합&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;콘텐츠 인코딩과 전송 인코딩은 함께 사용될 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/contents_transfer_encoding.png&quot; alt=&quot;contents_transfer_encoding.png&quot; /&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;1565-전송-인코딩-규칙&quot;&gt;15.6.5. 전송 인코딩 규칙&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;전송 인코딩을 사용할 때 아래와 같은 규칙을 지켜야 합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;메세지가 커넥션 종료로 끝나는 경우를 제외하면, 전송 인코딩엔 반드시 ‘chunked’가 포함되어야 합니다.&lt;/li&gt;
+      &lt;li&gt;청크 전송 인코딩을 사용할 때, 반드시 마지막 청크 전송 인코딩이 있어야 합니다.&lt;/li&gt;
+      &lt;li&gt;청크 전송 인코딩은 메세지 본문에 한 번 이상 적용 되어야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;전송 인코딩은 HTTP/1.1에서 등장한 인코딩이기 때문에 이전 버전의 어플리케이선과 통신해야 할 땐 주의해야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;157-시간에-따라-바뀌는-인스턴스&quot;&gt;15.7. 시간에 따라 바뀌는 인스턴스&lt;/h3&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;158-검사기와-신선도&quot;&gt;15.8. 검사기와 신선도&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;우리가 요청하는 많은 웹 객체(web object)들은 동적입니다.&lt;/li&gt;
+  &lt;li&gt;요청을 받을 때 마다 한 웹 객체에서 만들어지는 리소스를 각각 다른 인스턴스라고 생각한다면 매번 바뀌는 인스턴스를 다루기 위한 방법이 필요합니다.&lt;/li&gt;
+  &lt;li&gt;이런 방법들을 ‘인스턴스 조작(instance manipulation)’이라 부르며 대표적인 예가 ‘범위 요청’과 ‘델타 인코딩’입니다.&lt;/li&gt;
+  &lt;li&gt;두 방법 모두 클라이언트가 갖고 있는 리소스 사본이 서버가 가진 것과 같은지 판단하고 다르다면 새 인스턴스를 요청하는 방법입니다. 각각 15.9, 15.10에서 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;158-검사기validator와-신선도&quot;&gt;15.8. 검사기(Validator)와 신선도&lt;/h3&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;클라이언트는 리소스를 받으면 해당 리소스를 캐시에 저장하고 다음 요청은 캐시에서 받아옵니다.&lt;/li&gt;
+  &lt;li&gt;캐시한 문서가 만료되면 서버에 다시 요구해야 합니다. 문서가 변경되었다면 새로 받을 것이고, 변경되지 않았다면 다시 받지 않을 것입니다.&lt;/li&gt;
+  &lt;li&gt;위 과정을 수행하기 위해 ‘조건부 요청’이라는 요청을 사용합니다.&lt;/li&gt;
+  &lt;li&gt;조건부 요청은 클라이언트가 서버에게 자신이 갖고 있는 리소스의 버전을 말해주고 Validator를 통해 자신의 사본이 유효하지 않으면 서버에게 리소스를 요청합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&quot;1581-신선도&quot;&gt;15.8.1. 신선도&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;신선도에 대해선 7장에서 많이 알아봤습니다.&lt;/li&gt;
+  &lt;li&gt;받은 리소스 사본이 신선한 기간을 알려주기 위해 Expires 헤더와 Cache-Control 헤더를 사용합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Expires&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Expires 헤더는 문서가 만료되는 절대 시간을 나타냅니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Expires : Sun Mar 18 23:59:12 GMT 2001
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Expires 헤더를 사용하기 위해 NTP(Network Time Protocol)등의 방법으로 클라이언트와 서버의 시간을 동기화 시켜야 하기 때문에 상대시간을 사용하는 Cache-Control을 더 많이 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Cache-Control&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cache-Control 헤더는 문서의 최대 수명을 초단위로 나타냅니다.&lt;/li&gt;
+  &lt;li&gt;또한 Cache-Control과 함께 사용되는 파라미터들이 많기 때문에 더 자세히 신선도를 다룰 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;지시자&lt;/th&gt;
+      &lt;th&gt;메세지 타입&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-cache&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-store&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;max-age&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;max-stale&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;min-fresh&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-transform&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;only-if-cached&lt;/td&gt;
+      &lt;td&gt;요청&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;public&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;private&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-cache&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-store&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;no-transform&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;must-revalidate&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;proxy-revalidate&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;max-age&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;s-max-age&lt;/td&gt;
+      &lt;td&gt;응답&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
 &lt;h4 id=&quot;1582-조건부-요청과-검사기&quot;&gt;15.8.2. 조건부 요청과 검사기&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;신선도가 만료됐을 뿐 아직 리소스가 바뀌지 않았을수도 있기 때문에 신선도가 만료되었을 때마다 항상 서버에서 새로 리소스를 받아오는건 비효율적입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;조건부 요청을 통해 실제로 리소스가 바뀐 경우에만 사본을 받아올 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;조건부 요청은 주로 ‘If-‘로 시작되는 헤더를 통해 구현됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /announce.html HTTP/1.0
+If-Modified-Since: Sat, 29 Jun 2002, 14:30:00 GMT
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;조건부 요청은 쓰인 헤더에 따라 특정 검사기(Validator)를 통해 검사됩니다. (검사기는 아래 표 외에도 유연하게 선택될 수 있습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;요청 유형&lt;/th&gt;
+      &lt;th&gt;검사기&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;If-Modified-Since&lt;/td&gt;
+      &lt;td&gt;Last-Modified&lt;/td&gt;
+      &lt;td&gt;지난번 Last-Modified 응답 헤더에 있던 시각에 마지막으로 수정된 버전이 아니라면 리소스의 사본을 보내라&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;If-Unmodified-Since&lt;/td&gt;
+      &lt;td&gt;Last-Modified&lt;/td&gt;
+      &lt;td&gt;지난번 Last-Modified 응답 헤더에 있던 시각에 마지막으로 수정된 버전에서 변한 것이 없다면 리소스의 사본을 보내라&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;If-Match&lt;/td&gt;
+      &lt;td&gt;ETag&lt;/td&gt;
+      &lt;td&gt;지난번 ETag 응답 헤더에 들어있었던 것과 엔터티 태그가 같다면, 리소스의 사본을 보내라&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;If-None-Match&lt;/td&gt;
+      &lt;td&gt;ETag&lt;/td&gt;
+      &lt;td&gt;지난번 ETag 응답 헤더에 들어이썽ㅆ던 것과 엔터티 태그가 다르다면, 그 리소스의 사본을 보내라.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP는 검사기를 약한 검사기와 강한 검사기로 나눕니다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;약한 검사기&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;약한 검사기는 인스턴스를 식별하지 못할 수도 있습니다.&lt;/li&gt;
+      &lt;li&gt;예시로는 바이트 크기가 있습니다. 실제로 내용이 변경 되었지만 바이트 크기는 변하지 않을 수도 있습니다.&lt;/li&gt;
+      &lt;li&gt;Last-Modified는 가장 작은 단위가 1초이기 때문에 약한 검사기에 속합니다.(1초 안에도 여러번 바뀔 수 있기 때문에)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;강한 검사기&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;강한 검사기는 항상 인스턴스를 식별할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;예시로는 리소스에 대한 암호 체크섬, 버전번호 등이 있습니다.&lt;/li&gt;
+      &lt;li&gt;ETag엔 주로 매 변경마다 구분되는 값을 넣기 때문에 강한 검사기에 속합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;한편, 사소한 변경이라 모든 클라이언트가 굳이 안받아도 되는 경우가 있습니다. 이땐 서버에서 ‘W/’를 붙여 ‘약한’ 엔터티임을 알려줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /annouce.html HTTP/1.1
+If-None-Match: W/&quot;v4.0&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;159-범위-요청&quot;&gt;15.9. 범위 요청&lt;/h3&gt;
 
 &lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 문서의 일부분이나 특정 범위만 요청할 수도 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;중간에 실패한 다운로드를 중간 지점부터 받을때, P2P 프로그램에서 여러 사용자로부터 파일의 조각들을 가져올때 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같이 Range 헤더를 통해 받을 범위를 명시해 요청합니다.(클라이언트의 입장에선 문서의 총 크기를 모르기 때문에 끝나는 바이트는 생략해도 됩니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /bigfile.html HTTP/1.1
+Host: www.joes-hardware.com
+Range: bytes=4000-
+User-Agent: Mozilla/4.61 [en] (WinNT; I)
+... 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;많은 서버가 범위 요청을 받아들일 수 있지만 아닌 곳도 있습니다. 서버가 자신이 범위 요청을 받을 수 있는 지 명시하고 싶다면 아래와 같이 Accept-Range 헤더를 통해 알려줄 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 200 OK
+Date: Fri, 05 Nov 1999 22:35:15 GMT 
+Server: Apache/1.2.4
+Accept-Ranges: bytes
+... 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;범위 요청은 객체의 특정 인스턴스중 일부를 주고받는 것이기 때문에 인스턴스 조작의 일종입니다.&lt;/li&gt;
+  &lt;li&gt;또한, 인스턴스 조작이기 때문에 클라이언트와 서버가 같은 버전의 문서를 가지고 있을 때만 의미가 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;1510-델타-인코딩&quot;&gt;15.10. 델타 인코딩&lt;/h3&gt;
 
