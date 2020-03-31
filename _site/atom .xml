@@ -1,16 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>이기승의 techlog!</title>
+ <title>이기승의 개발일지</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-31T21:10:00+09:00</updated>
+ <updated>2020-04-01T00:47:39+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>리다이렉션과 부하 균형</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C20/"/>
+   <updated>2020-04-01T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드20</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;201-왜-리다이렉트인가&quot;&gt;20.1. 왜 리다이렉트인가?&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;202-리다이렉트-할-곳&quot;&gt;20.2. 리다이렉트 할 곳&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;203-리다이렉션-프로토콜의-개요&quot;&gt;20.3. 리다이렉션 프로토콜의 개요&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;204-일반적인-리다이렉션-방법&quot;&gt;20.4. 일반적인 리다이렉션 방법&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;2041-http-리다이렉션&quot;&gt;20.4.1. HTTP 리다이렉션&lt;/h4&gt;
+
+&lt;h4 id=&quot;2042-dns-리다이렉션&quot;&gt;20.4.2. DNS 리다이렉션&lt;/h4&gt;
+
+&lt;h4 id=&quot;2043-임의-캐스트-어드레싱&quot;&gt;20.4.3. 임의 캐스트 어드레싱&lt;/h4&gt;
+
+&lt;h4 id=&quot;2044-아이피-맥-포워딩&quot;&gt;20.4.4. 아이피 맥 포워딩&lt;/h4&gt;
+
+&lt;h4 id=&quot;2045-아이피-주소-포워딩&quot;&gt;20.4.5. 아이피 주소 포워딩&lt;/h4&gt;
+
+&lt;h4 id=&quot;2046-네트워크-구성요소-제어-프로토콜&quot;&gt;20.4.6. 네트워크 구성요소 제어 프로토콜&lt;/h4&gt;
+
+&lt;h3 id=&quot;205-프록시-리다이렉션-방법&quot;&gt;20.5. 프록시 리다이렉션 방법&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;2051-명시적-브라우저-설정&quot;&gt;20.5.1. 명시적 브라우저 설정&lt;/h4&gt;
+
+&lt;h4 id=&quot;2052-프록시-자동-설정&quot;&gt;20.5.2. 프록시 자동 설정&lt;/h4&gt;
+
+&lt;h4 id=&quot;2053-웹-프록시-자동발견-프로토콜web-proxy-autodiscovery-protocol&quot;&gt;20.5.3. 웹 프록시 자동발견 프로토콜(Web Proxy Autodiscovery Protocol)&lt;/h4&gt;
+
+&lt;h3 id=&quot;206-캐시-리다이렉션-방법&quot;&gt;20.6. 캐시 리다이렉션 방법&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;2061-wccp-리다이렉션&quot;&gt;20.6.1. WCCP 리다이렉션&lt;/h4&gt;
+
+&lt;h3 id=&quot;207-인터넷-캐시-프로토콜&quot;&gt;20.7. 인터넷 캐시 프로토콜&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;208-캐시-배열-라우팅-프로토콜&quot;&gt;20.8. 캐시 배열 라우팅 프로토콜&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;209-하이퍼텍스트-캐싱-프로토콜&quot;&gt;20.9. 하이퍼텍스트 캐싱 프로토콜&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;2091-htcp-인증&quot;&gt;20.9.1. HTCP 인증&lt;/h4&gt;
+
+&lt;h4 id=&quot;2092-캐싱-정책-설정&quot;&gt;20.9.2. 캐싱 정책 설정&lt;/h4&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>우분투(리눅스) GtkWarning</title>
+   <link href="http://localhost:4000/posts/study_googling/linux/GtkWarning/"/>
+   <updated>2020-03-31T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_googling/linux/GtkWarning</id>
+   <content type="html">
+&lt;h3 id=&quot;1-gtkwarning&quot;&gt;1. GtkWarning&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;우분투를 다루다 보니 &lt;code class=&quot;highlighter-rouge&quot;&gt;GtkWarning&lt;/code&gt; 라고 뜨며 GUI들이 안켜질 때가 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Gtk는 &lt;strong&gt;G&lt;/strong&gt;imp &lt;strong&gt;T&lt;/strong&gt;ool&lt;strong&gt;K&lt;/strong&gt;it 이라고 합니다. GUI를 만들기 위한 라이브러리라고 보면 됩니다.(&lt;a href=&quot;https://www.gtk.org/&quot;&gt;https://www.gtk.org/&lt;/a&gt;)
+        &lt;ul&gt;
+          &lt;li&gt;Gimp는 그림 편집 소프트웨어이며 &lt;a href=&quot;[https://ko.wikipedia.org/wiki/%EA%B7%B8%EB%86%88](https://ko.wikipedia.org/wiki/그놈)&quot;&gt;GNOME&lt;/a&gt; 프로젝트의 일환입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 문제는 아래와 같은 권한 문제입니다.&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;우분투의 디스플레이 환경은 GNOME을 따릅니다.&lt;/li&gt;
+      &lt;li&gt;근데 GNOME은 &lt;a href=&quot;[https://ko.wikipedia.org/wiki/X_%EC%9C%88%EB%8F%84_%EC%8B%9C%EC%8A%A4%ED%85%9C](https://ko.wikipedia.org/wiki/X_윈도_시스템)&quot;&gt;X 서버&lt;/a&gt; 기반입니다.&lt;/li&gt;
+      &lt;li&gt;우분투 사용자가 X 서버에 대한 권한이 없습니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;xhost 명령어로 X서버에 대한 권한을 주어야 합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xhost +si:localuser:root
+xhost +si:localuser:{ubuntuUserName}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;xhost는 X서버 접근 허용 목록에 사용자를 추가하는 명령어 입니다.&lt;/li&gt;
+      &lt;li&gt;+si는 Server Interpreted에 추가한다는 것입니다.&lt;/li&gt;
+      &lt;li&gt;자세한 사항은 X서버 &lt;a href=&quot;https://www.x.org/archive/X11R7.5/doc/man/man1/xhost.1.html&quot;&gt;명세&lt;/a&gt;를 남깁니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-xhost--unable-to-open-display---sweat&quot;&gt;2. xhost:  unable to open display “” ??? :sweat:&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;xhost:  unable to open display &quot;&quot;&lt;/code&gt; 에러가 뜰 수 있습니다. 제가 그랬거든요..&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Samba를 이용한 윈도우 우분투 권한 공유</title>
+   <link href="http://localhost:4000/posts/study_googling/jekyll/%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%9A%B0%EB%B6%84%ED%88%AC-%EA%B6%8C%ED%95%9C%EA%B3%B5%EC%9C%A0/"/>
+   <updated>2020-03-31T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_googling/jekyll/윈도우 우분투 권한공유</id>
+   <content type="html">
+&lt;h3 id=&quot;1-지난번-문제&quot;&gt;1. 지난번 문제&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지난 jekyll 관련 &lt;a href=&quot;/권한문제&quot;&gt;포스팅&lt;/a&gt;은 윈도우에서 수정한 파일을 우분투 사용자가 접근 할 수 있도록 권한을 변경하는 것이었습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 지난 번엔 임시 방편으로 권한을 수동 변경한 것입니다.&lt;/li&gt;
+  &lt;li&gt;이번 포스팅에선 Samba를 이용해 윈도우와 우분투가 권한을 공유하는 방법을 알아볼 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-samba&quot;&gt;2. Samba?&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;우선 Samba에 대해 간략히 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;21-samba란-무엇인가&quot;&gt;2.1. Samba란 무엇인가!&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Samba의 공식 홈페이지(&lt;a href=&quot;https://www.samba.org/&quot;&gt;https://www.samba.org/&lt;/a&gt;)에선 Samba를 다음과 같이 정의합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Samba is the standard Windows &lt;strong&gt;interoperability suite of programs&lt;/strong&gt; for Linux and Unix.&lt;/li&gt;
+      &lt;li&gt;&amp;gt;&amp;gt; Samba는 Linux와 Unix를 위한 표준 Windows 상호운용 프로그램 제품군(suite)입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;쉽게 말해, Windows와 Linux, Unix를 동시에 운용할 때 필요한 프로그램이라는 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;22-samba는-어떻게-동작하는가&quot;&gt;2.2. Samba는 어떻게 동작하는가&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;/p&gt;
+
+&lt;h3 id=&quot;3-samba-설치-및-공유폴더-생성&quot;&gt;3. Samba 설치 및 공유폴더 생성&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Samba 설치는 &lt;a href=&quot;https://storycompiler.tistory.com/31&quot;&gt;이곳&lt;/a&gt;을 참고하였습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;31-samba-설치&quot;&gt;3.1. Samba 설치&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래의 명령어로 samba를 설치해줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install samba
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래 명령어로 samba의 설정을 위한 gui를 설치해줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install system-config-samba
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설정을 켜줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo system-config-samba
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;혹시 &lt;code class=&quot;highlighter-rouge&quot;&gt;GtkWarning: could not open display&lt;/code&gt; 가 뜨며 GUI가 안나오는 분들은 &lt;a href=&quot;&quot;&gt;여기&lt;/a&gt;를 참고해주세요.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>배포 시스템</title>
@@ -5739,143 +5958,217 @@ Proxy-authorization: Basic Tnkmwlq31rWERg
  </entry>
  
  <entry>
-   <title>윈도우에서 수정한 우분투-리눅스 파일 권한 수정</title>
+   <title>윈도우에서 수정한 우분투 파일 권한 수정</title>
    <link href="http://localhost:4000/posts/study_googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/"/>
    <updated>2020-03-17T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study_googling/jekyll/권한문제</id>
-   <content type="html">&lt;h4 id=&quot;0-코린이들에게-바칩니다&quot;&gt;0. 코린이들에게 바칩니다…&lt;/h4&gt;
-
-&lt;p&gt;윈도우 환경과 리눅스(우분투) 환경을 섞어쓰다 Permission denied 난 저같은 코린이들에게 바칩니다…&lt;/p&gt;
-
-&lt;p&gt;사실 별거 아닌 문제입니다만… 해결하는 과정에서 리눅스의 명령어, 권한체계에 좀 친해진것 같은 느낌이 들어 따로 정리해 포스팅 합니다.&lt;/p&gt;
+   <content type="html">
+&lt;h3 id=&quot;0-코린이들에게-바칩니다&quot;&gt;0. 코린이들에게 바칩니다…&lt;/h3&gt;
 
 &lt;hr /&gt;
 
-&lt;h4 id=&quot;1-깃헙-페이지-만들기&quot;&gt;1. 깃헙 페이지 만들기&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;윈도우와 우분투를 섞어쓰다 Permission denied 난 저 같은 코린이들에게 바칩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;해결하는 과정에서 리눅스의 명령어 및 권한에 좀 친해진것 같은 느낌이 들어 포스팅 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;처음 깃헙 페이지를 만들때 아래 링크를 보고 따라했습니다.&lt;/p&gt;
+&lt;h3 id=&quot;1-깃헙-페이지-만들기&quot;&gt;1. 깃헙 페이지 만들기&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://devinlife.com/howto/&quot;&gt;https://devinlife.com/howto/&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;하지만 위 포스팅은 리눅스환경에서 실행되고 있었습니다. 제가 사용하는건 윈도우이고, 예전에 우분투로 리눅스 환경을 구성했던 것이 생각나 아래 글을 따라 우분투로 윈도우에 리눅스 환경을 셋팅했습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;처음 깃헙 페이지를 만들때 &lt;a href=&quot;https://devinlife.com/howto/&quot;&gt;이 포스팅&lt;/a&gt;을 보고 따라했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위 포스팅은 리눅스 환경에서 실행되고 있었습니다.&lt;/li&gt;
+  &lt;li&gt;제가 사용하는건 윈도우였기 때문에 이 &lt;a href=&quot;https://m.blog.naver.com/6116949/221244246623&quot;&gt;포스팅&lt;/a&gt;을 따라 우분투를 설치해 리눅스 환경을 구성했습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://m.blog.naver.com/6116949/221244246623&quot;&gt;https://m.blog.naver.com/6116949/221244246623&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-설치-완료-및-작업환경-셋팅&quot;&gt;2. 설치 완료 및 작업환경 셋팅&lt;/h3&gt;
 
-&lt;h4 id=&quot;2-설치-완료&quot;&gt;2. 설치 완료&lt;/h4&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;jekyll 설치하고, Github page 만들고, 깔끔한 테마(&lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;Laynon&lt;/a&gt;)도 받아 설치하고, 새 글을 쓰고 Git에 연결하고 Push까지 했습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;jekyll 설치하고, Github page 만들고, 깔끔한 테마(&lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;Laynon&lt;/a&gt;)도 받아 설치했습니다.&lt;/li&gt;
+  &lt;li&gt;새 글을 쓰고 Git에 연결해 Push까지 했습니다.&lt;/li&gt;
+  &lt;li&gt;이후 제가 기존에 써오던 작업 환경을 셋팅하기 시작했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;git을 CLI로 다루는게 어색해 sourcetree를 설치했습니다.&lt;/li&gt;
+      &lt;li&gt;편집을 위해 &lt;a href=&quot;https://typora.io/&quot;&gt;Typora&lt;/a&gt;라는 markdown 편집기도 설치했습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;작업 환경을 구성한 뒤, 윈도우 디렉토리로 새 폴더를 만들고 md 파일들도 복사하고, 윈도우 Typora를 실행해 md 파일을 수정했습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h4 id=&quot;3-작업환경-셋팅하기&quot;&gt;3. 작업환경 셋팅하기&lt;/h4&gt;
+&lt;h3 id=&quot;3-에러-발견&quot;&gt;3. 에러 발견&lt;/h3&gt;
 
-&lt;p&gt;이쯤 하니 이제 편한 환경을 하나씩 셋팅하기 시작했습니다. 우선 git을 CLI로 다루는건 아직 익숙하지 않아 sourcetree를 설치했습니다. 그리고 편집을 쉽게하기 위해 &lt;a href=&quot;https://typora.io/&quot;&gt;Typora&lt;/a&gt;라는 markdown 편집기도 설치했습니다.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;h4 id=&quot;4-포스팅-작업&quot;&gt;4. 포스팅 작업~&lt;/h4&gt;
-
-&lt;p&gt;그리고 콘솔창에 익숙하지 않은 저는 윈도우 디렉터리 시스템으로 새 폴더를 만들고, md파일들 사본도 만들고, 윈도우 Typora로 md파일을 실행해 편집하고 이것 저것 윈도우 환경아래서 작업을 진행했습니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;5-에러-발견&quot;&gt;5. 에러 발견&lt;/h4&gt;
-
-&lt;p&gt;그리고 이제 jekyll 서버를 켜서 확인해 보려는데…&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;그리고 이제 jekyll 서버를 켜서 확인해 보려는데…&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionError.png&quot; alt=&quot;에러발생&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;에러가 납니다. 에러를 추적하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;--trace&lt;/code&gt;옵션을 줘서 켜보면&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;에러가 났습니다.  &lt;code class=&quot;highlighter-rouge&quot;&gt;--trace&lt;/code&gt;옵션을 줘보니&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionError2.png&quot; alt=&quot;에러발생2&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Errno::EACCES, Permission denied 에러가 납니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Errno::EACCES, Permission denied&lt;/code&gt; 에러가 났습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h4 id=&quot;6-임시해결&quot;&gt;6. (임시)해결&lt;/h4&gt;
+&lt;h3 id=&quot;4-임시해결&quot;&gt;4. (임시)해결&lt;/h3&gt;
 
-&lt;p&gt;서당개도 3년이년 풍월을 읊는다고 아직 프로그래밍을 시작한지 1년밖에 안됐지만 Permission denied 를 보는 순간 윈도우와 리눅스를 섞어사용해 발생한 것 같다는 느낌을 받았습니다.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;여자저차 구글링해 권한에 대해 찾아보고, 권한을 확인하는법, 변경하는 법을 찾았습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Permission denied 를 보는 순간 윈도우와 우분투를 섞어 사용해 발생한 것 같다는 느낌을 받았습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;여자저차 구글링해 권한에 대해 찾아보고, 권한을 확인하는법, 변경하는 법을 찾았습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h5 id=&quot;61-권한확인&quot;&gt;6.1. 권한확인&lt;/h5&gt;
+&lt;h4 id=&quot;41-권한확인&quot;&gt;4.1. 권한확인&lt;/h4&gt;
 
-&lt;p&gt;우선 권한확인은 &lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt; 명령어(&lt;strong&gt;l&lt;/strong&gt;ist &lt;strong&gt;s&lt;/strong&gt;egment -&lt;strong&gt;l&lt;/strong&gt;ong format)를 통해 할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;권한확인은 &lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt; 명령어(&lt;strong&gt;l&lt;/strong&gt;ist &lt;strong&gt;s&lt;/strong&gt;egment -&lt;strong&gt;l&lt;/strong&gt;ong format)를 통해 할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission1.png&quot; alt=&quot;viewPermission1.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위 사진을 보시면  &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-rw-&lt;/code&gt;로 되어 있는 파일들이 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;로 되어있는 파일들이 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 파일들은 리눅스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt;명령어로 가져온 파일들이고 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;파일은 윈도우에서 리눅수 디렉토리로 직접 저장한 파일들입니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 사진을 보시면  &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-rw-&lt;/code&gt;로 되어 있는 파일들이 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;로 되어있는 파일들이 있습니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;drwxrwxrwx 1 kiseung kiseung   4096 Mar 17 21:42  study_book
-&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;-rw-rw-rw- 1 kiseung kiseung  65410 Mar 17 21:42 'relative url parsing.png'
----------- 1 kiseung kiseung  29027 Mar 17 21:59  viewPermission1.png
----------- - ------- -------  ----- ------------ ----------------------------
-&lt;/span&gt;   권한  링크수 소유자   그룹  파일크기  수정시간              파일이름
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 파일들은 리눅스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt;명령어로 가져온 파일들이고&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;파일은 윈도우에서 리눅수 디렉토리로 직접 저장한 파일들입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt;로 조회한 파일권한은 다음과 같습니다. 이중 권한 부분에 대해 알보았습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt;로 조회한 파일권한은 위와 같이 이루어져 있습니다. 나머지 부분은 나중에 필요할때 알아보기로 하고 이 포스트에선 &lt;strong&gt;‘권한’&lt;/strong&gt; 부분에 대해 알아보겠습니다.&lt;/p&gt;
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drwxrwxrwx 1 ki ki   4096 Mar 17 21:42  study_book
+-rw-rw-rw- 1 ki ki  65410 Mar 17 21:42 'relative url parsing.png'
+---------- 1 ki ki  29027 Mar 17 21:59  viewPermission1.png
+---------- - -- --  ----- ------------ ----------------------------
+권한 링크수 소유자 그룹 파일크기 수정시간              파일이름
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h5 id=&quot;62-권한&quot;&gt;6.2. 권한&lt;/h5&gt;
+&lt;h4 id=&quot;42-권한&quot;&gt;4.2. 권한&lt;/h4&gt;
 
-&lt;p&gt;권한은 크게 4부분으로 이루어져 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;권한은 크게 4부분으로 이루어져 있습니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-  rw-  rw-  rw-
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-  rw-  rw-  rw-
 1   2    3    4 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
-&lt;p&gt;1 : 해당 항목이 파일(-)인지, 디렉토리(d)인지 구분
- 2 : 사용자(소유자)의 권한 정보
- 3 : 그룹 권한 정보
- 4 : 다른 사용자 권한 정보&lt;/p&gt;
-
-&lt;p&gt;그리고 권한 정보는 각각 &lt;strong&gt;r&lt;/strong&gt;ead, &lt;strong&gt;w&lt;/strong&gt;rite, e&lt;strong&gt;x&lt;/strong&gt;ecute 값을 갖을 수 있습니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1 : 해당 항목이 파일(-)인지, 디렉토리(d)인지 구분&lt;/li&gt;
+      &lt;li&gt;2 : 사용자(소유자)의 권한 정보&lt;/li&gt;
+      &lt;li&gt;3 : 그룹 권한 정보&lt;/li&gt;
+      &lt;li&gt;4 : 다른 사용자 권한 정보&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;권한 정보는 각각 &lt;strong&gt;r&lt;/strong&gt;ead, &lt;strong&gt;w&lt;/strong&gt;rite, e&lt;strong&gt;x&lt;/strong&gt;ecute 값을 갖을 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission1.png&quot; alt=&quot;viewPermission1.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;다시 에러가 났던 파일을 보겠습니다. 다른 항목들은 파일이며(-) 사용자, 그룹, 다른 사용자에 대해 모두 읽기, 쓰기 권한을 가지고 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다시 에러가 났던 파일을 보겠습니다.&lt;/p&gt;
 
-&lt;p&gt;하지만 에러가 났던 파일은 윈도우 사용자가 만든 파일이라 사용자, 그룹, 다른 사용자 모두에게 아무 권한이 없습니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;다른 항목들은 파일이며(-) 사용자, 그룹, 다른 사용자에 대해 모두 읽기(r), 쓰기(w) 권한을 가지고 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;에러가 났던 파일은 사용자, 그룹, 다른 사용자 모두에게 아무 권한이 없습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h5 id=&quot;63-임시-방편&quot;&gt;6.3. 임시 방편&lt;/h5&gt;
+&lt;h4 id=&quot;43-임시-방편&quot;&gt;4.3. 임시 방편&lt;/h4&gt;
 
-&lt;p&gt;Permission denied 에러를 해결하기 위해선 윈도우에서 만든 파일들의 권한을 리눅스의 사용자가 사용할 수 있게 권한 변경을 해줘야 합니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Permission denied 에러를 해결하기 위해선 윈도우에서 만든 파일들의 권한을 우분투의 사용자가 사용할 수 있게 권한 변경을 해줘야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;권한 변경을 하기위해선 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod {permission} {filename}&lt;/code&gt; 명령어를 사용합니다.&lt;/li&gt;
+  &lt;li&gt;이때 {permission} 부분은 3자리 숫자로 표현됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;r&lt;/strong&gt;ead = 4, &lt;strong&gt;w&lt;/strong&gt;rite = 2, e&lt;strong&gt;x&lt;/strong&gt;ecute = 1&lt;/li&gt;
+      &lt;li&gt;각 권한은 위와 값을 갖습니다.&lt;/li&gt;
+      &lt;li&gt;사용자/권한/다른사용자 순서대로 허용된 권한들의 값의 합을 기입해주면 됩니다.&lt;/li&gt;
+      &lt;li&gt;rwx = 7, rw- = 6, r-x = 5, — = 0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;윈도우에서 만든 파일을 다른 파일들과 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rx-rx-rx-&lt;/code&gt;로 만들겠습니다.&lt;/p&gt;
 
-&lt;p&gt;권한 변경을 하기위해선 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod {permission} {filename}&lt;/code&gt; 형식의 명령어를 사용합니다. 이때 {permission} 부분은 3자리 숫자로 표현됩니다.&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission2.png&quot; alt=&quot;viewPermission2.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;파일 1개의 권한이 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt; 에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 로 변경되었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 작업을 디렉토리 아래 모든 파일에 대해 하고 싶다면 아래와 같은 명령어를 사용하면 됩니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;r&lt;/strong&gt;ead = 4
- &lt;strong&gt;w&lt;/strong&gt;rite = 2
- e&lt;strong&gt;x&lt;/strong&gt;ecute = 1&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find -type f -exec chmod 666 {} \;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;현재 디렉토리 아래에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt; 타입이 파일(f)인 것을 찾고(현 디렉토리의 하위 디렉토리아래 있는 파일들도 탐색합니다)&lt;/li&gt;
+      &lt;li&gt;찾은 각 파일에 &lt;code class=&quot;highlighter-rouge&quot;&gt;-exec&lt;/code&gt;뒤에 명령어를 실행합니다.&lt;/li&gt;
+      &lt;li&gt;뒤의 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod 666 {} \;&lt;/code&gt;는 권한 변경입니다.
+        &lt;ul&gt;
+          &lt;li&gt;파일명 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;{} \;&lt;/code&gt;가 들어가는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt;에서 찾은 파일들을 그대로 입력한다고 생각하면 됩니다.(자세한 부분은 나중에 추가하겠습니다 :sweat_smile:)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;권한을 바꾼뒤 다시 서버를 켜보면…&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;값을 갖고 앞서 사용자/권한/다른사용자 순서대로 허용된 권한들의 값의 합을 기입해주면 됩니다.&lt;/p&gt;
-
-&lt;p&gt;rwx = 7
- rw- = 6
- r-x = 5
- — = 0&lt;/p&gt;
-
-&lt;p&gt;위와 같이 말이죠. 제 상황에선 윈도우에서 만든 파일 하나를 다른 파일들과 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rx-rx-rx-&lt;/code&gt;로 만들겠습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission2.png&quot; alt=&quot;viewPermission2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;파일 1개의 권한이 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt; 에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 로 변경되었습니다. 근데 이런 작업을 파일 하나씩 해야 할까요? 아니겠죠&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find -type f -exec chmod 666 {} \;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위 명령어는 현재 디렉토리 아래에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt; 타입이 파일(f)인 것을 찾고(현 디렉토리의 하위 디렉토리아래 있는 파일들도 탐색합니다), 찾은 각 파일에 &lt;code class=&quot;highlighter-rouge&quot;&gt;-exec&lt;/code&gt;뒤에 명령어를 실행합니다. 뒤의 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod 666 {} \;&lt;/code&gt;는 권한 변경입니다. 파일명 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;{} \;&lt;/code&gt;가 들어가는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt;에서 찾은 파일들을 그대로 입력한다고 생각하면 됩니다.(자세한 부분은 나중에 추가하겠습니다 :sweat_smile:)&lt;/p&gt;
-
-&lt;p&gt;아무튼 이렇게 권한을 바꾼뒤 다시 서버를 켜보면…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/viewPermission3.png&quot; alt=&quot;viewPermission3.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission3.png&quot; alt=&quot;viewPermission3.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionErrorClear.png&quot; alt=&quot;permissionErrorClear.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;해결이 됐습니다!&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;해결이 됐습니다! :happy:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h4 id=&quot;7-제대로-해결하려면&quot;&gt;7. 제대로 해결하려면…&lt;/h4&gt;
+&lt;h3 id=&quot;5-제대로-해결하려면&quot;&gt;5. 제대로 해결하려면…&lt;/h3&gt;
 
-&lt;p&gt;물론 이건 리눅스의 명령어와 권한과 친해지기 위해 해본 임시 해결책입니다. 근본적인 해결책은&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;물론 이건 리눅스의 명령어와 권한과 친해지기 위해 해본 임시 해결책입니다. 근본적인 해결책은&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;작업환경을 리눅스로 통일 하던가(사실 시도하다가 Typora 설치에서 에러가…)&lt;/li&gt;
-  &lt;li&gt;ruby와 jekyll을 윈도우 환경에서 다시 셋팅 하던가&lt;/li&gt;
-  &lt;li&gt;윈도우와 리눅스가 권한을 공유할 수 있게 자동 설정 하는 것입니다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이것들 중에 하나가 될 것 같습니다. 작업 속도를 위해선 2번이 나을것 같긴 한데… 뭔가 앞으로 개발자 하면서 어차피 친해져야할 리눅스이니 빨리 1번을 할까 싶기도 하고…&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;작업환경을 리눅스로 통일 하던가(사실 시도하다가 Typora 설치에서 에러가…)&lt;/li&gt;
+      &lt;li&gt;ruby와 jekyll을 윈도우 환경에서 다시 셋팅 하던가&lt;/li&gt;
+      &lt;li&gt;윈도우와 리눅스가 권한을 공유할 수 있게 자동 설정 하는 것입니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이것들 중에 하나가 될 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;작업 속도를 위해선 2번이 나을것 같긴 한데… 앞으로 개발자 하면서 어차피 친해져야할 리눅스이니 빨리 1번을 할까 싶기도 하고… 3번도 간단해 보이고…&lt;/li&gt;
+&lt;/ul&gt;
 
 </content>
  </entry>

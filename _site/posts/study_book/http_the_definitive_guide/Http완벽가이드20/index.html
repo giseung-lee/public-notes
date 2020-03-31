@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      리다이렉션과 부하 균형 &middot; 이기승의 개발일지
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+    
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+<a class="sidebar-nav-item category-closed" href="#">projects</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">sagyo</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-book</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">algorithm</a>
+<a class="sidebar-nav-item" href="#">http완벽가이드</a>
+</div>
+<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
+<div class="subcategories">
+<a class="sidebar-nav-item" href="#">Java</a>
+<a class="sidebar-nav-item" href="#">tca</a>
+</div>
+    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">이기승의 개발일지</a>
+            <small>문서화에 맛들리는 중...</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">리다이렉션과 부하 균형</h1>
+  <span class="post-date">01 Apr 2020</span>
+  
+<h3 id="들어가며">들어가며</h3>
+
+<hr />
+
+<h3 id="201-왜-리다이렉트인가">20.1. 왜 리다이렉트인가?</h3>
+
+<hr />
+
+<h3 id="202-리다이렉트-할-곳">20.2. 리다이렉트 할 곳</h3>
+
+<hr />
+
+<h3 id="203-리다이렉션-프로토콜의-개요">20.3. 리다이렉션 프로토콜의 개요</h3>
+
+<hr />
+
+<h3 id="204-일반적인-리다이렉션-방법">20.4. 일반적인 리다이렉션 방법</h3>
+
+<hr />
+
+<h4 id="2041-http-리다이렉션">20.4.1. HTTP 리다이렉션</h4>
+
+<h4 id="2042-dns-리다이렉션">20.4.2. DNS 리다이렉션</h4>
+
+<h4 id="2043-임의-캐스트-어드레싱">20.4.3. 임의 캐스트 어드레싱</h4>
+
+<h4 id="2044-아이피-맥-포워딩">20.4.4. 아이피 맥 포워딩</h4>
+
+<h4 id="2045-아이피-주소-포워딩">20.4.5. 아이피 주소 포워딩</h4>
+
+<h4 id="2046-네트워크-구성요소-제어-프로토콜">20.4.6. 네트워크 구성요소 제어 프로토콜</h4>
+
+<h3 id="205-프록시-리다이렉션-방법">20.5. 프록시 리다이렉션 방법</h3>
+
+<hr />
+
+<h4 id="2051-명시적-브라우저-설정">20.5.1. 명시적 브라우저 설정</h4>
+
+<h4 id="2052-프록시-자동-설정">20.5.2. 프록시 자동 설정</h4>
+
+<h4 id="2053-웹-프록시-자동발견-프로토콜web-proxy-autodiscovery-protocol">20.5.3. 웹 프록시 자동발견 프로토콜(Web Proxy Autodiscovery Protocol)</h4>
+
+<h3 id="206-캐시-리다이렉션-방법">20.6. 캐시 리다이렉션 방법</h3>
+
+<hr />
+
+<h4 id="2061-wccp-리다이렉션">20.6.1. WCCP 리다이렉션</h4>
+
+<h3 id="207-인터넷-캐시-프로토콜">20.7. 인터넷 캐시 프로토콜</h3>
+
+<hr />
+
+<h3 id="208-캐시-배열-라우팅-프로토콜">20.8. 캐시 배열 라우팅 프로토콜</h3>
+
+<hr />
+
+<h3 id="209-하이퍼텍스트-캐싱-프로토콜">20.9. 하이퍼텍스트 캐싱 프로토콜</h3>
+
+<hr />
+
+<h4 id="2091-htcp-인증">20.9.1. HTCP 인증</h4>
+
+<h4 id="2092-캐싱-정책-설정">20.9.2. 캐싱 정책 설정</h4>
+
+<h3 id="마치며">마치며</h3>
+
+<hr />
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study_googling/linux/GtkWarning/">
+            우분투(리눅스) GtkWarning
+            <small>31 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_googling/jekyll/%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%9A%B0%EB%B6%84%ED%88%AC-%EA%B6%8C%ED%95%9C%EA%B3%B5%EC%9C%A0/">
+            Samba를 이용한 윈도우 우분투 권한 공유
+            <small>31 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C19/">
+            배포 시스템
+            <small>31 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
