@@ -4,13 +4,2071 @@
  <title>이기승의 techlog!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-03-25T17:57:07+09:00</updated>
+ <updated>2020-03-31T21:10:00+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>배포 시스템</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C19/"/>
+   <updated>2020-03-31T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드19</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이번 장에선 웹의 배포 및 협업에 대해 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;191-배포-지원을-위한-frontpage-서버-확장&quot;&gt;19.1. 배포 지원을 위한 FrontPage 서버 확장&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FrontPage는 마이크로스프트의 개발 및 배포 프로그램입니다.&lt;/li&gt;
+  &lt;li&gt;1994년 Vermeer Technologies사에서 처음 개발했고 마이크로소프트가 인수하였습니다.&lt;/li&gt;
+  &lt;li&gt;2003년 마지막 버전을 끝으로 현재는 FrontPage의 개발이 중단됐습니다.&lt;/li&gt;
+  &lt;li&gt;현재는 사용되지 않는 프로그램이나 한 때 많이 사용되었고, 프로그램이 작동하는 과정을 이해하면 다른 기술들을 이해하는데 도움이 될 것 같아 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1911-frontpage-서버-확장&quot;&gt;19.1.1. FrontPage 서버 확장&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FrontPage는 쉽게 말해 RPC(Remote Procedure Call) 프로토콜 통신으로 서버에게 명령을 내릴 수 있는 프로그램 입니다. 배포를 위해 사용됩니다.&lt;/li&gt;
+  &lt;li&gt;이를 위해 서버는 FPSE(FrontPage Server Extension)을 구현하고 있어야 합니다.&lt;/li&gt;
+  &lt;li&gt;아래 그림을 보시겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/frontpage.png&quot; alt=&quot;frontpage.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FrontPage 클라이언트에서 서버로 ①요청을 보냅니다.
+    &lt;ul&gt;
+      &lt;li&gt;①요청은 HTTP POST 요청 위에 RPC 계층을 구현합니다. 19.1.3.에서 더 자세히 알아봅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버는 ①요청을 읽고 ②로 보내 요청받은 메서드를 수행합니다.
+    &lt;ul&gt;
+      &lt;li&gt;서버와 FPSE는 CGI(Common Gateway Interface) 혹은 ISAPI(Internet Server Application Program Interface, 마이크로소프트 IIS서버에서 사용)와 같은 API로 통신합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;그 후 ③응답 결과를 돌려줍니다.&lt;/li&gt;
+  &lt;li&gt;위 과정은 FrontPage 클라이언트와 서버사이에 방화벽, 프록시 등이 있더라도 HTTP POST 메서드 통신만 가능하다면 가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1912-frontpage-용어&quot;&gt;19.1.2. FrontPage 용어&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;FrontPage를 이해하기 위한 몇 가지 용어를 알고 갑시다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;가상 서버&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;가상 서버는 한 웹 서버에서 여러 사이트를 호스팅할때, 클라이언트 입장에선 각자의 전용 서버처럼 보이는 가상의 서버를 말합니다.&lt;/li&gt;
+      &lt;li&gt;가상 서버를 지원하는 웹 서버를 ‘다중 호스팅(multi-hosting)’ 웹 서버라고 부릅니다.&lt;/li&gt;
+      &lt;li&gt;여러 개의 IP 주소를 갖는 장비를 ‘다중 홈(multi-homed)’ 서버라고 부릅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;루트 웹&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;루트 웹이란 한 웹 서버의 최상위 콘텐츠 디렉터리를 말합니다.(Spring 프레임워크의 WebContents 폴더)&lt;/li&gt;
+      &lt;li&gt;다중 호스팅 환경이라면, 가상 서버의 최상위 콘텐츠 디렉토리를 말합니다.&lt;/li&gt;
+      &lt;li&gt;루트 웹에 접근하기 위해선 서버의 URL만 기술하면 됩니다.&lt;/li&gt;
+      &lt;li&gt;한 웹 서버엔 한 개의 루트 웹만 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;서브 웹&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;서브 웹은 루트 웹의 하위 디렉토리, 혹은 한 서버의 FPSE 확장 웹인 다른 서브 웹의 하위 디렉토리 입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1913-frontpage-rpc-프로토콜&quot;&gt;19.1.3. FrontPage RPC 프로토콜&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;FrontPage 클라이언트와 FPSE는 자체 RPC 프로토콜을 통해 통신합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 프로토콜은 HTTP POST 요청의 본문에 RPC 메서드와 변수들을 담는 방식으로 구현됩니다. 아래는 RPC 프로토콜을 사용한 요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /_vti_bin/_vti_aut/author.dll HTTP/1.1
+Date: Sat, 12 Aug 2000 20:32:54 GMT
+User-Agent: MSFrontPage/4.0
+  
+&amp;lt;BODY&amp;gt;
+method=list+documents%3a4%2e0%2e2%2e3717&amp;amp;service%5fname=&amp;amp;listH
+iddenDocs=false&amp;amp;listExp
+lorerDocs=false&amp;amp;listRecurse=false&amp;amp;listFiles=true&amp;amp;listFolders=t
+rue&amp;amp;listLinkInfo=true&amp;amp;l
+istIncludeParent=true&amp;amp;listDerived=false
+&amp;amp;listBorders=false&amp;amp;listChildWebs=true&amp;amp;initialUrl=&amp;amp;folderList=%
+5b%3bTW%7c12+Aug+2000+2
+0%3a33%3a04+%2d0000%5d 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;한편, FrontPage 클라이언트에서 서버로 RPC 요청을 하기 위해선 실행 시킬 프로그램이 어디 있는지 알아야 합니다.(위 예시에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;/_vti_bin/_vti_aut/author.dll&lt;/code&gt; 와 같은 경로 )&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;이를 위해 FrontPage 클라이언트는 프로그램들의 위치를 묻는 GET 요청을 보냅니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /_vti_inf.html HTTP/1.1
+Date: Sat, 12 Aug 2020 20:31:32 GMT
+User-agent: Mozilla/2.0 (compatiable;Ms FrontPage 4.0)
+Host: taskserver:80
+Accept: auth/sicily
+Content-length: 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;위와 같은 요청엔 아래와 같은 목록을 가진 응답이 옵니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FPShtmlScriptUrl=&quot;_vti_bin/_vti_rpc/shtml.dll&quot;
+FPAuthorScriptUrl=&quot;_vti_bin/_vti_aut/author.dll&quot;
+FPAdminScriptUrl=&quot;_vti_bin/_vti_adm/admin.dll&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;FPShtmlScriptUrl는 ‘탐색 시간(browse time)’에 대한 명령을 보낼 위치입니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;FPAuthorScriptUrl는 ‘저작 시간(authoring time)’에 대한 명령을 보낼 위치입니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;FPAdminScriptUrl는 ‘관리 동작’에 대한 명령을 보낼 위치입니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;요청&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;요청에서 사용 가능한 FPSE의 메서드는 &lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ms454298(v=office.14)&quot;&gt;링크&lt;/a&gt;를 남기겠습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;요청의 본문은 &lt;code class=&quot;highlighter-rouge&quot;&gt;method=&amp;lt;command&amp;gt;&lt;/code&gt; 형식으로 이루어져 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 요청 예시를 보면 &lt;command /&gt; 부분이 복잡해 보입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;커맨드 부분의 빈칸은 ‘+’로 인코딩 되며 알파벳 외의 문자는 퍼센트인코딩(%XX) 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 요청 예시를 보기 좋게 파싱하면 아래와 같습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;method=list+documents:4.0.1.3717
+&amp;amp;service_name=
+&amp;amp;listHiddenDocs=false
+&amp;amp;listExplorerDocs=false
+		:
+		:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 파라미터들이 어떤걸 나타내는지는 &lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ms442283(v%3Doffice.14)#parameters&quot;&gt;링크&lt;/a&gt;를 남기겠습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;응답&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;요청에 대한 응답은 일반적인 응답과 같이 성공 혹은 에러입니다.&lt;/li&gt;
+  &lt;li&gt;간혹 “Sample Retrun Code”를 응답으로 받는 메서드도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1914-frontpage-보안-모델&quot;&gt;19.1.4. FrontPage 보안 모델&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;대부분의 경우 FPSE의 보안은 웹 서버에게 의존합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;FPSE에서 마련한 보안 모델은 사용자를 ‘관리자’, ‘저작자’, ‘일반 사용자’ 와 같은 세 그룹으로 나눕니다.&lt;/li&gt;
+  &lt;li&gt;IIS(Internet Information Services, 마이크로소프트의 서버)가 아닌 웹 서버라면,
+    &lt;ul&gt;
+      &lt;li&gt;모든 FPSE 프로그램(~~.dll)이 ‘executable’ 표시가 된 디렉토리에 저장되어야 합니다.&lt;/li&gt;
+      &lt;li&gt;그리고 각 프로그램에 접근 허가된 사용자들을 따로 기술합니다. 이를 기술한 파일을 ‘접근 명세 파일’이라고 합니다.
+        &lt;ul&gt;
+          &lt;li&gt;아파치, NCSA 웹 서버에선 .htaccess 파일에 기술합니다.&lt;/li&gt;
+          &lt;li&gt;넷스케이프 웹 서버에선 .nsconfig 파일에 기술합니다.&lt;/li&gt;
+          &lt;li&gt;기술 내용은 권한 등급별 사용자, 그룹, IP 주소입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IIS 서버라면,
+    &lt;ul&gt;
+      &lt;li&gt;윈도우 보안 모델이 우선 적용됩니다.&lt;/li&gt;
+      &lt;li&gt;권한 검사는 주어진 루트나 서브노트에 대한 ACL(access control list, 접근 제어 목록)을 보고 검사합니다.&lt;/li&gt;
+      &lt;li&gt;IIS가 FrontPage클라이언트의 요청을 받는다면, 우선 요청의 정보로 로그인해 사용자로 가장합니다.&lt;/li&gt;
+      &lt;li&gt;그 후, 요청온 DLL에 접근합니다.&lt;/li&gt;
+      &lt;li&gt;dll은 ACL을 기준으로 접근한 사용자가 권한이 있는지 검사합니다.&lt;/li&gt;
+      &lt;li&gt;성공하면 dll이 실행되고, 실패한다면 ‘승인 거부(permission denied)’ 메세지를 보냅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;192-webdav와-공동-저작&quot;&gt;19.2. WebDAV와 공동 저작&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;WebDAV = Web Distributed Authoring(분산 저작) and Versioning(버전관리)&lt;/li&gt;
+  &lt;li&gt;책엔 WebDAV에 대해 꽤 많은 부분을 할당했습니다.&lt;/li&gt;
+  &lt;li&gt;책이 쓰여지던 때엔 WebDAV를 협업을 위한 툴로 사용했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;당시엔 git, svn 같은 형상관리도구의 수준이 낮았다고 합니다.&lt;/li&gt;
+      &lt;li&gt;당시엔 이메일로 파일을 주고받거나 공유 폴더에 파일을 업로드 하기도 했다고 합니다.(선배 개발자님들 존경스럽습니다… :pray:)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하지만 지금은 WebDAV가 개발자들의 협업을 위해 쓰이진 않고 네트워크 드라이브를 만들때 사용하는 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;책에 내용은 많으나 적당히 추려 요약하겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1921-webdav-메서드&quot;&gt;19.2.1. WebDAV 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;WebDAV에선 HTTP에 없는 아래와 같은 메서드를 추가했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;PROPFIND : 리소스의 속성을 읽습니다. properties find&lt;/li&gt;
+      &lt;li&gt;PROPPATCH : 한 개 이상의 리소스에 대해 한 개 이상의 속성을 설정합니다. properties patch&lt;/li&gt;
+      &lt;li&gt;MKCOL : 콜렉션(collection)을 생성합니다. make collection&lt;/li&gt;
+      &lt;li&gt;COPY : 리소스나 리소스의 집합을 복사합니다.&lt;/li&gt;
+      &lt;li&gt;MOVE : 리소스나 리소스의 집합을 이동시킵니다.&lt;/li&gt;
+      &lt;li&gt;LOCK : 하나 이상의 리소스를 잠급니다.&lt;/li&gt;
+      &lt;li&gt;UNLOCK : 잠겨 있는 리소스를 잠금 해제 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;또, HTTP에서 아래와 같은 메서드를 수정했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;DELETE, PUT, OPTIONS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1922-webdav와-xml&quot;&gt;19.2.2. WebDAV와 XML&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebDAV에서 요청 및 응답을 할 시 많은 정보를 주고 받아야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;몇몇 정보는 HTTP 헤더를 통해 전달할 수 있지만 헤더에 전송하는 것은 한계가 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;때문에, WebDAV에선 아래와 같이 본문에 XML을 보낼 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;LOCK /ch-publish.fm HTTP/1.1
+Host: minstar
+Content-Type: text/xml
+User-Agent: Mozilla/4.0 (compatible; MSIE 5.0; Windows NT)
+Content-Length: 201
+  
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockinfo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockscope&amp;gt;&amp;lt;a:exclusive/&amp;gt;&amp;lt;/a:lockscope&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:locktype&amp;gt;&amp;lt;a:write/&amp;gt;&amp;lt;/a:locktype&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:owner&amp;gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;AuthorA&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&amp;lt;/a:owner&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:lockinfo&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebDAV에서 사용하는 XML의 스킴은 &lt;a href=&quot;http://www.webdav.org/specs/rfc4918.xml#xml.element.definitions&quot;&gt;링크&lt;/a&gt;를 남깁니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1923-webdav-헤더&quot;&gt;19.2.3. WebDAV 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;WebDAV에선 아래와 같은 7개의 HTTP 헤더를 추가했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;DAV : WevDAV를 제공하는 서버와 통신시 사용.&lt;/li&gt;
+      &lt;li&gt;Depth : 계층 구조로 분류된 리소스에 사용&lt;/li&gt;
+      &lt;li&gt;Destination : COPY, MOVE 메서드에서 목적지 URI를 지정할때 사용&lt;/li&gt;
+      &lt;li&gt;If : COPY, PUT, LOCK과 같은 메서드에서 조건부 요청을 할 때 사용&lt;/li&gt;
+      &lt;li&gt;Lock-Token : 해제 해야할 잠금을 명시. UNLOCK 메서드에서 사용&lt;/li&gt;
+      &lt;li&gt;Overwrite : COPY, MOVE 메서드에서 사용&lt;/li&gt;
+      &lt;li&gt;Timeout : 클라이언트가 필요한 잠금 타임아웃 값을 기술&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;각 헤더에 대한 상세 사항은 &lt;a href=&quot;http://www.webdav.org/specs/rfc4918.xml#http.headers.for.distributed.authoring&quot;&gt;링크&lt;/a&gt;를 남깁니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1924-webdav-잠금과-덮어쓰기-방지&quot;&gt;19.2.4. WebDAV 잠금과 덮어쓰기 방지&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;하나의 파일을 여러 명이 같이 작업할 땐 항상 충돌의 우려가 있습니다.&lt;/li&gt;
+  &lt;li&gt;충돌에 관한 문제를 해결하기 위해선 형상관리 툴의 도움을 받아야 합니다.&lt;/li&gt;
+  &lt;li&gt;하지만 초기 웹 개발에선 단순히 한 사용자가 파일을 사용할 때 파일을 잠그고, 사용이 끝나면 잠금을 푸는 방식으로 충돌을 막았습니다.&lt;/li&gt;
+  &lt;li&gt;잠금의 방법엔 두가지가 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;배타적 쓰기 잠금 : 파일을 잠근 한 사용자만 파일을 쓸 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;공유된 쓰기 잠금 : 한 그룹만이 하나의 파일을 쓸 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;잠금을 구현하기 위해선 LOCK, UNLOCK 메서드와 저자 식별 알고리즘이 필요합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1925-lock-메서드&quot;&gt;19.2.5. LOCK 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;하나의 LOCK 요청으로 하나 이상의 리소스를 잠글 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;LOCK 요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;LOCK /ch-publish.fm HTTP/1.1
+Host: minstar
+Content-Type: text/xml
+User-Agent: Mozilla/4.0 (compatible; MSIE 5.0; Windows NT)
+Content-Length: 201
+  
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockinfo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockscope&amp;gt;&amp;lt;a:exclusive/&amp;gt;&amp;lt;/a:lockscope&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:locktype&amp;gt;&amp;lt;a:write/&amp;gt;&amp;lt;/a:locktype&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:owner&amp;gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;AuthorA&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&amp;lt;/a:owner&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:lockinfo&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 xml 태그가 무얼 의미하는 지는 &lt;a href=&quot;http://www.webdav.org/specs/rfc4918.xml#xml.element.definitions&quot;&gt;여기&lt;/a&gt;를 참고해주세요.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 요청이 성공하면 아래와 같은 응답을 볼 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 200 OK
+Server: Microsoft-IIS/5.0
+Date: Fri, 10 May 2002 20:56:18 GMT
+Content-Type: text/xml
+Content-Length: 419
+  
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:prop&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockdiscovery&amp;gt;&amp;lt;a:activelock&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:locktype&amp;gt;&amp;lt;a:write/&amp;gt;&amp;lt;/a:locktype&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:lockscope&amp;gt;&amp;lt;a:exclusive/&amp;gt;&amp;lt;/a:lockscope&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:owner&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;AutherA&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&amp;lt;/a:owner&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:locktoken&amp;gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;opaquelocktoken:*****&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&amp;lt;/a:locktoken&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:depth&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:depth&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:timeout&amp;gt;&lt;/span&gt;Second-180&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:timeout&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:activelock&amp;gt;&amp;lt;/a:lockdiscovery&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:prop&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 각 xml 태그가 의미하는 바는 위의 링크를 참고해주시고, 중요한 건 &lt;strong&gt;opaquelocktoken&lt;/strong&gt; 값입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;opaquelocktoken 스킴&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;잠금이 성공하면 서버는 opaquelocktoken값을 돌려줍니다.&lt;/li&gt;
+  &lt;li&gt;opaquelocktoken는 모든 리소스에 대해 유일한 토큰 값을 가집니다.&lt;/li&gt;
+  &lt;li&gt;UUID(universal unique identifier) 메커니즘을 통해 만들어지는 값입니다.&lt;/li&gt;
+  &lt;li&gt;해당 값을 이용해 잠금한 사용자만이 UNLOCK을 하고 수정한 파일을 저장하게 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1926-unlock-메서드&quot;&gt;19.2.6. UNLOCK 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;UNLOCK 메서드는 잠긴 하나 이상의 리소스의 잠금을 해제 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UNLOCK을 하기 위해선 다이제스트 인증에 성공해야 하고, Lock-Token 헤더에 보낸 opaquelocktoken 가 맞아야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 UNLOCK 요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;UNLOCK /ch-publish.fm HTTP/1.1
+Host: minstar.inktomi.com
+User-Agent: Mozilla/4.0 (compatible; MSIE 5.0; Windows NT)
+Lock-Token:
+opaquelocktoken:*********
+  
+HTTP/1.1 204 OK
+Server: Microsoft-IIS/5.0
+Date: Fri, 10 May 2002 20:56:18 GMT 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UNLOCK이 성공했다면 204 No Content 상태 코드를 받게 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1927-속성과-meta-데이터&quot;&gt;19.2.7. 속성과 META 데이터&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;하나의 리소스에는 많은 속성이 있습니다.&lt;/li&gt;
+  &lt;li&gt;그 중, 문서가 편집될 때 마다 자주 변하는 속성을 live 속성이라고 하고, Content-Type같이 거의 변하지 않는 속성을 dead 속성이라고 합니다.&lt;/li&gt;
+  &lt;li&gt;WebDAV에선 리소스의 속성을 다루기 위해 PROPFIND 메서드와 PROPPATCH 메서드를 지원합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1928-propfind-메서드&quot;&gt;19.2.8. PROPFIND 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;PROPFIND는 파일이나 파일 그룹(주로 디렉토리)의 속성을 읽는 데 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;PROPFIND는 아래 세 가지 동작을 지원합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;모든 속성과 그 값을 요청합니다.&lt;/li&gt;
+      &lt;li&gt;선택된 속성과 그 값의 집합을 요청합니다.&lt;/li&gt;
+      &lt;li&gt;모든 속성의 이름을 요청합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 모든 속성과 값을 요청하는 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PROPFIND /ch-publish.fm HTTP/1.1
+Host: minstar.inktomi.com
+User-Agent: Mozilla/4.0 (compatible; MSIE 5.0; Windows NT)
+Depth: 0
+Cache-Control: no-cache
+Connection: Keep-Alive
+Content-Length: 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 요청에 대해선 아래와 같은 응답이 올 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 207 Multi-Status
+Server: Microsoft-IIS/5.0
+  
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:multistatusxmlns:b&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;urn:uuid:********&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:c=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xml:&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:response&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;http://minstar/ch-publish.fm &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:propstat&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:status&amp;gt;&lt;/span&gt;HTTP/1.1 200OK&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:status&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:prop&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:getcontentlength&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;b:dt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;int&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1155&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:getcontentlength&amp;gt;&lt;/span&gt;
+     					:
+     					:
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:ishidden&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;b:dt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;boolean&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:ishidden&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;a:iscollection&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;b:dt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;boolean&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:iscollection&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:prop&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:propstat&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:response&amp;gt;&amp;lt;/a:multistatus&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1929-proppatch-메서드&quot;&gt;19.2.9. PROPPATCH 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;PROPPATCH 메서드는 속성을 설정하거나 제거하는데 사용됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음은 ‘owner’라는 속성을 설정(set)하고 제거(remove)하기 위한 xml 본문입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;d:propertyupdate&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:d=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:o=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://namespace/scheme/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;d:set&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;d:prop&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;o:owner&amp;gt;&lt;/span&gt;Author A&lt;span class=&quot;nt&quot;&gt;&amp;lt;/o:owner&amp;gt;&lt;/span&gt; 
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/d:prop&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/d:set&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;d:remove&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;d:prop&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;o:owner/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/d:prop&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/d:remove&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/d:propertyupdate&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19210-콜렉션과-이름공간-관리&quot;&gt;19.2.10. 콜렉션과 이름공간 관리&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;콜렉션은 리소스들의 논리적 혹은 물리적 그룹입니다.&lt;/li&gt;
+  &lt;li&gt;디렉토리가 콜렉션의 한 예라고 볼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;WebDAV의 XML 스킴에선 namespace를 제공합니다.
+    &lt;ul&gt;
+      &lt;li&gt;namespace를 통해 콜렉션간 충돌이 생기지 않게 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;WebDAV에선 namespace를 제어하는 다섯 가지 메서드를 제공합니다.
+    &lt;ul&gt;
+      &lt;li&gt;DELETE, MKCOL, COPY, MOVE, PROPFIND&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19211-mkcol-메서드&quot;&gt;19.2.11. MKCOL 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;MKCOL은 지정된 URL에 해당하는 콜렉션을 서버에 생성합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콜렉션을 생성하는 일은 PUT이나 POST 메서드를 통해서도 가능하지만, 아래와 같은 이유로 MKCOL메서드가 새로 정의되었습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;PUT, POST를 사용하려면 요청안에 추가적인 정보를 더하는 식으로 요청해야 합니다. 이렇게 매 요청마다 즉석으로 프로토콜을 수정하는건 번거롭고 오류를 내기 쉽습니다.&lt;/li&gt;
+      &lt;li&gt;대부분의 접근 제어 메커니즘은 메서드 타입에 기반합니다. 다른 메서드들을 본래 용도와 다르게 사용하면 접근 제어 메커니즘은 잘 동작하지 않습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MKCOL /publishing HTTP/1.1
+Host: minstar
+Content-Length: 0
+Connection: Keep-Alive 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;응답의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 201 Created
+Server: Microsoft-IIS/5.0
+Date: Fri, 10 May 2002 23:20:36 GMT
+Location: http://minstar/publishing/
+Content-Length: 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19212-delete-메서드&quot;&gt;19.2.12. DELETE 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;DELETE 메서드는 기존 HTTP의 DELETE 메서드에 Depth 헤더를 추가했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Depth 헤더를 추가한 이유는 디렉토리를 삭제하기 위해서 입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELETE /publishing HTTP/1.0
+Host: minstar 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;성공시 응답의 예시 입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 200 OK
+Server: Microsoft-IIS/5.0
+Date: Tue, 14 May 2002 16:41:44 GMT
+Content-Location: http://minstar/publishing/
+Content-Type: text/xml
+Content-Length: 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;제거를 시도할 때, 해당 리소스가 잠겨있다면 아래와 같은 응답을 받게 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 207 Multi-Status
+Server: Microsoft-IIS/5.0
+Content-Location: http://minstar/publishing/
+  
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:multistatus&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:a=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DAV:&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:response&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:href&amp;gt;&lt;/span&gt;http://minstar/index3/ch-publish.fm&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:href&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a:status&amp;gt;&lt;/span&gt; HTTP/1.1 423 Locked &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:status&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:response&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a:multistatus&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;400대의 에러코드가 아닌 207 Multi-status 임을 주의합시다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;xml status 태그 아래 423 Locked 라는 상태 정보가 주어졌습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19213-copy와-move-메서드&quot;&gt;19.2.13. COPY와 MOVE 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;COPY 메서드와 MOVE 메서드 역시 MKCOL 메서드 처럼 GET과 POST를 조합해 구현할 수 있지만 그렇게 하지 않습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;COPY, MOVE 메서드는 요청 URL을 원본의 위치, Destination 헤더를 목적지 URL로 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MOVE 메서드는 COPY 후 새로 생성된 URI 무결성 검사, 원본 삭제가 이루어집니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;요청의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{COPY,MOVE} /publishing HTTP/1.1
+Destination: http://minstar/pub-new
+Depth: infinity
+Overwrite: T
+Host: minstar 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;응답의 예시입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 201 Created
+Server: Microsoft-IIS/5.0
+Date: Wed, 15 May 2002 18:29:53 GMT
+Location: http://minstar.inktomi.com/pub-new/
+Content-Type: text/xml
+Content-Length: 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Depth 헤더를 지정하지 않을시 infinity로 간주합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overwrite 헤더는 T, F가 가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;잠겨있는 리소스는 COPY, MOVE가 금지됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;잠겨있는 콜렉션 아래로 COPY, MOVE가 되면 COPY, MOVE된 리소스도 잠기게 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19214-향상된-http11-메서드&quot;&gt;19.2.14. 향상된 HTTP/1.1 메서드&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 WebDAV에선 HTTP 메서드중 DELETE, PUT, OPTIONS을 수정했다고 했습니다.&lt;/li&gt;
+  &lt;li&gt;DELETE는 콜렉션을 하면서 살펴보았고, PUT과 OPTIONS에 대해 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;PUT 메서드&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebDAV에서 저작자가 파일을 서버에 전송하는 유일한 방법은 PUT 메서드를 사용하는 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebDAV에선 잠금을 지원하기 위해 PUT 메서드를 수정했습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;If 헤더를 추가했습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PUT /ch-publish.fm HTTP/1.1
+Accept: */*
+If:&lt;span class=&quot;nt&quot;&gt;&amp;lt;http:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;minstar&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;htm&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;(&lt;span class=&quot;nt&quot;&gt;&amp;lt;opaquelocktoken:&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;********&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;)
+User-Agent: DAV Client (C)
+Host: minstar.inktomi.com
+Connection: Keep-Alive
+Cache-Control: no-cache 
+Content-Length: 1155 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;OPTIONS 메서드&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP의 OPTIONS는 서버에서 가능한 메서드를 알려달라는 요청입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebDAV에서의 OPTIONS는 해당 리소스에 대해 어떤 메서드가 가능한지 알려달라는 요청입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같이 요청합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;OPTIONS /ch-publish.fm HTTP/1.1
+Accept: */*
+Host: minstar.inktomi.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 응답을 받습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 200 OK
+Server: Microsoft-IIS/5.0
+MS-Author-Via: DAV
+DASL: &amp;lt;DAV:sql&amp;gt;
+DAV: 1, 2
+Public: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL,PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+Allow: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, COPY, MOVE, PROPFIND,PROPPATCH,SEARCH, LOCK, UNLOCK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DAV 헤더는 Class 1, 2, 3을 지원하는지 알려줍니다. 위 예시에선 Class 1, Class 2를 지원합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Class 1 : &lt;a href=&quot;http://www.webdav.org/specs/rfc4918.xml&quot;&gt;명세&lt;/a&gt;에 기록된 모든 MUST 요구사항을 지원해야 합니다.&lt;/li&gt;
+      &lt;li&gt;Class 2 : Class 1의 요구사항에 더해 LOCK 메서드를 지원합니다. LOCK 메서드를 지원하기 위해선 Timeout 헤더, Lock-Token헤더, &amp;lt;supportedlock&amp;gt; xml 태그, &amp;lt;lockdiscovery&amp;gt; xml 태그를 지원해야 합니다.&lt;/li&gt;
+      &lt;li&gt;Class 3 : 명세의 모든 요구사항들을 지원합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Public 헤더 : 서버가 지원하는 모든 메서드가 기술되어 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allow 헤더 : 요청한 리소스에 허락된 메서드들이 기술되어 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DASL 헤더 : SEARCH 메서드에서 사용하는 질의 문법 형식이 기술되어 있습니다. 위 예시에선 sql을 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19215-webdav의-버전-관리&quot;&gt;19.2.15. WebDAV의 버전 관리&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지금까진 WebDAV의 DAV중 DA(Distributed Authoring)에 대해 알아봤습니다.&lt;/li&gt;
+  &lt;li&gt;V(Versioning)은 WevDAV가 처음 생길때 부터 있던건 아닙니다.&lt;/li&gt;
+  &lt;li&gt;Versioning은 RFC 3253에서 추가됐는데… 거의 쓰이지 않는 것 같습니다.(책에도 이 내용이 전부입니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;19216-webdav의-미래&quot;&gt;19.2.16. WebDAV의 미래&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;책에서 본 WebDAV의 미래는 밝았지만… :cry:&lt;/li&gt;
+  &lt;li&gt;WebDAV의 공식 홈페이지(&lt;a href=&quot;http://www.webdav.org/&quot;&gt;http://www.webdav.org/&lt;/a&gt;) 조차 2009년에 멈춘것 같습니다..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지금까지 모든 장들이 어깨너머 적어도 한 두번은 들어본 내용이었다면 이번 장의 FrontPage와 WebDAV는 정말 처음 보는 주제였습니다.&lt;/li&gt;
+  &lt;li&gt;그만큼 요즘엔 잘 쓰이지 않는 기술들이라 의욕이 조금 떨어졌지만, 과거의 기술을 알아야 그 기술의 한계와 문제를 해결하기 위해 나온 신기술을 이해할 수 있다고 생각하기에 열심히 알아보았습니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>로깅과 사용 추적</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C21/"/>
+   <updated>2020-03-30T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드21</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 살펴본 거의 모든 서버, 프록시 등은 처리한 HTTP 트랜잭션을 요약해 기록해 놓습니다.&lt;/li&gt;
+  &lt;li&gt;이번 장에선 기록을 남기는 기술, 로깅에 대해 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;211-로그란-무엇인가&quot;&gt;21.1. 로그란 무엇인가?&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;로깅을 하는 이유는 크게 두 가지 입니다.
+    &lt;ul&gt;
+      &lt;li&gt;서버나 프록시가 장애를 일으킬 시 문제와 원인을 찾을 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;웹 사이트에 대한 통계를 내기 위해 사용할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;HTTP메세지를 모조리 로깅할 수도 있지만 이런 방식은 쓸모 없는 데이터까지 저장하게 되어 매우 비효율 적입니다.&lt;/li&gt;
+  &lt;li&gt;일반적으로 로깅하는 항목들은 아래와 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTTP 메서드&lt;/li&gt;
+      &lt;li&gt;클라이언트와 서버의 HTTP 버전&lt;/li&gt;
+      &lt;li&gt;요청받은 URL&lt;/li&gt;
+      &lt;li&gt;응답의 HTTP 상태 코드&lt;/li&gt;
+      &lt;li&gt;요청과 응답 메세지의 크기&lt;/li&gt;
+      &lt;li&gt;트랜잭션이 일어난 시간&lt;/li&gt;
+      &lt;li&gt;Referer 헤더, User-Agent 헤더&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;212-로그-포맷&quot;&gt;21.2. 로그 포맷&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;로그를 남기는 방식에 표준을 만들어 놓으면 다음과 같은 이점이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;로그를 다루는 툴을 만들 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;로그를 보기 쉬워집니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;따라서 다양한 로그 포맷 표준들이 존재합니다.&lt;/li&gt;
+  &lt;li&gt;대부분의 HTTP 애플리케이션은 한 개 이상의 로그 포맷을 지원합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2121-일반-로그-포맷common-log-format&quot;&gt;21.2.1. 일반 로그 포맷(Common Log Format)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;많이 사용되는 로그 포맷중 하나는 말 그대로 ‘일반 로그 포맷’입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;NCSA(National Center for Supercomputing Applications)에서 처음 정의한 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;대부분의 사용 소프트 웨어는 일반 로그 포맷을 지원합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 일반 로그 포맷의 필드들입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;remotehost&lt;/td&gt;
+          &lt;td&gt;요청한 컴퓨터의 호스트 명 혹은 IP&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;username&lt;/td&gt;
+          &lt;td&gt;ident 검색을 수행했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;auth-username&lt;/td&gt;
+          &lt;td&gt;인증을 수행 했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;요청 날짜와 시간&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;request-line&lt;/td&gt;
+          &lt;td&gt;HTTP 요청의 첫 행을 그대로 기술.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-code&lt;/td&gt;
+          &lt;td&gt;응답의 HTTP 상태코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-size&lt;/td&gt;
+          &lt;td&gt;응답 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 
+http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET / HTTP/1.0&quot; 200 477
+http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET /foo HTTP/1.0&quot; 404 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 아래와 같이 나뉘어 집니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+          &lt;th&gt;로그2&lt;/th&gt;
+          &lt;th&gt;로그3&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;remotehost&lt;/td&gt;
+          &lt;td&gt;209.1.32.44&lt;/td&gt;
+          &lt;td&gt;http-guide.com&lt;/td&gt;
+          &lt;td&gt;http-guide.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;username&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;auth-username&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;dg&lt;/td&gt;
+          &lt;td&gt;dg&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:00 -0400&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;request-line&lt;/td&gt;
+          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
+          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
+          &lt;td&gt;GET /foo HTTP/1.0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-code&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+          &lt;td&gt;404&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-size&lt;/td&gt;
+          &lt;td&gt;1024&lt;/td&gt;
+          &lt;td&gt;477&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2122-혼합-로그-포맷combined-log-format&quot;&gt;21.2.2. 혼합 로그 포맷(Combined Log Format)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;혼합 로그 포맷 역시 자주 사용되는 로그 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;일반 로그 포맷과 매우 유사하며 필드 2개가 추가된 것이 전부입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 추가된 2개의 필드입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Referer&lt;/td&gt;
+          &lt;td&gt;Referer HTTP 헤더의 값&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;User-Agent&lt;/td&gt;
+          &lt;td&gt;User-Agent Referer HTTP 헤더의 값&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 로그가 남을 수 있습니다.(한 줄의 로그 입니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 &quot;http://www.joeshardware.com/&quot; &quot;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 로그에서 Referer와 User-Agent는 다음에 해당합니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Referer&lt;/td&gt;
+          &lt;td&gt;http://www.joeshardware.com/&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;User-Agent&lt;/td&gt;
+          &lt;td&gt;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2123-넷스케이프-확장-로그-포맷&quot;&gt;21.2.3. 넷스케이프 확장 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 로그 포맷은 일반 로그 포맷에서 시작해 &lt;strong&gt;프록시나 웹 캐시 같은 HTTP 애플리케이션을 지원하기 위해&lt;/strong&gt; 확장되었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;일반 로그 포맷의 7개 필드를 제외하고 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-code&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 HTTP 응답 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 응답 엔터티 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-size&lt;/td&gt;
+          &lt;td&gt;클라이언트가 프록시로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;클라이언트의 요청 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 요청자에게 보내는 응답 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 전송하는 요청 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;서버 응답 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-timestamp&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 요청과 응답이 프록시를 통해 오가는 총 시간(초)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 확장된 필드들은 아래와 같은 값을 갖습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-code&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-size&lt;/td&gt;
+          &lt;td&gt;1024&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-size&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-size&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;215&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;260&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;279&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;254&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-timestamp&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2124-넷스케이프-확장-2-로그-포맷&quot;&gt;21.2.4. 넷스케이프 확장 2 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 2 로그 포맷은 넷스케이프 확장 로그 포맷을 확장한 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 로그 포맷에 있는 필드를 제외하고 새로 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;route&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트에 요청을 만드는데 사용하는 경로&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-finish-status-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 클라이언트의 종료 상태 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 프록시의 종료 상태 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;cache-result-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 캐시 결과 코드&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;route 엔 다음과 같은 값이 가능합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;DIRECT : 리소스를 서버에서 바로 가져옴&lt;/li&gt;
+      &lt;li&gt;PROXY(host:port) : 리소스를 host 라는 프록시를 통해 가져옴&lt;/li&gt;
+      &lt;li&gt;SOCKS(socks:port) : 리소스를 host라는 SOCKS 서버를 통해 가져옴&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;client-finish-status-code, proxy-finish-status-code 엔 다음과 같은 코드가 존재합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;- : 요청이 시작되지 않음&lt;/li&gt;
+      &lt;li&gt;FIN : 요청이 성공적으로 완료됨&lt;/li&gt;
+      &lt;li&gt;INTR : 요청이 클라이언트에 의해 중단 되었거나 프록시/서버에 의해 종료됨&lt;/li&gt;
+      &lt;li&gt;TIMEOUT : 요청이 프로시/서버의 타임아웃에 걸림&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;cache-result-code엔 다음과 같은 코드가 쓰입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;- : 캐시할 수 없는 리소스&lt;/li&gt;
+      &lt;li&gt;WRITTEN : 리소스를 캐시에 저장함&lt;/li&gt;
+      &lt;li&gt;REFRESHED : 리소스를 캐시했고 갱신함&lt;/li&gt;
+      &lt;li&gt;NO-CHECK : 캐시된 리소스를 반환했고 신선도 검사를 하지 않음&lt;/li&gt;
+      &lt;li&gt;UP-TO-DATE : 캐시된 리소스를 반환했고 신선도 검사를 완료함&lt;/li&gt;
+      &lt;li&gt;HOST-NOT-AVAILABLE : 캐시된 리소스를 반환했으며, 원격 서버가 사용할 수 있는 상태가 아니었기 때문에 신서도 검사를 하지 않음&lt;/li&gt;
+      &lt;li&gt;CL-MISMATCH : 리소스를 캐시에 저장하지 않았다. Content-Length가 리소스의 크기와 맞지 않았기 때문에 쓰기를 중단함.&lt;/li&gt;
+      &lt;li&gt;ERROR : 어떤 에러 때문에 리소스를 캐시에 저장하지 못했다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3 DIRECT FIN FIN WRITTEN 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;확장된 필드들은 다음과 같이 파싱됩니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;route&lt;/td&gt;
+          &lt;td&gt;DIRECT&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-finish-status-code&lt;/td&gt;
+          &lt;td&gt;FIN&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
+          &lt;td&gt;FIN&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;cache-result-code&lt;/td&gt;
+          &lt;td&gt;WRITTEN&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2125-스퀴드squid-프록시-로그-포맷&quot;&gt;21.2.5. 스퀴드(Squid) 프록시 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 프록시 캐시(&lt;a href=&quot;http://www.squid-cache.org/&quot;&gt;http://www.squid-cache.org/&lt;/a&gt;)는 유명한 오픈소스 프록시 캐시 프로젝트입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 프록시 로그 포맷은 스퀴드 프록시 캐시에서 사용되는 로그 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;앞서 살펴본 일반 로그 포맷을 원류로한 로그들과는 필드의 구성과 순서가 좀 다릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 필드가 존재합니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;GMT 기준 1970년 1월 1일 부터 요청이 도착한 시간까지의 시간을 초 단위로 기술&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;time-elapsed&lt;/td&gt;
+          &lt;td&gt;요청과 응답이 프록시를 통해 오고간 총 시간을 밀리초 단위로 기술&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;host-ip&lt;/td&gt;
+          &lt;td&gt;클라이언트의 호스트 장비 IP 주소&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;result-code/status&lt;/td&gt;
+          &lt;td&gt;result code는 요청에 대해 어떤 일을 했는지를 squid result code로 기술. status는 HTTP 응답 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;size&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트에게 보낸 HTTP 응답 헤더와 본문을 포함한 응답 길이가 바이트 단위로 기술됨&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;method&lt;/td&gt;
+          &lt;td&gt;클라이언트 요청의 HTTP 메서드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;url&lt;/td&gt;
+          &lt;td&gt;클라이언트 요청의 URL&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;rfc931-ident&lt;/td&gt;
+          &lt;td&gt;클라이언트에 인증된 사용자 이름&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;hierarchy/from&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트로 요청을 봬며 거친 경로를 기술.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;content-type&lt;/td&gt;
+          &lt;td&gt;프록시 응답 엔터티의 Content-Type&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;squid result code는 꽤나 많기 때문에 링크를 남기겠습니다. &lt;a href=&quot;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&quot;&gt;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 로그 포맷을 사용한다고 해서 위 링크의 모든 result code를 구현하는 것은 아닙니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 로그 포맷은 다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;99823414 3001 209.1.32.44 TCP_MISS/200 4087 GET http://www.joes-hardware.com - DIRECT/proxy.com text/html 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 각 필드는 다음과 같은 값을 갖습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;99823414&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;time-elapsed&lt;/td&gt;
+          &lt;td&gt;3001&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;host-ip&lt;/td&gt;
+          &lt;td&gt;209.1.32.44&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;result-code/status&lt;/td&gt;
+          &lt;td&gt;TCP_MISS/200&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;size&lt;/td&gt;
+          &lt;td&gt;4087&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;method&lt;/td&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;url&lt;/td&gt;
+          &lt;td&gt;http://www.joes-hardware.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;rfc931-ident&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;hierarchy/from&lt;/td&gt;
+          &lt;td&gt;DIRECT/proxy.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;content-type&lt;/td&gt;
+          &lt;td&gt;text/html&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;213-적중-계량하기&quot;&gt;21.3. 적중 계량하기&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 말했듯이 로그는 에러를 진단하거나, 웹 사이트에 대한 통계를 내어 여러 용도로 사용하기 위해 남겨집니다.&lt;/li&gt;
+  &lt;li&gt;하지만 캐시가 사용된다면 클라이언트의 요청은 서버까지 오지 못하고 캐시에서 처리 됩니다.&lt;/li&gt;
+  &lt;li&gt;그렇다면 정확한 통계가 이루어지지 않습니다. 이와 같은 상황은 어떻게 해결할까요?&lt;/li&gt;
+  &lt;li&gt;중요한 문서들에 대해 캐시를 하지 않아 버릴 수도 있습니다. 모든 요청은 서버로 가게되고 정확한 통계를 낼 수 있습니다. 하지만 이렇게 되면 응답시간이 길어지고 서버의 부하가 증가합니다.&lt;/li&gt;
+  &lt;li&gt;대신 캐시에도 로그가 쌓일테니 캐시의 로그를 주기적으로 원 서버에 보내면 어떨까요? 이런 방법을 적중 계량(Hit Metering) 이라고 합니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량은 HTTP의 확장으로 RFC 2227에서 정의되었습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2131-개요&quot;&gt;21.3.1. 개요&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;적중 계량 규약은 캐시와 서버가 접근 정보를 공유하고 캐시의 리소스 양을 제어할 수 있는 몇가지 기능을 정의합니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량은 캐시에서 요청이 끝남으로서 발생되는 문제를 완벽히 해결해주진 않지만 어느정도로 서버가 원하는 정보를 제공해 줄 순 있습니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량을 사용하면 캐시를 이용해 성능을 높이면서도 서버에서 정확한 접근 통계를 낼 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2132-meter-헤더&quot;&gt;21.3.2. Meter 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;적중 계량을 위해선 Meter 라는 헤더가 사용됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Meter 헤더에 다양한 지시자와 값들을 통해 적중 계량을 구현할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음은 Meter 헤더에 사용 될 수 있는 지시자들 입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;지시자&lt;/th&gt;
+          &lt;th&gt;약어&lt;/th&gt;
+          &lt;th&gt;주체&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;will-report-and-limit&lt;/td&gt;
+          &lt;td&gt;w&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용량을 보고하고 서버가 기술한 사용제한에 복종함&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-report&lt;/td&gt;
+          &lt;td&gt;x&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용 제한에 복종하지만, 사용량 보고는 하지 않음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-limit&lt;/td&gt;
+          &lt;td&gt;y&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용량 보고를 하지만 사용 제한은 없음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;count&lt;/td&gt;
+          &lt;td&gt;c&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;“사용횟수/재사용횟수” 로 기술되는 보고 지시자. “:count=2/4”와 같이 쓰인다.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;max-uses&lt;/td&gt;
+          &lt;td&gt;u&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 캐시를 사용해 응답할 수 있는 최대 횟수를 기술. “max-uses=100” 과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;max-reuses&lt;/td&gt;
+          &lt;td&gt;r&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 캐시를 재사용해 응답할 수 있는 최대 횟수를 기술. “max-reuses=100”과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;do-report&lt;/td&gt;
+          &lt;td&gt;d&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 프록시에게 사용량 보고를 요구함&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;dont-report&lt;/td&gt;
+          &lt;td&gt;e&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 사용량 보고를 원하지 않음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timeout&lt;/td&gt;
+          &lt;td&gt;t&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 리소스를 계량할 때 시간제한을 거는데 사용. 캐시는 해당 타임아웃 정각이나 1분 전후로 보고를 해야함. “timeout=60”과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-ask&lt;/td&gt;
+          &lt;td&gt;n&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버는 계량 정보를 원하지 않음.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래 그림은 Meter 헤더가 사용되는 과정을 나타냅니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/meter_example.png&quot; alt=&quot;meter_example.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트 입장에선 변하는게 없습니다. 프록시가 서버로 요청을 보낼때 ‘will-report-and-limit’을 보내 사용량을 보고하며 사용 제한에 복종한다고 말합니다.&lt;/li&gt;
+  &lt;li&gt;서버는 프록시에게 리소스를 건네주며 ‘do-report’를 지시했습니다.&lt;/li&gt;
+  &lt;li&gt;프록시는 클라이언트에게 리소스를 건네줍니다.&lt;/li&gt;
+  &lt;li&gt;이후 시간이 흘러 프록시가 갖은 리소스가 신선하지 않아 재검사를 보낼때 Meter에 적중 횟수를 보고 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;214-개인-정보-보호에-대해&quot;&gt;21.4. 개인 정보 보호에 대해&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한편, 로깅은 본래 선의의 목적으로 사용되지만 악용 될 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;웹 사이트의 사용 기록을 몰래 매매할 수도 있고 수집한 로그로 개인의 사생활을 엿볼 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;로그를 다루는 개발자라면 항상 이 점을 염두해 두어야 할 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 프로젝트를 할 때 로그는 프레임워크가 해주는대로 ‘알아서 잘 남겠거니’하고 지나쳤었습니다.&lt;/li&gt;
+  &lt;li&gt;이번 장을 학습한 이후로는 좀 더 적극적으로 로그를 남기고 사용할 수 있을 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>웹 호스팅</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C18/"/>
+   <updated>2020-03-30T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드18</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 호스팅이란 콘텐츠 리소스를 저장, 중개, 관리하는 일을 통틀어 이르는 말입니다.&lt;/li&gt;
+  &lt;li&gt;웹 리소스를 직접 호스팅 할 수도 있지만 호스팅에 필요한 하드웨어, 소프트웨어를 관리해주는 호스팅 업체를 이용할 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;이번 장에선 웹 호스팅 서비스와 관련한 사항들을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;181-호스팅-서비스&quot;&gt;18.1. 호스팅 서비스&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹의 초기엔 대부분 각 회사가 직접 하드웨어와 소프트웨어를 구비해 자체 웹 서버를 구축했습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 웹이 발전하며 이를 대신해주는 웹 호스팅 업체들이 등장했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1811-간단한-예--전용-호스팅&quot;&gt;18.1.1. 간단한 예 : 전용 호스팅&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전용 호스팅이란 말 그대로 한 호스팅 의뢰자에게 하나의 서버를 전용으로 배정해주는 것입니다.&lt;/li&gt;
+  &lt;li&gt;호스팅업체 A에 호스팅 의뢰인 A, B가 호스팅을 맡겼다면, 의뢰인 A와 B에게 각각 서버와 IP가 할당됩니다.&lt;/li&gt;
+  &lt;li&gt;의뢰인 A의 도메인은 의뢰인 A의 IP로 연결이 되고 의뢰인 B의 도메인은 의뢰인 B의 IP로 연결이 됩니다.&lt;/li&gt;
+  &lt;li&gt;웹이 점점 커지며 이런 전용 호스팅 방식은 단점을 많이 보였습니다.
+    &lt;ul&gt;
+      &lt;li&gt;우선 의뢰인들에게 각각 하드웨어와 서버를 배정하니 비용이 높습니다.&lt;/li&gt;
+      &lt;li&gt;그리고 각 웹 사이트들은 항상 운용되는게 아니기 때문에 의뢰인들의 서버들은 놀고 있는 시간이 많이 생깁니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이를 해결하기 위해 하나의 서버에 여러 사이트를 제공하는 가상 호스팅이 등장합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;182-가상-호스팅&quot;&gt;18.2. 가상 호스팅&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;가상 호스팅은 하나의 서버에서 여러 사이트를 호스팅 하는 것입니다.
+    &lt;ul&gt;
+      &lt;li&gt;쉽게 말해, 다른 도메인을 가지고 있는 두 사이트가 실제로 같은 IP를 갖고 있는 것입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;가상 호스팅된 여러 웹 사이트들은 각각 다른 서버에서 호스팅 되는 것 처럼 보이지만 사실 물리적으로 같은 서버에서 호스팅 되고 있습니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트의 입장에선 이용중인 사이트가 가상 호스팅된 사이트인지 느낄 수 없습니다.&lt;/li&gt;
+  &lt;li&gt;가상 호스팅은 업체들은 한 서버에 수백, 수천개의 웹 사이트를 호스팅 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;실제 한 PC에 수천대를 호스팅하는건 아니고 서버 팜을 만들어 각 서버에 부하를 분산시킵니다.(20장에서 자세히 알아봅니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1821-호스트-정보가-없는-가상-서버-요청&quot;&gt;18.2.1. 호스트 정보가 없는 가상 서버 요청&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이런 가상 호스팅은 HTTP/1.0 환경에선 문제가 많았습니다.&lt;/li&gt;
+  &lt;li&gt;본 책의 초반부분에서 설명했듯이 HTTP/1.0은 URL의 호스트명을 보내지 않고 경로 컴포넌트만 전송합니다.
+    &lt;ul&gt;
+      &lt;li&gt;http://www.joes-hardware.com/index.html 을 HTTP/1.0으로 전송하면 브라우저는 www.joes-hardware.com과 커넥션을 맺지만 실제로 가는 요청은 “GET /index.html”이 전부입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이와 같은 상황에서 만약 한 호스팅 업체에 www.joes-hardware.com과 www.marys-antiques.com이 호스팅 되어 있다고 가정합시다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 http://www.joes-hardware.com/index.html 를 브라우저에 입력해 브라우저가  www.joes-hardware.com에 커넥션을 맺고 “GET /index.html”을 보냈지만 호스팅하고 있는 서버의 입장에선 /index.html이  www.joes-hardware.com의 것인지, www.marys-antiques.com의 것인지 판별할 수 없습니다.&lt;/li&gt;
+  &lt;li&gt;위와 같은 상황이 발생한건 HTTP의 설계자들이 가상 호스팅이 일어날 것이라고 생각하지 못했기 때문입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1822-가상-호스팅-동작하게-하기&quot;&gt;18.2.2. 가상 호스팅 동작하게 하기&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 상황을 해결하기 위해 차선책과 새로운 컨벤션을 개발해야 했습니다.&lt;/li&gt;
+  &lt;li&gt;이 문제를 간단히 해결하기 위해선 HTTP 요청에 경로 컴포넌트만이 아니라 완전한 URL을 보내도록 하면 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;따라서 HTTP/1.1을 지원하는 서버는 완전한 URL을 처리할 수 있어야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하지만 이런 새로운 HTTP명세를 따르지 않는 기존의 어플리케이션들을 위해 아래 네 가지 방법 차선책들이 고안됐습니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;URL 경로를 통한 가상 호스팅&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;이 방법은 어떤 사이트를 요청하는것인지 알수 있게 URL에 특별한 경로 컴포넌트를 추가하는 것입니다.&lt;/li&gt;
+          &lt;li&gt;예를들어, http://www.joes-hardware.com/index.html 를 http://www.joes-hardware.com/&lt;strong&gt;joe&lt;/strong&gt;/index.html로,  http://www.marys-antiques.com/index.html 를 http://www.marys-antiques.com/&lt;strong&gt;mary&lt;/strong&gt;/index.html로 바꾸는 것입니다.&lt;/li&gt;
+          &lt;li&gt;하지만 이 방법은 우리가 생각하는 일반적인 URL과 맞지 않는 좋지 않은 방법입니다. 거의 사용되지 않습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;포트 번호를 통한 가상 호스팅&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;호스팅 하고 있는 각 웹 사이트에 다른 포트 번호를 할당하면 해당 문제를 해결할 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;하지만, 그렇다면 사용자가 항상 URL에 포트번호를 표기해야 하기 때문에 이 역시 잘 사용되지 않습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;IP 주소를 통한 가상 호스팅&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;가장 많이 사용되는 방법은 각 사이트에 가상 IP를 할당하는 것입니다.&lt;/li&gt;
+          &lt;li&gt;www.joes-hardware.com와 www.marys-antiques.com가 실제로 가리키는 IP를 구분하는 것입니다.&lt;/li&gt;
+          &lt;li&gt;각 가상 IP들은 사이트들을 호스팅하고 있는 실제 서버로 연결됩니다.&lt;/li&gt;
+          &lt;li&gt;이렇게 가상 IP를 사용하는 방법은 규모가 커지면 다음과 같은 문제가 발생할 수 있습니다.
+            &lt;ul&gt;
+              &lt;li&gt;한 장비에 연결할 수 있는 IP갯수엔 제한이 있습니다.&lt;/li&gt;
+              &lt;li&gt;한 장비를 떠나 IP주소는 희소 상품이기 때문에 가상 IP주소를 충분히 확보하지 못할 수 있습니다.&lt;/li&gt;
+              &lt;li&gt;서버를 복제할 시엔 각 복제된 서버에 새로운 IP 주소를 부여해야하기 때문에 일이 더 커집니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;이런 문제들이 있지만 가장 많이 사용되는 방법입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Host 헤더를 통한 가상 호스팅&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;같은 IP주소를 사용하더라도 각 사이트들을 구분할 수 있는 정보를 전달할 수 있다면 가상 호스팅을 사용할 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;이를 위해 HTTP를 확장해 HTTP/1.0+ 에서 Host 헤더가 도입되었습니다.&lt;/li&gt;
+          &lt;li&gt;또한 HTTP/1.1을 따르는 애플리케이션이라면 Host헤더를 반드시 기술해야 합니다.&lt;/li&gt;
+          &lt;li&gt;Host 헤더는 말 그대로 호스트 명을 기술합니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1823-http11-host-헤더&quot;&gt;18.2.3. HTTP/1.1 Host 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;현대의 웹에선 가상 호스팅이 매우 흔하기 때문에 모든 HTTP 클라이언트는 Host 헤더를 구현해야 합니다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;문법과 사용 방법&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Host 헤더엔 호스트와 포트번호를 기술합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host : www.joes-hardware.com
+Host : www.joes-hardware.com:80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Host헤더에 포트 번호가 없으명 해당 스킴의 기본 포트를 사용합니다.(http의 경우 80, https의 경우 443)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;URL에 IP주소가 있으면 Host 헤더엔 해당 IP주소를 포함해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;URL에 호스트명이 있으면 Host 헤더엔 해당 호스트명을 포함해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;URL에 호스트명이 있다면, Host 헤더에 해당 호스트명에 할당된 IP주소가 있으면 &lt;strong&gt;안됩니다.&lt;/strong&gt;가상 호스팅의 경우 한 IP가 여러 호스트명을 호스팅하고 있을 수 있기 때문입니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;클라이언트가 프록시 서버를 사용한다면, Host 헤더엔 프록시 서버가 아닌 원 목적지 서버의 호스트명과 포트번호를 기술해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;클라이언트는 모든 요청에 Host 헤더를 기술해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;웹 프록시는 요청을 서버에 전달하기 전에 받았던 Host 헤더를 추가해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;HTTP/1.1 웹 서버는 Host 명이 없는 요청 메세지를 받으면 400 상태코드로 응답해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;Host 헤더의 누락&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;만약 브라우저가 Host 헤더를 보내지 않는다면 서버는 기본 웹 페이지로 보내거나 브라우저를 업그레이드 하라는 에러 페이지를 반환합니다.&lt;/li&gt;
+      &lt;li&gt;이 포스팅이 쓰여지는 현재엔 거의 모든 브라우저가 Host 헤더를 전송합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;Host 헤더 해석하기&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;가상호스팅을 하지 않는 서버는 Host 헤더를 무시하면 되지만, 가상 호스팅을 하는 서버는 아래와 같은 과정을 거칩니다.
+        &lt;ul&gt;
+          &lt;li&gt;요청 URL이 완전한 URL이라면 Host 헤더 값은 무시하고 URL에 있는 호스트명을 사용합니다.&lt;/li&gt;
+          &lt;li&gt;요청 URL에 호스트명이 없고 Host 헤더가 있다면 Host 헤더를 사용합니다.&lt;/li&gt;
+          &lt;li&gt;요청 URL에 호스트명이 없고 Host 헤더도 없다면 400 Bad Request 응답을 반환합니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;Host 헤더와 프록시&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;정말 오래됐거나 잘못 만들어진 웹 클라이언트는 가끔 프록시의 주소를 Host 헤더에 담기도 하니 주의해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;183-안정적인-웹-사이트-만들기&quot;&gt;18.3. 안정적인 웹 사이트 만들기&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버는 다운 될 수도 있고 느려질 수도 있으며 서버를 구성하는 네트워크에 장애가 올 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;이번 절에선 이에 대응하는 방법들을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1831-미러링-된-서버-팜&quot;&gt;18.3.1. 미러링 된 서버 팜&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버 팜(서버 클러스터)은 서로를 대신할 수 있는 웹 서버들의 집합입니다.&lt;/li&gt;
+  &lt;li&gt;서버 팜에 있는 콘텐츠들은 한 서버에서 문제가 생기면 다른 서버에서 대신 전달할수 있도록 미러링 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;원본 콘텐츠를 가지고 있는 서버를 master origin server 라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;master origin server로 부터 콘텐츠를 받은 미러링된 서버를 replica origin server라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;서버 팜을 이용한다면 다음 그림과 같은 구조를 띄게 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/server_farm.png&quot; alt=&quot;server_farm.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;복제 서버는 스위치를 통해 마스터 서버로 부터 콘텐츠를 미러링 합니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 컨텐츠를 요청할때 가리키는 IP는 스위치의 IP 주소입니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트의 요청이 서버 팜 안의 여러 서버 중 하나로 가는 방법은 아래와 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTTP 리다이렉션 : 요청이 마스터 서버로 간뒤 마스터 서버에서 적절한 곳의 복제 서버로 리다이렉트 시킵니다.&lt;/li&gt;
+      &lt;li&gt;DNS 리다이렉션 : URL이 4개의 IP주소를 가리킬 수 있고 DNS 서버가 그 중 적절한 IP를 선택해줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;더 자세한 내용은 20 장에서 이어집니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/mirror.png&quot; alt=&quot;mirror.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이클립스를 다운받을때 가능한 mirror입니다. 가장 가까운 곳을 선택하면 (보통) 더 빠르게 다운 받을 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1832-콘텐츠-분산-네트워크&quot;&gt;18.3.2. 콘텐츠 분산 네트워크&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;콘텐츠 분산 네트워크(CDN)은 콘텐츠의 분산을 목적으로 하는 네트워크 입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1833-cdn의-대리-캐시&quot;&gt;18.3.3. CDN의 대리 캐시&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;대리 캐시는 위에서 살펴본 replica origin server를 대신해 사용될 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;대리 캐시는 리버스 프록시라고도 불립니다.&lt;/li&gt;
+  &lt;li&gt;대리 캐시와 미러링 된 서버의 차이는 콘텐츠 전체를 가지고 있느냐 입니다. 대리 캐시는 콘텐츠 전체를 가지고 있진 않습니다. 수요에 따라 가지고 있을 컨텐츠를 선택합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1834-cdn의-프록시-캐시&quot;&gt;18.3.4. CDN의 프록시 캐시&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;추후 보강&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;184-웹-사이트-빠르게-만들기&quot;&gt;18.4. 웹 사이트 빠르게 만들기&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이번 장에서 살펴본 내용들은 모두 웹 사이트를 빠르게 만들기 위한 방법들입니다.&lt;/li&gt;
+  &lt;li&gt;서버 팜이나 프록시 캐시, 대리 서버를 사용해 서버의 부하를 낮춰줍니다.&lt;/li&gt;
+  &lt;li&gt;콘텐츠를 분산 시켜 콘텐츠를 요청한 사용자에게 더 가까운 곳에서 콘텐츠를 제공해줍니다.&lt;/li&gt;
+  &lt;li&gt;앞서 살펴본 방법들 말고도 웹 사이트를 빠르게 하기 위해 콘텐츠를 인코딩 할 수도 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트가 디코딩 할 수 있다는 가정하에, 콘텐츠를 인코딩해 전송할 용량 자체를 줄일 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;미러링과 CDN 부분은 아직 이해가 좀 부족한 것 같습니다. 조금 더 검토해봐야 할 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>내용 협상과 트랜스코딩</title>
+   <link href="http://localhost:4000/posts/study_book/http_the_definitive_guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C17/"/>
+   <updated>2020-03-27T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_book/http_the_definitive_guide/Http완벽가이드17</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용 언어 별로 다른 문서를 주거나, 브라우저별로 다른 자바스크립트를 주어야 하는 등 하나의 URL이 여러 리소스에 대응되야 할 때가 있습니다.&lt;/li&gt;
+  &lt;li&gt;이때, 어떤 리소스를 받을 지 클라이언트와 서버가 협상할 수 있습니다. 이를 내용 협상이라고 합니다.&lt;/li&gt;
+  &lt;li&gt;한편, 내용 협상 결과로 주어야할 리소스가 이미 존재하는 경우도 있지만 동적으로 생성해야 할 때도 있습니다. 이를 트랜스 코딩이라고 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;171-내용-협상-기법&quot;&gt;17.1. 내용 협상 기법&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;내용 협상이란 하나의 URL이 여러 리소스에 대응될 때, 어떤 리소스가 적절한 리소스인지 클라이언트와 서버가 정하는 방법입니다.&lt;/li&gt;
+  &lt;li&gt;내용 협상엔 크게 세 가지 방법이 존재 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트 주도 : 서버가 클라이언트에게 선택지를 제공하면 클라이언트가 선택합니다. 서버에서 구현이 쉽고 클라이언트가 가장 원하는 선택을 할 수 있지만 리소스를 얻기위한 대기시간(단계)가 증가합니다.&lt;/li&gt;
+      &lt;li&gt;서버 주도 : 클라이언트의 요청헤더를 바탕으로 서버가 리소스를 결정합니다. 클라이언트 주도 협상보다 빠르지만 클라이언트가 원하는 리소스가 없다면 서버가 추측을 해야 하는 상황이 발생합니다.&lt;/li&gt;
+      &lt;li&gt;투명 : 투명한 중간 장치(주로 프록시 캐시)가 서버를 대신해 협상합니다. 서버의 부하가 줄어드는게 장점이지만 투명 협상에 대한 명세가 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;172-클라이언트-주도-협상&quot;&gt;17.2. 클라이언트 주도 협상&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버가 선택 가능한 선택지들을 클라이언트에게 돌려주고 사용자가 직접 선택합니다. 그 방법엔 두 가지가 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;여러 버전에 대한 링크와 설명이 담긴 HTML 페이지를 돌려줄 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;300 Multiple Choices 응답 코드로 HTTP/1.1 응답을 돌려줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버 입장에선 가장 구현하기 쉽습니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트는 가능한 선택지 안에서 최선의 선택을 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;단점은 목록을 보여주고 요청을 다시 받기 때문에 리소스를 받는 과정이 길어집니다.&lt;/li&gt;
+  &lt;li&gt;또 다른 단점으론 리소스당 여러 url이 필요합니다.
+    &lt;ul&gt;
+      &lt;li&gt;영어페이지, 프랑스어 페이지가 존재하는 www.joes-hardware.com를 요청하면 www.joes-hardware.com/english와 www.joes-hardware.com/french 둘을 준비해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;173-서버-주도-협상&quot;&gt;17.3. 서버 주도 협상&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버 주도 협상은 클라이언트가 선호하는 옵션을 같이 요청합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Accept 관련 헤더인 내용 협상 헤더를 사용합니다.&lt;/li&gt;
+      &lt;li&gt;User-Agent와 같은 내용 협상 헤더 외 다른 헤더를 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버는 위 헤더들을 파악해 클라이언트가 원하는 리소스를 돌려줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1731-내용-협상-헤더&quot;&gt;17.3.1. 내용 협상 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;내용 협상 헤더엔 아래와 같은 것들이 있습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;헤더&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Accept&lt;/td&gt;
+          &lt;td&gt;서버가 어떤 미디어 타입으로 보내도 되는지 알려줍니다.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Accept-Language&lt;/td&gt;
+          &lt;td&gt;서버가 어떤 언어로 보내도 되는지 알려줍니다.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Accept-Charset&lt;/td&gt;
+          &lt;td&gt;서버가 어떤 charset으로 보내도 되는지 알려줍니다.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Accept-Encoding&lt;/td&gt;
+          &lt;td&gt;서버가 어떤 인코딩으로 보내도 되는지 알려줍니다.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;앞 장들에서 살펴본 Content로 시작하는 엔터티 헤더와 각각 대응됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 매 요청마다 선호 정보를 다시 보내야 합니다.(HTTP는 Stateless 하기 때문입니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 헤더엔 1개의 선호가 아니라 여러 선호를 담을 수 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Accept-Language : ko, en, fr&lt;/li&gt;
+      &lt;li&gt;이때, 각 선호에 quality value (앞으로 q값이라 칭함)를 주어 선호의 정도를 나타낼 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1732-내용-협상-헤더의-품질값quality-value-q값&quot;&gt;17.3.2. 내용 협상 헤더의 품질값(quality value, q값)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Accept-Language : en;q=0.5, fr;q=0.0, nl;q=1.0, tr;q=0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;0.0은 선호하지 않음, 1.0은 가장 선호함입니다.&lt;/li&gt;
+  &lt;li&gt;위 헤더는 프랑스어(fr), 터키어(tr)는 원하지 않고 영어(en)는 받아들일 수 있으며 네더란드어(nl)를 가장 선호한다는 뜻입니다.&lt;/li&gt;
+  &lt;li&gt;한편, 서버에 클라이언트가 선호하는 버전이 없을 수 있습니다. 이 때 서버는 기본 문서를 주거나 클라이언트의 선호에 맞추기 위해 트랜스코딩을 할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1733-그-외의-헤더들에-의해-결정&quot;&gt;17.3.3. 그 외의 헤더들에 의해 결정&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;브라우저의 종류와 같이 리소스별로 따로 관리해야 하지만 내용 협상 헤더엔 담길 수 없는 것들이 있습니다.&lt;/li&gt;
+  &lt;li&gt;이땐 User-Agent와 같은 내용 협상 헤더 외의 헤더를 사용할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;이 헤더들에선 q값을 사용할 수 없습니다.&lt;/li&gt;
+  &lt;li&gt;한편, 캐시를 이용하기 위해 Vary 헤더를 이용하기도 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Vary 헤더는 서버가 응답시에 추가하는 헤더입니다.&lt;/li&gt;
+      &lt;li&gt;Vary 헤더는 서버가 어떤 요청 헤더를 참고하고 해당 리소스를 응답해줬는지 말해줍니다.&lt;/li&gt;
+      &lt;li&gt;캐시가 요청을 받는 상황이라면 Vary헤더를 통해 클라이언트의 요청에 맞춰 캐시된 리소스를 돌려줄 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1734-아파치의-내용-협상&quot;&gt;17.3.4. 아파치의 내용 협상&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;많이 사용되는 웹 서버인 아파치에서 내용 협상을 구현하기 위해선 각 버전에 해당하는 파일을 적절한 디렉터리에 넣어줘야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그 후 아래 둘 중 하나의 방법으로 내용 협상을 진행할 수 있습니다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;type-map 파일 사용하기&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;type-map 파일은 내용 협상 헤더의 내용과 협상 결과 돌려줘야할 리소스를 맵핑해줍니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;type-map 파일을 사용하기 위해선 우선 서버 설정 파일에 type-map 파일들을 위한 설정을 해야 합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AddHandler type-map .var
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;위 설정은 .var 확장자를 가진 파일들이 type-map임을 뜻합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;type-map 파일은 다음과 같이 이루어져 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;URI: joes-hardware.html
+    
+URI: joes-hardware.en.html
+Content-type: text/html
+Content-language: en
+    
+URI: joes-hardware.fr.de.html
+Content-type: text/html;charset=iso-8859-2
+Content-language: fr, de 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;위와 같이 구성하면 아파치가 내용 협상 헤더를 읽어 적절한 콘텐츠로 맵핑해줍니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;MultiViews 사용하기&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;MultiViews는 아파치에서 사용자가 설정해 놓은 디렉터리 구조에 맞게 type-map 파일을 생성하도록 하는 지시어입니다.&lt;/li&gt;
+      &lt;li&gt;MultiViews를 사용하기 위해선 access.conf 파일에서 Options 지시어를 이용해 설정해 놓은 디렉터리에 MultiViews 옵션을 활성화시켜야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아파치서버의 내용 협상에 대한 더 자세한 사항은 &lt;a href=&quot;https://httpd.apache.org/docs/2.4/content-negotiation.html&quot;&gt;https://httpd.apache.org/docs/2.4/content-negotiation.html&lt;/a&gt;를 참고하면 좋을 것 같습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1735-서버-측-확장&quot;&gt;17.3.5. 서버 측 확장&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버 주도 협상의 다른 방법으로 ASP 와 같은 서버 측 확장을 하는 방법도 있습니다.&lt;/li&gt;
+  &lt;li&gt;이는 8장에서 다뤄보았었습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;174-투명-협상&quot;&gt;17.4. 투명 협상&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;투명 협상은 캐시 프록시에서 진행되는 협상입니다.&lt;/li&gt;
+  &lt;li&gt;투명 협상을 이용하면 클라이언트와 메세지 교환 횟수(클라이언트 측 협상의 단점)를 줄이는 동시에 서버의 부하(서버 측 협상의 단점)를 막을 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;프록시가 내용 협상을 하기 위해선 클라이언트의 요청 중 어느 헤더를 살펴봐야하는 지를 알아야 합니다.&lt;/li&gt;
+  &lt;li&gt;이를 위해 서버는 캐시 프록시에게 Vary 헤더를 포함시킨 응답을 줍니다. 프록시는 Vary헤더를 통해 어떤 헤더를 검사해야 하는 지 알 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1741-캐시와-얼터네이트alternate&quot;&gt;17.4.1. 캐시와 얼터네이트(alternate)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;캐시 안 같은 문서에 대해 영어버전 문서, 프랑스어 버전 문서가 있다고 가정합시다.&lt;/li&gt;
+  &lt;li&gt;이 다른 버전을 배리언트(variant) 혹은 얼터네이트(alternate)라고 부릅니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1742-vary-헤더&quot;&gt;17.4.2. Vary 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;캐시는 여러 얼터네이트중 올바른 문서를 클라이언트에게 돌려주어야 합니다.&lt;/li&gt;
+  &lt;li&gt;올바른 문서를 찾기 위해선 어떤 조건에서(어떤 헤더를 보고) 서버가 해당 문서를 돌려주었는지 알아야 합니다.&lt;/li&gt;
+  &lt;li&gt;이를 알려주는게 Vary 헤더입니다. 서버는 내용 협상결과 문서를 돌려줄때 Vary 헤더에 자신이 검사한 헤더를 나열해줍니다.&lt;/li&gt;
+  &lt;li&gt;캐시는 클라이언트의 요청이 왔을때 Vary 헤더에 있는 헤더들을 검사해 맞는 얼터네이트를 찾습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/http_the_definitive_guide/vary_header.png&quot; alt=&quot;vary_header.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 캐시된 아파치 문서를 가져올때 어떤 헤더들을 고려했는지를 보여줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;175-트랜스코딩&quot;&gt;17.5. 트랜스코딩&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지금까지의 내용 협상은 방법이 어찌됐든 협상 결과 돌려줄 문서가 이미 존재해야 했습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 모든 웹 페이지들이 한국어 버전을 준비해놓지는 않는 것 처럼, 클라이언트가 요청한 버전의 문서가 없을 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;이럴땐 기존의 문서를 클라이언트의 요청에 맞게 바꾸는 트랜스코딩 과정을 거칠 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;아래는 트랜스코딩의 예시입니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTML문서 → WML문서&lt;/li&gt;
+      &lt;li&gt;고해상도 이미지 → 저해상도 이미지&lt;/li&gt;
+      &lt;li&gt;64K색 이미지 → 흑백 이미지&lt;/li&gt;
+      &lt;li&gt;프레임, 이미지 등을 포함한 복잡한 페이지 → 프레임, 이미지 등이 없는 단순 텍스트 페이지&lt;/li&gt;
+      &lt;li&gt;자바 애플릿이 있는 HTML 페이지 → 자바 애플릿이 없는 페이지&lt;/li&gt;
+      &lt;li&gt;광고가 있는 페이지 → 광고가 없는 페이지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;트랜스코딩엔 크게 아래 세 가지가 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;포맷 변환&lt;/li&gt;
+      &lt;li&gt;정보 합성&lt;/li&gt;
+      &lt;li&gt;콘텐츠 주입&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1751-포맷-변환&quot;&gt;17.5.1. 포맷 변환&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;포맷 변환은 말 그대로 컨텐츠의 포맷을 바꾸어주는 것입니다.&lt;/li&gt;
+  &lt;li&gt;HTML 페이지를 WML 페이지로 바꾸는 것 등이 포맷 변환 트랜스 코딩의 예시 입니다.&lt;/li&gt;
+  &lt;li&gt;포맷 변환은 주로 내용 협상 헤더에 의해 주도됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1752-정보-합성information-synthesis&quot;&gt;17.5.2. 정보 합성(information synthesis)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;정보 합성은 한 문서에서 정보의 요점들을 추출하는 것을 말합니다.&lt;/li&gt;
+  &lt;li&gt;문서에서 각 절의 제목에 기반해 요약된 문서를 만드는 등이 그 예시입니다.&lt;/li&gt;
+  &lt;li&gt;각 문서들의 주요 키워드를 뽑아 페이지들을 분류하는 등 포털 사이드에서도 종종 쓰입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1753-콘텐츠-주입&quot;&gt;17.5.3. 콘텐츠 주입&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;광고가 없는 페이지에 광고를 삽입하는 등의 콘텐츠 주입 역시 트랜스 코딩의 한 예시입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;1754-트랜스코딩-vs-정적으로-미리-생성해놓기&quot;&gt;17.5.4. 트랜스코딩 vs 정적으로 미리 생성해놓기&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;그렇다면 한 가지 의문이 생길 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;트랜스코딩으로 만들어 질 수 있는 콘텐츠들을 미리 생성해 두면 응답 시간을 더 줄일 수 있지 않을까 하는 의문입니다.&lt;/li&gt;
+  &lt;li&gt;물론, 서버가 넉넉하다면 그럴 수 있겠지만 모든 서버에는 비용에 제약이 있습니다.&lt;/li&gt;
+  &lt;li&gt;트랜스코딩이 될 수 있는 모든 콘텐츠를 미리 생성해 놓는 것은 서버의 공간을 낭비하게 됩니다.(특히 자주 안쓰이는 콘텐츠라면 더욱더)&lt;/li&gt;
+  &lt;li&gt;또한 미리 생성해 놓는 방식은 원본 콘텐츠가 조금이라도 변경되면 모든 얼터네이트들을 다시 생성해야 합니다.&lt;/li&gt;
+  &lt;li&gt;한편, 트랜스코딩은 서버 외부의 프록시 등에서도 이루어질 수 있기 때문에 자주 요청되는 문서가 아니라면 트랜스 코딩을 통해 서버의 부하를 줄이고 서버를 효율적으로 운용할 수 있게 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>국제화</title>
