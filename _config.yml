@@ -12,8 +12,8 @@ url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
 paginate:            5
-gems:                [jekyll-paginate]
-plugins:		[jekyll-paginate]
+gems:                [jekyll-paginate, jemoji]
+plugins:		[jekyll-paginate, jemoji]
 rootfolder:
    about : 
       subfolder : false
