@@ -4,22 +4,6 @@ title: Home
 ---
 
 
-{% for depth1 in site.rootfolder %}
-  {% if depth1[1].subfolder == false %}
-    ㄴ 하위 x {{ depth1[0] }}<br>
-  {% else %}
-    ㄴ 하위 o {{ depth1[0] }}<br>
-    {% for depth2 in depth1[1] %}
-      {% if depth2[1].subfolder == false %}
-        ㄴㄴ하위x {{ depth2[0] }}<br>
-      {% else %}
-        ㄴㄴ하위o {{ depth2[0] }}<br>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
-
 <div class="posts">
 {% for post in site.categories %}
   <h3>{{ post.category }} {{ post.date }}<h3 />

@@ -38,134 +38,108 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
+  <!-- Profile -->
   <div class="sidebar-item">
     <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
   </div>
+  <!-- Profile End -->
 
   <nav class="sidebar-nav">
+    <!-- Home -->
     <a class="sidebar-nav-item" href="/">Home</a>
-
-    
-    
+    <!-- Home End -->
+    <!-- Posts -->
     
     
       
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/about">about</a>
+      
+    
+      
+        <input id="projects" class="toggle" type="checkbox">
+        <label for="projects" class="lbl-toggle sidebar-nav-item" tabindex="0">projects</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/projects/twitch_chat_anaylsis">twitch_chat_anaylsis</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/projects/sagyo_reboot">sagyo_reboot</a>
+          
         
-          <a class="sidebar-nav-item" href="/about/">About</a>
+        </div>
+      
+    
+      
+        <input id="study_book" class="toggle" type="checkbox">
+        <label for="study_book" class="lbl-toggle sidebar-nav-item" tabindex="0">study_book</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_book/http_the_definitive_guide">http_the_definitive_guide</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_book/algorithm">algorithm</a>
+          
         
+        </div>
       
     
       
+        <input id="study_googling" class="toggle" type="checkbox">
+        <label for="study_googling" class="lbl-toggle sidebar-nav-item" tabindex="0">study_googling</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/etc">etc</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/java">java</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/jekyll">jekyll</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/linux">linux</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/network">network</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/python">python</a>
+          
         
+        </div>
       
     
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-<a class="sidebar-nav-item category-closed" href="#">projects</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">sagyo</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-book</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">algorithm</a>
-<a class="sidebar-nav-item" href="#">http완벽가이드</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">Java</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
-    <a class="sidebar-nav-item" href="">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    <!-- Posts End -->
   </nav>
 
+  <!-- sidebar bottom -->
   <div class="sidebar-item">
     <p>
-      &copy; 2020. All rights reserved.
+      © 2020. All rights reserved.
     </p>
   </div>
+  <!-- sidebar bottom end -->
 </div>
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
@@ -189,7 +163,7 @@
 
 <p>앞서 HTTP는 ‘배달원’이라고 했습니다. 이번장에서 알아볼 HTTP 메시지는 배달원이 보내는 소포와 같은 역할을 합니다.</p>
 
-<hr />
+<hr>
 
 <h3 id="31-메시지의-흐름">3.1. 메시지의 흐름</h3>
 
@@ -213,7 +187,7 @@
 
 <p>그림요망</p>
 
-<hr />
+<hr>
 
 <h3 id="32-메시지의-각-부분">3.2. 메시지의 각 부분</h3>
 
@@ -241,23 +215,23 @@
 <p>요청 메세지의 형식은 다음과 같습니다.</p>
 
 <blockquote>
-  <메서드> <요청URL> <버전>     GET /test/hi-there.txt HTTP/1.1
-<헤더>                                          Accept: text/*
+         GET /test/hi-there.txt HTTP/1.1
+                                          Accept: text/*
                                                      Host: www.joes-hardware.com
 
-<엔터티 본문="">                             생략  
-</엔터티></헤더></버전></요청URL></메서드>
+                             생략  
+엔터티&gt;헤더&gt;버전&gt;요청URL&gt;메서드&gt;
 </blockquote>
 
 <p>응답 메세지의 형식은 다음과 같습니다.</p>
 
 <blockquote>
-  <버전> <상태코드> <사유 구절="">  HTTP/1.0 200 OK
-<헤더>                                             Content-type: text/plain
+      HTTP/1.0 200 OK
+                                             Content-type: text/plain
                                                          Content-length: 19
 
-<엔터티 본문="">                                Hi, I'm message!
-</엔터티></헤더></사유></상태코드></버전>
+                                Hi, I'm message!
+엔터티&gt;헤더&gt;사유&gt;상태코드&gt;버전&gt;
 </blockquote>
 
 <ul>
@@ -444,7 +418,7 @@ Server: Test Server
 
 <p>그림 요망</p>
 
-<hr />
+<hr>
 
 <h3 id="33-메서드">3.3. 메서드</h3>
 
@@ -537,7 +511,7 @@ Server: Test Server
   </tbody>
 </table>
 
-<hr />
+<hr>
 
 <h3 id="34-상태-코드">3.4. 상태 코드</h3>
 
@@ -557,12 +531,12 @@ Server: Test Server
     <tr>
       <td style="text-align: center">100</td>
       <td style="text-align: center">Continue</td>
-      <td style="text-align: left">요청의 시작 부분 일부가 받아들여졌으며, <br />클라이언트는 나머지를 계속 이어서 보내야 함을 의미한다. <br />이것을 보낸 후, 서버는 반드시 요청을 받아 응답해야 한다.</td>
+      <td style="text-align: left">요청의 시작 부분 일부가 받아들여졌으며, <br>클라이언트는 나머지를 계속 이어서 보내야 함을 의미한다. <br>이것을 보낸 후, 서버는 반드시 요청을 받아 응답해야 한다.</td>
     </tr>
     <tr>
       <td style="text-align: center">101</td>
       <td style="text-align: center">Switching Protocols</td>
-      <td style="text-align: left">클라이언트가 Upgrade 헤더에 나열한 것중 하나로, <br />서버가 프로토콜을 바꾸었음을 의미한다.</td>
+      <td style="text-align: left">클라이언트가 Upgrade 헤더에 나열한 것중 하나로, <br>서버가 프로토콜을 바꾸었음을 의미한다.</td>
     </tr>
   </tbody>
 </table>
@@ -635,7 +609,7 @@ Server: Test Server
 
 <p>6가지의 에러코드가 정의되어 있고 [여기][]에 기록해두었습니다.</p>
 
-<hr />
+<hr>
 
 <h3 id="35-헤더">3.5. 헤더</h3>
 
@@ -690,11 +664,11 @@ Server: Test Server
 
 <p>대표적인 헤더들은 [여기][]에 모아뒀습니다.</p>
 
-<hr />
+<hr>
 
 <h3 id="마치며">마치며</h3>
 
-<p>ajax 보낼때 말곤 헤더는 관찰만 했지 직접 조작해보진 않았습니다. 이렇게 헤더의 종류가 많고 다양하다니! 그리고 3장째 보고 있는데 가장 무서운 점은 모두 뒷장에서 더 자세히 설명해준다는 것입니다. (얼마나 자세히 설명해주시려고… :cry:)</p>
+<p>ajax 보낼때 말곤 헤더는 관찰만 했지 직접 조작해보진 않았습니다. 이렇게 헤더의 종류가 많고 다양하다니! 그리고 3장째 보고 있는데 가장 무서운 점은 모두 뒷장에서 더 자세히 설명해준다는 것입니다. (얼마나 자세히 설명해주시려고… <img class="emoji" title=":cry:" alt=":cry:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png" height="20" width="20">)</p>
 
 
 </div>

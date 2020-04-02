@@ -4,49 +4,62 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
+  <!-- Profile -->
   <div class="sidebar-item">
     <p>{{ site.description }}</p>
   </div>
+  <!-- Profile End -->
 
   <nav class="sidebar-nav">
+    <!-- Home -->
     <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
-
+    <!-- Home End -->
+    <!-- Posts -->
     {% comment %}
-      The code below dynamically generates a sidebar nav of pages with
-      `layout: page` in the front-matter. See readme for usage.
+    지금 루트 빼고 3depth까지만 구현해놓음
+    근데 이건 아닌거 같다... 나중에 다시 구현해보자.
     {% endcomment %}
-    
-    {% assign pages_list = site.pages | sort:"url" %}
-    {% for node in pages_list %}
-      {% if node.title != null %}
-        {% if node.layout == "page" %}
-          <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-        {% endif %}
+    {% for depth1 in site.rootfolder %}
+      {% if depth1[1].subfolder == false %}
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="{{ site.url }}/{{ site.postroot }}/{{ depth1[0] }}">{{ depth1[0] }}</a>
+      {% else %}
+        <input id="{{ depth1[0] }}" class="toggle" type="checkbox">
+        <label for="{{ depth1[0] }}" class="lbl-toggle sidebar-nav-item" tabindex="0">{{ depth1[0] }}</label>
+        <div class="collapsible-content subcategories">
+        {% for depth2 in depth1[1] %}
+          {% if depth2[1].subfolder == false %}
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="{{ site.url }}/{{ site.postroot }}/{{ depth1[0] }}/{{ depth2[0] }}">{{ depth2[0] }}</a>
+          {% else %}
+            <input id="{{ depth2[0] }}" class="toggle" type="checkbox">
+            <label for="{{ depth2[0] }}" class="lbl-toggle sidebar-nav-item" tabindex="0">{{ depth2[0] }}</label>
+            <div class="collapsible-content subcategories">
+                {% for depth3 in depth2[1] %}
+                {% if depth3[1].subfolder == false %}
+                  <!-- 3 depth post -->
+                  <a class="sidebar-nav-item" href="{{ site.url }}/{{ site.postroot }}/{{ depth1[0] }}/{{ depth2[0] }}/{{ depth3[0] }}">{{ depth3[0] }}</a>
+                {% else %}
+                  <input id="{{ depth3[0] }}" class="toggle" type="checkbox">
+                  <label for="{{ depth3[0] }}" class="lbl-toggle sidebar-nav-item" tabindex="0">{{ depth3[0] }}</label>
+                  <div class="collapsible-content subcategories">
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+        </div>
       {% endif %}
     {% endfor %}
-<a class="sidebar-nav-item category-closed" href="#">projects</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">sagyo</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-book</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">algorithm</a>
-<a class="sidebar-nav-item" href="#">http완벽가이드</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">Java</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
+    <!-- Posts End -->
   </nav>
 
+  <!-- sidebar bottom -->
   <div class="sidebar-item">
     <p>
       &copy; {{ site.time | date: '%Y' }}. All rights reserved.
     </p>
   </div>
+  <!-- sidebar bottom end -->
 </div>

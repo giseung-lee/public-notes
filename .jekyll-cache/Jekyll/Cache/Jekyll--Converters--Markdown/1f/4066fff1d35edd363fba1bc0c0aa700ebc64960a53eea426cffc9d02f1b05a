@@ -1,0 +1,709 @@
+I"oz
+<h3 id="들어가며">들어가며</h3>
+
+<hr />
+
+<ul>
+  <li>HTTP는 다음과 같은 것들을 보장해줍니다.
+    <ul>
+      <li>객체가 올바르게 식별되어(콘텐츠의 타입이나 언어 등..) 클라이언트가 콘텐츠를 올바르게 처리할 수 있습니다.</li>
+      <li>객체는 올바르게 압축이 풀릴 것입니다.</li>
+      <li>객체는 항상 최신을 유지할 것입니다.</li>
+      <li>사용자의 요구를 만족시킬 것입니다.</li>
+      <li>네트워크 사이를 빠르고 효율적으로 이동할 것입니다.</li>
+      <li>조작되지 않고 온전히 도착할 것입니다.</li>
+    </ul>
+  </li>
+  <li>위와 같은 사항들을 보장하기 위해 엔터티와 엔터티 헤더들이 사용됩니다.</li>
+  <li>이번장에서 배울 내용은 위의 사항을 보장하기 위해 사용되는 것들입니다.
+    <ul>
+      <li>HTTP 메세지 엔터티의 포맷 및 동작방식</li>
+      <li>HTTP가 엔터티 본문크기를 기술하는 방법</li>
+      <li>크기를 줄여주는 콘텐츠 인코딩</li>
+      <li>컨텐츠의 송수신을 위해 수행되는 전송 인코딩(그 중 청크 인코딩)</li>
+      <li>최신 버전을 유지해주기 위한 태그, 라벨, 시간, 체크섬, 검사기, 기타 헤더 필드</li>
+      <li>중단된 다운로드를 중간부터 재개할 수 있게 해주는 범위 요청</li>
+      <li>전에 본 웹페이지를 열때 변경 있는 부분만 요청 할 수 있는 HTTP 델타 인코딩 확장</li>
+      <li>엔터티의 변조를 체크하는 엔터티 본문의 체크섬</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="151-메세지는-컨테이너-엔터티는-화물">15.1. 메세지는 컨테이너, 엔터티는 화물</h3>
+
+<hr />
+
+<ul>
+  <li>HTTP 메세지가 컨테이너라면 HTTP 엔터티는 그 안의 화물입니다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.0 200 OK
+Server : Netscape-Enterprise/3.6
+Date : Sun, 17 Sep 2000 00:01:05 GMT
+Content-type : text/plain		-- Entity Header
+Content-length : 18			-- Entity Header
+					-- CRLF : 엔터티 본문 시작 알림
+Hi I'm a message			-- Entity Body
+</code></pre></div></div>
+
+<ul>
+  <li>HTTP/1.1 에선 10가지 주요 엔터티 헤더 필드를 정의했습니다.
+    <ul>
+      <li>Content-Type : 전달된 객체의 종류, 타입</li>
+      <li>Content-Length : 전달되는 메세지의 길이나 크기</li>
+      <li>Content-Language : 전달되는 객체와 가장 잘 대응되는 자연어</li>
+      <li>Content-Encoding : 객체 데이터의 인코딩 방법</li>
+      <li>Content-Location : 요청 시점 기준 객체의 위치</li>
+      <li>Content-Range : 해다 엔터티가 부분 엔터티라면 전체의 어느 부분인지</li>
+      <li>Content-MD5 : 엔터티 본문 콘텐츠에 대한 체크섬</li>
+      <li>Last-Modified : 서버에서 이 콘텐츠가 생성 및 수정된 날</li>
+      <li>Expires : 엔터티 데이터가 신선하지 않은 것으로 간주되는 날짜</li>
+      <li>Allow : 이 리소스에 어느 요청 메서드가 허용되는지</li>
+      <li>ETag : 해당 인스턴스에 대한 고유한 검사기. (엄밀히 말하자면 엔터티 헤더는 아니지만 엔터티와 관련한 중요한 헤더입니다.)</li>
+      <li>Cache-Control : 이 문서가 어떻게 캐시되어야 하는지 (역시 엄밀히 말하자면 엔터티 헤더는 아닙니다.)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1511-엔터티-본문">15.1.1. 엔터티 본문</h4>
+
+<ul>
+  <li>엔터티 본문은 가공되지 않은 raw 데이터입니다. 이를 설명해주기 위해 엔터티 헤더가 필요합니다.</li>
+  <li>엔터티 본문은 헤더 필드의 끝을 뜻하는 CRLF 줄 바로 다음부터 시작합니다.</li>
+</ul>
+
+<h3 id="152-content-length-엔터티의-길이">15.2. Content-Length: 엔터티의 길이</h3>
+
+<hr />
+
+<ul>
+  <li>Content-Length는 엔터티 본문의 크기를 바이트 단위로 나타냅니다.</li>
+  <li>청크 인코딩으로 전송하지 않는 이상 항상 있어야 합니다.</li>
+  <li>메세지가 중간에 잘렸는지 감지할 때, 지속 커넥션 상황에서 메세지 사이를 올바르게 분할하기 위해 필요합니다.</li>
+</ul>
+
+<h4 id="1521-잘림-검출">15.2.1. 잘림 검출</h4>
+
+<ul>
+  <li>과거의 HTTP는 커넥션이 닫힌 걸로 메세지가 끝난걸 확인했습니다.</li>
+  <li>Content-Length가 없다면 메세지를 모두 수신하고 정상적으로 커넥션이 닫혔는지, 비정상적으로 닫혀 메세지가 중간에 끊겼는지 알 수 없습니다.</li>
+  <li>캐시가 개입한 상황이라면 캐시는 중간에 잘린 메세지를 캐싱해놓고 계속 클라이언트에게 제공할 수 있습니다.</li>
+</ul>
+
+<h4 id="1522-잘못된-content-length">15.2.2. 잘못된 Content-Length</h4>
+
+<ul>
+  <li>잘못된 Content-Length를 가지고 있는건 아예 Content-Length가 없는 것보다 심각한 문제를 야기합니다.</li>
+  <li>HTTP/1.1 에선 클라이언트 프로그램이 잘못된 Content-Length를 받은 사실을 알게되면 사용자에게 알려주도록 되어 있습니다.</li>
+</ul>
+
+<h4 id="1523-content-length와-지속-커넥션persistent-connection">15.2.3. Content-Length와 지속 커넥션(Persistent Connection)</h4>
+
+<ul>
+  <li>지속커넥션이 기본이된 현재는 Content-Length가 더욱 필수적입니다.</li>
+  <li>한 커넥션으로 여러 메세지가 오가기 때문에 해당 메세지가 언제 끝나는지 알아야 하기 때문입니다.</li>
+  <li>다만, 청크 인코딩을 사용할 시엔 Content-Length가 없을 수 있습니다. 청크 인코딩은 15.6.에서 알아볼 것입니다.</li>
+</ul>
+
+<h4 id="1524-콘텐츠-인코딩">15.2.4. 콘텐츠 인코딩</h4>
+
+<ul>
+  <li>콘텐츠가 인코딩 되어 있다면 Content-Length는 인코딩 된 길이를 나타냅니다.</li>
+  <li>간혹 인코딩 전의 Content-Length를 보내는 잘못된 서버도 있으니 주의해야 합니다.</li>
+</ul>
+
+<h4 id="1525-엔터티-본문-길이-판별을-위한-규칙">15.2.5. 엔터티 본문 길이 판별을 위한 규칙</h4>
+
+<ul>
+  <li>다음은 엔터티 본문의 길이와 끝나는 위치를 판별하는 규칙들입니다. 순서대로 적용되어야 합니다.
+    <ol>
+      <li>HEAD응답과 같이 본문을 갖는게 금지된 특정 HTTP 메세지에선 Content-Length 헤더가 무시됩니다.</li>
+      <li>메세지가 Transfer-Encoding 헤더를 포함한다면, 엔터티는 ‘0 바이트 청크’라고 불리는 특별한 패턴으로 끝나야 하고 Content-Length는 무시해야 합니다.</li>
+      <li>메세지에 Transfer-Encoding 헤더가 없고 Content-Length 헤더가 있다면 Content-Length헤더는 본문의 길이를 담습니다.</li>
+      <li>메세지가 ‘multipart/byteranges’ 미디어 타입을 사용하고 Content-Length가 없다면 해당 메세지는 각자 스스로 크기를 정의할 것입니다. byterages라는 멀티파트 유형은 자신의 크기를 스스로 정하는 유일한 유형입니다. (수신자가 이를 받아들일 수 있는 능력이 있는지 검증한 후 보내야 합니다.)</li>
+      <li>위의 어느 것에도 해당되지 않으면 엔터티는 커넥션이 닫힐 때 끝납니다.</li>
+      <li>HTTP/1.0과의 호환을 위해, 엔터티 본문을 갖고 있는 HTTP/1.1 <strong>요청</strong>은 반드시 Content-Length도 갖고 있어야 합니다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="153-엔터티-요약">15.3. 엔터티 요약</h3>
+
+<hr />
+
+<ul>
+  <li>메세지가 전송중 변조 되는 경우를 감지하기 위해 송신자가 메세지 본문에 대한 체크섬을 만들어 보냅니다.</li>
+  <li>수신자는 자신이 받은 본문으로 체크섬을 만들어 송신자가 보낸 체크섬과 비교해 메세지의 변조 여부를 알아냅니다.</li>
+  <li>해당 방법은 엔터티의 본문과 엔터티 요약 헤더를 모두 교체하는 악의적인 공격은 막을 수 없지만 의도치 않게 메세지가 변경되는 것을 감지할 수 있습니다.</li>
+  <li>엔터티는 ‘원문 -&gt; 콘텐츠 인코딩 -&gt; 전송 인코딩’ 순으로 인코딩 되는데 체크섬을 위한 요약은 콘텐츠 인코딩이 된 다음, 전송 인코딩이 되기 전에 일어납니다.</li>
+  <li>Content-MD5 헤더는 엔터티 본문에 MD5 알고리즘을 적용해 얻은 요약을 보여줍니다. (하지만 MD5 요약은 잘 쓰이지 않습니다.)</li>
+</ul>
+
+<h3 id="154-미디어-타입과-차셋charset">15.4. 미디어 타입과 차셋(Charset)</h3>
+
+<hr />
+
+<ul>
+  <li>Content-Type 헤더엔 엔터티 본문의 MIME 타입이 기술됩니다.</li>
+  <li>MIME 타입은 Internet Assigned Numbers Authority, IANA 에서 관리합니다.</li>
+  <li>MIME 타입은 원본 엔터티 본문의 타입을 명시하기 때문에 콘텐츠 인코딩을 거치더라도 인코딩 전의 타입을 명시해야 합니다.</li>
+  <li>MIME 타입은 ‘maintype/subtype’으로 나타내지며 자주 쓰이는 MIME 타입들은 아래와 같습니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>미디어 타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text/html</td>
+      <td>HTML문서</td>
+    </tr>
+    <tr>
+      <td>text/plain</td>
+      <td>플레인 텍스트 문서</td>
+    </tr>
+    <tr>
+      <td>image/gif</td>
+      <td>GIF 이미지</td>
+    </tr>
+    <tr>
+      <td>image/jpeg</td>
+      <td>JPEG 이미지</td>
+    </tr>
+    <tr>
+      <td>audio/x-wav</td>
+      <td>WAV 음향 데이터를 포함</td>
+    </tr>
+    <tr>
+      <td>model/vrml</td>
+      <td>3차원 VRML 모델</td>
+    </tr>
+    <tr>
+      <td>application/vnd.ms-powerpoint</td>
+      <td>MS 파워포인트</td>
+    </tr>
+    <tr>
+      <td>multipart/byteranges</td>
+      <td>여러 부분으로 나뉜 엔터티 본문 중 특정 범위(바이트 단위)</td>
+    </tr>
+    <tr>
+      <td>message/http</td>
+      <td>완전한 HTTP 메세지 (TRACE 메서드에서 사용)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="1541-텍스트-매체를-위한-문자-인코딩">15.4.1. 텍스트 매체를 위한 문자 인코딩</h4>
+
+<ul>
+  <li>하나의 타입 안에서도 더 자세히 기술하기 위해 매개변수를 사용할 수 있습니다.</li>
+  <li>아래와 같이 charset으로 html의 인코딩 타입을 알려줄 수 있습니다. charset에 대해선 16장에서 더 자세히 다룹니다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Type: text/html; charset=iso-8859-4
+</code></pre></div></div>
+
+<h4 id="1542-멀티파트-미디어-타입">15.4.2. 멀티파트 미디어 타입</h4>
+
+<ul>
+  <li>멀티파트 타입은 여러 메세지가 하나의 복합 메세지로 보내지는 것입니다. 각 메세지는 자신을 서술하는 헤더를 갖습니다.</li>
+  <li>멀티파트 본문은 주로 HTML form 제출이나 문서의 일부분을 전송하는 경우에만 쓰입니다.</li>
+</ul>
+
+<h4 id="1543-멀티파트-폼-제출">15.4.3. 멀티파트 폼 제출</h4>
+
+<ul>
+  <li>HTTP form 을 이용해 텍스트 및 파일 등을 같이 전송 할 수 있습니다.</li>
+  <li>HTTP form에 2개의 input 태그가 있고 1개엔 텍스트 ‘Sally’가, 1개엔 ‘imagefile.gif’라는 이미지 파일을 담아 전송하는 상황을 가정합시다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Type: multipart/form-data; boundary=AaB03x
+--AaB03x
+Content-Disposition: form-data; name="submit-name"
+Sally
+--AaB03x
+Content-Disposition: form-data; name="files"
+Content-Type: multipart/mixed; boundary=BbC04y
+--BbC04y
+Content-Disposition: file; filename="essayfile.txt"
+Content-Type: text/plain
+...contents of essayfile.txt...
+--BbC04y
+Content-Disposition: file; filename="imagefile.gif"
+Content-Type: image/gif
+Content-Transfer-Encoding: binary
+...contents of imagefile.gif...
+--BbC04y--
+--AaB03x-- 
+</code></pre></div></div>
+
+<ul>
+  <li>위와 같은 메세지를 보내게 되는데 위의 Content-Type헤더의 boundary가 각 메세지들의 구분자로 사용됩니다.</li>
+</ul>
+
+<h4 id="1544-멀티파트-범위-응답">15.4.4. 멀티파트 범위 응답</h4>
+
+<ul>
+  <li>멀티파트로 응답이 올 수도 있습니다. 이 경우 요청에 따라 각각 다른 범위의 응답이 올 수 있는데 15.9.에서 자세히 다루겠습니다.</li>
+</ul>
+
+<h3 id="155-콘텐츠-인코딩">15.5. 콘텐츠 인코딩</h3>
+
+<hr />
+
+<ul>
+  <li>전송 시간을 줄이기 위해, 콘텐츠를 암호화 하기 위해 등 여러 이유로 콘텐츠를 보내기전 인코딩을 수행할 수 있습니다.</li>
+</ul>
+
+<h4 id="1551-콘텐츠-인코딩-과정">15.5.1. 콘텐츠 인코딩 과정</h4>
+
+<ul>
+  <li>콘텐츠 인코딩의 개략적인 과정은 다음과 같습니다
+    <ol>
+      <li>웹 서버가 Content-Type과 Content-Length를 포함해 원본 응답 메세지를 만듭니다.</li>
+      <li>콘텐츠 인코딩 서버(원 서버가 될 수도 있고 프록시가 될 수도 있습니다.)에서 인코딩된 메세지를 만듭니다. Content-Type은 같지만 Content-Length는 다를 수 있습니다. Content-Encoding 헤더에 인코딩 방식을 추가해 알려줍니다.</li>
+      <li>인코딩된 콘텐츠를 전송합니다.</li>
+      <li>수신한 클라이언트는 Content-Encoding에서 적절한 디코딩 방법을 찾아 디코딩합니다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h4 id="1552-콘텐츠-인코딩-유형">15.5.2. 콘텐츠 인코딩 유형</h4>
+
+<ul>
+  <li>HTTP에선 몇 가지 표준 인코딩 유형을 정하고 있고, 확장 인코딩으로 추가하는 것도 가능합니다.</li>
+  <li>각 인코딩 유형은 IANA에서 관리하고 있습니다.</li>
+  <li>주로 쓰이는 콘텐츠 인코딩은 다음과 같습니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>콘텐츠 인코딩</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gzip</td>
+      <td>GNU zip 인코딩. 특히 많이 쓰이는 압축 알고리즘</td>
+    </tr>
+    <tr>
+      <td>compress</td>
+      <td>유닉스 파일 압축 프로그램인 ‘compress’가 실행됨</td>
+    </tr>
+    <tr>
+      <td>deflate</td>
+      <td>zlib 포맷으로 압축</td>
+    </tr>
+    <tr>
+      <td>identity</td>
+      <td>엔터티에 어떤 인코딩도 수행되지 않음. Content-Encoding 헤더가 없다면 이 값으로 간주</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="1553-accept-encoding-헤더">15.5.3. Accept-Encoding 헤더</h4>
+
+<ul>
+  <li>Accept-Encoding 헤더를 통해 클라이언트가 자신이 선호하는 인코딩 방법을 서버에게 알려줄 수 있습니다.</li>
+  <li>Accept-Encoding 헤더가 없다면 어떤 인코딩이든 받을 수 있는 것으로 간주합니다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Accept-Encoding : compress, gzip
+Accept-Encoding : 
+Accept-Encoding : *
+Accept-Encoding : compress;q=0.5, gzip;q=1.0
+Accept-Encoding : gzip;q=1.0, identity;q=0.5, *;q=0
+</code></pre></div></div>
+
+<ul>
+  <li>각 인코딩 방법은 ‘, ‘ 로 구분되며 ‘ * ‘는 ‘그외 모두’를 의미합니다.</li>
+  <li>인코딩 방법에 ‘ ; ‘를 구분자로 두고 설정한 q값은 선호도를 나타냅니다. 0은 선호하지 않음, 1은 선호함을 뜻합니다.</li>
+</ul>
+
+<h3 id="156-전송-인코딩과-청크-인코딩">15.6. 전송 인코딩과 청크 인코딩</h3>
+
+<hr />
+
+<ul>
+  <li>앞서 알아본 콘텐츠 인코딩은 콘텐츠의 포맷과 연관되어 있으며 엔터티 본문을 인코딩 합니다.</li>
+  <li>지금 알아볼 전송 인코딩은 콘텐츠의 포맷과는 무관하며 네트워크를 통해 전송되기 위해 본문만이 아니라 메세지 전체에 구조적인 변경을 하는 것입니다.</li>
+</ul>
+
+<h4 id="1561-안전한-전송">15.6.1. 안전한 전송</h4>
+
+<ul>
+  <li>모든 프로토콜에서 전송 인코딩은 ‘안전한 전송’을 위해 존재했습니다.</li>
+  <li>HTTP에선 ‘안전한 전송’의 초점을 다른데에 맞추고 있습니다. HTTP에서 메세지의 본문이 문제를 일으키는 경우는 몇가지 밖에 없는데 그중 두가지는 아래와 같습니다. (책 원문을 읽어봐도 뭔가 내용이 매끄럽지가 않습니다.)
+    <ul>
+      <li>알 수 없는 크기 : 몇몇 인코더는 콘텐츠를 생성하기 전에 메세지 본문의 최종 크기를 판단 할 수 없습니다. Content-Length를 정해줄 수 없기 때문에 데이터의 끝을 알리는 특별한 꼬리말을 붙이기도 하는데 지속 커넥션 상에서 문제를 일으킬 수 있습니다.</li>
+      <li>보안 : 요즘은 SSL 같이 전송계층 위에서 보안이 이루어지기 때문에 보안을 위한 전송 인코딩은 잘 이루어지지 않지만, 전송 인코딩으로 메세지를 알아보기 어렵게 뒤섞기도 했었습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1562-transfer-encoding-헤더">15.6.2. Transfer-Encoding 헤더</h4>
+
+<ul>
+  <li>
+    <p>전송 인코딩을 위해 사용되는 헤더는 두 개 뿐입니다.</p>
+
+    <ul>
+      <li>
+        <p>Transfer-Encoding : 안전한 전송을 위해 어떤 인코딩이 사용됐는지 클라이언트에게 알려줍니다.</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: Apache/3.0
+... 
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>TE : 클라이언트가 서버에게 자신이 어떤 전송 인코딩을 사용할 수 있는지 알려줍니다. Accept-Encoding 처럼 q로 표현되는 선호도를 가질 수 있습니다. 다만 HTTP/1.1에선 chucked 인코딩엔 0.0의 q를 갖는걸 허용하지 않습니다.</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /new_products.html HTTP/1.1
+Host: www.joes-hardware.com
+User-Agent: Mozilla/4.61 [en] (WinNT; I)
+TE: trailers;q=0.5, chunked;q=1.0
+... 
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1563-청크-인코딩">15.6.3. 청크 인코딩</h4>
+
+<ul>
+  <li>청크 인코딩이란 한 메세지를 일정 크기의 청크로 쪼개 순차적으로 전송하는 방법입니다.</li>
+  <li>일정 크기로 쪼개 보내기 때문에 메세지 전체 크기를 알 필요가 없습니다.</li>
+  <li>동적 생성되는 컨텐츠에 유용하게 사용됩니다.</li>
+  <li>메세지 전체를 다루는 전송 인코딩의 하나이며, 본문만 다뤘던 멀티파트 인코딩과 헷갈리면 안됩니다.</li>
+</ul>
+
+<p><strong>청크와 지속 커넥션</strong></p>
+
+<ul>
+  <li>지속 커넥션은 메세지간의 구분 지점을 알아야 하기 때문에 Content-Length를 반드시 알아야 했습니다.</li>
+  <li>하지만 콘텐츠가 동적으로 생성되면 보내기 전에 Content-Length를 알아내기 힘듭니다.</li>
+  <li>청크 인코딩은 동적으로 생성되는 본문의 일부를 버퍼에 담다가 모인 덩어리를 보냅니다.</li>
+  <li>생성되는 모든 본문을 전송할때까지 반복하며 크기가 0인 청크로 본문이 끝났음을 알립니다.</li>
+  <li>각 청크는 아래와 같이 16진수로 표현된 바이트 길이와 CRLF, 데이터로 이루어져 있습니다.</li>
+  <li>마지막엔 길이가 0인 청크를 보내 전송이 끝났음을 알려야 합니다.</li>
+  <li>클라이언트가 청크 인코딩된 데이터를 서버로 보낼 수도 있습니다.</li>
+</ul>
+
+<p><img src="/public/image/http_the_definitive_guide/chuncked.png" alt="chuncked.png" /></p>
+
+<p><strong>청크 인코딩된 메세지의 트레일러</strong></p>
+
+<ul>
+  <li>트레일러란 메세지가 만들어지기 시작할 땐 값을 알수 없는 헤더들을 담는 곳입니다.(Contetn-MD5 헤더의 경우 문서가 생성되어야 요약을 계산할 수 있습니다.)</li>
+  <li>트레일러는 청크 메세지 끝에 따라올 수 있습니다.</li>
+  <li>아래 두 조건 중 하나를 만족하면 트레일러를 추가할 수 있습니다.
+    <ul>
+      <li>클라이언트의 TE 헤더에 트레일러를 받아들일 수 있음이 명시된 경우</li>
+      <li>트레일러에 있는 정보들이 클라이언트가 무시하고 버려도 되는 경우(선택적인 메타데이터들)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1564-콘텐츠와-전송-인코딩의-조합">15.6.4. 콘텐츠와 전송 인코딩의 조합</h4>
+
+<ul>
+  <li>콘텐츠 인코딩과 전송 인코딩은 함께 사용될 수 있습니다.</li>
+</ul>
+
+<p><img src="/public/image/http_the_definitive_guide/contents_transfer_encoding.png" alt="contents_transfer_encoding.png" /></p>
+
+<h4 id="1565-전송-인코딩-규칙">15.6.5. 전송 인코딩 규칙</h4>
+
+<ul>
+  <li>
+    <p>전송 인코딩을 사용할 때 아래와 같은 규칙을 지켜야 합니다.</p>
+
+    <ul>
+      <li>메세지가 커넥션 종료로 끝나는 경우를 제외하면, 전송 인코딩엔 반드시 ‘chunked’가 포함되어야 합니다.</li>
+      <li>청크 전송 인코딩을 사용할 때, 반드시 마지막 청크 전송 인코딩이 있어야 합니다.</li>
+      <li>청크 전송 인코딩은 메세지 본문에 한 번 이상 적용 되어야 합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>전송 인코딩은 HTTP/1.1에서 등장한 인코딩이기 때문에 이전 버전의 어플리케이선과 통신해야 할 땐 주의해야 합니다.</p>
+  </li>
+</ul>
+
+<h3 id="157-시간에-따라-바뀌는-인스턴스">15.7. 시간에 따라 바뀌는 인스턴스</h3>
+
+<hr />
+
+<ul>
+  <li>우리가 요청하는 많은 웹 객체(web object)들은 동적입니다.</li>
+  <li>요청을 받을 때 마다 한 웹 객체에서 만들어지는 리소스를 각각 다른 인스턴스라고 생각한다면 매번 바뀌는 인스턴스를 다루기 위한 방법이 필요합니다.</li>
+  <li>이런 방법들을 ‘인스턴스 조작(instance manipulation)’이라 부르며 대표적인 예가 ‘범위 요청’과 ‘델타 인코딩’입니다.</li>
+  <li>두 방법 모두 클라이언트가 갖고 있는 리소스 사본이 서버가 가진 것과 같은지 판단하고 다르다면 새 인스턴스를 요청하는 방법입니다. 각각 15.9, 15.10에서 알아보겠습니다.</li>
+</ul>
+
+<h3 id="158-검사기validator와-신선도">15.8. 검사기(Validator)와 신선도</h3>
+
+<hr />
+
+<ul>
+  <li>클라이언트는 리소스를 받으면 해당 리소스를 캐시에 저장하고 다음 요청은 캐시에서 받아옵니다.</li>
+  <li>캐시한 문서가 만료되면 서버에 다시 요구해야 합니다. 문서가 변경되었다면 새로 받을 것이고, 변경되지 않았다면 다시 받지 않을 것입니다.</li>
+  <li>위 과정을 수행하기 위해 ‘조건부 요청’이라는 요청을 사용합니다.</li>
+  <li>조건부 요청은 클라이언트가 서버에게 자신이 갖고 있는 리소스의 버전을 말해주고 Validator를 통해 자신의 사본이 유효하지 않으면 서버에게 리소스를 요청합니다.</li>
+</ul>
+
+<h4 id="1581-신선도">15.8.1. 신선도</h4>
+
+<ul>
+  <li>신선도에 대해선 7장에서 많이 알아봤습니다.</li>
+  <li>받은 리소스 사본이 신선한 기간을 알려주기 위해 Expires 헤더와 Cache-Control 헤더를 사용합니다.</li>
+</ul>
+
+<p><strong>Expires</strong></p>
+
+<ul>
+  <li>
+    <p>Expires 헤더는 문서가 만료되는 절대 시간을 나타냅니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Expires : Sun Mar 18 23:59:12 GMT 2001
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Expires 헤더를 사용하기 위해 NTP(Network Time Protocol)등의 방법으로 클라이언트와 서버의 시간을 동기화 시켜야 하기 때문에 상대시간을 사용하는 Cache-Control을 더 많이 사용합니다.</p>
+  </li>
+</ul>
+
+<p><strong>Cache-Control</strong></p>
+
+<ul>
+  <li>Cache-Control 헤더는 문서의 최대 수명을 초단위로 나타냅니다.</li>
+  <li>또한 Cache-Control과 함께 사용되는 파라미터들이 많기 때문에 더 자세히 신선도를 다룰 수 있습니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>지시자</th>
+      <th>메세지 타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>no-cache</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>no-store</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>max-age</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>max-stale</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>min-fresh</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>no-transform</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>only-if-cached</td>
+      <td>요청</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>private</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>no-cache</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>no-store</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>no-transform</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>must-revalidate</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>proxy-revalidate</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>max-age</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>s-max-age</td>
+      <td>응답</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="1582-조건부-요청과-검사기">15.8.2. 조건부 요청과 검사기</h4>
+
+<ul>
+  <li>
+    <p>신선도가 만료됐을 뿐 아직 리소스가 바뀌지 않았을수도 있기 때문에 신선도가 만료되었을 때마다 항상 서버에서 새로 리소스를 받아오는건 비효율적입니다.</p>
+  </li>
+  <li>
+    <p>조건부 요청을 통해 실제로 리소스가 바뀐 경우에만 사본을 받아올 수 있습니다.</p>
+  </li>
+  <li>
+    <p>조건부 요청은 주로 ‘If-‘로 시작되는 헤더를 통해 구현됩니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /announce.html HTTP/1.0
+If-Modified-Since: Sat, 29 Jun 2002, 14:30:00 GMT
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>조건부 요청은 쓰인 헤더에 따라 특정 검사기(Validator)를 통해 검사됩니다. (검사기는 아래 표 외에도 유연하게 선택될 수 있습니다.)</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>요청 유형</th>
+      <th>검사기</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>If-Modified-Since</td>
+      <td>Last-Modified</td>
+      <td>지난번 Last-Modified 응답 헤더에 있던 시각에 마지막으로 수정된 버전이 아니라면 리소스의 사본을 보내라</td>
+    </tr>
+    <tr>
+      <td>If-Unmodified-Since</td>
+      <td>Last-Modified</td>
+      <td>지난번 Last-Modified 응답 헤더에 있던 시각에 마지막으로 수정된 버전에서 변한 것이 없다면 리소스의 사본을 보내라</td>
+    </tr>
+    <tr>
+      <td>If-Match</td>
+      <td>ETag</td>
+      <td>지난번 ETag 응답 헤더에 들어있었던 것과 엔터티 태그가 같다면, 리소스의 사본을 보내라</td>
+    </tr>
+    <tr>
+      <td>If-None-Match</td>
+      <td>ETag</td>
+      <td>지난번 ETag 응답 헤더에 들어이썽ㅆ던 것과 엔터티 태그가 다르다면, 그 리소스의 사본을 보내라.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>HTTP는 검사기를 약한 검사기와 강한 검사기로 나눕니다.</p>
+
+    <p><strong>약한 검사기</strong></p>
+
+    <ul>
+      <li>약한 검사기는 인스턴스를 식별하지 못할 수도 있습니다.</li>
+      <li>예시로는 바이트 크기가 있습니다. 실제로 내용이 변경 되었지만 바이트 크기는 변하지 않을 수도 있습니다.</li>
+      <li>Last-Modified는 가장 작은 단위가 1초이기 때문에 약한 검사기에 속합니다.(1초 안에도 여러번 바뀔 수 있기 때문에)</li>
+    </ul>
+
+    <p><strong>강한 검사기</strong></p>
+
+    <ul>
+      <li>강한 검사기는 항상 인스턴스를 식별할 수 있습니다.</li>
+      <li>예시로는 리소스에 대한 암호 체크섬, 버전번호 등이 있습니다.</li>
+      <li>ETag엔 주로 매 변경마다 구분되는 값을 넣기 때문에 강한 검사기에 속합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>한편, 사소한 변경이라 모든 클라이언트가 굳이 안받아도 되는 경우가 있습니다. 이땐 서버에서 ‘W/’를 붙여 ‘약한’ 엔터티임을 알려줍니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /annouce.html HTTP/1.1
+If-None-Match: W/"v4.0"
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="159-범위-요청">15.9. 범위 요청</h3>
+
+<hr />
+
+<ul>
+  <li>
+    <p>클라이언트는 문서의 일부분이나 특정 범위만 요청할 수도 있습니다.</p>
+  </li>
+  <li>
+    <p>중간에 실패한 다운로드를 중간 지점부터 받을때, P2P 프로그램에서 여러 사용자로부터 파일의 조각들을 가져올때 사용합니다.</p>
+  </li>
+  <li>
+    <p>아래와 같이 Range 헤더를 통해 받을 범위를 명시해 요청합니다.(클라이언트의 입장에선 문서의 총 크기를 모르기 때문에 끝나는 바이트는 생략해도 됩니다.)</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /bigfile.html HTTP/1.1
+Host: www.joes-hardware.com
+Range: bytes=4000-
+User-Agent: Mozilla/4.61 [en] (WinNT; I)
+... 
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>많은 서버가 범위 요청을 받아들일 수 있지만 아닌 곳도 있습니다. 서버가 자신이 범위 요청을 받을 수 있는 지 명시하고 싶다면 아래와 같이 Accept-Range 헤더를 통해 알려줄 수 있습니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Fri, 05 Nov 1999 22:35:15 GMT 
+Server: Apache/1.2.4
+Accept-Ranges: bytes
+... 
+</code></pre></div>    </div>
+  </li>
+  <li>범위 요청은 객체의 특정 인스턴스중 일부를 주고받는 것이기 때문에 인스턴스 조작의 일종입니다.</li>
+  <li>또한, 인스턴스 조작이기 때문에 클라이언트와 서버가 같은 버전의 문서를 가지고 있을 때만 의미가 있습니다.</li>
+</ul>
+
+<h3 id="1510-델타-인코딩">15.10. 델타 인코딩</h3>
+
+<hr />
+
+<h4 id="15101-인스턴스-조작-델타-생성기-그리고-델타-적용기">15.10.1. 인스턴스 조작, 델타 생성기 그리고 델타 적용기</h4>
+
+<h3 id="마치며">마치며</h3>
+
+<hr />
+:ET

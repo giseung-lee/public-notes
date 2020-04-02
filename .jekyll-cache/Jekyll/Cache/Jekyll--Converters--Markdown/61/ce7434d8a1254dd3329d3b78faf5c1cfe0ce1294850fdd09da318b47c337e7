@@ -1,0 +1,75 @@
+I"�	
+<h3 id="1-지난번-문제">1. 지난번 문제</h3>
+
+<hr />
+
+<ul>
+  <li>지난 jekyll 관련 <a href="/권한문제">포스팅</a>은 윈도우에서 수정한 파일을 우분투 사용자가 접근 할 수 있도록 권한을 변경하는 것이었습니다.</li>
+  <li>하지만 지난 번엔 임시 방편으로 권한을 수동 변경한 것입니다.</li>
+  <li>이번 포스팅에선 Samba를 이용해 윈도우와 우분투가 권한을 공유하는 방법을 알아볼 것입니다.</li>
+</ul>
+
+<h3 id="2-samba">2. Samba?</h3>
+
+<hr />
+
+<ul>
+  <li>우선 Samba에 대해 간략히 알아보겠습니다.</li>
+</ul>
+
+<h4 id="21-samba란-무엇인가">2.1. Samba란 무엇인가!</h4>
+
+<ul>
+  <li>Samba의 공식 홈페이지(<a href="https://www.samba.org/">https://www.samba.org/</a>)에선 Samba를 다음과 같이 정의합니다.
+    <ul>
+      <li>Samba is the standard Windows <strong>interoperability suite of programs</strong> for Linux and Unix.</li>
+      <li>&gt;&gt; Samba는 Linux와 Unix를 위한 표준 Windows 상호운용 프로그램 제품군(suite)입니다.</li>
+    </ul>
+  </li>
+  <li>쉽게 말해, Windows와 Linux, Unix를 동시에 운용할 때 필요한 프로그램이라는 것입니다.</li>
+</ul>
+
+<h4 id="22-samba는-어떻게-동작하는가">2.2. Samba는 어떻게 동작하는가</h4>
+
+<ul>
+  <li></li>
+</ul>
+
+<p>####</p>
+
+<h3 id="3-samba-설치-및-공유폴더-생성">3. Samba 설치 및 공유폴더 생성</h3>
+
+<hr />
+
+<ul>
+  <li>Samba 설치는 <a href="https://storycompiler.tistory.com/31">이곳</a>을 참고하였습니다.</li>
+</ul>
+
+<h4 id="31-samba-설치">3.1. Samba 설치</h4>
+
+<ul>
+  <li>
+    <p>아래의 명령어로 samba를 설치해줍니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install samba
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>아래 명령어로 samba의 설정을 위한 gui를 설치해줍니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install system-config-samba
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>설정을 켜줍니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo system-config-samba
+</code></pre></div>    </div>
+
+    <ul>
+      <li>혹시 <code class="highlighter-rouge">GtkWarning: could not open display</code> 가 뜨며 GUI가 안나오는 분들은 <a href="">여기</a>를 참고해주세요.</li>
+    </ul>
+  </li>
+</ul>
+
+:ET

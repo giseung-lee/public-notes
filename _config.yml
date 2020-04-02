@@ -12,21 +12,36 @@ url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
 paginate:            5
-gems:                [jekyll-paginate, jemoji]
-plugins:		[jekyll-paginate, jemoji]
+gems:                [jekyll-paginate, gemoji, jemoji]
+plugins:		[jekyll-paginate, gemoji, jemoji]
+postroot:   'posts'
 rootfolder:
    about : 
       subfolder : false
    projects: 
-      tca: 
+      twitch_chat_anaylsis: 
          subfolder : false
-      sagyo:
+      sagyo_reboot:
          subfolder : false
    study_book :
-      http : 
+      http_the_definitive_guide : 
          subfolder : false
       algorithm : 
          subfolder : false
+   study_googling :
+      etc :
+         subfolder : false
+      java : 
+         subfolder : false
+      jekyll :
+         subfolder : false
+      linux :
+         subfolder : false
+      network :
+         subfolder : false
+      python : 
+         subfolder : false
+
 
 # About/contact
 author:

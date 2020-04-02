@@ -38,134 +38,108 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
+  <!-- Profile -->
   <div class="sidebar-item">
     <p>A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
   </div>
+  <!-- Profile End -->
 
   <nav class="sidebar-nav">
+    <!-- Home -->
     <a class="sidebar-nav-item" href="/">Home</a>
-
-    
-    
+    <!-- Home End -->
+    <!-- Posts -->
     
     
       
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/about">about</a>
+      
+    
+      
+        <input id="projects" class="toggle" type="checkbox">
+        <label for="projects" class="lbl-toggle sidebar-nav-item" tabindex="0">projects</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/projects/twitch_chat_anaylsis">twitch_chat_anaylsis</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/projects/sagyo_reboot">sagyo_reboot</a>
+          
         
-          <a class="sidebar-nav-item" href="/about/">About</a>
+        </div>
+      
+    
+      
+        <input id="study_book" class="toggle" type="checkbox">
+        <label for="study_book" class="lbl-toggle sidebar-nav-item" tabindex="0">study_book</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_book/http_the_definitive_guide">http_the_definitive_guide</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_book/algorithm">algorithm</a>
+          
         
+        </div>
       
     
       
+        <input id="study_googling" class="toggle" type="checkbox">
+        <label for="study_googling" class="lbl-toggle sidebar-nav-item" tabindex="0">study_googling</label>
+        <div class="collapsible-content subcategories">
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/etc">etc</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/java">java</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/jekyll">jekyll</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/linux">linux</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/network">network</a>
+          
         
-      
-    
-      
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/study_googling/python">python</a>
+          
         
+        </div>
       
     
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-<a class="sidebar-nav-item category-closed" href="#">projects</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">sagyo</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-book</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">algorithm</a>
-<a class="sidebar-nav-item" href="#">http완벽가이드</a>
-</div>
-<a class="sidebar-nav-item category-closed" href="#">study-googling</a>
-<div class="subcategories">
-<a class="sidebar-nav-item" href="#">Java</a>
-<a class="sidebar-nav-item" href="#">tca</a>
-</div>
-    <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
-    <a class="sidebar-nav-item" href="">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    <!-- Posts End -->
   </nav>
 
+  <!-- sidebar bottom -->
   <div class="sidebar-item">
     <p>
-      &copy; 2020. All rights reserved.
+      © 2020. All rights reserved.
     </p>
   </div>
+  <!-- sidebar bottom end -->
 </div>
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
@@ -187,7 +161,7 @@
   
 <h3 id="들어가며">들어가며</h3>
 
-<hr />
+<hr>
 
 <h3 id="41-tcp-커넥션">4.1. TCP 커넥션</h3>
 
@@ -202,7 +176,7 @@
 
 <p>위와 같은 것들을 알아볼 것입니다.</p>
 
-<hr />
+<hr>
 
 <p>1장에서도 설명드렸듯이 모든 HTTP 통신은 TCP/IP 통신을 기반으로 이루어집니다. HTTP는 데이터가 손실되지 않는 안전한 통신인데, 이 ‘안전한’을 TCP가 보장해줍니다.</p>
 
@@ -270,15 +244,18 @@
   </thead>
   <tbody>
     <tr>
-      <td>s = socket(<parameters>)</parameters></td>
+      <td>s = socket(<parameters>)</parameters>
+</td>
       <td>연결되지 않은 익명의 새로운 소켓 생성</td>
     </tr>
     <tr>
-      <td>bind(s, <local IP:port="">)</local></td>
+      <td>bind(s, <local ip:port="">)</local>
+</td>
       <td>소켓에 로컬 IP, 포트 번호와 인터페이스 할당</td>
     </tr>
     <tr>
-      <td>connect(s, <remote IP:port="">)</remote></td>
+      <td>connect(s, <remote ip:port="">)</remote>
+</td>
       <td>로컬의 소켓과 원격 호스트, 포트 사이에 TCP 커넥션 생성</td>
     </tr>
     <tr>
@@ -302,7 +279,8 @@
       <td>TCP 커넥션을 완전히 끊음</td>
     </tr>
     <tr>
-      <td>shutdown(s, <side>)</side></td>
+      <td>shutdown(s, <side>)</side>
+</td>
       <td>TCP 커넥션의 입출력만 닫음</td>
     </tr>
     <tr>
@@ -389,7 +367,7 @@
   </tbody>
 </table>
 
-<hr />
+<hr>
 
 <h3 id="42-tcp의-성능에-대한-고려">4.2. TCP의 성능에 대한 고려</h3>
 
@@ -506,7 +484,7 @@
 
 <p>4가지가 모두 같아야 같은 커넥션이라고 했습니다. 실제 상황에선 한 발신지에서 많은 트랜잭션을 단시간에 보내는 경우는 드물기 때문에 실제론 잘 발생하지 않습니다. 오히려 발신지의 IP와 포트가 제한된 채로 많은 트랜잭션을 발생시켜 테스트하는 성능 테스트 단계에서 발생하기 쉽습니다.</p>
 
-<hr />
+<hr>
 
 <h3 id="43-http-커넥션-관리">4.3. HTTP 커넥션 관리</h3>
 
@@ -562,7 +540,7 @@ Meter : max-uses=3, max-refuses=6, dont-report</p>
   <li>다중 커넥션 : 요청과 응답들에 대한 중재(아직 실험적인 기술)</li>
 </ol>
 
-<hr />
+<hr>
 
 <h3 id="44-병렬-커넥션">4.4. 병렬 커넥션</h3>
 
@@ -592,7 +570,7 @@ Meter : max-uses=3, max-refuses=6, dont-report</p>
 
 <p>이렇게 사용자의 심리적인 부분을 고려하는 것도 중요합니다. 옮긴이에 따르면, 이미지 같은 것을 로드할때 처음엔 저화질 이미지를 로드해 보여주고 후에 고화질을 받아 보여주는 방식도 사용자의 심리적인 면을 고려하는 것중 하나라고 합니다.</p>
 
-<hr />
+<hr>
 
 <h3 id="45-지속-커넥션">4.5. 지속 커넥션</h3>
 
@@ -700,7 +678,7 @@ Keep-Alive : max=5, timeout=120</p>
   <li>하나의 클라이언트는 서버의 과부하 방지를 위해 두개 정도의 지속 커넥션을 유지해야 한다. n명의 사용자를 상대하기 위해서 프록시나 서버는 2n개의 커넥션을 유지할 수 있어야 한다.</li>
 </ol>
 
-<hr />
+<hr>
 
 <h3 id="46-파이프라인-커넥션">4.6. 파이프라인 커넥션</h3>
 
@@ -719,7 +697,7 @@ Keep-Alive : max=5, timeout=120</p>
   <li>POST 요청과 같이 반복해서 보낼때 문제가 생길 수 있는 요청은 파이프라인을 통해 보내면 안됩니다.</li>
 </ol>
 
-<hr />
+<hr>
 
 <h3 id="47-커넥션-끊기에-대한-미스터리">4.7. 커넥션 끊기에 대한 미스터리</h3>
 
@@ -749,11 +727,11 @@ Keep-Alive : max=5, timeout=120</p>
 
 <h4 id="474-우아한-커넥션-끊기">4.7.4. 우아한 커넥션 끊기</h4>
 
-<hr />
+<hr>
 
 <h3 id="마치며">마치며</h3>
 
-<p>커넥션은 어깨너머 들은 지식을 정리하기 보단 새로운 지식으로 받아들이는 시간이었던 것 같습니다. 하지만 이 책의 학습 목표는 이런 웹 서비스가 동작하는데에 대한 깊고 근본적인 지식을 탐구하는 것이기 때문에 매우 재밌습니다! :smiley:</p>
+<p>커넥션은 어깨너머 들은 지식을 정리하기 보단 새로운 지식으로 받아들이는 시간이었던 것 같습니다. 하지만 이 책의 학습 목표는 이런 웹 서비스가 동작하는데에 대한 깊고 근본적인 지식을 탐구하는 것이기 때문에 매우 재밌습니다! <img class="emoji" title=":smiley:" alt=":smiley:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" height="20" width="20"></p>
 
 </div>
 
