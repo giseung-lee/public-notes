@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -14rem;
   width: 14rem;
   visibility: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
   font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
   font-size: .875rem; /* 15px */
   color: rgba(255,255,255,.6);
@@ -181,6 +181,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   padding: .5rem 1rem;
   border-top: 1px solid rgba(255,255,255,.1);
+  transition: all 0.25s ease-out;
 }
 .sidebar-nav-item.active,
 a.sidebar-nav-item:hover,

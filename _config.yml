@@ -7,7 +7,7 @@ permalink: /:categories/:title/
 # Setup
 title:               이기승의 개발일지
 tagline:             '문서화에 맛들리는 중...'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+description:         '&nbsp;웹 백엔드의 기초를 닦고 있습니다. 시간이 흐르고 개발 툴의 트렌드가 바뀌어도 변하지 않는 요소들에 관심을 두고있습니다.'
 url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
@@ -23,6 +23,11 @@ rootfolder:
          subfolder : false
       sagyo_reboot:
          subfolder : false
+      depth3:
+         depth3-1:
+             subfolder: false
+         depth3-2:
+             subfolder : false
    study_book :
       http_the_definitive_guide : 
          subfolder : false

@@ -1,7 +1,26 @@
+.sidebar-profile-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-profile-image{
+  width: 10rem;
+  height: 10rem;
+  margin: 0 0 0 0;
+  border-radius: 5rem;
+}
+
+.sidebar-profile-description{
+  padding: 1rem 0.5rem 0 0.5rem
+}
+
 .center {
   display: block;
   margin: auto;
 }
+
 /* jekyll의 기본 ul padding이 너무 큰거 같아 조절함 */
 ul{
   padding-inline-start: 20px;
@@ -27,9 +46,13 @@ input[type='checkbox'] {
 }
 
 .lbl-toggle {
+  outline: none; /* 눌렀을때 파란색으로 테두리 뜨는거 없앰 */
   color: #fff;
   cursor: pointer;
   transition: all 0.25s ease-out;
+}
+.lbl-toggle:hover{
+  background-color: rgba(255,255,255,0.1);
 }
 /* 삼각형 */
 .lbl-toggle::before {
@@ -61,15 +84,18 @@ input[type='checkbox'] {
   max-height: 100vh;
 }
 
-/* .toggle:checked + .lbl-toggle {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-} */
+/* sidebar scroll */
+/* width */
+.sidebar::-webkit-scrollbar {
+  width: 0rem;
+}
 
-/* .collapsible-content .content-inner {
-  background: rgba(250, 224, 66, .2);
-  border-bottom: 1px solid rgba(250, 224, 66, .45);
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  padding: .5rem 1rem;
-} */
+/* Track */
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0);
+}
+ 
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+}
