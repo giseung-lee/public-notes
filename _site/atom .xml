@@ -4,13 +4,332 @@
  <title>이기승의 개발일지</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-04T00:28:43+09:00</updated>
+ <updated>2020-04-05T22:20:48+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>오라클, sqldeveloper 연결시 SID 관련 (ORA-12505) 에러</title>
+   <link href="http://localhost:4000/posts/study_googling/etc/%EC%98%A4%EB%9D%BC%ED%81%B4-SID-%EA%B4%80%EB%A0%A8%EC%97%90%EB%9F%AC/"/>
+   <updated>2020-04-05T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study_googling/etc/오라클 SID 관련에러</id>
+   <content type="html">
+&lt;h2 id=&quot;오라클-설치-및-sqldeveloper-연결시-에러발생&quot;&gt;오라클 설치 및 sqldeveloper 연결시 에러발생!&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;새 컴퓨터에서 프로젝트 셋팅하던 와중에 발생한 에러입니다. 오라클 11g를 설치하고 sqldeveloper를 설치했습니다. sqldeveloper에서 Oracle 연결하려고 테스트를 눌렀는데…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/sqldeveloper_error.png&quot; alt=&quot;sqldeveloper_error.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위와 같은 에러가 났습니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;상태: 실패 -테스트 실패: Listener refused the connection with the following error:
+ORA-12505, TNS:&lt;strong&gt;listener does not currently know of SID given&lt;/strong&gt; in connect descriptor&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Oracle 리스너가 주어진 SID를 모른다는데 SID가 뭔지 찾아봤습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;공식 명세에 따르면 SID란 &lt;em&gt;The &lt;strong&gt;system identifier (SID)&lt;/strong&gt; is a &lt;strong&gt;unique name for an Oracle database instance&lt;/strong&gt; on a specific host.&lt;/em&gt; 입니다. 오라클 DB의 인스턴스 이름!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JVM에 여러 자바 인스턴스들이 만들어지고 각자 이름이 있는 것 처럼 오라클도 하나의 오라클 서버에 여러 DB인스턴스가 생성될 수 있습니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그리고 ORA-12505 에러에 대한 &lt;a href=&quot;https://docs.oracle.com/cd/E11882_01/server.112/e17766/net12500.htm&quot;&gt;공식 명세&lt;/a&gt; 역시 찾아봤습니다. 명세중 중요한 내용을 뽑아봤습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;리스너가 연결 요청을 받았다.&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;connect descriptor가 리스너로부터 SID를 받았는데, SID가 &lt;strong&gt;동적으로 등록&lt;/strong&gt;되지 않았거나 &lt;strong&gt;정적으로 configured&lt;/strong&gt;되지 않았다.&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;리스너가 시작된지 얼마 안돼 DB 인스턴스가 리스너에 등록되지 않았을 수 있다.&lt;/em&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;strong&gt;ORA-12505: TNS:listener does not currently know of SID given in connect descriptor&lt;/strong&gt;&lt;/p&gt;
+
+      &lt;p&gt;&lt;strong&gt;Cause:&lt;/strong&gt; The listener received a request to establish a connection to a database or other service. The connect descriptor received by the listener specified a SID for an instance (usually a database instance) that either has not yet dynamically registered with the listener or has not been statically configured for the listener. This may be a temporary condition such as after the listener has started, but before the database instance has registered with the listener.&lt;/p&gt;
+
+      &lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt;&lt;/p&gt;
+
+      &lt;p&gt;- Wait a moment and try to connect a second time.&lt;/p&gt;
+
+      &lt;p&gt;- Check which instances are currently known by the listener by executing: lsnrctl services &lt;listener name=&quot;&quot;&gt;&lt;/listener&gt;&lt;/p&gt;
+
+      &lt;p&gt;- Check that the SID parameter in the connect descriptor specifies an instance known by the listener.&lt;/p&gt;
+
+      &lt;p&gt;- Check for an event in the listener.log file.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;오라클을 켠지는 꽤 되었으니 리스너가 시작된지 얼마 되지 않아 SID를 못찾는건 아닌것 같아서 일단 현재 SID를 확인 하는 방법을 찾아봤습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;우선 SQL Plus를 켠 다음 sysdba로 접속합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;사용자명&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;입력&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sysdba&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;비밀번호&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;입력&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    
+&lt;span class=&quot;err&quot;&gt;다음에&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;접속됨&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Oracle&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Database&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Enterprise&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Edition&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Release&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Production&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;With&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Partitioning&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OLAP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mining&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Real&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Testing&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;options&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;다음 아래의 쿼리로 SID를 알아냅니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;thread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+&lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;orcl&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;변경하면 아래와 같이 접속에 성공합니다!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/sqldeveloper_success.png&quot; alt=&quot;sqldeveloper_success.png&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>기존 Sagyo 프로젝트 알아보기.</a></title>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0/"/>
+   <updated>2020-04-05T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo알아보기</id>
+   <content type="html">
+&lt;h2 id=&quot;0-개요-및-사용기술&quot;&gt;0. 개요 및 사용기술&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sagyo 프로젝트는 2019년 5월 29일 ~ 2019년 7월 19일에 진행된 6인 프로젝트입니다.
+    &lt;ul&gt;
+      &lt;li&gt;기획 - 4주&lt;/li&gt;
+      &lt;li&gt;DB설계 및 개발 - 1주&lt;/li&gt;
+      &lt;li&gt;웹 개발 - 3주&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/plan.png&quot; alt=&quot;plan.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;저희는 &lt;strong&gt;기존 소셜다이닝 웹 서비스&lt;/strong&gt;들이 좋은 취지에도 불구하고 크게 성공하지 못한건 &lt;strong&gt;유저간 신뢰도 확보의 부족&lt;/strong&gt;이라고 진단했습니다. Sagyo는 &lt;strong&gt;기존 소셜다이닝 웹 서비스들의 기능을 구현&lt;/strong&gt;하면서, &lt;strong&gt;유저들 간의 신뢰 확보 수단을 강화&lt;/strong&gt;한 웹 어플리케이션입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같은 거창한 포부를 갖고 시작했으나, 기획력의 부족으로 &lt;strong&gt;기존 소셜다이닝 웹 서비스들의 기능을 구현하는 데에도 급급했던 프로젝트&lt;/strong&gt;입니다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로젝트를 지도한 강사님의 지도아래 &lt;del&gt;당시엔 정말 귀찮았던&lt;/del&gt; 문서 작업을 철저히 했뒀는데, 지금 다시 열어보니 남기길 잘 했다는 생각이 듭니다. (강사님 감사합니다 :pray:)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사용 기술스택은 전형적인 Spring 프레임워크를 사용하는 Java 스택으로, 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTML / CSS / JS&lt;/li&gt;
+      &lt;li&gt;Java / Spring&lt;/li&gt;
+      &lt;li&gt;Oracle / Mybatis&lt;/li&gt;
+      &lt;li&gt;Apache / Tomcat&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-기획-및-기능&quot;&gt;1. 기획 및 기능&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트시 작성해 놓은 상세한 요구분석서는 &lt;a href=&quot;/public/document//sagy_require.pdf&quot;&gt;여기&lt;/a&gt;를 참조해주세요. 아래는 간략히 기술하겠습니다.&lt;/li&gt;
+  &lt;li&gt;기능별 분류 - 아래에서 ‘모임’은 소셜다이닝 모임을 위한 글이라고 생각하시면 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;분야&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;회원관련&lt;/td&gt;
+      &lt;td&gt;회원 가입, 탈퇴 / 회원정보 조회, 수정 / 로그인 / 로그아웃 / 쪽지 / 팔로우 등&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;검색 및 필터 기능(모임 조회)&lt;/td&gt;
+      &lt;td&gt;카테고리 검색 / 통합검색 / 필터링 검색 등&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;모임 개설 및 참가 관련&lt;/td&gt;
+      &lt;td&gt;모임개설 / 참여신청 / 수락 및 거절 / 댓글 등&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;사용자간 평가&lt;/td&gt;
+      &lt;td&gt;평점 / 뱃지 / 코멘트 등&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;신고 및 관리 기능&lt;/td&gt;
+      &lt;td&gt;게시글 및 댓글 신고 / 공지사항 / FAQ / 1:1문의 등&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 기능들을 바탕으로 &lt;a href=&quot;/public/document/sagyo_stroyboard.pdf&quot;&gt;스토리보드&lt;/a&gt;를 완성했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-db-설계&quot;&gt;2. DB 설계&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;참여 인원 모두 전반적인 웹 서비스를 배우는 중이었기 때문에 DB설계는 모두 같이 진행했습니다.&lt;/li&gt;
+  &lt;li&gt;설계 결과 총 41개의 테이블이 나왔습니다.&lt;/li&gt;
+  &lt;li&gt;DB에 대한 명세서는 &lt;a href=&quot;/public/document/sagyo_DBspecification&quot;&gt;여기&lt;/a&gt;, ER다이어그램은 &lt;a href=&quot;/public/document/sagyo_ERdiagram.pdf }}&quot;&gt;여기&lt;/a&gt;를 참고해주세요.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-웹-디자인&quot;&gt;3. 웹 디자인&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;흔히 개발자들의 웹 프로젝트가 그렇듯이 저희도 팀원 중 딱히 웹 디자인에 일가견 있는 사람이 없었습니다.&lt;/li&gt;
+  &lt;li&gt;제 원래 전공인 조경학에서 익혀온 디자인 &lt;del&gt;베끼기&lt;/del&gt; 실력으로 제가 주도로 진행하게 됐습니다.&lt;/li&gt;
+  &lt;li&gt;제작은 Adobe XD로 진행했고, 처음 해본 웹 디자인이었지만 생각보다 잘 나온것 같아 흡족했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/main.png&quot; alt=&quot;main.png&quot; /&gt;&lt;em&gt;메인 페이지 -주황색 색감이 소셜다이닝에 잘 맞는것 같았다.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/postlist.png&quot; alt=&quot;postlist.png&quot; /&gt;*글 목록 조회 및 필터링 *&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/post.png&quot; alt=&quot;post.png&quot; /&gt;&lt;em&gt;소셜다이닝 모집글&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/badge.png&quot; alt=&quot;badge.png&quot; /&gt;&lt;em&gt;팀원 K가 제작해준 뱃지들 - 처음엔 당황스러웠지만 보다보니 정들었다.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/sagyo_reboot/follow.png&quot; alt=&quot;follow.png&quot; /&gt;&lt;em&gt;팔로우/팔로워 목록&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-역할-분담&quot;&gt;4. 역할 분담&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;6명이 역할을 각각 나누었고 제가 맡게된 것은 다음과 같습니다.
+    &lt;ol&gt;
+      &lt;li&gt;일정 관리 및 팀원간 개발 범위 조율, 개발 지원 - 팀장의 역할&lt;/li&gt;
+      &lt;li&gt;퍼블리싱 - 원래 계획은 각자하는 것이었지만 일정상 제가 모두 처리하게 됐습니다.&lt;/li&gt;
+      &lt;li&gt;샘플 데이터 생성 - PL/SQL 문으로 샘플 데이터를 생성했습니다.&lt;/li&gt;
+      &lt;li&gt;모임 추천기능 - 모임 목록뿌려주는 방식(검색, 카테고리, 필터링)에 따른 모임 추천&lt;/li&gt;
+      &lt;li&gt;메인페이지&lt;/li&gt;
+      &lt;li&gt;모임 목록 페이지&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;팀장으로 참여&lt;/strong&gt;하여 ‘1. 개발 범위 조율 및 지원’에 할애한 시간이 커, 실질적인 개발양은 많지 않았습니다. 퍼블리싱이 끝난 후 &lt;strong&gt;본격적인 개발기간의 절반은 돌아다니며 기능 구현 방법에 대한 질문을 받고, 에러를 잡아주고 하는데 사용한 것 같습니다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-개발1---퍼블리싱&quot;&gt;5. 개발1 - 퍼블리싱&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;51-처음-계획&quot;&gt;5.1. 처음 계획&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;본 프로젝트를 진행하는 6명 모두 웹을 처음 배우는 것이라 &lt;strong&gt;원래 계획은 ‘각자 맡은 부분의 퍼블리싱은 각자 하자’&lt;/strong&gt;였습니다. (모두 HTML, CSS 기술을 익혀야 하니)&lt;/li&gt;
+  &lt;li&gt;각자 퍼블리싱을 맡기고 &lt;strong&gt;한 주간 지켜봤습니다.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;우선 &lt;strong&gt;진행률이 예상의 1/4&lt;/strong&gt;도 되지 않았습니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;같은 페이지인데 서로 다른 결과물&lt;/strong&gt;이 나왔습니다.&lt;/li&gt;
+      &lt;li&gt;‘조금 다른거니 나중에 내가 수합하면서 맞춰보자’ 생각하며 소스를 열어봤더니
+        &lt;ul&gt;
+          &lt;li&gt;div 가운데 정렬을 하는데 그렇게 많은 방법이 있는줄 몰랐습니다. :scream: 6명의 HTML, CSS를 수정하면서 통합하는 것보다 처음부터 만드는게 더 빠를 것 같았습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;52-특단의-조치&quot;&gt;5.2. 특단의 조치&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;퍼블리싱을 다음주까지 넘기면 프로젝트 전체가 위태로운 상황&lt;/strong&gt;이었습니다. 특단의 조치를 내려야 했습니다.&lt;/li&gt;
+  &lt;li&gt;‘&lt;strong&gt;내가 주말에 다 해올테니&lt;/strong&gt;, 월요일부터 진행할 MVC 디자인 패턴 개발 연습을 더 해왔으면 좋겠다.’ 라고 일단 선언 했습니다. 저도 HTML, CSS를 처음 배운거라 자신이 있진 않았지만 이 속도라면 퍼블리싱하다가 프로젝트 기간이 끝날 것 같았습니다.&lt;/li&gt;
+  &lt;li&gt;금요일 밤부터 시작해 토요일, 일요일, 월요일 아침까지 하루종일 HTML, CSS와 씨름한 결과 총 27개의 페이지를 모두 끝낼 수 있었습니다.
+    &lt;ul&gt;
+      &lt;li&gt;아쉬운 점이 있다면, &lt;strong&gt;반응형 웹을 완벽히 구현해 내진 못했습니다.&lt;/strong&gt; 폰트들도 px단위로 맞춰져 있고 꽤 많은 div들이 px 단위로 맞춰져 있었습니다. 이를 일요일 쯤 발견했지만 다시 바꾸기 시작했다간 팀원들이 월요일에 할 일이 없을 것 같았습니다.&lt;/li&gt;
+      &lt;li&gt;또, 당시엔 &lt;strong&gt;HTML, CSS 작업만 해서 주었는데&lt;/strong&gt; 모달 팝업, 아코디언 목록 같이 &lt;strong&gt;JS가 많이 들어가는 페이지를 맡은 팀원들은 그 부분을 처리하느라 시간이 많이 지체되었습니다.&lt;/strong&gt; 이 부분은 나중에 팀원들이 &lt;strong&gt;각자 다른 버전의 JS 라이브러리를 긁어와 심각한 충돌이 발생했던 지점이기도 합니다.&lt;/strong&gt; 이럴줄 알았더라면 JS를 이용한 퍼블리싱도 마무리 했어야 했는데 아쉽습니다.&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://d2.naver.com/helloworld/8540176&quot;&gt;https://d2.naver.com/helloworld/8540176&lt;/a&gt; 이곳을 정말 많이 참고했습니다. 아마 이 포스트가 없었다면 퍼블리싱 완성하지 못했을 것입니다. 엄청난 감사를… ㅜㅜ&lt;/li&gt;
+      &lt;li&gt;그래도 디자인 한대로 퍼블리싱이 잘 나와 만족스러웠습니다. :grinning:&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;페이지-켜보고-비교-사진-추가&quot;&gt;페이지 켜보고 비교 사진 추가&lt;/h2&gt;
+
+&lt;h2 id=&quot;6-개발2---샘플-데이터-생성&quot;&gt;6. 개발2 - 샘플 데이터 생성&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;학원에서 각 과목을 배울때 마다 미니 프로젝트를 진행했습니다. 그때 마다 제가 다른 팀들과 다르게 해오던게 있습니다. 바로 샘플 데이터를 자동 생성하는 것입니다.&lt;/li&gt;
+  &lt;li&gt;물론, 테스트 샘플 데이터를 만드는 영역도 파고들어가면 끝도 없어서 제가한 방법이 초라해지지만.. 그래도 다른팀이 인력을 갈아넣어 2~300개 만든 데이터로 테스트할때 10,000개 이상의 데이터로 테스트한걸 굉장히 뿌듯하게 여기고 있습니다.&lt;/li&gt;
+  &lt;li&gt;샘플 데이터 생성은 PL/SQL을 이용했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;하다가 소스코드 찾으면 올리기
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;7-개발3---모임-추천기능검색-카테고리-필터링&quot;&gt;7. 개발3 - 모임 추천기능(검색, 카테고리, 필터링)&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;8-개발4---메인페이지&quot;&gt;8. 개발4 - 메인페이지&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;9-개발5---모임-조회&quot;&gt;9. 개발5 - 모임 조회&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Line 코딩테스트 후기</title>
+   <link href="http://localhost:4000/posts/diary/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0/"/>
+   <updated>2020-04-05T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/diary/Line코딩테스트 후기</id>
+   <content type="html">&lt;h3 id=&quot;라인-코딩테스트-후기&quot;&gt;라인 코딩테스트 후기&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;4월 5일 라인 코딩테스트를 보았습니다. 자세한 사항은 당연히 남길 수 없으나 전체적인 총평 및 후기를 남겨봅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;처음 6문제 150분인걸 들었을 때 머릿속으로 구상해봤습니다. ‘2문제 정도는 보고 바로 풀어서 주석까지 10분안에 쓸 수 있는 문제가 나오겠고, 중간 2문제는 적당한 난이도로 30~40분 걸리는 문제가 나오겠고, 마지막 2문제는 정답을 맞춘다기 보단 최선을 다해서 하는데 까지 해보는 문제로 나오겠지?’ 라는 생각을 했습니다.&lt;/li&gt;
+  &lt;li&gt;그런데 문제를 받고 슥 훑어 보는데 &lt;strong&gt;보자마자 코드까지 스르륵 그려지는 문제가 없는 것입니다!&lt;/strong&gt; 보통 1, 2번은 몸풀기로 주던데 이번 코딩테스트 1, 2번은 어떻게 풀어 갈지는 생각이 나지만 코드 한줄 한줄이 눈에 그려지는 정도는 아니었습니다.&lt;/li&gt;
+  &lt;li&gt;그런데 더 이상했던건 &lt;strong&gt;보자마자 ‘야~ 이건 힘들겠는데’하는 문제도 없었습니다.&lt;/strong&gt;:fearful: 음.. 뭐지? 6문제가 나오면 1~2문제는 한숨부터 나와야 하는데 막상 그정도 문제는 없었습니다.&lt;/li&gt;
+  &lt;li&gt;막상 풀이를 시작하니 술술 풀리진 않지만, 그렇다고 꽉 막힌것도 아닌 20~30분 정도에 한 문제씩 풀어나갔습니다. 6문제 중 5문제는 &lt;del&gt;(더 좋은 풀이가 있는 것 같지만)&lt;/del&gt; 다 풀었고, 마지막 한 문제는 조금 시간이 걸리는 문제라 완성은 못했지만 꽤나 많이 채웠습니다!&lt;/li&gt;
+  &lt;li&gt;결과는 나와봐야 알겠지만.. 만족스러운 코딩테스트였습니다.:sunglasses:&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>리다이렉션과 부하 균형</title>
@@ -13210,136 +13529,6 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
    <id>http://localhost:4000/posts/study_book/algorithm/Algorithm1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Algorithms1
-&lt;/div&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code class=&quot;highlighter-rouge&quot;&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Example content</title>
-   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1/"/>
-   <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  Sagyo1
 &lt;/div&gt;
 
 &lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;

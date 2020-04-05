@@ -11,12 +11,15 @@ description:         '&nbsp;웹 백엔드의 기초를 닦고 있습니다. 시�
 url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
+docbase:		'/public/document/'
 paginate:            5
 gems:                [jekyll-paginate, gemoji, jemoji]
 plugins:		[jekyll-paginate, gemoji, jemoji]
 postroot:   'posts'
 rootfolder:
    about : 
+      subfolder : false
+   diary : 
       subfolder : false
    projects: 
       twitch_chat_anaylsis: 
