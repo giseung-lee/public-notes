@@ -17,26 +17,17 @@ gems:                [jekyll-paginate, gemoji, jemoji]
 plugins:		[jekyll-paginate, gemoji, jemoji]
 postroot:   'posts'
 rootfolder:
-   about : 
+   About Me : 
       subfolder : false
-   diary : 
+   Daily Thoughts : 
       subfolder : false
-   projects: 
-      twitch_chat_anaylsis: 
+   Projects: 
+      Sagyo Reboot:
+         subfolder : false         
+   Study :
+      Http The Definitive Guide : 
          subfolder : false
-      sagyo_reboot:
-         subfolder : false
-      depth3:
-         depth3-1:
-             subfolder: false
-         depth3-2:
-             subfolder : false
-   study_book :
-      http_the_definitive_guide : 
-         subfolder : false
-      algorithm : 
-         subfolder : false
-   study_googling :
+   Googling :
       etc :
          subfolder : false
       java : 

@@ -1,0 +1,109 @@
+I"�
+
+<h2 id="안녕하세요">안녕하세요!</h2>
+
+<hr />
+
+<p>안녕하세요 이기승입니다. ~~ 개발자입니다.</p>
+
+<h2 id="사용-가능-스킬">사용 가능 스킬</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>사용스킬의 척도는 아래와 같습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>등급</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+          <td>사용만 해본 수준입니다. 기본 기능 구현에도 참고자료가 필요합니다.</td>
+        </tr>
+        <tr>
+          <td>:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+          <td>기본 기능 구현 정도는 참고자료가 없이 가능합니다.</td>
+        </tr>
+        <tr>
+          <td>:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+          <td>기술이 어떻게 동작하는 지 알고, 참고자료가 있다면 고급 기능도 구현할 수 있습니다.</td>
+        </tr>
+        <tr>
+          <td>:star::star::star::star:</td>
+          <td>참고자료 없이도 고급 기능을 다룰 수 있습니다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>사용 스킬별 등급입니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>언어</th>
+          <th>등급</th>
+          <th>DB</th>
+          <th>등급</th>
+          <th>프레임워크</th>
+          <th>등급3</th>
+          <th>기타</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Java</td>
+          <td>:star::star::star::star:</td>
+          <td>Oracle</td>
+          <td>:star::star::star::star:</td>
+          <td>Spring</td>
+          <td>:star::star::star::star:</td>
+          <td>HTML</td>
+          <td>:star::star::star::star:</td>
+        </tr>
+        <tr>
+          <td>Python</td>
+          <td> </td>
+          <td>MySQL</td>
+          <td> </td>
+          <td>Express</td>
+          <td> </td>
+          <td>CSS</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>C#</td>
+          <td> </td>
+          <td>Mongo DB</td>
+          <td> </td>
+          <td>Apache/Tomcat</td>
+          <td> </td>
+          <td>JavaScript</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>HTML</td>
+          <td> </td>
+          <td>CSS</td>
+          <td> </td>
+          <td>JavaScript</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="too-much-information">Too Much Information…?</h2>
+<hr />
+
+:ET

@@ -1,0 +1,97 @@
+I"�
+<h2 id="안녕하세요">안녕하세요!</h2>
+
+<hr />
+
+<p>안녕하세요 1년차 개발자 이기승입니다.</p>
+
+<h2 id="사용-가능-스킬">사용 가능 스킬</h2>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>등급</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>사용만 해본 수준입니다. 기본 기능 구현에도 참고자료가 필요합니다.</td>
+    </tr>
+    <tr>
+      <td>:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>기본 기능 구현 정도는 참고자료가 없이 가능합니다.</td>
+    </tr>
+    <tr>
+      <td>:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>기술이 어떻게 동작하는 지 알고, 참고자료가 있다면 고급 기능도 구현할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>:star::star::star::star:</td>
+      <td>참고자료 없이도 고급 기능을 다룰 수 있습니다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>기술1</th>
+      <th style="text-align: center">등급1</th>
+      <th>기술2</th>
+      <th style="text-align: center">등급2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>언어) Java</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) HTML</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>언어) Python</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) CSS</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>언어) C#</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) JavaScript</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>DB) Oracle / MySQL</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>Server) Apache</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>DB) Mongo DB</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>Server) WebtoB</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>Framework) Spring</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>WAS) Tomcat</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>Framework) Express</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>WAS) JEUS</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="too-much-information">Too Much Information…?</h2>
+<hr />
+
+:ET

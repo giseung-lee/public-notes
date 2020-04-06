@@ -1,0 +1,48 @@
+I"W
+<h2 id="안녕하세요">안녕하세요!</h2>
+
+<hr />
+
+<p>안녕하세요 이기승입니다. ~~ 개발자입니다.</p>
+
+<h2 id="사용-가능-스킬">사용 가능 스킬</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>사용스킬의 척도는 아래와 같습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>등급</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>:star:{.addclass}<span style="filter: grayscale(1)">:star:</span></td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="too-much-information">Too Much Information…?</h2>
+<hr />
+
+:ET
