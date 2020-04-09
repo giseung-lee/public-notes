@@ -4,13 +4,66 @@
  <title>이기승의 개발일지</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-07T02:39:58+09:00</updated>
+ <updated>2020-04-09T19:40:56+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Twitch Chat Analysis</title>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1/"/>
+   <updated>2020-04-09T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1</id>
+   <content type="html">&lt;p&gt;[&quot;posts&quot;, &quot;Projects&quot;, &quot;twitch_chat_anaylsis&quot;]&lt;/p&gt;
+
+&lt;h2 id=&quot;0-개요&quot;&gt;0. 개요&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;급속한 인기를 얻고 있는 인터넷 방송은 방송 시간이 굉장히 깁니다. 적게는 4~5시간, 많게는 12시간, 18시간까지 됩니다. 일반적인 사람이라면 그 긴 방송을 모두 볼 순 없습니다. 재미있는 부분만 골라 볼 수 있는 웹 사이트가 있으면 좋겠다고 생각했고, 이 프로젝트를 시작하게 되었습니다.&lt;/p&gt;
+
+&lt;p&gt;기획은 크게 세 단계로 나누었습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;채팅의 속도를 기반으로 한 다시보기 지점 서비스&lt;/li&gt;
+  &lt;li&gt;채팅의 내용을 기반으로 한 다시보기 지점 서비스&lt;/li&gt;
+  &lt;li&gt;AWS에 올려 실제 서비스하기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그리고 1단계 기획은&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;기획&lt;/li&gt;
+  &lt;li&gt;웹 디자인&lt;/li&gt;
+  &lt;li&gt;API 서버 구현 - Node js&lt;/li&gt;
+  &lt;li&gt;클라이언트 구현 - React Redux&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;위와 같이 나누었습니다. 그리고 1, 2, 3을 마치고 4를 수행하던 도중에…!! 전 직장에 취직이 되어 아쉽게 멈춘 프로젝트입니다.&lt;/p&gt;
+
+&lt;p&gt;이번 포스팅에선 지금까지의 진척상황을 요약하고 다음 포스팅에서 개발을 이어 나가겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-기획&quot;&gt;1. 기획&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;2-웹-디자인&quot;&gt;2. 웹 디자인&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;3-api-서버-구현&quot;&gt;3. API 서버 구현&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;4-클라이언트-구현&quot;&gt;4. 클라이언트 구현&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>기존 Sagyo 프로젝트 알아보기.</a></title>
@@ -199,14 +252,35 @@
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;모임 추천은 크게 필터링 요소, 배점 요소로 이루어집니다.&lt;/li&gt;
+  &lt;li&gt;필터링 요소는 카테고리 기능이나 필터링 기능을 사용할 때 쓰입니다.&lt;/li&gt;
+  &lt;li&gt;배점 요소는 통합 검색 및 필터링 후 나머지 요소들을 계산하기 위해 쓰입니다.&lt;/li&gt;
+  &lt;li&gt;배점 요소가 필터링 요소가 될 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;예시1
+    &lt;ul&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;8-개발4---메인페이지&quot;&gt;8. 개발4 - 메인페이지&lt;/h2&gt;
 
 &lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메인 페이지엔 활동 지수(기간 내 조회 및 참가 신청 횟수)가 높은 모임, 마감 임박 모임(날짜가 임박했거나 인원수가 임박했거나)이 띄워집니다.&lt;/li&gt;
+  &lt;li&gt;저희 웹 서비스에서 ‘뱃지’라고 불리며 이용하고 있는 사용자 평가 수단에 대한 안내가 메인 페이지에 랜덤하게 나옵니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;9-개발5---모임-조회&quot;&gt;9. 개발5 - 모임 조회&lt;/h2&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;모임 조회는 크게 통합 검색, 카테고리 검색으로 나뉩니다.&lt;/li&gt;
+  &lt;li&gt;통합 검색, 카테고리 검색 이후에 결과들을 필터링 할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
@@ -11864,15 +11938,6 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
 &lt;hr /&gt;
 
 &lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>TCA1</title>
-   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1/"/>
-   <updated>2016-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1</id>
-   <content type="html">&lt;p&gt;[&quot;posts&quot;, &quot;Projects&quot;, &quot;twitch_chat_anaylsis&quot;]&lt;/p&gt;
 </content>
  </entry>
  
