@@ -1,0 +1,251 @@
+I"�:
+<h2 id="0-개요-및-사용기술">0. 개요 및 사용기술</h2>
+
+<hr />
+
+<ul>
+  <li>Sagyo 프로젝트는 2019년 5월 29일 ~ 2019년 7월 19일에 진행된 6인 프로젝트입니다.
+    <ul>
+      <li>기획 - 4주</li>
+      <li>DB설계 및 개발 - 1주</li>
+      <li>웹 개발 - 3주</li>
+    </ul>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/plan.png" alt="plan.png" /><small>프로젝트 일정표</small></p>
+
+<ul>
+  <li>
+    <p>저희는 <strong>기존 소셜다이닝 웹 서비스</strong>들이 좋은 취지에도 불구하고 크게 성공하지 못한건 <strong>유저간 신뢰도 확보의 부족</strong>이라고 진단했습니다. Sagyo는 <strong>기존 소셜다이닝 웹 서비스들의 기능을 구현</strong>하면서, <strong>유저들 간의 신뢰 확보 수단을 강화</strong>한 웹 어플리케이션입니다.</p>
+  </li>
+  <li>위와 같은 거창한 포부를 갖고 시작했으나, 기획력의 부족으로 <strong>기존 소셜다이닝 웹 서비스들의 기능을 구현하는 데에도 급급했던 프로젝트</strong>입니다.</li>
+  <li>
+    <p>프로젝트를 지도한 강사님의 지도아래 <del>당시엔 정말 귀찮았던</del> 문서 작업을 철저히 했뒀는데, 지금 다시 열어보니 남기길 잘 했다는 생각이 듭니다. (강사님 감사합니다 :pray:)</p>
+  </li>
+  <li>사용 기술스택은 전형적인 Spring 프레임워크를 사용하는 Java 스택으로, 다음과 같습니다.
+    <ul>
+      <li>HTML / CSS / JS</li>
+      <li>Java / Spring</li>
+      <li>Oracle / Mybatis</li>
+      <li>Apache / Tomcat</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="1-기획-및-기능">1. 기획 및 기능</h2>
+
+<hr />
+
+<ul>
+  <li>프로젝트시 작성해 놓은 상세한 요구분석서는 <a href="/public/document/sagyo_require.pdf">여기</a>를 참조해주세요. 아래는 간략히 기술하겠습니다.</li>
+  <li>기능별 분류 - 아래에서 ‘모임’은 소셜다이닝 모임을 위한 글이라고 생각하시면 됩니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>분야</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>회원관련</td>
+      <td>회원 가입, 탈퇴 / 회원정보 조회, 수정 / 로그인 / 로그아웃 / 쪽지 / 팔로우 등</td>
+    </tr>
+    <tr>
+      <td>검색 및 필터 기능(모임 조회)</td>
+      <td>카테고리 검색 / 통합검색 / 필터링 검색 등</td>
+    </tr>
+    <tr>
+      <td>모임 개설 및 참가 관련</td>
+      <td>모임개설 / 참여신청 / 수락 및 거절 / 댓글 등</td>
+    </tr>
+    <tr>
+      <td>사용자간 평가</td>
+      <td>평점 / 뱃지 / 코멘트 등</td>
+    </tr>
+    <tr>
+      <td>신고 및 관리 기능</td>
+      <td>게시글 및 댓글 신고 / 공지사항 / FAQ / 1:1문의 등</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>위 기능들을 바탕으로 <a href="/public/document/sagyo_storyboard.pdf">스토리보드</a>를 완성했습니다.</li>
+</ul>
+
+<h2 id="2-db-설계">2. DB 설계</h2>
+
+<hr />
+
+<ul>
+  <li>참여 인원 모두 전반적인 웹 서비스를 배우는 중이었기 때문에 DB설계는 모두 같이 진행했습니다.</li>
+  <li>프로젝트를 이끌어주신 강사님이 DB에 일가견이 있다는 소문이 있었는데, DB 만큼은 정말 여느 전공자들 못지 않게 탄탄하게 만든 것 같습니다.</li>
+  <li>설계 결과 총 41개의 테이블이 나왔습니다.</li>
+  <li>DB에 대한 명세서는 <a href="/public/document/sagyo_DBspecification.pdf">여기</a>, ER다이어그램은 <a href="/public/document/sagyo_ERdiagram.pdf">여기</a>를 참고해주세요.</li>
+</ul>
+
+<h2 id="3-웹-디자인">3. 웹 디자인</h2>
+
+<hr />
+
+<ul>
+  <li>흔히 개발자들의 웹 프로젝트가 그렇듯이 저희도 팀원 중 딱히 웹 디자인에 일가견 있는 사람이 없었습니다.</li>
+  <li>제 원래 전공인 조경학에서 익혀온 디자인 <del>베끼기</del> 실력으로 제가 주도로 진행하게 됐습니다.</li>
+  <li>제작은 Adobe XD로 진행했고, 처음 해본 웹 디자인이었지만 생각보다 잘 나온것 같아 흡족했습니다.</li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/main.png" alt="main.png" /><small>메인 페이지 -주황색 색감이 소셜다이닝에 잘 맞는것 같았다.</small></p>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/postlist.png" alt="postlist.png" /><small>글 목록 조회 및 필터링 </small></p>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/post.png" alt="post.png" /><small>소셜다이닝 모집글</small></p>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/badge.png" alt="badge.png" /><small>팀원 K가 제작해준 뱃지들 - 처음엔 당황스러웠지만 보다보니 정들었다.</small></p>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/follow.png" alt="follow.png" /><small>팔로우/팔로워 목록</small></p>
+
+<h2 id="4-역할-분담">4. 역할 분담</h2>
+
+<hr />
+
+<ul>
+  <li>6명이 역할을 각각 나누었고 제가 맡은 것은 다음과 같습니다.
+    <ol>
+      <li>일정 관리 및 팀원간 개발 범위 조율, 개발 지원 - 팀장의 역할</li>
+      <li>퍼블리싱 - 원래 계획은 각자 하는 것이었지만 일정상 제가 모두 처리하게 됐습니다.</li>
+      <li>샘플 데이터 생성 - PL/SQL 문으로 샘플 데이터를 생성했습니다.</li>
+      <li>모임 추천기능 - 모임 목록 뿌려주는 방식(검색, 카테고리, 필터링)에 따른 모임 추천</li>
+      <li>메인페이지</li>
+      <li>모임 목록 페이지</li>
+    </ol>
+  </li>
+  <li>팀장으로 참여하여 ‘1. 개발 범위 조율 및 지원’에 할애한 시간이 커, 실질적인 개발 양은 많지 않았습니다. 퍼블리싱이 끝난 후 본격적인 개발 기간의 절반은 돌아다니며 기능 구현 방법에 대한 질문을 받고, 에러를 잡아주는데 사용한 것 같습니다.</li>
+</ul>
+
+<h2 id="5-개발1---퍼블리싱">5. 개발1 - 퍼블리싱</h2>
+
+<hr />
+
+<h3 id="51-처음-계획">5.1. 처음 계획</h3>
+
+<ul>
+  <li>본 프로젝트를 진행하는 6명 모두 웹을 처음 배우는 것이라 <strong>원래 계획은 ‘각자 맡은 부분의 퍼블리싱은 각자 하자’</strong>였습니다. (모두 HTML, CSS 기술을 익혀야 하니)</li>
+  <li>각자 퍼블리싱을 맡기고 <strong>한 주간 지켜봤습니다.</strong>
+    <ul>
+      <li>우선 <strong>진행률이 예상의 1/4</strong>도 되지 않았습니다.</li>
+      <li><strong>같은 페이지인데 서로 다른 결과물</strong>이 나왔습니다.</li>
+      <li>‘조금 다른거니 나중에 내가 수합하면서 맞춰보자’ 생각하며 소스를 열어봤더니
+        <ul>
+          <li>div 가운데 정렬을 하는데 그렇게 많은 방법이 있는줄 몰랐습니다. :scream: 6명의 HTML, CSS를 통합하는 것보다 처음부터 만드는게 더 빠를 것 같았습니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="52-특단의-조치">5.2. 특단의 조치</h3>
+
+<ul>
+  <li><strong>퍼블리싱을 다음주까지 넘기면 프로젝트 전체가 위태로운 상황</strong>이었습니다. 특단의 조치를 내려야 했습니다.</li>
+  <li>‘<strong>내가 주말에 다 해올테니</strong>, 월요일부터 진행할 MVC 디자인 패턴 개발 연습을 더 해왔으면 좋겠다.’ 라고 일단 선언 했습니다. 저도 HTML, CSS를 처음 배운거라 자신이 있진 않았지만 이 속도라면 퍼블리싱하다가 프로젝트 기간이 끝날 것 같았습니다.</li>
+  <li>금요일 밤부터 시작해 토요일, 일요일, 월요일 아침까지 하루종일 HTML, CSS와 씨름한 결과 총 27개의 페이지를 모두 끝낼 수 있었습니다.
+    <ul>
+      <li>아쉬운 점이 있다면, <strong>반응형 웹을 완벽히 구현해 내진 못했습니다.</strong> 폰트들도 px단위로 맞춰져 있고 꽤 많은 div들이 px 단위로 맞춰져 있었습니다. 이를 일요일 쯤 발견했지만 다시 바꾸기 시작했다간 팀원들이 월요일에 할 일이 없을 것 같았습니다.</li>
+      <li>또, 당시엔 <strong>HTML, CSS 작업만 해서 주었는데</strong> 모달 팝업, 아코디언 목록 같이 <strong>JS가 많이 들어가는 페이지를 맡은 팀원들은 그 부분을 처리하느라 시간이 많이 지체되었습니다.</strong> 이 부분은 나중에 팀원들이 <strong>각자 다른 버전의 JS 라이브러리를 긁어와 심각한 충돌이 발생했던 지점이기도 합니다.</strong> 이럴줄 알았더라면 JS를 이용한 퍼블리싱도 마무리 했어야 했는데 아쉽습니다.</li>
+      <li><a href="https://d2.naver.com/helloworld/8540176">https://d2.naver.com/helloworld/8540176</a> 이곳을 정말 많이 참고했습니다. 아마 이 포스트가 없었다면 퍼블리싱 완성하지 못했을 것입니다. 엄청난 감사를… ㅜㅜ</li>
+      <li>그래도 디자인 한대로 퍼블리싱이 잘 나와 만족스러웠습니다. :grinning:</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="페이지-켜보고-비교-사진-추가">페이지 켜보고 비교 사진 추가</h2>
+
+<h2 id="6-개발2---샘플-데이터-생성">6. 개발2 - 샘플 데이터 생성</h2>
+
+<hr />
+
+<ul>
+  <li>학원에서 각 과목을 배울때 마다 미니 프로젝트를 진행했습니다. 그때 마다 제가 다른 팀들과 다르게 해오던게 있습니다. 바로 샘플 데이터를 자동 생성하는 것입니다.</li>
+  <li>물론, 테스트 샘플 데이터를 만드는 영역도 파고들어가면 끝도 없어서 제가한 방법이 초라해지지만.. 그래도 다른팀이 인력을 갈아넣어 2~300개 만든 데이터로 테스트할때 10,000개 이상의 데이터로 테스트한걸 굉장히 뿌듯하게 여기고 있습니다.</li>
+  <li>샘플 데이터 생성은 PL/SQL을 이용했습니다. 다음은 샘플 생성 구문의 일부입니다.</li>
+</ul>
+
+<pre><code class="language-plsql">create or replace PROCEDURE INSERT_REVIEW_SUB(V_REVIEWID VARCHAR2, V_BADGEPOINTID VARCHAR2, V_CONTETNS VARCHAR2)
+IS
+    V_TAKEUSERID            USER_ESSENTIAL.USERID%TYPE;
+    V_EXPIRATIONREVIEWID    REVIEW.REVIEWID%TYPE;
+    V_COUNT                 NUMBER;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('프로시저 시작');
+    INSERT INTO REVIEW_SUB(ID, REVIEWID, BADGEPOINTID, CONTENTS) 
+    VALUES(REVIEW_SUB_SEQ.NEXTVAL, V_REVIEWID, V_BADGEPOINTID, V_CONTETNS);
+
+    SELECT TAKEUSERID INTO V_TAKEUSERID
+    FROM REVIEW
+    WHERE REVIEWID=V_REVIEWID;
+
+    SELECT COUNT(*) INTO V_COUNT
+    FROM REVIEW_SUB RS JOIN REVIEW R ON RS.REVIEWID=R.REVIEWID
+    WHERE TAKEUSERID = V_TAKEUSERID
+      AND ADD_MONTHS(REVIEWDATE,12)&gt;=SYSDATE
+      AND BADGEPOINTID=V_BADGEPOINTID;
+
+    IF V_COUNT&gt;=3
+        THEN    SELECT REVIEWID INTO V_EXPIRATIONREVIEWID
+                FROM
+                (
+                SELECT RS.REVIEWID, RS.BADGEPOINTID, R.REVIEWDATE, ROW_NUMBER() OVER(ORDER BY R.REVIEWDATE DESC) AS NUM
+                FROM REVIEW_SUB RS JOIN REVIEW R ON RS.REVIEWID=R.REVIEWID
+                WHERE TAKEUSERID = V_TAKEUSERID
+                  AND ADD_MONTHS(REVIEWDATE,12)&gt;=SYSDATE
+                  AND BADGEPOINTID=V_BADGEPOINTID
+                )
+                WHERE NUM=3;
+
+                DBMS_OUTPUT.PUT_LINE('USER_BADGE_LOG 기록남김');
+
+                INSERT INTO USER_BADGE_LOG(BADGELOGID, USERID, BADGEPOINTID, GETREVIEWID, EXPIRATIONREVIEWID)
+                VALUES(ADD_ID('USER_BADGE_LOG','BADGELOGID', 'BL'), V_TAKEUSERID, V_BADGEPOINTID, V_REVIEWID, V_EXPIRATIONREVIEWID); 
+    END IF;
+     DBMS_OUTPUT.PUT_LINE('프로시저 종료');
+END;xxxxxxxxxx create or replace PROCEDURE INSERT_REVIEW_SUB(V_REVIEWID VARCHAR2, V_BADGEPOINTID VARCHAR2, V_CONTETNS VARCHAR2)IS    V_TAKEUSERID            USER_ESSENTIAL.USERID%TYPE;    V_EXPIRATIONREVIEWID    REVIEW.REVIEWID%TYPE;    V_COUNT                 NUMBER;BEGIN    DBMS_OUTPUT.PUT_LINE('프로시저 시작');    INSERT INTO REVIEW_SUB(ID, REVIEWID, BADGEPOINTID, CONTENTS)     VALUES(REVIEW_SUB_SEQ.NEXTVAL, V_REVIEWID, V_BADGEPOINTID, V_CONTETNS);    SELECT TAKEUSERID INTO V_TAKEUSERID    FROM REVIEW    WHERE REVIEWID=V_REVIEWID;    SELECT COUNT(*) INTO V_COUNT    FROM REVIEW_SUB RS JOIN REVIEW R ON RS.REVIEWID=R.REVIEWID    WHERE TAKEUSERID = V_TAKEUSERID      AND ADD_MONTHS(REVIEWDATE,12)&gt;=SYSDATE      AND BADGEPOINTID=V_BADGEPOINTID;    IF V_COUNT&gt;=3        THEN    SELECT REVIEWID INTO V_EXPIRATIONREVIEWID                FROM                (                SELECT RS.REVIEWID, RS.BADGEPOINTID, R.REVIEWDATE, ROW_NUMBER() OVER(ORDER BY R.REVIEWDATE DESC) AS NUM                FROM REVIEW_SUB RS JOIN REVIEW R ON RS.REVIEWID=R.REVIEWID                WHERE TAKEUSERID = V_TAKEUSERID                  AND ADD_MONTHS(REVIEWDATE,12)&gt;=SYSDATE                  AND BADGEPOINTID=V_BADGEPOINTID                )                WHERE NUM=3;                DBMS_OUTPUT.PUT_LINE('USER_BADGE_LOG 기록남김');                INSERT INTO USER_BADGE_LOG(BADGELOGID, USERID, BADGEPOINTID, GETREVIEWID, EXPIRATIONREVIEWID)                VALUES(ADD_ID('USER_BADGE_LOG','BADGELOGID', 'BL'), V_TAKEUSERID, V_BADGEPOINTID, V_REVIEWID, V_EXPIRATIONREVIEWID);     END IF;     DBMS_OUTPUT.PUT_LINE('프로시저 종료');END;하다가 소스코드 찾으면 올리기
+</code></pre>
+
+<h2 id="7-개발3---모임-추천기능검색-카테고리-필터링">7. 개발3 - 모임 추천기능(검색, 카테고리, 필터링)</h2>
+
+<hr />
+
+<ul>
+  <li>모임 추천은 크게 필터링 요소, 배점 요소로 이루어집니다.</li>
+  <li>필터링 요소는 카테고리 기능이나 필터링 기능을 사용할 때 쓰입니다.</li>
+  <li>배점 요소는 통합 검색 및 필터링 후 나머지 요소들을 계산하기 위해 쓰입니다.</li>
+  <li>배점 요소가 필터링 요소가 될 수도 있습니다.</li>
+  <li>예시1
+    <ul>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="8-개발4---메인페이지">8. 개발4 - 메인페이지</h2>
+
+<hr />
+
+<ul>
+  <li>메인 페이지엔 활동 지수(기간 내 조회 및 참가 신청 횟수)가 높은 모임, 마감 임박 모임(날짜가 임박했거나 인원수가 임박했거나)이 띄워집니다.</li>
+  <li>저희 웹 서비스에서 ‘뱃지’라고 불리며 이용하고 있는 사용자 평가 수단에 대한 안내가 메인 페이지에 랜덤하게 나옵니다.</li>
+</ul>
+
+<h2 id="9-개발5---모임-조회">9. 개발5 - 모임 조회</h2>
+
+<hr />
+
+<ul>
+  <li>모임 조회는 크게 통합 검색, 카테고리 검색으로 나뉩니다.</li>
+  <li>통합 검색, 카테고리 검색 이후에 결과들을 필터링 할 수 있습니다.</li>
+</ul>
+:ET
