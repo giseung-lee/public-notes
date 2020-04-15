@@ -22,8 +22,10 @@ rootfolder:
    Daily Thoughts : 
       subfolder : false
    Projects: 
-      Sagyo Reboot:
-         subfolder : false         
+      Sagyo_Reboot:
+         subfolder : false
+      Twitch_Chat_Analysis:
+         subfolder : false
    Study :
       Http The Definitive Guide : 
          subfolder : false

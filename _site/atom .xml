@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-15T17:46:05+09:00</updated>
+ <updated>2020-04-15T18:15:38+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -17,7 +17,7 @@
    <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1/"/>
    <updated>2020-04-09T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1</id>
-   <content type="html">&lt;p&gt;[&quot;posts&quot;, &quot;Projects&quot;, &quot;twitch_chat_anaylsis&quot;]&lt;/p&gt;
+   <content type="html">&lt;p&gt;[&quot;posts&quot;, &quot;Projects&quot;, &quot;Twitch_Chat_Anaylsis&quot;]&lt;/p&gt;
 
 &lt;h2 id=&quot;0-개요&quot;&gt;0. 개요&lt;/h2&gt;
 
@@ -67,9 +67,9 @@
  
  <entry>
    <title>기존 Sagyo 프로젝트 알아보기.</a></title>
-   <link href="http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1/"/>
    <updated>2020-04-05T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo알아보기</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1</id>
    <content type="html">
 &lt;h2 id=&quot;0-개요-및-사용기술&quot;&gt;0. 개요 및 사용기술&lt;/h2&gt;
 
@@ -85,7 +85,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/plan.png&quot; alt=&quot;plan.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/plan.png&quot; alt=&quot;plan.png&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -169,15 +169,15 @@
   &lt;li&gt;제작은 Adobe XD로 진행했고, 처음 해본 웹 디자인이었지만 생각보다 잘 나온것 같아 흡족했습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/main.png&quot; alt=&quot;main.png&quot; /&gt;&lt;em&gt;메인 페이지 -주황색 색감이 소셜다이닝에 잘 맞는것 같았다.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/main.png&quot; alt=&quot;main.png&quot; /&gt;&lt;em&gt;메인 페이지 -주황색 색감이 소셜다이닝에 잘 맞는것 같았다.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/postlist.png&quot; alt=&quot;postlist.png&quot; /&gt;*글 목록 조회 및 필터링 *&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/postlist.png&quot; alt=&quot;postlist.png&quot; /&gt;*글 목록 조회 및 필터링 *&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/post.png&quot; alt=&quot;post.png&quot; /&gt;&lt;em&gt;소셜다이닝 모집글&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/post.png&quot; alt=&quot;post.png&quot; /&gt;&lt;em&gt;소셜다이닝 모집글&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/badge.png&quot; alt=&quot;badge.png&quot; /&gt;&lt;em&gt;팀원 K가 제작해준 뱃지들 - 처음엔 당황스러웠지만 보다보니 정들었다.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/badge.png&quot; alt=&quot;badge.png&quot; /&gt;&lt;em&gt;팀원 K가 제작해준 뱃지들 - 처음엔 당황스러웠지만 보다보니 정들었다.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo Reboot/follow.png&quot; alt=&quot;follow.png&quot; /&gt;&lt;em&gt;팔로우/팔로워 목록&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/follow.png&quot; alt=&quot;follow.png&quot; /&gt;&lt;em&gt;팔로우/팔로워 목록&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;4-역할-분담&quot;&gt;4. 역할 분담&lt;/h2&gt;
 
@@ -11943,9 +11943,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo3/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3/"/>
    <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo3</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-03-01-Sagyo3
 &lt;/div&gt;
@@ -12463,9 +12463,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo2/"/>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/sagyo%20reboot/Sagyo2</id>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   2015-02-01-Sagyo2
 &lt;/div&gt;
