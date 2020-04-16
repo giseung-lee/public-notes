@@ -18,7 +18,7 @@ title: 우분투(리눅스) GtkWarning
 - 해당 문제는 아래와 같은 권한 문제입니다.
 
   1. 우분투의 디스플레이 환경은 GNOME을 따릅니다.
-  2. 근데 GNOME은 [X 서버]([https://ko.wikipedia.org/wiki/X_%EC%9C%88%EB%8F%84_%EC%8B%9C%EC%8A%A4%ED%85%9C](https://ko.wikipedia.org/wiki/X_윈도_시스템)) 기반입니다.
+  2. 근데 GNOME은 [X 서버](https://ko.wikipedia.org/wiki/X_윈도_시스템) 기반입니다.
   3. 우분투 사용자가 X 서버에 대한 권한이 없습니다.
 
 - xhost 명령어로 X서버에 대한 권한을 주어야 합니다.
@@ -40,6 +40,8 @@ title: 우분투(리눅스) GtkWarning
 
 - ```xhost:  unable to open display ""``` 에러가 뜰 수 있습니다. 제가 그랬거든요..
 
-- 
+- 이는 보통 우분투를 설치했을땐 GUI가 없는 CLI 버전으로 설치되기 때문에 GUI를 띄우기 위한 온갖 것들이 부족해서 입니다.
+
+- 우분투 GUI를 설치해 줍시다. https://wlsvud84.tistory.com/26
 
   
