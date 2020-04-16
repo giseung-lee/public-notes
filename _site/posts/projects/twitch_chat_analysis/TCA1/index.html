@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      지금까지의 Twitch Chat Analysis &middot; 이기승의 끄적끄적..
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Profile -->
+  <div class="sidebar-item sidebar-profile-box">
+    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <div class="sidebar-profile-description">
+      <span>
+        &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
+      </span>
+    </div>
+  </div>
+  <!-- Profile End -->
+
+  <nav class="sidebar-nav">
+    <!-- Home -->
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <!-- Home End -->
+    <!-- Posts -->
+    
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About Me">About Me</a>
+      
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily Thoughts">Daily Thoughts</a>
+      
+    
+      
+        <input id="Projects" class="toggle" type="checkbox">
+        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Study" class="toggle" type="checkbox">
+        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http The Definitive Guide">Http The Definitive Guide</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Googling" class="toggle" type="checkbox">
+        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/java">java</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/jekyll">jekyll</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/linux">linux</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/network">network</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/python">python</a>
+          
+        
+        </div>
+      
+    
+    <!-- Posts End -->
+  </nav>
+
+  <!-- sidebar bottom -->
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+  <!-- sidebar bottom end -->
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title" style="font-weight: normal;">
+            <a href="/" title="Home">이기승의 끄적끄적..</a>
+            <small>개발 및 잡다한 포스팅</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">지금까지의 Twitch Chat Analysis</h1>
+  <span class="post-date">09 Apr 2020</span>
+  
+<ul>
+  <li>Twitch Chat Analysis 프로젝트는 2019년 8월 경에 한 달간 진행한 프로젝트입니다.</li>
+  <li>원래 계획은 많았으나 예상보다 빠르게 취업이 되어 중단된 프로젝트입니다.</li>
+  <li>본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.</li>
+</ul>
+
+<ol>
+  <li><a href="#1-개요">개요</a></li>
+  <li><a href="#2-기획">기획</a></li>
+  <li><a href="#3-웹-디자인">웹 디자인</a></li>
+  <li><a href="#4-유저-시나리오-기획">유저 시나리오 기획</a></li>
+  <li><a href="#5-api-서버">API 서버</a></li>
+  <li><a href="#6-클라이언트">클라이언트</a></li>
+</ol>
+
+<h2 id="1-개요">1. 개요</h2>
+
+<hr />
+
+<ul>
+  <li>개인적으로 트위치 스트리머 ‘우왁굳’의 열렬한 팬입니다. 우왁굳의 유튜브는 모조리 보는 편입니다.</li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/wakgood.png" alt="wakgood.png" width="30%" height="30%" class="center" /><small>충분히 이상해보이지만 이상한 사람은 아닙니다.</small></p>
+<ul>
+  <li>한편, 인터넷 방송은 방송시간이 굉장히 깁니다. 적게는 4~5시간, 많게는 12시간 이상도 됩니다. 일반적인 사람이라면 이 긴 방송을 전부 볼 순 없습니다.</li>
+  <li>저 역시 우왁굳의 방송을 좋아하지만 다 보기엔 너무 깁니다. 재미있는 부분은 유튜브에 올라오지만 유튜브에 올라오지 않은 재밌는 부분들을 찾고 싶었습니다. 자연스레 긴 방송중 재미있는 부분을 집어주는 웹 서비스가 있으면 좋겠다고 생각했습니다.</li>
+  <li>재미있는 부분은 채팅 속도가 빠르다는 단순한 생각에서 Twitch Chat Analysis 기획을 시작하게 됐습니다.</li>
+  <li>트위치에서 개발자용 API를 제공해준 덕분에 가능한 프로젝트입니다.</li>
+</ul>
+
+<h2 id="2-기획">2. 기획</h2>
+
+<hr />
+
+<ul>
+  <li>처음 기획은 다음과 같은 세 단계로 나누었습니다.
+    <ol>
+      <li>채팅 속도를 기반으로한 다시보기 서비스 개발</li>
+      <li>채팅 내용을 기반으로한 다시보기 서비스 개발</li>
+      <li>AWS에 올려 실제 서비스 하기</li>
+    </ol>
+  </li>
+  <li>그리고 1번 기획은 아래와 같은 순서로 세부 기획을 했습니다.
+    <ol>
+      <li>유저 시나리오 기획</li>
+      <li>웹 디자인</li>
+      <li>API 서버 구현</li>
+      <li>클라이언트 구현</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="3-유저-시나리오-기획">3. 유저 시나리오 기획</h2>
+
+<hr />
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/flow.png" alt="flow.png" /><small>유저 시나리오</small></p>
+
+<ul>
+  <li>웹의 필수 기능을 덜어내고 서비스의 핵심 기능만 먼저 구현하려 굉장히 간결하게 구성했습니다.</li>
+  <li>핵심 서비스들을 만든 뒤에 부가 서비스들을 추가할 생각합니다.<del>(안할것 같긴 하지만..)</del></li>
+</ul>
+
+<h2 id="4-웹-디자인">4. 웹 디자인</h2>
+
+<hr />
+
+<ul>
+  <li>조경학과에서 익혀온 디자인 <del>베끼기</del> 능력으로 웹 디자인 했습니다.</li>
+  <li>웹 서비스를 이루는 기본적인 기능은 덜어두고 핵심 기능만 구현해보기 때문에 6개의 적은 페이지만이 나왔습니다.</li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Main.png" alt="Main.png" /><small>메인 페이지, 스트리머 id나 비디오 id를 넣는다.</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Streamer Not Found.png" alt="Streamer Not Found.png" /><small>스트리머 id를 검색했지만 트위치에 없는 id일때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Video Not Found.png" alt="Video Not Found.png" /><small>비디오 id를 검색했지만 트위치에 없는 id일때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Not Analyzed Video.png" alt="Not Analyzed Video.png" /><small>비디오 id를 검색했고, 트위치에 있는 비디오지만 분석 되지 않은 비디오일 때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Steamer.png" alt="Steamer.png" /><small>스트리머를 검색했을 때 스트리머 정보와 함께 분석된 비디오들이 나온다.</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Video.png" alt="Video.png" /><small>비디오를 검색하거나, 스트리머 정보창에서 분석된 비디오를 눌렀을때.</small></p>
+
+<h2 id="5-api-서버">5. API 서버</h2>
+
+<hr />
+
+<h2 id="6-클라이언트">6. 클라이언트</h2>
+
+<hr />
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/projects/sagyo_reboot/Sagyo1/">
+            기존 Sagyo 프로젝트 알아보기.</a>
+            <small>05 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/googling/etc/%EC%98%A4%EB%9D%BC%ED%81%B4-SID-%EA%B4%80%EB%A0%A8%EC%97%90%EB%9F%AC/">
+            오라클, sqldeveloper 연결시 SID 관련 (ORA-12505) 에러
+            <small>05 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/daily%20thoughts/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0/">
+            Line 코딩테스트 후기
+            <small>05 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

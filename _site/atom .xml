@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-15T21:28:39+09:00</updated>
+ <updated>2020-04-16T11:50:29+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -13,52 +13,101 @@
 
  
  <entry>
-   <title>Twitch Chat Analysis</title>
-   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1/"/>
+   <title>지금까지의 Twitch Chat Analysis</title>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_analysis/TCA1/"/>
    <updated>2020-04-09T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA1</id>
-   <content type="html">&lt;p&gt;[&quot;posts&quot;, &quot;Projects&quot;, &quot;Twitch_Chat_Anaylsis&quot;]&lt;/p&gt;
-
-&lt;h2 id=&quot;0-개요&quot;&gt;0. 개요&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;급속한 인기를 얻고 있는 인터넷 방송은 방송 시간이 굉장히 깁니다. 적게는 4~5시간, 많게는 12시간, 18시간까지 됩니다. 일반적인 사람이라면 그 긴 방송을 모두 볼 순 없습니다. 재미있는 부분만 골라 볼 수 있는 웹 사이트가 있으면 좋겠다고 생각했고, 이 프로젝트를 시작하게 되었습니다.&lt;/p&gt;
-
-&lt;p&gt;기획은 크게 세 단계로 나누었습니다.&lt;/p&gt;
+   <id>http://localhost:4000/posts/projects/twitch_chat_analysis/TCA1</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;Twitch Chat Analysis 프로젝트는 2019년 8월 경에 한 달간 진행한 프로젝트입니다.&lt;/li&gt;
+  &lt;li&gt;원래 계획은 많았으나 예상보다 빠르게 취업이 되어 중단된 프로젝트입니다.&lt;/li&gt;
+  &lt;li&gt;본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;채팅의 속도를 기반으로 한 다시보기 지점 서비스&lt;/li&gt;
-  &lt;li&gt;채팅의 내용을 기반으로 한 다시보기 지점 서비스&lt;/li&gt;
-  &lt;li&gt;AWS에 올려 실제 서비스하기&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1-개요&quot;&gt;개요&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2-기획&quot;&gt;기획&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3-웹-디자인&quot;&gt;웹 디자인&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4-유저-시나리오-기획&quot;&gt;유저 시나리오 기획&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5-api-서버&quot;&gt;API 서버&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#6-클라이언트&quot;&gt;클라이언트&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;그리고 1단계 기획은&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;기획&lt;/li&gt;
-  &lt;li&gt;웹 디자인&lt;/li&gt;
-  &lt;li&gt;API 서버 구현 - Node js&lt;/li&gt;
-  &lt;li&gt;클라이언트 구현 - React Redux&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;위와 같이 나누었습니다. 그리고 1, 2, 3을 마치고 4를 수행하던 도중에…!! 전 직장에 취직이 되어 아쉽게 멈춘 프로젝트입니다.&lt;/p&gt;
-
-&lt;p&gt;이번 포스팅에선 지금까지의 진척상황을 요약하고 다음 포스팅에서 개발을 이어 나가겠습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-기획&quot;&gt;1. 기획&lt;/h2&gt;
+&lt;h2 id=&quot;1-개요&quot;&gt;1. 개요&lt;/h2&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;2-웹-디자인&quot;&gt;2. 웹 디자인&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;개인적으로 트위치 스트리머 ‘우왁굳’의 열렬한 팬입니다. 우왁굳의 유튜브는 모조리 보는 편입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/wakgood.png&quot; alt=&quot;wakgood.png&quot; width=&quot;30%&quot; height=&quot;30%&quot; class=&quot;center&quot; /&gt;&lt;small&gt;충분히 이상해보이지만 이상한 사람은 아닙니다.&lt;/small&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;한편, 인터넷 방송은 방송시간이 굉장히 깁니다. 적게는 4~5시간, 많게는 12시간 이상도 됩니다. 일반적인 사람이라면 이 긴 방송을 전부 볼 순 없습니다.&lt;/li&gt;
+  &lt;li&gt;저 역시 우왁굳의 방송을 좋아하지만 다 보기엔 너무 깁니다. 재미있는 부분은 유튜브에 올라오지만 유튜브에 올라오지 않은 재밌는 부분들을 찾고 싶었습니다. 자연스레 긴 방송중 재미있는 부분을 집어주는 웹 서비스가 있으면 좋겠다고 생각했습니다.&lt;/li&gt;
+  &lt;li&gt;재미있는 부분은 채팅 속도가 빠르다는 단순한 생각에서 Twitch Chat Analysis 기획을 시작하게 됐습니다.&lt;/li&gt;
+  &lt;li&gt;트위치에서 개발자용 API를 제공해준 덕분에 가능한 프로젝트입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-기획&quot;&gt;2. 기획&lt;/h2&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;3-api-서버-구현&quot;&gt;3. API 서버 구현&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;처음 기획은 다음과 같은 세 단계로 나누었습니다.
+    &lt;ol&gt;
+      &lt;li&gt;채팅 속도를 기반으로한 다시보기 서비스 개발&lt;/li&gt;
+      &lt;li&gt;채팅 내용을 기반으로한 다시보기 서비스 개발&lt;/li&gt;
+      &lt;li&gt;AWS에 올려 실제 서비스 하기&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;그리고 1번 기획은 아래와 같은 순서로 세부 기획을 했습니다.
+    &lt;ol&gt;
+      &lt;li&gt;유저 시나리오 기획&lt;/li&gt;
+      &lt;li&gt;웹 디자인&lt;/li&gt;
+      &lt;li&gt;API 서버 구현&lt;/li&gt;
+      &lt;li&gt;클라이언트 구현&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-유저-시나리오-기획&quot;&gt;3. 유저 시나리오 기획&lt;/h2&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;4-클라이언트-구현&quot;&gt;4. 클라이언트 구현&lt;/h2&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/flow.png&quot; alt=&quot;flow.png&quot; /&gt;&lt;small&gt;유저 시나리오&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹의 필수 기능을 덜어내고 서비스의 핵심 기능만 먼저 구현하려 굉장히 간결하게 구성했습니다.&lt;/li&gt;
+  &lt;li&gt;핵심 서비스들을 만든 뒤에 부가 서비스들을 추가할 생각합니다.&lt;del&gt;(안할것 같긴 하지만..)&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-웹-디자인&quot;&gt;4. 웹 디자인&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;조경학과에서 익혀온 디자인 &lt;del&gt;베끼기&lt;/del&gt; 능력으로 웹 디자인 했습니다.&lt;/li&gt;
+  &lt;li&gt;웹 서비스를 이루는 기본적인 기능은 덜어두고 핵심 기능만 구현해보기 때문에 6개의 적은 페이지만이 나왔습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Main.png&quot; alt=&quot;Main.png&quot; /&gt;&lt;small&gt;메인 페이지, 스트리머 id나 비디오 id를 넣는다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Streamer Not Found.png&quot; alt=&quot;Streamer Not Found.png&quot; /&gt;&lt;small&gt;스트리머 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video Not Found.png&quot; alt=&quot;Video Not Found.png&quot; /&gt;&lt;small&gt;비디오 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Not Analyzed Video.png&quot; alt=&quot;Not Analyzed Video.png&quot; /&gt;&lt;small&gt;비디오 id를 검색했고, 트위치에 있는 비디오지만 분석 되지 않은 비디오일 때&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Steamer.png&quot; alt=&quot;Steamer.png&quot; /&gt;&lt;small&gt;스트리머를 검색했을 때 스트리머 정보와 함께 분석된 비디오들이 나온다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video.png&quot; alt=&quot;Video.png&quot; /&gt;&lt;small&gt;비디오를 검색하거나, 스트리머 정보창에서 분석된 비디오를 눌렀을때.&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-api-서버&quot;&gt;5. API 서버&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;6-클라이언트&quot;&gt;6. 클라이언트&lt;/h2&gt;
 
 &lt;hr /&gt;
 
@@ -11829,9 +11878,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>TCA3</title>
-   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA3/"/>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_analysis/TCA3/"/>
    <updated>2016-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA3</id>
+   <id>http://localhost:4000/posts/projects/twitch_chat_analysis/TCA3</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   TCA3
 &lt;/div&gt;
@@ -11959,9 +12008,9 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>TCA2</title>
-   <link href="http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA2/"/>
+   <link href="http://localhost:4000/posts/projects/twitch_chat_analysis/TCA2/"/>
    <updated>2016-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/twitch_chat_anaylsis/TCA2</id>
+   <id>http://localhost:4000/posts/projects/twitch_chat_analysis/TCA2</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   TCA2
 &lt;/div&gt;

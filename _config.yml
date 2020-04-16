@@ -7,7 +7,7 @@ permalink: /:categories/:title/
 # Setup
 title:               이기승의 끄적끄적..
 tagline:             '개발 및 잡다한 포스팅'
-description:         '&nbsp;잡기에 능한 개발자입니다. 개발 실력이 잡기보다 좋아야 할 텐데 걱정입니다.'
+description:         '&nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.'
 url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
