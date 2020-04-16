@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-16T18:29:49+09:00</updated>
+ <updated>2020-04-16T23:56:41+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -13,25 +13,263 @@
 
  
  <entry>
-   <title>Line 코딩테스트 후기</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%A9%EA%B2%A9-%EB%B0%8F-%EC%A7%84%ED%96%89%EC%83%81%ED%99%A9/"/>
-   <updated>2020-04-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/Line코딩테스트 합격 및 진행상황</id>
-   <content type="html">&lt;h3 id=&quot;라인-코딩테스트-후기&quot;&gt;라인 코딩테스트 후기&lt;/h3&gt;
+   <title>Spring 특징</title>
+   <link href="http://localhost:4000/posts/googling/java/Spring%ED%8A%B9%EC%A7%95/"/>
+   <updated>2020-04-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/java/Spring특징</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;Spring 특징이라고 검색하면 무조건 나오는 4개만 정리해둡니다.
+    &lt;ul&gt;
+      &lt;li&gt;POJO&lt;/li&gt;
+      &lt;li&gt;AOP
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&quot;&gt;https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;http://egloos.zum.com/aretias/v/708477&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;DI / IoC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pojo&quot;&gt;POJO&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Plain Old Java Object로 구성가능합니다. 즉, 프레임워크를 위한 새로운 언어를 익힐 필요 없이 Java로 작성할 수 있다는 것입니다.&lt;/li&gt;
+  &lt;li&gt;프로그래밍에 워낙 많은 기술들이 쏟아지다 보니 기존 지식을 재사용할 수 있다는 것 만으로도 큰 메리트인 것 같습니다. Javascript 기반의 기술들이 쏟아지는 것과 같이.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;aop&quot;&gt;AOP&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;AOP(aspect oriented programming)이란 쉽게 말해 보조적인 업무와 핵심 업무를 나눠 생각하겠다는 것입니다.
+    &lt;ul&gt;
+      &lt;li&gt;로그, 예외 처리 같이 업무의 핵심은 아니지만 모든 업무마다 발생하는 보조업무들을 프로그래머들이 신경쓰지 않게 하기 위한 기법입니다.&lt;/li&gt;
+      &lt;li&gt;주업무 전, 후, 전후 언제 돌아갈지 정할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;동작 과정을 더 구체적으로 알아보겠습니다.
+    &lt;ul&gt;
+      &lt;li&gt;보조업무가 주업무가 이루어지는 객체 자체를 찾아가는게 아닙니다.&lt;/li&gt;
+      &lt;li&gt;proxy라는 dummy 객체가 있습니다. 보조업무는 proxy를 찾아갑니다. proxy가 보조업무와 주업무를 실행 시킵니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-no-proxy.png&quot; alt=&quot;aop-no-proxy.png&quot; /&gt;&lt;small&gt;출처 : https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&lt;/small&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;di--ioc&quot;&gt;DI / IoC&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자바에서 객체 생성 관리 방법은 has-a관계로 A클래스 안에서 B클래스 인스턴스 생성을 합니다.&lt;/li&gt;
+  &lt;li&gt;예를들어 A클래스의 인스턴스를 생성하는데 B클래스가 필요하다고 할때, 일반적인 객체 생성 과정은 A클래스의 인스턴스를 만드는 과정에서 B클래스의 인스턴스도 만들어짐.&lt;/li&gt;
+  &lt;li&gt;이런 관계는 객체간의 결합도가 높기 때문에 유연성이 떨어짐.&lt;/li&gt;
+  &lt;li&gt;이를 낮춰 주는 방법이 Dependency Injection임.
+    &lt;ul&gt;
+      &lt;li&gt;A클래스에서 B인스턴스를 만드는게 아니라 B인스턴스를 따로 만든 뒤, A인스턴스를 만들때 B인스턴스를 Injection 해주는 거임.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IoC는 DI과정에서 이루어집니다.
+    &lt;ul&gt;
+      &lt;li&gt;일반적인 자바 객체 생성과정이라면 A인스턴스를 만들기 시작하고 그 안에서 B인스턴스를 만듬. 즉, 상위 객체부터 생성함.&lt;/li&gt;
+      &lt;li&gt;하지만 DI를 하기 위해선 하위 객체를 생성한 뒤 상위 객체를 생성할 때 하위 객체를 Inject해줌.&lt;/li&gt;
+      &lt;li&gt;기존의 객체 생성과정과 반대로 제어권이 넘어간다고 해서 Inversion of Control임.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Spring의 동작 과정</title>
+   <link href="http://localhost:4000/posts/googling/java/Spring-%EB%8F%99%EC%9E%91%EA%B3%BC%EC%A0%95/"/>
+   <updated>2020-04-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/java/Spring 동작과정</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;Spring의 동작 과정을 알아봅시다!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/RequestLifecycle.png&quot; alt=&quot;RequestLifecycle.png&quot; /&gt;&lt;small&gt;출처 : http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html#id2&lt;/small&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>JVM 메모리 구조</title>
+   <link href="http://localhost:4000/posts/googling/java/JVM_Memory/"/>
+   <updated>2020-04-16T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/java/JVM_Memory</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;이미 많은 포스팅들이 JVM 메모리 구조를 설명하고 있습니다. 본 포스팅은 저의 이해를 돕고자 남기는 포스팅입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;본 포스팅은 다음 링크들을 토대로 작성되었습니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://javatutorial.net/jvm-explained&quot;&gt;https://javatutorial.net/jvm-explained&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.geeksforgeeks.org/java-memory-management/&quot;&gt;https://www.geeksforgeeks.org/java-memory-management/&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/jvm-architecture.png&quot; alt=&quot;jvm-architecture.png&quot; /&gt;&lt;small&gt;출처 : https://javatutorial.net/jvm-explained&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;class 파일이 로드되고 링크하는 과정이나, GC같은 Execution Engine이 작동하는 방식은 뒤로하고, 이번 포스팅에선 위의 다이어그램중 Runtime Data Area에 대해 알아봅니다.&lt;/li&gt;
+  &lt;li&gt;Runtime Area에는 크게 다섯가지 영역이 존재합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Heap Area&lt;/li&gt;
+      &lt;li&gt;Method Area&lt;/li&gt;
+      &lt;li&gt;Stack Area&lt;/li&gt;
+      &lt;li&gt;PC Register&lt;/li&gt;
+      &lt;li&gt;Native Method Stacks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;heap-area&quot;&gt;Heap Area&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;흔히 알고있는 객체 인스턴스들이 저장됩니다.&lt;/li&gt;
+  &lt;li&gt;JVM이 시작될 때 생성됩니다.&lt;/li&gt;
+  &lt;li&gt;하나의 JVM에 하나의 Heap Area가 존재하며, JVM안의 여러 스레드가 공유하는 영역입니다.
+    &lt;ul&gt;
+      &lt;li&gt;thread-safe 하지 않다고 합니다.&lt;/li&gt;
+      &lt;li&gt;멀티 스레드 환경에서 작업한다면 주의해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 Eden-Survivor-Tenure 영역으로 나뉩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;method-area&quot;&gt;Method Area&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Heap Area의 logical part입니다.
+    &lt;ul&gt;
+      &lt;li&gt;마찬가지로 JVM이 시작될 때 생성됩니다.&lt;/li&gt;
+      &lt;li&gt;마찬가지로 한 JVM에 하나의 Method Area가 존재합니다.&lt;/li&gt;
+      &lt;li&gt;역시 마찬가지로 여러 스레드가 공유합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;class 레벨의 데이터가 저장됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;static 변수(class 변수, 멤버 변수)들이 이곳에 저장됩니다.
+        &lt;ul&gt;
+          &lt;li&gt;static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.&lt;/li&gt;
+          &lt;li&gt;static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;이름 그대로 메서드에 관한 정보들도 저장됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;stack-area&quot;&gt;Stack Area&lt;/h3&gt;
 
 &lt;hr /&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;4월 5일 라인 코딩테스트를 보았습니다. 자세한 사항은 당연히 남길 수 없으나 전체적인 총평 및 후기를 남겨봅니다.&lt;/p&gt;
+    &lt;p&gt;하나의 스레드에 하나의 스택이 할당됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;스레드가 생성될 때 하나의 Stack이 생성됩니다.&lt;/li&gt;
+      &lt;li&gt;크기를 고정적으로 줄 수도 있고, 동적으로 할당되게 할 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;처음 6문제 150분인걸 들었을 때 머릿속으로 구상해봤습니다. ‘2문제 정도는 보고 바로 풀어서 주석까지 10분안에 쓸 수 있는 문제가 나오겠고, 중간 2문제는 적당한 난이도로 30~40분 걸리는 문제가 나오겠고, 마지막 2문제는 정답을 맞춘다기 보단 최선을 다해서 하는데 까지 해보는 문제로 나오겠지?’ 라는 생각을 했습니다.&lt;/li&gt;
-  &lt;li&gt;그런데 문제를 받고 슥 훑어 보는데 &lt;strong&gt;보자마자 코드까지 스르륵 그려지는 문제가 없는 것입니다!&lt;/strong&gt; 보통 1, 2번은 몸풀기로 주던데 이번 코딩테스트 1, 2번은 어떻게 풀어 갈지는 생각이 나지만 코드 한줄 한줄이 눈에 그려지는 정도는 아니었습니다.&lt;/li&gt;
-  &lt;li&gt;그런데 더 이상했던건 &lt;strong&gt;보자마자 ‘야~ 이건 힘들겠는데’하는 문제도 없었습니다.&lt;/strong&gt;:fearful: 음.. 뭐지? 6문제가 나오면 1~2문제는 한숨부터 나와야 하는데 막상 그정도 문제는 없었습니다.&lt;/li&gt;
-  &lt;li&gt;막상 풀이를 시작하니 술술 풀리진 않지만, 그렇다고 꽉 막힌것도 아닌 20~30분 정도에 한 문제씩 풀어나갔습니다. 6문제 중 5문제는 &lt;del&gt;(더 좋은 풀이가 있는 것 같지만)&lt;/del&gt; 다 풀었고, 마지막 한 문제는 조금 시간이 걸리는 문제라 완성은 못했지만 꽤나 많이 채웠습니다!&lt;/li&gt;
-  &lt;li&gt;결과는 나와봐야 알겠지만.. 만족스러운 코딩테스트였습니다.:sunglasses:&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;지역 변수들이 저장됩니다. 지역변수들은 Heap에 할당된 인스턴스 참조 주소를 갖고 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;원시 타입(byte, short, int, long, double, float, boolean, char) 변수가 ‘값과 함께’ 저장됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;기본적으로 값과 함께 저장되기 때문에 원시타입은 null 을 갖을 수 없습니다. 아래 구문은 컴파일 과정에서 에러가 납니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;반면, 원시타입의 Wrapper 클래스는 변수명은 Stack에, 값은 Heap에 저장되기 때문에 null값을 선언할 수 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h3 id=&quot;pc-register&quot;&gt;PC Register&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PC = Program Counter&lt;/li&gt;
+  &lt;li&gt;한 스레드에 하나의 PC Register가 생성됩니다.&lt;/li&gt;
+  &lt;li&gt;명령이 실행될 때, 현재 실행중인 명령의 주소를 가지고 있습니다.(말 그대로 Program을 Count 합니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;native-method-stack&quot;&gt;Native Method Stack&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Stack Area와 마찬가지로 각 스레드당 하나의 Native method stack이 생성됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;한 스레드가 생성될 때 생성됩니다.&lt;/li&gt;
+      &lt;li&gt;크기 역시 고정 될 수도, 동적으로 할당할수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C stack이라고도 불립니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Line 코딩테스트 합격 및 그 외 진행 상황</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%A9%EA%B2%A9-%EB%B0%8F-%EC%A7%84%ED%96%89%EC%83%81%ED%99%A9/"/>
+   <updated>2020-04-10T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/Line코딩테스트 합격 및 진행상황</id>
+   <content type="html">&lt;h3 id=&quot;라인-코딩테스트-합격&quot;&gt;라인 코딩테스트 합격&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;음.. 일단 괜찮게 본대로 코딩테스트는 합격을 했습니다. 그리고 자기소개서를 작성하려 안내 메일에 준 Line-Style과 기타 등등을 읽어보는데… :sweat: 후… 라인이 바라는게 많은 걸까 내가 못난걸까.. 내가 못난거겠지.. 그래도 일단 서류는 써 보고, 떨어져도 좋으니 면접이나 한 번 봤으면!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;그-외-진행-상황&quot;&gt;그 외 진행 상황&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;롯데 e커머스 지원했는데 롯데는 코로나 때문에 서류 발표조차 5월 중순으로 연기가 됐습니다. 한달 후에 봐요!&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;삼성SDS SCSA에 지원했습니다. 진정한 융복합 인생 코스를 밟고 있으니 SCSA에 적합한 인물일것도 같습니다. 다만, SCSA 전형에선 코딩테스트를 안보는게 조금 아쉽긴합니다. 지금 코딩테스트 3전 3승인데 이 기세를 모아서 삼성 코딩테스트까지 봤으면 좋으련만..&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로그래머스에서 하는 Dev-Matching에도 참여하려 했으나 코딩테스트를 보는 날인 4/18에 뺄 수 없는 일이 있어서 아쉽지만.. ㅜㅜ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;코로나의 여파가 있지만 그래도 확실히 개발쪽은 꾸준히 채용하는 것 같아 다행입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
@@ -50,8 +288,8 @@
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#1-개요&quot;&gt;개요&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#2-기획&quot;&gt;기획&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#3-웹-디자인&quot;&gt;웹 디자인&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4-유저-시나리오-기획&quot;&gt;유저 시나리오 기획&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3-유저-시나리오-기획&quot;&gt;유저 시나리오 기획&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4-웹-디자인&quot;&gt;웹 디자인&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#5-기술-스택-선정&quot;&gt;기술 스택 선정&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#6-db-스키마&quot;&gt;DB 스키마&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#7-api-서버&quot;&gt;API 서버&lt;/a&gt;&lt;/li&gt;
@@ -133,17 +371,17 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Main.png&quot; alt=&quot;Main.png&quot; /&gt;&lt;small&gt;메인 페이지, 스트리머 id나 비디오 id를 넣는다.&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Main.png&quot; alt=&quot;Main.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;메인 페이지, 스트리머 id나 비디오 id를 넣는다.&lt;/small&gt;&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Streamer Not Found.png&quot; alt=&quot;Streamer Not Found.png&quot; /&gt;&lt;small&gt;스트리머 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Streamer Not Found.png&quot; alt=&quot;Streamer Not Found.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;스트리머 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video Not Found.png&quot; alt=&quot;Video Not Found.png&quot; /&gt;&lt;small&gt;비디오 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video Not Found.png&quot; alt=&quot;Video Not Found.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;비디오 id를 검색했지만 트위치에 없는 id일때&lt;/small&gt;&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Not Analyzed Video.png&quot; alt=&quot;Not Analyzed Video.png&quot; /&gt;&lt;small&gt;비디오 id를 검색했고, 트위치에 있는 비디오지만 분석 되지 않은 비디오일 때&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Not Analyzed Video.png&quot; alt=&quot;Not Analyzed Video.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;비디오 id를 검색했고, 트위치에 있는 비디오지만 분석 되지 않은 비디오일 때&lt;/small&gt;&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Steamer.png&quot; alt=&quot;Steamer.png&quot; /&gt;&lt;small&gt;스트리머를 검색했을 때 스트리머 정보와 함께 분석된 비디오들이 나온다.&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Steamer.png&quot; alt=&quot;Steamer.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;스트리머를 검색했을 때 스트리머 정보와 함께 분석된 비디오들이 나온다.&lt;/small&gt;&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video.png&quot; alt=&quot;Video.png&quot; /&gt;&lt;small&gt;비디오를 검색하거나, 스트리머 정보창에서 분석된 비디오를 눌렀을때.&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/Video.png&quot; alt=&quot;Video.png&quot; class=&quot;border-gray&quot; /&gt;&lt;small&gt;비디오를 검색하거나, 스트리머 정보창에서 분석된 비디오를 눌렀을때.&lt;/small&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;5-기술-스택-선정&quot;&gt;5. 기술 스택 선정&lt;/h2&gt;
 
@@ -152,11 +390,21 @@
 &lt;h3 id=&quot;51-api서버-클라이언트-기술-선정&quot;&gt;5.1. API서버, 클라이언트 기술 선정&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;프로그래밍을 처음 배우기 시작하던 때(2019년 2~8월)엔 클론 코딩을 많이 했습니다. 프로그래밍엔 정말 다양한 기술들이 있었고 기술들을 가볍게 알아보는데엔 클론 코딩만한 것이 없다고 생각했습니다.&lt;/li&gt;
-  &lt;li&gt;MERN 스택에 관한 &lt;a href=&quot;https://www.youtube.com/watch?v=0oziV0FLhXc&amp;amp;list=PLBeQxJQNprbgrNfcntLO8N2Y-dzlMZXZe&quot;&gt;클론코딩 강의&lt;/a&gt;를 듣고 서비스 API 서버와 클라이언트 서버를 나누는 방식과 React를 사용해 보고 싶다는 욕구가 있었습니다.&lt;/li&gt;
-  &lt;li&gt;API서버와 클라이언트를 나눠 놓으면 나중에 웹, 모바일을 같이 쓰는 서비스를 구축할 때 효과적일 것 같았고, 무엇보다 작업하기도 굉장히 깔끔했습니다.&lt;/li&gt;
-  &lt;li&gt;TCA를 계획 할 때 MERN 스택이 생각났고 Node JS, Express 를 이용해 API 서버를 만들어야 겠다고 생각했습니다.&lt;/li&gt;
-  &lt;li&gt;클라이언트 단은 Facebook의 Create React App을 활용하면 React를 손 쉽게 구축할 수 있어 Node JS와 React를 사용했습니다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로그래밍을 처음 배우기 시작하던 때(2019년 2~8월)엔 클론 코딩을 많이 했습니다. 프로그래밍엔 정말 다양한 기술들이 있었고 기술들을 가볍게 알아보는데엔 클론 코딩만한 것이 없다고 생각했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MERN 스택에 관한 &lt;a href=&quot;https://www.youtube.com/watch?v=0oziV0FLhXc&amp;amp;list=PLBeQxJQNprbgrNfcntLO8N2Y-dzlMZXZe&quot;&gt;클론코딩 강의&lt;/a&gt;를 듣고 서비스 API 서버와 클라이언트 서버를 나누는 방식과 React를 사용해 보고 싶다는 욕구가 있었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;API서버와 클라이언트를 나눠 놓으면 나중에 웹, 모바일을 같이 쓰는 서비스를 구축할 때 효과적일 것 같았고, 무엇보다 작업하기도 굉장히 깔끔했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCA를 계획 할 때 MERN 스택이 생각났고 Node JS, Express 를 이용해 API 서버를 만들어야 겠다고 생각했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트 단은 Facebook의 Create React App을 활용하면 React를 손 쉽게 구축할 수 있어 Node JS와 React를 사용했습니다.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;52-db-선정&quot;&gt;5.2. DB 선정&lt;/h3&gt;
@@ -295,8 +543,12 @@
 &lt;h3 id=&quot;73-난관---채팅-받아오기&quot;&gt;7.3. 난관 - 채팅 받아오기&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;API 서버 개발에 우여곡절이 있었지만 대부분 금방 해결되었습니다. 하지만 해결하는데 꽤 오랜 시간이 걸린 이슈가 있습니다. 바로 모든 채팅을 받아오는 속도를 줄이는 것이었습니다.&lt;/li&gt;
-  &lt;li&gt;위의 채팅을 받아오는 트위치 API는 채팅 전체를 주지 않습니다. 한 번 요청에 60개 정도의 채팅과 다음 채팅 60개의 주소 파라미터를 넘겨줍니다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;API 서버 개발에 우여곡절이 있었지만 대부분 금방 해결되었습니다. 하지만 해결하는데 꽤 오랜 시간이 걸린 이슈가 있습니다. 바로 모든 채팅을 받아오는 속도를 줄이는 것이었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 채팅을 받아오는 트위치 API는 채팅 전체를 주지 않습니다. 한 번 요청에 60개 정도의 채팅과 다음 채팅 60개의 주소 파라미터를 넘겨줍니다.&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;처음엔 60개의 채팅을 받고 다음 60개를 받아오고… 동기식으로 채팅을 가져왔습니다.
     &lt;ul&gt;
       &lt;li&gt;채팅이 60,000개 일때, 1,000번의 API 호출이 필요했고 한 번 API를 주고 받는 시간을 짧게 잡아 0.3초라고 봐도 총 300초, 5분이 걸렸습니다. 유저가 검색을 하고 채팅을 받아오는 5분 동안 기다릴리 만무합니다.&lt;/li&gt;
@@ -619,7 +871,9 @@ console.log(response); --&amp;gt; 'something'
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;(비교사진 요망)&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/register.png&quot; alt=&quot;register.png&quot; /&gt;&lt;small&gt;회원가입 디자인(좌), 퍼블리싱(우)&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/faq.png&quot; alt=&quot;faq.png&quot; /&gt;&lt;small&gt;자주묻는 질문 디자인(좌), 퍼블리싱(우)&lt;/small&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;7-개발2---샘플-데이터-생성&quot;&gt;7. 개발2 - 샘플 데이터 생성&lt;/h2&gt;
 
@@ -895,7 +1149,741 @@ ORA-12505, TNS:&lt;strong&gt;listener does not currently know of SID given&lt;/s
  </entry>
  
  <entry>
-   <title>리다이렉션과 부하 균형</title>
+   <title>HTTP 21 - 로깅과 사용 추적</title>
+   <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C21/"/>
+   <updated>2020-04-02T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드21</id>
+   <content type="html">
+&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 살펴본 거의 모든 서버, 프록시 등은 처리한 HTTP 트랜잭션을 요약해 기록해 놓습니다.&lt;/li&gt;
+  &lt;li&gt;이번 장에선 기록을 남기는 기술, 로깅에 대해 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;211-로그란-무엇인가&quot;&gt;21.1. 로그란 무엇인가?&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;로깅을 하는 이유는 크게 두 가지 입니다.
+    &lt;ul&gt;
+      &lt;li&gt;서버나 프록시가 장애를 일으킬 시 문제와 원인을 찾을 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;웹 사이트에 대한 통계를 내기 위해 사용할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;HTTP메세지를 모조리 로깅할 수도 있지만 이런 방식은 쓸모 없는 데이터까지 저장하게 되어 매우 비효율 적입니다.&lt;/li&gt;
+  &lt;li&gt;일반적으로 로깅하는 항목들은 아래와 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;HTTP 메서드&lt;/li&gt;
+      &lt;li&gt;클라이언트와 서버의 HTTP 버전&lt;/li&gt;
+      &lt;li&gt;요청받은 URL&lt;/li&gt;
+      &lt;li&gt;응답의 HTTP 상태 코드&lt;/li&gt;
+      &lt;li&gt;요청과 응답 메세지의 크기&lt;/li&gt;
+      &lt;li&gt;트랜잭션이 일어난 시간&lt;/li&gt;
+      &lt;li&gt;Referer 헤더, User-Agent 헤더&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;212-로그-포맷&quot;&gt;21.2. 로그 포맷&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;로그를 남기는 방식에 표준을 만들어 놓으면 다음과 같은 이점이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;로그를 다루는 툴을 만들 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;로그를 보기 쉬워집니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;따라서 다양한 로그 포맷 표준들이 존재합니다.&lt;/li&gt;
+  &lt;li&gt;대부분의 HTTP 애플리케이션은 한 개 이상의 로그 포맷을 지원합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2121-일반-로그-포맷common-log-format&quot;&gt;21.2.1. 일반 로그 포맷(Common Log Format)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;많이 사용되는 로그 포맷중 하나는 말 그대로 ‘일반 로그 포맷’입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;NCSA(National Center for Supercomputing Applications)에서 처음 정의한 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;대부분의 사용 소프트 웨어는 일반 로그 포맷을 지원합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 일반 로그 포맷의 필드들입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;remotehost&lt;/td&gt;
+          &lt;td&gt;요청한 컴퓨터의 호스트 명 혹은 IP&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;username&lt;/td&gt;
+          &lt;td&gt;ident 검색을 수행했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;auth-username&lt;/td&gt;
+          &lt;td&gt;인증을 수행 했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;요청 날짜와 시간&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;request-line&lt;/td&gt;
+          &lt;td&gt;HTTP 요청의 첫 행을 그대로 기술.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-code&lt;/td&gt;
+          &lt;td&gt;응답의 HTTP 상태코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-size&lt;/td&gt;
+          &lt;td&gt;응답 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 
+http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET / HTTP/1.0&quot; 200 477
+http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET /foo HTTP/1.0&quot; 404 0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 아래와 같이 나뉘어 집니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+          &lt;th&gt;로그2&lt;/th&gt;
+          &lt;th&gt;로그3&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;remotehost&lt;/td&gt;
+          &lt;td&gt;209.1.32.44&lt;/td&gt;
+          &lt;td&gt;http-guide.com&lt;/td&gt;
+          &lt;td&gt;http-guide.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;username&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;auth-username&lt;/td&gt;
+          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
+          &lt;td&gt;dg&lt;/td&gt;
+          &lt;td&gt;dg&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:00 -0400&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
+          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;request-line&lt;/td&gt;
+          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
+          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
+          &lt;td&gt;GET /foo HTTP/1.0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-code&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+          &lt;td&gt;404&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;response-size&lt;/td&gt;
+          &lt;td&gt;1024&lt;/td&gt;
+          &lt;td&gt;477&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2122-혼합-로그-포맷combined-log-format&quot;&gt;21.2.2. 혼합 로그 포맷(Combined Log Format)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;혼합 로그 포맷 역시 자주 사용되는 로그 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;일반 로그 포맷과 매우 유사하며 필드 2개가 추가된 것이 전부입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래는 추가된 2개의 필드입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Referer&lt;/td&gt;
+          &lt;td&gt;Referer HTTP 헤더의 값&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;User-Agent&lt;/td&gt;
+          &lt;td&gt;User-Agent Referer HTTP 헤더의 값&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 로그가 남을 수 있습니다.(한 줄의 로그 입니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 &quot;http://www.joeshardware.com/&quot; &quot;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 로그에서 Referer와 User-Agent는 다음에 해당합니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Referer&lt;/td&gt;
+          &lt;td&gt;http://www.joeshardware.com/&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;User-Agent&lt;/td&gt;
+          &lt;td&gt;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2123-넷스케이프-확장-로그-포맷&quot;&gt;21.2.3. 넷스케이프 확장 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 로그 포맷은 일반 로그 포맷에서 시작해 &lt;strong&gt;프록시나 웹 캐시 같은 HTTP 애플리케이션을 지원하기 위해&lt;/strong&gt; 확장되었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;일반 로그 포맷의 7개 필드를 제외하고 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-code&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 HTTP 응답 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 응답 엔터티 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-size&lt;/td&gt;
+          &lt;td&gt;클라이언트가 프록시로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;클라이언트의 요청 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 요청자에게 보내는 응답 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 전송하는 요청 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;서버 응답 헤더의 바이트 길이&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-timestamp&lt;/td&gt;
+          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 요청과 응답이 프록시를 통해 오가는 총 시간(초)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 확장된 필드들은 아래와 같은 값을 갖습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-code&lt;/td&gt;
+          &lt;td&gt;200&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-size&lt;/td&gt;
+          &lt;td&gt;1024&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-size&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-size&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;215&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;260&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
+          &lt;td&gt;279&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
+          &lt;td&gt;254&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-timestamp&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2124-넷스케이프-확장-2-로그-포맷&quot;&gt;21.2.4. 넷스케이프 확장 2 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 2 로그 포맷은 넷스케이프 확장 로그 포맷을 확장한 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;넷스케이프 확장 로그 포맷에 있는 필드를 제외하고 새로 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;route&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트에 요청을 만드는데 사용하는 경로&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-finish-status-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 클라이언트의 종료 상태 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 프록시의 종료 상태 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;cache-result-code&lt;/td&gt;
+          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 캐시 결과 코드&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;route 엔 다음과 같은 값이 가능합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;DIRECT : 리소스를 서버에서 바로 가져옴&lt;/li&gt;
+      &lt;li&gt;PROXY(host:port) : 리소스를 host 라는 프록시를 통해 가져옴&lt;/li&gt;
+      &lt;li&gt;SOCKS(socks:port) : 리소스를 host라는 SOCKS 서버를 통해 가져옴&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;client-finish-status-code, proxy-finish-status-code 엔 다음과 같은 코드가 존재합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;- : 요청이 시작되지 않음&lt;/li&gt;
+      &lt;li&gt;FIN : 요청이 성공적으로 완료됨&lt;/li&gt;
+      &lt;li&gt;INTR : 요청이 클라이언트에 의해 중단 되었거나 프록시/서버에 의해 종료됨&lt;/li&gt;
+      &lt;li&gt;TIMEOUT : 요청이 프로시/서버의 타임아웃에 걸림&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;cache-result-code엔 다음과 같은 코드가 쓰입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;- : 캐시할 수 없는 리소스&lt;/li&gt;
+      &lt;li&gt;WRITTEN : 리소스를 캐시에 저장함&lt;/li&gt;
+      &lt;li&gt;REFRESHED : 리소스를 캐시했고 갱신함&lt;/li&gt;
+      &lt;li&gt;NO-CHECK : 캐시된 리소스를 반환했고 신선도 검사를 하지 않음&lt;/li&gt;
+      &lt;li&gt;UP-TO-DATE : 캐시된 리소스를 반환했고 신선도 검사를 완료함&lt;/li&gt;
+      &lt;li&gt;HOST-NOT-AVAILABLE : 캐시된 리소스를 반환했으며, 원격 서버가 사용할 수 있는 상태가 아니었기 때문에 신서도 검사를 하지 않음&lt;/li&gt;
+      &lt;li&gt;CL-MISMATCH : 리소스를 캐시에 저장하지 않았다. Content-Length가 리소스의 크기와 맞지 않았기 때문에 쓰기를 중단함.&lt;/li&gt;
+      &lt;li&gt;ERROR : 어떤 에러 때문에 리소스를 캐시에 저장하지 못했다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3 DIRECT FIN FIN WRITTEN 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;확장된 필드들은 다음과 같이 파싱됩니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;route&lt;/td&gt;
+          &lt;td&gt;DIRECT&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;client-finish-status-code&lt;/td&gt;
+          &lt;td&gt;FIN&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
+          &lt;td&gt;FIN&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;cache-result-code&lt;/td&gt;
+          &lt;td&gt;WRITTEN&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2125-스퀴드squid-프록시-로그-포맷&quot;&gt;21.2.5. 스퀴드(Squid) 프록시 로그 포맷&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 프록시 캐시(&lt;a href=&quot;http://www.squid-cache.org/&quot;&gt;http://www.squid-cache.org/&lt;/a&gt;)는 유명한 오픈소스 프록시 캐시 프로젝트입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 프록시 로그 포맷은 스퀴드 프록시 캐시에서 사용되는 로그 포맷입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;앞서 살펴본 일반 로그 포맷을 원류로한 로그들과는 필드의 구성과 순서가 좀 다릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 필드가 존재합니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;GMT 기준 1970년 1월 1일 부터 요청이 도착한 시간까지의 시간을 초 단위로 기술&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;time-elapsed&lt;/td&gt;
+          &lt;td&gt;요청과 응답이 프록시를 통해 오고간 총 시간을 밀리초 단위로 기술&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;host-ip&lt;/td&gt;
+          &lt;td&gt;클라이언트의 호스트 장비 IP 주소&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;result-code/status&lt;/td&gt;
+          &lt;td&gt;result code는 요청에 대해 어떤 일을 했는지를 squid result code로 기술. status는 HTTP 응답 코드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;size&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트에게 보낸 HTTP 응답 헤더와 본문을 포함한 응답 길이가 바이트 단위로 기술됨&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;method&lt;/td&gt;
+          &lt;td&gt;클라이언트 요청의 HTTP 메서드&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;url&lt;/td&gt;
+          &lt;td&gt;클라이언트 요청의 URL&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;rfc931-ident&lt;/td&gt;
+          &lt;td&gt;클라이언트에 인증된 사용자 이름&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;hierarchy/from&lt;/td&gt;
+          &lt;td&gt;프록시가 클라이언트로 요청을 봬며 거친 경로를 기술.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;content-type&lt;/td&gt;
+          &lt;td&gt;프록시 응답 엔터티의 Content-Type&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;squid result code는 꽤나 많기 때문에 링크를 남기겠습니다. &lt;a href=&quot;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&quot;&gt;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 로그 포맷을 사용한다고 해서 위 링크의 모든 result code를 구현하는 것은 아닙니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스퀴드 로그 포맷은 다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;99823414 3001 209.1.32.44 TCP_MISS/200 4087 GET http://www.joes-hardware.com - DIRECT/proxy.com text/html 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 로그를 파싱하면 각 필드는 다음과 같은 값을 갖습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;필드&lt;/th&gt;
+          &lt;th&gt;로그1&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timestamp&lt;/td&gt;
+          &lt;td&gt;99823414&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;time-elapsed&lt;/td&gt;
+          &lt;td&gt;3001&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;host-ip&lt;/td&gt;
+          &lt;td&gt;209.1.32.44&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;result-code/status&lt;/td&gt;
+          &lt;td&gt;TCP_MISS/200&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;size&lt;/td&gt;
+          &lt;td&gt;4087&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;method&lt;/td&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;url&lt;/td&gt;
+          &lt;td&gt;http://www.joes-hardware.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;rfc931-ident&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;hierarchy/from&lt;/td&gt;
+          &lt;td&gt;DIRECT/proxy.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;content-type&lt;/td&gt;
+          &lt;td&gt;text/html&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;213-적중-계량하기&quot;&gt;21.3. 적중 계량하기&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 말했듯이 로그는 에러를 진단하거나, 웹 사이트에 대한 통계를 내어 여러 용도로 사용하기 위해 남겨집니다.&lt;/li&gt;
+  &lt;li&gt;하지만 캐시가 사용된다면 클라이언트의 요청은 서버까지 오지 못하고 캐시에서 처리 됩니다.&lt;/li&gt;
+  &lt;li&gt;그렇다면 정확한 통계가 이루어지지 않습니다. 이와 같은 상황은 어떻게 해결할까요?&lt;/li&gt;
+  &lt;li&gt;중요한 문서들에 대해 캐시를 하지 않아 버릴 수도 있습니다. 모든 요청은 서버로 가게되고 정확한 통계를 낼 수 있습니다. 하지만 이렇게 되면 응답시간이 길어지고 서버의 부하가 증가합니다.&lt;/li&gt;
+  &lt;li&gt;대신 캐시에도 로그가 쌓일테니 캐시의 로그를 주기적으로 원 서버에 보내면 어떨까요? 이런 방법을 적중 계량(Hit Metering) 이라고 합니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량은 HTTP의 확장으로 RFC 2227에서 정의되었습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2131-개요&quot;&gt;21.3.1. 개요&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;적중 계량 규약은 캐시와 서버가 접근 정보를 공유하고 캐시의 리소스 양을 제어할 수 있는 몇가지 기능을 정의합니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량은 캐시에서 요청이 끝남으로서 발생되는 문제를 완벽히 해결해주진 않지만 어느정도로 서버가 원하는 정보를 제공해 줄 순 있습니다.&lt;/li&gt;
+  &lt;li&gt;적중 계량을 사용하면 캐시를 이용해 성능을 높이면서도 서버에서 정확한 접근 통계를 낼 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2132-meter-헤더&quot;&gt;21.3.2. Meter 헤더&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;적중 계량을 위해선 Meter 라는 헤더가 사용됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Meter 헤더에 다양한 지시자와 값들을 통해 적중 계량을 구현할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음은 Meter 헤더에 사용 될 수 있는 지시자들 입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;지시자&lt;/th&gt;
+          &lt;th&gt;약어&lt;/th&gt;
+          &lt;th&gt;주체&lt;/th&gt;
+          &lt;th&gt;설명&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;will-report-and-limit&lt;/td&gt;
+          &lt;td&gt;w&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용량을 보고하고 서버가 기술한 사용제한에 복종함&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-report&lt;/td&gt;
+          &lt;td&gt;x&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용 제한에 복종하지만, 사용량 보고는 하지 않음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-limit&lt;/td&gt;
+          &lt;td&gt;y&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;캐시는 사용량 보고를 하지만 사용 제한은 없음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;count&lt;/td&gt;
+          &lt;td&gt;c&lt;/td&gt;
+          &lt;td&gt;캐시&lt;/td&gt;
+          &lt;td&gt;“사용횟수/재사용횟수” 로 기술되는 보고 지시자. “:count=2/4”와 같이 쓰인다.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;max-uses&lt;/td&gt;
+          &lt;td&gt;u&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 캐시를 사용해 응답할 수 있는 최대 횟수를 기술. “max-uses=100” 과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;max-reuses&lt;/td&gt;
+          &lt;td&gt;r&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 캐시를 재사용해 응답할 수 있는 최대 횟수를 기술. “max-reuses=100”과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;do-report&lt;/td&gt;
+          &lt;td&gt;d&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 프록시에게 사용량 보고를 요구함&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;dont-report&lt;/td&gt;
+          &lt;td&gt;e&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 사용량 보고를 원하지 않음&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;timeout&lt;/td&gt;
+          &lt;td&gt;t&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버가 리소스를 계량할 때 시간제한을 거는데 사용. 캐시는 해당 타임아웃 정각이나 1분 전후로 보고를 해야함. “timeout=60”과 같이 쓰임&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;wont-ask&lt;/td&gt;
+          &lt;td&gt;n&lt;/td&gt;
+          &lt;td&gt;서버&lt;/td&gt;
+          &lt;td&gt;서버는 계량 정보를 원하지 않음.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래 그림은 Meter 헤더가 사용되는 과정을 나타냅니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Http The Definitive Guide/meter_example.png&quot; alt=&quot;meter_example.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트 입장에선 변하는게 없습니다. 프록시가 서버로 요청을 보낼때 ‘will-report-and-limit’을 보내 사용량을 보고하며 사용 제한에 복종한다고 말합니다.&lt;/li&gt;
+  &lt;li&gt;서버는 프록시에게 리소스를 건네주며 ‘do-report’를 지시했습니다.&lt;/li&gt;
+  &lt;li&gt;프록시는 클라이언트에게 리소스를 건네줍니다.&lt;/li&gt;
+  &lt;li&gt;이후 시간이 흘러 프록시가 갖은 리소스가 신선하지 않아 재검사를 보낼때 Meter에 적중 횟수를 보고 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;214-개인-정보-보호에-대해&quot;&gt;21.4. 개인 정보 보호에 대해&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한편, 로깅은 본래 선의의 목적으로 사용되지만 악용 될 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;웹 사이트의 사용 기록을 몰래 매매할 수도 있고 수집한 로그로 개인의 사생활을 엿볼 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;로그를 다루는 개발자라면 항상 이 점을 염두해 두어야 할 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 프로젝트를 할 때 로그는 프레임워크가 해주는대로 ‘알아서 잘 남겠거니’하고 지나쳤었습니다.&lt;/li&gt;
+  &lt;li&gt;이번 장을 학습한 이후로는 좀 더 적극적으로 로그를 남기고 사용할 수 있을 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>HTTP 20 - 리다이렉션과 부하 균형</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C20/"/>
    <updated>2020-04-01T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드20</id>
@@ -1410,7 +2398,7 @@ Addresses:  2404:6800:4004:81d::200e
  </entry>
  
  <entry>
-   <title>배포 시스템</title>
+   <title>HTTP 19 - 배포 시스템</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C19/"/>
    <updated>2020-03-31T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드19</id>
@@ -2337,741 +3325,7 @@ drwxr-xr-x 1 root root 4096 Jan 15 01:11 tls
  </entry>
  
  <entry>
-   <title>로깅과 사용 추적</title>
-   <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C21/"/>
-   <updated>2020-03-30T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드21</id>
-   <content type="html">
-&lt;h3 id=&quot;들어가며&quot;&gt;들어가며&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앞서 살펴본 거의 모든 서버, 프록시 등은 처리한 HTTP 트랜잭션을 요약해 기록해 놓습니다.&lt;/li&gt;
-  &lt;li&gt;이번 장에선 기록을 남기는 기술, 로깅에 대해 알아보겠습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;211-로그란-무엇인가&quot;&gt;21.1. 로그란 무엇인가?&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;로깅을 하는 이유는 크게 두 가지 입니다.
-    &lt;ul&gt;
-      &lt;li&gt;서버나 프록시가 장애를 일으킬 시 문제와 원인을 찾을 수 있습니다.&lt;/li&gt;
-      &lt;li&gt;웹 사이트에 대한 통계를 내기 위해 사용할 수 있습니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;HTTP메세지를 모조리 로깅할 수도 있지만 이런 방식은 쓸모 없는 데이터까지 저장하게 되어 매우 비효율 적입니다.&lt;/li&gt;
-  &lt;li&gt;일반적으로 로깅하는 항목들은 아래와 같습니다.
-    &lt;ul&gt;
-      &lt;li&gt;HTTP 메서드&lt;/li&gt;
-      &lt;li&gt;클라이언트와 서버의 HTTP 버전&lt;/li&gt;
-      &lt;li&gt;요청받은 URL&lt;/li&gt;
-      &lt;li&gt;응답의 HTTP 상태 코드&lt;/li&gt;
-      &lt;li&gt;요청과 응답 메세지의 크기&lt;/li&gt;
-      &lt;li&gt;트랜잭션이 일어난 시간&lt;/li&gt;
-      &lt;li&gt;Referer 헤더, User-Agent 헤더&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;212-로그-포맷&quot;&gt;21.2. 로그 포맷&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;로그를 남기는 방식에 표준을 만들어 놓으면 다음과 같은 이점이 있습니다.
-    &lt;ul&gt;
-      &lt;li&gt;로그를 다루는 툴을 만들 수 있습니다.&lt;/li&gt;
-      &lt;li&gt;로그를 보기 쉬워집니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;따라서 다양한 로그 포맷 표준들이 존재합니다.&lt;/li&gt;
-  &lt;li&gt;대부분의 HTTP 애플리케이션은 한 개 이상의 로그 포맷을 지원합니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2121-일반-로그-포맷common-log-format&quot;&gt;21.2.1. 일반 로그 포맷(Common Log Format)&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;많이 사용되는 로그 포맷중 하나는 말 그대로 ‘일반 로그 포맷’입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;NCSA(National Center for Supercomputing Applications)에서 처음 정의한 포맷입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;대부분의 사용 소프트 웨어는 일반 로그 포맷을 지원합니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래는 일반 로그 포맷의 필드들입니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;remotehost&lt;/td&gt;
-          &lt;td&gt;요청한 컴퓨터의 호스트 명 혹은 IP&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;username&lt;/td&gt;
-          &lt;td&gt;ident 검색을 수행했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;auth-username&lt;/td&gt;
-          &lt;td&gt;인증을 수행 했다면, 인증된 요청자의 이름이 존재&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;timestamp&lt;/td&gt;
-          &lt;td&gt;요청 날짜와 시간&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;request-line&lt;/td&gt;
-          &lt;td&gt;HTTP 요청의 첫 행을 그대로 기술.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;response-code&lt;/td&gt;
-          &lt;td&gt;응답의 HTTP 상태코드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;response-size&lt;/td&gt;
-          &lt;td&gt;응답 엔터티의 Content-Length&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 
-http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET / HTTP/1.0&quot; 200 477
-http-guide.com - dg [03/Oct/1999:14:16:32 -0400] &quot;GET /foo HTTP/1.0&quot; 404 0 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;위 로그를 파싱하면 아래와 같이 나뉘어 집니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;로그1&lt;/th&gt;
-          &lt;th&gt;로그2&lt;/th&gt;
-          &lt;th&gt;로그3&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;remotehost&lt;/td&gt;
-          &lt;td&gt;209.1.32.44&lt;/td&gt;
-          &lt;td&gt;http-guide.com&lt;/td&gt;
-          &lt;td&gt;http-guide.com&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;username&lt;/td&gt;
-          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;auth-username&lt;/td&gt;
-          &lt;td&gt;&lt;비어있음&gt;&lt;/비어있음&gt;&lt;/td&gt;
-          &lt;td&gt;dg&lt;/td&gt;
-          &lt;td&gt;dg&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;timestamp&lt;/td&gt;
-          &lt;td&gt;03/Oct/1999:14:16:00 -0400&lt;/td&gt;
-          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
-          &lt;td&gt;03/Oct/1999:14:16:32 -0400&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;request-line&lt;/td&gt;
-          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
-          &lt;td&gt;GET / HTTP/1.0&lt;/td&gt;
-          &lt;td&gt;GET /foo HTTP/1.0&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;response-code&lt;/td&gt;
-          &lt;td&gt;200&lt;/td&gt;
-          &lt;td&gt;200&lt;/td&gt;
-          &lt;td&gt;404&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;response-size&lt;/td&gt;
-          &lt;td&gt;1024&lt;/td&gt;
-          &lt;td&gt;477&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2122-혼합-로그-포맷combined-log-format&quot;&gt;21.2.2. 혼합 로그 포맷(Combined Log Format)&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;혼합 로그 포맷 역시 자주 사용되는 로그 포맷입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;일반 로그 포맷과 매우 유사하며 필드 2개가 추가된 것이 전부입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래는 추가된 2개의 필드입니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;Referer&lt;/td&gt;
-          &lt;td&gt;Referer HTTP 헤더의 값&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;User-Agent&lt;/td&gt;
-          &lt;td&gt;User-Agent Referer HTTP 헤더의 값&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래와 같은 로그가 남을 수 있습니다.(한 줄의 로그 입니다.)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00 -0400] &quot;GET / HTTP/1.0&quot; 200 1024 &quot;http://www.joeshardware.com/&quot; &quot;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&quot; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;이 로그에서 Referer와 User-Agent는 다음에 해당합니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;로그1&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;Referer&lt;/td&gt;
-          &lt;td&gt;http://www.joeshardware.com/&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;User-Agent&lt;/td&gt;
-          &lt;td&gt;5.0: Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2123-넷스케이프-확장-로그-포맷&quot;&gt;21.2.3. 넷스케이프 확장 로그 포맷&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;넷스케이프 확장 로그 포맷은 일반 로그 포맷에서 시작해 &lt;strong&gt;프록시나 웹 캐시 같은 HTTP 애플리케이션을 지원하기 위해&lt;/strong&gt; 확장되었습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;일반 로그 포맷의 7개 필드를 제외하고 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-code&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 HTTP 응답 코드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-size&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 서버에서 프록시로의 응답 엔터티 Content-Length&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-request-size&lt;/td&gt;
-          &lt;td&gt;클라이언트가 프록시로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-request-size&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 보내는 요청의 본문이나 엔터티의 Content-Length&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
-          &lt;td&gt;클라이언트의 요청 헤더의 바이트 길이&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 요청자에게 보내는 응답 헤더의 바이트 길이&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 프록시가 서버로 전송하는 요청 헤더의 바이트 길이&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
-          &lt;td&gt;서버 응답 헤더의 바이트 길이&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-timestamp&lt;/td&gt;
-          &lt;td&gt;트랜잭션이 프록시를 거칠 경우, 요청과 응답이 프록시를 통해 오가는 총 시간(초)&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음과 같은 로그가 남을 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;위 로그를 파싱하면 확장된 필드들은 아래와 같은 값을 갖습니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;로그1&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-code&lt;/td&gt;
-          &lt;td&gt;200&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-size&lt;/td&gt;
-          &lt;td&gt;1024&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-request-size&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-request-size&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-request-hdr-size&lt;/td&gt;
-          &lt;td&gt;215&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-response-hdr-size&lt;/td&gt;
-          &lt;td&gt;260&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-request-hdr-size&lt;/td&gt;
-          &lt;td&gt;279&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;server-response-hdr-size&lt;/td&gt;
-          &lt;td&gt;254&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-timestamp&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2124-넷스케이프-확장-2-로그-포맷&quot;&gt;21.2.4. 넷스케이프 확장 2 로그 포맷&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;넷스케이프 확장 2 로그 포맷은 넷스케이프 확장 로그 포맷을 확장한 것입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;넷스케이프 확장 로그 포맷에 있는 필드를 제외하고 새로 확장된 필드들은 다음과 같습니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;route&lt;/td&gt;
-          &lt;td&gt;프록시가 클라이언트에 요청을 만드는데 사용하는 경로&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-finish-status-code&lt;/td&gt;
-          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 클라이언트의 종료 상태 코드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
-          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 프록시의 종료 상태 코드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;cache-result-code&lt;/td&gt;
-          &lt;td&gt;넷스케이프 확장 2 로그 포맷에서 정의한 캐시 결과 코드&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;route 엔 다음과 같은 값이 가능합니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;DIRECT : 리소스를 서버에서 바로 가져옴&lt;/li&gt;
-      &lt;li&gt;PROXY(host:port) : 리소스를 host 라는 프록시를 통해 가져옴&lt;/li&gt;
-      &lt;li&gt;SOCKS(socks:port) : 리소스를 host라는 SOCKS 서버를 통해 가져옴&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;client-finish-status-code, proxy-finish-status-code 엔 다음과 같은 코드가 존재합니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;- : 요청이 시작되지 않음&lt;/li&gt;
-      &lt;li&gt;FIN : 요청이 성공적으로 완료됨&lt;/li&gt;
-      &lt;li&gt;INTR : 요청이 클라이언트에 의해 중단 되었거나 프록시/서버에 의해 종료됨&lt;/li&gt;
-      &lt;li&gt;TIMEOUT : 요청이 프로시/서버의 타임아웃에 걸림&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;cache-result-code엔 다음과 같은 코드가 쓰입니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;- : 캐시할 수 없는 리소스&lt;/li&gt;
-      &lt;li&gt;WRITTEN : 리소스를 캐시에 저장함&lt;/li&gt;
-      &lt;li&gt;REFRESHED : 리소스를 캐시했고 갱신함&lt;/li&gt;
-      &lt;li&gt;NO-CHECK : 캐시된 리소스를 반환했고 신선도 검사를 하지 않음&lt;/li&gt;
-      &lt;li&gt;UP-TO-DATE : 캐시된 리소스를 반환했고 신선도 검사를 완료함&lt;/li&gt;
-      &lt;li&gt;HOST-NOT-AVAILABLE : 캐시된 리소스를 반환했으며, 원격 서버가 사용할 수 있는 상태가 아니었기 때문에 신서도 검사를 하지 않음&lt;/li&gt;
-      &lt;li&gt;CL-MISMATCH : 리소스를 캐시에 저장하지 않았다. Content-Length가 리소스의 크기와 맞지 않았기 때문에 쓰기를 중단함.&lt;/li&gt;
-      &lt;li&gt;ERROR : 어떤 에러 때문에 리소스를 캐시에 저장하지 못했다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;209.1.32.44 - - [03/Oct/1999:14:16:00-0400] &quot;GET / HTTP/1.0&quot; 200 1024 200 1024 0 0 215 260 279 254 3 DIRECT FIN FIN WRITTEN 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;확장된 필드들은 다음과 같이 파싱됩니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;route&lt;/td&gt;
-          &lt;td&gt;DIRECT&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;client-finish-status-code&lt;/td&gt;
-          &lt;td&gt;FIN&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;proxy-finish-status-code&lt;/td&gt;
-          &lt;td&gt;FIN&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;cache-result-code&lt;/td&gt;
-          &lt;td&gt;WRITTEN&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2125-스퀴드squid-프록시-로그-포맷&quot;&gt;21.2.5. 스퀴드(Squid) 프록시 로그 포맷&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;스퀴드 프록시 캐시(&lt;a href=&quot;http://www.squid-cache.org/&quot;&gt;http://www.squid-cache.org/&lt;/a&gt;)는 유명한 오픈소스 프록시 캐시 프로젝트입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스퀴드 프록시 로그 포맷은 스퀴드 프록시 캐시에서 사용되는 로그 포맷입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;앞서 살펴본 일반 로그 포맷을 원류로한 로그들과는 필드의 구성과 순서가 좀 다릅니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음과 같은 필드가 존재합니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;timestamp&lt;/td&gt;
-          &lt;td&gt;GMT 기준 1970년 1월 1일 부터 요청이 도착한 시간까지의 시간을 초 단위로 기술&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;time-elapsed&lt;/td&gt;
-          &lt;td&gt;요청과 응답이 프록시를 통해 오고간 총 시간을 밀리초 단위로 기술&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;host-ip&lt;/td&gt;
-          &lt;td&gt;클라이언트의 호스트 장비 IP 주소&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;result-code/status&lt;/td&gt;
-          &lt;td&gt;result code는 요청에 대해 어떤 일을 했는지를 squid result code로 기술. status는 HTTP 응답 코드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;size&lt;/td&gt;
-          &lt;td&gt;프록시가 클라이언트에게 보낸 HTTP 응답 헤더와 본문을 포함한 응답 길이가 바이트 단위로 기술됨&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;method&lt;/td&gt;
-          &lt;td&gt;클라이언트 요청의 HTTP 메서드&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;url&lt;/td&gt;
-          &lt;td&gt;클라이언트 요청의 URL&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;rfc931-ident&lt;/td&gt;
-          &lt;td&gt;클라이언트에 인증된 사용자 이름&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;hierarchy/from&lt;/td&gt;
-          &lt;td&gt;프록시가 클라이언트로 요청을 봬며 거친 경로를 기술.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;content-type&lt;/td&gt;
-          &lt;td&gt;프록시 응답 엔터티의 Content-Type&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;squid result code는 꽤나 많기 때문에 링크를 남기겠습니다. &lt;a href=&quot;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&quot;&gt;https://wiki.squid-cache.org/SquidFaq/SquidLogs#Squid_result_codes&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스퀴드 로그 포맷을 사용한다고 해서 위 링크의 모든 result code를 구현하는 것은 아닙니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스퀴드 로그 포맷은 다음과 같은 로그를 남길 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;99823414 3001 209.1.32.44 TCP_MISS/200 4087 GET http://www.joes-hardware.com - DIRECT/proxy.com text/html 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;위 로그를 파싱하면 각 필드는 다음과 같은 값을 갖습니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;필드&lt;/th&gt;
-          &lt;th&gt;로그1&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;timestamp&lt;/td&gt;
-          &lt;td&gt;99823414&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;time-elapsed&lt;/td&gt;
-          &lt;td&gt;3001&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;host-ip&lt;/td&gt;
-          &lt;td&gt;209.1.32.44&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;result-code/status&lt;/td&gt;
-          &lt;td&gt;TCP_MISS/200&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;size&lt;/td&gt;
-          &lt;td&gt;4087&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;method&lt;/td&gt;
-          &lt;td&gt;GET&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;url&lt;/td&gt;
-          &lt;td&gt;http://www.joes-hardware.com&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;rfc931-ident&lt;/td&gt;
-          &lt;td&gt;-&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;hierarchy/from&lt;/td&gt;
-          &lt;td&gt;DIRECT/proxy.com&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;content-type&lt;/td&gt;
-          &lt;td&gt;text/html&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;213-적중-계량하기&quot;&gt;21.3. 적중 계량하기&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앞서 말했듯이 로그는 에러를 진단하거나, 웹 사이트에 대한 통계를 내어 여러 용도로 사용하기 위해 남겨집니다.&lt;/li&gt;
-  &lt;li&gt;하지만 캐시가 사용된다면 클라이언트의 요청은 서버까지 오지 못하고 캐시에서 처리 됩니다.&lt;/li&gt;
-  &lt;li&gt;그렇다면 정확한 통계가 이루어지지 않습니다. 이와 같은 상황은 어떻게 해결할까요?&lt;/li&gt;
-  &lt;li&gt;중요한 문서들에 대해 캐시를 하지 않아 버릴 수도 있습니다. 모든 요청은 서버로 가게되고 정확한 통계를 낼 수 있습니다. 하지만 이렇게 되면 응답시간이 길어지고 서버의 부하가 증가합니다.&lt;/li&gt;
-  &lt;li&gt;대신 캐시에도 로그가 쌓일테니 캐시의 로그를 주기적으로 원 서버에 보내면 어떨까요? 이런 방법을 적중 계량(Hit Metering) 이라고 합니다.&lt;/li&gt;
-  &lt;li&gt;적중 계량은 HTTP의 확장으로 RFC 2227에서 정의되었습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2131-개요&quot;&gt;21.3.1. 개요&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;적중 계량 규약은 캐시와 서버가 접근 정보를 공유하고 캐시의 리소스 양을 제어할 수 있는 몇가지 기능을 정의합니다.&lt;/li&gt;
-  &lt;li&gt;적중 계량은 캐시에서 요청이 끝남으로서 발생되는 문제를 완벽히 해결해주진 않지만 어느정도로 서버가 원하는 정보를 제공해 줄 순 있습니다.&lt;/li&gt;
-  &lt;li&gt;적중 계량을 사용하면 캐시를 이용해 성능을 높이면서도 서버에서 정확한 접근 통계를 낼 수 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;2132-meter-헤더&quot;&gt;21.3.2. Meter 헤더&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;적중 계량을 위해선 Meter 라는 헤더가 사용됩니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Meter 헤더에 다양한 지시자와 값들을 통해 적중 계량을 구현할 수 있습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음은 Meter 헤더에 사용 될 수 있는 지시자들 입니다.&lt;/p&gt;
-
-    &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;지시자&lt;/th&gt;
-          &lt;th&gt;약어&lt;/th&gt;
-          &lt;th&gt;주체&lt;/th&gt;
-          &lt;th&gt;설명&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;will-report-and-limit&lt;/td&gt;
-          &lt;td&gt;w&lt;/td&gt;
-          &lt;td&gt;캐시&lt;/td&gt;
-          &lt;td&gt;캐시는 사용량을 보고하고 서버가 기술한 사용제한에 복종함&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;wont-report&lt;/td&gt;
-          &lt;td&gt;x&lt;/td&gt;
-          &lt;td&gt;캐시&lt;/td&gt;
-          &lt;td&gt;캐시는 사용 제한에 복종하지만, 사용량 보고는 하지 않음&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;wont-limit&lt;/td&gt;
-          &lt;td&gt;y&lt;/td&gt;
-          &lt;td&gt;캐시&lt;/td&gt;
-          &lt;td&gt;캐시는 사용량 보고를 하지만 사용 제한은 없음&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;count&lt;/td&gt;
-          &lt;td&gt;c&lt;/td&gt;
-          &lt;td&gt;캐시&lt;/td&gt;
-          &lt;td&gt;“사용횟수/재사용횟수” 로 기술되는 보고 지시자. “:count=2/4”와 같이 쓰인다.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;max-uses&lt;/td&gt;
-          &lt;td&gt;u&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버가 캐시를 사용해 응답할 수 있는 최대 횟수를 기술. “max-uses=100” 과 같이 쓰임&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;max-reuses&lt;/td&gt;
-          &lt;td&gt;r&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버가 캐시를 재사용해 응답할 수 있는 최대 횟수를 기술. “max-reuses=100”과 같이 쓰임&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;do-report&lt;/td&gt;
-          &lt;td&gt;d&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버가 프록시에게 사용량 보고를 요구함&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;dont-report&lt;/td&gt;
-          &lt;td&gt;e&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버가 사용량 보고를 원하지 않음&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;timeout&lt;/td&gt;
-          &lt;td&gt;t&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버가 리소스를 계량할 때 시간제한을 거는데 사용. 캐시는 해당 타임아웃 정각이나 1분 전후로 보고를 해야함. “timeout=60”과 같이 쓰임&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;wont-ask&lt;/td&gt;
-          &lt;td&gt;n&lt;/td&gt;
-          &lt;td&gt;서버&lt;/td&gt;
-          &lt;td&gt;서버는 계량 정보를 원하지 않음.&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래 그림은 Meter 헤더가 사용되는 과정을 나타냅니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/Http The Definitive Guide/meter_example.png&quot; alt=&quot;meter_example.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;클라이언트 입장에선 변하는게 없습니다. 프록시가 서버로 요청을 보낼때 ‘will-report-and-limit’을 보내 사용량을 보고하며 사용 제한에 복종한다고 말합니다.&lt;/li&gt;
-  &lt;li&gt;서버는 프록시에게 리소스를 건네주며 ‘do-report’를 지시했습니다.&lt;/li&gt;
-  &lt;li&gt;프록시는 클라이언트에게 리소스를 건네줍니다.&lt;/li&gt;
-  &lt;li&gt;이후 시간이 흘러 프록시가 갖은 리소스가 신선하지 않아 재검사를 보낼때 Meter에 적중 횟수를 보고 합니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;214-개인-정보-보호에-대해&quot;&gt;21.4. 개인 정보 보호에 대해&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;한편, 로깅은 본래 선의의 목적으로 사용되지만 악용 될 수도 있습니다.&lt;/li&gt;
-  &lt;li&gt;웹 사이트의 사용 기록을 몰래 매매할 수도 있고 수집한 로그로 개인의 사생활을 엿볼 수도 있습니다.&lt;/li&gt;
-  &lt;li&gt;로그를 다루는 개발자라면 항상 이 점을 염두해 두어야 할 것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;웹 프로젝트를 할 때 로그는 프레임워크가 해주는대로 ‘알아서 잘 남겠거니’하고 지나쳤었습니다.&lt;/li&gt;
-  &lt;li&gt;이번 장을 학습한 이후로는 좀 더 적극적으로 로그를 남기고 사용할 수 있을 것 같습니다.&lt;/li&gt;
-&lt;/ul&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>웹 호스팅</title>
+   <title>HTTP 18 - 웹 호스팅</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C18/"/>
    <updated>2020-03-30T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드18</id>
@@ -3348,7 +3602,7 @@ Host : www.joes-hardware.com:80
  </entry>
  
  <entry>
-   <title>내용 협상과 트랜스코딩</title>
+   <title>HTTP 17 - 내용 협상과 트랜스코딩</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C17/"/>
    <updated>2020-03-27T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드17</id>
@@ -3651,7 +3905,7 @@ Content-language: fr, de
  </entry>
  
  <entry>
-   <title>국제화</title>
+   <title>HTTP 16 - 국제화</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C16/"/>
    <updated>2020-03-25T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드16</id>
@@ -4303,7 +4557,7 @@ Accept-Charset: iso-8859-1, utf-8
  </entry>
  
  <entry>
-   <title>엔터티와 인코딩</title>
+   <title>HTTP 15 - 엔터티와 인코딩</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C15/"/>
    <updated>2020-03-24T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드15</id>
@@ -5019,7 +5273,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>보안 HTTP</title>
+   <title>HTTP 14 - 보안 HTTP</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C14/"/>
    <updated>2020-03-23T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드14</id>
@@ -5732,7 +5986,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>다이제스트 인증</title>
+   <title>HTTP 13 - 다이제스트 인증</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C13/"/>
    <updated>2020-03-21T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드13</id>
@@ -6053,7 +6307,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>기본 인증</title>
+   <title>HTTP 12 - 기본 인증</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C12/"/>
    <updated>2020-03-21T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드12</id>
@@ -6221,7 +6475,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>클라이언트 식별과 쿠키</title>
+   <title>HTTP 11 - 클라이언트 식별과 쿠키</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C11/"/>
    <updated>2020-03-20T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드11</id>
@@ -6520,7 +6774,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>HTTP/2.0</title>
+   <title>HTTP 10 - HTTP/2.0</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C10/"/>
    <updated>2020-03-20T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드10</id>
@@ -6650,7 +6904,7 @@ Accept-Ranges: bytes
  </entry>
  
  <entry>
-   <title>웹 로봇</title>
+   <title>HTTP 9 - 웹 로봇</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C9/"/>
    <updated>2020-03-19T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드9</id>
@@ -7055,7 +7309,7 @@ User-agent : ShopBot 1.0
  </entry>
  
  <entry>
-   <title>통합점 - 게이트웨이, 터널, 릴레이</title>
+   <title>HTTP 8 - 통합점 - 게이트웨이, 터널, 릴레이</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C8/"/>
    <updated>2020-03-18T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드8</id>
@@ -7319,7 +7573,7 @@ Proxy-authorization: Basic Tnkmwlq31rWERg
  </entry>
  
  <entry>
-   <title>웹 캐시</title>
+   <title>HTTP 7 - 웹 캐시</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C7/"/>
    <updated>2020-03-17T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드7</id>
@@ -7980,7 +8234,7 @@ Expires : Frie, 05 Jul 2020, 05:00:00 GMT&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>프록시</title>
+   <title>HTTP 6 - 프록시</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C6/"/>
    <updated>2020-03-16T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드6</id>
@@ -9988,33 +10242,52 @@ Content-type : text/plain&lt;/p&gt;
    <link href="http://localhost:4000/posts/googling/etc/Framework-vs-Library/"/>
    <updated>2020-03-16T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/googling/etc/Framework vs Library</id>
-   <content type="html">&lt;h3 id=&quot;프레임워크framework-vs-라이브러리library-firefirefire&quot;&gt;프레임워크(Framework) vs 라이브러리(Library) :fire::fire::fire:&lt;/h3&gt;
+   <content type="html">&lt;h2 id=&quot;프레임워크framework-vs-라이브러리library-firefirefire&quot;&gt;프레임워크(Framework) vs 라이브러리(Library) :fire::fire::fire:&lt;/h2&gt;
 
-&lt;p&gt;예전에 면접 질문들을 정리하다가 Framework와 Library의 차이에 대해 생각해보게 됐습니다.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;여기저기 글을 찾아 헤메던 와중 가장 알기 쉽고 간단하게 정리된 문장을 발견했습니다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;예전에 면접 질문들을 정리하다가 Framework와 Library의 차이에 대해 생각해보게 됐습니다. 여기저기 글을 찾아 헤메던 와중 가장 알기 쉽고 간단하게 정리된 문장을 발견했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;‘라이브러리와 프레임워크의 차이는 제어 흐름에 대한 주도성이 누구에게/어디에 있는가이다.’&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;블로그 이곳 저곳에 흩어져 있던 말이라 어떤 분이 처음 하신 말인지 출처를 찾아 봤는데 &lt;strong&gt;『거꾸로 배우는 소프트웨어 개발 - 이호종』&lt;/strong&gt; 이라는 책이 원 출처인것 같습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;u&gt;**라이브러리와 프레임워크의 차이는 제어 흐름에 대한 주도성이 누구에게/어디에 있는가이다.**&lt;/u&gt;&lt;/p&gt;
+&lt;h2 id=&quot;프레임워크&quot;&gt;프레임워크&lt;/h2&gt;
 
-&lt;p&gt;블로그 이곳 저곳에 흩어져 있던 말이라 어떤 분이 처음 하신 말인지 출처를 찾아 봤더니… &lt;strong&gt;『거꾸로 배우는 소프트웨어 개발 - 이호종』&lt;/strong&gt; 이라는 책이 출처인것 같습니다.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;&lt;strong&gt;프레임워크&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;프레임워크는 프로그램이 흐르는 틀을 제공해줍니다. 개발자의 역할은 프레임워크님이 잘 굴러갈 수 있게 채워줘야 할 부분을 채워주는 것입니다.&lt;/strong&gt; 프로그램 흐름에 대한 제어권은 프레임워크님에게 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스프링 프레임워크를 사용하는데 왜 ‘Dispatcher Servlet’이 ‘Handler Mapping’을 찾아가고 ‘Handler Adapter’를 찾아가고 ‘View Resolver’를 찾아가는지 이유를 알 필요는 있지만 애써 건드릴 필요는 없습니다. 전체적인 흐름은 프레임워크님에게 맡겨 줍시다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;프레임워크는 프로그램이 흐르는 틀을 제공해줍니다. 개발자의 역할은 프레임워크님이 잘 굴러갈 수 있게 채워줘야 할 부분을 채워주는 것입니다.&lt;/strong&gt; 프로그램 흐름에 대한 제어권은 프레임워크님에게 있습니다.&lt;/p&gt;
+&lt;h2 id=&quot;라이브러리-hammer&quot;&gt;라이브러리 :hammer:&lt;/h2&gt;
 
-&lt;p&gt;스프링 프레임워크를 사용하는데 왜 ‘Dispatcher Servlet’이 ‘Handler Mapping’을 찾아가고 ‘Handler Adapter’를 찾아가고 ‘View Resolver’를 찾아가는지 이유를 알 필요는 있지만 애써 건드릴 필요는 없습니다. 전체적인 흐름은 프레임워크님에게 맡겨 줍시다. :&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;&lt;strong&gt;라이브러리&lt;/strong&gt; :hammer:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;라이브러리는 반면 프로그램을 다루는데 필요한 도구들을 제공해줍니다. 프로그램이 전체적으로 어떻게 돌아갈지 결정하는건 개발자 본인입니다.&lt;/strong&gt; 스프링 프레임워크가 없어도 개발자가 원하는대로 진행되는 웹 서비스를 만들 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;Java에서 제공하는 소켓 API는(라이브러리가 아니라 api긴 하지만…) TCP 통신을 할때 유용한 도구 입니다. 이 소켓 API를 잘 휘두루면 본인이 원하는 대로 흘러가는 웹 서비스를 만들 수 있습니다. 주도권은 온전히 개발자에게 있습니다.(책임도.. :weary:)&lt;/p&gt;
-
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;라이브러리는 반면 프로그램을 다루는데 필요한 도구들을 제공해줍니다. 프로그램이 전체적으로 어떻게 돌아갈지 결정하는건 개발자 본인입니다.&lt;/strong&gt; 스프링 프레임워크가 없어도 개발자가 원하는대로 진행되는 웹 서비스를 만들 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;파이썬의 웹 크롤러 라이브러리인 BeautifulSoup은 크롤링을 하는데 필요한 다양한 기능을 제공해줍니다. 하지만 어떤 순서로, 어떻게 크롤링 할지는 프로그래머 마음입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
  <entry>
-   <title>웹 서버</title>
+   <title>HTTP 5 - 웹 서버</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C5/"/>
    <updated>2020-03-15T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드5</id>
@@ -10436,7 +10709,7 @@ Content-type : text/plain&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>커넥션 관리</title>
+   <title>HTTP 4 - 커넥션 관리</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C4/"/>
    <updated>2020-03-13T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드4</id>
@@ -11014,7 +11287,7 @@ Keep-Alive : max=5, timeout=120&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>HTTP 메시지</title>
+   <title>HTTP 3 - HTTP 메시지</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C3/"/>
    <updated>2020-03-12T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드3</id>
@@ -11534,7 +11807,7 @@ Server: Test Server
  </entry>
  
  <entry>
-   <title>URL과 리소스</title>
+   <title>HTTP 2 - URL과 리소스</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C2/"/>
    <updated>2020-03-09T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드2</id>
@@ -11849,7 +12122,214 @@ http://www.joes-hardware.com/inventory-check.cgi?item=12731&amp;amp;color=blue&l
  </entry>
  
  <entry>
-   <title>1장 HTTP 개관</title>
+   <title>쿠팡 지원, 코딩테스트, 면접</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/%EC%BF%A0%ED%8C%A1/"/>
+   <updated>2020-03-08T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/쿠팡</id>
+   <content type="html">&lt;ul&gt;
+  &lt;li&gt;2월 초에 쿠팡 지원했다가 결과나 나온 지 꽤 됐지만, 기록을 남길 겸 해서 끄적여 봅니다!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;쿠팡-지원&quot;&gt;쿠팡 지원&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;퇴사를 결심하고 이직을 준비하던 중 쿠팡 신입개발자 공고를 보았습니다. 쿠팡은 신입 채용보다 경력 채용 비중이 많이 높은 걸로 알고 있어서 신입 채용 공고나 나올거라고 기대하지 않았는데 공고가 떴습니다!&lt;/li&gt;
+  &lt;li&gt;쿠팡에서 이력서 양식을 제공해 주었기 때문에 양식에 맞춰서 꾸역꾸역 채워 넣었습니다.&lt;/li&gt;
+  &lt;li&gt;서류 지원 결과는… 통과!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;쿠팡-코딩테스트&quot;&gt;쿠팡 코딩테스트&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;부랴부랴 코딩테스트를 준비했습니다. 3문제가 나왔는데 정확히 상, 중, 하 난이도로 나왔습니다. 중, 하는 대부분의 지원자들이 풀 수 있을거라 생각했고, 상 문제는 완성까지 하는 사람은 적을거라 생각했습니다. 저도 중, 하를 푼 뒤에 상 문제를 풀다가 제출했습니다.&lt;/li&gt;
+  &lt;li&gt;중, 하 문제는 다른 지원자들도 다 풀었을거라 생각했기에 코딩테스트 합격 할 지 긴가민가 했습니다. 결과는… 합격!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;쿠팡-면접&quot;&gt;쿠팡 면접&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;면접도 회사를 다니며 준비했습니다. 잡플래닛에 있는 모든 면접 후기를 크롤링 하여 질문들을 뽑아냈습니다. CS지식을 많이 물어 본다길래 열심히 준비해 갔습니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;./temp&quot;&gt;간단한 파이썬 잡플래닛 크롤러&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;면접을 보러 갔는데 올해부터 면접의 유형이 바뀌었다고 하며 CS지식을 물어보기 보단, 면접 3시간 내내 1:1 오프라인 코딩테스트를 보고 왔습니다! :flushed:&lt;/li&gt;
+  &lt;li&gt;면접에서 코딩테스트를 보는 건 처음이라 어버버버 했던 것 같습니다. 나름 얘기 많이 하며 제 사고과정을 보여주려 했는데 그냥 말 없이 후딱 푸는데 집중할 걸 그랬습니다.&lt;/li&gt;
+  &lt;li&gt;결과는.. 탈락 ㅜㅜ  회사 재직중에 준비한 면접이라 부족하기도 했고, 당시엔 제출한 이력서 외에 딱히 보여줄 게 없어 어느정도 예상한 결과이긴 했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;여담&quot;&gt;여담&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;비록 떨어졌지만, 애초에 지원할 때 목표가 ‘면접이라도 한 번 보고 오자!’였으니 소기의 목적은 달성한 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;약 2주 뒤 쿠팡에서 탈락 메일이 또 왔습니다! 팀별 재고려 대상이라 한 번 더 심사했다가 떨어졌다는데 팀별 재고려대상까진 갔다는 거에 기뻐해야 할 지, 같은 탈락 메일 두 번 받은 거에 마음 아파 해야할지..&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>잡플래닛 면접 후기 크롤러</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/%EC%9E%A1%ED%94%8C%EB%9E%98%EB%8B%9B-%ED%81%AC%EB%A1%A4%EB%9F%AC/"/>
+   <updated>2020-03-08T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/잡플래닛 크롤러</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;면접 준비하던 중 개인적인 용도로 사용하려 제작 했으나 혹시 쓰실 분들은 참고하셔도 좋을 것 같아 올립니다. 따로 깃헙에 올릴정도는 아니고 그냥 간단한 스크립트 수준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;우선 필요한 모듈을 불러오고 면접 후기들을 담을 Review 클래스를 만듭니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;BeautifulSoup은 파이썬 웹 크롤링에 많이 사용되는 라이브러리라고 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;bs4&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeautifulSoup&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Review&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;department&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;way&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;department&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;department&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;way&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;way&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result_date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result_date&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음으로 로그인 페이지와 Id, Pw, 크롤링할 페이지, 시작~끝 페이지를 설정합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;여기서 중요한건, Id는 잡플래닛 &lt;strong&gt;면접 후기 열람이 가능한 Id여야 합니다!!&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;BASE_URL은 크롤링 시작할 면접 후기 페이지의 1페이지 URL 입니다. (직급, 직종 등 필터링 걸어도 상관 없습니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/public/image/Daily Thoughts/crawler_url.png&quot; alt=&quot;crawler_url.png&quot; /&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;LOGIN_PAGE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://www.jobplanet.co.kr/users/sign_in&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 고정
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'userId'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# id
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;PW&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'userPw'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# pw
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;BASE_URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://www.jobplanet.co.kr/companies/87444/interviews_by_filter?by_occupation=11600&amp;amp;by_job_rank=&amp;amp;by_success=&quot;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 각자 원하는 회사의 면접후기 url
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;BASE_URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'&amp;amp;page='&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 고정
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;51&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 시작 페이지
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;end_page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;104&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 끝 페이지
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음으로 한 페이지를 크롤링 하는 함수를 만들어 줍니다. 작성일 기준의 잡플래닛의 html에 맞게 짜여졌으므로 나중엔 작동 안할 가능성이 큽니다. 입력받은 url을 get 하고 get의 결과를 파싱하는 과정입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_one_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt;&amp;gt; &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# request
+&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# parer
+&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;bs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeautifulSoup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'html.parser'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# sections
+&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;sections&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'section'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'class'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'content_ty4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;reviews_per_page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;# 부서/직급/게시일
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;department_postdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'class'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'content_top_ty2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;department_postdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'span'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'class'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'txt2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'  '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;department&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;department_postdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\xa0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'    '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'|'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+          &lt;span class=&quot;c1&quot;&gt;# 면접일
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'dd.txt1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0000/00'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 없을 수도 있어서
+&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;# 면접 결과
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.now_list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'dd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'  '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+          &lt;span class=&quot;c1&quot;&gt;# 제목
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.us_label'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'No Title'&lt;/span&gt;
+
+          &lt;span class=&quot;c1&quot;&gt;# 본문
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;section_body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.content_body_ty1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;df_tit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section_body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.df_tit'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section_body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.df1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;면접질문&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'No Question'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'면접답변 혹은 면접느낌'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'No answer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'채용방식'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'No 채용방식'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'발표시기'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'No 발표시기'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df_tit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+              &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'  '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+          &lt;span class=&quot;c1&quot;&gt;# 배열에 한 게시글 담음
+&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;reviews_per_page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Review&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;department&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;면접질문&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;면접답변 혹은 면접느낌&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;채용방식&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body_dic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;발표시기&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# 한 페이지에서 가져온 게시글 배열을 리턴
+&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reviews_per_page&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이제 준비는 끝났습니다. request Session을 만들어 로그인 한 다음, 로그인한 세션 안에서 지정한 페이지들을 크롤링 해줍니다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 수 만큼의 request 및 파싱을 동기식으로 처리하기 때문에 조금 느립니다.&lt;/li&gt;
+      &lt;li&gt;비동기적으로 request를 보내 빠르게 크롤링할까 했으나, 파이썬 비동기는 다뤄본 적이 없어 투자대비 효율이 떨어질 것 같아 당시엔 하지 않았습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# 로그인
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOGIN_PAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;LOGIN_INFO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'user[email]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'user[password]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PW&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;login_req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOGIN_PAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOGIN_INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      
+    &lt;span class=&quot;c1&quot;&gt;# 크롤링
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end_page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_one_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BASE_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;파일을 저장해줍니다. 저장 형식은 각자 편한대로 수정하면 될 것 같습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'_'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.txt'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'wt'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'utf-8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;====================================================================&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BASE_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;====================================================================&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;department&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; // 게시일 : &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; // 면접일 : &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; // 결과 : &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt; Title &amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt; 면접질문 &amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt; 면접답변 혹은 면접느낌 &amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt; 채용방식 &amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;way&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt; 발표시기 &amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-------------------------------------------------------&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>HTTP 1 -  HTTP 개관</title>
    <link href="http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C1/"/>
    <updated>2020-03-03T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/http%20the%20definitive%20guide/Http완벽가이드1</id>
@@ -12863,136 +13343,6 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/posts/googling/java/Java3/"/>
-   <updated>2015-03-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/java/Java3</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  2015-03-01-Java3
-&lt;/div&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code class=&quot;highlighter-rouge&quot;&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Example content</title>
    <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2/"/>
    <updated>2015-02-01T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2</id>
@@ -13383,136 +13733,6 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/posts/googling/java/Java2/"/>
-   <updated>2015-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/java/Java2</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  2015-02-01-Java2
-&lt;/div&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code class=&quot;highlighter-rouge&quot;&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Example content</title>
    <link href="http://localhost:4000/posts/googling/python/Python1/"/>
    <updated>2015-01-01T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/googling/python/Python1</id>
@@ -13648,136 +13868,6 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
    <id>http://localhost:4000/posts/googling/network/Network1</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Network1
-&lt;/div&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code class=&quot;highlighter-rouge&quot;&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Example content</title>
-   <link href="http://localhost:4000/posts/googling/java/Java1/"/>
-   <updated>2015-01-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/java/Java1</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  Java1
 &lt;/div&gt;
 
 &lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;

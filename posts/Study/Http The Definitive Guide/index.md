@@ -33,9 +33,13 @@ title: Http 완벽가이드 같이 읽기
 
 ---
 
-{% for post in site.categories['Http The Definitive Guide'] %}
+{% assign list = site.categories['Http The Definitive Guide'] %}
 
-​	[{{ forloop.index }}. {{ post.title }}]({{ post.url }})
+{% assign list = list | reverse %}
+
+{% for post in list %}
+
+​	[{{ post.title }}]({{ post.url }})
 
 {% endfor  %}
 

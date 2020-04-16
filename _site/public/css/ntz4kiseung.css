@@ -25,6 +25,9 @@
  text-align: center;
 }
 
+.border-gray{
+ border : solid 1px rgb(240, 240, 240);
+}
 /* jekyll의 기본 ul padding이 너무 큰거 같아 조절함 */
 ul{
   padding-inline-start: 1em;
