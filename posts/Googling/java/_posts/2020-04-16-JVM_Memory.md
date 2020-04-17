@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JVM 메모리 구조
+title: JVM 메모리 구조(작성중)
 ---
 
 {% assign imgurl=site.imgbase|append: page.categories[-1] %}

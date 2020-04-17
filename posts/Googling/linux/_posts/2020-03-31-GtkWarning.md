@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 우분투(리눅스) GtkWarning
+title: 우분투(리눅스) GtkWarning(작성중)
 ---
 
 {% assign imgurl=site.imgbase|append: page.categories[-1] %}

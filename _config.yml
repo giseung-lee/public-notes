@@ -26,6 +26,10 @@ rootfolder:
          subfolder : false
       Twitch_Chat_Analysis:
          subfolder : false
+      Maehwasan :
+         subfolder : false
+      The_Oyster_Mine :
+         subfolder : false
    Study :
       Http The Definitive Guide : 
          subfolder : false
@@ -37,10 +41,6 @@ rootfolder:
       jekyll :
          subfolder : false
       linux :
-         subfolder : false
-      network :
-         subfolder : false
-      python : 
          subfolder : false
 
 

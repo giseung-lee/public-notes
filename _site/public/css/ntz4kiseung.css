@@ -28,6 +28,11 @@
 .border-gray{
  border : solid 1px rgb(240, 240, 240);
 }
+
+*{
+ line-height : 1.65em;
+}
+
 /* jekyll의 기본 ul padding이 너무 큰거 같아 조절함 */
 ul{
   padding-inline-start: 1em;
