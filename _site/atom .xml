@@ -4,13 +4,90 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-17T22:13:17+09:00</updated>
+ <updated>2020-04-18T22:13:46+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>프로젝트 디렉토리 구조 정리(작성중)</title>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2/"/>
+   <updated>2020-04-18T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo2</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;프로젝트를 진행할 때도 너무 꼴 뵈기 싫었지만, 당시 프로젝트는 하루 하루가 소중했기 때문에 디렉토리 구조를 바꿀 엄두를 못냈습니다.
+    &lt;h2 id=&quot;현재-디렉토리-구조&quot;&gt;현재 디렉토리 구조&lt;/h2&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/dir_now.png&quot; alt=&quot;dir_now.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;일단 한 폴더 안에 DAO, DTO, Controller, Service 모두 있는 것도 이해가 안되지만, 그 한 폴더가 왜 test.mybatis인지는… 왜 그랬을까요?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/dir_now2.png&quot; alt=&quot;dir_now2.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;WebContent는 그나마 나은 편이지만 jsp 파일도 조금 분리해 줄 필요가 있는 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;목표-디렉토리-구조&quot;&gt;목표 디렉토리 구조&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;디렉토리 구조를 개편하기 위해 어떤 방식의 구조를 많이 쓰나 찾아봤습니다. 우선, 공식적으로 추천하는 디렉토리 구조는 따로 없는 것 같았습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;예전에 실무에 나가서 썼던 구조가 직관적으로 사용하기 편하기도 하고, 구글링 해보니 해당 구조를 따르는 사람들도 꽤 있는 것 같아 그 구조를 가져오기로 했습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;com
+ └ Sagyo
+     └ user
+         └ DAO
+         └ VO(DTO)
+         └ Service
+              └ ServiceImpl
+         └ Web(Controller)
+     └ post
+         └ DAO
+         └ VO(DTO)
+         └ Service
+              └ ServiceImpl
+         └ Web(Controller)
+           
+           :
+           
+     └ cs
+         └ DAO
+         └ VO(DTO)
+         └ Service
+              └ ServiceImpl
+         └ Web(Controller)
+     └ common
+          └ util
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;업무별로 크게 나눈 다음, 각 업무별로 DAO, DTO, Service, Web(Controller)를 만듭니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이런 구조를 따르고 싶은데 현재 저의 프로젝트엔 Service가 없습니다. 단순한 업무들이라 바로 DAO에 연결 시켰는데 DAO에 연결된 쿼리들을 나눠서 Service로 뺄까 생각중입니다… (근데 이러면 일이 좀 커질것 같은데)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(작성중)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>The Oyster Mine</title>
@@ -22,10 +99,10 @@
  </entry>
  
  <entry>
-   <title>매화산 등산경로 분석</title>
-   <link href="http://localhost:4000/posts/projects/maehwasan/Maehwasan/"/>
+   <title>황매산 등산경로 분석</title>
+   <link href="http://localhost:4000/posts/projects/hwangmaesan/Maehwasan/"/>
    <updated>2020-04-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/projects/maehwasan/Maehwasan</id>
+   <id>http://localhost:4000/posts/projects/hwangmaesan/Maehwasan</id>
    <content type="html">&lt;p&gt;redirect!&lt;/p&gt;
 </content>
  </entry>
@@ -688,7 +765,7 @@ console.log(response); --&amp;gt; 'something'
  </entry>
  
  <entry>
-   <title>기존 Sagyo 프로젝트 알아보기.</a></title>
+   <title>기존 Sagyo 프로젝트 알아보기.</title>
    <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1/"/>
    <updated>2020-04-05T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1</id>
