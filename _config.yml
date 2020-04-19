@@ -33,6 +33,10 @@ rootfolder:
    Study :
       Http The Definitive Guide : 
          subfolder : false
+      C_Kim_Pope :
+         subfolder : false
+      MSA_Ken_Krueger :
+         subfolder : false
    Googling :
       etc :
          subfolder : false

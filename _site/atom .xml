@@ -4,13 +4,31 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-18T22:13:46+09:00</updated>
+ <updated>2020-04-19T15:23:40+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>MSA 구조 적용(작성중)</title>
+   <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3/"/>
+   <updated>2020-04-19T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;MSA구조를 적용하기 위해 MSA에 관한 &lt;a href=&quot;http://localhost:4000/posts/Study/MSA_Ken_Krueger/&quot;&gt;기초 강의&lt;/a&gt;를 듣는 중입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;기초 강의 학습이 완료되면 적용들어갑니다!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>프로젝트 디렉토리 구조 정리(작성중)</title>
