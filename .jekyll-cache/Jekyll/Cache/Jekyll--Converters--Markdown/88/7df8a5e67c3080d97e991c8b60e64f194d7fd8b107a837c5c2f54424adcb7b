@@ -1,0 +1,145 @@
+I"�
+<ul>
+  <li>
+    <p>(작성중) AOP 부분만 보완하면 됨</p>
+  </li>
+  <li>Spring 특징이라고 검색하면 무조건 나오는 3개만 정리해둡니다.
+    <ul>
+      <li>POJO</li>
+      <li>IoC / DI</li>
+      <li>AOP</li>
+    </ul>
+  </li>
+  <li>기존에 여기저기 주워 들어 알고 있던 지식과 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html">Spring 공식 Document</a>를 참고했습니다.</li>
+</ul>
+
+<h3 id="pojo">POJO</h3>
+
+<hr />
+
+<ul>
+  <li>Plain Old Java Object로 구성가능합니다. 즉, 어플리케이션을 위한 다른 라이브러리 등을 익힐 필요 없이 순수한 Java의 객체들로만 작성할 수 있다는 것입니다.</li>
+  <li>스프링이 없던 과거의 웹 개발자분들은 직접 Servlet 클래스를 구현해 웹 어플리케이션을 만들어야 했습니다. (학원에서 스프링 배우기 이전에 ‘원래 이런 방식으로 구현되니 알아만 둬라’라며 Servlet 클래스의 doGet과 doPost를 구현했던 기억이 납니다.) 그런데 Servlet 클래스는 순수한 자바 클래스는 아닙니다. 웹 개발을 위해 끌어와야할 외부 클래스입니다.</li>
+  <li>POJO는 이런 외부 클래스의 작성 없이, 개발자는 기존에 알던 Java만 사용해도 된다는 것입니다. (근데 이제 Java를 아는 것보다 Spring을 아는게 더 큰 일이 되버린것 같습니다..)</li>
+</ul>
+
+<h3 id="ioc--di">IoC / DI</h3>
+
+<hr />
+
+<ul>
+  <li>Spring의 공식 Document 중 Core 부분 Document에서 가장 처음 나오는 것이 IoC Container 입니다. 그리고, IoC Container에서 IoC의 개념에 대한 간략한 설명이 나와 있습니다.</li>
+</ul>
+
+<blockquote>
+  <p> IoC is also known as dependency injection (DI).</p>
+
+  <p> It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.</p>
+
+  <p> The container then injects those dependencies when it creates the bean.</p>
+
+  <p> <strong>This process is fundamentally the inverse (hence the name, Inversion of Control) of the bean itself controlling the instantiation</strong> or location of its dependencies by using direct construction of classes or a mechanism such as the Service Locator pattern.</p>
+</blockquote>
+
+<ul>
+  <li>IoC는 DI 라고도 알려져있습니다.</li>
+  <li>IoC는 객체가 <strong>자신의 의존성을 정의하는 방법</strong>입니다. 정의하는 방법은 아래의 과정을 통해서만 가능합니다.
+    <ul>
+      <li>생성자 전달인자 (constructor arguments)</li>
+      <li>Factory 메서드로 전달된 전달인자 (arguments to a factory method)</li>
+      <li>생성되거나 Factory method로 부터 돌려받은 객체 인스턴스에 설정된 property들 (properties that are set on the object instance after it is constructed or returned from a factory method.)</li>
+    </ul>
+  </li>
+  <li><strong>해당 객체가 만들어질때 IoC 컨테어너가 의존성을 주입해줍니다.</strong></li>
+  <li><strong>이 과정은 bean 자체가 만들어질 때의 과정과 근본적으로 반대입니다.</strong> (Service Locator pattern같은 걸 이용해 의존성의 위치를 바꾼다는 내용은 아직 잘 모르겠습니다… :cry:)</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>간단하게 말하자면, IoC는 객체간의 의존성을 만들 때 기존의 방법과 반대의 방법을 사용한다는 뜻입니다. 말 그대로 Inversion of Control 입니다. 그리고 반대의 방법을 사용할 때 필요한게 의존성 주입(Dependency Injection)입니다.</p>
+  </li>
+  <li>
+    <p>Coffee 객체를 만들기 위해 EthiopiaBean 객체가 필요한 상황을 가정합시다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Coffee</span><span class="o">{</span>
+	<span class="nc">EthiopiaBean</span> <span class="n">bean</span><span class="o">;</span>
+	<span class="nc">Coffee</span><span class="o">(){</span>
+		<span class="n">bean</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EthiopiaBean</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="o">:</span>
+<span class="o">}</span>
+  
+<span class="kd">class</span> <span class="nc">EthiopiaBean</span><span class="o">{</span>
+	<span class="o">:</span>
+<span class="o">}</span>
+  
+<span class="kd">class</span> <span class="nc">KenyaBean</span><span class="o">{</span>
+    <span class="o">:</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>순수한 자바의 상황이라면, Coffee객체를 만드는 와중에 EthiopiaBean객체를 만들게 됩니다.</p>
+      </li>
+      <li>이 상황에서 Coffee 객체에 필요한 커피 원두를 KenyaBean으로 바꾸고 싶다면 Coffee 객체 코드를 수정해야 합니다. 지금은 Coffee 객체와 EthiopiaBean 객체의 결합도가 높다고 볼 수 있습니다.</li>
+      <li>IoC / DI를 이용해 객체간의 결합도를 낮출 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>다음과 같이 상황을 바꿀 수 있습니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Coffee</span><span class="o">{</span>
+	<span class="nd">@Autowired</span>
+	<span class="nc">CoffeeBean</span> <span class="n">bean</span><span class="o">;</span>
+	<span class="o">:</span>
+<span class="o">}</span>
+  
+<span class="kd">interface</span> <span class="nc">CoffeeBean</span><span class="o">{</span>
+	<span class="o">:</span>
+<span class="o">}</span>
+  
+<span class="kd">class</span> <span class="nc">EthiopiaBean</span><span class="o">{</span>
+	<span class="o">:</span>
+<span class="o">}</span>
+  
+<span class="kd">class</span> <span class="nc">KenyaBean</span><span class="o">{</span>
+    <span class="o">:</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Coffee 클래스엔 커피 원두의 interface만 남기고 직접적인 결합은 피해줍니다.</li>
+      <li>위 코드엔 없지만 spring의 설정 파일을 통해 CoffeeBean에 어떤 커피 원두가 들어갈 지 설정해둡니다. (여기선 KenyaBean으로 설정해 두었다고 가정합시다.)</li>
+      <li>Coffee 객체가 만들어 질 때, 스프링 IoC 컨테이너가 KenyaBean 객체를 따로 만들어 Coffee 객체의 생성 과정에 주입해 줍니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>기존엔 EthiopiaBean 객체가 만들어지려면 Coffee 객체의 생성이 필요했습니다. 하지만 이제 반대로 Coffee 객체의 생성을 위해선 KenyaBean 의 생성이 필요해졌습니다. Dependency Injection을 통해 Inversion of Control이 되어 버린 것입니다.</p>
+  </li>
+</ul>
+
+<h3 id="aop">AOP</h3>
+
+<hr />
+
+<ul>
+  <li>AOP(aspect oriented programming)이란 쉽게 말해 보조적인 업무와 핵심 업무를 나눠 생각하겠다는 것입니다.
+    <ul>
+      <li>로그, 예외 처리 같이 업무의 핵심은 아니지만 모든 업무마다 발생하는 보조업무들을 프로그래머들이 신경쓰지 않게 하기 위한 기법입니다.</li>
+      <li>주업무 전, 후, 전후 언제 돌아갈지 정할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>동작 과정을 더 구체적으로 알아보겠습니다.
+    <ul>
+      <li>보조업무가 주업무가 이루어지는 객체 자체를 찾아가는게 아닙니다.</li>
+      <li>proxy라는 dummy 객체가 있습니다. 보조업무는 proxy를 찾아갑니다. proxy가 보조업무와 주업무를 실행 시킵니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/java/aop-no-proxy.png" alt="aop-no-proxy.png" /><small>출처 : https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring</small></p>
+
+:ET
