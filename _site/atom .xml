@@ -4,13 +4,198 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-19T15:23:40+09:00</updated>
+ <updated>2020-04-20T19:39:13+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>C Unmanaged Programming 1 - 과목 소개</title>
+   <link href="http://localhost:4000/posts/study/c_kim_pope/C1/"/>
+   <updated>2020-04-20T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/c_kim_pope/C1</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 포스팅은 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;Kim Pope 선생님의 C 언매니지드 프로그래밍 강의&lt;/a&gt;를 정리하며 사견을 붙인 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포스팅 내 목차는 동영상강의 기준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-사용-서비스-및-도구&quot;&gt;1. 사용 서비스 및 도구&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;해당강의의 수강생은 두 종류가 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;비디오만 보는 사람 (저에 해당)&lt;/li&gt;
+      &lt;li&gt;POCU 아카데미에서 학기제로 과제, 중간, 기말도 보는 사람&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;슬라이드에 POCU Only 써 있는건 POCU 아카데미 학생들에만 해당됩니다..&lt;/li&gt;
+  &lt;li&gt;기타 사용 프로그램 및 운영체제 등 소개&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-강의-시청&quot;&gt;2. 강의 시청&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;강의 슬라이드는 별도제공 하지 않습니다. 스스로 필기하는 걸 권장.&lt;/li&gt;
+  &lt;li&gt;직접 정리하는게 학습 효과가 좋다고 판단하심. (개인적으론 강의 슬라이드도 받고, 따로 개인 정리도 하는 편인데 어쩔 수 없죠 :cry:)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-중요-정보&quot;&gt;3. 중요 정보&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POCU 아카데미 학생들에게만 적용되는 정보&lt;/li&gt;
+  &lt;li&gt;금전적, 시간적 여유가 있었다면 학기제로 참여하고 싶숩니다.. ㅜㅜ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-실습과-과제-진행하기&quot;&gt;4. 실습과 과제 진행하기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이것도 POCU ONLY 내용이긴한데 실습, 과제 매주 진행되며 실시간 채점 가능. 선생님이 권장하는 코딩 표준도 존재.&lt;/li&gt;
+  &lt;li&gt;채점 안받아도 실습, 과제 문제는 보고 싶은데… 안되나.. 씁..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-질문은-어디서-어떻게-해야하나요&quot;&gt;5. 질문은 어디서, 어떻게 해야하나요?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POCU ONLY. 슬랙에서 질문가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-선수-과목&quot;&gt;6. 선수 과목&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원래 이 앞에 두 과목이 선수과목으로 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;프로그래밍 입문&lt;/li&gt;
+      &lt;li&gt;소프트웨어 공학용 수학&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;for문, if문, int 같은 정말 기본 프로그래밍 입문은 여기선 ‘C에선 이걸 이렇게 쓴다’ 식으로만 설명합니다. 저는 패스해도 될 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;소프트웨어 공학용 수학은 듣고 싶긴한데.. 그래도 그냥 수학은 잘하니까… 음.. 중간중간 채워가는 식으로 보완하면 될 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;7-수업-일정&quot;&gt;7. 수업 일정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C 언어는 표준에 따라 몇 가지가 있습니다. 근데 큰 차이는 없습니다.
+    &lt;ul&gt;
+      &lt;li&gt;C89/ANSI-C : 1989년에 나온 표준. 가장 기본이 되는 표준. C의 핵심 내용들. 제 학습 목표를 만족시키기 위해선 이 부분을 빡세게 해줘야 할 것 같습니다.&lt;/li&gt;
+      &lt;li&gt;C99 : 여러 기능이 추가됐습니다.&lt;/li&gt;
+      &lt;li&gt;C11 : C99를 대체하는 표준.&lt;/li&gt;
+      &lt;li&gt;C18 : 신규 기능은 없고 C11의 결함만 수정.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;현재 볼 수 있는 웬만한 C코드는 C89에서도 돌아가게 되어있음.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;8-슬라이드-표기법-소개&quot;&gt;8. 슬라이드 표기법 소개&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;슬라이드 위에 뇌 아이콘, 책 아이콘이 있는데
+    &lt;ul&gt;
+      &lt;li&gt;뇌 아이콘 : 어디서든 사용되고, 매우 중요하며, 꼭 이해해야 할 것&lt;/li&gt;
+      &lt;li&gt;책 아이콘 : 일부에서 사용되고, 그냥 있는것만 알면되며, 실제 필요할 때 찾아쓰면 되는 것&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;9-c를-배워야-하는-이유&quot;&gt;9. C를 배워야 하는 이유&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C언어가 곧 죽을 것이라는 건 20년 넘은 주장이라고 합니다.(COBOL 처럼) 하지만 아직도 중요하고 실제로 사용되고 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;2019년 7월 언어 순위 2위  &lt;a href=&quot;https://www.tiobe.com/tiobe-index/&quot;&gt;https://www.tiobe.com/tiobe-index/&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;2001년 이후 계속 1, 2위 왔다 갔다 하는 중&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C/C++ 같은 언매니지드 언어는 영역이 확고합니다. 대체 할 수 있는 언어가 없습니다. 성능이 필요한 곳에선 반드시 필요하고, 다른 언어들의 라이브러리, 모듈들도 C/C++로 작성됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;훌륭한 프로그래머가 되려면 Managed 언어 / Unmanaged 언어 둘다 할 줄 알아야 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C/C++ 사용 분야&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;운영체제&lt;/li&gt;
+      &lt;li&gt;임베디드 시스템&lt;/li&gt;
+      &lt;li&gt;게임&lt;/li&gt;
+      &lt;li&gt;그래픽 어플리케이션(포토샵, 일러스트레이터 등..)&lt;/li&gt;
+      &lt;li&gt;웹 브라우저&lt;/li&gt;
+      &lt;li&gt;의료 기기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;10-언매니지드-언어로써의-c&quot;&gt;10. 언매니지드 언어로써의 C&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여기가 제가 이 강의를 듣는 이유입니다. 언매니지드 언어를 배움으로서 얻을 수 있는 것들
+    &lt;ul&gt;
+      &lt;li&gt;메모리 동작원리&lt;/li&gt;
+      &lt;li&gt;CPU 동작원리&lt;/li&gt;
+      &lt;li&gt;컴퓨터처럼 생각하는 방법&lt;/li&gt;
+      &lt;li&gt;매니지드 언어 기능들의 동작 원리&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로그램이 하드웨어 수준에서 어떻게 돌아가는 지 알고, 어떻게 하면 더 효율적으로 돌아가는 지 아는 것이 목표입니다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;선생님은 언매니지드 언어를 최소 1년 정도는 익히는걸 추천하지만.. 후.. 1년만 일찍 프로그래밍 시작할걸 그랬습니다. :cry:&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;포인터를 이해하는 것도 중요합니다.
+    &lt;ul&gt;
+      &lt;li&gt;메모리에 직접 접근 가능.&lt;/li&gt;
+      &lt;li&gt;메모리에 직접 접근 가능한 만큼 다루기 까다롭고 위험하지만, 잘 쓰면 그만큼 좋은게 없습니다. &lt;small&gt;잘써야지&lt;/small&gt;&lt;/li&gt;
+      &lt;li&gt;간접참조(indirection) 개념을 훈련할 수 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;indirection은 OOP에서 함수 호출할 때나, 재귀 자료형에나 등등 사용됩니다.&lt;/li&gt;
+          &lt;li&gt;얕은복사/깊은복사 개념 역시 indirection을 알아야 합니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;11-c는-모든-언어의-어머니&quot;&gt;11. C는 모든 언어의 어머니&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C++, Python, PHP, Java, JavaScript, C# 모두 C의 영향을 받은 언어들입니다.&lt;/li&gt;
+  &lt;li&gt;어찌됐든, 언매니지드언어, 컴퓨터와 친해져야 고오급 프로그래머가 될 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;부품처럼 사용되는 개발자에서 벗어나 10년, 20년 벽에 똥칠할 때까지 개발하기 위해선 컴퓨터를 알아야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>MSA 구조 적용(작성중)</title>
@@ -141,18 +326,17 @@
    <id>http://localhost:4000/posts/googling/java/Spring특징</id>
    <content type="html">
 &lt;ul&gt;
-  &lt;li&gt;Spring 특징이라고 검색하면 무조건 나오는 4개만 정리해둡니다.
+  &lt;li&gt;
+    &lt;p&gt;(작성중) AOP 부분만 작성하면 됨&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Spring 특징이라고 검색하면 무조건 나오는 3개만 정리해둡니다.
     &lt;ul&gt;
       &lt;li&gt;POJO&lt;/li&gt;
-      &lt;li&gt;AOP
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&quot;&gt;https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;http://egloos.zum.com/aretias/v/708477&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;DI / IoC&lt;/li&gt;
+      &lt;li&gt;IoC / DI&lt;/li&gt;
+      &lt;li&gt;AOP&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;기존에 여기저기 주워 들어 알고 있던 지식과 &lt;a href=&quot;https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html&quot;&gt;Spring 공식 Document&lt;/a&gt;를 참고했습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;pojo&quot;&gt;POJO&lt;/h3&gt;
@@ -160,8 +344,107 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Plain Old Java Object로 구성가능합니다. 즉, 프레임워크를 위한 새로운 언어를 익힐 필요 없이 Java로 작성할 수 있다는 것입니다.&lt;/li&gt;
-  &lt;li&gt;프로그래밍에 워낙 많은 기술들이 쏟아지다 보니 기존 지식을 재사용할 수 있다는 것 만으로도 큰 메리트인 것 같습니다. Javascript 기반의 기술들이 쏟아지는 것과 같이.&lt;/li&gt;
+  &lt;li&gt;Plain Old Java Object로 구성가능합니다. 즉, 어플리케이션을 위한 다른 라이브러리 등을 익힐 필요 없이 순수한 Java의 객체들로만 작성할 수 있다는 것입니다.&lt;/li&gt;
+  &lt;li&gt;스프링이 없던 과거의 웹 개발자분들은 직접 Servlet 클래스를 구현해 웹 어플리케이션을 만들어야 했습니다. (학원에서 스프링 배우기 이전에 ‘원래 이런 방식으로 구현되니 알아만 둬라’라며 Servlet 클래스의 doGet과 doPost를 구현했던 기억이 납니다.) 그런데 Servlet 클래스는 순수한 자바 클래스는 아닙니다. 웹 개발을 위해 끌어와야할 외부 클래스입니다.&lt;/li&gt;
+  &lt;li&gt;POJO는 이런 외부 클래스의 작성 없이, 개발자는 기존에 알던 Java만 사용해도 된다는 것입니다. (근데 이제 Java를 아는 것보다 Spring을 아는게 더 큰 일이 되버린것 같습니다..)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ioc--di&quot;&gt;IoC / DI&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring의 공식 Document 중 Core 부분 Document에서 가장 처음 나오는 것이 IoC Container 입니다. 그리고, IoC Container에서 IoC의 개념에 대한 간략한 설명이 나와 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt; IoC is also known as dependency injection (DI).&lt;/p&gt;
+
+  &lt;p&gt; It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.&lt;/p&gt;
+
+  &lt;p&gt; The container then injects those dependencies when it creates the bean.&lt;/p&gt;
+
+  &lt;p&gt; &lt;strong&gt;This process is fundamentally the inverse (hence the name, Inversion of Control) of the bean itself controlling the instantiation&lt;/strong&gt; or location of its dependencies by using direct construction of classes or a mechanism such as the Service Locator pattern.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IoC는 DI 라고도 알려져있습니다.&lt;/li&gt;
+  &lt;li&gt;IoC는 객체가 &lt;strong&gt;자신의 의존성을 정의하는 방법&lt;/strong&gt;입니다. 정의하는 방법은 아래의 과정을 통해서만 가능합니다.
+    &lt;ul&gt;
+      &lt;li&gt;생성자 전달인자 (constructor arguments)&lt;/li&gt;
+      &lt;li&gt;Factory 메서드로 전달된 전달인자 (arguments to a factory method)&lt;/li&gt;
+      &lt;li&gt;생성되거나 Factory method로 부터 돌려받은 객체 인스턴스에 설정된 property들 (properties that are set on the object instance after it is constructed or returned from a factory method.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;해당 객체가 만들어질때 IoC 컨테어너가 의존성을 주입해줍니다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;이 과정은 bean 자체가 만들어질 때의 과정과 근본적으로 반대입니다.&lt;/strong&gt; (Service Locator pattern같은 걸 이용해 의존성의 위치를 바꾼다는 내용은 아직 잘 모르겠습니다… :cry:)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;간단하게 말하자면, IoC는 객체간의 의존성을 만들 때 기존의 방법과 반대의 방법을 사용한다는 뜻입니다. 말 그대로 Inversion of Control 입니다. 그리고 반대의 방법을 사용할 때 필요한게 의존성 주입(Dependency Injection)입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Coffee 객체를 만들기 위해 EthiopiaBean 객체가 필요한 상황을 가정합시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;EthiopiaBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EthiopiaBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EthiopiaBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KenyaBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;순수한 자바의 상황이라면, Coffee객체를 만드는 와중에 EthiopiaBean객체를 만들게 됩니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;이 상황에서 Coffee 객체에 필요한 커피 원두를 KenyaBean으로 바꾸고 싶다면 Coffee 객체 코드를 수정해야 합니다. 지금은 Coffee 객체와 EthiopiaBean 객체의 결합도가 높다고 볼 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;IoC / DI를 이용해 객체간의 결합도를 낮출 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같이 상황을 바꿀 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;CoffeeBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CoffeeBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EthiopiaBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KenyaBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Coffee 클래스엔 커피 원두의 interface만 남기고 직접적인 결합은 피해줍니다.&lt;/li&gt;
+      &lt;li&gt;위 코드엔 없지만 spring의 설정 파일을 통해 CoffeeBean에 어떤 커피 원두가 들어갈 지 설정해둡니다. (여기선 KenyaBean으로 설정해 두었다고 가정합시다.)&lt;/li&gt;
+      &lt;li&gt;Coffee 객체가 만들어 질 때, 스프링 IoC 컨테이너가 KenyaBean 객체를 따로 만들어 Coffee 객체의 생성 과정에 주입해 줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;기존엔 EthiopiaBean 객체가 만들어지려면 Coffee 객체의 생성이 필요했습니다. 하지만 이제 반대로 Coffee 객체의 생성을 위해선 KenyaBean 의 생성이 필요해졌습니다. Dependency Injection을 통해 Inversion of Control이 되어 버린 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;aop&quot;&gt;AOP&lt;/h3&gt;
@@ -185,42 +468,87 @@
 
 &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-no-proxy.png&quot; alt=&quot;aop-no-proxy.png&quot; /&gt;&lt;small&gt;출처 : https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&lt;/small&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;di--ioc&quot;&gt;DI / IoC&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;자바에서 객체 생성 관리 방법은 has-a관계로 A클래스 안에서 B클래스 인스턴스 생성을 합니다.&lt;/li&gt;
-  &lt;li&gt;예를들어 A클래스의 인스턴스를 생성하는데 B클래스가 필요하다고 할때, 일반적인 객체 생성 과정은 A클래스의 인스턴스를 만드는 과정에서 B클래스의 인스턴스도 만들어짐.&lt;/li&gt;
-  &lt;li&gt;이런 관계는 객체간의 결합도가 높기 때문에 유연성이 떨어짐.&lt;/li&gt;
-  &lt;li&gt;이를 낮춰 주는 방법이 Dependency Injection임.
-    &lt;ul&gt;
-      &lt;li&gt;A클래스에서 B인스턴스를 만드는게 아니라 B인스턴스를 따로 만든 뒤, A인스턴스를 만들때 B인스턴스를 Injection 해주는 거임.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;IoC는 DI과정에서 이루어집니다.
-    &lt;ul&gt;
-      &lt;li&gt;일반적인 자바 객체 생성과정이라면 A인스턴스를 만들기 시작하고 그 안에서 B인스턴스를 만듬. 즉, 상위 객체부터 생성함.&lt;/li&gt;
-      &lt;li&gt;하지만 DI를 하기 위해선 하위 객체를 생성한 뒤 상위 객체를 생성할 때 하위 객체를 Inject해줌.&lt;/li&gt;
-      &lt;li&gt;기존의 객체 생성과정과 반대로 제어권이 넘어간다고 해서 Inversion of Control임.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
 </content>
  </entry>
  
  <entry>
-   <title>Spring의 동작 과정(작성중)</title>
+   <title>Spring MVC의 동작 과정</title>
    <link href="http://localhost:4000/posts/googling/java/Spring-%EB%8F%99%EC%9E%91%EA%B3%BC%EC%A0%95/"/>
    <updated>2020-04-16T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/googling/java/Spring 동작과정</id>
    <content type="html">
 &lt;ul&gt;
-  &lt;li&gt;Spring의 동작 과정을 알아봅시다!&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Spring MVC의 동작 과정을 알아봅시다!&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;참고한 &lt;a href=&quot;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&quot;&gt;사이트&lt;/a&gt;에는 각 요소들의 구현체들도 소개해주는데, 거기까진 가지 않고 아래 다이어그램으로 알 수 있는 큰 흐름만 살펴봅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래 다이어그램을 보시면 알겠지만, 이 많은 과정에서 개발자가 직접 작성해야 될 부분은 보라색, 연두색 부분 밖에 없습니다. 갓스프링…&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/RequestLifecycle.png&quot; alt=&quot;RequestLifecycle.png&quot; /&gt;&lt;small&gt;출처 : http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html#id2&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/RequestLifecycle.png&quot; alt=&quot;RequestLifecycle.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&quot;&gt;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
 
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet 이 요청을 받습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet은 HandlerMapping에게 해당 요청을 다룰 Controller가 누구인지 찾아달라고 합니다. HandlerMapping은 요청 URL을 읽어 적합한 (selected hander)와 Controller를 찾아 DispatcherServlet에게 알려줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispathcerServlet은 돌려받은 Controller를 실행 시키는 일을 HandlerAdapter에게 넘겨줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HandlerAdapter가 Controller의 비즈니스 로직을 호출합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Controller는 정해진 비즈니스 로직을 수행하고, 수행한 결과를 Model담고, 결과를 보여줄 View의 이름을 HandlerAdapter에게 넘겨줍니다. (View자체를 넘기는게 아니라 View의 logical한 이름만 돌려줍니다. 실제 View를 찾는건 다음 과정입니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet은 View의 이름을 Resolve 하는 일을 ViewResolver에게 넘겨줍니다. ViewResolver는 넘겨받은 View의 이름을 토대로 적절한 View 오브젝트를 찾아줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet은 렌더링 과정을 View에게 넘겨줍니다.(여기서 View는 ViewResolver가 찾아준 View)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;View가 Model에 있는 데이터를 이용해 렌더링하고 응답을 돌려줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;아래는 위 다이어그램에 대한 원문입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet receives the request.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet dispatches the task of selecting an appropriate controller to HandlerMapping. HandlerMapping selects the controller which is mapped to the incoming request URL and returns the (selected Handler) and Controller to DispatcherServlet.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet dispatches the task of executing of business logic of Controller to HandlerAdapter.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HandlerAdapter calls the business logic process of Controller.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Controller executes the business logic, sets the processing result in Model and returns the logical name of view to HandlerAdapter.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet dispatches the task of resolving the View corresponding to the View name to ViewResolver. ViewResolver returns the View mapped to View name.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DispatcherServlet dispatches the rendering process to returned View.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;View renders Model data and returns the response.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 </content>
  </entry>
  
@@ -231,22 +559,15 @@
    <id>http://localhost:4000/posts/googling/java/JVM_Memory</id>
    <content type="html">
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;이미 많은 포스팅들이 JVM 메모리 구조를 설명하고 있습니다. 본 포스팅은 저의 이해를 돕고자 남기는 포스팅입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;본 포스팅은 다음 링크들을 토대로 작성되었습니다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://javatutorial.net/jvm-explained&quot;&gt;https://javatutorial.net/jvm-explained&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.geeksforgeeks.org/java-memory-management/&quot;&gt;https://www.geeksforgeeks.org/java-memory-management/&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;(작성중) - Stack, Heap, Method 메모리 다이어그램만 그리던가 괜찮은거 찾아오고 끝내면 될 것 같음&lt;/li&gt;
+  &lt;li&gt;이미 많은 포스팅들이 JVM 메모리 구조를 설명하고 있습니다. 본 포스팅은 저의 이해를 돕고자 남기는 포스팅입니다.&lt;/li&gt;
+  &lt;li&gt;많은 곳을 참고했고 내용 역시 거진 비슷하여 따로 출처를 남기지 않았습니다. 다만, PC Register와 Native Method Stack의 경우 포스팅 마다 내용이 상이해서 jvm 공식 문서를 참고했습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/jvm-architecture.png&quot; alt=&quot;jvm-architecture.png&quot; /&gt;&lt;small&gt;출처 : https://javatutorial.net/jvm-explained&lt;/small&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;class 파일이 로드되고 링크하는 과정이나, GC같은 Execution Engine이 작동하는 방식은 뒤로하고, 이번 포스팅에선 위의 다이어그램중 Runtime Data Area에 대해 알아봅니다.&lt;/li&gt;
+  &lt;li&gt;이번 포스팅에선 위의 다이어그램중 Runtime Data Area에 대해 알아봅니다.&lt;/li&gt;
   &lt;li&gt;Runtime Area에는 크게 다섯가지 영역이 존재합니다.
     &lt;ul&gt;
       &lt;li&gt;Heap Area&lt;/li&gt;
@@ -254,6 +575,36 @@
       &lt;li&gt;Stack Area&lt;/li&gt;
       &lt;li&gt;PC Register&lt;/li&gt;
       &lt;li&gt;Native Method Stacks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;method-area&quot;&gt;Method Area&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;로드한 class 와 관련한 데이터들이 저장됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;JVM이 시작될 때 생성됩니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;클래스의 메서드에 관한 정보들이 저장됩니다.&lt;/li&gt;
+      &lt;li&gt;static 변수(class 변수, 멤버 변수), static 메서드들이 이곳에 저장됩니다.
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;static 메서드는 객체를 만들지 않아도 사용할 수 있는데, 클래스를 로드할 때 static 메서드를 미리 로드하기 때문입니다.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -274,31 +625,6 @@
   &lt;li&gt;GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 Eden-Survivor-Tenure 영역으로 나뉩니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;method-area&quot;&gt;Method Area&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Heap Area의 logical part입니다.
-    &lt;ul&gt;
-      &lt;li&gt;마찬가지로 JVM이 시작될 때 생성됩니다.&lt;/li&gt;
-      &lt;li&gt;마찬가지로 한 JVM에 하나의 Method Area가 존재합니다.&lt;/li&gt;
-      &lt;li&gt;역시 마찬가지로 여러 스레드가 공유합니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;class 레벨의 데이터가 저장됩니다.
-    &lt;ul&gt;
-      &lt;li&gt;static 변수(class 변수, 멤버 변수)들이 이곳에 저장됩니다.
-        &lt;ul&gt;
-          &lt;li&gt;static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.&lt;/li&gt;
-          &lt;li&gt;static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;이름 그대로 메서드에 관한 정보들도 저장됩니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;h3 id=&quot;stack-area&quot;&gt;Stack Area&lt;/h3&gt;
 
 &lt;hr /&gt;
@@ -311,6 +637,9 @@
       &lt;li&gt;스레드가 생성될 때 하나의 Stack이 생성됩니다.&lt;/li&gt;
       &lt;li&gt;크기를 고정적으로 줄 수도 있고, 동적으로 할당되게 할 수도 있습니다.&lt;/li&gt;
     &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;하나의 메소드를 호출 할 때마다 메소드의 frame을 스택에 추가합니다. 메소드가 종료되면 프레임이 제거 됩니다.  frame을 통해 흔히 알고 있는 변수들의 scope가 정해집니다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;지역 변수들이 저장됩니다. 지역변수들은 Heap에 할당된 인스턴스 참조 주소를 갖고 있습니다.&lt;/p&gt;
@@ -340,9 +669,25 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;PC = Program Counter&lt;/li&gt;
-  &lt;li&gt;한 스레드에 하나의 PC Register가 생성됩니다.&lt;/li&gt;
-  &lt;li&gt;명령이 실행될 때, 현재 실행중인 명령의 주소를 가지고 있습니다.(말 그대로 Program을 Count 합니다.)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;PC = Program Counter&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;한 스레드에 하나의 PC Register가 생성됩니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;Each Java Virtual Machine thread has its own &lt;code class=&quot;highlighter-rouge&quot;&gt;pc&lt;/code&gt; (program counter) register&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;현재 수행중인 JVM 명령 주소가 저장됩니다.&lt;/strong&gt; 단, 현재 수행중인게 자바 프로그램이 아닌 외부 Native 프로그램이라면 저장되지 않습니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;If that method is &lt;code class=&quot;highlighter-rouge&quot;&gt;not native&lt;/code&gt;, the pc register contains the address of the Java Virtual Machine &lt;code class=&quot;highlighter-rouge&quot;&gt;instruction currently being executed.&lt;/code&gt; If the method currently being executed by the thread is &lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt;, the value of the Java Virtual Machine’s pc register is &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined.&lt;/code&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;small&gt;출처 : https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-2.html#jvms-2.5.1&lt;/small&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;native-method-stack&quot;&gt;Native Method Stack&lt;/h3&gt;
@@ -350,13 +695,48 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Stack Area와 마찬가지로 각 스레드당 하나의 Native method stack이 생성됩니다.
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Java 이외의 언어로 작성된 프로그램, API 등을 운용하기 위해 필요한 영역&lt;/strong&gt;입니다. (외부 프로그램들이 주로 C언어로 작성되어서 ‘C stacks’라고도 불리는 것 같습니다.)&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;An implementation of the Java Virtual Machine may use conventional stacks, &lt;code class=&quot;highlighter-rouge&quot;&gt;colloquially called &quot;C stacks,&quot;&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;to support native methods&lt;/code&gt; (methods written in a language other than the Java programming language)&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;native 메서드를 지원하지 않는 JVM은 Native Method Stack을 갖지 않을 수 있습니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;Java Virtual Machine implementations that &lt;code class=&quot;highlighter-rouge&quot;&gt;cannot load native methods&lt;/code&gt; and that do not themselves rely on conventional stacks &lt;code class=&quot;highlighter-rouge&quot;&gt;need not supply native method stacks.&lt;/code&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Stack 메모리처럼 쓰레드 마다 할당되며, 쓰레드가 생성될 때 생성됩니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;native method stacks are typically allocated per thread when each thread is created.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;크기는 고정적으로 할당 할 수도 있고, 동적으로 계산 될 수도 있습니다.&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;This specification permits native method stacks either to be of a fixed size or to dynamically expand and contract as required by the computation.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;한 스레드가 생성될 때 생성됩니다.&lt;/li&gt;
-      &lt;li&gt;크기 역시 고정 될 수도, 동적으로 할당할수도 있습니다.&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;정적 할당시 할당한 양을 초과하면 &lt;em&gt;StackOverFlow&lt;/em&gt; 날 수 있고, 동적으로 할당해도 메모리가 부족하면 &lt;em&gt;OutOfMemory&lt;/em&gt; 날 수 있습니다.&lt;/p&gt;
+
+        &lt;blockquote&gt;
+          &lt;p&gt;If the computation in a thread requires a larger native method stack than is permitted, the Java Virtual Machine throws a &lt;code class=&quot;highlighter-rouge&quot;&gt;StackOverflowError&lt;/code&gt;.&lt;/p&gt;
+
+          &lt;p&gt;If native method stacks can be dynamically expanded and native method stack expansion is attempted but insufficient memory can be made available, or if insufficient memory can be made available to create the initial native method stack for a new thread, the Java Virtual Machine throws an &lt;code class=&quot;highlighter-rouge&quot;&gt;OutOfMemoryError&lt;/code&gt;.&lt;/p&gt;
+        &lt;/blockquote&gt;
+
+        &lt;p&gt;&lt;small&gt;출처 : https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-2.html#jvms-2.5.6&lt;/small&gt;&lt;/p&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;C stack이라고도 불립니다.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
  </entry>

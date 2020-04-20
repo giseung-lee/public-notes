@@ -16,11 +16,12 @@ title: Unmanged Language C - Kim pope
 ---
 
 - &nbsp;프로그래밍을 시작한지 1년이 지난 시점에서 갑자기 C 언어 강의를 듣는 이유는 '근본 찾기 프로젝트'의 일환입니다.
-
 - &nbsp;본 포스팅은 Kim Pope 선생님의 [C 언매니지드 프로그래밍](https://www.udemy.com/course/c-unmanaged-programming-by-pocu/)강의를 정리한 것입니다.
 
-- &nbsp;본 강의의 개인적인 **학습 목표는 언매니지드 언어를 학습해 하드웨어 수준에서 코드가 어떻게 돌아가는지, 하드웨어 수준에서 어떤 코드가 좋은 코드인지 아는 것**입니다. (C 개발자가 되고자 함이 아닙니다.)
+{: .p_img}
+![imgurl]({{ imgurl }}{{category}}/main.png)<small>출처 : https://www.udemy.com/course/c-unmanaged-programming-by-pocu/</small>
 
+- &nbsp;본 강의의 개인적인 **학습 목표는 언매니지드 언어를 학습해 하드웨어 수준에서 코드가 어떻게 돌아가는지, 하드웨어 수준에서 어떤 코드가 좋은 코드인지 아는 것**입니다. (C 개발자가 되고자 함이 아닙니다.)
 - &nbsp;총 14장, 342개, 38시간 분량의 강의입니다. 포스팅은 각 장별로 나눠 올립니다.
 
 
@@ -31,7 +32,7 @@ title: Unmanged Language C - Kim pope
 
 ---
 
-1. 과목 소개 [4/20 예정]
+1. [과목 소개]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C1)
 2. C언어 기본 문법 1 [4/22 예정]
 3. C언어 기본 문법 2, 빌드 단계 [4/24, 26 예정]
 4. 포인터 [4/28 예정]

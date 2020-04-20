@@ -12,6 +12,7 @@ url:                 https://ntz4kiseung.github.io/
 baseurl:             ''
 imgbase:		'/public/image/'
 docbase:		'/public/document/'
+studybase:              '/posts/study/'
 paginate:            6
 gems:                [jekyll-paginate, gemoji, jemoji]
 plugins:		[jekyll-paginate, gemoji, jemoji]
