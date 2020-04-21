@@ -1,0 +1,692 @@
+I"��
+<ul>
+  <li>Twitch Chat Analysis (이하 TCA) 프로젝트는 2019년 8월 경에 한 달간 진행한 프로젝트입니다.</li>
+  <li>원래 계획은 많았으나 예상보다 빠르게 취업이 되어 중단된 프로젝트입니다.</li>
+  <li>본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.</li>
+</ul>
+
+<ol>
+  <li><a href="#1-개요">개요</a></li>
+  <li><a href="#2-기획">기획</a></li>
+  <li><a href="#3-유저-시나리오-기획">유저 시나리오 기획</a></li>
+  <li><a href="#4-웹-디자인">웹 디자인</a></li>
+  <li><a href="#5-기술-스택-선정">기술 스택 선정</a></li>
+  <li><a href="#6-db-스키마">DB 스키마</a></li>
+  <li><a href="#7-api-서버">API 서버</a></li>
+  <li><a href="#8-클라이언트">클라이언트</a></li>
+</ol>
+
+<h2 id="1-개요">1. 개요</h2>
+
+<hr />
+
+<ul>
+  <li>개인적으로 트위치 스트리머 ‘우왁굳’의 열렬한 팬입니다. 우왁굳의 유튜브는 모조리 보는 편입니다.</li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/wakgood.png" alt="wakgood.png" width="30%" height="30%" class="center" /><small>충분히 이상해 보이지만 이상한 사람은 아닙니다.</small></p>
+
+<ul>
+  <li>
+    <p>한편, 인터넷 방송은 방송시간이 굉장히 깁니다. 적게는 4~5시간, 많게는 12시간 이상도 됩니다. 일반적인 사람이라면 이 긴 방송을 전부 볼 순 없습니다.</p>
+  </li>
+  <li>
+    <p>저 역시 우왁굳의 방송을 좋아하지만 다 보기엔 너무 깁니다. 재미있는 부분은 유튜브에 올라오지만 유튜브에 올라오지 않은 재밌는 부분들을 찾고 싶었습니다. 자연스레 긴 방송중 재미있는 부분을 집어주는 웹 서비스가 있으면 좋겠다고 생각했습니다.</p>
+  </li>
+  <li>
+    <p>재미있는 부분은 채팅 속도가 빠르다는 단순한 생각에서 Twitch Chat Analysis 기획을 시작하게 됐습니다.</p>
+  </li>
+  <li>
+    <p>트위치에서 개발자용 API를 제공해준 덕분에 가능한 프로젝트입니다.</p>
+  </li>
+</ul>
+
+<h2 id="2-기획">2. 기획</h2>
+
+<hr />
+
+<ul>
+  <li>처음 기획은 다음과 같은 세 단계로 나누었습니다.
+    <ol>
+      <li>채팅 속도를 기반으로한 다시보기 서비스 개발</li>
+      <li>채팅 내용을 기반으로한 다시보기 서비스 개발</li>
+      <li>AWS에 올려 실제 서비스 하기</li>
+    </ol>
+  </li>
+  <li>그리고 1번 기획은 아래와 같은 순서로 세부 기획을 했습니다.
+    <ol>
+      <li>유저 시나리오 기획</li>
+      <li>웹 디자인</li>
+      <li>API 서버 구현</li>
+      <li>클라이언트 구현</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="3-유저-시나리오-기획">3. 유저 시나리오 기획</h2>
+
+<hr />
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/flow.png" alt="flow.png" /><small>유저 시나리오</small></p>
+
+<ul>
+  <li>
+    <p>웹의 필수 기능을 덜어내고 서비스의 핵심 기능만 먼저 구현하려 굉장히 간결하게 구성했습니다.</p>
+  </li>
+  <li>
+    <p>핵심 서비스들을 만든 뒤에 부가 서비스들을 추가할 생각합니다.<del>(안할것 같긴 하지만..)</del></p>
+  </li>
+</ul>
+
+<h2 id="4-웹-디자인">4. 웹 디자인</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>조경학과에서 익혀온 디자인 <del>베끼기</del> 능력으로 웹 디자인 했습니다.</p>
+  </li>
+  <li>
+    <p>웹 서비스를 이루는 기본적인 기능은 덜어두고 핵심 기능만 구현해보기 때문에 6개의 적은 페이지만이 나왔습니다.</p>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Main.png" alt="Main.png" class="border-gray" /><small>메인 페이지, 스트리머 id나 비디오 id를 넣는다.</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Streamer Not Found.png" alt="Streamer Not Found.png" class="border-gray" /><small>스트리머 id를 검색했지만 트위치에 없는 id일때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Video Not Found.png" alt="Video Not Found.png" class="border-gray" /><small>비디오 id를 검색했지만 트위치에 없는 id일때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Not Analyzed Video.png" alt="Not Analyzed Video.png" class="border-gray" /><small>비디오 id를 검색했고, 트위치에 있는 비디오지만 분석 되지 않은 비디오일 때</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Steamer.png" alt="Steamer.png" class="border-gray" /><small>스트리머를 검색했을 때 스트리머 정보와 함께 분석된 비디오들이 나온다.</small></p>
+
+<p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/Video.png" alt="Video.png" class="border-gray" /><small>비디오를 검색하거나, 스트리머 정보창에서 분석된 비디오를 눌렀을때.</small></p>
+
+<h2 id="5-기술-스택-선정">5. 기술 스택 선정</h2>
+
+<hr />
+
+<h3 id="51-api서버-클라이언트-기술-선정">5.1. API서버, 클라이언트 기술 선정</h3>
+
+<ul>
+  <li>
+    <p>프로그래밍을 처음 배우기 시작하던 때(2019년 2~8월)엔 클론 코딩을 많이 했습니다. 프로그래밍엔 정말 다양한 기술들이 있었고 기술들을 가볍게 알아보는데엔 클론 코딩만한 것이 없다고 생각했습니다.</p>
+  </li>
+  <li>
+    <p>MERN 스택에 관한 <a href="https://www.youtube.com/watch?v=0oziV0FLhXc&amp;list=PLBeQxJQNprbgrNfcntLO8N2Y-dzlMZXZe">클론코딩 강의</a>를 듣고 서비스 API 서버와 클라이언트 서버를 나누는 방식과 React를 사용해 보고 싶다는 욕구가 있었습니다.</p>
+  </li>
+  <li>
+    <p>API서버와 클라이언트를 나눠 놓으면 나중에 웹, 모바일을 같이 쓰는 서비스를 구축할 때 효과적일 것 같았고, 무엇보다 작업하기도 굉장히 깔끔했습니다.</p>
+  </li>
+  <li>
+    <p>TCA를 계획 할 때 MERN 스택이 생각났고 Node JS, Express 를 이용해 API 서버를 만들어야 겠다고 생각했습니다.</p>
+  </li>
+  <li>
+    <p>클라이언트 단은 Facebook의 Create React App을 활용하면 React를 손 쉽게 구축할 수 있어 Node JS와 React를 사용했습니다.</p>
+  </li>
+</ul>
+
+<h3 id="52-db-선정">5.2. DB 선정</h3>
+
+<ul>
+  <li>
+    <p>하지만 MERN 스택에서 MongoDB는 매우 낯설었습니다. 반면, 학원에서 계속 사용하고 있던 Oracle에는 점점 자신이 붙어가는 상황이었습니다. Node JS에 Oracle을 붙이는게 그리 어렵지 않다는 것을 확인하고 Oracle을 사용하려 했습니다.</p>
+  </li>
+  <li>하지만, API서버를 구축하던 중 문제가 생겼습니다. TCA에선 하나의 인터넷 방송 다시보기의 모든 채팅을 저장해야 하는데 채팅의 수가 적게는 3~4만개, 많게는 10만개 이상 됐습니다. Oracle을 이용하니 다음과 같은 문제가 생겼습니다.
+    <ul>
+      <li>하나의 채팅에  하나의 트랜잭션을 사용하면 속도가 너무 저하됐습니다.</li>
+      <li>한 비디오의 모든 채팅을 하나의 트랜잭션으로 처리하려니, 한 트랜잭션에서 insert 시킬 수 있는 데이터에 한계가 있었습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>트랜잭션을 튜닝하는 방법에 대한 팁을 얻기 위해 당시 다니던 개발 학원 강사님께 문의했습니다. 강사님 께선 이 상황에 RDBMS를 튜닝하려면 지금 제 수준을 한참 벗어나는것 같으니 NoSQL DB를 사용해보면 어떻겠냐고 제안했습니다.</p>
+  </li>
+  <li>신뢰하던 강사님이었기 때문에 강사님의 조언을 받아들여 MongoDB로 전환했습니다.</li>
+</ul>
+
+<h2 id="6-db-스키마">6. DB 스키마</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>MongoDB 같은 NoSQL은 DB에 스킴이 없다고 들었지만, Mongoose와 같이 MongoDB를 지원하는 라이브러리들은 스킴 사용을 권장하는 것 같았습니다.</p>
+  </li>
+  <li>스트리머 정보에 대한 DB 스킴입니다.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">const</span> <span class="nx">streamerSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+      <span class="na">userId</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">displayName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">desc</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">logo</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">followers</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="na">totalViews</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="na">videoThumbnails</span><span class="p">:</span> <span class="p">[</span><span class="nx">videoThumbnailSchema</span><span class="p">]</span>
+  <span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+  <li>스트리머의 비디오중 분석된 비디오들의 썸네일 스킴입니다.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">const</span> <span class="nx">videoThumbnailSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+      <span class="na">userId</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">videoId</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">thumbnail</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="nb">String</span>
+  <span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+  <li>비디오에 대한 DB스킴 입니다.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">const</span> <span class="nx">videoSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+      <span class="na">userId</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">videoId</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">created_at</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">game</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">length</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="na">comments</span><span class="p">:</span> <span class="p">[</span><span class="nx">commentSchema</span><span class="p">]</span>
+  <span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+  <li>채팅에 대한 스킴입니다.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">const</span> <span class="nx">commentSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+      <span class="na">content_offset_seconds</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nb">String</span>
+  <span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="7-api-서버">7. API 서버</h2>
+
+<hr />
+
+<h3 id="71-api서버에서-트위치-api-서버로-보내는-api">7.1. API서버에서 트위치 API 서버로 보내는 API</h3>
+
+<ul>
+  <li>
+    <p>다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 <a href="https://dev.twitch.tv/docs/v5">공식 레퍼런스</a>를 참고했습니다.</p>
+
+    <ul>
+      <li>
+        <p>https://api.twitch.tv/kraken/users?login=:userName</p>
+
+        <ul>
+          <li>
+            <p>스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.</p>
+          </li>
+          <li>
+            <p><code class="highlighter-rouge">https://api.twitch.tv/kraken/users?login=woowakgood</code>를 호출 했을 때 결과입니다.</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"우왁굳"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49045679"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woowakgood"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-09-15T15:22:27.073646Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-21T08:35:10.922798Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/ebc60c08-721b-4572-8f51-8be7136a0c96-profile_image-300x300.png"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>https://api.twitch.tv/kraken/channels/:userId</p>
+
+        <ul>
+          <li>
+            <p>스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)</p>
+          </li>
+          <li>
+            <p>위에서 얻은 우왁굳의 id로 <code class="highlighter-rouge">https://api.twitch.tv/kraken/channels/49045679</code>를 호출한 결과입니다.</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"mature"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"오늘 그냥 기타 연습하면서 쉬는 날"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"broadcaster_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"broadcaster_software"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown_rtmp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"우왁굳"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"game"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just Chatting"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49045679"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woowakgood"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-09-15T15:22:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-21T09:04:29Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"partner"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/ebc60c08-721b-4572-8f51-8be7136a0c96-profile_image-300x300.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"video_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/06ce7816-98b1-44cb-98d0-5e040f7d82d9-channel_offline_image-1920x1080.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"profile_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/woowakgood-profile_banner-3be507d39ee04799-480.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"profile_banner_background_color"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.twitch.tv/woowakgood"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">39735518</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">529455</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"broadcaster_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partner"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"private_video"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"privacy_options_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>https://api.twitch.tv/kraken/videos/:videoId</p>
+
+        <ul>
+          <li>
+            <p>비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.</p>
+          </li>
+          <li>
+            <p><code class="highlighter-rouge">https://api.twitch.tv/kraken/videos/595442451/</code> 를 호출한 결과중 일부입니다.</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"출발"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description_html"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"broadcast_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37611880656</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"broadcast_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"archive"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recorded"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tag_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">10169</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.twitch.tv/videos/595442451"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T09:46:20Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"viewable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"viewable_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T09:46:20Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"delete_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-17T09:46:20Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v595442451"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T09:46:20Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"game"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just Chatting"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">21636</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"preview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"small"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-80x45.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"medium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-320x180.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-640x360.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-{width}x{height}.jpg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"animated_preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d2nvs31859zcd8.cloudfront.net/2de64e45920f7916babd_woowakgood_37611880656_1419566415/storyboards/595442451-strip-0.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"thumbnails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"small"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-80x45.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb1-80x45.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb2-80x45.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb3-80x45.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"medium"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-320x180.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb1-320x180.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb2-320x180.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb3-320x180.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"large"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-640x360.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb1-640x360.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb2-640x360.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb3-640x360.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb0-{width}x{height}.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb1-{width}x{height}.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb2-{width}x{height}.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generated"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/2de64e45920f7916babd_woowakgood_37611880656_1419566415/thumb/thumb3-{width}x{height}.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"fps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"160p30"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.997854532893175</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"360p30"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.997854532893175</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"480p30"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.997854532893175</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"720p30"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.997854532893175</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"720p60"</span><span class="p">:</span><span class="w"> </span><span class="mf">59.99732109628357</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chunked"</span><span class="p">:</span><span class="w"> </span><span class="mf">59.99732109628357</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"seek_previews_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d2nvs31859zcd8.cloudfront.net/2de64e45920f7916babd_woowakgood_37611880656_1419566415/storyboards/595442451-info.json"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"resolutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"160p30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"284x160"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"360p30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"640x360"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"480p30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"852x480"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"720p30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1280x720"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"720p60"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1280x720"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chunked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1920x1080"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"mature"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"오늘 그냥 기타 연습하면서 쉬는 날"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broadcaster_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broadcaster_software"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown_rtmp"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"우왁굳"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"game"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just Chatting"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49045679</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woowakgood"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-09-15T15:22:27.073646Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-21T09:04:29.971308Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"partner"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/ebc60c08-721b-4572-8f51-8be7136a0c96-profile_image-300x300.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"video_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/06ce7816-98b1-44cb-98d0-5e040f7d82d9-channel_offline_image-1920x1080.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profile_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static-cdn.jtvnw.net/jtv_user_pictures/woowakgood-profile_banner-3be507d39ee04799-480.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profile_banner_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.twitch.tv/woowakgood"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">39735518</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">529455</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broadcaster_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partner"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"private_video"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"privacy_options_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"increment_view_count_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://countess.twitch.tv/ping.gif?u=%7B%22id%22%3A%22595442451%22%2C%22type%22%3A%22vod%22%7D"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>https://api.twitch.tv/kraken/videos/:videoId/comments?:param</p>
+
+        <ul>
+          <li>비디오의 채팅 일부를 가져옵니다. param엔 비디오의 위치(초 단위) 혹은 트위치 API에서 제공하는 채팅의 cursor 파라미터가 들어갑니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="72-클라이언트가-호출할-api">7.2. 클라이언트가 호출할 API</h3>
+
+<ul>
+  <li>클라이언트에서 호출할 수 있는 API는 다음과 같습니다.
+    <ul>
+      <li>
+        <p>/streamer/:name</p>
+
+        <ul>
+          <li>DB에 저장된 {name}인 스트리머의 정보를 불러옵니다.</li>
+          <li>트위치에 없는 스트리머를 조회하면 에러 코드를 돌려줍니다.</li>
+          <li>트위치엔 있지만 DB에 없다면 DB에 저장하고 불러옵니다.</li>
+        </ul>
+
+        <p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/api_call_test1.png" alt="api_call_test1.png" /><small>우왁굳의 스트리머 정보를 불러왔다!</small></p>
+      </li>
+      <li>
+        <p>/video/search/:videoId</p>
+
+        <ul>
+          <li>DB에 저장된 {videoId}인 비디오의 정보(댓글 속도 등)를 불러옵니다.</li>
+          <li>트위치에 없는 video를 부르면 에러 코드를 돌려줍니다.</li>
+          <li>트위치엔 있지만 DB에 없다면 해당 에러 코드를 돌려줍니다.</li>
+        </ul>
+
+        <p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/api_call_test3.png" alt="api_call_test3.png" /><small>트위치엔 있지만 DB에 없는 경우</small></p>
+
+        <p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/api_call_test6.png" alt="api_call_test6.png" /><small>DB에 있는 비디오 조회시</small></p>
+
+        <ul>
+          <li>
+            <p>DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"FoundVideo"</span><span class="p">,</span><span class="w">
+  	</span><span class="nl">"video"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="s2">"49045679"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"woowakgood"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"videoId"</span><span class="p">:</span><span class="s2">"v595442451"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"출발"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2020-04-18T09:46:20Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"game"</span><span class="p">:</span><span class="s2">"Just Chatting"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"length"</span><span class="p">:</span><span class="mi">21636</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"comments"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">1435</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">700</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">816</span><span class="p">},</span><span class="w">
+                      </span><span class="err">:</span><span class="w">
+                      </span><span class="err">:</span><span class="w">
+          </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">20700</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">671</span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">21000</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">726</span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">21300</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">782</span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>/video/search/:videoId/:keyword</p>
+
+        <ul>
+          <li>
+            <p>{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.</p>
+          </li>
+          <li>
+            <p>해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.</p>
+          </li>
+          <li>
+            <p>‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.</p>
+          </li>
+          <li>
+            <p>다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"SearchKeyword"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"video"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="s2">"49045679"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"woowakgood"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"videoId"</span><span class="p">:</span><span class="s2">"v595442451"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"출발"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2020-04-18T09:46:20Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"game"</span><span class="p">:</span><span class="s2">"Just Chatting"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"length"</span><span class="p">:</span><span class="mi">21636</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"comments"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">78</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">69</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">221</span><span class="p">},</span><span class="w">
+            			</span><span class="err">:</span><span class="w">
+            			</span><span class="err">:</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">20700</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">165</span><span class="p">},</span><span class="w">
+    		</span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">21000</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">164</span><span class="p">},</span><span class="w">
+			</span><span class="p">{</span><span class="nl">"seconds"</span><span class="p">:</span><span class="mi">21300</span><span class="p">,</span><span class="nl">"counting"</span><span class="p">:</span><span class="mi">271</span><span class="p">}</span><span class="w">
+		</span><span class="p">]</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>/video/save/:videoId</p>
+
+        <ul>
+          <li>{videoId}인 비디오를 DB에 저장하도록 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="73-난관---채팅-받아오기">7.3. 난관 - 채팅 받아오기</h3>
+
+<ul>
+  <li>API 서버 개발에 우여곡절이 있었지만 대부분 금방 해결되었습니다. 하지만 해결하는데 꽤 오랜 시간이 걸린 이슈가 있습니다. 바로 모든 채팅을 받아오는 속도를 줄이는 것이었습니다.</li>
+  <li>위의 채팅을 받아오는 트위치 API는 채팅 전체를 주지 않습니다. 한 번 요청에 60개 정도의 채팅과 다음 채팅 60개의 주소 파라미터를 넘겨줍니다.</li>
+</ul>
+
+<p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/comment_api.png" alt="comment_api.png" /><small>채팅 요청을 보내면 commets와 _prev, _next 커서를 돌려준다.</small></p>
+
+<ul>
+  <li>처음엔 60개의 채팅을 받고 다음 60개를 받아오고… 동기식으로 채팅을 가져왔습니다.
+    <ul>
+      <li>채팅이 60,000개 일때, 1,000번의 API 호출이 필요했고 한 번 API를 주고 받는 시간을 짧게 잡아 0.3초라고 봐도 총 300초, 5분이 걸렸습니다. 유저가 검색을 하고 채팅을 받아오는 5분 동안 기다릴리 만무합니다.</li>
+      <li>물론, 이 경우는 채팅이 60,000개로 비교적 적은 편이고 API를 주고 받는 시간도  긍정적으로 계산한 것입니다. (방송 시간이 길거나, 평균 채팅속도가 빠른 방송의 경우 채팅 100,000개는 가볍게 넘어갑니다.)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/synchronous_call.png" alt="synchronous_call.png" /><small>동기식 채팅 호출</small></p>
+
+<ul>
+  <li>트위치에 다시보기가 올라오는지 모니터링하고 있다가 올라오면 유저들이 TCA에서 검색하기 전에 미리 채팅을 받아오는 방법을 제외하면 답이 없어보였습니다.
+    <ul>
+      <li>하지만 이 방법은 문제가 있었습니다. 대상으로할 스트리머를 어디까지 할 지 정하는 것이었습니다. 트위치의 모든 스트리머를 대상으로 한다면, 저의 빈약한 PC로는 버틸 수 없습니다.</li>
+      <li>유명 스트리머만 하자니 너무 제한적인 서비스가 될 것 같았습니다.</li>
+      <li>적당히 한국 스트리머만 제한해서, 유저들이 TCA에서 검색하기 전에 트위치에서 미리 채팅을 가져와야 했습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="74-돌파구의-마련---비동기-api-호출">7.4. 돌파구의 마련 - 비동기 API 호출</h3>
+
+<ul>
+  <li>
+    <p>돌파구는 우연히 찾아왔습니다. 웹 브라우저 콘솔창에서 자바스크립트를 가지고 놀던 중 다음과 같은 현상을 발견합니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>response = callAPI();
+console.log(response); --&gt; undefined
+	:
+	:
+	:
+console.log(response); --&gt; 'something'
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>response에 API 호출 결과를 담아 바로 console.log를 찍었을 땐 분명 아무것도 안나왔는데, 나중에 다시 console.log를 찍으니 결과가 나왔습니다.</p>
+  </li>
+  <li>
+    <p>프로그래밍을 시작한지 얼마 되지 않았고 Java를 주로 다루던 저는 비동기에 대해 잘 모르고 있었습니다. 위 현상을 발견하고 구글링을 해본 결과 자바스크립트의 비동기에 대해 알게 되었고 채팅을 받아오는 속도를 줄이는 방법이 번뜩하고 떠올랐습니다.</p>
+  </li>
+  <li>
+    <p>방법은 <del>지금보면</del> 간단합니다.</p>
+
+    <ul>
+      <li>다시보기를 여러 개의 구간으로 쪼갭니다.</li>
+      <li>한 구간의 첫 API를 보내고 <strong>기다리는 동안 다른 구간의 API를 보냅니다.</strong></li>
+      <li>한 구간에선 API응답을 받으면 다음 cursor를 담아 다시 API를 보냅니다.</li>
+      <li>즉, <strong>한 구간 안에선 동기적으로, 구간끼린 비동기적으로 처리하는 것입니다.</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p>{: .p_img}<img src="/public/image/Twitch_Chat_Analysis/asynchronous_call.png" alt="asynchronous_call.png" /><small>한 구간안에선 동기적으로, 각 구간은 비동기적으로!</small></p>
+
+<ul>
+  <li>
+    <p>위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function">MDN의 Document</a>를 많이 참고했습니다.</p>
+
+    <ul>
+      <li>
+        <p>나눈 구간에서 최종적으로 하나의 Promise를 리턴 받고, 여러 구간의 Promise들을 배열에 담습니다.</p>
+
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">bundlePromiseArray</span> <span class="o">=</span> <span class="p">[];</span>
+    
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">length</span><span class="o">/</span><span class="nx">divideSec</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">startSec</span> <span class="o">=</span> <span class="nx">i</span><span class="o">*</span><span class="nx">divideSec</span><span class="p">;</span>
+    <span class="c1">// getCommentsBundle(videoId, second) =&gt; {return 한 구간의 Promise}</span>
+    <span class="nx">bundlePromiseArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getCommentsBundle</span><span class="p">(</span><span class="nx">videoId</span><span class="p">,</span> <span class="nx">startSec</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>배열 안의 모든 Promise들이 Fulfilled 되면 다음 작업을 수행 했습니다.</p>
+
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">bundleArray</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">bundlePromiseArray</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="o">~~~</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>비동기식으로 채팅을 받아오니 5분 걸리던 채팅 다운이 10초 밑으로 떨어졌습니다. :sob:</p>
+
+    <ul>
+      <li>20~30분 걸리던 채팅이 많은 다시보기도 30초 전후하여 받아왔습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="8-클라이언트">8. 클라이언트</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>React, Redux를 이용해 클라이언트를 구현 했습니다.</p>
+  </li>
+  <li>
+    <p>디자인 자체가 단순했기 때문에 디자인한 대로 퍼블리싱 하는 것은 어렵지 않았고 사실 클라이언트단은 큰 관심사가 아니었기 때문에 가벼운 마음으로 시작했습니다.</p>
+  </li>
+  <li>
+    <p>메인페이지와 에러페이지들을 띄우는데 성공했습니다.</p>
+
+    <p>메인, 에러 페이지 화면</p>
+  </li>
+  <li>
+    <p>스트리머 페이지를 띄우는데도 성공했습니다. (썸네일은 더미 데이터를 넣었습니다.)</p>
+
+    <p>스트리머 페이지</p>
+  </li>
+  <li>
+    <p>이제 가장 핵심인 비디오 페이지를 만들어야 했습니다. 비디오 페이지에서 chart js와 열심히 싸우고 있던 와중에… 취업을 해버려서…</p>
+
+    <p>비디오 페이지</p>
+  </li>
+  <li>
+    <p>여기까지가 2019년 8월에 완성한 Twitch Chat Analysis 입니다.</p>
+  </li>
+</ul>
+
+:ET

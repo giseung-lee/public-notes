@@ -4,13 +4,398 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-21T00:16:23+09:00</updated>
+ <updated>2020-04-21T19:07:51+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Microservices with Spring Cloud 1 - Introduction to Microservices</title>
+   <link href="http://localhost:4000/posts/study/msa_ken_krueger/MSA1/"/>
+   <updated>2020-04-21T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/msa_ken_krueger/MSA1</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 Ken Krueger 선생님의 &lt;a href=&quot;https://www.udemy.com/course/microservices-with-spring-cloud/&quot;&gt;Microservices with Spring Cloud&lt;/a&gt; 강의를 정리하며 사견을 붙인 것입니다.&lt;/li&gt;
+  &lt;li&gt;포스팅 내 목차는 개별 동영상 강의 기준입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-course-introduction&quot;&gt;1. Course Introduction&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 강의에선 다음과 같은 것들을 배웁니다.
+    &lt;ul&gt;
+      &lt;li&gt;MSA 소개&lt;/li&gt;
+      &lt;li&gt;Spring Boot, Spring Data에 대한 간략한 소개&lt;/li&gt;
+      &lt;li&gt;Spring Cloud의 간편한 기능들을 배웁니다.&lt;/li&gt;
+      &lt;li&gt;실제 MSA 프로젝트를 구성해봅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;강의를 잘 들으면 얻게 될 것
+    &lt;ul&gt;
+      &lt;li&gt;MSA의 특징 및 장,단점&lt;/li&gt;
+      &lt;li&gt;간단한 Spring Boot 어플리케이션 만들기
+        &lt;ul&gt;
+          &lt;li&gt;웹 인터페이스, REST 인터페이스, Spring Data, Spring Data REST&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Spring Cloud를 이용한 MSA 어플리케이션 구축&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;강사님은 25년 경력의 자바 개발자입니다.&lt;/li&gt;
+  &lt;li&gt;필요한 사전 지식
+    &lt;ul&gt;
+      &lt;li&gt;Java&lt;/li&gt;
+      &lt;li&gt;Spring/ Spring Boot&lt;/li&gt;
+      &lt;li&gt;다양한 Spring 어노테이션들&lt;/li&gt;
+      &lt;li&gt;Maven :point_right: 이건 잘 모르는뎁..&lt;/li&gt;
+      &lt;li&gt;Git&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;유의 사항
+    &lt;ul&gt;
+      &lt;li&gt;Spring Cloud가 너무 빨리 바뀌어서 강의랑 지금이랑 다를 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;MSA 역시 빠르기 진화중입니다.&lt;/li&gt;
+      &lt;li&gt;MSA에 대한 모든 주제를 다루진 못합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-lab-setup&quot;&gt;2. Lab Setup&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;수강전 셋업
+    &lt;ol&gt;
+      &lt;li&gt;최신 JDK (Java 8 이상)&lt;/li&gt;
+      &lt;li&gt;Maven 2 이상&lt;/li&gt;
+      &lt;li&gt;Spring Tool Suite (다른 IDE 사용해도 무방)&lt;/li&gt;
+      &lt;li&gt;Github 계정(은 굳이 없어도 될 것 같습니다.)&lt;/li&gt;
+      &lt;li&gt;강사님 Github에서 강의자료 받기&lt;/li&gt;
+      &lt;li&gt;IDE에서 Maven 프로젝트로 불러오기&lt;/li&gt;
+      &lt;li&gt;(선택사항, 디버깅용) 웹 브라우저용 REST 플러그인 받기. 강사님은 크롬의 “Simple REST Client” 를 사용.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로그래밍 강의는 강사님이 하자는 대로 하는게 베스트이기 때문에 위에 있는 대로 셋팅 완료!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/setup.png&quot; alt=&quot;setup.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-what-are-microservices-part1&quot;&gt;3. What are Microservices? Part1&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MSA가 무엇인지, 이전 구조인 Monolithic과의 차이, 왜 쓰는가 등을 배움&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;31-msa란-무엇인가&quot;&gt;3.1. MSA란 무엇인가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;강사님 생각에 현재 MSA는 많은 과장(hype)이 좀 있는 편입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MSA를 표현하는 적절한 표현들입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;architecture 스타일&lt;/li&gt;
+      &lt;li&gt;전통적인 ‘monolithic’ 어플리케이션의 대안&lt;/li&gt;
+      &lt;li&gt;단일 시스템을 서비스 단위로 분해한 것, 각 서비스들은 독립적으로 실행되며 open protocol로 통신함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;전문가들의 정의입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;독립 적으로 동작하고 HTTP 같은 경량 메커니즘으로 통신하는 작은 서비스들의 집합으로 어플리케이션을 개발하는 것 - Martin Fowler&lt;/p&gt;
+
+        &lt;blockquote&gt;
+          &lt;p&gt;Developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.&lt;/p&gt;
+        &lt;/blockquote&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;세분화 된 SOA - Adrian Cockcroft (Netflix 개발자)&lt;/p&gt;
+
+        &lt;blockquote&gt;
+          &lt;p&gt;Fine-grained SOA&lt;/p&gt;
+        &lt;/blockquote&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 강의에서 사용하고 싶은 MSA의 정의입니다.
+    &lt;ul&gt;
+      &lt;li&gt;작은 서비스들로 하나의 어플리케이션을 구성하는 것 (Monolithic과 반대됨)&lt;/li&gt;
+      &lt;li&gt;각 서비스들은 독립적으로 실행된다.&lt;/li&gt;
+      &lt;li&gt;각 서비스들은 open protocol로 통신한다.&lt;/li&gt;
+      &lt;li&gt;각 서비스들은 독립적으로 개발되고, 배포되고, scaled 되고, 유지된다.&lt;/li&gt;
+      &lt;li&gt;각 서비스들은 업무 단위로 캡슐화 되어있다.&lt;/li&gt;
+      &lt;li&gt;각 서비스들은 독립적으로 교체될 수 있고 업그레이드 될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;다음과 같은 표현은 &lt;strong&gt;잘못된 표현&lt;/strong&gt;입니다.
+    &lt;ul&gt;
+      &lt;li&gt;SOA(Service Oriented Architecture)와 같은 것
+        &lt;ul&gt;
+          &lt;li&gt;SOA는 여러 애플리케이션을 합치는 방법에 대한 것이고, MSA는 단일 애플리케이션을 개발하는 방법입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;만병통치약이다! (영어 표현으론 A Silver Bullet)
+        &lt;ul&gt;
+          &lt;li&gt;MSA 역시 약점과 위험요소가 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;새로운 것이다!
+        &lt;ul&gt;
+          &lt;li&gt;예전부터 있던 것입니다. 다만, 트위터, 페이스북, 넷플릭스 등 유명 기업들이 MSA를 도입하며 이제야 주목을 받기 시작한 것입니다.(강의 년도는 2015년 입니다.)
+            &lt;ul&gt;
+              &lt;li&gt;트위터는 Ruby/Rails monolithic에서, 페이스북은 PHP monolithic에서, 넷플릭스는 Java monolithic에서 MSA로 바꾸었습니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;32-기존-monolithic-구조&quot;&gt;3.2. 기존 Monolithic 구조&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;쇼핑몰을 생각해봅시다. 다음과 같은 기능들이 필요합니다.
+    &lt;ul&gt;
+      &lt;li&gt;웹 화면, 모바일 화면&lt;/li&gt;
+      &lt;li&gt;상품 검색&lt;/li&gt;
+      &lt;li&gt;상품 카탈로그&lt;/li&gt;
+      &lt;li&gt;재고 관리 기능&lt;/li&gt;
+      &lt;li&gt;장바구니&lt;/li&gt;
+      &lt;li&gt;결제&lt;/li&gt;
+      &lt;li&gt;배송&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;전통적인 Spring MVC Monolithic 구조에선 다음과 같은 구조를 같게 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/monolithic.png&quot; alt=&quot;monolithic.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이런 단일 구조도 잘 작동하지만 문제들이 발생합니다.
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트가 단일 웹 브라우저가 아니라 모바일 어플리케이션, 인터넷 TV등 다양해졌고, DB 역시 기능에 따라 여러 형태의 DB들이 출현했습니다.&lt;/li&gt;
+      &lt;li&gt;기존 Monolthic 구조에선 이런 변화에 대응하기 힘들었습니다. (아래 이미지의 화살표는 대충 이은거니 의미를 두지 말아주세요..)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/monolithic_problem.png&quot; alt=&quot;monolithic_problem.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프론트와 백이 복잡해진 것과 더불어 웹 서비스가 점점 비대해지며 단지 귀찮은 정도였던 문제들이 점점 커져 팀 전체의 효율을 깨뜨리기 시작합니다.
+    &lt;ul&gt;
+      &lt;li&gt;규모가 커지며 팀별로 codebase를 나눠 따로 작업하고 배포하는데, 한 팀의 배포 파일에 문제가 있거나, 기존 시스템과 충돌을 일으키면 애플리케이션 전체를 마비시킵니다. (추가로, 개발자들의 퇴근이 늦어집니다.)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://medium.com/coupang-tech/행복을-찾기-위한-우리의-여정-94678fe9eb61&quot;&gt;쿠팡의 블로그&lt;/a&gt;에서도 비대해진 Monolithic 어플리케이션의 문제를 확인 할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Monolithic 구조의 장점은 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;이해하기 쉽다.
+        &lt;ul&gt;
+          &lt;li&gt;Easy to comprehend (but not digest) 라고 설명했는데 not digest가 어떤 의미인지 모르겠습니다.(완벽히 다 알긴 어렵다?)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;단일 유닛을 테스트하고 배포하기 쉽다.&lt;/li&gt;
+      &lt;li&gt;관리하기 쉽다.(어느정도 까진)&lt;/li&gt;
+      &lt;li&gt;scale 하기 쉽다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;단점은 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;언어, 프레임워크에 제한적입니다. 한 언어, 프레임워크가 정해지면 그 외의 기술을 도입하기 힘듭니다.&lt;/li&gt;
+      &lt;li&gt;한 개발자가 모든 코드를 이해할 수(cannot digest) 없습니다.&lt;/li&gt;
+      &lt;li&gt;단일 팀이 애플리케이션 전체를 관리할 순 없습니다.&lt;/li&gt;
+      &lt;li&gt;작은 수정 사항을 배포하기 힘듭니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-what-are-microservices-part2&quot;&gt;4. What are Microservices? Part2&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/msa_architecture.png&quot; alt=&quot;msa_architecture.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 살펴봤듯이, MSA는 독립적으로 운용가능하며 open protocol로 서로 통신하는 서비스들을 하나의 어플리케이션으로 구성한 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;41-msa의-특징&quot;&gt;4.1. MSA의 특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Componentization via Service.
+    &lt;ul&gt;
+      &lt;li&gt;Service를 컴포넌트화 합니다.&lt;/li&gt;
+      &lt;li&gt;서비스는 작고 독립적인, 배포가능한 단위입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각각의 서비스들은 독립적으로 기술을 선택할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹 클라이언트엔 JSP를, 모바일 클라이언트엔 React를 사용할 수도 있고, 상품 DB엔 오라클을, 리뷰 DB엔 MongoDB를 사용할 수도 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Open, Lightweight 프로토콜을 사용해 서비스끼리 통신합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;HTTP, TCP, UDP, Messaging..&lt;/li&gt;
+      &lt;li&gt;Payload도 JSON, BSON, XML 등등 다양하게 선택 가능합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서비스는 업무 단위로 캡슐화 됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;기술 단위로 가면 안딥니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;기존 Monolithic 구조가 Controller, Service, DAO 같이 수평 단위로 나뉘어졌다면 MSA는 업무 단위인 수직으로 나뉘어야 합니다.&lt;/p&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/horizontal.png&quot; alt=&quot;horizontal.png&quot; /&gt;&lt;small&gt;기존의 수평분할. (출처 : http://www.dhrubo.net/2017/04/microservices-vertical-slicing.html)&lt;/small&gt;&lt;/p&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/vertical.png&quot; alt=&quot;vertical.png&quot; /&gt;&lt;small&gt;업무 단위의 수직 분할.(출처 : http://www.dhrubo.net/2017/04/microservices-vertical-slicing.html)&lt;/small&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MSA는 관리하기 쉽습니다. 작은 단위 하나하나를 이해하기 쉽습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MSA는 Decentralized Governance와 같다고 할 수 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;MSA는 ESB(Enterprise Service Bus)의 안티테제, 정반대 라고 볼 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;정돈된 오케스트레이션이 아니라 자연스럽게 흐르는 안무, 보행자와 같습니다.&lt;/li&gt;
+      &lt;li&gt;서비스는 각자 다른 속도와 기술을 찾아 발전합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/intersection.png&quot; alt=&quot;intersection.png&quot; /&gt;&lt;small&gt;ESB의 예로 든 traffic. 강력한 규칙에 따라 정돈 되어 움직인다. (출처 : https://www.gessato.com/birds-eye-view-navid-baraty/navid-baraty-photography-nyc-intersections-2/)&lt;/small&gt;&lt;/p&gt;
+
+    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/pedestrian.jpg&quot; alt=&quot;pedestrian.jpg&quot; /&gt;&lt;small&gt;MSA의 예로 든 보행자들. 강한 규칙이 없어도 서로 조화롭게 지나다닌다.(출처 : https://www.sciencenews.org/article/math-match-pedestrian-behavior-all-about-timing) &lt;/small&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;업무에 따라 최적의 기술 선택이 가능합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Polyglot Persistence 라고 부릅니다.&lt;/li&gt;
+      &lt;li&gt;목적에 따라 다른 프레임워크, DB 등을 사용 할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;42-msa의-장점&quot;&gt;4.2. MSA의 장점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 서비스들을 쉽게 이해(digest) 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;테스트, 배포, 관리, 스케일링 등이 쉽습니다.&lt;/li&gt;
+  &lt;li&gt;각 서비스들간의 변화 주기(change cycle)을 다르게 가져갈 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;43-msa의-단점&quot;&gt;4.3. MSA의 단점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;단일 서비스는 간단해지지만 서비스들끼리 통신하는 운영 레이어가 복잡해집니다.&lt;/li&gt;
+  &lt;li&gt;한 서비스가 다른 서비스를 호출할 때, 그 서비스가 동작하지 않을 경우에도 대비해야 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;기존 Monolithic 애플리케이션은 에러가 나면 전체가 멈추므로 에러를 찾기 쉽지만 MSA에선 한 서비스가 죽어 있는데도 발견이 늦을 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Remote call이 in-process call 보다 비용(지연 등)이 높습니다.&lt;/li&gt;
+  &lt;li&gt;한 업무 트랜잭션이 여러 서비스를 거치기 때문에 트랜잭션을 보장하기 위해 ‘‘eventual consistency” 같은 기술에 의존해야 합니다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Feature가 여러 서비스로 퍼질 수 있습니다. (여기서 Feature가 뭔지 잘 모르겠습니다..)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;‘관리’의 개념이 기존과 많이 달라집니다.
+    &lt;ul&gt;
+      &lt;li&gt;서비스 간의 통신을 관리하는게 주가 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;한 서비스를 수정하는 건 쉽지만, 서비스를 분리하거나, 다른 서비스를 합칠 때 까다롭습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;44-분산컴퓨팅에-대한-오해&quot;&gt;4.4. 분산컴퓨팅에 대한 오해&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;분산 컴퓨팅 뉴비들이 가끔 오해하는 것들입니다.
+    &lt;ul&gt;
+      &lt;li&gt;네트워크가 reliable 하다.&lt;/li&gt;
+      &lt;li&gt;Latency가 0이다.&lt;/li&gt;
+      &lt;li&gt;Bandwidth가 무한하다.&lt;/li&gt;
+      &lt;li&gt;네트워크가 안전하다.&lt;/li&gt;
+      &lt;li&gt;Topology가 변하지 않는다.&lt;/li&gt;
+      &lt;li&gt;한 명의 관리자가 있다.&lt;/li&gt;
+      &lt;li&gt;통신 비용이 없다.&lt;/li&gt;
+      &lt;li&gt;네트워크가 모두 동질적이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;45-practical-considerations&quot;&gt;4.5. Practical Considerations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;어떻게 기존 Monolithic한 애플리케이션을 나눌 것인가
+    &lt;ul&gt;
+      &lt;li&gt;가장 우선해야 할 건 업무 기능별로 나누는 것입니다.&lt;/li&gt;
+      &lt;li&gt;이를 위해 명사 단위로(카탈로그, 장바구니, 회원) 나눌 수도 있고 동사 단위로(검색, 결제, 배송) 나눌 수도 있습니다. 강사님은 명사 단위를 선호하지만, 사실 이것 만으론 부족합니다.&lt;/li&gt;
+      &lt;li&gt;더 좋은 분할 원리는 ‘single responsibility principle’입니다. 한 서비스가 장바구니, 결제 등 한 부분을 책임 질 수 있어야 합니다.
+        &lt;ul&gt;
+          &lt;li&gt;『97 Things Every Programmer Should Know』의 ‘The Single Responsibility Principle’ 장을 참고하길 바랍니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;DDD(Domain Driven Design)에서 자주 언급되는 Bounded Context 원리 역시 좋은 방법입니다.
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;https://martinfowler.com/bliki/BoundedContext.html&quot;&gt;https://martinfowler.com/bliki/BoundedContext.html&lt;/a&gt;를 참고하면 좋습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;얼마나 Micro 해야 Micro 인가? 단순한 크기는 중요하지 않습니다. 그래도 굳이 크기를 정해야 한다면 아래와 같은 기준을 줄 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;한 개발자가 이해할 수 있는 크기여야 합니다.&lt;/li&gt;
+      &lt;li&gt;또는, 한 작은 단위의 팀이 관리 가능해야 합니다. (아마존의 피자2판 규칙 사이즈의 팀)&lt;/li&gt;
+      &lt;li&gt;해당 서비스에대한 Document가 읽고 이해하기 쉬울 정도가 되야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SOA와 다른 점
+    &lt;ul&gt;
+      &lt;li&gt;SOA는 시스템들을 통합하는 문제이고, MSA는 한 애플리케이션을 구성하는 문제입니다.&lt;/li&gt;
+      &lt;li&gt;앞서 언급한 비유를 다시 사용하자면, SOA는 &lt;em&gt;Strong Central Orchestration&lt;/em&gt; 이지만, MSA는 &lt;em&gt;Choreography&lt;/em&gt;입니다.&lt;/li&gt;
+      &lt;li&gt;SOA는 통합할 각 시스템들은 &lt;em&gt;dumb&lt;/em&gt;하지만 통합하는 방법이 &lt;em&gt;smart&lt;/em&gt; 합니다. 반면, MSA는 각 시스템들은 &lt;em&gt;smart&lt;/em&gt; 하지만 통합하는 방법이 &lt;em&gt;dumb&lt;/em&gt;합니다.(기술 수준이 낮습니다.)
+        &lt;ul&gt;
+          &lt;li&gt;예를들어, Linux 커맨드를 이용해 구성한 MSA는 다음과 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt; 하나 만으로 연결이 되기도 합니다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps aux | grep ooffice | grep -v grep | awk '{pring $2}'&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Monolithic 구조는 항상 나쁜가?
+    &lt;ul&gt;
+      &lt;li&gt;당연히 아닙니다.&lt;/li&gt;
+      &lt;li&gt;Monolithic 구조를 고수하는 회사로 &lt;a href=&quot;https://www.etsy.com/&quot;&gt;etsy.com&lt;/a&gt;을 들 수 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;Etsy는 150명의 개발자가 하루에 60번의 배포를 진행하고 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>C Unmanaged Programming 1 - 과목 소개</title>
@@ -538,8 +923,8 @@
 
     &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/headache.jpg&quot; alt=&quot;headache.jpg&quot; /&gt;&lt;small&gt; 1시간 안에 쓱싹 할 줄 있을 줄 알았는데…&lt;/small&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt; 무엇보다 걱정인 건 6명 분량의 어플리케이션을 혼자 수정해야 한다는 것입니다. :scream:&lt;/li&gt;
-  &lt;li&gt; 일단, 한 편의 포스팅에 조사 및 수정을 다 담으려 했는데 포스팅이 길어져 두 편으로 나눠야겠습니다!&lt;/li&gt;
+  &lt;li&gt; 또 다른 걱정은 6명 분량의 어플리케이션을 혼자 수정해야 한다는 것입니다.:scream:&lt;/li&gt;
+  &lt;li&gt; 한 편의 포스팅에 조사 및 수정을 다 담으려 했는데 포스팅이 길어져 두 편으로 나눠야겠습니다!&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
@@ -1249,58 +1634,254 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;71-클라이언트가-호출할-api&quot;&gt;7.1. 클라이언트가 호출할 API&lt;/h3&gt;
+&lt;h3 id=&quot;71-api서버에서-트위치-api-서버로-보내는-api&quot;&gt;7.1. API서버에서 트위치 API 서버로 보내는 API&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;클라이언트에서 호출할 수 있는 API는 다음과 같습니다.
+  &lt;li&gt;
+    &lt;p&gt;다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 &lt;a href=&quot;https://dev.twitch.tv/docs/v5&quot;&gt;공식 레퍼런스&lt;/a&gt;를 참고했습니다.&lt;/p&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;/streamer/:name
+      &lt;li&gt;
+        &lt;p&gt;https://api.twitch.tv/kraken/users?login=:userName&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;{name}인 스트리머의 정보를 불러옵니다. DB에 없다면 DB에 저장하고 불러옵니다.&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/users?login=woowakgood&lt;/code&gt;를 호출 했을 때 결과입니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;_total&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;우왁굳&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;49045679&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;woowakgood&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;bio&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2013-09-15T15:22:27.073646Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-21T08:35:10.922798Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;logo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://static-cdn.jtvnw.net/jtv_user_pictures/ebc60c08-721b-4572-8f51-8be7136a0c96-profile_image-300x300.png&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;/video/search/:videoId
+      &lt;li&gt;
+        &lt;p&gt;https://api.twitch.tv/kraken/channels/:userId&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;{videoId}인 비디오의 정보(댓글 속도 등)를 불러옵니다.&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;위에서 얻은 우왁굳의 id로 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/channels/49045679&lt;/code&gt;를 호출한 결과입니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;오늘 그냥 기타 연습하면서 쉬는 날&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ko&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_software&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;unknown_rtmp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;우왁굳&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Just Chatting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ko&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;49045679&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;woowakgood&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2013-09-15T15:22:27Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-21T09:04:29Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;partner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;logo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://static-cdn.jtvnw.net/jtv_user_pictures/ebc60c08-721b-4572-8f51-8be7136a0c96-profile_image-300x300.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;video_banner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://static-cdn.jtvnw.net/jtv_user_pictures/06ce7816-98b1-44cb-98d0-5e040f7d82d9-channel_offline_image-1920x1080.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;profile_banner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://static-cdn.jtvnw.net/jtv_user_pictures/woowakgood-profile_banner-3be507d39ee04799-480.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;profile_banner_background_color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.twitch.tv/woowakgood&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;views&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;39735518&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;followers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;529455&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;partner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;private_video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;privacy_options_enabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;/video/search/:videoId/:keyword
+      &lt;li&gt;
+        &lt;p&gt;https://api.twitch.tv/kraken/videos/:videoId&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옴(해당 키워드가 들어간 채팅의 속도만 검색 등)&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/videos/595442451/&lt;/code&gt; 를 호출한 결과중 일부입니다. (포스팅에 다 넣기에 너무 길어 잘랐습니다.)&lt;/p&gt;
+
+            &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;출발&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description_html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcast_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;37611880656&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcast_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;archive&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;recorded&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;tag_list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;views&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10169&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.twitch.tv/videos/595442451&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ko&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-18T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;viewable&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;public&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;viewable_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;published_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-18T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;delete_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-06-17T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;v595442451&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;recorded_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-18T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Just Chatting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21636&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;restriction&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;channel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;오늘 그냥 기타 연습하면서 쉬는 날&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ko&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_software&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;unknown_rtmp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;우왁굳&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        	&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    		&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;views&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;39735518&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;followers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;529455&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;broadcaster_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;partner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;안녕하세요 2008년부터 종합게임방송을 하고 있는 우왁굳이라고 합니다.이번에 트위치에서 본격적으로 방송을 시작하게 되었습니다. 많은 사랑 부탁드려요~ 앙 트위띠&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;private_video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;privacy_options_enabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;increment_view_count_url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://countess.twitch.tv/ping.gif?u=%7B%22id%22%3A%22595442451%22%2C%22type%22%3A%22vod%22%7D&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;/video/save/:videoId
+      &lt;li&gt;
+        &lt;p&gt;https://api.twitch.tv/kraken/videos/:videoId/comments?:param&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;{videoId}인 비디오를 DB에 저장하도록 함&lt;/li&gt;
+          &lt;li&gt;비디오의 채팅 일부를 가져옵니다.&lt;/li&gt;
+          &lt;li&gt;파리미터엔 &lt;code class=&quot;highlighter-rouge&quot;&gt;cursor&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;content_offset_seconds&lt;/code&gt;가 올 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;cursor&lt;/code&gt;는 채팅 api를 호출하면 돌려주는 다음 채팅의 커서입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;content_offset_seconds&lt;/code&gt;는 비디오의 재생 위치(초단위)입니다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/videos/595442451/comments&lt;/code&gt; 를 호출한 결과는 너무 길어 &lt;a href=&quot;/public/document/tca_comment_api_call.txt&quot;&gt;링크&lt;/a&gt;를 남깁니다.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;72-api서버에서-트위치-api-서버로-보내는-api&quot;&gt;7.2. API서버에서 트위치 API 서버로 보내는 API&lt;/h3&gt;
+&lt;h3 id=&quot;72-api-서버의-api-목록&quot;&gt;7.2. API 서버의 API 목록&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;다음은 API 서버 내부에서 사용하는 트위치 API로 서버로 보내는 API입니다. 트위치 API는 &lt;a href=&quot;https://dev.twitch.tv/docs/v5&quot;&gt;공식 레퍼런스&lt;/a&gt;를 참고했습니다.
+  &lt;li&gt;클라이언트에서 호출할 수 있는 API는 다음과 같습니다.
     &lt;ul&gt;
-      &lt;li&gt;https://api.twitch.tv/kraken/users?login=:userName
+      &lt;li&gt;
+        &lt;p&gt;/streamer/:name&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;스트리머의 닉네임을 id로 바꾸기 위해 사용합니다.&lt;/li&gt;
+          &lt;li&gt;DB에 저장된 {name}인 스트리머의 정보를 불러옵니다.&lt;/li&gt;
+          &lt;li&gt;트위치에 없는 스트리머를 조회하면 에러 코드를 돌려줍니다.&lt;/li&gt;
+          &lt;li&gt;트위치엔 있지만 DB에 없다면 DB에 저장하고 불러옵니다.&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/api_call_test1.png&quot; alt=&quot;api_call_test1.png&quot; /&gt;&lt;small&gt;우왁굳의 스트리머 정보를 불러왔다!&lt;/small&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;/video/search/:videoId&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;DB에 저장된 {videoId}인 비디오의 정보(댓글 속도 등)를 불러옵니다.&lt;/li&gt;
+          &lt;li&gt;트위치에 없는 video를 부르면 에러 코드를 돌려줍니다.&lt;/li&gt;
+          &lt;li&gt;트위치엔 있지만 DB에 없다면 해당 에러 코드를 돌려줍니다.&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/api_call_test3.png&quot; alt=&quot;api_call_test3.png&quot; /&gt;&lt;small&gt;트위치엔 있지만 DB에 없는 경우&lt;/small&gt;&lt;/p&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/api_call_test6.png&quot; alt=&quot;api_call_test6.png&quot; /&gt;&lt;small&gt;DB에 있는 비디오 조회시&lt;/small&gt;&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;FoundVideo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  	&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;49045679&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;woowakgood&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;videoId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;v595442451&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;출발&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-18T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Just Chatting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21636&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;comments&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1435&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;816&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                      &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                      &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;671&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;726&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;782&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;https://api.twitch.tv/kraken/channels/:userId
+      &lt;li&gt;
+        &lt;p&gt;/video/search/:videoId/:keyword&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;스트리머 id를 이용해 스트리머에 대한 정보를 가져옵니다.&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SearchKeyword&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;49045679&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;woowakgood&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;videoId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;v595442451&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;출발&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-04-18T09:46:20Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Just Chatting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21636&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;comments&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;78&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;69&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;221&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            			&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;165&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;164&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;seconds&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;counting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;271&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;https://api.twitch.tv/kraken/videos/:videoId
+      &lt;li&gt;
+        &lt;p&gt;/video/save/:videoId&lt;/p&gt;
+
         &lt;ul&gt;
-          &lt;li&gt;비디오 id를 이용해 비디오에 관한 정보를 가져옵니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;https://api.twitch.tv/kraken/videos/:videoId/comments?:param
-        &lt;ul&gt;
-          &lt;li&gt;비디오의 채팅 일부를 가져옵니다. param엔 비디오의 위치(초 단위) 혹은 트위치 API에서 제공하는 채팅의 cursor 파라미터가 들어갑니다.&lt;/li&gt;
+          &lt;li&gt;{videoId}인 비디오를 DB에 저장하도록 함&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -1310,18 +1891,24 @@
 &lt;h3 id=&quot;73-난관---채팅-받아오기&quot;&gt;7.3. 난관 - 채팅 받아오기&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;API 서버 개발에 우여곡절이 있었지만 대부분 금방 해결되었습니다. 하지만 해결하는데 꽤 오랜 시간이 걸린 이슈가 있습니다. 바로 모든 채팅을 받아오는 속도를 줄이는 것이었습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 채팅을 받아오는 트위치 API는 채팅 전체를 주지 않습니다. 한 번 요청에 60개 정도의 채팅과 다음 채팅 60개의 주소 파라미터를 넘겨줍니다.&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;API 서버 개발에 우여곡절이 있었지만 대부분 금방 해결되었습니다. 하지만 해결하는데 꽤 오랜 시간이 걸린 이슈가 있습니다. 바로 모든 채팅을 받아오는 속도를 줄이는 것이었습니다.&lt;/li&gt;
+  &lt;li&gt;위의 채팅을 받아오는 트위치 API는 채팅 전체를 주지 않습니다. 한 번 요청에 60개 정도의 채팅과 다음 채팅 60개의 주소 파라미터를 넘겨줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/comment_api.png&quot; alt=&quot;comment_api.png&quot; /&gt;&lt;small&gt;채팅 요청을 보내면 commets와 _prev, _next 커서를 돌려준다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
   &lt;li&gt;처음엔 60개의 채팅을 받고 다음 60개를 받아오고… 동기식으로 채팅을 가져왔습니다.
     &lt;ul&gt;
       &lt;li&gt;채팅이 60,000개 일때, 1,000번의 API 호출이 필요했고 한 번 API를 주고 받는 시간을 짧게 잡아 0.3초라고 봐도 총 300초, 5분이 걸렸습니다. 유저가 검색을 하고 채팅을 받아오는 5분 동안 기다릴리 만무합니다.&lt;/li&gt;
       &lt;li&gt;물론, 이 경우는 채팅이 60,000개로 비교적 적은 편이고 API를 주고 받는 시간도  긍정적으로 계산한 것입니다. (방송 시간이 길거나, 평균 채팅속도가 빠른 방송의 경우 채팅 100,000개는 가볍게 넘어갑니다.)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/synchronous_call.png&quot; alt=&quot;synchronous_call.png&quot; /&gt;&lt;small&gt;동기식 채팅 호출&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
   &lt;li&gt;트위치에 다시보기가 올라오는지 모니터링하고 있다가 올라오면 유저들이 TCA에서 검색하기 전에 미리 채팅을 받아오는 방법을 제외하면 답이 없어보였습니다.
     &lt;ul&gt;
       &lt;li&gt;하지만 이 방법은 문제가 있었습니다. 대상으로할 스트리머를 어디까지 할 지 정하는 것이었습니다. 트위치의 모든 스트리머를 대상으로 한다면, 저의 빈약한 PC로는 버틸 수 없습니다.&lt;/li&gt;
@@ -1356,11 +1943,16 @@ console.log(response); --&amp;gt; 'something'
 
     &lt;ul&gt;
       &lt;li&gt;다시보기를 여러 개의 구간으로 쪼갭니다.&lt;/li&gt;
-      &lt;li&gt;한 구간의 첫 API를 보내고 기다리는 동안 다른 구간의 API를 보냅니다.&lt;/li&gt;
+      &lt;li&gt;한 구간의 첫 API를 보내고 &lt;strong&gt;기다리는 동안 다른 구간의 API를 보냅니다.&lt;/strong&gt;&lt;/li&gt;
       &lt;li&gt;한 구간에선 API응답을 받으면 다음 cursor를 담아 다시 API를 보냅니다.&lt;/li&gt;
-      &lt;li&gt;즉, 한 구간 안에선 동기적으로, 구간끼린 비동기적으로 처리하는 것입니다.&lt;/li&gt;
+      &lt;li&gt;즉, &lt;strong&gt;한 구간 안에선 동기적으로, 구간끼린 비동기적으로 처리하는 것입니다.&lt;/strong&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/asynchronous_call.png&quot; alt=&quot;asynchronous_call.png&quot; /&gt;&lt;small&gt;한 구간안에선 동기적으로, 각 구간은 비동기적으로!&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function&quot;&gt;MDN의 Document&lt;/a&gt;를 많이 참고했습니다.&lt;/p&gt;
 
@@ -1372,6 +1964,7 @@ console.log(response); --&amp;gt; 'something'
     
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;divideSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startSec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;divideSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// getCommentsBundle(videoId, second) =&amp;gt; {return 한 구간의 Promise}&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;bundlePromiseArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getCommentsBundle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;videoId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
@@ -1406,22 +1999,31 @@ console.log(response); --&amp;gt; 'something'
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;메인페이지와 에러페이지들을 띄우는데 성공했습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-    &lt;p&gt;메인, 에러 페이지 화면&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스트리머 페이지를 띄우는데도 성공했습니다. (썸네일은 더미 데이터를 넣었습니다.)&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/main_real.png&quot; alt=&quot;main_real.png&quot; /&gt;&lt;small&gt;메인 페이지&lt;/small&gt;&lt;/p&gt;
 
-    &lt;p&gt;스트리머 페이지&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;이제 가장 핵심인 비디오 페이지를 만들어야 했습니다. 비디오 페이지에서 chart js와 열심히 싸우고 있던 와중에… 취업을 해버려서…&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/nostreamer_real.png&quot; alt=&quot;nostreamer_real.png&quot; /&gt;&lt;small&gt;트위치에 없는 스트리머를 찾았을 때&lt;/small&gt;&lt;/p&gt;
 
-    &lt;p&gt;비디오 페이지&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;여기까지가 2019년 8월에 완성한 Twitch Chat Analysis 입니다.&lt;/p&gt;
-  &lt;/li&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/novideo_real.png&quot; alt=&quot;novideo_real.png&quot; /&gt;&lt;small&gt;트위치에 없는 비디오를 찾았을 때&lt;/small&gt;&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/not_analyzed_video_real.png&quot; alt=&quot;not_analyzed_video_real.png&quot; /&gt;&lt;small&gt;트위치에 있지만 DB에 없는 비디오를 요청 했을때. 채팅을 모두 받아온 후에 자동으로 분석 비디오 화면으로 넘어갑니다. 화면에 few minute을 few seconds로 바꿔도 될 것 같습니다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스트리머 페이지를 띄우는데도 성공했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/streamer_found_real.png&quot; alt=&quot;streamer_found_real.png&quot; /&gt;&lt;small&gt;스트리머 정보 페이지. 스트리머의 정보와 분석된 비디오들이 보여집니다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이제 가장 핵심인 비디오 페이지를 만들어야 했습니다. 비디오 페이지에서 chart js와 열심히 싸우고 있던 와중에… 취업을 해버려서…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/found_video_real.png&quot; alt=&quot;found_video_real.png&quot; /&gt;&lt;small&gt;분석 비디오 페이지. chart js와 씨름하다 취업이 되버렸습니다. 그래프를 누르면 해당 지점으로 비디오가 넘어가야 되는데 그 부분을 다루다..&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여기까지가 2019년 8월에 완성한 Twitch Chat Analysis 입니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
