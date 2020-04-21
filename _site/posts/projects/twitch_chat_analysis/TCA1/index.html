@@ -11,7 +11,7 @@
 
   <title>
     
-      지금까지의 Twitch Chat Analysis(작성중) &middot; 이기승의 끄적끄적..
+      지금까지의 Twitch Chat Analysis &middot; 이기승의 끄적끄적..
     
   </title>
 
@@ -171,25 +171,25 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">지금까지의 Twitch Chat Analysis(작성중)</h1>
+  <h1 class="post-title">지금까지의 Twitch Chat Analysis</h1>
   <span class="post-date">09 Apr 2020</span>
   
 <ul>
   <li>Twitch Chat Analysis (이하 TCA) 프로젝트는 2019년 8월 경에 한 달간 진행한 프로젝트입니다.</li>
   <li>원래 계획은 많았으나 예상보다 빠르게 취업이 되어 중단된 프로젝트입니다.</li>
-  <li>본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.</li>
+  <li>본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.
+    <ol>
+      <li><a href="#1-%EA%B0%9C%EC%9A%94">개요</a></li>
+      <li><a href="#2-%EA%B8%B0%ED%9A%8D">기획</a></li>
+      <li><a href="#3-%EC%9C%A0%EC%A0%80-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B8%B0%ED%9A%8D">유저 시나리오 기획</a></li>
+      <li><a href="#4-%EC%9B%B9-%EB%94%94%EC%9E%90%EC%9D%B8">웹 디자인</a></li>
+      <li><a href="#5-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-%EC%84%A0%EC%A0%95">기술 스택 선정</a></li>
+      <li><a href="#6-db-%EC%8A%A4%ED%82%A4%EB%A7%88">DB 스키마</a></li>
+      <li><a href="#7-api-%EC%84%9C%EB%B2%84">API 서버</a></li>
+      <li><a href="#8-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8">클라이언트</a></li>
+    </ol>
+  </li>
 </ul>
-
-<ol>
-  <li><a href="#1-%EA%B0%9C%EC%9A%94">개요</a></li>
-  <li><a href="#2-%EA%B8%B0%ED%9A%8D">기획</a></li>
-  <li><a href="#3-%EC%9C%A0%EC%A0%80-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B8%B0%ED%9A%8D">유저 시나리오 기획</a></li>
-  <li><a href="#4-%EC%9B%B9-%EB%94%94%EC%9E%90%EC%9D%B8">웹 디자인</a></li>
-  <li><a href="#5-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-%EC%84%A0%EC%A0%95">기술 스택 선정</a></li>
-  <li><a href="#6-db-%EC%8A%A4%ED%82%A4%EB%A7%88">DB 스키마</a></li>
-  <li><a href="#7-api-%EC%84%9C%EB%B2%84">API 서버</a></li>
-  <li><a href="#8-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8">클라이언트</a></li>
-</ol>
 
 <h2 id="1-개요">1. 개요</h2>
 
@@ -384,20 +384,13 @@
 <h3 id="71-api서버에서-트위치-api-서버로-보내는-api">7.1. API서버에서 트위치 API 서버로 보내는 API</h3>
 
 <ul>
-  <li>
-    <p>다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 <a href="https://dev.twitch.tv/docs/v5">공식 레퍼런스</a>를 참고했습니다.</p>
-
+  <li>다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 <a href="https://dev.twitch.tv/docs/v5">공식 레퍼런스</a>를 참고했습니다.
     <ul>
-      <li>
-        <p>https://api.twitch.tv/kraken/users?login=:userName</p>
-
+      <li>https://api.twitch.tv/kraken/users?login=:userName
         <ul>
+          <li>스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.</li>
           <li>
-            <p>스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.</p>
-          </li>
-          <li>
-            <p><code class="highlighter-rouge">https://api.twitch.tv/kraken/users?login=woowakgood</code>를 호출 했을 때 결과입니다.</p>
-
+<code class="highlighter-rouge">https://api.twitch.tv/kraken/users?login=woowakgood</code>를 호출 했을 때 결과입니다.
             <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -418,16 +411,10 @@
           </li>
         </ul>
       </li>
-      <li>
-        <p>https://api.twitch.tv/kraken/channels/:userId</p>
-
+      <li>https://api.twitch.tv/kraken/channels/:userId
         <ul>
-          <li>
-            <p>스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)</p>
-          </li>
-          <li>
-            <p>위에서 얻은 우왁굳의 id로 <code class="highlighter-rouge">https://api.twitch.tv/kraken/channels/49045679</code>를 호출한 결과입니다.</p>
-
+          <li>스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)</li>
+          <li>위에서 얻은 우왁굳의 id로 <code class="highlighter-rouge">https://api.twitch.tv/kraken/channels/49045679</code>를 호출한 결과입니다.
             <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"mature"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -458,16 +445,11 @@
           </li>
         </ul>
       </li>
-      <li>
-        <p>https://api.twitch.tv/kraken/videos/:videoId</p>
-
+      <li>https://api.twitch.tv/kraken/videos/:videoId
         <ul>
+          <li>비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.</li>
           <li>
-            <p>비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.</p>
-          </li>
-          <li>
-            <p><code class="highlighter-rouge">https://api.twitch.tv/kraken/videos/595442451/</code> 를 호출한 결과중 일부입니다. (포스팅에 다 넣기에 너무 길어 잘랐습니다.)</p>
-
+<code class="highlighter-rouge">https://api.twitch.tv/kraken/videos/595442451/</code> 를 호출한 결과중 일부입니다. (포스팅에 다 넣기에 너무 길어 잘랐습니다.)
             <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"출발"</span><span class="p">,</span><span class="w">
@@ -513,9 +495,7 @@
           </li>
         </ul>
       </li>
-      <li>
-        <p>https://api.twitch.tv/kraken/videos/:videoId/comments?:param</p>
-
+      <li>https://api.twitch.tv/kraken/videos/:videoId/comments?:param
         <ul>
           <li>비디오의 채팅 일부를 가져옵니다.</li>
           <li>파리미터엔 <code class="highlighter-rouge">cursor</code>와 <code class="highlighter-rouge">content_offset_seconds</code>가 올 수 있습니다. <code class="highlighter-rouge">cursor</code>는 채팅 api를 호출하면 돌려주는 다음 채팅의 커서입니다. <code class="highlighter-rouge">content_offset_seconds</code>는 비디오의 재생 위치(초단위)입니다.</li>
@@ -532,9 +512,7 @@
 <ul>
   <li>클라이언트에서 호출할 수 있는 API는 다음과 같습니다.
     <ul>
-      <li>
-        <p>/streamer/:name</p>
-
+      <li>/streamer/:name
         <ul>
           <li>DB에 저장된 {name}인 스트리머의 정보를 불러옵니다.</li>
           <li>트위치에 없는 스트리머를 조회하면 에러 코드를 돌려줍니다.</li>
@@ -543,9 +521,7 @@
 
         <p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/api_call_test1.png" alt="api_call_test1.png"><small>우왁굳의 스트리머 정보를 불러왔다!</small></p>
       </li>
-      <li>
-        <p>/video/search/:videoId</p>
-
+      <li>/video/search/:videoId
         <ul>
           <li>DB에 저장된 {videoId}인 비디오의 정보(댓글 속도 등)를 불러옵니다.</li>
           <li>트위치에 없는 video를 부르면 에러 코드를 돌려줍니다.</li>
@@ -557,9 +533,7 @@
         <p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/api_call_test6.png" alt="api_call_test6.png"><small>DB에 있는 비디오 조회시</small></p>
 
         <ul>
-          <li>
-            <p>DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.</p>
-
+          <li>DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.
             <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"FoundVideo"</span><span class="p">,</span><span class="w">
@@ -587,22 +561,12 @@
           </li>
         </ul>
       </li>
-      <li>
-        <p>/video/search/:videoId/:keyword</p>
-
+      <li>/video/search/:videoId/:keyword
         <ul>
-          <li>
-            <p>{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.</p>
-          </li>
-          <li>
-            <p>해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.</p>
-          </li>
-          <li>
-            <p>‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.</p>
-          </li>
-          <li>
-            <p>다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.</p>
-
+          <li>{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.</li>
+          <li>해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.</li>
+          <li>‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.</li>
+          <li>다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.
             <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"SearchKeyword"</span><span class="p">,</span><span class="w">
@@ -630,9 +594,7 @@
           </li>
         </ul>
       </li>
-      <li>
-        <p>/video/save/:videoId</p>
-
+      <li>/video/save/:videoId
         <ul>
           <li>{videoId}인 비디오를 DB에 저장하도록 함</li>
         </ul>
@@ -674,9 +636,7 @@
 <h3 id="74-돌파구의-마련---비동기-api-호출">7.4. 돌파구의 마련 - 비동기 API 호출</h3>
 
 <ul>
-  <li>
-    <p>돌파구는 우연히 찾아왔습니다. 웹 브라우저 콘솔창에서 자바스크립트를 가지고 놀던 중 다음과 같은 현상을 발견합니다.</p>
-
+  <li>돌파구는 우연히 찾아왔습니다. 웹 브라우저 콘솔창에서 자바스크립트를 가지고 놀던 중 다음과 같은 현상을 발견합니다.
     <div class="highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>response = callAPI();
 console.log(response); --&gt; undefined
@@ -689,12 +649,8 @@ console.log(response); --&gt; 'something'
   <li>
     <p>response에 API 호출 결과를 담아 바로 console.log를 찍었을 땐 분명 아무것도 안나왔는데, 나중에 다시 console.log를 찍으니 결과가 나왔습니다.</p>
   </li>
-  <li>
-    <p>프로그래밍을 시작한지 얼마 되지 않았고 Java를 주로 다루던 저는 비동기에 대해 잘 모르고 있었습니다. 위 현상을 발견하고 구글링을 해본 결과 자바스크립트의 비동기에 대해 알게 되었고 채팅을 받아오는 속도를 줄이는 방법이 번뜩하고 떠올랐습니다.</p>
-  </li>
-  <li>
-    <p>방법은 <del>지금보면</del> 간단합니다.</p>
-
+  <li>프로그래밍을 시작한지 얼마 되지 않았고 Java를 주로 다루던 저는 비동기에 대해 잘 모르고 있었습니다. 위 현상을 발견하고 구글링을 해본 결과 자바스크립트의 비동기에 대해 알게 되었고 채팅을 받아오는 속도를 줄이는 방법이 번뜩하고 떠올랐습니다.</li>
+  <li>방법은 <del>지금보면</del> 간단합니다.
     <ul>
       <li>다시보기를 여러 개의 구간으로 쪼갭니다.</li>
       <li>한 구간의 첫 API를 보내고 <strong>기다리는 동안 다른 구간의 API를 보냅니다.</strong>
@@ -709,13 +665,9 @@ console.log(response); --&gt; 'something'
 <p class="p_img"><img src="/public/image/Twitch_Chat_Analysis/asynchronous_call.png" alt="asynchronous_call.png"><small>한 구간안에선 동기적으로, 각 구간은 비동기적으로!</small></p>
 
 <ul>
-  <li>
-    <p>위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function">MDN의 Document</a>를 많이 참고했습니다.</p>
-
+  <li>위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function">MDN의 Document</a>를 많이 참고했습니다.
     <ul>
-      <li>
-        <p>나눈 구간에서 최종적으로 하나의 Promise를 리턴 받고, 여러 구간의 Promise들을 배열에 담습니다.</p>
-
+      <li>나눈 구간에서 최종적으로 하나의 Promise를 리턴 받고, 여러 구간의 Promise들을 배열에 담습니다.
         <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">bundlePromiseArray</span> <span class="o">=</span> <span class="p">[];</span>
     
@@ -726,18 +678,14 @@ console.log(response); --&gt; 'something'
 <span class="p">}</span>
 </code></pre></div>        </div>
       </li>
-      <li>
-        <p>배열 안의 모든 Promise들이 Fulfilled 되면 다음 작업을 수행 했습니다.</p>
-
+      <li>배열 안의 모든 Promise들이 Fulfilled 되면 다음 작업을 수행 했습니다.
         <div class="language-javascript highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">bundleArray</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">bundlePromiseArray</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="o">~~~</span><span class="p">)</span>
 </code></pre></div>        </div>
       </li>
     </ul>
   </li>
-  <li>
-    <p>비동기식으로 채팅을 받아오니 5분 걸리던 채팅 다운이 10초 밑으로 떨어졌습니다. <img class="emoji" title=":sob:" alt=":sob:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png" height="20" width="20"></p>
-
+  <li>비동기식으로 채팅을 받아오니 5분 걸리던 채팅 다운이 10초 밑으로 떨어졌습니다. <img class="emoji" title=":sob:" alt=":sob:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png" height="20" width="20">
     <ul>
       <li>20~30분 걸리던 채팅이 많은 다시보기도 30초 전후하여 받아왔습니다.</li>
     </ul>
@@ -812,7 +760,7 @@ console.log(response); --&gt; 'something'
       <li>
         <h3>
           <a href="/posts/projects/sagyo_reboot/Sagyo3/">
-            MSA 구조 적용(작성중)
+            MSA 구조 적용(강의 듣는 중)
             <small>19 Apr 2020</small>
           </a>
         </h3>

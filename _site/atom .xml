@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-21T19:07:51+09:00</updated>
+ <updated>2020-04-21T21:30:35+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -583,7 +583,7 @@
  </entry>
  
  <entry>
-   <title>MSA 구조 적용(작성중)</title>
+   <title>MSA 구조 적용(강의 듣는 중)</title>
    <link href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3/"/>
    <updated>2020-04-19T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/projects/sagyo_reboot/Sagyo3</id>
@@ -958,23 +958,20 @@
  </entry>
  
  <entry>
-   <title>Spring 특징(작성중)</title>
+   <title>Spring 특징</title>
    <link href="http://localhost:4000/posts/googling/java/Spring%ED%8A%B9%EC%A7%95/"/>
    <updated>2020-04-16T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/googling/java/Spring특징</id>
    <content type="html">
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;(작성중) AOP 부분만 보완하면 됨&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Spring 특징이라고 검색하면 무조건 나오는 3개만 정리해둡니다.
+  &lt;li&gt; Spring 특징이라고 검색하면 무조건 나오는 3개만 정리해둡니다.
     &lt;ul&gt;
       &lt;li&gt;POJO&lt;/li&gt;
       &lt;li&gt;IoC / DI&lt;/li&gt;
       &lt;li&gt;AOP&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;기존에 여기저기 주워 들어 알고 있던 지식과 &lt;a href=&quot;https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html&quot;&gt;Spring 공식 Document&lt;/a&gt;를 참고했습니다.&lt;/li&gt;
+  &lt;li&gt; 기존에 여기저기 주워 들어 알고 있던 지식과 &lt;a href=&quot;https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html&quot;&gt;Spring 공식 Document&lt;/a&gt;를 참고했습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;pojo&quot;&gt;POJO&lt;/h3&gt;
@@ -982,9 +979,15 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Plain Old Java Object로 구성가능합니다. 즉, 어플리케이션을 위한 다른 라이브러리 등을 익힐 필요 없이 순수한 Java의 객체들로만 작성할 수 있다는 것입니다.&lt;/li&gt;
-  &lt;li&gt;스프링이 없던 과거의 웹 개발자분들은 직접 Servlet 클래스를 구현해 웹 어플리케이션을 만들어야 했습니다. (학원에서 스프링 배우기 이전에 ‘원래 이런 방식으로 구현되니 알아만 둬라’라며 Servlet 클래스의 doGet과 doPost를 구현했던 기억이 납니다.) 그런데 Servlet 클래스는 순수한 자바 클래스는 아닙니다. 웹 개발을 위해 끌어와야할 외부 클래스입니다.&lt;/li&gt;
-  &lt;li&gt;POJO는 이런 외부 클래스의 작성 없이, 개발자는 기존에 알던 Java만 사용해도 된다는 것입니다. (근데 이제 Java를 아는 것보다 Spring을 아는게 더 큰 일이 되버린것 같습니다..)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt; Plain Old Java Object로 구성가능합니다. 즉, 어플리케이션을 위한 다른 라이브러리 등을 익힐 필요 없이 순수한 Java의 객체들로만 작성할 수 있다는 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt; 스프링이 없던 과거의 웹 개발자분들은 직접 Servlet 클래스를 구현해 웹 어플리케이션을 만들어야 했습니다. (학원에서 스프링 배우기 이전에 ‘원래 이런 방식으로 구현되니 알아만 둬라’라며 Servlet 클래스의 doGet과 doPost를 구현했던 기억이 납니다.) 그런데 Servlet 클래스는 순수한 자바 클래스는 아닙니다. 웹 개발을 위해 끌어와야할 외부 클래스입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt; POJO는 이런 외부 클래스의 작성 없이, 개발자는 기존에 알던 Java만 사용해도 된다는 것입니다. (근데 이제 Java를 아는 것보다 Spring을 아는게 더 큰 일이 되버린것 같습니다..)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;ioc--di&quot;&gt;IoC / DI&lt;/h3&gt;
@@ -992,40 +995,39 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Spring의 공식 Document 중 Core 부분 Document에서 가장 처음 나오는 것이 IoC Container 입니다. 그리고, IoC Container에서 IoC의 개념에 대한 간략한 설명이 나와 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
+  &lt;li&gt;
+    &lt;p&gt; Spring의 공식 Document 중 Core 부분 Document에서 가장 처음 나오는 것이 IoC Container 입니다. 그리고, IoC Container에서 IoC의 개념에 대한 간략한 설명이 나와 있습니다.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt; IoC is also known as dependency injection (DI).&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt; IoC is also known as dependency injection (DI).&lt;/p&gt;
 
-  &lt;p&gt; It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.&lt;/p&gt;
+      &lt;p&gt; It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.&lt;/p&gt;
 
-  &lt;p&gt; The container then injects those dependencies when it creates the bean.&lt;/p&gt;
+      &lt;p&gt; The container then injects those dependencies when it creates the bean.&lt;/p&gt;
 
-  &lt;p&gt; &lt;strong&gt;This process is fundamentally the inverse (hence the name, Inversion of Control) of the bean itself controlling the instantiation&lt;/strong&gt; or location of its dependencies by using direct construction of classes or a mechanism such as the Service Locator pattern.&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt; &lt;strong&gt;This process is fundamentally the inverse (hence the name, Inversion of Control) of the bean itself controlling the instantiation&lt;/strong&gt; or location of its dependencies by using direct construction of classes or a mechanism such as the Service Locator pattern.&lt;/p&gt;
+    &lt;/blockquote&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;IoC는 DI 라고도 알려져있습니다.&lt;/li&gt;
-  &lt;li&gt;IoC는 객체가 &lt;strong&gt;자신의 의존성을 정의하는 방법&lt;/strong&gt;입니다. 정의하는 방법은 아래의 과정을 통해서만 가능합니다.
     &lt;ul&gt;
-      &lt;li&gt;생성자 전달인자 (constructor arguments)&lt;/li&gt;
-      &lt;li&gt;Factory 메서드로 전달된 전달인자 (arguments to a factory method)&lt;/li&gt;
-      &lt;li&gt;생성되거나 Factory method로 부터 돌려받은 객체 인스턴스에 설정된 property들 (properties that are set on the object instance after it is constructed or returned from a factory method.)&lt;/li&gt;
+      &lt;li&gt; IoC는 DI 라고도 알려져있습니다.&lt;/li&gt;
+      &lt;li&gt; IoC는 객체가 &lt;strong&gt;자신의 의존성을 정의하는 방법&lt;/strong&gt;입니다. 정의하는 방법은 아래의 과정을 통해서만 가능합니다.
+        &lt;ul&gt;
+          &lt;li&gt; 생성자 전달인자 (constructor arguments)&lt;/li&gt;
+          &lt;li&gt; Factory 메서드로 전달된 전달인자 (arguments to a factory method)&lt;/li&gt;
+          &lt;li&gt; 생성되거나 Factory method로 부터 돌려받은 객체 인스턴스에 설정된 property들 (properties that are set on the object instance after it is constructed or returned from a factory method.)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt; &lt;strong&gt;해당 객체가 만들어질때 IoC 컨테어너가 의존성을 주입해줍니다.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt; &lt;strong&gt;이 과정은 bean 자체가 만들어질 때의 과정과 근본적으로 반대입니다.&lt;/strong&gt; (Service Locator pattern같은 걸 이용해 의존성의 위치를 바꾼다는 내용은 아직 잘 모르겠습니다… :cry:)&lt;/li&gt;
     &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;해당 객체가 만들어질때 IoC 컨테어너가 의존성을 주입해줍니다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;이 과정은 bean 자체가 만들어질 때의 과정과 근본적으로 반대입니다.&lt;/strong&gt; (Service Locator pattern같은 걸 이용해 의존성의 위치를 바꾼다는 내용은 아직 잘 모르겠습니다… :cry:)&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;간단하게 말하자면, IoC는 객체간의 의존성을 만들 때 기존의 방법과 반대의 방법을 사용한다는 뜻입니다. 말 그대로 Inversion of Control 입니다. 그리고 반대의 방법을 사용할 때 필요한게 의존성 주입(Dependency Injection)입니다.&lt;/p&gt;
+    &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Coffee 객체를 만들기 위해 EthiopiaBean 객체가 필요한 상황을 가정합시다.&lt;/p&gt;
+    &lt;p&gt; 간단하게 말하자면, IoC는 객체간의 의존성을 만들 때 기존의 방법과 반대의 방법을 사용한다는 뜻입니다. 말 그대로 Inversion of Control 입니다. 그리고 반대의 방법을 사용할 때 필요한게 의존성 주입(Dependency Injection)입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt; Coffee 객체를 만들기 위해 EthiopiaBean 객체가 필요한 상황을 가정합시다.&lt;/p&gt;
 
     &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;nc&quot;&gt;EthiopiaBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1045,15 +1047,13 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
     &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;순수한 자바의 상황이라면, Coffee객체를 만드는 와중에 EthiopiaBean객체를 만들게 됩니다.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;이 상황에서 Coffee 객체에 필요한 커피 원두를 KenyaBean으로 바꾸고 싶다면 Coffee 객체 코드를 수정해야 합니다. 지금은 Coffee 객체와 EthiopiaBean 객체의 결합도가 높다고 볼 수 있습니다.&lt;/li&gt;
-      &lt;li&gt;IoC / DI를 이용해 객체간의 결합도를 낮출 수 있습니다.&lt;/li&gt;
+      &lt;li&gt; 순수한 자바라면, Coffee객체를 만드는 와중에 EthiopiaBean객체를 만들게 됩니다.&lt;/li&gt;
+      &lt;li&gt; 이 상황에서 Coffee 객체에 필요한 커피 원두를 KenyaBean으로 바꾸고 싶다면 Coffee 객체 코드를 수정해야 합니다. 지금은 Coffee 객체와 EthiopiaBean 객체의 결합도가 높다고 볼 수 있습니다.&lt;/li&gt;
+      &lt;li&gt; IoC / DI를 이용해 객체간의 결합도를 낮출 수 있습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;다음과 같이 상황을 바꿀 수 있습니다.&lt;/p&gt;
+    &lt;p&gt; 다음과 같이 상황을 바꿀 수 있습니다.&lt;/p&gt;
 
     &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
@@ -1075,13 +1075,13 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
     &lt;ul&gt;
-      &lt;li&gt;Coffee 클래스엔 커피 원두의 interface만 남기고 직접적인 결합은 피해줍니다.&lt;/li&gt;
-      &lt;li&gt;위 코드엔 없지만 spring의 설정 파일을 통해 CoffeeBean에 어떤 커피 원두가 들어갈 지 설정해둡니다. (여기선 KenyaBean으로 설정해 두었다고 가정합시다.)&lt;/li&gt;
-      &lt;li&gt;Coffee 객체가 만들어 질 때, 스프링 IoC 컨테이너가 KenyaBean 객체를 따로 만들어 Coffee 객체의 생성 과정에 주입해 줍니다.&lt;/li&gt;
+      &lt;li&gt; Coffee 클래스엔 커피 원두의 interface만 남기고 직접적인 결합은 피해줍니다.&lt;/li&gt;
+      &lt;li&gt; 위 코드엔 없지만 spring의 설정 파일을 통해 CoffeeBean에 어떤 커피 원두가 들어갈 지 설정해둡니다. (여기선 KenyaBean으로 설정해 두었다고 가정합시다.)&lt;/li&gt;
+      &lt;li&gt; Coffee 객체가 만들어 질 때, 스프링 IoC 컨테이너가 KenyaBean 객체를 따로 만들어 Coffee 객체의 생성 과정에 주입해 줍니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;기존엔 EthiopiaBean 객체가 만들어지려면 Coffee 객체의 생성이 필요했습니다. 하지만 이제 반대로 Coffee 객체의 생성을 위해선 KenyaBean 의 생성이 필요해졌습니다. Dependency Injection을 통해 Inversion of Control이 되어 버린 것입니다.&lt;/p&gt;
+    &lt;p&gt; 기존엔 EthiopiaBean 객체가 만들어지려면 Coffee 객체의 생성이 필요했습니다. 하지만 이제 반대로 Coffee 객체의 생성을 위해선 KenyaBean 의 생성이 필요해졌습니다. Dependency Injection을 통해 Inversion of Control이 되어 버린 것입니다.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1090,21 +1090,85 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;AOP(aspect oriented programming)이란 쉽게 말해 보조적인 업무와 핵심 업무를 나눠 생각하겠다는 것입니다.
+  &lt;li&gt; AOP(aspect oriented programming)이란 쉽게 말해 보조적인 업무와 핵심 업무를 나눠 생각하겠다는 것입니다.
     &lt;ul&gt;
-      &lt;li&gt;로그, 예외 처리 같이 업무의 핵심은 아니지만 모든 업무마다 발생하는 보조업무들을 프로그래머들이 신경쓰지 않게 하기 위한 기법입니다.&lt;/li&gt;
-      &lt;li&gt;주업무 전, 후, 전후 언제 돌아갈지 정할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt; 로그, 예외 처리 같이 업무의 핵심은 아니지만 모든 업무마다 발생하는 보조업무들을 프로그래머들이 신경쓰지 않게 하기 위한 기법입니다.&lt;/li&gt;
+      &lt;li&gt; 주업무 전, 후, 전후 언제 돌아갈지 정할 수 있습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;동작 과정을 더 구체적으로 알아보겠습니다.
+  &lt;li&gt; &lt;a href=&quot;https://docs.spring.io/spring/docs/2.0.x/reference/aop.html#aop-understanding-aop-proxies&quot;&gt;Spring Document&lt;/a&gt;를 통해 동작 과정을 더 구체적으로 알아보겠습니다.
     &lt;ul&gt;
-      &lt;li&gt;보조업무가 주업무가 이루어지는 객체 자체를 찾아가는게 아닙니다.&lt;/li&gt;
-      &lt;li&gt;proxy라는 dummy 객체가 있습니다. 보조업무는 proxy를 찾아갑니다. proxy가 보조업무와 주업무를 실행 시킵니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+      &lt;li&gt; 우선 요약해서 말하자면. 보조업무가 주업무가 이루어지는 객체 자체를 찾아가는게 아닙니다. proxy라는 dummy 객체가 있고. 보조업무는 proxy를 찾아갑니다. proxy가 보조업무와 주업무를 실행 시킵니다.&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt; AOP가 없이 업무를 실행시키는 다음과 같은 상황을 가정하겠습니다.&lt;/p&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-no-proxy.png&quot; alt=&quot;aop-no-proxy.png&quot; /&gt;&lt;small&gt;출처 : https://spring.io/blog/2012/05/23/transactions-caching-and-aop-understanding-proxy-usage-in-spring&lt;/small&gt;&lt;/p&gt;
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// initiate Pojo object&lt;/span&gt;
+      &lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pojo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimplePojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// this is a direct method call on the 'pojo' reference&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;pojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+     
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimplePojo&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// this next method invocation is a direct call on the 'this' reference&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// some logic...&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt; 이런 상황에선 아래와 같이 pojo.foo() 를 호출하면 Plain Pojo 객체에서 foo()를 실행시킵니다.&lt;/p&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-proxy-plain-pojo-call.png&quot; alt=&quot;aop-proxy-plain-pojo-call.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;&lt;small&gt;일반 메서드 호출 ( 출처 : https://docs.spring.io/spring/docs/2.0.x/reference/aop.html#aop-understanding-aop-proxies )&lt;/small&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt; 위 상황에 AOP를 적용해 보조 업무를 추가시키면 다음과 같습니다.
+        &lt;ul&gt;
+          &lt;li&gt; ProxyFactory에 관한건 &lt;a href=&quot;https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/aop/framework/ProxyFactory.html&quot;&gt;여기&lt;/a&gt;를 참고해주세요.&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// 프록시를 만드는 ProxyFactory 생성&lt;/span&gt;
+       &lt;span class=&quot;nc&quot;&gt;ProxyFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProxyFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimplePojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// ProxyFactory에 주업무 Pojo를 등록 &lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;adddInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// 보조업무 RetryAdvice를 등록&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RetryAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// AopContext에서 검색 가능하게 할 건지&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setExposeProxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// 프록시 만들어 냄&lt;/span&gt;
+       &lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pojo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getProxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// this is a method call on the proxy!&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;pojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      
+ &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimplePojo&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// this works, but... gah!&lt;/span&gt;
+       &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Pojo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AopContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentProxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;// some logic...&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt; 위 상황은 아래와 같습니다. factory.getProxy()로 만들어진 Proxy Pojo 객체에서 pojo.foo()를 호출하면 등록해 둔 보조 업무를 실행 시킨 뒤, Plain Pojo의 foo를 실행 시킵니다.&lt;/p&gt;
+
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-proxy-call.png&quot; alt=&quot;aop-proxy-call.png&quot; /&gt;&lt;small&gt;proxy를 이용한 aop&lt;/small&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt; 추가로 AOP와 Filter, Interceptor를 헷갈릴 수 있는데 좋은 포스팅이 있어서 &lt;a href=&quot;https://thiago6.tistory.com/63?category=827160&quot;&gt;링크&lt;/a&gt;만 남기겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
 
 </content>
  </entry>
@@ -1426,7 +1490,7 @@
  </entry>
  
  <entry>
-   <title>지금까지의 Twitch Chat Analysis(작성중)</title>
+   <title>지금까지의 Twitch Chat Analysis</title>
    <link href="http://localhost:4000/posts/projects/twitch_chat_analysis/TCA1/"/>
    <updated>2020-04-09T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/projects/twitch_chat_analysis/TCA1</id>
@@ -1434,19 +1498,19 @@
 &lt;ul&gt;
   &lt;li&gt;Twitch Chat Analysis (이하 TCA) 프로젝트는 2019년 8월 경에 한 달간 진행한 프로젝트입니다.&lt;/li&gt;
   &lt;li&gt;원래 계획은 많았으나 예상보다 빠르게 취업이 되어 중단된 프로젝트입니다.&lt;/li&gt;
-  &lt;li&gt;본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.&lt;/li&gt;
+  &lt;li&gt;본 포스팅에선 처음 계획과 지금까지의 진행상황을 요약하겠습니다.
+    &lt;ol&gt;
+      &lt;li&gt;&lt;a href=&quot;#1-개요&quot;&gt;개요&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2-기획&quot;&gt;기획&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#3-유저-시나리오-기획&quot;&gt;유저 시나리오 기획&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#4-웹-디자인&quot;&gt;웹 디자인&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#5-기술-스택-선정&quot;&gt;기술 스택 선정&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#6-db-스키마&quot;&gt;DB 스키마&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#7-api-서버&quot;&gt;API 서버&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#8-클라이언트&quot;&gt;클라이언트&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;#1-개요&quot;&gt;개요&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#2-기획&quot;&gt;기획&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#3-유저-시나리오-기획&quot;&gt;유저 시나리오 기획&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#4-웹-디자인&quot;&gt;웹 디자인&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#5-기술-스택-선정&quot;&gt;기술 스택 선정&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#6-db-스키마&quot;&gt;DB 스키마&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#7-api-서버&quot;&gt;API 서버&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#8-클라이언트&quot;&gt;클라이언트&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
 
 &lt;h2 id=&quot;1-개요&quot;&gt;1. 개요&lt;/h2&gt;
 
@@ -1637,20 +1701,12 @@
 &lt;h3 id=&quot;71-api서버에서-트위치-api-서버로-보내는-api&quot;&gt;7.1. API서버에서 트위치 API 서버로 보내는 API&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 &lt;a href=&quot;https://dev.twitch.tv/docs/v5&quot;&gt;공식 레퍼런스&lt;/a&gt;를 참고했습니다.&lt;/p&gt;
-
+  &lt;li&gt;다음은 API 서버에서 사용하는 트위치 API입니다. 트위치 API는 &lt;a href=&quot;https://dev.twitch.tv/docs/v5&quot;&gt;공식 레퍼런스&lt;/a&gt;를 참고했습니다.
     &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;https://api.twitch.tv/kraken/users?login=:userName&lt;/p&gt;
-
+      &lt;li&gt;https://api.twitch.tv/kraken/users?login=:userName
         &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/users?login=woowakgood&lt;/code&gt;를 호출 했을 때 결과입니다.&lt;/p&gt;
-
+          &lt;li&gt;스트리머의 닉네임을 파라미터로 넣어 호출하면 스트리머에 대한 정보를 돌려줍니다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/users?login=woowakgood&lt;/code&gt;를 호출 했을 때 결과입니다.
             &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;_total&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1670,16 +1726,10 @@
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;https://api.twitch.tv/kraken/channels/:userId&lt;/p&gt;
-
+      &lt;li&gt;https://api.twitch.tv/kraken/channels/:userId
         &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;위에서 얻은 우왁굳의 id로 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/channels/49045679&lt;/code&gt;를 호출한 결과입니다.&lt;/p&gt;
-
+          &lt;li&gt;스트리머 id를 파라미터로 넣어 호출하면 스트리머의 방송채널에 관한 정보를 가져옵니다. (닉네임과 id는 다르게 사용됩니다.)&lt;/li&gt;
+          &lt;li&gt;위에서 얻은 우왁굳의 id로 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/channels/49045679&lt;/code&gt;를 호출한 결과입니다.
             &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;오늘 그냥 기타 연습하면서 쉬는 날&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1709,16 +1759,10 @@
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;https://api.twitch.tv/kraken/videos/:videoId&lt;/p&gt;
-
+      &lt;li&gt;https://api.twitch.tv/kraken/videos/:videoId
         &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/videos/595442451/&lt;/code&gt; 를 호출한 결과중 일부입니다. (포스팅에 다 넣기에 너무 길어 잘랐습니다.)&lt;/p&gt;
-
+          &lt;li&gt;비디오 id를 넣어 호출하면 해당 비디오에 관한 정보를 가져옵니다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.twitch.tv/kraken/videos/595442451/&lt;/code&gt; 를 호출한 결과중 일부입니다. (포스팅에 다 넣기에 너무 길어 잘랐습니다.)
             &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;출발&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1763,9 +1807,7 @@
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;https://api.twitch.tv/kraken/videos/:videoId/comments?:param&lt;/p&gt;
-
+      &lt;li&gt;https://api.twitch.tv/kraken/videos/:videoId/comments?:param
         &lt;ul&gt;
           &lt;li&gt;비디오의 채팅 일부를 가져옵니다.&lt;/li&gt;
           &lt;li&gt;파리미터엔 &lt;code class=&quot;highlighter-rouge&quot;&gt;cursor&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;content_offset_seconds&lt;/code&gt;가 올 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;cursor&lt;/code&gt;는 채팅 api를 호출하면 돌려주는 다음 채팅의 커서입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;content_offset_seconds&lt;/code&gt;는 비디오의 재생 위치(초단위)입니다.&lt;/li&gt;
@@ -1781,9 +1823,7 @@
 &lt;ul&gt;
   &lt;li&gt;클라이언트에서 호출할 수 있는 API는 다음과 같습니다.
     &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;/streamer/:name&lt;/p&gt;
-
+      &lt;li&gt;/streamer/:name
         &lt;ul&gt;
           &lt;li&gt;DB에 저장된 {name}인 스트리머의 정보를 불러옵니다.&lt;/li&gt;
           &lt;li&gt;트위치에 없는 스트리머를 조회하면 에러 코드를 돌려줍니다.&lt;/li&gt;
@@ -1792,9 +1832,7 @@
 
         &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/api_call_test1.png&quot; alt=&quot;api_call_test1.png&quot; /&gt;&lt;small&gt;우왁굳의 스트리머 정보를 불러왔다!&lt;/small&gt;&lt;/p&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;/video/search/:videoId&lt;/p&gt;
-
+      &lt;li&gt;/video/search/:videoId
         &lt;ul&gt;
           &lt;li&gt;DB에 저장된 {videoId}인 비디오의 정보(댓글 속도 등)를 불러옵니다.&lt;/li&gt;
           &lt;li&gt;트위치에 없는 video를 부르면 에러 코드를 돌려줍니다.&lt;/li&gt;
@@ -1806,9 +1844,7 @@
         &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/api_call_test6.png&quot; alt=&quot;api_call_test6.png&quot; /&gt;&lt;small&gt;DB에 있는 비디오 조회시&lt;/small&gt;&lt;/p&gt;
 
         &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.&lt;/p&gt;
-
+          &lt;li&gt;DB에 있는 비디오를 호출하면 아래와 같은 json을 돌려줍니다. 구간당 채팅 갯수를 돌려줍니다.
             &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;FoundVideo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   	&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1835,22 +1871,12 @@
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;/video/search/:videoId/:keyword&lt;/p&gt;
-
+      &lt;li&gt;/video/search/:videoId/:keyword
         &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.&lt;/p&gt;
-
+          &lt;li&gt;{videoId}인 비디오에서 {keyword}가 들어가는 채팅에 대한 정보를 불러옵니다.&lt;/li&gt;
+          &lt;li&gt;해당 키워드가 들어간 채팅의 속도를 검색하기 위해 사용됩니다.&lt;/li&gt;
+          &lt;li&gt;‘ㅋㅋㅋ’,  ‘ㅗㅜㅑ’, ‘형신’ 같은 인터넷 밈들을 검색해 ‘ㅗㅜㅑ’ 구간, ‘형신’ 구간 등을 구하기 위해 만들어 두었습니다.&lt;/li&gt;
+          &lt;li&gt;다음은 위와 같은 비디오에서 ‘ㅋㅋㅋ’를 검색한 결과입니다. ‘ㅋㅋㅋ’가 들어간 채팅만 카운팅해 구간별 카운팅이 줄어들었습니다.
             &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SearchKeyword&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;video&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1877,9 +1903,7 @@
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;/video/save/:videoId&lt;/p&gt;
-
+      &lt;li&gt;/video/save/:videoId
         &lt;ul&gt;
           &lt;li&gt;{videoId}인 비디오를 DB에 저장하도록 함&lt;/li&gt;
         &lt;/ul&gt;
@@ -1921,9 +1945,7 @@
 &lt;h3 id=&quot;74-돌파구의-마련---비동기-api-호출&quot;&gt;7.4. 돌파구의 마련 - 비동기 API 호출&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;돌파구는 우연히 찾아왔습니다. 웹 브라우저 콘솔창에서 자바스크립트를 가지고 놀던 중 다음과 같은 현상을 발견합니다.&lt;/p&gt;
-
+  &lt;li&gt;돌파구는 우연히 찾아왔습니다. 웹 브라우저 콘솔창에서 자바스크립트를 가지고 놀던 중 다음과 같은 현상을 발견합니다.
     &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;response = callAPI();
 console.log(response); --&amp;gt; undefined
 	:
@@ -1935,12 +1957,8 @@ console.log(response); --&amp;gt; 'something'
   &lt;li&gt;
     &lt;p&gt;response에 API 호출 결과를 담아 바로 console.log를 찍었을 땐 분명 아무것도 안나왔는데, 나중에 다시 console.log를 찍으니 결과가 나왔습니다.&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;프로그래밍을 시작한지 얼마 되지 않았고 Java를 주로 다루던 저는 비동기에 대해 잘 모르고 있었습니다. 위 현상을 발견하고 구글링을 해본 결과 자바스크립트의 비동기에 대해 알게 되었고 채팅을 받아오는 속도를 줄이는 방법이 번뜩하고 떠올랐습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;방법은 &lt;del&gt;지금보면&lt;/del&gt; 간단합니다.&lt;/p&gt;
-
+  &lt;li&gt;프로그래밍을 시작한지 얼마 되지 않았고 Java를 주로 다루던 저는 비동기에 대해 잘 모르고 있었습니다. 위 현상을 발견하고 구글링을 해본 결과 자바스크립트의 비동기에 대해 알게 되었고 채팅을 받아오는 속도를 줄이는 방법이 번뜩하고 떠올랐습니다.&lt;/li&gt;
+  &lt;li&gt;방법은 &lt;del&gt;지금보면&lt;/del&gt; 간단합니다.
     &lt;ul&gt;
       &lt;li&gt;다시보기를 여러 개의 구간으로 쪼갭니다.&lt;/li&gt;
       &lt;li&gt;한 구간의 첫 API를 보내고 &lt;strong&gt;기다리는 동안 다른 구간의 API를 보냅니다.&lt;/strong&gt;&lt;/li&gt;
@@ -1953,13 +1971,9 @@ console.log(response); --&amp;gt; 'something'
 &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Twitch_Chat_Analysis/asynchronous_call.png&quot; alt=&quot;asynchronous_call.png&quot; /&gt;&lt;small&gt;한 구간안에선 동기적으로, 각 구간은 비동기적으로!&lt;/small&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function&quot;&gt;MDN의 Document&lt;/a&gt;를 많이 참고했습니다.&lt;/p&gt;
-
+  &lt;li&gt;위 방법을 구현하기 위해 async, await, Promise와 찐한 일주일을 보냈습니다. &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function&quot;&gt;MDN의 Document&lt;/a&gt;를 많이 참고했습니다.
     &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;나눈 구간에서 최종적으로 하나의 Promise를 리턴 받고, 여러 구간의 Promise들을 배열에 담습니다.&lt;/p&gt;
-
+      &lt;li&gt;나눈 구간에서 최종적으로 하나의 Promise를 리턴 받고, 여러 구간의 Promise들을 배열에 담습니다.
         &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bundlePromiseArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
     
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;divideSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
@@ -1969,17 +1983,13 @@ console.log(response); --&amp;gt; 'something'
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;배열 안의 모든 Promise들이 Fulfilled 되면 다음 작업을 수행 했습니다.&lt;/p&gt;
-
+      &lt;li&gt;배열 안의 모든 Promise들이 Fulfilled 되면 다음 작업을 수행 했습니다.
         &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bundleArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bundlePromiseArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~~~&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;비동기식으로 채팅을 받아오니 5분 걸리던 채팅 다운이 10초 밑으로 떨어졌습니다. :sob:&lt;/p&gt;
-
+  &lt;li&gt;비동기식으로 채팅을 받아오니 5분 걸리던 채팅 다운이 10초 밑으로 떨어졌습니다. :sob:
     &lt;ul&gt;
       &lt;li&gt;20~30분 걸리던 채팅이 많은 다시보기도 30초 전후하여 받아왔습니다.&lt;/li&gt;
     &lt;/ul&gt;
@@ -2305,57 +2315,219 @@ END;
 
 &lt;hr /&gt;
 
+&lt;h3 id=&quot;81-게시글의-속성&quot;&gt;8.1. 게시글의 속성&lt;/h3&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;모임 추천은 크게 필터링 요소, 배점 요소로 이루어집니다. 필터링 요소는 선택사항이며, 필터링 요소로 게시글을 거른 후 배점 요소로 각 사용자당 게시글들의 배점을 매겨 나열합니다.&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;필터링 요소에는 다음과 같은 것들이 있습니다.
-    &lt;ul&gt;
-      &lt;li&gt;관심사 카테고리 (대분류, 소분류)&lt;/li&gt;
-      &lt;li&gt;지역 (구 단위)&lt;/li&gt;
-      &lt;li&gt;만남일&lt;/li&gt;
-      &lt;li&gt;개설자 평점 (0~5)&lt;/li&gt;
-      &lt;li&gt;분위기 (무관, 진지한, 가벼운)&lt;/li&gt;
-      &lt;li&gt;음주여부 (O, X)&lt;/li&gt;
-      &lt;li&gt;동성여부 (동성만, 상관 없음)&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;게시글엔 다음과 같은 속성들이 있습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;속성&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;필터링 여부&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;배점 여부&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;동성여부(동성만, 무관)&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;음주여부(O, X)&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;분위기(무관, 진지, 가벼운)&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;만남일&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;관심사 카테고리&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;만남 장소&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;개설자 평점(0.0~5.0)&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;제목&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;관심사 상세기입&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;본문&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
   &lt;/li&gt;
-  &lt;li&gt;배점 요소엔 다음과 같은 것들이 사용됩니다. 각 요소들을 모두 합하면 100점이 나옵니다. 요소별 배점은 열띤 회의를 통해 정해졌습니다.
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;82-사용자의-속성&quot;&gt;8.2. 사용자의 속성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용자는 카테고리로 집입해 글 목록을 조회할 수도 있고(카테고리를 기본적으로 필터링), 통합 검색을 통해 글 목록을 조회할 수도 있습니다. 또한, 어느 방향으로 조회해도 결과들을 필터링 할 수 있습니다. 상황에 따라 사용자가 갖는 속성은 다음과 같습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;속성&lt;/th&gt;
+          &lt;th&gt;필터링&lt;/th&gt;
+          &lt;th&gt;배점&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;관심사 카테고리(필터링)&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;관심사 카테고리(유저 정보)&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;만남일&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;분위기&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;음주여부&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;동성여부&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;만남장소(필터링)&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;만남장소(유저 정보)&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;검색어&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;모임 개설자 평점
-        &lt;ul&gt;
-          &lt;li&gt;개설자의 평점(0~5)에 두배를 해 0~10점의 배점을 갖습니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;모임 만남장소, 사용자 활동 장소
-        &lt;ul&gt;
-          &lt;li&gt;사용자의 주요 활동 장소(구 단위)와 모임 장소가 일치하면 40점&lt;/li&gt;
-          &lt;li&gt;사용자의 주요 활동 장소(구 단위)에 1개 인접한 구의 모임 장소는 25점을 받습니다.&lt;/li&gt;
-          &lt;li&gt;이외는 0점을 받습니다.&lt;/li&gt;
-          &lt;li&gt;더 구체화 하고 싶었는데 강사님의 만류로 구 단위에서 그친 개인적으로 아쉬운 기능입니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;모임 제목, 사용자 검색어
-        &lt;ul&gt;
-          &lt;li&gt;검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.&lt;/li&gt;
-          &lt;li&gt;명사들이 제목 안에 얼마나 있는 지에 따라 0~25점을 부여합니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;모임 관심사 상세기입, 사용자 검색어
-        &lt;ul&gt;
-          &lt;li&gt;검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.&lt;/li&gt;
-          &lt;li&gt;명사들이 관심사 상세기입 안에 얼마나 있는 지에 따라 0~15점을 부여합니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;모임 본문, 사용자 검색어
-        &lt;ul&gt;
-          &lt;li&gt;검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.&lt;/li&gt;
-          &lt;li&gt;명사들이 본문 안에 얼마나 있는 지에 따라 0~10점을 부여합니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
+      &lt;li&gt;부연 설명을 하자면, 사용자가 통합 검색으로 글 목록을 조회했을 시, 검색어와 사전에 등록해 놓은 유저의 관심사와 만남장소를 토대로 각 만남 게시글들 과의 매칭 점수를 구해 순서대로 보여줍니다. 이후 필터링을 하면 필터로 거른 게시글들 중 다시 매칭 점수를 계산합니다.&lt;/li&gt;
+      &lt;li&gt;관심사 카테고리로 진입하면, 관심사 카테고리로 우선 필터링 한 뒤, 유저의 관심사와 만남장소를 토대로 매칭 점수를 계산을 하여 순서대로 게시글을 보여줍니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&quot;83-배점-산정-방식&quot;&gt;8.3. 배점 산정 방식&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;게시글의 속성과 유저의 속성은 다음과 같이 매칭되어 점수가 계산 됩니다. 총 배점은 팀원간 회의로 결정되었습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;게시글 속성&lt;/th&gt;
+          &lt;th&gt;유저 속성&lt;/th&gt;
+          &lt;th&gt;총 배점&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;만남 장소&lt;/td&gt;
+          &lt;td&gt;유저 등록 만남장소(구 단위)&lt;/td&gt;
+          &lt;td&gt;40&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;개설자 평점&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;10&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;제목&lt;/td&gt;
+          &lt;td&gt;검색어&lt;/td&gt;
+          &lt;td&gt;25&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;관심사 상세기입&lt;/td&gt;
+          &lt;td&gt;검색어&lt;/td&gt;
+          &lt;td&gt;15&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;본문&lt;/td&gt;
+          &lt;td&gt;검색어&lt;/td&gt;
+          &lt;td&gt;10&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;만남 장소 점수 산정&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;만남 장소는 게시글의 만남장소와 유저가 등록한 만남장소가 일치하면 40점, 인접한 구일 경우 25점, 아니라면 0점 입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/location_matching.png&quot; alt=&quot;location_matching.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;개설자 평점 점수 산정
+    &lt;ul&gt;
+      &lt;li&gt;개설자 평점은 0~5점으로 이루어져 있습니다. 이를 0~10점으로 환산해 총점에 더합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;제목, 관심사 상세기입, 본문 점수 산정
+    &lt;ul&gt;
+      &lt;li&gt;세 요소는 모두 검색어를 토대로 점수가 구해집니다.&lt;/li&gt;
+      &lt;li&gt;검색어를 형태소 분석해줍니다. 형태소 분석기는 &lt;a href=&quot;https://iostream.tistory.com/144&quot;&gt;무료 형태소 분석기 비교 글&lt;/a&gt;을 참고해 &lt;a href=&quot;https://www.shineware.co.kr/products/komoran/&quot;&gt;KOMORAN 형태소 분석기&lt;/a&gt;를 사용했습니다.&lt;/li&gt;
+      &lt;li&gt;형태소 분석해서 n개의 의미 있는 명사가 나왔다면, 제목, 관심사 상세기입, 본문에서 n개 중 몇 개의 명사가 포함 됐는지 비율을 각각 구해 25점, 15점, 10점으로 환산합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Sagyo_Reboot/morpheme.png&quot; alt=&quot;morpheme.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;9-개발4---메인페이지&quot;&gt;9. 개발4 - 메인페이지&lt;/h2&gt;
 

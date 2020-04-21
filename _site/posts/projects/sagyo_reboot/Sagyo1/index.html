@@ -447,57 +447,219 @@ END;
 
 <hr>
 
+<h3 id="81-게시글의-속성">8.1. 게시글의 속성</h3>
+
 <ul>
   <li>
     <p>모임 추천은 크게 필터링 요소, 배점 요소로 이루어집니다. 필터링 요소는 선택사항이며, 필터링 요소로 게시글을 거른 후 배점 요소로 각 사용자당 게시글들의 배점을 매겨 나열합니다.</p>
   </li>
-  <li>필터링 요소에는 다음과 같은 것들이 있습니다.
-    <ul>
-      <li>관심사 카테고리 (대분류, 소분류)</li>
-      <li>지역 (구 단위)</li>
-      <li>만남일</li>
-      <li>개설자 평점 (0~5)</li>
-      <li>분위기 (무관, 진지한, 가벼운)</li>
-      <li>음주여부 (O, X)</li>
-      <li>동성여부 (동성만, 상관 없음)</li>
-    </ul>
+  <li>
+    <p>게시글엔 다음과 같은 속성들이 있습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">속성</th>
+          <th style="text-align: center">필터링 여부</th>
+          <th style="text-align: center">배점 여부</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">동성여부(동성만, 무관)</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center"> </td>
+        </tr>
+        <tr>
+          <td style="text-align: center">음주여부(O, X)</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center"> </td>
+        </tr>
+        <tr>
+          <td style="text-align: center">분위기(무관, 진지, 가벼운)</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center"> </td>
+        </tr>
+        <tr>
+          <td style="text-align: center">만남일</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center"> </td>
+        </tr>
+        <tr>
+          <td style="text-align: center">관심사 카테고리</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center">O</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">만남 장소</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center">O</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">개설자 평점(0.0~5.0)</td>
+          <td style="text-align: center">O</td>
+          <td style="text-align: center">O</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">제목</td>
+          <td style="text-align: center"> </td>
+          <td style="text-align: center">O</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">관심사 상세기입</td>
+          <td style="text-align: center"> </td>
+          <td style="text-align: center">O</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">본문</td>
+          <td style="text-align: center"> </td>
+          <td style="text-align: center">O</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
-  <li>배점 요소엔 다음과 같은 것들이 사용됩니다. 각 요소들을 모두 합하면 100점이 나옵니다. 요소별 배점은 열띤 회의를 통해 정해졌습니다.
+</ul>
+
+<h3 id="82-사용자의-속성">8.2. 사용자의 속성</h3>
+
+<ul>
+  <li>
+    <p>사용자는 카테고리로 집입해 글 목록을 조회할 수도 있고(카테고리를 기본적으로 필터링), 통합 검색을 통해 글 목록을 조회할 수도 있습니다. 또한, 어느 방향으로 조회해도 결과들을 필터링 할 수 있습니다. 상황에 따라 사용자가 갖는 속성은 다음과 같습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>속성</th>
+          <th>필터링</th>
+          <th>배점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>관심사 카테고리(필터링)</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>관심사 카테고리(유저 정보)</td>
+          <td> </td>
+          <td>O</td>
+        </tr>
+        <tr>
+          <td>만남일</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>분위기</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>음주여부</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>동성여부</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>만남장소(필터링)</td>
+          <td>O</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>만남장소(유저 정보)</td>
+          <td> </td>
+          <td>O</td>
+        </tr>
+        <tr>
+          <td>검색어</td>
+          <td> </td>
+          <td>O</td>
+        </tr>
+      </tbody>
+    </table>
+
     <ul>
-      <li>모임 개설자 평점
-        <ul>
-          <li>개설자의 평점(0~5)에 두배를 해 0~10점의 배점을 갖습니다.</li>
-        </ul>
-      </li>
-      <li>모임 만남장소, 사용자 활동 장소
-        <ul>
-          <li>사용자의 주요 활동 장소(구 단위)와 모임 장소가 일치하면 40점</li>
-          <li>사용자의 주요 활동 장소(구 단위)에 1개 인접한 구의 모임 장소는 25점을 받습니다.</li>
-          <li>이외는 0점을 받습니다.</li>
-          <li>더 구체화 하고 싶었는데 강사님의 만류로 구 단위에서 그친 개인적으로 아쉬운 기능입니다.</li>
-        </ul>
-      </li>
-      <li>모임 제목, 사용자 검색어
-        <ul>
-          <li>검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.</li>
-          <li>명사들이 제목 안에 얼마나 있는 지에 따라 0~25점을 부여합니다.</li>
-        </ul>
-      </li>
-      <li>모임 관심사 상세기입, 사용자 검색어
-        <ul>
-          <li>검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.</li>
-          <li>명사들이 관심사 상세기입 안에 얼마나 있는 지에 따라 0~15점을 부여합니다.</li>
-        </ul>
-      </li>
-      <li>모임 본문, 사용자 검색어
-        <ul>
-          <li>검색어를 형태소 분석하여 의미있는 명사들을 뽑습니다.</li>
-          <li>명사들이 본문 안에 얼마나 있는 지에 따라 0~10점을 부여합니다.</li>
-        </ul>
-      </li>
+      <li>부연 설명을 하자면, 사용자가 통합 검색으로 글 목록을 조회했을 시, 검색어와 사전에 등록해 놓은 유저의 관심사와 만남장소를 토대로 각 만남 게시글들 과의 매칭 점수를 구해 순서대로 보여줍니다. 이후 필터링을 하면 필터로 거른 게시글들 중 다시 매칭 점수를 계산합니다.</li>
+      <li>관심사 카테고리로 진입하면, 관심사 카테고리로 우선 필터링 한 뒤, 유저의 관심사와 만남장소를 토대로 매칭 점수를 계산을 하여 순서대로 게시글을 보여줍니다.</li>
     </ul>
   </li>
 </ul>
+
+<h3 id="83-배점-산정-방식">8.3. 배점 산정 방식</h3>
+
+<ul>
+  <li>
+    <p>게시글의 속성과 유저의 속성은 다음과 같이 매칭되어 점수가 계산 됩니다. 총 배점은 팀원간 회의로 결정되었습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>게시글 속성</th>
+          <th>유저 속성</th>
+          <th>총 배점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>만남 장소</td>
+          <td>유저 등록 만남장소(구 단위)</td>
+          <td>40</td>
+        </tr>
+        <tr>
+          <td>개설자 평점</td>
+          <td> </td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>제목</td>
+          <td>검색어</td>
+          <td>25</td>
+        </tr>
+        <tr>
+          <td>관심사 상세기입</td>
+          <td>검색어</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>본문</td>
+          <td>검색어</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>만남 장소 점수 산정</p>
+
+    <ul>
+      <li>만남 장소는 게시글의 만남장소와 유저가 등록한 만남장소가 일치하면 40점, 인접한 구일 경우 25점, 아니라면 0점 입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/location_matching.png" alt="location_matching.png"></p>
+
+<ul>
+  <li>개설자 평점 점수 산정
+    <ul>
+      <li>개설자 평점은 0~5점으로 이루어져 있습니다. 이를 0~10점으로 환산해 총점에 더합니다.</li>
+    </ul>
+  </li>
+  <li>제목, 관심사 상세기입, 본문 점수 산정
+    <ul>
+      <li>세 요소는 모두 검색어를 토대로 점수가 구해집니다.</li>
+      <li>검색어를 형태소 분석해줍니다. 형태소 분석기는 <a href="https://iostream.tistory.com/144">무료 형태소 분석기 비교 글</a>을 참고해 <a href="https://www.shineware.co.kr/products/komoran/">KOMORAN 형태소 분석기</a>를 사용했습니다.</li>
+      <li>형태소 분석해서 n개의 의미 있는 명사가 나왔다면, 제목, 관심사 상세기입, 본문에서 n개 중 몇 개의 명사가 포함 됐는지 비율을 각각 구해 25점, 15점, 10점으로 환산합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/morpheme.png" alt="morpheme.png"></p>
 
 <h2 id="9-개발4---메인페이지">9. 개발4 - 메인페이지</h2>
 
@@ -563,7 +725,7 @@ END;
       <li>
         <h3>
           <a href="/posts/projects/sagyo_reboot/Sagyo3/">
-            MSA 구조 적용(작성중)
+            MSA 구조 적용(강의 듣는 중)
             <small>19 Apr 2020</small>
           </a>
         </h3>
