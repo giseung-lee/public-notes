@@ -1015,8 +1015,25 @@ size_t size_char = sizeof(ch);     /* 30 */
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-  <li>size_t와 -1 부분, 뒤로 다시 듣기</li>
-  <li>C엔 Exception, Try-Catch 없습니다.</li>
+  <li>
+    <p>size_t와 -1 부분, 뒤로 다시 듣기</p>
+  </li>
+  <li>
+    <p>다른 언어 string에 있는 IndexOf() 함수를 C에선 size_t를 가지고 할 수 있습니다.</p>
+
+    <ul>
+      <li>IndexOf() 는 입력 문자를 못찾으면 -1을 반환 합니다. 근데, size_t는 unsigned인데 -1을 어떻게 표현할까요?</li>
+      <li>-1과 4,294,967,295 의 비트배턴이 같다는 걸 이용합니다. 원하는 인덱스를 찾지 못하면 size_t의 최댓값을 돌려주는 식입니다.</li>
+      <li>그럼 실제로 찾는 인덱스가 4,294,967,295 면 어떻게 하죠?
+        <ul>
+          <li>어차피 signed int를 써도 4,294,967,295는 표현 못합니다. 저런 상황이라면 signed int여도 다른 방법을 생각해야 합니다. 기우입니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>C엔 Exception, Try-Catch 없습니다.</p>
+  </li>
 </ul>
 
 <h2 id="32-역-참조-연산자">32. 역 참조 연산자</h2>
@@ -1202,6 +1219,15 @@ int result = num1*num2 /* 여긴 곱셈 */
     
       <li>
         <h3>
+          <a href="/posts/study/msa_ken_krueger/MSA2/">
+            Microservices with Spring Cloud 2 - Modern Spring - Spring Boot, Spring Data, and Spring Data REST
+            <small>22 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/posts/study/msa_ken_krueger/MSA1/">
             Microservices with Spring Cloud 1 - Introduction to Microservices
             <small>21 Apr 2020</small>
@@ -1214,15 +1240,6 @@ int result = num1*num2 /* 여긴 곱셈 */
           <a href="/posts/study/c_kim_pope/C1/">
             C Unmanaged Programming 1 - 과목 소개
             <small>20 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/projects/sagyo_reboot/Sagyo3/">
-            MSA 구조 적용(강의 듣는 중)
-            <small>19 Apr 2020</small>
           </a>
         </h3>
       </li>

@@ -30,3 +30,17 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 2. Moder Spring: Spring Boot, Spring Data, and Spring Data REST [4/23 예정]
 3. Spring Cloud [4/27 예정]
 
+
+
+## 후기
+
+---
+
+- 아래와 같은 이유로 1시간 강의를 3~4시간 듣는 것 같습니다 😥
+
+  - 새로운 지식이 쏟아집니다.
+  - 영어 강의입니다.
+  - 포스팅을 위해 정리 해야합니다.
+
+  
+
