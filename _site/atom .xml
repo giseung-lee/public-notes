@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-21T21:30:35+09:00</updated>
+ <updated>2020-04-22T14:51:34+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -392,6 +392,1034 @@
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>C Unmanaged Programming 2 - C언어 기본 문법1</title>
+   <link href="http://localhost:4000/posts/study/c_kim_pope/C2/"/>
+   <updated>2020-04-21T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/c_kim_pope/C2</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 포스팅은 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;Kim Pope 선생님의 C 언매니지드 프로그래밍 강의&lt;/a&gt;를 정리하며 사견을 붙인 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포스팅 내 목차는 동영상강의 기준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;12-c89-표준&quot;&gt;12. C89 표준&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;가장 먼저 배울 표준은 C89/ANSI-C 입니다. 사실상 C의 70~80%를 차지할 정도로 기본이 되는 표준입니다.&lt;/li&gt;
+  &lt;li&gt;전부터 C는 있었는데 1989년에 ANSI에서 처음으로 표준을 만들었습니다. 30년이 지났지만 대부분 컴파일러가 지원하는 표준입니다.&lt;/li&gt;
+  &lt;li&gt;많은 임베디드 시스템은 C89만 지원하는 경우가 많습니다.
+    &lt;ul&gt;
+      &lt;li&gt;소형 임베디드 기기에선 그 기기 전용 OS를 사용하기 때문입니다. 윈도우, 리눅스 처럼 다양한 기능을 갖춘 범용 OS를 탑재하긴 힘듭니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;13-hello-world&quot;&gt;13. Hello World&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;코드를 배울땐 당연히 Hello World 한 번 찍어야 하지 않겠습니까&lt;/li&gt;
+  &lt;li&gt;강의 너무 쪼개신거 아닙니까&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;14-include-stdioh&quot;&gt;14. #include, stdio.h&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include&lt;/code&gt;는 C#에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;using&lt;/code&gt;과 같은 역할을 합니다.&lt;/li&gt;
+      &lt;li&gt;다른 파일에 구현된 함수, 변수를 사용하게 해줍니다.&lt;/li&gt;
+      &lt;li&gt;단, C# 처럼 알아서 함수, 변수를 찾아주진 않습니다. 뒤에서 더 자세히 알아봅니다.&lt;/li&gt;
+      &lt;li&gt;#include는 &lt;strong&gt;&lt;em&gt;전처리기(preprocessor) 지시문 중 하나&lt;/em&gt;&lt;/strong&gt;입니다.
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;&lt;em&gt;컴파일 하기 전에 무언가&lt;/em&gt;&lt;/strong&gt;를 해주는 일입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt; &amp;gt;&lt;/code&gt;안에는 디스크에 있는 실제 파일 이름이 들어갑니다. (실제로 stdio.h 라는 파일이 존재합니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/code&gt; 동작과정
+    &lt;ol&gt;
+      &lt;li&gt;헤더파일(*.h)를 열어 내용을 복사합니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;메모리 상에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/code&gt;를 지우고 복사한 내용을 그대로 붙입니다.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;컴파일 하기 전에 이 복붙 작업을 해서 &lt;strong&gt;컴파일 하기 전에 필요한 함수를 실제로 텍스트로 가져와 붙여놓고 같이 컴파일 하는 것입니다.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;최신 언어들은 이런 복붙, 컴파일 방식을 사용하진 않습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include 'stdio.h'&lt;/code&gt;는 컴파일 오류가 납니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;#include &quot;stdio.h&quot;&lt;/code&gt;는 맞는 방법이긴 하지만, 추천하진 않습니다. 추후 더 알아봅니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/code&gt; 는 C 표준 라이브러리 중 일부입니다.
+    &lt;ul&gt;
+      &lt;li&gt;C 표준 라이브러리는 문자열 처리, 계산, 입출력 처리, 메모리 관리 등에 필요한 기본 매크로, 자료형, 함수를 모아 놓은 것입니다.&lt;/li&gt;
+      &lt;li&gt;그 중 stdio.h는 Standard Input and Output 입니다. 스트림 입출력에 관련한 함수를 포함합니다.&lt;/li&gt;
+      &lt;li&gt;printf(), scanf(), fopen(), fclose() 같은 함수들이 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;15-mainvoid-함수&quot;&gt;15. main(void) 함수&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;main(void) 함수는 프로그램의 진입점(entry point)입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C 코드를 빌드해 나온 실행 파일을 실행하면 main(void)함수가 실행되도록 약속되어 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;java에서의 main 함수는 void를 리턴하지만, C는 int를 리턴합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;return 0 : 프로그램에 문제가 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그런데 cmd에서 c 프로그램 실행시켜 보면 마지막 return 0;을 볼 수 없는데 어디갔죠?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;실행이 끝난 뒤 &lt;code class=&quot;highlighter-rouge&quot;&gt;echo %errorlevel%&lt;/code&gt; 을 해보시면 마지막 리턴 값이 나옵니다.&lt;/li&gt;
+      &lt;li&gt;Shell에선 &lt;code class=&quot;highlighter-rouge&quot;&gt;echo $?&lt;/code&gt;를 찍어보면 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 강의에선 굳이 IDE를 안써도 됩니다. 메모장과 cmd로 해도 충분한 강의 입니다. cmd에서 컴파일러 옵션 줘가면서 하는 방법도 알아둡시다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;윈도우용 c 컴파일러인 clang을 찾아서 설치해줍니다.&lt;/li&gt;
+      &lt;li&gt;cmd에서 컴파일 결과 파일 이름 안정해주면 &lt;code class=&quot;highlighter-rouge&quot;&gt;a.exe&lt;/code&gt;로 만들어집니다.&lt;/li&gt;
+      &lt;li&gt;C는 클라식하게 배워주는 맛이 있습니다.&lt;/li&gt;
+      &lt;li&gt;이번 강의에선 디버깅도 눈버깅, 뇌버깅으로 하니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;main(void) 함수 : (void)&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;void를 생략한다고 매개변수가 없다는 뜻이 아닙니다.&lt;/li&gt;
+      &lt;li&gt;C에선 함수 선언과 함수 정의가 따로 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;함수 선언은 &lt;code class=&quot;highlighter-rouge&quot;&gt;int sum(void);&lt;/code&gt; 와 같은 식으로 변수 선언 하듯이 선언만 해주는 것이고, 함수 정의는 위에 있는 main 함수 처럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt;를 열어 함수를 작성해주는 것입니다.&lt;/li&gt;
+          &lt;li&gt;함수 선언에서 void 생략 👉 매개변수를 받겠다.(하지만 아직 갯수나 자료형을 모른다)&lt;/li&gt;
+          &lt;li&gt;함수 정의에서 void 생략 👉 매개변수가 없다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;위와 같이 void 생략시 헷갈릴 수 있으므로 매개변수 안 받을 땐 void를 항상 써줍시다.
+        &lt;ul&gt;
+          &lt;li&gt;필수는 아니지만, 약속입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;16-printf-함수&quot;&gt;16. printf() 함수&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printf('hellow world\n')
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;이건 뭐 간단하지. printf에서 f는 format, \n은 개행&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;근데 C는 조금 불친절 합니다. C#이나 기타 언어에선 string formatting에서 아래와 같이 다양한 방법을 지원합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c# highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Kiseung&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, {0}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;hello, &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 문자열 보간&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;하지만 C엔 이런거 없습니다. ‘%s’, ‘%d’, ‘%f’ 같은 서식 문자(format specifier)만 사용합니다. 자바에서 많이 본 친구네요.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Kiseung&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, %s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;17-주석comment&quot;&gt;17. 주석(comment)&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C89에서 주석은 &lt;code class=&quot;highlighter-rouge&quot;&gt;/* */&lt;/code&gt;만 지원한다고 합니다. 아 이건 조금 충격적입니다.&lt;/li&gt;
+  &lt;li&gt;이후 표준에선 &lt;code class=&quot;highlighter-rouge&quot;&gt;//&lt;/code&gt;도 지원하지만, 많은 컴파일러가 C89를 표준으로 삼기 때문에 그냥 맘 편히 &lt;code class=&quot;highlighter-rouge&quot;&gt;/* */&lt;/code&gt;를 사용합시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;18-c언어의-기본-문법&quot;&gt;18. C언어의 기본 문법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 강의는 프로그래밍을 할 줄 아는 사람들을 대상으로 하기 때문에, C언어 기본 문법 파트는 빠르게 후딱 지나갈 겁니다.&lt;/li&gt;
+  &lt;li&gt;C는 순수하게 절차적 언어입니다.&lt;/li&gt;
+  &lt;li&gt;C 코드는 데이터보다 프로세스에 중점이 맞춰져 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;프로세스는 CPU의 레지스터 수준에서 일어나는 빠른 작업이고, 프로세스가 끝난 데이터들이 메모리에 저장됩니다.&lt;/li&gt;
+      &lt;li&gt;C는 컴퓨터가 돌아가는 대로 작성하면 되기 때문에 코딩 방법론에 대한 논쟁이 크지 않습니다.&lt;/li&gt;
+      &lt;li&gt;객체지향 같은 경우엔 추상적인 개념이 많기 때문에 박터지게 논쟁합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C에선
+    &lt;ul&gt;
+      &lt;li&gt;클래스 👉 없음!&lt;/li&gt;
+      &lt;li&gt;함수 👉 모두 global 함수, 어디서나 호출 가능!&lt;/li&gt;
+      &lt;li&gt;변수 👉 함수 밖에 있으면 전역 변수, 함수 안에 있으면 지역 변수!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;19-자료형-unsigned와-signed&quot;&gt;19. 자료형, unsigned와 signed&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C89의 기본 자료형
+    &lt;ul&gt;
+      &lt;li&gt;char&lt;/li&gt;
+      &lt;li&gt;short&lt;/li&gt;
+      &lt;li&gt;int&lt;/li&gt;
+      &lt;li&gt;long&lt;/li&gt;
+      &lt;li&gt;float&lt;/li&gt;
+      &lt;li&gt;double&lt;/li&gt;
+      &lt;li&gt;long double&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C#에선 unsigned 자료형을 표시하기 위해 접두사 u를 붙였었습니다.
+    &lt;ul&gt;
+      &lt;li&gt;int 👉 uint 등등..&lt;/li&gt;
+      &lt;li&gt;단, byte는 기본이 unsigned이기 때문에, sbyte로 signed 를 표시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C에선 unsigned 단어를 붙여줘야 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;int 👉 unsigned int&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;signed 인걸 명시해줘도 되지만, 생략하면 기본이 signed입니다.
+    &lt;ul&gt;
+      &lt;li&gt;int == signed int&lt;/li&gt;
+      &lt;li&gt;단, char는 예외입니다.
+        &lt;ul&gt;
+          &lt;li&gt;C에서 char는 1byte 정수로 표현되기 때문인데, 바로 다음 동영상에서 알아봅니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;20-char-형&quot;&gt;20. char 형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;char는 최소 8비트인 정수형입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;표준에선 ‘8비트 이상’이라고 정의합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;표준에 따르면 1백만 비트인 char도 가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;limits.h&gt; 헤더를 포함한 뒤, CHAR_BIT 를 찍어보면 몇 비트를 쓰는지 알 수 있습니다. (보통 8bit가 나오긴 합니다.)
+
+```c
+#include &lt;limits.h&gt;
+  
+int main(void)
+{
+	char char_size = CHAR_BIT;
+	return 0;
+}
+```
+
+&lt;/limits.h&gt;&lt;/limits.h&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;근데 여기서 부터가 좀 이상합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;c 표준에선 기본자료형의 정확한 바이트 수를 강요하지 않습니다.(컴파일러 재량으로 맡깁니다.)&lt;/li&gt;
+      &lt;li&gt;그리고 1Byte==8bit가 아니라 c에서 1Byte는 CHAR_BIT 만큼이라고 말합니다.
+        &lt;ul&gt;
+          &lt;li&gt;즉, CHAR_BIT이 16bit 라면, 그 기기에선 1Byte==16bit 가 됩니다 😳😳😳 이게 뭔소리여&lt;/li&gt;
+          &lt;li&gt;반대로 말하면, char의 크기 == 1Byte 라고 표현 할 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;char라는건, 기기에서 표현 가능한 가장 작은 단위의 메모리입니다. 어떤 기기에선 저장 가능한 최소 단위가 8bit일수도, 16bit 일수도 있다는 겁니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;기본 ASCII는 0~127 숫자로 표현 가능합니다. char가 8bit라고 해도 7bit만 가지고도 표현 가능합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;즉, 첫 비트는 안쓰입니다.&lt;/li&gt;
+      &lt;li&gt;그런데, 정수형이니 일단 signed/unsigned가 있습니다.&lt;/li&gt;
+      &lt;li&gt;그럼 명시하지 않으면 char의 기본 부호는 무엇일까요?
+        &lt;ul&gt;
+          &lt;li&gt;C 표준에서 정하지 않고 있습니다. 이 역시 컴파일러 재량에 맡기게 됩니다.&lt;/li&gt;
+          &lt;li&gt;char의 기본 부호를 signed를 볼 수도, unsigned를 볼 수도 있습니다.&lt;/li&gt;
+          &lt;li&gt;강의에서 쓰는 clang은 char를 signed로 간주합니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;char를 숫자로 다루고 싶은 경우엔 signed, unsigned를 명시해서 써줍시다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;signed, unsigned를 고려하지 않았다면, char값은 signed/unsigned 구분 안해도 되는 0~127에서 놀도록 잘 관리해줍시다. C는 참 재밌네.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;limits.h&gt; 헤더파일에서 char의 최솟 값인 CHAR_MIN을 찍어보면 signed인지, unsigend 인지 알 수 있음.
+
+&lt;/limits.h&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포팅에 문제 없는 범위&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;unsinged char 👉 0~255&lt;/li&gt;
+      &lt;li&gt;char 👉 0~127&lt;/li&gt;
+      &lt;li&gt;signed char 👉 -127~127
+        &lt;ul&gt;
+          &lt;li&gt;-128을 포함안하는 이유는 1의 보수를 사용하는 옛날 기계가 -128을 컴파일하면 -128이 사라지기 때문입니다. 1의 보수를 사용하는 시스템에선 0이 +0, -0 2개를 갖기 때문에 -128 를 표현하지 못합니다.&lt;/li&gt;
+          &lt;li&gt;물론 그런 기계는 거의 없지만 혹시 모르니 그냥 -127까지만 쓰도록 합시다.&lt;/li&gt;
+          &lt;li&gt;추가로, 보수는 컴퓨터에서 뺄셈을 하기 위해서 사용되는 것입니다. 컴퓨터는 기본적으로 가산기만 사용합니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;A + B&lt;/code&gt;만 가능한 컴퓨터에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;A - B&lt;/code&gt;를 하기 위해선 &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt;를 음수로 만들어 줘야 하는데 이때 사용되는게 보수입니다. &lt;a href=&quot;https://ndb796.tistory.com/4&quot;&gt;참고할 만한 포스팅&lt;/a&gt;입니다.
+            &lt;ul&gt;
+              &lt;li&gt;제가 알고있는 뺄샘 방법은 B의 2의 보수(1의 보수 + 1)인 C를 A에 더하는 건데, 지금 POCU님이 말하는 +0, -0이 있는 옛날 시스템은 뭔지 잘 모르겠습니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;보통 많이 따르는 char 표현 범위&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;크기 : 8bit&lt;/li&gt;
+      &lt;li&gt;부호 생략시 👉 signed&lt;/li&gt;
+      &lt;li&gt;범위 : unsigned 👉 0~255 / signed 👉 -128~127&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;21-short-형&quot;&gt;21. short 형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;short 표준
+    &lt;ul&gt;
+      &lt;li&gt;최소 16 비트이고 char크기 이상인 정수형&lt;/li&gt;
+      &lt;li&gt;포팅 문제 없는 범위
+        &lt;ul&gt;
+          &lt;li&gt;unsigned short 👉 0 ~ 65,535&lt;/li&gt;
+          &lt;li&gt;signed short 👉 -32,767 ~ 32,767&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;int 보다 메모리를 적게 쓰고 싶을 때 사용&lt;/li&gt;
+  &lt;li&gt;하지만, 대부분 cpu가 int를 기준으로 삼기 때문에 cpu가 int와 short를 변환하는 과정에서 더 느려질 수 있음&lt;/li&gt;
+  &lt;li&gt;표준은 아니지만 보통 많이 따르는 short 범위
+    &lt;ul&gt;
+      &lt;li&gt;크기 : 16 bit&lt;/li&gt;
+      &lt;li&gt;unsigned short 👉 0 ~ 65,535&lt;/li&gt;
+      &lt;li&gt;signed short 👉 -32,76&lt;strong&gt;8&lt;/strong&gt; ~ 32,767&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;22-int-형-long-형&quot;&gt;22. int 형, long 형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;int&quot;&gt;int&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;int 표준
+    &lt;ul&gt;
+      &lt;li&gt;최소 16비트이고 short 크기 이상인 정수형&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;다른 언어는 다 32비트던데…&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;int는 기본 정수입니다. CPU가 생각하는 크기의 정수.&lt;/strong&gt; 👉👉👉 중요! 컴퓨터를 이해합시다.
+    &lt;ul&gt;
+      &lt;li&gt;CPU의 레지스터(산술 논리장치 ALU)에 정수 크기가 있는데 이 크기랑 맞으면 그대로 정수 넣어서 계산, 안맞으면 변환해줘야 합니다.&lt;/li&gt;
+      &lt;li&gt;이 데이터를 워드(word)라고 하고, 크기를 워드 크기라고 합니다.&lt;/li&gt;
+      &lt;li&gt;워트 크기 == 레지스터 크기&lt;/li&gt;
+      &lt;li&gt;CPU에 따라 달라집니다.
+        &lt;ul&gt;
+          &lt;li&gt;예전엔 16비트 CPU가 흔했습니다. C언어는 그때부터 있던 언어이기에 최소 16비트입니다.&lt;/li&gt;
+          &lt;li&gt;그 뒤로, 32비트 컴퓨터가 대중화되어  int의 크기는 32비트로 많이 굳어졌습니다.&lt;/li&gt;
+          &lt;li&gt;64비트 CPU가 대중화 됐지만 아직 32비트 컴파일러를 많이 사용합니다.&lt;/li&gt;
+          &lt;li&gt;근데 64비트 컴파일러를 사용해도 int는 32비트로 찍히는데, 호환성을 위해 32비트로 남겨두는 것입니다.&lt;/li&gt;
+          &lt;li&gt;그리고 int를 64비트 쓴다고 해도 프로그램이 빨라지는건 아닙니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;포팅에 안전한 범위  :short와 같음&lt;/li&gt;
+  &lt;li&gt;표준은 아니지만 보통 int
+    &lt;ul&gt;
+      &lt;li&gt;크기 : 32비트&lt;/li&gt;
+      &lt;li&gt;unsigned 👉 0 ~ 4,294,967,295&lt;/li&gt;
+      &lt;li&gt;signed 👉 -2,147,483,648 ~ 2,147,483,647&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;int 리터럴
+    &lt;ul&gt;
+      &lt;li&gt;‘u’, ‘U’를 써줘 unsigned 라고 명시해주는 접미사입니다.&lt;/li&gt;
+      &lt;li&gt;unsigned int num = 23445667; 👉 경고 나옴&lt;/li&gt;
+      &lt;li&gt;unsigned int num = 23445667u; 👉 경고 안나옴. 주로 소문자 u를 사용.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;long&quot;&gt;long&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;long 표준
+    &lt;ul&gt;
+      &lt;li&gt;최소 32비트이고 int 이상의 크기&lt;/li&gt;
+      &lt;li&gt;C에서 long은 보통 32비트 (다른 언어는 64비트)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 long은 int와 거의 같게 사용됩니다.(항상 그런건 아니고, 보통의 경우)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;long 리터럴
+    &lt;ul&gt;
+      &lt;li&gt;long을 쓰고 싶으면 접미사 ‘l’, ‘L’을 붙입니다. (1과 l이 헷갈리기 때문에 L을 쓰라는 곳도 있습니다.)
+        &lt;ul&gt;
+          &lt;li&gt;long num = 123123123l;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;unsigned long은 ‘ul’을 붙입니다.
+        &lt;ul&gt;
+          &lt;li&gt;unsigned long num = 123123; 👉 경고&lt;/li&gt;
+          &lt;li&gt;unsigned long num = 123123ul; 👉 경고 없음&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;23-float-형-double-형-long-double-형&quot;&gt;23. float 형, double 형, long double 형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;float&quot;&gt;float&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;보통 많은 언어에서 부동 소수점 자료형은 &lt;strong&gt;IEEE 754&lt;/strong&gt;로 거의 통일 되었습니다.
+    &lt;ul&gt;
+      &lt;li&gt;float 👉 IEEE 754 Single (32비트)&lt;/li&gt;
+      &lt;li&gt;double 👉 IEEE 754 Double (64비트)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하지만! C는 IEEE 754 이전부터 쓰이던 언어입니다. 후…&lt;/li&gt;
+  &lt;li&gt;float 표준
+    &lt;ul&gt;
+      &lt;li&gt;IEEE 754가 아닐 수 있습니다. 컴파일러 재량&lt;/li&gt;
+      &lt;li&gt;크기는 char 이상&lt;/li&gt;
+      &lt;li&gt;unsigned 없음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;표준은 아니지만 일반적인 float
+    &lt;ul&gt;
+      &lt;li&gt;크기 : 32비트&lt;/li&gt;
+      &lt;li&gt;범위 : IEEE 754 Single&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;float.h 헤더파일을 열면 float과 관려난 사항들을 확인 가능합니다.&lt;/li&gt;
+  &lt;li&gt;f 리터럴 ‘f’, ‘F’ 가능한데 거의 ‘f’만 씁니다.
+    &lt;ul&gt;
+      &lt;li&gt;float num = 3.3f;&lt;/li&gt;
+      &lt;li&gt;float num = 3.f;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;double&quot;&gt;double&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;double 표준
+    &lt;ul&gt;
+      &lt;li&gt;CPU가 계산에 사용하는 기본 데이터 크기&lt;/li&gt;
+      &lt;li&gt;크기는 float 이상(같을 수도 있음), 컴파일러 재량&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;double이 기본이기 때문에 리터럴 x&lt;/li&gt;
+  &lt;li&gt;unsigend  없음&lt;/li&gt;
+  &lt;li&gt;표준은 아니지만 보통의 double
+    &lt;ul&gt;
+      &lt;li&gt;크기 : 64비트&lt;/li&gt;
+      &lt;li&gt;범위 : IEEE 754 Double과 동일&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;double도 float.h 파일열면 나옵니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;long-double&quot;&gt;long double&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;double보다 정밀도가 높습니다.&lt;/li&gt;
+  &lt;li&gt;double 이상의 크기&lt;/li&gt;
+  &lt;li&gt;unsigend  없음&lt;/li&gt;
+  &lt;li&gt;float.h 헤더 파일.&lt;/li&gt;
+  &lt;li&gt;다른 언어에선 보기 힘든 자료형입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;유의할-점&quot;&gt;유의할 점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데스크탑 환경에선 다른 언어들과 거의 비슷합니다.&lt;/li&gt;
+  &lt;li&gt;소형기기에선 해당 매뉴얼에서 자료형 크기를 확인해야 합니다.&lt;/li&gt;
+  &lt;li&gt;데스크탑, 소형기기 범용적으로 사용할 것이라면 포팅이 보장되는 범위 안에서 해야합니다.
+    &lt;ul&gt;
+      &lt;li&gt;float/double은 플랫폼에 따라 다른 값이 나올 수도 있으니 대비해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;24-코드보기--기본-자료형&quot;&gt;24. 코드보기 : 기본 자료형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POCU 아카데미 학생들에겐 코드를 한 줄 한 줄 보여주는 코드 슬라이드가 제공됩니다. 😥😥&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;25-c언어의-bool-형&quot;&gt;25. C언어의 bool 형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C89엔 boolean이 없습니다! (충격) C99에선 들어오긴 합니다만, 대부분 C 개발자들은 bool을 안씁니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;bool 대신 정수를 사용합니다. 0이면 false, 0이 아니면 true&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;하드웨어에도 bool이란 없습니다. 정말 안 믿어진다면 어셈블리어를 까보면 됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;C는 중간에 어셈블리어로 컴파일됩니다.&lt;/li&gt;
+      &lt;li&gt;어셈블리 명령어 cmp(compare) a b , je(jump equal) ~~은 사실 sub a b, jz(jumb if zero)와 같습니다.&lt;/li&gt;
+      &lt;li&gt;0 대입하는 것보다 xor 연산으로 0만드는 게 빠릅니다.&lt;/li&gt;
+      &lt;li&gt;어셈블리에서 eax는 리턴 값을 저장하는 레지스터입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;bool을 숫자로 쓰기 때문에 while문에 숫자를 넣을 수도 있습니다. (좋은 코딩은 아닙니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int count = 5;
+while (count--)
+{
+	printf('%d', count);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에선 보통 거짓일 땐 0을 반환, 참일 땐 1을 반환합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;그런데 참일 때 1이 아닌 다른 수를 반환 하는 경우도 있습니다. 그래서 어떤 반환값이 참이냐, 거짓이냐를 할땐 (  ) != 0을 쓰면 참에 1 아닌 다른 수를 쓸 때를 거를 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;26-열거형enum&quot;&gt;26. 열거형(enum)&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C의 열거형은 다른 언어들의 enum과는 좀 다릅니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;int와 섞어 사용 가능합니다.&lt;/li&gt;
+      &lt;li&gt;int -&amp;gt; enum, enum-&amp;gt;int, enum-&amp;gt;다른 enum 이 가능합니다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 enum은 정수에 별명 붙이는 정도입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C#의 경우입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c# highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EDay&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WED&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EMonth&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FEB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAR&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  
+&lt;span class=&quot;n&quot;&gt;EDay&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EDay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;EMonth&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -&amp;gt; 컴파일 에러. enum도 타입을 가지고 있음.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C의 경우입니다. 사용 방법도 조금 다릅니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DAY_MON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DAY_TUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DAY_WED&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MONTH_JAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MONTH_FEB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MONTH_MAR&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 정상 작동. enum은 단지 정수의 별명 정도 */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 enum은 실수의 여지가 크기 때문에 POCU 아카데미에선 enum을 사용할 때의 코딩 표준을 정해 놓았습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;27-코드보기--열거형&quot;&gt;27. 코드보기 : 열거형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POCU 아카데미 학생들은 좋겠습니다. 스마트한 슬라이드도 있고.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;28-변수-선언&quot;&gt;28. 변수 선언&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변수 선언은 블럭의 시작 부분에서 해야 합니다. 중간에 선언하면 컴파일 에러 납니다. 😲😲😲
+    &lt;ul&gt;
+      &lt;li&gt;미리 메모리를 확보하기 위해 그런 것 같습니다.(선생님 뇌피셜)&lt;/li&gt;
+      &lt;li&gt;어메이징한 고대 언어라는 생각이 듭니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;29-연산자&quot;&gt;29. 연산자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;연산자 우선순위, 연산자 결합 법칙을 잘 알아 둡시다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;결합법칙은 동일한 우선순위 연산자들을 어떤 순서로 처리 할 것인지를 말합니다.&lt;/p&gt;
+
+        &lt;table&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;우선순위&lt;/th&gt;
+              &lt;th&gt;연산자&lt;/th&gt;
+              &lt;th&gt;설명&lt;/th&gt;
+              &lt;th&gt;결합법칙&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;1&lt;/td&gt;
+              &lt;td&gt;++ –&lt;br /&gt;()&lt;br /&gt;[]&lt;br /&gt;.&lt;br /&gt;-&amp;gt;&lt;/td&gt;
+              &lt;td&gt;후위 증감 연산자&lt;br /&gt;함수 호출&lt;br /&gt;배열 첨자&lt;br /&gt;구조차, 공용체 멤버 접근자&lt;br /&gt;구조체, 공용체 멤버 접근자(포인터)&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;2&lt;/td&gt;
+              &lt;td&gt;++ –&lt;br /&gt;+ -&lt;br /&gt;! ~&lt;br /&gt;(자료형)&lt;br /&gt;*&lt;br /&gt;&amp;amp;&lt;br /&gt;sizeof&lt;/td&gt;
+              &lt;td&gt;전위 증감 연산자&lt;br /&gt;단항(unary) 연산자&lt;br /&gt;논리/비트 부정 연산자&lt;br /&gt;자료형 캐스팅&lt;br /&gt;역 참조(간접참조)&lt;br /&gt;주소(address-of)&lt;br /&gt;크기 알려주는 연산자&lt;/td&gt;
+              &lt;td&gt;👈&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;3&lt;/td&gt;
+              &lt;td&gt;* / %&lt;/td&gt;
+              &lt;td&gt;곱, 나누기(몫), 나누기(나머지)&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;4&lt;/td&gt;
+              &lt;td&gt;+ -&lt;/td&gt;
+              &lt;td&gt;덧셈, 뺄셈&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;5&lt;/td&gt;
+              &lt;td&gt;« »&lt;/td&gt;
+              &lt;td&gt;비트 쉬프트&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;6&lt;/td&gt;
+              &lt;td&gt;&amp;lt; &amp;lt;= &amp;gt; &amp;gt;=&lt;/td&gt;
+              &lt;td&gt;비교 연산자&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;7&lt;/td&gt;
+              &lt;td&gt;== !=&lt;/td&gt;
+              &lt;td&gt;비교 연산자&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;8&lt;/td&gt;
+              &lt;td&gt;&amp;amp;&lt;/td&gt;
+              &lt;td&gt;비트 AND&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;9&lt;/td&gt;
+              &lt;td&gt;^&lt;/td&gt;
+              &lt;td&gt;비트 XOR&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;10&lt;/td&gt;
+              &lt;td&gt;|&lt;/td&gt;
+              &lt;td&gt;비트 OR&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;11&lt;/td&gt;
+              &lt;td&gt;&amp;amp;&amp;amp;&lt;/td&gt;
+              &lt;td&gt;논리 AND&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;12&lt;/td&gt;
+              &lt;td&gt;||&lt;/td&gt;
+              &lt;td&gt;논리 OR&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;13&lt;/td&gt;
+              &lt;td&gt;? :&lt;/td&gt;
+              &lt;td&gt;삼항(tenary) 연산자&lt;/td&gt;
+              &lt;td&gt;👈&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;14&lt;/td&gt;
+              &lt;td&gt;=&lt;br /&gt;+= -=&lt;br /&gt;*= /= %=&lt;br /&gt;«= »=&lt;br /&gt;&amp;amp;= ^= |=&lt;/td&gt;
+              &lt;td&gt;대입 연산자&lt;br /&gt;덧셈/뺄셈 후 대입&lt;br /&gt;곱/나눗셈 후 대입&lt;br /&gt;비트 쉬프트 후 대입&lt;br /&gt;비트 연산 후 대입&lt;/td&gt;
+              &lt;td&gt;👈&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;15&lt;/td&gt;
+              &lt;td&gt;,&lt;/td&gt;
+              &lt;td&gt;콤마&lt;/td&gt;
+              &lt;td&gt;👉&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;뒤에서 볼건데 우선순위와 평가(함수 호출) 순서는 다릅니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;f( ) + g( )*h( ) 일때, g( )를 호출하고, h( )를 호출하고, 곱한다음에, f( )를 호출해 더한다고 단언할 수없다는 겁니다.&lt;/li&gt;
+      &lt;li&gt;어떤 순서로 함수들을 부를 지는 뒤에서 알아봅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;30-sizeof-연산자&quot;&gt;30. sizeof 연산자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;피 연산자의 크기를 바이트(엄밀히 말하면 char의 크기)로 반환해줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;char ch = 'a';
+int num = 100;
+char char_arr(30);
+  
+size_t size_char = sizeof(ch);     /* 1 */
+size_t size_int = sizeof(int);     /* 4 */
+size_t size_float = sizeof(float); /* 4 */
+size_t size_char = sizeof(ch);     /* 30 */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수가 아니라 연산자인걸 유의해야 합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;컴파일 중에 sizeof를 실행해 값을 알아냅니다.&lt;/li&gt;
+      &lt;li&gt;즉, 컴파일 할 때 크기를 모르는 값은 sizeof를 할 수 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;정의상 char타입을 넣으면 1이 반환됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;C에서 1바이트는 char의 크기입니다. (보통 8비트)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;반환 값은 unsigned 정수인 size_t 타입을 반환합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;31size_t&quot;&gt;31.size_t&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;부호 없는 정수형이지만, 실제 데이터 타입은 아닙니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 _t 나온 얘들은 typedef 를 했다는 뜻입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;typedef는 자료형에 별칭을 붙였다는 뜻입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C89 표준에선 size_t의 크기를 명시하지 않습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;C99에선 최소 16비트입니다.&lt;/li&gt;
+      &lt;li&gt;보통은 unsigned int입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;크기를 나타내야 할 때 사용됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;반복문, 배열에 인덱스로 종종 사용됩니다. (음수가 필요 없을 때)&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;int_arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;size_t와 -1 부분, 뒤로 다시 듣기&lt;/li&gt;
+  &lt;li&gt;C엔 Exception, Try-Catch 없습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;32-역-참조-연산자&quot;&gt;32. 역 참조 연산자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;역-참조-연산자-&quot;&gt;역 참조 연산자 *&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 부분은 포인터를 배워야 제대로 이해할 수 있어서 간단하게 하고 넘어갑니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int num = 10; 
+int* p = &amp;amp;num; /* 여긴 역 참조 연산자가 아니라 포인터 변수 선언 */
+int num1 = *p; /* 여기가 역 참조 연산자 */
+  
+int result = num1*num2 /* 여긴 곱셈 */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;역 참조 연산자는 포인터형 변수에 사용가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;메모리를 다룰 때 사용합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포인터가 성능을 다루는 핵심입니다. 포인터 배울 땐 마음을 굳게 먹으시고..&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;주소-연산자-&quot;&gt;주소 연산자 &amp;amp;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;어떤 변수의 메모리 주소를 반환합니다.&lt;/li&gt;
+  &lt;li&gt;주소는 포인터 변수에 담아둡니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;33-구조체공용체-멤버-접근자&quot;&gt;33. 구조체/공용체 멤버 접근자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-연산자&quot;&gt;. 연산자&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;.은 거의 모든 언어에서 볼 수 있던 연산자입니다. “클래스.메소드” 이런식으로 사용했습니다. 근데 앞서 말했듯이 C에는 클래스가 없습니다. 즉, C에선 함수 호출에쓰지 않습니다.
+    &lt;ul&gt;
+      &lt;li&gt;구조체(데이터만 가지고 있는 것) -&amp;gt; 클래스(데이터, 함수 가지고 있는 것)&lt;/li&gt;
+      &lt;li&gt;C엔 구조체는 있습니다. 그리고 나중에 배우겠지만 공용체라는 것도 있습니다.&lt;/li&gt;
+      &lt;li&gt;C의 . 연산자는 구조체와 공용체의 멤버 변수에 접근할 때 사용됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;--연산자&quot;&gt;-&amp;gt; 연산자&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;’.’ 와 ‘*’ 를 합친 것입니다.&lt;/li&gt;
+  &lt;li&gt;역시 구조체, 공용체의 멤버 변수에 접근할 때 사용합니다.&lt;/li&gt;
+  &lt;li&gt;포인터, 구조체 배울 때 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;34-비교-연산자-논리-연산자-조건-연산자&quot;&gt;34. 비교 연산자, 논리 연산자, 조건 연산자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;다른 언어와 같습니다. 패스!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;35-조건문과-반복문-if-문-switchcase-문&quot;&gt;35. 조건문과 반복문, if 문, switch/case 문&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;if-문&quot;&gt;if 문&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C에는 bool이 없습니다. 비교, 조건 연산자를 사용한 결과는 참일 경우 1, 거짓일 경우 0을 반환합니다.&lt;/li&gt;
+  &lt;li&gt;패스!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;switchcase&quot;&gt;switch/case&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C switch-case에서 비교할 수 있는 건 정수형(int, char, enum) 밖에 없습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 break안 쓰면 다음 case까지 실행시킵니다.(fall-through 방식) 자바랑은 같고, C#이랑은 다릅니다. (C#은 case에 break 없으면 컴파일 에러)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;break 없이 fall-through를 의도했을 땐  intentional fallthrough를 주석으로 표시해줍시다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fruit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRUIT_APPLE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRUIT_BANANA&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fruit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fruit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRUIT_APPLE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+&lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fruit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRUIT_APPLE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;apple&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/* intentional fallthrough */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FRUIT_BANANA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;banana&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;default:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fruit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;case 안의 값은 컴파일 할 때 결정될 수 있는 상수만 넣습니다!&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;어차피 상수 아니면 컴파일 에러 납니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;36-코드보기--switchcase&quot;&gt;36. 코드보기 : switch/case&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POCU 학생들은 좋겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;37-for-문-while-문-do-while-문&quot;&gt;37. for 문, while 문, do while 문&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;for-문&quot;&gt;for 문&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에선 foreach 없습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 언어들 처럼 for문 안에서 변수 선언하면 안됩니다. (컴파일 에러남)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;앞에서 봤듯이, 변수 선언을 맨 위에서 해 주어야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 컴파일 에러 */&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;while-do-while-문&quot;&gt;while, do while 문&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;특이 사항 없습니다.&lt;/li&gt;
+  &lt;li&gt;continue는 해당 회차를 종료하고 다음 회차를 바로 시작합니다. (잘 안써서 초면인줄..)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;유의사항&quot;&gt;유의사항&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C에선 bool이 없기 때문에 for, while 조건 안에 변수 하나만 넣는 경우가 있는데&lt;code class=&quot;highlighter-rouge&quot;&gt;for (num--)&lt;/code&gt;, 틀린 방법은 아니지만 POCU에선 추천하지 않습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt;나 &lt;code class=&quot;highlighter-rouge&quot;&gt;!=&lt;/code&gt;를 명시해줍시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;38-코드보기--조건문반복문&quot;&gt;38. 코드보기 : 조건문/반복문&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패스&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
