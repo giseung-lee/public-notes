@@ -27,7 +27,7 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 ---
 
 1. [Introduction to Microservices]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA1)
-2. Moder Spring: Spring Boot, Spring Data, and Spring Data REST [4/23 예정]
+2. [Moder Spring: Spring Boot, Spring Data, and Spring Data REST]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA1)
 3. Spring Cloud [4/27 예정]
 
 
