@@ -4,13 +4,891 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-22T23:13:22+09:00</updated>
+ <updated>2020-04-24T00:36:11+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>C Unmanaged Programming 2 - C언어 기본 문법2 - 1 (작성중)</title>
+   <link href="http://localhost:4000/posts/study/c_kim_pope/C3/"/>
+   <updated>2020-04-23T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/c_kim_pope/C3</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 포스팅은 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;Kim Pope 선생님의 C 언매니지드 프로그래밍 강의&lt;/a&gt;를 정리하며 사견을 붙인 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포스팅 내 목차는 동영상강의 기준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;39-함수&quot;&gt;39. 함수&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수는 원래 기계가 이해 할 수 있는게 아니었습니다. 그냥 라인 바이 라인 실행하다가 필요한 곳에서 점프 뛰고 하는 게 기계가 하는 일입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그런데 점점 함수를 사용할 필요가 생겼고, 기계가 이해할 수 있는 함수라는 개념과 약속을 만들었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 언어의 함수와 C 함수가 다른 점.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;접근 제어자가 없습니다.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;C의 함수는 기본적으로 global 함수입니다. 어디서든 호출 가능합니다.&lt;/li&gt;
+          &lt;li&gt;그러나 추후에 이를 제어할 수 있는 기술도 생겼습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;함수 오버로딩도 없습니다. 다른 함수를 만들어야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;C는 코드를 위에서 아래로 훑기 때문에 함수의 정의 위치도 중요합니다.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;C89가 나오기 전엔 위에서 훑다가 아직 정의되지 않은 함수(밑에 정의된 함수)를 호출하면 컴파일러가 해당 함수의 반환형은 int, 매개변수는 자유롭게 들어올 수 있다고 가정합니다. 그런데 밑에 정의된 함수가 int를 반환하지 않을 시, 밑의 함수를 컴파일 하다가 오류를 뱉습니다.&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;다음과 같은 상황엔 컴파일 에러가 납니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 컴파일 에러 */&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;foo!!!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;다음과 같이 수정하면 컴파일 에러가 나지 않습니다.&lt;/p&gt;
+
+            &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;foo!!!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;40-함수-정의의-문제&quot;&gt;40. 함수 정의의 문제&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위에서 살펴봤듯이, C에선 함수를 사용하기 전에 위에서 정의해야 합니다. 물론, 개발자들은 대안을 생각해냅니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;41-함수-선언&quot;&gt;41. 함수 선언&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수의 구현 없이 함수의 prototype(원형)만 선언해주는 방식으로 위 문제를 해결할 수 있습니다. (전방 선언, forward declaration 이라고도 합니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수 프로토타입은 아래와 같은 것들로 구성됩니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;함수 이름&lt;/li&gt;
+      &lt;li&gt;반화형&lt;/li&gt;
+      &lt;li&gt;매개변수들 자료형&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위에서 컴파일 에러가 났던 상황은 다음과 같이 해결할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 함수 선언 */&lt;/span&gt;
+  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 함수 정의 */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;foo!!!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;전방 선언을 할 때 컴파일러는 다음과 같이 동작합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;전방 선언만 되어 있는 함수를 호출하면 함수의 구현부 주소의 빈칸을 남겨 놓습니다. (jump 해야하는 주소를 비워둡니다.)&lt;/li&gt;
+      &lt;li&gt;컴파일 다음 링크 단계에서 실제 코드의 주소를 찾아 함수 호출 하는 부분의 jump 주소에 매꿔줍니다.&lt;/li&gt;
+      &lt;li&gt;뒤에 더 자세히 알려드리겠습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;근데, 그러면 int를 반환하는 함수는 전방 선언은 안해도 될까요?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;해줍시다. C89/90에선 int를 가정하지만, C99부턴 int를 가정하진 않습니다. 다른 사람과의 협업, 컴파일러 표준간 호환을 위해 전방 선언 반드시 해줍시다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;42-함수-매개변수-평가-순서-피연산자-평가-순서&quot;&gt;42. 함수 매개변수 평가 순서, 피연산자 평가 순서&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 상황을 가정합시다. foo1 과 foo2 중 어떤 함수가 먼저 호출 될까요?&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subtract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;subtract!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d, %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subtract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;답은 ‘모른다’입니다. C 표준에서 함수 매개변수의 평가순 서는 명시되지 않았습니다.(&lt;strong&gt;unspecified&lt;/strong&gt;) 컴파일러 재량입니다.&lt;/li&gt;
+      &lt;li&gt;다만, printf가 실행되기 전에 add와 subtract가 호출 되는건 보장됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;실행 순서를 나누는 지점을 ‘sequence point’ 라고 부릅니다. 익숙한 세미콜론이 sequence point입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 예에선 add 먼저 하든, subtract 먼저 하든 결과는 같습니다. 하지만, 예상 되듯이 두 함수에서 모두 전역변수를 건드리게 되면 문제가 생깁니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;애초에 이렇게 함수 호출 순서에 의존하는 코드를 작성하지 맙시다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;지금까지 java, python, C# 코딩할 때 당연히 왼쪽에서 오른쪽 순서로 호출할 거라 생각했고, 둘의 호출 순서가 중요한 적이 없어서 한 번도 고민 안해본 주제인데 신기합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 상황을 봅시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;divied&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d / %d = &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;divide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;이 상황의 이전 상황과는 다릅니다. 이전 상황은 unspecified라는 비교적 덜 위험한 상황이지만 이 상황은 undefined behavior 라는 상황입니다. unspecified는 이러이러한 상황이 있을 거라는 표준이 있지만 정해지지 않은 것이고, undefined는 표준에 언급이 없는 상황입니다.&lt;/li&gt;
+      &lt;li&gt;위 상황에서 앞에 있는 ++num부터 평가된다면  &lt;code class=&quot;highlighter-rouge&quot;&gt;1 / 2 = 0.5000&lt;/code&gt; 을 출력할 것이고 뒤에 있는 ++num부터 평가 된다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;2 / 1 = 2.000&lt;/code&gt; 을 출력할 것입니다. 그런데, 동시에 평가 될 수도 있다고 합니다. 😲&lt;/li&gt;
+      &lt;li&gt;(조금 어려운 상황인 것 같은데) 두 연산을 병렬 파이프라인을 통해 동시에 평가 할수도 있다는 겁니다. 앞의 연산을 수행하는 중간 값을 가져가 뒤의 연산을 할 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;요약 하자면, 한 줄에서 동일한 변수를 여러 번 바꾸면 위험합니다.&lt;/strong&gt; 아래와 같은 코드도 위험한 코드입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;num : %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;평가 순서를 보장하지 않는 연산자가 있는 줄에서 같은 변수를 다루지 맙시다. 아래 예시. ‘ + ‘, ‘ = ‘ 연산자 모두 순서를 강제하지 않습니다. (가독성도 떨어집니다. )&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;cm&quot;&gt;/* 이런 코드를 피하라! */&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;cm&quot;&gt;/* 이런 코드를 피하라! */&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;cm&quot;&gt;/* 이런 코드를 피하라! */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;43-연산자-우선순위와-평가-순서1&quot;&gt;43. 연산자 우선순위와 평가 순서1&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;평가 순서와 연산자 우선순위를 헷갈릴 수 있는데 둘은 엄연히 다릅니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  	
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subtract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;divide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  	
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;+보다 *가 먼저니 subtract, divide가 add보다 먼저 실행되겠다고 생각했다면 우선순위와 평가순서를 헷갈린 것입니다.&lt;/li&gt;
+      &lt;li&gt;add, subtract, divide의 결과를 A, B, C라고 할 때, B*C 먼저, 다음으로 A + (B*C) 가 되는 것은 맞지만, add, subtract, divide 중 뭐가 먼저 될 건지는 컴파일러 재량입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C는 참… 이상하네.. 😐&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;44-연산자-우선순위-평가-순서2&quot;&gt;44. 연산자 우선순위 평가 순서2&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 상황은 add, subtract, divide 가 num1, num2를 변경하지 않기 때문에 평가 순서에 상관 없이 결과는 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;45-평가-순서를-강제하는-연산자&quot;&gt;45. 평가 순서를 강제하는 연산자&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음은 어떻게 될까요?&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d, %d, %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;short circuit (a &amp;amp;&amp;amp; b 에서 a가 false면 b를 계산 안하는 것)과 평가순위-우선순위를 헷갈리지 말라는 문제입니다.&lt;/li&gt;
+      &lt;li&gt;
+        &lt;table&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;앞서 말한 sequence point가 있습니다. **’&lt;/td&gt;
+              &lt;td&gt; &lt;/td&gt;
+              &lt;td&gt;’ 와 ‘&amp;amp;&amp;amp;’ 가 sequence point 중 하나입니다.** 이 sequence point에 의해서 &lt;strong&gt;평가 순서가 강제 됩니다.&lt;/strong&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;table&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;++i || ++j &amp;amp;&amp;amp; ++k&lt;/code&gt; 에서 ‘&lt;/td&gt;
+              &lt;td&gt; &lt;/td&gt;
+              &lt;td&gt;’ 가 sequence point 이기 때문에 앞에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;++i&lt;/code&gt;부터 평가됩니다.&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 || ++j &amp;amp;&amp;amp; ++k&lt;/code&gt; 에서 연산자 우선순위는 &amp;amp;&amp;amp;가 먼저이지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;A || B&lt;/code&gt; 에서 A가 참이면 B의 값은 상관 없기 때문에 B를 실행 안합니다.(short circuit)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;short circuit은 알고 있었는데 평가 순서 관련한 부분은 생소합니다. 역시 프로그래밍의 길은… 😥&lt;/li&gt;
+  &lt;li&gt;일단 알고 있어야할 보장되는 평가 순서
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;table&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;’&lt;/td&gt;
+              &lt;td&gt; &lt;/td&gt;
+              &lt;td&gt;’, ‘&amp;amp;&amp;amp;’&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/li&gt;
+      &lt;li&gt;삼항 연산자 (어차피 이건 if ~ else를 한 줄로 줄인 것)&lt;/li&gt;
+      &lt;li&gt;’ ; ‘&lt;/li&gt;
+      &lt;li&gt;함수 실행 전 함수에 들어가는 매개변수들&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;46-범위scope&quot;&gt;46. 범위(Scope)&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;범위의 종류
+    &lt;ul&gt;
+      &lt;li&gt;블록 범위&lt;/li&gt;
+      &lt;li&gt;파일 범위&lt;/li&gt;
+      &lt;li&gt;함수 범위&lt;/li&gt;
+      &lt;li&gt;함수 선언 범위&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;블록-범위&quot;&gt;블록 범위&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;다른 내용은 다른 언어들과 동일합니다. 단, 주의할 점은 저번에 C에서 변수 선언은 블록 시작부에서만 가능하다고 했는데, 블록 안의 작은 블록에서도 변수 선언 가능합니다.&lt;/li&gt;
+  &lt;li&gt;C에선 블록 안 작은 블록에서 위에서 쓰인 변수 이름을 다시 쓰는 게 가능은 하지만 하지 맙시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;파일-범위&quot;&gt;파일 범위&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 컴파일 언어에는 없는 것입니다. (스크립트 언어엔 비슷하게 있는 것 같습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;어떤 블록이나 매개변수 목록에도 안속하는 파일 안 범위 (정확히는 Translation Unit 이라는 컴파일 되는 단위입니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 여기! */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;파일 범위에 있는 변수는 C 메모리 중 ‘데이터 섹션’에 들어가기 때문에 프로그램 실행 동안 계속 가지고 있고, 다른 파일에서도 접근 가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;여기서 쓰인 변수들을 c에서 전역 변수라고 부릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;함수-범위&quot;&gt;함수 범위&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;레이블(label) 이 함수 범위에 속합니다. exit, goto 같은 레이블이 예시입니다.&lt;/li&gt;
+  &lt;li&gt;함수 안에서 선언된 레이블은 함수 어디서든 접근 가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;함수-선언-범위&quot;&gt;함수 선언 범위&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수 선언부에 매개변수들 끼리 선언부 안에서 접근가능 합니다. 많이 쓰이진 않고 아래와 같은 상황에선 쓸 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;do_someting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;47-코드보기--전역-변수&quot;&gt;47. 코드보기 : 전역 변수&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;저 코드 슬라이드는 뭐로 만들었을까&lt;/li&gt;
+  &lt;li&gt;POCU 코딩 표준에서 전역변수는 g_name 이런 식으로 g_를 붙여줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;48-const-키워드&quot;&gt;48. const 키워드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;주로 const는 불변 상수를 만들 때 사용합니다. 하지만, C에선 그 이상의 일을 할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에선 함수 선언 시 받을 매개변수에 const 키워드를 줄 수 있습니다. 즉, &lt;strong&gt;받는 변수 자체는 const가 아니어도 한 함수 안에서 const로 사용 가능하게 만들 수 있습니다.&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* C#에선 여기서 컴파일 에러 */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* C에선 여기서 컴파일 에러 */&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;또, const 변수에 컴파일 과정에서 결정되지 않는 계산 값을 할당할 수 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;다른 대부분 언어들은 const 변수엔 컴파일 시 알 수 있는 상수만 할당 가능합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* C# 에선 여기서 컴파일 에러 */&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+  	&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* C에선 여기서 컴파일 에러 */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;선생님이 생각하는 올바른 const 사용법은&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;모든 변수에 const를 붙인다.&lt;/li&gt;
+      &lt;li&gt;값 변경이 필요한 변수만 const를 빼자.&lt;/li&gt;
+      &lt;li&gt;Rust는 앞에 아무것도 안붙이면 기본적으로 변경 불가능한 변수고, 앞에 mut를 붙이면 변경 가능한 변수가 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;49-goto-문&quot;&gt;49. goto 문&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 언어에서 보기 힘든 것. 근데 있는 언어에서도 거의 쓰지 말라고 가르칩니다. 문법과 의미는 간단합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;go_there&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 저기로 가라! */&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;go_there&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;:&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 저기 */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;원래 goto는 반복문, 조건문의 어머니입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;반복문과 goto문으로 같은 기능을 만들고 컴파일해 나온 어셈블리어를 보면 거의 같습니다.&lt;/li&gt;
+      &lt;li&gt;어셈블리어에는 애초에 반복문이 없습니다. 어셈블리어로 코딩하던 개발자들이 C를 시작하며 초기엔 goto문을 많이 사용했습니다.&lt;/li&gt;
+      &lt;li&gt;그런데 goto는 실수의 가능성이 컸습니다. label을 어디에 가져다 놓아도 대부분 컴파일 과정에선 에러가 안나기 때문입니다. 특히, goto문이 많아지기 시작하면 실수 가능성이 더더 높아집니다.&lt;/li&gt;
+      &lt;li&gt;하지만, 새로 도입된 반복문은 같은 기능을 구현하면서 실수의 가능성을 대폭 줄여줬습니다.&lt;/li&gt;
+      &lt;li&gt;이런 이유로 goto는 사용이 지양되기 시작됩니다. 예전엔 goto의 사용여부에 대한 거센 논란이 있었지만 현재는 일반적인 개발자들에겐 goto 사용이 지양되고 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;50-goto-문은-정말로-악마인가요&quot;&gt;50. goto 문은 정말로 악마인가요?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;goto문이 스파게티 코드를 만들기 쉽고, 실수를 유발하는 건 맞습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;하지만, goto가 필요한 경우도 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;첫 번째로, 중첩 반복문을 사용할 때입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;for문 두 개가 있을 때, 안쪽 for문은 break로 깨고 바깥쪽 for문을 깨기 위해서 flag변수를 두고, 안쪽 for문 끝나고 flag를 검사하는 코드. (코딩테스트 하면서 꽤 많이 접한 상황입니다.)&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;	
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;이런 코드를 goto를 쓰면 깔끔하게 쓸 수 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loop_exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;loop_exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* 탈출 !! */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;두 번째로, 조건문을 계속 나열하는데 조건문들이 같은 조건을 공유하는 경우입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;다음과 같은 코드를 가정할 수 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;is_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;goto를 이용해 처리할 수 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* 에러 코드 */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;트랜잭션 같은 걸 만들때 - Robert Love 선생님이 인터넷에 남긴 goto 필요한 사례&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;다음과 같이, A-B-C 순서로 실행되야 되는 작업 중, B에서 에러가나면 B, A순으로 undo 하고, C에서 에러가나면 C, B, A 순으로 undo 하는 예시입니다. 모두 성공하면 out으로 나갑니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;이걸 함수로 빼서 만들면 꽤 복잡해집니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    do A
+    if()
+        goto error_A;
+    do B
+    if()
+        goto error_B;
+    do C
+    if()
+        goto error_C;
+    goto out;
+    
+error_C:
+	undo C
+error_B:
+	undo B
+error_A:
+	undo A
+out:
+	return ret;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;운영체제 소스코드에서 goto를 많이 씁니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;POCU에서 추천하는 goto의 좋은 사용법입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;기본적으로 안쓰도록 합니다. (특히, 회사 상사가 goto 혐오자일 경우는 아래 같은 케이스여도 쓰지 맙시다.)&lt;/li&gt;
+      &lt;li&gt;goto는 아래쪽으로만 점프해주세요.&lt;/li&gt;
+      &lt;li&gt;2~3중 반복문에서 나갈 땐 써주세요.&lt;/li&gt;
+      &lt;li&gt;위에서 나왔듯이 나열된 조건문이 같은 조건을 검사할 때&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;51-코드보기--goto-문&quot;&gt;51. 코드보기 : goto 문&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;코드 구경 시간. 앞서 봤던 사례의 다른 버전들.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;52-배열&quot;&gt;52. 배열&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 언어와 거진 비슷한데 조금 다른 지점들이 있습니다. 배열을 다루는 방법이나 속도를 더 바르게 할 수 있는 방법들.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;우선 C#과 달리 new를 할 필요 없습니다. (C에는 new 자체가 없습니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* C# */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* C */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;뒤에서 계속 이어집니다!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;53-코드보기-배열&quot;&gt;53. 코드보기: 배열&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;간단한 배열들 구경&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;54-스택-메모리&quot;&gt;54. 스택 메모리&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여기부터 본격적인 재밌는 내용 들어갑니다. 제가 이 강의를 듣는 이유가 나올 것 같습니다!&lt;/li&gt;
+  &lt;li&gt;C에선 배열을 값형으로 만들 수도 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;C에선 모든 자료형을 값형으로도, 참조형으로도 만들 수 있습니다.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;스택-메모리&quot;&gt;스택 메모리&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C의 메모리 구조를 아주 단순화 하여 ‘스택 - 힙 - 데이터 - 코드’ 라고 가정합시다.&lt;/li&gt;
+  &lt;li&gt;컴파일(? 빌드가 맞지 않나 아니면 exe파일이 아니거나) 하면 exe 파일이 나옵니다. exe 파일 안엔 코드, 데이터가 들어 있습니다.&lt;/li&gt;
+  &lt;li&gt;스택은 각 함수에서 사용하는 지역 변수를 임시적으로 저장합니다.&lt;/li&gt;
+  &lt;li&gt;스택 메모리 크기는 프로그램 빌드 시에 결정됩니다. 따로 정해줄 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;스택 메모리가 물리적으로 어느 위치에 올라갈지는 실행 시에 결정됩니다. (운영체제와 함게 정합니다.)&lt;/li&gt;
+  &lt;li&gt;기본 자료형들(char, int, float)은 스택 메모리에 올라가기 때문에 new가 필요 없습니다. 기본 자료형을 함수 매개변수로 전달 시 스택에 복사본을 만듭니다. (값형)
+    &lt;ul&gt;
+      &lt;li&gt;이건 아는 내용인데요!! 더 깊은 내용 알려주세요!!!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스택 메모리는 모두 컴파일 시 크기가 얼마나 될 지 아는 값들을 저장하므 메모리에 빈 공간 없이 쌓을 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;new로 만든 데이터는 힙 메모리에 올라갑니다. 힙 메모리에 올라간 데이터들은 컴파일시 크기를 모르므로 메모리가 듬성듬성 들어가게 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;힙 메모리에 데이터를 넣을 땐 운영체제가 힙 메모리에 빈 공간을 찾아야 하기 때문에 시간이 좀 걸립니다.&lt;/li&gt;
+      &lt;li&gt;그렇기 때문에, 속도가 중요하다면 힙 보다는 스택을 주로 이용할 수 있도록 코딩해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;55-스택-메모리에-대해서-간단히-알아보자---중요&quot;&gt;55. 스택 메모리에 대해서 간단히 알아보자! - 중요!!&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;어셈블리어를 까보며 스택을 알아봅시다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;어셈블리어를 만드는 데는 &lt;a href=&quot;https://godbolt.org/&quot;&gt;https://godbolt.org/&lt;/a&gt; 이곳이 가장 좋은것 같습니다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;알아보기 전에 스택메모리의 용어 몇 개를 알아둡시다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;우선, 스택은 큰 주소에서 작은 주소 순서로 쌓입니다.&lt;/li&gt;
+      &lt;li&gt;ESP (Extended Stack Pointer) - 현재 스택 포인터&lt;/li&gt;
+      &lt;li&gt;EBP (Extended Base Pointer) - 현재 스택 프레임의 기본(첫) 주소&lt;/li&gt;
+      &lt;li&gt;스택 프레임 - 각 함수가 사용하는 스택 메모리의 범위&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 코드를 디버깅 해봅시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 라인은 아래와 같이 어셈블리어로 컴파일 됩니다. 동영상 4분 근처를 보면 어셈블리의 각 라인별로 메모리에서 어떤 일이 일어나는지 알려줍니다. 3~4번 돌려봅시다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;ebp, esp, eax, ecs 는 레지스터 이름입니다. ebp, esp 는 스택 포인터를 계산하는 전용 레지스터, eax, ecs는 계산에 사용하는 레지스터 입니다. (계산에 사용하는 레지스터는 e{a, b, c, d, … ,}x 입니다.)
+        &lt;ul&gt;
+          &lt;li&gt;Calling Convention을 따른다면, eax가 리턴 값을 저장하는 레지스터 입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;컴파일러 마다 어셈블리어 결과가 다를 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;중요한 지점들만 체크하겠습니다. 텍스트로만 보면 이해하기 힘드니 강의를…&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;시작시 esp를 ebp에 mov해 같은 위치로 둡니다.&lt;/li&gt;
+      &lt;li&gt;esp를 main 스택 프레임 크기만큼 sub 해줘 스택 프레임의 크기를 잡아줍니다.
+        &lt;ul&gt;
+          &lt;li&gt;sub 하는 이유 - 스택 메모리는 큰 값에서 작은 값으로 진행합니다.)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;a, b값을 ebp - 4, ebp - 8 위치에 할당합니다. (mov로 할당)&lt;/li&gt;
+      &lt;li&gt;eax에 ebp-8 위치의 값(b값)을 넣고, ecx-4 위치의 값(a값)을 넣습니다.
+        &lt;ul&gt;
+          &lt;li&gt;add 함수에 넣을 인자를 저장해 두는 과정입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;add 함수를 호출 합니다. 어셈블리 명령어 call을 사용합니다. call ~~~~ 를 합니다.&lt;/li&gt;
+      &lt;li&gt;위에서 call 한 ~~~~ 주소로 옮겨오면 add 함수가 시작됩니다.&lt;/li&gt;
+      &lt;li&gt;add 함수는 ebp 주소를 push를 하며 시작합니다.
+        &lt;ul&gt;
+          &lt;li&gt;현재 ebp엔 main 함수의 시작 부분 주소가 들어있으며, add 함수가 끝나면 다시 ebp를 main 함수 시작 부분으로 옮겨주기 위해 임시 저장 하는 것입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;esp를 ebp로 mov 합니다. (main 함수 시작할 때와 동일)&lt;/li&gt;
+      &lt;li&gt;마찬가지로 esp에 add 함수의 스택 프레임 만큼을 sub 해줘 add 함수의 스택 프레임을 잡습니다.&lt;/li&gt;
+      &lt;li&gt;중간엔 앞에서 나왔던 어셈블리 명령이 계속 사용되니.. 패스.. 넘겨받은 a+b를 ret에 담고 하는 과정&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;중요한 것&lt;/strong&gt; add 함수에서 결과를 리턴한 다음 add 스택 프레임에 넣었던 데이터를 지우는 과정은 없습니다. 그냥 esp를 다시 main 스택 프레임 안에 넣고, ebp를 main 스택 프레임의 시작 부분으로 돌려 놓습니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;🤔🤔🤔🤔🤔🤔🤔🤔🤔&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;56-스택-메모리-안의-배열-스택-오버플로&quot;&gt;56. 스택 메모리 안의 배열, 스택 오버플로&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 코드 main 함수에 &lt;code class=&quot;highlighter-rouge&quot;&gt;int nums[10];&lt;/code&gt; 을 추가하면 처음 main 스택 프레임을 잡을때 추가 된 배열만큼 더 잡습니다.&lt;/li&gt;
+  &lt;li&gt;스택을 사용하면 이미 자리들이 고정되기 때문에 빠릅니다!
+    &lt;ul&gt;
+      &lt;li&gt;os에게 자리 찾아달라고 요청할 필요가 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스택의 크기는 작습니다.clang windows 같은 경우 기본 값은 1MB 정도입니다. 개발자가 따로 스택의 크기를 정할 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;정해진 스택 크기보다 더 많은 스택을 사용하면 &lt;strong&gt;Stack Overflow&lt;/strong&gt; 에러가 납니다.
+    &lt;ul&gt;
+      &lt;li&gt;근데 플랫폼에 따라 에러가 안날 수도 있습니다.(사용하지만 않는다면)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;큰 데이터는 힙 메모리를 사용하는게 좋습니다.
+    &lt;ul&gt;
+      &lt;li&gt;new가 있는 언어는 new를 쓰면 힙 메모리에 메모리를 할당합니다.&lt;/li&gt;
+      &lt;li&gt;C에서 힙 메모리에 메모리를 동적 할당 하는 방법은 뒤에서 배웁니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;57-배열의-요소-개수-구하는-방법&quot;&gt;57. 배열의 요소 개수 구하는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;앞서 sizeof(~~) 는 ~~의 바이트수를 알려준다고 했습니다. 이게 가능한 이유는 컴파일 할때 이미 ~~의 바이트수를 알고 있기 때문입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;따라서 다음과 같이 배열의 갯수를 구할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;추후에 매크로 함수를 배우는데 위와 같은 구문을 매크로 함수로 잡아 놓으면 빠르게 코딩 할 수 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;컴파일 전에 텍스트 붙여 넣는 방식으로 작동합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
+&lt;/span&gt;  
+&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ARRAY_LENGTH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;단, 위 처럼 sizeof 를 사용하고 싶으면 배열의 요소들이 모두 스택에 복사되어야 합니다. 그리고, 복사된 모든 요소 크기를 알아야 합니다. 씁… 4분대 부터 다시 봅시다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;58-길이가-명시된-매개변수-배열&quot;&gt;58. 길이가 명시된 매개변수 배열&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;59-매개변수-배열의-길이-배열-요소의-초기값&quot;&gt;59. 매개변수 배열의 길이, 배열 요소의 초기값&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;60-다차원-배열&quot;&gt;60. 다차원 배열&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;61-코드보기--다차원-배열&quot;&gt;61. 코드보기 : 다차원 배열&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;62-정리&quot;&gt;62. 정리&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Microservices with Spring Cloud 2 - Modern Spring - Spring Boot, Spring Data, and Spring Data REST</title>
@@ -811,9 +1689,9 @@ spring.mvc.view.suffix=.jsp
       &lt;li&gt;HATEOAS = Hypermedia As The Engine Of Application State 😅&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;HATEOAS는 위에서 나온 링크에 해당하는 저장소가 있으면 그 저장소링크로 바로 연결해주는 것입니다. 설명을 안해서 그렇지 사실 이미 HATEOAS가 적용되어 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;spring-boot-starter-data-rest&lt;/code&gt; 디펜던시에 &lt;code class=&quot;highlighter-rouge&quot;&gt;spring-hateoas&lt;/code&gt; 디펜던시가 포함되어 있습니다.
+  &lt;li&gt;HATEOAS는 저장소들 끼리 링크로 연결해 주는 것입니다.(이렇게 쉽게 정리 될 기술이 아니지만 강의 비중에 맞게…) 이미 실습 프로젝트엔 HATEOAS가 적용되어 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;spring-boot-starter-data-rest&lt;/code&gt; 디펜던시에 &lt;code class=&quot;highlighter-rouge&quot;&gt;spring-hateoas&lt;/code&gt; 디펜던시가 포함되어 있습니다.
     &lt;ul&gt;
-      &lt;li&gt;다만, HATEOAS는 링크를 통해 저장소끼리 연결을 해주는데 지금까지 상황에선 저장소가 TeamDao 밖에 없습니다.&lt;/li&gt;
+      &lt;li&gt;다만, HATEOAS는 링크를 통해 저장소끼리 연결을 해주는데 지금까진 저장소가 TeamDao 밖에 없었습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Martin Fowler에 따르면 Hypermedia를 제어하는게 REST의 가장 상위 레벨이라고 합니다. 근데 Hypermedia를 제어한다는게 아직 확 와닿진 않습니다.&lt;/li&gt;
@@ -900,6 +1778,56 @@ spring.mvc.view.suffix=.jsp
 &lt;ul&gt;
   &lt;li&gt;이번 장(동영상 5~9)을 복습할 겸 간단한 어플리케이션을 만들어 봅니다.&lt;/li&gt;
 &lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>영어 공부를 더 해야겠다.</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80/"/>
+   <updated>2020-04-22T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/영어공부</id>
+   <content type="html">
+&lt;h3 id=&quot;udemy&quot;&gt;Udemy!&lt;/h3&gt;
+
+&lt;p&gt;학습할 내용을 찾아서 유데미, 인프런, 유튜브 등을 헤메고 있는데 역시 가장 좋은건 유데미인것 같다. 특히, 유데미의 영어강의들!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인프런
+    &lt;ul&gt;
+      &lt;li&gt;유데미보다 살짝 비싼 가격 (3~7 만원)&lt;/li&gt;
+      &lt;li&gt;한글 강의!&lt;/li&gt;
+      &lt;li&gt;클론 코딩 강의가 많은 건 좋은 것 같다. 처음 쓰는 기술은 클론 코딩 한 번 해주면 친해진 느낌이 든다.&lt;/li&gt;
+      &lt;li&gt;양이 부족하다. 물론, 한국의 개발자 수강생들만으론 수지타산이 안맞는다는 걸 알지만 아쉬운건 어쩔 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;유튜브
+    &lt;ul&gt;
+      &lt;li&gt;무료!&lt;/li&gt;
+      &lt;li&gt;강의 자료를 기대할 수 없다. (무료에 강의자료까지 기대하는건 좀..)&lt;/li&gt;
+      &lt;li&gt;무료라서 완강에 대한 의지가 떨어진다. 역시 돈을 써야… 😥&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;유데미
+    &lt;ul&gt;
+      &lt;li&gt;유료지만 저렴한 가격 (2~3 만원)&lt;/li&gt;
+      &lt;li&gt;조금이지만 돈을 지불해 완강에 대한 의지가 생긴다.&lt;/li&gt;
+      &lt;li&gt;방대한 양의 강의들
+        &lt;ul&gt;
+          &lt;li&gt;같은 주제여도 얕고 빠르게 훑는 강의도 있고, 깊게 천천히 훑는 강의도 있어서 선택권이 넓다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;알찬 강의자료 (과제까지 내주는 강의는 정말.. 감동..)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이전에도 그랬고, 지금 MSA 강의 들을 때도 그렇지만 역시 유데미에선 영어강의에 대한 압박이 있다. 듣는데 시간이 거진 2배는 걸리는 것 같다. 1.5배 시간으로만 들을 수 있어도 좋을텐데.&lt;/p&gt;
+
+&lt;p&gt;지금 장바구니에 담아 놓은 &lt;a href=&quot;https://www.udemy.com/course/operating-systems-from-scratch-part1/&quot;&gt;강의&lt;/a&gt;도 8.5 시간이지만 듣는데 배는 걸리고, 포스팅 정리까지 하려면 3배 이상은 걸릴 것 같다. 씁…🤔&lt;/p&gt;
+
+&lt;p&gt;입사지원서 넣은데 연락오기 시작하면 5~6월엔 면접 준비할 시간도 빼야되는데.. 배울건 많고 시간은 없고~ 어디 정신과 시간의 방 같은 거 있으면 좋겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Daily Thoughts/mind_time_room.jpg&quot; alt=&quot;mind_time_room.jpg&quot; /&gt;&lt;/p&gt;
 </content>
  </entry>
  
