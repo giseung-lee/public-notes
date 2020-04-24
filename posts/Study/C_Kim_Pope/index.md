@@ -34,7 +34,7 @@ title: Unmanged Language C - Kim pope
 
 1. [과목 소개]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C1)
 2. [C언어 기본 문법 1]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C2)
-3. [C언어 기본 문법 2]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C3), 빌드 단계 [~~4/24~~, 26 예정]
+3. [C언어 기본 문법 2]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C3), [빌드 단계]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/C3-2)
 4. 포인터 [4/28 예정]
 5. C 스타일 문자열, 출력 [4/30 예정]
 6. 콘솔 입력, 파일 입출력, 커맨드 라인 인자 [5/4 예정]

@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-24T01:25:56+09:00</updated>
+ <updated>2020-04-24T18:02:29+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -13,7 +13,782 @@
 
  
  <entry>
-   <title>C Unmanaged Programming 2 - C언어 기본 문법2 - 1 (작성중)</title>
+   <title>C Unmanaged Programming 2 - 빌드과정</title>
+   <link href="http://localhost:4000/posts/study/c_kim_pope/C3-2/"/>
+   <updated>2020-04-24T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/c_kim_pope/C3-2</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 포스팅은 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;Kim Pope 선생님의 C 언매니지드 프로그래밍 강의&lt;/a&gt;를 정리하며 사견을 붙인 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포스팅 내 목차는 동영상강의 기준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;63-소스코드에서-실행파일까지-c-프로그램의-빌드-과정&quot;&gt;63. 소스코드에서 실행파일까지, C 프로그램의 빌드 과정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C에서 만든 컴파일 모델의 뼈대는 다른 언어들에서도 사용합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;c-프로그램의-빌드-과정&quot;&gt;C 프로그램의 빌드 과정&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;빌드란?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;사람이 읽기 쉬운 소스코드를 기계어 명령어로 변환 하는 과정&lt;/li&gt;
+      &lt;li&gt;명령어들을 모아 기계에서 실행 가능한 실행 파일로 만드는 과정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;빌드의 단계&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;전처리(preprocessing)&lt;/li&gt;
+      &lt;li&gt;컴파일(compilation)&lt;/li&gt;
+      &lt;li&gt;어셈블(assembling)&lt;/li&gt;
+      &lt;li&gt;링크(linking)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2, 3 단계를 합쳐 컴파일이라고도 부르고, 1, 2, 3 단계를 합쳐서 컴파일이라고도 부릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 과정을 크게보면 다음과 같습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;소스코드(.h, .c) &lt;br /&gt;–[전처리기]–&amp;gt; 확장된 소스코드(트랜스레이션 유닛) &lt;br /&gt;–[컴파일러]–&amp;gt; 어셈블리 코드 &lt;br /&gt;–[어셈블러]–&amp;gt; 오브젝트 코드 &lt;br /&gt;–[링커]–&amp;gt; 실행파일(.exe, .out)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;강의에서 사용하던 clang은 clang 명령어로 소스코드를 바로 실행파일로 만듭니다. 하지만 clang에서도 옵션을 주면 한 단계씩 실행 가능합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;현업에선 최소 2단계로는 나눠 사용합니다.(컴파일, 링크)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;조만간 강의에서 볼 코드는 다음과 같이 이루어져 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;func.h 👉 함수 헤더파일(함수 선언부)&lt;/li&gt;
+      &lt;li&gt;func.c 👉 함수 구현파일&lt;/li&gt;
+      &lt;li&gt;main.c 👉 실행 파일&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;조만간 쓸 명령어는 다음과 같습니다. 각 옵션은 &lt;a href=&quot;https://clang.llvm.org/docs/UsersManual.html&quot;&gt;여기&lt;/a&gt;를 참고해주세요!&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -std=c89 -W -Wall -pedantic-errors *.c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;64-h와-c-파일&quot;&gt;64. .h와 .c 파일&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C# 에선 func.cs 와 main.cs만 있었지만 C에선 func.h, func.c 로 헤더를 분리해줍니다. 컴퓨터 성능이 안좋던 시절에 더 효율적으로 만들기 위해 나눴습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;c-파일&quot;&gt;C 파일&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;실제 로직 코드들입니다. 함수 정의(== 함수 구현), 전역변수, 매크로 등이 들어갑니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;헤더-파일&quot;&gt;헤더 파일&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 소스코드 파일에 공통적으로 필요한 것들을 저장해 두는 파일입니다.&lt;/li&gt;
+  &lt;li&gt;함수 선언, 매크로, extern 변수선언 등이 들어갑니다.&lt;/li&gt;
+  &lt;li&gt;#include를 통해 다른 파일에 들어갑니다. 컴파일 과정에서 #include는 단순 텍스트 복분입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;예시&quot;&gt;예시&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 상황을 가정합시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* adder.c */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* main.c */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;앞서 말했듯이 지금 같은 상황에서 main 함수는 add를 모르기 때문에 컴파일 되지 않습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이걸 컴파일 하기 위해서 add 함수의 원형을 알아야 합니다. 원형을 알려주는게 헤더 파일입니다. 헤더파일을 작성하고 adder.c 와 main.c에 해당 헤더 파일을 복붙 하겠다는 의미의 #include를 써줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* adder.h */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* adder.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;adder.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* main.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;adder.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;65-헤더-파일이-필요한-이유&quot;&gt;65. 헤더 파일이 필요한 이유&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사실, 헤더 파일이 필수적이진 않습니다. adder.c를 include 할 수도 있고 main.c에 모든 소스를 다 넣을 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;하지만 우선 작업의 편의상 파일을 나누는건 당연합니다. 한 파일에 100만 줄을 작성할 순 없습니다.&lt;/li&gt;
+  &lt;li&gt;그런데 파일을 나눠 놓고 보면 동일한 함수를 다른 파일에서 쓸 때 문제가 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;이때 복붙으로 쓸 함수를 다른 파일로 옮겨오면… 혼나야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이때 헤더파일을 사용하면 함수 선언을 여러 C 파일끼리 공유가능합니다. (다른 언어들은 더 똑똑하기 때문에 굳이 헤더파일을 작성할 필요가 없습니다. 언어쪽에서 해줍니다.)&lt;/li&gt;
+  &lt;li&gt;그렇다면, 함수 선언 부분만 include 했는데 어떻게 프로그램이 돌까요?
+    &lt;ul&gt;
+      &lt;li&gt;빌드가 여러 단계로 나뉜 이유입니다. 정의 없이 선언만으로 컴파일이 가능하고, 선언부에 정의를 옮겨 주는게 링크 단계입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;66-include--와-include-&quot;&gt;66. #include &amp;lt;&amp;gt; 와 #include “”&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;두 방식은 &lt;strong&gt;디스크 상의 어느 위치에서 헤더 파일을 찾느냐&lt;/strong&gt; 차이입니다.&lt;/li&gt;
+  &lt;li&gt;#include &amp;lt;&amp;gt;
+    &lt;ul&gt;
+      &lt;li&gt;시스템 경로에서만 헤더 파일을 검색합니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;컴파일러가 제공하는 시스템 헤더 파일을 인클루드 할 때&lt;/strong&gt; 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;#include “”
+    &lt;ul&gt;
+      &lt;li&gt;현재 작업중인 디렉터리에서 헤더 파일을 먼저 검색합니다.&lt;/li&gt;
+      &lt;li&gt;없으면 시스템 경로를 검색합니다.&lt;/li&gt;
+      &lt;li&gt;개발자가 구현한 헤더파일을 인클루드 할 때 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;67-빌드-과정--전처리-단계&quot;&gt;67. 빌드 과정 : 전처리 단계&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 말했듯이 전처리 단계는 &lt;strong&gt;“소스코드 👉 확장된 소스 코드(트랜스레이션 유닛)”&lt;/strong&gt; 과정입니다.&lt;/li&gt;
+  &lt;li&gt;전처리기라는 별도의 프로그램이 담당합니다.&lt;/li&gt;
+  &lt;li&gt;전처리기는 다음과 같은 일을 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;주석 제거&lt;/li&gt;
+      &lt;li&gt;매크로를 확장 합니다.(복붙 합니다.)&lt;/li&gt;
+      &lt;li&gt;인클루드 파일들을 확장 합니다.(복붙 합니다.)
+        &lt;ul&gt;
+          &lt;li&gt;C 전처리기는 사실 #include 가 붙으면 파일 형식을 가리지 않고 붙여 넣습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;컴파일의 기본 단위인 확장된 소스 코드(translation unit)을 돌려줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;68-트랜슬레이션-유닛-보는-방법&quot;&gt;68. 트랜슬레이션 유닛 보는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;컴파일 할 때 ‘-E’ 플래그를 주면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -E {filename}.c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위 명령어로는 콘솔 에서만 보입니다. 파일로 따로 보고 싶으면 출력 리디렉션(output redirection) 이라는 콘솔의 기능을 쓰면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -E {filename}.c &amp;gt; {filename}.pre
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;69-빌드-과정--컴파일-단계&quot;&gt;69. 빌드 과정 : 컴파일 단계&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;컴파일 단계는 &lt;strong&gt;“확장된 소스코드 👉 어셈블리 코드”&lt;/strong&gt; 과정입니다.&lt;/li&gt;
+  &lt;li&gt;컴파일러가 담당합니다.&lt;/li&gt;
+  &lt;li&gt;어셈블리어는 기계 코드와 거의 1:1로 대응됩니다. 하지만, 어셈블리어 조차 원래 사람들이 쓰기 쉬우라고 만들어진 프로그래밍 언어입니다.&lt;/li&gt;
+  &lt;li&gt;어셈블리어는 아직 정의를 모르는 심볼(함수나 변수 이름)을 사용할 수 있습니다. 때문에 헤더 파일만 이용해도 컴파일이 가능합니다.&lt;/li&gt;
+  &lt;li&gt;컴파일러가 선언만 찾고 정의를 못찾으면 그 부분은 구멍만 남겨 둡니다.(어떤 주소가 들어갈 지 비워 둡니다.) 필요한 함수 주소를 메우는건 링크 단계입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;70-어셈블리어-코드-보는-방법&quot;&gt;70. 어셈블리어 코드 보는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;플래그 ‘-S’ 를 쓰면 어셈블리어 코드가 .s 파일로 저장됩니다. (출력 리디렉션 안해도 저장해줍니다.)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -S {filename}.c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;어셈블리어가 기계어랑 1:1로 대응 된다는 뜻은, 컴파일이 된다면 해당 기계에서만 돈다는 뜻입니다. 기계마다 사용하는 명령어도 다르고 대응하는 어셈블리어도 다르기 때문입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;컴파일러 만드는 개발자들은 도대체 어떤 분들인지…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;71-빌드-과정--어셈블-단계&quot;&gt;71. 빌드 과정 : 어셈블 단계&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;어셈블 단계는 &lt;strong&gt;“어셈블리 코드 👉 오브젝트 코드”&lt;/strong&gt; 단계입니다.&lt;/li&gt;
+  &lt;li&gt;어셈블러가 담당합니다. 어셈블리어와 기계어가 거의 1:1 대응 한다고 했는데, 바로 그 일을 합니다.&lt;/li&gt;
+  &lt;li&gt;오브젝트 코드란
+    &lt;ul&gt;
+      &lt;li&gt;기계가 이해 가능한 기계코드 입니다. 기계어라고도 합니다.&lt;/li&gt;
+      &lt;li&gt;오브젝트 코드에도 아직 메꿔야 하는 구멍이 있습니다.(컴파일 할 때 비워 놓은 부분)&lt;/li&gt;
+      &lt;li&gt;여기부턴 사람이 읽기 힘듭니다..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;72-오브젝트-코드-보는-방법&quot;&gt;72. 오브젝트 코드 보는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;-c 플래그를 넣으면 .o 파일로 저장됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -c {filename}.c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;출력된 .o 파일은 이진 파일이라 일반 텍스트 편집기로 열 순 없습니다. 16진수 편집기로 열어야 합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;선생님이 사용하는 16진수 편집기 &lt;a href=&quot;https://mh-nexus.de/en/hxd/&quot;&gt;HxD&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;main.c에서 뽑은 오브젝트 코드를 보면 뚫어 놓은 add 함수 구멍이 아직 매꿔지지 않았음을 볼 수 있습니다. 레이블을 남겨둡니다.&lt;/p&gt;
+
+    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/C_Kim_Pope/obj_code.png&quot; alt=&quot;obj_code.png&quot; /&gt;&lt;small&gt;add 부분이 레이블로 남겨져있다.&lt;/small&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;73-빌드-과정--링크-단계&quot;&gt;73. 빌드 과정 : 링크 단계&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;링크 단계는 &lt;strong&gt;“오브젝트 코드 👉 실행 파일”&lt;/strong&gt; 단계입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;링커가 담당합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;링커에 들어가는 입력은 모든 오브젝트 코드들입니다. 오브젝트 코드들의 구멍을 메꾸고 실행 파일을 만듭니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;링커가 오브젝트 코드들을 돌면서 각 함수의 시작 주소를 기억합니다. 그리고 돌면서 레이블로 남겨진 함수를 발견 하면 레이블 부분에 해당 함수의 주소로 점프 하는 코드를 넣습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;링커가 뚫어 놓은 구멍에 해당하는 함수를 찾으면 에러를 뱉습니다. adder.h, adder.c, main.c 중 adder.c를 지우고 컴파일 해보면 아래와 같은 에러가 뜹니다.&lt;/p&gt;
+
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;main-5500ed.o : error LNK2019: add 외부 기호(참조 위치: main 함수)에서 확인하지 못했습니다.
+a.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
+clang: error: linker command failed with exit code 1120 (use -v to see invocation)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;오류에 친절하게 main-5500ed.o 파일에서 LNK2019 에러가 났다고 뜹니다. 에러를 읽는 스킬이 늘었습니다. 후..&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;74-링크-단계가-분리되어-있는-이유&quot;&gt;74. 링크 단계가 분리되어 있는 이유&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;빌드 단계를 컴파일 / 링크로 나누는 주된 이유입니다.
+    &lt;ul&gt;
+      &lt;li&gt;컴파일 할 때 함수의 구멍을 남긴다고 했습니다. 이걸 컴파일 과정에서 하려면 한 파일을 컴파일 할 때마다 모든 파일, 함수를 훑어줘야 합니다.  O(n^2) 느낌인가&lt;/li&gt;
+      &lt;li&gt;각 파일을 컴파일 할 때 함수의 구멍을 메꾼다고 한다면, 구멍을 메꾼 후 파일들을 합칠 때 함수들이 중복되는 문제가 발생합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;물론 모든 c파일을 합쳐 컴파일 할 수도 있습니다. 실제로 컴파일 성능을 위해서 하는 경우도 있긴합니다만.. 거의 보기 힘들 겁니다. 1줄만 바꿔도 1만줄 모두 컴파일 하기 때문에..&lt;/li&gt;
+  &lt;li&gt;결론적으로, 컴파일 / 링크를 나누는게 빠르고 관리 하기도 편합니다.&lt;/li&gt;
+  &lt;li&gt;업계에선 .o 파일들을 따로 만들고, .o 파일을 .exe로 만드는 과정을 따로 둡니다. clang에서도 .o 파일들 가지고 링크만 할 수도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;75-라이브러리library-정적동적-라이브러리와-링크&quot;&gt;75. 라이브러리(library), 정적/동적 라이브러리와 링크&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;잘 알고 있는 라이브러리도 이와 같이 만들 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;라이브러리는 컴파일 했을 때 실행 파일이 아니라 나중에 실행 할 수 있는 함수들을 바이너리로 만들어 놓은 것입니다.
+    &lt;ul&gt;
+      &lt;li&gt;함수를 기계어로 변환 후 파일로 저장해 놓은 것!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;라이브러리엔 정적 라이브러리, 동적 라이브러리가 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;정적-라이브러리&quot;&gt;정적 라이브러리&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링킹이 빌드 할 때 일어납니다.&lt;/li&gt;
+  &lt;li&gt;정적 라이브러리는 함수들을 합쳐서 실행 파일을 만듭니다.&lt;/li&gt;
+  &lt;li&gt;실행 파일이 커지고 메모리를 더 먹을 순 있으나, 일단 exe에 다 넣어 놓으니 실행 속도가 빠릅니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;동적-라이브러리&quot;&gt;동적 라이브러리&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링킹이 파일 실행시 일어납니다.&lt;/li&gt;
+  &lt;li&gt;동적 라이브러리를 사용하는 실행 파일엔 아직 구멍이 뚫려 있습니다. 실행 파일이 실행 될 때 운영 체제가 빈 구멍을 동적 라이브러리에서 찾아 메꿔줍니다.&lt;/li&gt;
+  &lt;li&gt;실행 파일 크기가 작아집니다.&lt;/li&gt;
+  &lt;li&gt;여러 실행 파일이 같은 라이브러리를 공유 할 수 있습니다. 메모리를 절약 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;단점으론 이름이 같지만 버전이 다른 동적 라이브러리를 두 프로그램에서 사용할 때 충돌이 납니다.
+    &lt;ul&gt;
+      &lt;li&gt;DLL Hell 이라고도 부릅니다.&lt;/li&gt;
+      &lt;li&gt;A은행, B은행 프로그램이 모두 같은 보안 라이브러리A를 사용하는데 버전이 다르면 충돌이 날 수 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;보안 라이브러리A를 만드는 회사가 하위 버전의 호환을 염두에 두고 상위 버전을 만들면 상관 없지만.. 흠…&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;76-분할-컴파일과-전역-변수&quot;&gt;76. 분할 컴파일과 전역 변수&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;분할-컴파일&quot;&gt;분할 컴파일&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;실제 소스 코드는 파일 수가 수십, 수백 개가 될 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;컴파일 할 땐 모든 파일들을 개별적으로 컴파일 해 오브젝트 파일을 만듭니다. 후에 오브젝트 파일들을 링크시켜 실행 파일을 만듭니다.
+    &lt;ul&gt;
+      &lt;li&gt;여러 파일을 컴파일 할 땐 멀티 프로세서에서 따로따로 컴파일 할 수도 있습니다.&lt;/li&gt;
+      &lt;li&gt;링크는 혼자 해야겠죠.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;분할 컴파일 하다가 에러나서 한 파일에 때려 넣는 사람들이 있는데… 하지 마세요&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;77-다른-파일에-있는-전역-변수-사용시-문제점&quot;&gt;77. 다른 파일에 있는 전역 변수 사용시 문제점&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같은 상황을 가정합시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.h */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;monster.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_mob_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* main.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;# include &amp;lt;stdio.h&amp;gt;
+# include &quot;monster.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;위 코드를 빌드 하려하면 main.c 파일에서 &lt;strong&gt;“use of undeclared identifier ‘g_mob_count’“&lt;/strong&gt; 에러가 납니다. main 함수 입장에선 컴파일 할 땐 g_mob_count를 모른다는 뜻입니다. 앞서 알아봤듯이, 파일들 끼리 연결 하는건 컴파일이 끝나고 링크 과정에 일어나니까요.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그렇다고 main 함수에 g_mob_count를 넣고 빌드를 하면 어떻게 될까요.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;컴파일은 되지만 링크 과정에서 &lt;strong&gt;“LNK2008 : g_mob_count already defined ~~~”&lt;/strong&gt; 에러가 납니다. 같은 전역변수가 겹쳤다는 얘기입니다.&lt;/li&gt;
+      &lt;li&gt;C에선 동일한 전역변수 이름을 여러 파일에서 못씁니다. 링커가 거절합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이를 위해서 main 함수에 새로운 전역 변수를 만드는게 아니라 monster.c 에 있는 전역 변수를 쓸 것이라 선언을 해줘야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;78-extern-키워드&quot;&gt;78. extern 키워드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;그것이 extern 입니다. extern 전역변수는 헤더파일에 넣으면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.h */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;main.c에 넣어도 되긴 합니다. (안써도 #include “monster.h” 에서 가져옵니다.)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;다른 언어의 접근 지시자랑 비슷합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;누구라도 쓸 수 있게 하고 싶다면 헤더파일에, 한 파일에서만 쓰게 하고 싶으면 c 파일에 사용합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;모호합니다. C에서 전역 변수 사용을 지양하는 사람들도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같이 extern을 안쓰는 경우에 에러가 날 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.h */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_mob_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;#include 할때 extern 없는 g_mob_count를 monster.c, main.c 에 모두 복붙하니 링커에서 에러가 납니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수 앞에도 extern 붙일 수 있으나, 함수는 안 붙여도 자동 extern 입니다.(함수 뒤에 {} 를 안열고 ; 로 끝나는 걸로 알 수 있습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;79-코드보기--extern-키워드&quot;&gt;79. 코드보기 : extern 키워드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;80-전역-변수의-문제-static-키워드&quot;&gt;80. 전역 변수의 문제, static 키워드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;‘전역 변수는 쓰지 말라’ 라는 말이 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;우려 할 부분이 있긴 합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;extern 사용시 어떤 파일에서든 접근 할 수 있습니다. 파른 파일에서 자기 파일 안의 변수를 건드릴 수 있습니다. 파일이 많아지면 누가 자기 변수 바꾸는 지 잡기 힘듭니다.
+        &lt;ul&gt;
+          &lt;li&gt;다른 파일이 자기 전역변수 못쓰게 할 수 있으면 좋겠습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로그램이 살아있는 동안 메모리에 있으면서도, 다른 파일에선 접근 못하게 하고 싶을 때 static 키워드를 사용 할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아까의 예를 다음처럼 쓸 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.h */&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;monster.h&quot;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* main.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;# include &amp;lt;stdio.h&amp;gt;
+# include &quot;monster.h&quot;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;이 상태로 빌드를 하게 된다면 링커 오류가 발생합니다. main.c에선 s_mob_count 전역 변수를 사용하려고 빈칸을 남겨 뒀는데 monster.c에선 static 키워드를 사용했기 때문에 링커에서 main.c에 넣어줄 s_mob_count를 찾지 못합니다.&lt;/li&gt;
+      &lt;li&gt;static이 어떻게 돌아가는지를 이해하긴 어렵고 일단 이 부분은 익숙해집시다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;static&quot;&gt;static&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변수 범위가 파일로 한정됩니다.&lt;/li&gt;
+  &lt;li&gt;정적 변수라고 합니다.&lt;/li&gt;
+  &lt;li&gt;전역 변수이기 때문에 프로그램이 돌 때 계속 메모리를 먹고 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;static-키워드를-지역-변수에-사용할-때&quot;&gt;static 키워드를 지역 변수에 사용할 때&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같이 바꿀 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* monster.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;monster.h&quot;
+# include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_mob_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* main.c */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;# include &quot;monster.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;add_monster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;함수 안에 s_mob_count를 static으로 넣고 0으로 초기화 한다고 써 놓았지만, 실제 위 코드가 돌아가면 1, 2, 3을 찍습니다.&lt;/li&gt;
+      &lt;li&gt;static 키워드를 함수 안에서 사용하면 &lt;strong&gt;개념상 전역 변수로서 한 번만 초기화 되고 프로그램이 돌 동안 계속 메모리에 올라가있지만, 해당 함수 안에서만 접근 가능합니다.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;함수 역시 그 파일 안에서만 쓰고 싶으면 static 키워드를 넣으면 됩니다. private과 비슷하네요.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;81-코드보기--static-키워드&quot;&gt;81. 코드보기 : static 키워드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패스~&lt;/li&gt;
+  &lt;li&gt;C에서도 전역 변수 static으로 만들어 놓고 getter/setter를 만들기도 합니다. 객체지향 언어에서 private 걸고 getter/setter 만들 듯이.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;82-c와-h-파일-정리-순환-헤더-인클루드와-해결법&quot;&gt;82. .c와 .h 파일 정리, 순환 헤더 인클루드와 해결법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;빌드 4단계가 돌려면 아래 기본 원칙을 따릅시다.
+    &lt;ul&gt;
+      &lt;li&gt;헤더 파일엔 선언만 합시다.
+        &lt;ul&gt;
+          &lt;li&gt;함수선언, 전역변수 extern 선언&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;.c 파일엔 정의가 들어갑니다.
+        &lt;ul&gt;
+          &lt;li&gt;함수 정의, 전역 및 정적 변수 정의&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;순환-헤더&quot;&gt;순환 헤더&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;전처리기는 복-붙으로 수행 된다고 했습니다. 근데 인클루드를 순환해서 할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* A.h */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;B.h&quot;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~~~&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* B.h */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;C.h&quot;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~~~&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* C.h */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;A.h&quot;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~~~&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;이 경우 컴파일이 안됩니다. 에러를 내줍니다.&lt;/li&gt;
+      &lt;li&gt;“순환 헤더 인클루드 (circular header include)” 라고 부르고 “헤더가 꼬였다” 라고도 합니다. 실무에서 자주 발생하는 문제입니다. 다른 언어에선 걱정할 필요 없는 C에서만 나오는 문제입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;해결1&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;#include는 c에서만 합시다.&lt;/li&gt;
+      &lt;li&gt;b 헤더에서 a 헤더 전체를 인클루드 하지 말고 a에 정의된걸 전방 선언합니다.&lt;/li&gt;
+      &lt;li&gt;서로 인클루드를 해야만 한다면! &lt;strong&gt;인클루드 가드&lt;/strong&gt;를 사용합니다. 순환 헤더를 막는 업계 표준입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다음과 같이 인클루드 가드를 씁니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* foo.h */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#ifndef FOO_H &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/* if not defined */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#define FOO_H
+&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/* 원래 헤더 파일 내용 */&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#endif FOO_H
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;#으로 시작하는 것들은 전처리기가 처리합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;83-인클루드-가드-작동법&quot;&gt;83. 인클루드 가드 작동법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인클루드 가드는 다음과 같이 작동합니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#ifndef FOO_H&lt;/code&gt; 만약 FOO_H가 정의되지 않았다면&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#define FOO_H&lt;/code&gt; 지금부터 FOO_H를 정의해라.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/* 헤더 파일 내용 */&lt;/code&gt; 이렇게&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#endif&lt;/code&gt; 정의 끝!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;헤더 파일을 조건적으로 컴파일하라고 지시하는 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;84-인클루드-가드-예제&quot;&gt;84. 인클루드 가드 예제&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패스&lt;/li&gt;
+  &lt;li&gt;인클루드 가드는 그냥 무조건 넣는다고 생각합시다!&lt;/li&gt;
+  &lt;li&gt;비슷한 기능으로 #pragma once 라는 키워드도 있습니다. C에서도 되고 간단한데 C 표준은 아닙니다. (그런데 대부분 컴파일러가 지원하긴 합니다.)
+    &lt;ul&gt;
+      &lt;li&gt;C++ 에선 표준으로 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;85-c-컴파일러의-종류와-특징&quot;&gt;85. C 컴파일러의 종류와 특징&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C는 표준위원회가 있고 컴파일러들은 다양합니다.&lt;/li&gt;
+  &lt;li&gt;GCC
+    &lt;ul&gt;
+      &lt;li&gt;가장 유명한 컴파일러입니다.&lt;/li&gt;
+      &lt;li&gt;많은 C 표준 대부분을 지원합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;MS의 Visual C++
+    &lt;ul&gt;
+      &lt;li&gt;유명합니다. C++ 컴파일러이긴 한데 C도 컴파일 합니다.&lt;/li&gt;
+      &lt;li&gt;C99표준을 지원하고 C11은 대부분 지원하지 않습니다.&lt;/li&gt;
+      &lt;li&gt;윈도우에서만 놀거라면 자주 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Clang
+    &lt;ul&gt;
+      &lt;li&gt;LLVM 컴파일러 구조를 사용하는 C계열 컴파일러입니다.&lt;/li&gt;
+      &lt;li&gt;애플이 먼저 개발했으나 이제 구글, MS 등 모두 같이 개발중입니다.&lt;/li&gt;
+      &lt;li&gt;선생님이 많이 좋아하는 컴파일러 같습니다.&lt;/li&gt;
+      &lt;li&gt;컴파일 속도도 빠릅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;소형기기 컴파일러
+    &lt;ul&gt;
+      &lt;li&gt;소형기기들은 하드웨어 자체가 다르기 때문에 컴파일러도 다릅니다.&lt;/li&gt;
+      &lt;li&gt;각 소형기기 마다 맞는 컴파일러를 사용합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;86-정리&quot;&gt;86. 정리&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1강부터 지금까지 한 걸 정리해 보겠습니다.
+    &lt;ul&gt;
+      &lt;li&gt;Hello world&lt;/li&gt;
+      &lt;li&gt;C언어 기본 문법&lt;/li&gt;
+      &lt;li&gt;스택 메모리가 어떻게 도는지 가볍게
+        &lt;ul&gt;
+          &lt;li&gt;포인터를 위한 준비운동입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;빌드&lt;/li&gt;
+      &lt;li&gt;분할 컴파일&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>C Unmanaged Programming 2 - C언어 기본 문법2</title>
    <link href="http://localhost:4000/posts/study/c_kim_pope/C3/"/>
    <updated>2020-04-23T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/c_kim_pope/C3</id>
@@ -307,45 +1082,15 @@
 
     &lt;ul&gt;
       &lt;li&gt;short circuit (a &amp;amp;&amp;amp; b 에서 a가 false면 b를 계산 안하는 것)과 평가순위-우선순위를 헷갈리지 말라는 문제입니다.&lt;/li&gt;
-      &lt;li&gt;
-        &lt;table&gt;
-          &lt;tbody&gt;
-            &lt;tr&gt;
-              &lt;td&gt;앞서 말한 sequence point가 있습니다. **’&lt;/td&gt;
-              &lt;td&gt; &lt;/td&gt;
-              &lt;td&gt;’ 와 ‘&amp;amp;&amp;amp;’ 가 sequence point 중 하나입니다.** 이 sequence point에 의해서 &lt;strong&gt;평가 순서가 강제 됩니다.&lt;/strong&gt;&lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;table&gt;
-          &lt;tbody&gt;
-            &lt;tr&gt;
-              &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;++i || ++j &amp;amp;&amp;amp; ++k&lt;/code&gt; 에서 ‘&lt;/td&gt;
-              &lt;td&gt; &lt;/td&gt;
-              &lt;td&gt;’ 가 sequence point 이기 때문에 앞에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;++i&lt;/code&gt;부터 평가됩니다.&lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/li&gt;
+      &lt;li&gt;앞서 말한 sequence point가 있습니다. &lt;strong&gt;’||’ 와 ‘&amp;amp;&amp;amp;’ 가 sequence point 중 하나입니다.&lt;/strong&gt; 이 sequence point에 의해서 &lt;strong&gt;평가 순서가 강제 됩니다.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;++i || ++j &amp;amp;&amp;amp; ++k&lt;/code&gt; 에서 ‘||’ 가 sequence point 이기 때문에 앞에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;++i&lt;/code&gt;부터 평가됩니다.&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 || ++j &amp;amp;&amp;amp; ++k&lt;/code&gt; 에서 연산자 우선순위는 &amp;amp;&amp;amp;가 먼저이지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;A || B&lt;/code&gt; 에서 A가 참이면 B의 값은 상관 없기 때문에 B를 실행 안합니다.(short circuit)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;short circuit은 알고 있었는데 평가 순서 관련한 부분은 생소합니다. 역시 프로그래밍의 길은… 😥&lt;/li&gt;
   &lt;li&gt;일단 알고 있어야할 보장되는 평가 순서
     &lt;ul&gt;
-      &lt;li&gt;
-        &lt;table&gt;
-          &lt;tbody&gt;
-            &lt;tr&gt;
-              &lt;td&gt;’&lt;/td&gt;
-              &lt;td&gt; &lt;/td&gt;
-              &lt;td&gt;’, ‘&amp;amp;&amp;amp;’&lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/li&gt;
+      &lt;li&gt;’||’, ‘&amp;amp;&amp;amp;’&lt;/li&gt;
       &lt;li&gt;삼항 연산자 (어차피 이건 if ~ else를 한 줄로 줄인 것)&lt;/li&gt;
       &lt;li&gt;’ ; ‘&lt;/li&gt;
       &lt;li&gt;함수 실행 전 함수에 들어가는 매개변수들&lt;/li&gt;
@@ -733,7 +1478,7 @@ out:
     &lt;p&gt;어셈블리어를 까보며 스택을 알아봅시다.&lt;/p&gt;
 
     &lt;ul&gt;
-      &lt;li&gt;어셈블리어를 만드는 데는 &lt;a href=&quot;https://godbolt.org/&quot;&gt;https://godbolt.org/&lt;/a&gt; 이곳이 가장 좋은것 같습니다&lt;/li&gt;
+      &lt;li&gt;어셈블리어를 만드는 데는 &lt;a href=&quot;https://godbolt.org/&quot;&gt;https://godbolt.org/&lt;/a&gt; 이곳을 사용해도 되고 컴파일 할 때 옵션 줘서 뽑아 낼 수도 있습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -741,7 +1486,7 @@ out:
 
     &lt;ul&gt;
       &lt;li&gt;우선, 스택은 큰 주소에서 작은 주소 순서로 쌓입니다.&lt;/li&gt;
-      &lt;li&gt;ESP (Extended Stack Pointer) - 현재 스택 포인터&lt;/li&gt;
+      &lt;li&gt;ESP (Extended Stack Pointer) - 현재 스택 포인터, 해당 스택 아래로 모든 데이터가 차 있다는 건 아닙니다. 보통 함수의 스택 프레임 만큼 ESP를 옮깁니다.&lt;/li&gt;
       &lt;li&gt;EBP (Extended Base Pointer) - 현재 스택 프레임의 기본(첫) 주소&lt;/li&gt;
       &lt;li&gt;스택 프레임 - 각 함수가 사용하는 스택 메모리의 범위&lt;/li&gt;
     &lt;/ul&gt;
@@ -803,7 +1548,7 @@ out:
       &lt;li&gt;esp를 ebp로 mov 합니다. (main 함수 시작할 때와 동일)&lt;/li&gt;
       &lt;li&gt;마찬가지로 esp에 add 함수의 스택 프레임 만큼을 sub 해줘 add 함수의 스택 프레임을 잡습니다.&lt;/li&gt;
       &lt;li&gt;중간엔 앞에서 나왔던 어셈블리 명령이 계속 사용되니.. 패스.. 넘겨받은 a+b를 ret에 담고 하는 과정&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;중요한 것&lt;/strong&gt; add 함수에서 결과를 리턴한 다음 add 스택 프레임에 넣었던 데이터를 지우는 과정은 없습니다. 그냥 esp를 다시 main 스택 프레임 안에 넣고, ebp를 main 스택 프레임의 시작 부분으로 돌려 놓습니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;중요한 것&lt;/strong&gt; add 함수에서 결과를 리턴한 다음 add 스택 프레임에 넣었던 데이터를 지우는 과정은 없습니다. 그냥 esp를 add 스택 프레임 크기만큼 다시 올려주고, ebp를 main 스택 프레임의 시작 부분으로 돌려 놓습니다.&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -843,6 +1588,10 @@ out:
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;앞서 sizeof(~~) 는 ~~의 바이트수를 알려준다고 했습니다. 이게 가능한 이유는 컴파일 할때 이미 ~~의 바이트수를 알고 있기 때문입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* 120 */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;따라서 다음과 같이 배열의 갯수를 구할 수 있습니다.&lt;/p&gt;
@@ -863,7 +1612,39 @@ out:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;단, 위 처럼 sizeof 를 사용하고 싶으면 배열의 요소들이 모두 스택에 복사되어야 합니다. 그리고, 복사된 모든 요소 크기를 알아야 합니다. 씁… 4분대 부터 다시 봅시다.&lt;/p&gt;
+    &lt;p&gt;그런데 저번에 다음에 설명해드리겠다고 하고 넘어간 부분이 있습니다. 아래와 같은 상황입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main function : %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/* main function : 40 */&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;call size function : %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/* call size function : 4 */&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;inside size function : %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/* inside size function : 4 */&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;분명 같은 int nums[] 를 sizeof 하는데 main 함수 안에선 정상적으로 40이 나오고 size 함수 안에서 한 sizeof는 4가 나옵니다.&lt;/li&gt;
+      &lt;li&gt;sizeof(매개변수) 가 배열의 총 바이트 수를 반환 하려면 &lt;strong&gt;배열의 모든 요소가 스택에 다 복사되어야 하기때문입니다.&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;위 상황에서 배열 nums는 main의 스택 프레임 안에 있습니다. &lt;strong&gt;main함수가 size 함수에 매개변수를 넘길 때에는 nums 자체를 넘기는게 아니라 nums의 시작 주소를 넣어줍니다.&lt;/strong&gt; 그래서 size 함수 안에서 본 nums의 sizeof 는 주소의 크기인 4 바이트가 되는 것입니다.
+            &lt;ul&gt;
+              &lt;li&gt;주소의 크기는 포인터 데이터형의 크기입니다. 32 비트에선 4바이트, 64비트에선 8바이트입니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;A 함수가 B 함수를 호출할 때 B 함수는 호출자가 누구던 간에 정해진 수와 크기의 매개변수만 들어온다고 가정합니다.&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -871,22 +1652,205 @@ out:
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;그런데 아래같이 매개변수 선언부에 배열 크기를 선언하는 코드가 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;이런 코드는 가독성을 위해서 써 놓는 것이지 컴퓨터는 &lt;code class=&quot;highlighter-rouge&quot;&gt;int nums[]&lt;/code&gt; 로 알아듣습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이렇게 원본의 주소를 매개변수로 넘겨 받으면 원본을 바꿀 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/*
+    -858993460
+    -858993460
+    -858993460
+    -858993460
+    -858993460
+    */&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/*
+    0
+    1
+    2
+    3
+    4
+    */&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;59-매개변수-배열의-길이-배열-요소의-초기값&quot;&gt;59. 매개변수 배열의 길이, 배열 요소의 초기값&lt;/h2&gt;
 
 &lt;hr /&gt;
+
+&lt;h3 id=&quot;매개변수-배열의-길이&quot;&gt;매개변수 배열의 길이&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서 매개변수로 들어온 배열의 길이를 알 수 없습니다. C에선 배열의 크기도 같이 매개변수에 넣어줘야 합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;배열-요소의-초기값&quot;&gt;배열 요소의 초기값&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위에서 nums[5]의 요소들을 찍었을때 아래와 같이 나왔습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/*
+-858993460
+-858993460
+-858993460
+-858993460
+-858993460
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;제가 아는 java에서의 기초 자료형 배열은 선언만 해줘도 0으로 초기화 했었는데 C는 그렇지 않습니다. C는 그냥 그 전에 메모리에 남아있던 값(쓰레기 값이라고 부릅니다.)을 그대로 사용합니다. 위에선 사용안 한 메모리여서 저렇게 나왔지만 스택이 오르락 내리락 했던 경우엔 전에 쓰던 실제 값이 찍힐 수도 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;사실, 배열뿐 아니라 일반 지역변수도 초기값이 없습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다른 언어들은 알다시피 초기값을 셋팅해줍니다. 이런 요소 하나하나들이 C와 다른 언어들의 속도 차이를 냅니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;그래도 다른 언어 쓸래요… 😥&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;배열 초기화에 대한 팁&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int nums1[4]; /* 쓰레기값만 가득 */
+int nums2[4] = {1,2,3,4}; /* 초기화 */
+int nums3[4] = {1,2};  /* 1,2,0,0 으로 초기화!*/
+int nums4[] = {1,2,3,4}; /* 정상 초기화됨. 컴파일러가 배열 크기잡아줌 */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int nums[10] = {0, }; /* 모두 0으로 초기화! ',' 는 필수는 아니지만 가독성을 위해 보여줌 */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래와 같은 버퍼 오버플로가 발생할 수도 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buff1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buff2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* &amp;lt;= 가 아니라 &amp;lt; 여야됨 */&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;buff2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;위 코드는 다른 언어 같으면 Out of index 에러가 날 것입니다. 하지만 C는 out of index를 내지 않습니다. ‘buff2의 시작주소 + 8바이트’ 부분 메모리에 0을 넣습니다.(원래 다른 변수가 차지하고 있는 부분) 나중에 다른 코드에서 에러가 나거나, 원하는 결과가 나오지 않을 것입니다.
+        &lt;ul&gt;
+          &lt;li&gt;memory stomp 라고 부르는 버그입니다. 다른 변수가 다른 변수의 메모리를 꾹꾹 밟고 지나간다는 뜻인데, C에서 낼 수 있는 버그 중 찾기 어려운 버그중 하나입니다.&lt;/li&gt;
+          &lt;li&gt;와우…  🤔🤔🤔🤔🤔 C를 기피하는 이유를 알 것 같습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;60-다차원-배열&quot;&gt;60. 다차원 배열&lt;/h2&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;2차원 배열이 메모리에 어떻게 올라가는 지 알고, 2차원 배열을 1차원 배열로 풀어 쓸 줄 아는 정도는 되야 합니다. 아래 두 배열은 메모리 상에서 볼 때 같은 배열입니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;쉽게 말해 {1, 2, 3, 4, 5, 6} 과 {{1, 2}, {3, 4}, {5, 6}} 은 메모리에서 보면 똑같다는 얘기입니다.&lt;/li&gt;
+      &lt;li&gt;알긴 알겠는데 이게 자유롭게 왔다갔다 해야 하는 건 아니겠죠 선생님?? 뇌에 부하가 좀 걸리는데…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;61-코드보기--다차원-배열&quot;&gt;61. 코드보기 : 다차원 배열&lt;/h2&gt;
 
 &lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패스&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;62-정리&quot;&gt;62. 정리&lt;/h2&gt;
 
 &lt;hr /&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;이정도면 C 문법은 끝났습니다. 주로 다른 언어 기본 문법과의 차이점 위주로 알면 될 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;먼저 소스코드가 어떻게 실행파일이 되는 지 알아보고 이후로 C에서만 할 수 있는 것들을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
