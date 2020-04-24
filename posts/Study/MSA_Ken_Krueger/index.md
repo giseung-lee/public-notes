@@ -27,8 +27,10 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 ---
 
 1. [Introduction to Microservices]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA1)
-2. [Moder Spring: Spring Boot, Spring Data, and Spring Data REST]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA1)
-3. Spring Cloud [4/27 예정]
+2. [Modern Spring: Spring Boot, Spring Data, and Spring Data REST]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA2)
+3. [Spring Cloud 1]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA3)
+4. Spring Cloud 2 - Eureka, Ribbon, Feign, Hystrix, Bus [04/25 예정]
+5. Spring Cloud 3 - API Gateway [04/25 예정]
 
 
 
@@ -36,7 +38,7 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 
 ---
 
-- 아래와 같은 이유로 1시간 강의를 3~4시간 듣는 것 같습니다 😥
+- 1시간 강의를 3~4시간 듣는 것 같습니다 😥
 
   - 새로운 지식이 쏟아집니다.
   - 영어 강의입니다.
