@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-25T14:47:46+09:00</updated>
+ <updated>2020-04-25T17:58:00+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -26,6 +26,381 @@
 &lt;h2 id=&quot;21-spring-cloud-hystrix---circuit-breaker&quot;&gt;21. Spring Cloud Hystrix - Circuit Breaker&lt;/h2&gt;
 
 &lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hystrix 역시 클라이언트단 기술입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;211-학습목표&quot;&gt;21.1. 학습목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;어떻게 서킷 브레이커가 cascade failure로 부터 애플리케이션을 보호하는지 이해합니다.&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Netflix Hystrix를 사용해 서킷 브레이커를 구현해봅시다.&lt;/li&gt;
+  &lt;li&gt;Hytrix Dashboard와 Turbine을 이용해 서킷 브레이커를 모니터링 하는 방법을 알아봅시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;212-cascading-failure-and-the-circuit-breaker-solution&quot;&gt;21.2. Cascading Failure and the Circuit Breaker Solution&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cascading failure란 복잡하게 얽혀있는 네트워크, 시스템에서 한 부분의 고장이 연관된 다른 부분들을 고장을 연쇄하는 것을 말합니다. MSA는 기본적으로 여러 서비스들이 서로 얽혀 통신하기 때문에 대비를 하지 않으면 cascading failure에 매우 취약합니다.&lt;/li&gt;
+  &lt;li&gt;이런 failure의 연쇄를 끊기 위해 도입된 것이 Circuit Breaker Pattern 입니다.&lt;/li&gt;
+  &lt;li&gt;누전 차단기를 생각하면 쉽습니다.(원래 circuit breaker가 물리적인 회로 차단기입니다.)
+    &lt;ul&gt;
+      &lt;li&gt;누전 차단기는 전기 회로를 감시하고 있습니다.&lt;/li&gt;
+      &lt;li&gt;회로에 너무 많은 전기가 흐르면(프로그래밍에선 오류가 나면) 누전 차단기가 스스로 회로를 열어서 전기를 차단합니다.&lt;/li&gt;
+      &lt;li&gt;문제를 해결한 뒤에 사람이 다시 회로를 닫으면 전기가 흐르며 정상적으로 작동합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;213-using-spring-cloud-netflix-hystrix&quot;&gt;21.3. Using Spring Cloud Netflix Hystrix&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hystrix는 Netflix OSS의 하나였고 현재는 Spring Cloud에서 wrapper api를 제공합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hysytrix는 어플리케이션의 요청이 failure 되는걸 감시하고 있습니다. 일정 기준을 정해두고 그 이상 failure가 감지되면 “open” 하여 더 이상의 요청이 발생하지 않도록 합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;기본 값은 5초안에 20 failure로 셋팅되어 있고 개발자가 따로 설정할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;open 했을 때 어떻게 행동해야 할지 fallback을 설정할 수 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;캐시된 이전 요청을 쓰거나, 에러 메세지를 보내거나 등을 할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;open된 후 일정 시간 이후 close를 시도합니다. (운영자가 직접 닫을 필요가 없습니다!)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;기본 값은 5초입니다. 역시 설정할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용방법은 지금까지 했던 다른 기술들과 유사합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;의존성을 추가하고&lt;/p&gt;
+
+        &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-netflix-hystrix&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;application에 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EnalbeHystrix&lt;/code&gt;를 추가합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableHystrix&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;각 요청들에 &lt;code class=&quot;highlighter-rouge&quot;&gt;@HystrixCommand&lt;/code&gt;를 설정해 서킷 브레이커 발생시 행동 및 기타 옵션을 정해줍니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Service&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WordServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WordService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// getNoun에서 서킷 브레이커 발생시 getFallbackNoun 메서드로 가겠다. &lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@HystrixCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fallbackMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getFallbackNoun&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Word&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getNoun&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nounClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;	
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Word&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getFallbackNoun&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;something&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@HystrixCommand&lt;/code&gt; 작성시 아래와 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;commandProperties = {@HystrixPropery...}&lt;/code&gt;를 설정하면 옵션을 정해줄 수 있습니다. properties에 대한 상세사항은 &lt;a href=&quot;https://github.com/Netflix/Hystrix/wiki/Configuration#CommandCircuitBreaker&quot;&gt;여기&lt;/a&gt;를 참고해주세요.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@HystrixCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;fallbackMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getFallbackNoun&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;commandProperties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@HystrixPropery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;circuitBreaker.errorThresholdPercentage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;20&quot;&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@HystrixPropery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;circuitBreaker.sleepWindowInMilliseconds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1000&quot;&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;	
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HystrixCommand는 다양하게 사용가능합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Synchronously - 기본적으론 동기식으로 작동합니다. call을 하고 쓰레드는 대기합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Asynchronously - 비동기식으로 작동할 수도 있습니다. call을 부르고 기다리는 동안 다른 쓰레드를 작업할 수 있습니다. 리턴 타입을 바꾸기만 하면 비동기식으로 바꿀 수 있습니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@HystrixCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Future&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getStore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AsyncResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(){&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+			&lt;span class=&quot;c1&quot;&gt;// do something..&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Reactively - listener를 통해 따로 추가명령이 없어도 call에서 응답이오면 처리 가능합니다.(??) Reactive 하게 만드는 것 역시 리턴 타입만 바꿔주면 됩니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@HystrixCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getStore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ObservableResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(){&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Store&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+			&lt;span class=&quot;c1&quot;&gt;// do something..&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;214-hystrix-dashboard-and-turbine&quot;&gt;21.4. Hystrix Dashboard and Turbine&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hystrix Dashboard는 서킷 브레이커들의 상태를 시각적으로 보여줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/MSA_Ken_Krueger/hystrix_dashboard.png&quot; alt=&quot;hystrix_dashboard.png&quot; /&gt;&lt;small&gt;출처 : https://cloud.spring.io/spring-cloud-netflix/multi/multi__circuit_breaker_hystrix_dashboard.html&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용하고 싶다면 의존성을 추가하고, application에 &lt;code class=&quot;highlighter-rouge&quot;&gt;asd&lt;/code&gt;를 추가해줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableHystrix&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableHystrixDashboard&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설정이 됐다면 http://{host}:{port}/hystrix 에서 볼 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서비스가 커져서 Dashboard만으로 관리하기 힘들어지면 Turbine을 알아보세요.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;22-lab-7---hystrix&quot;&gt;22. Lab 7 - Hystrix&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hystrix 실습&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;23-spring-cloud-bus---dynamic-configuration-changes&quot;&gt;23. Spring Cloud Bus - Dynamic Configuration Changes&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Bus는 서비스들이 실행 중에 설정이 바뀌면 바뀐 설정을 서비스들에게 알려주는 기술입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;231-학습목표&quot;&gt;23.1. 학습목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(Spring Cloud Bus 없이) 동적으로 설정을 업데이트 하는 것의 문제점을 알아봅니다.&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Bus에 대해 알아봅니다.&lt;/li&gt;
+  &lt;li&gt;Refresh가 어떻게 동작하는지 알아봅시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;232-어플리케이셔-실행-중-설정-업데이트&quot;&gt;23.2. 어플리케이셔 실행 중 설정 업데이트&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sprinc Cloud Config를 다시 떠올려 봅시다.
+    &lt;ul&gt;
+      &lt;li&gt;중앙화 된 설정 서버가 설정 파일들을 클라이언트에게 줍니다.&lt;/li&gt;
+      &lt;li&gt;설정 파일 자체는 원격지에서 버전 컨트롤, 소스 컨트롤 될 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;Config 클라이언트는 시작 될 때만 Config 서버에서 설정 파일을 받아옵니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;근데, 클라이언트들이 실행 된 후에 설정 파일이 바뀌면 어떻게 될까요?
+    &lt;ul&gt;
+      &lt;li&gt;이전에 사용하던 방식은 연관된 어플리케이션들을 “Bounce” 하는 것입니다. 쉽게 말해 다시 시작합니다.&lt;/li&gt;
+      &lt;li&gt;다른 방식으론 주기적으로 Config 서버에 요청을 보내는 방법이 있습니다. 하지만, 설정 파일이 언제 업데이트 될 진 모릅니다. 낭비가 심합니다.&lt;/li&gt;
+      &lt;li&gt;Spring Cloud Bus는 설정 파일을 Config 서버가 클라이언트에게 푸쉬 하는 방식으로 작동합니다. AMQP 같은 메세징으로 전송이 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;233-spring-cloud-bus&quot;&gt;23.3. Spring Cloud Bus&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bus는 Config 서버에서 설정 파일의 변경을 클라이언트에게 알려주는 방식으로 동작합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;메세징 기술에 기반합니다. (현재는 AMQP 프로토콜만 사용합니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용방법 다음과 같습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;의존성을 Config 서버, 클라이언트 모두 동일하게 추가해줍니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-bus-amqp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;AMQP 서버를 실행해줍니다. 강의에선 Rabbit MQ를 사용합니다.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;AMQP 서버는 Config 서버의 변경된 설정 파일을 받아 클라이언트에게 뿌려주는 중개자 역할을 합니다.&lt;/li&gt;
+          &lt;li&gt;Config 서버와 클라이언트 모두 알아서 AMQP 서버와 통신합니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;설정 파일이 바뀌면 Config 서버에 (수동으로) &lt;code class=&quot;highlighter-rouge&quot;&gt;POST /bus/refresh&lt;/code&gt; 요청을 보내줍니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;요청을 받은 Config 서버는 AMQP 서버에 변경된 설정 파일을 보내냅니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;AMQP 서버는 받은 설정 파일을 클라리언트들에게 뿌려줍니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;234-how-refresh-work&quot;&gt;23.4. How Refresh Work&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring Boot 어플리케이션은 실행중에 refresh 할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;Spring Boot 어플리케이션엔 Actuator 라는게 있습니다. 각종 endpoint를 제공해주는 컴포넌트입니다. Eureka에서 Eureka 서버에게 클라이언트가 살아있음을 주기적으로 보낼 때도 Actuator를 사용했습니다.&lt;/li&gt;
+  &lt;li&gt;Actuator에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;/refresh&lt;/code&gt;라는 endpoint를 제공합니다.
+    &lt;ul&gt;
+      &lt;li&gt;org.springframework.boot와 spring-boot-actuator 가 있어야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하지만 refresh 하는 일은 어플리케이션 내의 모든 컴포넌트가 실행 할 수 있을만큼 간단한 일은 아닙니다. 따라서 다음과 같은 컴포넌트들만 refresh 하게 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;@RefreshScope&lt;/code&gt;가 붙은 빈&lt;/li&gt;
+      &lt;li&gt;로깅&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;235-configurationproperties&quot;&gt;23.5. @ConfigurationProperties&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt; 는 새로운 어노테이션은 아닙니다. Spring Boot에 포함된 어노테이션입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt; 어노테이션은 &lt;code class=&quot;highlighter-rouge&quot;&gt;@Value&lt;/code&gt; 어노테이션을 여러 개 붙여야 할 때 간편하게 한 번에 붙일 수 있게해줍니다. 아래와 같이 씁니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ConfigurationProperties&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wordConfig&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LuckyWordController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  
+	&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;luckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preamble&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  	
+	&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/lucky-word&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showLuckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preamble&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;luckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  	
+	&lt;span class=&quot;cm&quot;&gt;/* luckWord, preamble Getter/Setter */&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;\---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;wordConfig&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;lucky-word&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Irish&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;preamble&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;The lucky word is&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;‘relaxed binding’ 이란 것도 제공하는데, ‘lucky-word’를 찾을때 ‘LuckyWord’, ‘LUCKY_WORD’ 같은 것도 같이 찾아줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt; 으로 찾아진 property들은 refresh 될 때 새로운 값으로 rebound 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt; 는 새로운 property를 rebound만 시켜주고, 이를 적용하기 위해선 해당 bean을 다시 초기화해야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;236-refreshscope&quot;&gt;23.6. @RefreshScope&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@RefreshScope&lt;/code&gt;는 Spring Cloud에서 등장한 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@ConfigurationProperties&lt;/code&gt;는 property를 rebound만 시켰다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;@RefreshScope&lt;/code&gt;는 한 bean 단위로 property를 rebound 하고 bean을 안전하게 reloading 해줍니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@RefreshScope&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LuckyWordController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  
+	&lt;span class=&quot;nd&quot;&gt;@Value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${wordConfig.lucky-word}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;luckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${wordConfig.preamble}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preamble&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  	
+	&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/lucky-word&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showLuckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preamble&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;luckyWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  	
+	&lt;span class=&quot;cm&quot;&gt;/* luckWord, preamble Getter/Setter */&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@RefreshScope&lt;/code&gt;는 Proxy 패턴을 기반으로 작동합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Bean이 자체로 만들어지지 않고 Proxy Bean이 만들어지고 그 안에 원래 Bean injection 됩니다.&lt;/li&gt;
+      &lt;li&gt;Proxy Bean이 refresh를 하면 Proxy Bean은 계속 살아 있으면서 기본에 injection된 Bean과의 관계를 끊고 새로운 설정으로 만들어진 Bean을 다시 injection 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;24-lab-8---spring-cloud-bus&quot;&gt;24. Lab 8 - Spring Cloud Bus&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Bus 실습&lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
