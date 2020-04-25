@@ -28,9 +28,10 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 
 1. [Introduction to Microservices]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA1)
 2. [Modern Spring: Spring Boot, Spring Data, and Spring Data REST]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA2)
-3. [Spring Cloud 1]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA3)
-4. Spring Cloud 2 - Eureka, Ribbon, Feign, Hystrix, Bus [04/25 예정]
-5. Spring Cloud 3 - API Gateway [04/25 예정]
+3. [Spring Cloud 1 - Overview, Config]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA3)
+4. [Spring Cloud 2 - Eureka, Ribbon, Feign]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA4)
+5. Spring Cloud 3 - Hystrix, Bus [04/25 예정]
+6. Spring Cloud 4 - API Gateway [04/25 예정]
 
 
 

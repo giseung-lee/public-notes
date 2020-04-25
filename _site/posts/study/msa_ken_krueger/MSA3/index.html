@@ -11,7 +11,7 @@
 
   <title>
     
-      Microservices with Spring Cloud 3 - Spring Cloud &middot; 이기승의 끄적끄적..
+      Microservices with Spring Cloud 3 - Spring Cloud Overview, Config &middot; 이기승의 끄적끄적..
     
   </title>
 
@@ -171,7 +171,7 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Microservices with Spring Cloud 3 - Spring Cloud</h1>
+  <h1 class="post-title">Microservices with Spring Cloud 3 - Spring Cloud Overview, Config</h1>
   <span class="post-date">24 Apr 2020</span>
   
 <ul>
@@ -593,20 +593,19 @@ app-sample : Rabbit
       <li>
         <p>yml은 <code class="highlighter-rouge">---</code>를 이용해 한 파일에 구성할 수 있습니다.</p>
 
-        <p>```</p>
-        <h1 id="app-sampleyml">app-sample.yml</h1>
-        <hr />
-        <p>spring:
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># app-sample.yml
+\---
+spring:
   profiles: east
-app-sample: Clover</p>
+app-sample: Clover
+    
+\---
+spring:
+  profiles: west
+app-sample: Rabbit
+</code></pre></div>        </div>
       </li>
     </ul>
-
-    <hr />
-    <p>spring:
-    profiles: west
-  app-sample: Rabbit
-  ```</p>
   </li>
 </ul>
 
@@ -657,27 +656,27 @@ app-sample: Clover</p>
     
       <li>
         <h3>
-          <a href="/posts/study/c_kim_pope/C3-2/">
-            C Unmanaged Programming 2 - 빌드과정
-            <small>24 Apr 2020</small>
+          <a href="/posts/study/msa_ken_krueger/MSA5/">
+            Microservices with Spring Cloud 5 - Spring Cloud Hystrix, Bus
+            <small>25 Apr 2020</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/posts/study/c_kim_pope/C3/">
-            C Unmanaged Programming 2 - C언어 기본 문법2
-            <small>23 Apr 2020</small>
+          <a href="/posts/study/msa_ken_krueger/MSA4/">
+            Microservices with Spring Cloud 4 - Spring Cloud Eureka, Ribbon, Feign
+            <small>25 Apr 2020</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/posts/study/msa_ken_krueger/MSA2/">
-            Microservices with Spring Cloud 2 - Modern Spring - Spring Boot, Spring Data, and Spring Data REST
-            <small>22 Apr 2020</small>
+          <a href="/posts/study/c_kim_pope/C4/">
+            C Unmanaged Programming 4 - 포인터 (작성중)
+            <small>25 Apr 2020</small>
           </a>
         </h3>
       </li>

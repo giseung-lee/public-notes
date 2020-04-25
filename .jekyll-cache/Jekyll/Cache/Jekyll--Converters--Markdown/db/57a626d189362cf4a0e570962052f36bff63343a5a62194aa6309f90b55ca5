@@ -1,0 +1,516 @@
+I"�o
+<ul>
+  <li>본 포스팅은 Ken Krueger 선생님의 <a href="https://www.udemy.com/course/microservices-with-spring-cloud/">Microservices with Spring Cloud</a> 강의를 정리하며 사견을 붙인 것입니다.</li>
+  <li>포스팅 내 목차는 개별 동영상 강의 기준입니다.</li>
+</ul>
+
+<h2 id="15-spring-cloud-eureka---service-discovery">15. Spring Cloud Eureka - Service Discovery</h2>
+
+<hr />
+
+<ul>
+  <li>Spring Cloud Eureka를 이용한 Passive Service Discovery 를 배워보겠습니다.
+    <ul>
+      <li>passive 하니까 수동 서비스 발견? 으로 읽힐 수 있지만, 동작 하는걸 보면 Service Discovery를 게임에서 패시브 스킬 쓰듯이 알아서 쓴다는 것 같습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="151-학습목표">15.1. 학습목표</h3>
+
+<ul>
+  <li>이번 강의를 들으면
+    <ul>
+      <li>Passive Service Discovery가 뭔지 알게 됩니다.</li>
+      <li>Eureka Server를 Build and Run 할 수 있습니다.</li>
+      <li>Eureka Client를 Build and Run and Configure 할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="152-passive-service-discovery-란">15.2. Passive Service Discovery 란?</h3>
+
+<ul>
+  <li>채팅 프로그램을 켜서 채팅 방에 들어갔다고 생각 해봅시다.
+1 사용자 클라이언트는 자신을 서버에 등록합니다. 
+2 서버는 사용자가 온라인에 있다는걸 알게 됩니다.
+3 서버가 채팅방에 있는 다른 사람들을 알려줍니다.
+4 마찬가지로, 사용자도 다른 사용자들에 의해 discovered 됩니다.
+5 그리고 채팅방에 있는 사람들은 새로운 사람이 들어오면 계속 discovered 됩니다.</li>
+  <li>MSA엔 많은 서비스들이 있습니다. 각 서비스들이 서로 사용 가능한 상태인지 알아야 합니다.
+    <ul>
+      <li>수동으로 상태를 확인해 줄 수도 있지만 딱 봐도 안좋은 방법입니다.</li>
+      <li>이때 Service Discovery를 사용합니다. Service Discovery는 lookup 기능을 제공해줍니다.
+        <ul>
+          <li>클라이언트는 자기 자신을 등록하고, 다른 서비스들을 발견합니다.</li>
+          <li>Eureka 말고도 Consul, Etcd, Zookeeper 등의 기술이 있습니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="153-eureka">15.3. Eureka!!</h3>
+
+<ul>
+  <li>Eureka는 Netflix에서 만들었습니다. 지금은 Spring Cloud Netflix에 포함되어 있습니다.</li>
+  <li>Eureka는 lookup 서버를 제공합니다.
+    <ul>
+      <li>lookup 서버는 등록된 클라이언트들을 관리합니다.</li>
+      <li>lookup 서버는 여러 인스턴스가 실행됩니다.(한 JVM에서 여러 인스턴스가 아니라 여러 서벅랙, Region별 인스턴스 인것 같습니다.) 로드밸런서를 통해 빠른 lookup이 가능하게 합니다.</li>
+      <li>여러 사본 서버들은 서로 상태를 공유합니다.</li>
+    </ul>
+  </li>
+  <li>클라이언트는 Eureka 서버를 등록합니다.
+    <ul>
+      <li>호스트 ip, 포트 health indicator url 등을 등록합니다.</li>
+    </ul>
+  </li>
+  <li>클라이언트는 주기적으로 Eureka 서버에 살아있다는 신호를 보냅니다. Eureka 서버는 일정 시간동안 신호를 주지 않는 클라이언트를 해제합니다.</li>
+</ul>
+
+<h3 id="154-eureka-서버-만들기">15.4. Eureka 서버 만들기</h3>
+
+<ul>
+  <li>
+    <p>서버를 만드는 방법은 쉽습니다.</p>
+
+    <ul>
+      <li>
+        <p>Spring Boot 어플리케이션을 만들고 의존성을 추가합니다.</p>
+
+        <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-eureka-server<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">@EnableEurekaServer</code> 어노테이션을 이용해 Eureka 서버로 등록합니다.</p>
+      </li>
+    </ul>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@SpringBootApplication</span>
+  <span class="nd">@EnableEurekaServer</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">Application</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="155-multi-servers">15.5. Multi Servers</h3>
+
+<ul>
+  <li>
+    <p>Eureka 서버를 1개만 실행하면 경고가 뜹니다. Eureka 서버는 기본적으로 여러 사본들이 서로 통신하며 상태를 공유하는걸 기본으로 만들어졌습니다.</p>
+  </li>
+  <li>
+    <p>각 Eureka 서버는 다른 Eureka 서버의 url을 알고 있어야 합니다. Config 서버에서 가져오도록 할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>설정의 자세한 방법은 <a href="https://github.com/Netflix/eureka/wiki/Configuring-Eureka">여기</a>를 참고하면 됩니다. 간단한 설정은 아래와 같이 합니다. 여러 서버를 등록 할 수 있습니다.</p>
+
+    <p>```yaml</p>
+    <h1 id="1개의-인스턴스만-실행할-땐-default-가-실행됩니다">1개의 인스턴스만 실행할 땐 default 가 실행됩니다.</h1>
+    <hr />
+    <p>spring:
+  profiles: default
+server:
+  port: 8010<br />
+eureka:
+  instance:
+    hostname: eurekahost 
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/</p>
+  </li>
+</ul>
+
+<hr />
+<p>spring:
+    profiles: primary
+    application:
+      name: eureka-server-clustered <br />
+  server:
+    port: 8011<br />
+  eureka:
+    instance:
+      hostname: eureka-primary     <br />
+    client:
+      registerWithEureka: true
+      fetchRegistry: true      <br />
+      serviceUrl:
+        defaultZone: http://eureka-secondary:8012/eureka/,http://eureka-tertiary:8013/eureka/</p>
+
+<hr />
+<p>spring:
+    profiles: secondary
+    application:
+      name: eureka-server-clustered    <br />
+  server:
+    port: 8012
+  eureka:
+    instance:
+      hostname: eureka-secondary     <br />
+    client:
+      registerWithEureka: true
+      fetchRegistry: true      <br />
+      serviceUrl:
+        defaultZone: http://eureka-tertiary:8013/eureka/,http://eureka-primary:8011/eureka/</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+
+### 15.6. Eureka 클라이언트 만들기
+
+- 클라이언트를 만드는 방법도 간단합니다. 의존성은 서버와 같은걸 사용하고, 서버를 만들 때 `@EnableEurekaServer`를 썼다면, 클라이언트를 만들 땐 `@EnableDiscoveryClient`를 쓰면 됩니다.
+
+</code></pre></div></div>
+<p>@SpringBootApplication
+  @EnableDiscoveryClient
+  public class Application {
+      public static void main(String[] args) {
+          SpringApplication.run(Application.class, args);
+      }
+  }</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- 설정파일에 기본 fallback 주소를 등록해줍니다. 여러 개를 등록할 수도 있습니다.
+
+  ```yaml
+  ---
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8011/eureka/, http://localhost:8012/eureka/, http://localhost:8013/eureka/
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>클라이언트는 자기 자신을 설정해둔 Eureka 서버에 등록합니다. name, hostm port 같은 것들을 들록합니다.</p>
+
+    <ul>
+      <li>등록 할 때 Environment 객체에 있는 것으로 등록을 하며, 원한다면 Environment 값들을 바꿔줄 수도 있습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>클라이언트는 Eureka 서버에 등록된 다른 클라이언트들을 뽑아 볼 수 있습니다. 다음과 같이 DiscoveryClient 인스턴스를 만들고 <code class="highlighter-rouge">@Autowired</code>해주면 Eureka가 등록된 클라이언트들을 넣어주고, 원하는 서비스를 getInstances로 뽑아주면 됩니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SentenceController</span> <span class="o">{</span>
+	<span class="nd">@Autowired</span> <span class="nc">DiscoveryClient</span> <span class="n">client</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getWord</span><span class="o">(</span><span class="nc">String</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ServiceInstance</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getInstances</span><span class="o">(</span><span class="n">service</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">list</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
+      	<span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getUri</span><span class="o">();</span>
+	      	<span class="k">if</span> <span class="o">(</span><span class="n">uri</span> <span class="o">!=</span><span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+	      		<span class="k">return</span> <span class="o">(</span><span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">()).</span><span class="na">getForObject</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+	      	<span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="157-zone">15.7. Zone?</h3>
+
+<ul>
+  <li>앞서 말했듯이 Eureka는 여러 인스턴스를 실행하는걸 기본으로 설계되었습니다.</li>
+  <li>Eureka 서버의 모든 정보는 메모리에 저장됩니다. 따로 DB 같은걸 쓰지 않습니다.
+    <ul>
+      <li>즉, Eureka 서버는 Eureka 클라이언트가 자기 자신을 등록하는 것에 의존하고, 항상 클라이언트의 최신 정보를 가지고 있습니다.</li>
+      <li>이런 어플리케이션을 ‘stateful application’이라고 부릅니다.</li>
+      <li>만약 Eureka 서버가 정보를 로컬 파일에 저장해두면 클라이언트들에게 옛날 정보를 줄 수도 있고, 어차피 최신 정보가 맞는지 통신도 해야 합니다.</li>
+    </ul>
+  </li>
+  <li>Eureka에서 ‘Zone’ 이라는 용어가 자주 나오는데, 이는 아마존에서 사용하는 용어로서 분리된 각각의 데이터 센터를 말합니다.</li>
+</ul>
+
+<h3 id="158-eureka-server-vs-config-server">15.8. Eureka Server vs Config Server</h3>
+
+<ul>
+  <li>MSA 서비스가 실행되면 지금 배운 Eureka 서버를 먼저 다녀올까요, 아니면 Config 서버를 먼저 다녀올까요.
+    <ul>
+      <li>일반적으론 Config 서버부터 다녀와 Config 서버에서 Eureka 서버의 정보도 가져옵니다.</li>
+      <li>드문 경우긴 한데, Eureka 서버부터 다녀오는 경우도 있습니다. Config 서버 역시 살아있음을 알려줘야 다녀올 수 있기 때문에 Eureka 서버를 들려 ‘Config 서버 살아 있습니까?’ 라고 먼저 묻는 경우입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="16-lab-4---spring-cloud-eureka">16. Lab 4 - Spring Cloud Eureka</h2>
+
+<hr />
+
+<ul>
+  <li>Spring Cloud Eureka 클라이언트, 서버 만들어보기</li>
+</ul>
+
+<h2 id="17-spring-cloud-ribbon---client-side-load-balancing">17. Spring Cloud Ribbon - Client-Side Load Balancing</h2>
+
+<hr />
+
+<ul>
+  <li>앞서 Spring Cloud Config, Eureka 같은 서버단의 기술을 살펴 봤습니다. 이번엔 클라이언트 쪽 기술입니다.</li>
+</ul>
+
+<h3 id="171-학습목표">17.1. 학습목표</h3>
+
+<ul>
+  <li>클라이언트단 로드 밸런싱의 목적을 이해합니다.</li>
+  <li>Spring Cloud Ribbon을 이용해 클라이언트단 로드 밸런싱을 구현해봅니다.</li>
+</ul>
+
+<h3 id="172-load-balancer">17.2. Load Balancer?</h3>
+
+<ul>
+  <li>로드 밸런서는 보통 서버단의 기술로 사용합니다. 한 서버에 부하가 걸리는걸 방지하기 위해 여러 서버로 트래픽을 분산하는 용도입니다.</li>
+  <li>보통 많이 알고있는 로드 밸런서는 Apache, Nginx, HA Proxy 같은 소프트웨어도 있고 F5, NSX, BigIP 같은 하드웨어도 있습니다.</li>
+</ul>
+
+<h3 id="173-client-side-load-balancer">17.3. Client-Side Load Balancer</h3>
+
+<ul>
+  <li>서버 간의 부하를 줄이는 로드 밸런서를 클라이언트에서 사용할 수도 있습니다.</li>
+  <li>로드 밸런서가 클라이언트단에서 사용되면 ‘요청을 어느 서버로 보낼 지 고르는 방식’으로 작동합니다.
+    <ul>
+      <li>고르는 방식엔 다양한 방법이 있습니다. 요청 가능한 서버들중 응답이 가장 빠른 쪽에 본 요청을 보내는 방식도 사용합니다.(이 경우에 앞서 살펴본 Eureka가 사용 될 수 있습니다.)</li>
+    </ul>
+  </li>
+  <li>클라이언트단에서 로드밸런서를 사용했다고 해서 서버에서 사용 안하는 것은 아닙니다. 서버도 계속 자신의 로드밸런서를 사용할 수 있습니다.</li>
+  <li>그럼 왜 클라이언트단 로드밸런서를 사용할까요?
+    <ul>
+      <li>여러 서버들이 다른 리전에 있는 경우가 있습니다. 여러 리전 중 응답이 빠른 리전에 보내면 더 효율적입니다.</li>
+      <li>중앙 로드밸런서를 가진 서버가 장애가 나 사용 불가능해지거나, 느려질 수 있습니다. 이때 대안이 없다면 시스템 전체가 마비됩니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="174-spring-cloud-netflix-ribbon">17.4. Spring Cloud Netflix Ribbon</h3>
+
+<ul>
+  <li>Ribbon은 Netflix OSS 프로젝트중 하나입니다.
+    <ul>
+      <li>계속 말하고 있듯이, 클라이언트단 로드밸런서입니다.</li>
+      <li>앞서 배운 Eureka와 함께 사용됩니다.</li>
+      <li>뒤에 배울 Hystrix와 함께 사용돼 장애에 대응할 수 있습니다.(failure resiliency - 장애에 대한 복원력이 뛰어나다는 뜻인데 한글로 어떻게 번역해야 할 지 모르겠습니다.)</li>
+      <li>Caching과 Batching을 지원합니다.
+        <ul>
+          <li>캐싱은 알고있는 캐싱이고, Batching은 여러 requiest가 한 call에 올 때 대응하는 방법 인것 같습니다.</li>
+        </ul>
+      </li>
+      <li>다양한 프로토콜을 지원합니다.</li>
+    </ul>
+  </li>
+  <li>Spring Cloud는 Ribbon을 사용하기 쉽게 Wrapper API를 만들었습니다.</li>
+</ul>
+
+<h3 id="175-ribbon-concept">17.5. Ribbon Concept</h3>
+
+<ul>
+  <li>List of Servers : 사용 가능한 서버의 리스트를 가지고 있습니다.</li>
+  <li>설정 파일로 정적으로 제공할 수도 있고</li>
+  <li>Eureka를 이용해 동적으로 발견할 수도 있습니다.</li>
+  <li>Spring Cloud에선 Eureka가 설정되어 있으면 Eureka를 기본으로 사용합니다.</li>
+  <li>Filtered List of Servers : 사용 가능한 서버들 중 일정 기준에 맞는 서버들의 목록을 따로 관리합니다.</li>
+  <li>Ping : 서버가 살아있는 지 죽었는 지 확인합니다. Eureka를 통해 확인하는게 기본 설정입니다.</li>
+  <li>Load Balanceer
+    <ul>
+      <li>Filtered List of Server 중 요청을 보낼 서버를 고릅니다.</li>
+      <li>고르는 방식엔 여러 가지가 있고, ‘Rule’ 컴포넌트에 의해 결정됩니다. (Rule 컴포넌트를 무엇을 쓸지에 따라 방식이 달라집니다.)</li>
+      <li>Spring Cloud의 기본 로드밸런서는 ‘ZoneAwareLoadBalancer’ 라고 불리는 로드밸런서입니다.</li>
+    </ul>
+  </li>
+  <li>Rule
+    <ul>
+      <li>call을 보낼지 말지 정해주는 컴포넌트입니다.</li>
+      <li>Spring Cloud의 기본 Rule 컴포넌트는 ‘ZoneAvoidanceRule’ 이라는 컴포넌트입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="176-ribbon-사용하기">17.6. Ribbon 사용하기</h3>
+
+<ul>
+  <li>
+    <p>pom.xml에 아래와 같은 dependencyManagement와(eureka, config 서버 때와 같은 것입니다.) 기존 의존성에 ribbon을 추가합니다.</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencyManagement&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-cloud-dependencies<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>Dalston.RELEASE<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+</code></pre></div>    </div>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-ribbon<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ribbon은 클라이언트만 존재합니다.</p>
+  </li>
+  <li>
+    <p>로드밸런서를 추가하는 방법은 LoadBalancer 인터페이스를 클래스변수에 추가하고 <code class="highlighter-rouge">@Autowired</code>해주면 됩니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span><span class="o">{</span>
+	<span class="nd">@Autowired</span> <span class="nc">LoadBalancerClient</span> <span class="n">loadBalancer</span><span class="o">;</span>
+  	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(){</span>
+		<span class="nc">ServiceInstacne</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">loadBalancer</span><span class="o">.</span><span class="na">choose</span><span class="o">(</span><span class="s">"cliend-id"</span><span class="o">);</span>
+		<span class="no">URI</span> <span class="n">subjectUri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"http://$s:$s"</span><span class="o">,</span> <span class="n">instance</span><span class="o">.</span><span class="na">getHost</span><span class="o">(),</span> <span class="n">instance</span><span class="o">.</span><span class="na">getPort</span><span class="o">()));</span>
+		<span class="o">:</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>로드밸런서에서 choose() 메서드를 이용하면 가장 적합한 서버의 인스턴스를 돌려줍니다.</li>
+      <li>인스턴스엔 ip, port 등의 정보가 있어 요청을 보낼 uri를 구성할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>그런데 위 방법은 Ribbon API를 직접 이용하는 방법입니다. 뒤에서 배울 Feign과 Hystrix를 이용하면 Ribbon API를 직접 이용하지 않고 로드밸런서를 이용할 수 있습니다.(어쩐지 실습 파일에 위 코드가 없었습니다.)</p>
+  </li>
+  <li>
+    <p>기본으로 설정된 컴포넌트를 사용하지 않고 커스텀 컴포넌트들을 사용할 수도 있습니다.</p>
+  </li>
+</ul>
+
+<h2 id="18-lab-5---spring-cloud-ribbon">18. Lab 5 - Spring Cloud Ribbon</h2>
+
+<hr />
+
+<ul>
+  <li>Ribbon 실습</li>
+</ul>
+
+<h2 id="19-spring-cloud-feign---declarative-rest-client">19. Spring Cloud Feign - Declarative REST Client</h2>
+
+<hr />
+
+<ul>
+  <li>이번에 배울 Feign 역시 클라이언트단 기술입니다. Declarative REST 클라이언트를 만들어주는 기술입니다.</li>
+</ul>
+
+<h3 id="191-학습목표">19.1. 학습목표</h3>
+
+<ul>
+  <li>Feign 라이브러리를 이용해 REST 서비스를 호출 할 줄 알게됩니다.</li>
+  <li>Feign, Ribbon, Eureka가 어떻게 협동하는지 이해합니다.</li>
+</ul>
+
+<h3 id="192-feign">19.2. Feign?</h3>
+
+<ul>
+  <li>
+    <p>Netflix OSS의 일부입니다. 마찬가지로 Spring Cloud에서 wrapper api를 만들었습니다.</p>
+  </li>
+  <li>
+    <p>declarative REST 클라이언트입니다. (declarative - 선언형. 선언만으로 REST를 구현할 수 있어서 선언형 REST인 것 같습니다.)</p>
+  </li>
+  <li>
+    <p>구현 코드가 필요 없습니다. 말 그대로 선언만하면 injection 해주는 것 같습니다.</p>
+  </li>
+  <li>
+    <p>Spring으로 REST를 만들 때 주로 사용하는 RestTemplate의 대안이 될 수 있습니다. 훨씬 쉽습니다.</p>
+
+    <ul>
+      <li>
+        <p>Spring REST Template는 다음과 같이 사용됩니다.</p>
+
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">template</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
+<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"http://inventory/{0}"</span><span class="o">;</span>
+<span class="nc">Sku</span> <span class="n">sku</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">Sku</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">4723343</span><span class="o">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>매우 편리하지만 일단 코드를 작성해야 합니다.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Feign은 다음과 같이 사용합니다.</p>
+
+    <ul>
+      <li>의존성을 추가합시다. (컴파일할땐 필요 없지만 런타임시 필요합니다.)</li>
+    </ul>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-feign<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>interface를 선언합니다.</p>
+      </li>
+      <li>
+        <p>interface에 Feign 어노테이션을 추가합니다.</p>
+      </li>
+      <li>
+        <p>필요한 Spring MVC 어노테이션을 추가합니다.</p>
+      </li>
+      <li>
+        <p>실행시 Spring Cloud가 interface를 구현해줍니다. (Spring Implemented Proxy를 통해..)</p>
+      </li>
+    </ul>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@FeignClient</span><span class="o">(</span><span class="n">url</span><span class="o">=</span><span class="s">"localhost:8080/warehouse"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">InventoryClient</span><span class="o">{</span>
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span><span class="o">=</span><span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">"/inventory"</span><span class="o">)</span>
+	<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Item</span><span class="o">&gt;</span> <span class="nf">getItems</span><span class="o">();</span>
+  	
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span><span class="o">=</span><span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> 
+					<span class="n">value</span> <span class="o">=</span> <span class="s">"/inventory/{sku}"</span><span class="o">,</span>
+					<span class="n">consumes</span><span class="o">=</span><span class="s">"application/json"</span><span class="o">)</span>
+	<span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">"sku"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">sku</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Item</span> <span class="n">item</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Application에 <code class="highlighter-rouge">@FeignClients</code> 어노테이션을 추가합니다.</li>
+    </ul>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableFeignClients</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span><span class="o">{</span>
+<span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>직접 짠 코드가 없어서 유닛 테스트를 할 필요가 없지만, 여러 기술들이 잘 통합되어 돌아가는지 테스트는 해봐야 합니다.</p>
+  </li>
+</ul>
+
+<h3 id="193-ribbon-and-eureka-with-feign">19.3. Ribbon and Eureka with Feign</h3>
+
+<ul>
+  <li>위의 예시에서 <code class="highlighter-rouge">@FeignClient(url="localhost:8080/warehouse")</code> 로 ip와 port를 하드코딩 했습니다. 하지만 Ribbon, Eureka와 함께 사용한다면 <code class="highlighter-rouge">@FeignClient("warehouse")</code> 이렇게 Client id를 적는 것 만으로 충분합니다.
+    <ul>
+      <li>Eureka가 사용 가능한 서버들을 목록을 주면 Ribbon의 로드밸런서로 요청을 보낼 서버의 인스턴스를 고릅니다. Feign은 Ribbon이 골라준 서버로 REST 요청을 보낼 준비를 합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="20-lab-6---feign">20. Lab 6 - Feign</h2>
+
+<hr />
+
+<ul>
+  <li>Feign 실습</li>
+</ul>
+:ET

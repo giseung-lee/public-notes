@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-04-24T23:35:13+09:00</updated>
+ <updated>2020-04-25T14:47:46+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -13,7 +13,811 @@
 
  
  <entry>
-   <title>Microservices with Spring Cloud 3 - Spring Cloud</title>
+   <title>Microservices with Spring Cloud 5 - Spring Cloud Hystrix, Bus</title>
+   <link href="http://localhost:4000/posts/study/msa_ken_krueger/MSA5/"/>
+   <updated>2020-04-25T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/msa_ken_krueger/MSA5</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 Ken Krueger 선생님의 &lt;a href=&quot;https://www.udemy.com/course/microservices-with-spring-cloud/&quot;&gt;Microservices with Spring Cloud&lt;/a&gt; 강의를 정리하며 사견을 붙인 것입니다.&lt;/li&gt;
+  &lt;li&gt;포스팅 내 목차는 개별 동영상 강의 기준입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;21-spring-cloud-hystrix---circuit-breaker&quot;&gt;21. Spring Cloud Hystrix - Circuit Breaker&lt;/h2&gt;
+
+&lt;hr /&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Microservices with Spring Cloud 4 - Spring Cloud Eureka, Ribbon, Feign</title>
+   <link href="http://localhost:4000/posts/study/msa_ken_krueger/MSA4/"/>
+   <updated>2020-04-25T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/msa_ken_krueger/MSA4</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 Ken Krueger 선생님의 &lt;a href=&quot;https://www.udemy.com/course/microservices-with-spring-cloud/&quot;&gt;Microservices with Spring Cloud&lt;/a&gt; 강의를 정리하며 사견을 붙인 것입니다.&lt;/li&gt;
+  &lt;li&gt;포스팅 내 목차는 개별 동영상 강의 기준입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;15-spring-cloud-eureka---service-discovery&quot;&gt;15. Spring Cloud Eureka - Service Discovery&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Eureka를 이용한 Passive Service Discovery 를 배워보겠습니다.
+    &lt;ul&gt;
+      &lt;li&gt;passive 하니까 수동 서비스 발견? 으로 읽힐 수 있지만, 동작 하는걸 보면 Service Discovery를 게임에서 패시브 스킬 쓰듯이 알아서 쓴다는 것 같습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;151-학습목표&quot;&gt;15.1. 학습목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이번 강의를 들으면
+    &lt;ul&gt;
+      &lt;li&gt;Passive Service Discovery가 뭔지 알게 됩니다.&lt;/li&gt;
+      &lt;li&gt;Eureka Server를 Build and Run 할 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;Eureka Client를 Build and Run and Configure 할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;152-passive-service-discovery-란&quot;&gt;15.2. Passive Service Discovery 란?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;채팅 프로그램을 켜서 채팅 방에 들어갔다고 생각 해봅시다.
+1 사용자 클라이언트는 자신을 서버에 등록합니다. 
+2 서버는 사용자가 온라인에 있다는걸 알게 됩니다.
+3 서버가 채팅방에 있는 다른 사람들을 알려줍니다.
+4 마찬가지로, 사용자도 다른 사용자들에 의해 discovered 됩니다.
+5 그리고 채팅방에 있는 사람들은 새로운 사람이 들어오면 계속 discovered 됩니다.&lt;/li&gt;
+  &lt;li&gt;MSA엔 많은 서비스들이 있습니다. 각 서비스들이 서로 사용 가능한 상태인지 알아야 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;수동으로 상태를 확인해 줄 수도 있지만 딱 봐도 안좋은 방법입니다.&lt;/li&gt;
+      &lt;li&gt;이때 Service Discovery를 사용합니다. Service Discovery는 lookup 기능을 제공해줍니다.
+        &lt;ul&gt;
+          &lt;li&gt;클라이언트는 자기 자신을 등록하고, 다른 서비스들을 발견합니다.&lt;/li&gt;
+          &lt;li&gt;Eureka 말고도 Consul, Etcd, Zookeeper 등의 기술이 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;153-eureka&quot;&gt;15.3. Eureka!!&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Eureka는 Netflix에서 만들었습니다. 지금은 Spring Cloud Netflix에 포함되어 있습니다.&lt;/li&gt;
+  &lt;li&gt;Eureka는 lookup 서버를 제공합니다.
+    &lt;ul&gt;
+      &lt;li&gt;lookup 서버는 등록된 클라이언트들을 관리합니다.&lt;/li&gt;
+      &lt;li&gt;lookup 서버는 여러 인스턴스가 실행됩니다.(한 JVM에서 여러 인스턴스가 아니라 여러 서벅랙, Region별 인스턴스 인것 같습니다.) 로드밸런서를 통해 빠른 lookup이 가능하게 합니다.&lt;/li&gt;
+      &lt;li&gt;여러 사본 서버들은 서로 상태를 공유합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클라이언트는 Eureka 서버를 등록합니다.
+    &lt;ul&gt;
+      &lt;li&gt;호스트 ip, 포트 health indicator url 등을 등록합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클라이언트는 주기적으로 Eureka 서버에 살아있다는 신호를 보냅니다. Eureka 서버는 일정 시간동안 신호를 주지 않는 클라이언트를 해제합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;154-eureka-서버-만들기&quot;&gt;15.4. Eureka 서버 만들기&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;서버를 만드는 방법은 쉽습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Spring Boot 어플리케이션을 만들고 의존성을 추가합니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-eureka-server&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@EnableEurekaServer&lt;/code&gt; 어노테이션을 이용해 Eureka 서버로 등록합니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@EnableEurekaServer&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nc&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;155-multi-servers&quot;&gt;15.5. Multi Servers&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Eureka 서버를 1개만 실행하면 경고가 뜹니다. Eureka 서버는 기본적으로 여러 사본들이 서로 통신하며 상태를 공유하는걸 기본으로 만들어졌습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 Eureka 서버는 다른 Eureka 서버의 url을 알고 있어야 합니다. Config 서버에서 가져오도록 할 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설정의 자세한 방법은 &lt;a href=&quot;https://github.com/Netflix/eureka/wiki/Configuring-Eureka&quot;&gt;여기&lt;/a&gt;를 참고하면 됩니다. 간단한 설정은 아래와 같이 합니다. 여러 서버를 등록 할 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# 1개의 인스턴스만 실행할 땐 default 가 실행됩니다.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;\---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;profiles&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;default&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8010&lt;/span&gt;  
+&lt;span class=&quot;na&quot;&gt;eureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eurekahost&lt;/span&gt; 
+  &lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;registerWithEureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fetchRegistry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;serviceUrl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultZone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://${eureka.instance.hostname}:${server.port}/eureka/&lt;/span&gt;    
+  
+&lt;span class=&quot;s&quot;&gt;\---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;profiles&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;primary&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eureka-server-clustered&lt;/span&gt;   
+&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8011&lt;/span&gt;  
+&lt;span class=&quot;na&quot;&gt;eureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eureka-primary&lt;/span&gt;       
+  &lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;registerWithEureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fetchRegistry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;        
+    &lt;span class=&quot;na&quot;&gt;serviceUrl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultZone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://eureka-secondary:8012/eureka/,http://eureka-tertiary:8013/eureka/&lt;/span&gt;
+  
+&lt;span class=&quot;s&quot;&gt;\---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;profiles&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secondary&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eureka-server-clustered&lt;/span&gt;      
+&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8012&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;eureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eureka-secondary&lt;/span&gt;       
+  &lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;registerWithEureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fetchRegistry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;        
+    &lt;span class=&quot;na&quot;&gt;serviceUrl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultZone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://eureka-tertiary:8013/eureka/,http://eureka-primary:8011/eureka/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;156-eureka-클라이언트-만들기&quot;&gt;15.6. Eureka 클라이언트 만들기&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트를 만드는 방법도 간단합니다. 의존성은 서버와 같은걸 사용하고, 서버를 만들 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EnableEurekaServer&lt;/code&gt;를 썼다면, 클라이언트를 만들 땐 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EnableDiscoveryClient&lt;/code&gt;를 쓰면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@SpringBootApplication
+@EnableDiscoveryClient
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설정파일에 기본 fallback 주소를 등록해줍니다. 여러 개를 등록할 수도 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;\---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;eureka&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;serviceUrl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultZone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://localhost:8011/eureka/, http://localhost:8012/eureka/, http://localhost:8013/eureka/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 자기 자신을 설정해둔 Eureka 서버에 등록합니다. name, hostm port 같은 것들을 들록합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;등록 할 때 Environment 객체에 있는 것으로 등록을 하며, 원한다면 Environment 값들을 바꿔줄 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트는 Eureka 서버에 등록된 다른 클라이언트들을 뽑아 볼 수 있습니다. 다음과 같이 DiscoveryClient 인스턴스를 만들고 &lt;code class=&quot;highlighter-rouge&quot;&gt;@Autowired&lt;/code&gt;해주면 Eureka가 등록된 클라이언트들을 넣어주고, 원하는 서비스를 getInstances로 뽑아주면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SentenceController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscoveryClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getWord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ServiceInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstances&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      	&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	      	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	      		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RestTemplate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getForObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	      	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;157-zone&quot;&gt;15.7. Zone?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 말했듯이 Eureka는 여러 인스턴스를 실행하는걸 기본으로 설계되었습니다.&lt;/li&gt;
+  &lt;li&gt;Eureka 서버의 모든 정보는 메모리에 저장됩니다. 따로 DB 같은걸 쓰지 않습니다.
+    &lt;ul&gt;
+      &lt;li&gt;즉, Eureka 서버는 Eureka 클라이언트가 자기 자신을 등록하는 것에 의존하고, 항상 클라이언트의 최신 정보를 가지고 있습니다.&lt;/li&gt;
+      &lt;li&gt;이런 어플리케이션을 ‘stateful application’이라고 부릅니다.&lt;/li&gt;
+      &lt;li&gt;만약 Eureka 서버가 정보를 로컬 파일에 저장해두면 클라이언트들에게 옛날 정보를 줄 수도 있고, 어차피 최신 정보가 맞는지 통신도 해야 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Eureka에서 ‘Zone’ 이라는 용어가 자주 나오는데, 이는 아마존에서 사용하는 용어로서 분리된 각각의 데이터 센터를 말합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;158-eureka-server-vs-config-server&quot;&gt;15.8. Eureka Server vs Config Server&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MSA 서비스가 실행되면 지금 배운 Eureka 서버를 먼저 다녀올까요, 아니면 Config 서버를 먼저 다녀올까요.
+    &lt;ul&gt;
+      &lt;li&gt;일반적으론 Config 서버부터 다녀와 Config 서버에서 Eureka 서버의 정보도 가져옵니다.&lt;/li&gt;
+      &lt;li&gt;드문 경우긴 한데, Eureka 서버부터 다녀오는 경우도 있습니다. Config 서버 역시 살아있음을 알려줘야 다녀올 수 있기 때문에 Eureka 서버를 들려 ‘Config 서버 살아 있습니까?’ 라고 먼저 묻는 경우입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;16-lab-4---spring-cloud-eureka&quot;&gt;16. Lab 4 - Spring Cloud Eureka&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Eureka 클라이언트, 서버 만들어보기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;17-spring-cloud-ribbon---client-side-load-balancing&quot;&gt;17. Spring Cloud Ribbon - Client-Side Load Balancing&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 Spring Cloud Config, Eureka 같은 서버단의 기술을 살펴 봤습니다. 이번엔 클라이언트 쪽 기술입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;171-학습목표&quot;&gt;17.1. 학습목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트단 로드 밸런싱의 목적을 이해합니다.&lt;/li&gt;
+  &lt;li&gt;Spring Cloud Ribbon을 이용해 클라이언트단 로드 밸런싱을 구현해봅니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;172-load-balancer&quot;&gt;17.2. Load Balancer?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;로드 밸런서는 보통 서버단의 기술로 사용합니다. 한 서버에 부하가 걸리는걸 방지하기 위해 여러 서버로 트래픽을 분산하는 용도입니다.&lt;/li&gt;
+  &lt;li&gt;보통 많이 알고있는 로드 밸런서는 Apache, Nginx, HA Proxy 같은 소프트웨어도 있고 F5, NSX, BigIP 같은 하드웨어도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;173-client-side-load-balancer&quot;&gt;17.3. Client-Side Load Balancer&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버 간의 부하를 줄이는 로드 밸런서를 클라이언트에서 사용할 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;로드 밸런서가 클라이언트단에서 사용되면 ‘요청을 어느 서버로 보낼 지 고르는 방식’으로 작동합니다.
+    &lt;ul&gt;
+      &lt;li&gt;고르는 방식엔 다양한 방법이 있습니다. 요청 가능한 서버들중 응답이 가장 빠른 쪽에 본 요청을 보내는 방식도 사용합니다.(이 경우에 앞서 살펴본 Eureka가 사용 될 수 있습니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클라이언트단에서 로드밸런서를 사용했다고 해서 서버에서 사용 안하는 것은 아닙니다. 서버도 계속 자신의 로드밸런서를 사용할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;그럼 왜 클라이언트단 로드밸런서를 사용할까요?
+    &lt;ul&gt;
+      &lt;li&gt;여러 서버들이 다른 리전에 있는 경우가 있습니다. 여러 리전 중 응답이 빠른 리전에 보내면 더 효율적입니다.&lt;/li&gt;
+      &lt;li&gt;중앙 로드밸런서를 가진 서버가 장애가 나 사용 불가능해지거나, 느려질 수 있습니다. 이때 대안이 없다면 시스템 전체가 마비됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;174-spring-cloud-netflix-ribbon&quot;&gt;17.4. Spring Cloud Netflix Ribbon&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ribbon은 Netflix OSS 프로젝트중 하나입니다.
+    &lt;ul&gt;
+      &lt;li&gt;계속 말하고 있듯이, 클라이언트단 로드밸런서입니다.&lt;/li&gt;
+      &lt;li&gt;앞서 배운 Eureka와 함께 사용됩니다.&lt;/li&gt;
+      &lt;li&gt;뒤에 배울 Hystrix와 함께 사용돼 장애에 대응할 수 있습니다.(failure resiliency - 장애에 대한 복원력이 뛰어나다는 뜻인데 한글로 어떻게 번역해야 할 지 모르겠습니다.)&lt;/li&gt;
+      &lt;li&gt;Caching과 Batching을 지원합니다.
+        &lt;ul&gt;
+          &lt;li&gt;캐싱은 알고있는 캐싱이고, Batching은 여러 requiest가 한 call에 올 때 대응하는 방법 인것 같습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;다양한 프로토콜을 지원합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Spring Cloud는 Ribbon을 사용하기 쉽게 Wrapper API를 만들었습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;175-ribbon-concept&quot;&gt;17.5. Ribbon Concept&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;List of Servers : 사용 가능한 서버의 리스트를 가지고 있습니다.&lt;/li&gt;
+  &lt;li&gt;설정 파일로 정적으로 제공할 수도 있고&lt;/li&gt;
+  &lt;li&gt;Eureka를 이용해 동적으로 발견할 수도 있습니다.&lt;/li&gt;
+  &lt;li&gt;Spring Cloud에선 Eureka가 설정되어 있으면 Eureka를 기본으로 사용합니다.&lt;/li&gt;
+  &lt;li&gt;Filtered List of Servers : 사용 가능한 서버들 중 일정 기준에 맞는 서버들의 목록을 따로 관리합니다.&lt;/li&gt;
+  &lt;li&gt;Ping : 서버가 살아있는 지 죽었는 지 확인합니다. Eureka를 통해 확인하는게 기본 설정입니다.&lt;/li&gt;
+  &lt;li&gt;Load Balanceer
+    &lt;ul&gt;
+      &lt;li&gt;Filtered List of Server 중 요청을 보낼 서버를 고릅니다.&lt;/li&gt;
+      &lt;li&gt;고르는 방식엔 여러 가지가 있고, ‘Rule’ 컴포넌트에 의해 결정됩니다. (Rule 컴포넌트를 무엇을 쓸지에 따라 방식이 달라집니다.)&lt;/li&gt;
+      &lt;li&gt;Spring Cloud의 기본 로드밸런서는 ‘ZoneAwareLoadBalancer’ 라고 불리는 로드밸런서입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rule
+    &lt;ul&gt;
+      &lt;li&gt;call을 보낼지 말지 정해주는 컴포넌트입니다.&lt;/li&gt;
+      &lt;li&gt;Spring Cloud의 기본 Rule 컴포넌트는 ‘ZoneAvoidanceRule’ 이라는 컴포넌트입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;176-ribbon-사용하기&quot;&gt;17.6. Ribbon 사용하기&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;pom.xml에 아래와 같은 dependencyManagement와(eureka, config 서버 때와 같은 것입니다.) 기존 의존성에 ribbon을 추가합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencyManagement&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-dependencies&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;Dalston.RELEASE&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;import&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencyManagement&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-ribbon&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ribbon은 클라이언트만 존재합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;로드밸런서를 추가하는 방법은 LoadBalancer 인터페이스를 클래스변수에 추가하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;@Autowired&lt;/code&gt;해주면 됩니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoadBalancerClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loadBalancer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  	
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;ServiceInstacne&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loadBalancer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;choose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cliend-id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subjectUri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://$s:$s&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getHost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()));&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;로드밸런서에서 choose() 메서드를 이용하면 가장 적합한 서버의 인스턴스를 돌려줍니다.&lt;/li&gt;
+      &lt;li&gt;인스턴스엔 ip, port 등의 정보가 있어 요청을 보낼 uri를 구성할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그런데 위 방법은 Ribbon API를 직접 이용하는 방법입니다. 뒤에서 배울 Feign과 Hystrix를 이용하면 Ribbon API를 직접 이용하지 않고 로드밸런서를 이용할 수 있습니다.(어쩐지 실습 파일에 위 코드가 없었습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;기본으로 설정된 컴포넌트를 사용하지 않고 커스텀 컴포넌트들을 사용할 수도 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;18-lab-5---spring-cloud-ribbon&quot;&gt;18. Lab 5 - Spring Cloud Ribbon&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ribbon 실습&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;19-spring-cloud-feign---declarative-rest-client&quot;&gt;19. Spring Cloud Feign - Declarative REST Client&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이번에 배울 Feign 역시 클라이언트단 기술입니다. Declarative REST 클라이언트를 만들어주는 기술입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;191-학습목표&quot;&gt;19.1. 학습목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Feign 라이브러리를 이용해 REST 서비스를 호출 할 줄 알게됩니다.&lt;/li&gt;
+  &lt;li&gt;Feign, Ribbon, Eureka가 어떻게 협동하는지 이해합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;192-feign&quot;&gt;19.2. Feign?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Netflix OSS의 일부입니다. 마찬가지로 Spring Cloud에서 wrapper api를 만들었습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;declarative REST 클라이언트입니다. (declarative - 선언형. 선언만으로 REST를 구현할 수 있어서 선언형 REST인 것 같습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;구현 코드가 필요 없습니다. 말 그대로 선언만하면 injection 해주는 것 같습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Spring으로 REST를 만들 때 주로 사용하는 RestTemplate의 대안이 될 수 있습니다. 훨씬 쉽습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Spring REST Template는 다음과 같이 사용됩니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;RestTemplate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RestTemplate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://inventory/{0}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Sku&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sku&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getForObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sku&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4723343&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;매우 편리하지만 일단 코드를 작성해야 합니다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Feign은 다음과 같이 사용합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;의존성을 추가합시다. (컴파일할땐 필요 없지만 런타임시 필요합니다.)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.cloud&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-cloud-starter-feign&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;interface를 선언합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;interface에 Feign 어노테이션을 추가합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;필요한 Spring MVC 어노테이션을 추가합니다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;실행시 Spring Cloud가 interface를 구현해줍니다. (Spring Implemented Proxy를 통해..)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@FeignClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:8080/warehouse&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InventoryClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RequestMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;GET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/inventory&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  	
+	&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RequestMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;POST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+					&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/inventory/{sku}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+					&lt;span class=&quot;n&quot;&gt;consumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sku&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Application에 &lt;code class=&quot;highlighter-rouge&quot;&gt;@FeignClients&lt;/code&gt; 어노테이션을 추가합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableFeignClients&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;직접 짠 코드가 없어서 유닛 테스트를 할 필요가 없지만, 여러 기술들이 잘 통합되어 돌아가는지 테스트는 해봐야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;193-ribbon-and-eureka-with-feign&quot;&gt;19.3. Ribbon and Eureka with Feign&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 예시에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;@FeignClient(url=&quot;localhost:8080/warehouse&quot;)&lt;/code&gt; 로 ip와 port를 하드코딩 했습니다. 하지만 Ribbon, Eureka와 함께 사용한다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;@FeignClient(&quot;warehouse&quot;)&lt;/code&gt; 이렇게 Client id를 적는 것 만으로 충분합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Eureka가 사용 가능한 서버들을 목록을 주면 Ribbon의 로드밸런서로 요청을 보낼 서버의 인스턴스를 고릅니다. Feign은 Ribbon이 골라준 서버로 REST 요청을 보낼 준비를 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;20-lab-6---feign&quot;&gt;20. Lab 6 - Feign&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Feign 실습&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>C Unmanaged Programming 4 - 포인터 (작성중)</title>
+   <link href="http://localhost:4000/posts/study/c_kim_pope/C4/"/>
+   <updated>2020-04-25T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/c_kim_pope/C4</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 포스팅은 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;Kim Pope 선생님의 C 언매니지드 프로그래밍 강의&lt;/a&gt;를 정리하며 사견을 붙인 것입니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;포스팅 내 목차는 동영상강의 기준입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;87-포인터&quot;&gt;87. 포인터&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 스택메모리를 알려드린건 지금 이 포인터를 배우기 위함입니다.&lt;/li&gt;
+  &lt;li&gt;포인트 뒤로 나오는 모든 것들엔 포인터가 필요하다고 보시면 됩니다.&lt;/li&gt;
+  &lt;li&gt;선생님이 C에서 중요하다고 생각하는 세 가지는 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;포인터&lt;/li&gt;
+      &lt;li&gt;동적 메모리 할당&lt;/li&gt;
+      &lt;li&gt;구조체, 공용체를 포인터, 동적 메모리와 함께 쓰는 법&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;개발자가-직접-메모리-주소를-이용해-데이터를-바꿀-수-있나요&quot;&gt;개발자가 직접 메모리 주소를 이용해 데이터를 바꿀 수 있나요?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;다른 언어였다면 불가능 하지만 C에선 가능합니다. 이걸 잘하면 매우 강력한 일을 할 수 있지만, 잘못 건드리면 흐흐.. 😈&lt;/li&gt;
+  &lt;li&gt;C가 위험하다, 강력하다 모두 이 포인터 때문입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;88-주소-연산자-&quot;&gt;88. 주소 연산자 \&amp;amp;&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;직접 메모리 주소로 변수를 조작하려면 우선 해당 변수의 주소를 알아야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;아래 코드를 실행해 봅시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;address of num is %p&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+address of num is 00000068ED6FF914
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;\&amp;amp;를 주소 연산자라고 합니다. (비트연산자 \&amp;amp;와 헷갈리지 맙시다. 비트연산자 \&amp;amp;는 피연산자가 2개입니다.)&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;\&amp;amp;뒤에 오는 변수의 주소를 돌려줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;주소를 표현할 땐 16진수를 사용합니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;printf 에서 “%p” 를 사용하면 주소를 16진수로 보여줍니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;실행할 때 마다 주소가 바뀝니다. (보안 강화를 위해 실행할 때마다 프로그램이 올라가는 주소가 바뀝니다. - ASLR 이라고 합니다.)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;89-메모리-주소-저장하기&quot;&gt;89. 메모리 주소 저장하기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;\&amp;amp; 연산자로 주소를 구할 수 있다는 걸 배웠습니다. 그럼 이 주소를 어떻게 변수에 저장할까요.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;어차피 16진수 숫자니까 int에 저장하면 되지 않을까요!! 👉 컴파일 에러 납니다.&lt;/p&gt;
+
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+error: incompatible pointer to integer conversion initializing 'int' with an expression of type 'int *'; remove &amp;amp;
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;앞으로 ‘주소’와 ‘값’이 계속 언급 될 텐데 둘을 잘 구분합시다. 주소는 값의 메모리 위치.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;주소를 저장하기 위한 특별한 변수가 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;그 변수가 바로 &lt;strong&gt;포인터&lt;/strong&gt;입니다.&lt;/li&gt;
+      &lt;li&gt;포인터 is 변수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;90-포인터의-의미&quot;&gt;90. 포인터의 의미&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;포인터란 주소를 저장하기 위한 변수&lt;strong&gt;형&lt;/strong&gt;입니다.&lt;/li&gt;
+  &lt;li&gt;포인터는 변수입니다. 메모리 주소를 저장하는 변수요.&lt;/li&gt;
+  &lt;li&gt;포인터를 다른 복잡한 정의로 이해하면 앞으로 더 복잡해집니다. 포인터는 그냥 변수에요.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;91-메모리-주소에-저장된-자료형&quot;&gt;91. 메모리 주소에 저장된 자료형&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주소에 저장된 자료형은 뭘까요?
+    &lt;ul&gt;
+      &lt;li&gt;하드웨어는 신경쓰지 않습니다. 비트패턴을 char로 읽으면 char고, int로 읽으면 int고, float으로 읽으면 float입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;근데, 해당 주소에서부터 몇 바이트를 읽어야 하는지(나는 이 주소에서 몇 바이트를 갈거야! 같은것)는 하드웨어에게 알려줘야 합니다.&lt;/li&gt;
+  &lt;li&gt;포인터 변수를 선언할 때 그 주소에 어떤 형의 데이터가 있는지 명시해줘야 합니다.
+    &lt;ul&gt;
+      &lt;li&gt;int 포인터, float 포인터, char 포인터 이런 식입니다.&lt;/li&gt;
+      &lt;li&gt;어떤 변수에 주소가 있는데 그걸 int 로 읽어라, float으로 읽어라, char로 읽어라&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;92-포인터-변수를-선언하는-방법&quot;&gt;92. 포인터 변수를 선언하는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;자료형 뒤에 *를 붙여 포인터 변수를 선언합니다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;int*, char*, float* 모두 가능합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;int *variableName;&lt;/code&gt; 으로 써도 되지만 우리는 &lt;code class=&quot;highlighter-rouge&quot;&gt;int* variableName;&lt;/code&gt;을 씁시다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;93-포인터-변수를-부르는-방법&quot;&gt;93. 포인터 변수를 부르는 방법&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한국에선 보통 ‘int 포인터’ 라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;영어로는 ‘pointer to an int’ 라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;포인터 읽는 법은 중요합니다. 뒤에 포인터를 어떻게 읽느냐에 따라 중요해지는 부분이 있습니다. 선생님은 영어식 표현을 선호하는 것 같습니다.&lt;/li&gt;
+  &lt;li&gt;포인터는 메모리 주소를 저장하는 변수.
+    &lt;ul&gt;
+      &lt;li&gt;그럼 포인터의 내용은 어디에 저장되죠? 👉 당연히 메모리 어딘가에&lt;/li&gt;
+      &lt;li&gt;다른 위치를 가리키는 변수여서 ‘포인터’라고 부릅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;처음 공부할 때 모눈종이 사서 메모리 그려보면서 하시길 추천합니다.
+    &lt;ul&gt;
+      &lt;li&gt;눈으로만 보면서 편하게 하면 머리에 안남습니다. 걸렸네..😅&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;94-포인터-변수의-실제-메모리-뷰&quot;&gt;94. 포인터 변수의 실제 메모리 뷰&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;디버거와 오브젝트 코드를 까서 실제 메모리 보는 중..&lt;/li&gt;
+  &lt;li&gt;메모리 보다보면 주소가 뒤집혀 보이는걸 볼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;데이터가 끝나는 마지막 단위를 가장 작은 메모리 주소에 위치해 메모리 주소를 뒤집어 저장하는 방식을 ‘리틀 엔디언’ 이라고 합니다. &lt;a href=&quot;https://ko.wikipedia.org/wiki/엔디언&quot;&gt;참고&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;요즘 나오는 인텔, amd 리틀 엔디언 방식입니다.  빅 엔디언은 옛날 cpu들입니다.&lt;/li&gt;
+      &lt;li&gt;POCU 학생이라면 ‘소프트웨어 공학용 수학’ 시간에 배웠습니다.&lt;/li&gt;
+      &lt;li&gt;들어야 되나..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;95-포인터의-비유--현실-세계-예&quot;&gt;95. 포인터의 비유 : 현실 세계 예&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;기술적인 설명은 위에 나온 것으로 끝입니다. 현실 세계로 비유를 한 번 해보겠습니다.&lt;/li&gt;
+  &lt;li&gt;패쓰&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;96-다른-포인터의-예&quot;&gt;96. 다른 포인터의 예&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;int 포인터 말고 다른 포인터도 쓸 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;각 코드들을 디버그 찍어서 값 뽑아보고, 오브젝트 코드 열어서 주소 구경해봅시다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save_address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;97-포인터에-저장된-주소도-바꿀-수-있나요&quot;&gt;97. 포인터에 저장된 주소도 바꿀 수 있나요?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;포인터도 변수니까 당연히 변경 가능합니다.&lt;/li&gt;
+  &lt;li&gt;포프 선생님 강의는 하나 하나가 굉장히 짧으십니다. &lt;del&gt;(대신 총 동영상수 342개…)&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(작성중)&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Microservices with Spring Cloud 3 - Spring Cloud Overview, Config</title>
    <link href="http://localhost:4000/posts/study/msa_ken_krueger/MSA3/"/>
    <updated>2020-04-24T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/msa_ken_krueger/MSA3</id>
@@ -437,20 +1241,19 @@ app-sample : Rabbit
       &lt;li&gt;
         &lt;p&gt;yml은 &lt;code class=&quot;highlighter-rouge&quot;&gt;---&lt;/code&gt;를 이용해 한 파일에 구성할 수 있습니다.&lt;/p&gt;
 
-        &lt;p&gt;```&lt;/p&gt;
-        &lt;h1 id=&quot;app-sampleyml&quot;&gt;app-sample.yml&lt;/h1&gt;
-        &lt;hr /&gt;
-        &lt;p&gt;spring:
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app-sample.yml
+\---
+spring:
   profiles: east
-app-sample: Clover&lt;/p&gt;
+app-sample: Clover
+    
+\---
+spring:
+  profiles: west
+app-sample: Rabbit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
-
-    &lt;hr /&gt;
-    &lt;p&gt;spring:
-    profiles: west
-  app-sample: Rabbit
-  ```&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -496,7 +1299,7 @@ app-sample: Clover&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>C Unmanaged Programming 2 - 빌드과정</title>
+   <title>C Unmanaged Programming 3 - 빌드과정</title>
    <link href="http://localhost:4000/posts/study/c_kim_pope/C3-2/"/>
    <updated>2020-04-24T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/c_kim_pope/C3-2</id>
@@ -1271,7 +2074,7 @@ clang: error: linker command failed with exit code 1120 (use -v to see invocatio
  </entry>
  
  <entry>
-   <title>C Unmanaged Programming 2 - C언어 기본 문법2</title>
+   <title>C Unmanaged Programming 3 - C언어 기본 문법2</title>
    <link href="http://localhost:4000/posts/study/c_kim_pope/C3/"/>
    <updated>2020-04-23T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/study/c_kim_pope/C3</id>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      C Unmanaged Programming 4 - 포인터 (작성중) &middot; 이기승의 끄적끄적..
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Profile -->
+  <div class="sidebar-item sidebar-profile-box">
+    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <div class="sidebar-profile-description">
+      <span>
+        &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
+      </span>
+    </div>
+  </div>
+  <!-- Profile End -->
+
+  <nav class="sidebar-nav">
+    <!-- Home -->
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <!-- Home End -->
+    <!-- Posts -->
+    
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About Me">About Me</a>
+      
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily Thoughts">Daily Thoughts</a>
+      
+    
+      
+        <input id="Projects" class="toggle" type="checkbox">
+        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Hwangmaesan">Hwangmaesan</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/The_Oyster_Mine">The_Oyster_Mine</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Study" class="toggle" type="checkbox">
+        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http The Definitive Guide">Http The Definitive Guide</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/C_Kim_Pope">C_Kim_Pope</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/MSA_Ken_Krueger">MSA_Ken_Krueger</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Googling" class="toggle" type="checkbox">
+        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/java">java</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/jekyll">jekyll</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/linux">linux</a>
+          
+        
+        </div>
+      
+    
+    <!-- Posts End -->
+  </nav>
+
+  <!-- sidebar bottom -->
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+  <!-- sidebar bottom end -->
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title" style="font-weight: normal;">
+            <a href="/" title="Home">이기승의 끄적끄적..</a>
+            <small>개발 및 잡다한 포스팅</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">C Unmanaged Programming 4 - 포인터 (작성중)</h1>
+  <span class="post-date">25 Apr 2020</span>
+  
+<ul>
+  <li>
+    <p>해당 포스팅은 <a href="https://www.udemy.com/course/c-unmanaged-programming-by-pocu/">Kim Pope 선생님의 C 언매니지드 프로그래밍 강의</a>를 정리하며 사견을 붙인 것입니다.</p>
+  </li>
+  <li>
+    <p>포스팅 내 목차는 동영상강의 기준입니다.</p>
+  </li>
+</ul>
+
+<h2 id="87-포인터">87. 포인터</h2>
+
+<hr />
+
+<ul>
+  <li>앞서 스택메모리를 알려드린건 지금 이 포인터를 배우기 위함입니다.</li>
+  <li>포인트 뒤로 나오는 모든 것들엔 포인터가 필요하다고 보시면 됩니다.</li>
+  <li>선생님이 C에서 중요하다고 생각하는 세 가지는 다음과 같습니다.
+    <ul>
+      <li>포인터</li>
+      <li>동적 메모리 할당</li>
+      <li>구조체, 공용체를 포인터, 동적 메모리와 함께 쓰는 법</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="개발자가-직접-메모리-주소를-이용해-데이터를-바꿀-수-있나요">개발자가 직접 메모리 주소를 이용해 데이터를 바꿀 수 있나요?</h3>
+
+<ul>
+  <li>다른 언어였다면 불가능 하지만 C에선 가능합니다. 이걸 잘하면 매우 강력한 일을 할 수 있지만, 잘못 건드리면 흐흐.. 😈</li>
+  <li>C가 위험하다, 강력하다 모두 이 포인터 때문입니다.</li>
+</ul>
+
+<h2 id="88-주소-연산자-">88. 주소 연산자 \&amp;</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>직접 메모리 주소로 변수를 조작하려면 우선 해당 변수의 주소를 알아야 합니다.</p>
+  </li>
+  <li>
+    <p>아래 코드를 실행해 봅시다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">print_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"address of num is %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">print_address</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*
+address of num is 00000068ED6FF914
+*/</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>\&amp;를 주소 연산자라고 합니다. (비트연산자 \&amp;와 헷갈리지 맙시다. 비트연산자 \&amp;는 피연산자가 2개입니다.)</p>
+
+    <ul>
+      <li>\&amp;뒤에 오는 변수의 주소를 돌려줍니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>주소를 표현할 땐 16진수를 사용합니다.</p>
+
+    <ul>
+      <li>printf 에서 “%p” 를 사용하면 주소를 16진수로 보여줍니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>실행할 때 마다 주소가 바뀝니다. (보안 강화를 위해 실행할 때마다 프로그램이 올라가는 주소가 바뀝니다. - ASLR 이라고 합니다.)</p>
+  </li>
+</ul>
+
+<h2 id="89-메모리-주소-저장하기">89. 메모리 주소 저장하기</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>\&amp; 연산자로 주소를 구할 수 있다는 걸 배웠습니다. 그럼 이 주소를 어떻게 변수에 저장할까요.</p>
+
+    <ul>
+      <li>
+        <p>어차피 16진수 숫자니까 int에 저장하면 되지 않을까요!! 👉 컴파일 에러 납니다.</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">try</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*
+error: incompatible pointer to integer conversion initializing 'int' with an expression of type 'int *'; remove &amp;
+*/</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>앞으로 ‘주소’와 ‘값’이 계속 언급 될 텐데 둘을 잘 구분합시다. 주소는 값의 메모리 위치.</p>
+  </li>
+  <li>
+    <p>주소를 저장하기 위한 특별한 변수가 있습니다.</p>
+
+    <ul>
+      <li>그 변수가 바로 <strong>포인터</strong>입니다.</li>
+      <li>포인터 is 변수</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="90-포인터의-의미">90. 포인터의 의미</h2>
+
+<hr />
+
+<ul>
+  <li>포인터란 주소를 저장하기 위한 변수<strong>형</strong>입니다.</li>
+  <li>포인터는 변수입니다. 메모리 주소를 저장하는 변수요.</li>
+  <li>포인터를 다른 복잡한 정의로 이해하면 앞으로 더 복잡해집니다. 포인터는 그냥 변수에요.</li>
+</ul>
+
+<h2 id="91-메모리-주소에-저장된-자료형">91. 메모리 주소에 저장된 자료형</h2>
+
+<hr />
+
+<ul>
+  <li>주소에 저장된 자료형은 뭘까요?
+    <ul>
+      <li>하드웨어는 신경쓰지 않습니다. 비트패턴을 char로 읽으면 char고, int로 읽으면 int고, float으로 읽으면 float입니다.</li>
+    </ul>
+  </li>
+  <li>근데, 해당 주소에서부터 몇 바이트를 읽어야 하는지(나는 이 주소에서 몇 바이트를 갈거야! 같은것)는 하드웨어에게 알려줘야 합니다.</li>
+  <li>포인터 변수를 선언할 때 그 주소에 어떤 형의 데이터가 있는지 명시해줘야 합니다.
+    <ul>
+      <li>int 포인터, float 포인터, char 포인터 이런 식입니다.</li>
+      <li>어떤 변수에 주소가 있는데 그걸 int 로 읽어라, float으로 읽어라, char로 읽어라</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="92-포인터-변수를-선언하는-방법">92. 포인터 변수를 선언하는 방법</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>자료형 뒤에 *를 붙여 포인터 변수를 선언합니다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">save_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">int</span><span class="o">*</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>int*, char*, float* 모두 가능합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">int *variableName;</code> 으로 써도 되지만 우리는 <code class="highlighter-rouge">int* variableName;</code>을 씁시다.</p>
+  </li>
+</ul>
+
+<h2 id="93-포인터-변수를-부르는-방법">93. 포인터 변수를 부르는 방법</h2>
+
+<hr />
+
+<ul>
+  <li>한국에선 보통 ‘int 포인터’ 라고 부릅니다.</li>
+  <li>영어로는 ‘pointer to an int’ 라고 부릅니다.</li>
+  <li>포인터 읽는 법은 중요합니다. 뒤에 포인터를 어떻게 읽느냐에 따라 중요해지는 부분이 있습니다. 선생님은 영어식 표현을 선호하는 것 같습니다.</li>
+  <li>포인터는 메모리 주소를 저장하는 변수.
+    <ul>
+      <li>그럼 포인터의 내용은 어디에 저장되죠? 👉 당연히 메모리 어딘가에</li>
+      <li>다른 위치를 가리키는 변수여서 ‘포인터’라고 부릅니다.</li>
+    </ul>
+  </li>
+  <li>처음 공부할 때 모눈종이 사서 메모리 그려보면서 하시길 추천합니다.
+    <ul>
+      <li>눈으로만 보면서 편하게 하면 머리에 안남습니다. 걸렸네..😅</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="94-포인터-변수의-실제-메모리-뷰">94. 포인터 변수의 실제 메모리 뷰</h2>
+
+<hr />
+
+<ul>
+  <li>디버거와 오브젝트 코드를 까서 실제 메모리 보는 중..</li>
+  <li>메모리 보다보면 주소가 뒤집혀 보이는걸 볼 수 있습니다.</li>
+  <li>데이터가 끝나는 마지막 단위를 가장 작은 메모리 주소에 위치해 메모리 주소를 뒤집어 저장하는 방식을 ‘리틀 엔디언’ 이라고 합니다. <a href="https://ko.wikipedia.org/wiki/엔디언">참고</a>
+    <ul>
+      <li>요즘 나오는 인텔, amd 리틀 엔디언 방식입니다.  빅 엔디언은 옛날 cpu들입니다.</li>
+      <li>POCU 학생이라면 ‘소프트웨어 공학용 수학’ 시간에 배웠습니다.</li>
+      <li>들어야 되나..</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="95-포인터의-비유--현실-세계-예">95. 포인터의 비유 : 현실 세계 예</h2>
+
+<hr />
+
+<ul>
+  <li>기술적인 설명은 위에 나온 것으로 끝입니다. 현실 세계로 비유를 한 번 해보겠습니다.</li>
+  <li>패쓰</li>
+</ul>
+
+<h2 id="96-다른-포인터의-예">96. 다른 포인터의 예</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>int 포인터 말고 다른 포인터도 쓸 수 있습니다.</p>
+  </li>
+  <li>
+    <p>각 코드들을 디버그 찍어서 값 뽑아보고, 오브젝트 코드 열어서 주소 구경해봅시다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">save_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">char</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">char</span><span class="o">*</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">save_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">short</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">short</span><span class="o">*</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">save_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">float</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">float</span><span class="o">*</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">save_address</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">double</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">double</span><span class="o">*</span> <span class="n">num_addr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="97-포인터에-저장된-주소도-바꿀-수-있나요">97. 포인터에 저장된 주소도 바꿀 수 있나요?</h2>
+
+<hr />
+
+<ul>
+  <li>포인터도 변수니까 당연히 변경 가능합니다.</li>
+  <li>포프 선생님 강의는 하나 하나가 굉장히 짧으십니다. <del>(대신 총 동영상수 342개…)</del></li>
+</ul>
+
+<p>(작성중)</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study/msa_ken_krueger/MSA5/">
+            Microservices with Spring Cloud 5 - Spring Cloud Hystrix, Bus
+            <small>25 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study/msa_ken_krueger/MSA4/">
+            Microservices with Spring Cloud 4 - Spring Cloud Eureka, Ribbon, Feign
+            <small>25 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study/msa_ken_krueger/MSA3/">
+            Microservices with Spring Cloud 3 - Spring Cloud Overview, Config
+            <small>24 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
