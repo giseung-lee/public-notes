@@ -30,8 +30,8 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 2. [Modern Spring: Spring Boot, Spring Data, and Spring Data REST]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA2)
 3. [Spring Cloud 1 - Overview, Config]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA3)
 4. [Spring Cloud 2 - Eureka, Ribbon, Feign]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA4)
-5. Spring Cloud 3 - Hystrix, Bus [04/25 예정]
-6. Spring Cloud 4 - API Gateway [04/25 예정]
+5. [Spring Cloud 3 - Hystrix, Bus]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA5)
+6. [Spring Cloud 4 - API Gateway]({{ site.url }}{{ site.studybase }}{{ category | downcase  }}/MSA6)
 
 
 
@@ -39,12 +39,20 @@ title: Mircroservices with Spring Cloud  - Ken Krueger
 
 ---
 
-- 1시간 강의를 3~4시간 듣는 것 같습니다.
-  
-  - 새로운 지식이 쏟아집니다.
-  - 영어 강의입니다.
-  - 포스팅을 위해 정리 해야합니다.
-  
+- 좋았던 점
+  - 강의 목적에 충실한 강의입니다. MSA가 어떤 것이고 MSA를 이루는 구성요소들이 어떤 역할을 하는지 짧고 함축적으로 배울 수 있었습니다.
+  - MSA가 저 같은 주니어 개발자는 덤비지 못할 영역이라고 생각했는데 막상 들어보니 그렇게 덤비지 못할 영역까진 아니라고 생각하게 됐습니다.
+  - 스택오버플로우와 레퍼런스에 빠지기 전에 준비운동으로 적합한 것 같습니다.
+- 아쉬웠던 점
+  - 강의 슬라이드가 안보이길래 제공 안해주나 싶었는데 마지막 강의 강의자료에 전체 강의 슬라이드를 넣어 놨습니다. 의도한건지... 🤔🤔
+  - 실습 과제가 너무 간단합니다. 어차피 실습 과제 따로 영상 안찍으시는거 많이 시키고 소스 좀 많이 넣어주시지..
+
+
+
+## 여담
+
+---
+
 - 영어 강의를 들을 때 가장 힘든 점은 귀로 영어를 들어면서 한글 타이핑이 안 된다는 것입니다.🤣🤣 뇌가 싱글 코어밖에 안돼서 이걸 영어에 맞춰야 할 지 한글에 맞춰야 할 지 헷갈려 하는 것 같습니다.
 
 - 두 번째로 힘든 점은 하루에 영어 청취 한계가 3시간 남짓 하다는 것입니다. 3시간 이상 들으면 정신이 혼미해집니다.
