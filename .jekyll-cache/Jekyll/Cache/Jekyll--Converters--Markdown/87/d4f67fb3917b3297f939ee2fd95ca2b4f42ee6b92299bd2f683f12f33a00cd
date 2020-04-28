@@ -1,0 +1,125 @@
+I"
+<ul>
+  <li>저번에 폴더 구조를 개편 하려다가 DAO, Service, DTO, Map 등등.. 에 관해서만 조사하다가 끝났습니다. 어차피 MSA 구조를 적용하려면 폴더는 자연스럽게 개편될 것 같아 폴더 구조 개편은 멈추고 MSA에 관한 스터디를 먼저 진행했습니다.</li>
+  <li>
+    <p>MSA 설계를 위해 Sagyo의 기존 파일들과 url을 분석해 봤습니다.</p>
+  </li>
+  <li>기존 Sagyo 파일 분류</li>
+  <li>기존 Sagyo url 분류</li>
+  <li>MSA에 필요한 서비스 목록</li>
+  <li>서비스별 기존 url 분류</li>
+  <li>기존 url을 REST url로 개편</li>
+</ul>
+
+<h2 id="1-기존-sagyo-파일-분류">1. 기존 Sagyo 파일 분류</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>기존의 모든 *.java의 리스트를 뽑아봤더니  14개의 컨트롤러, 12개의 DAO, 14개의 DTO, 1개의 유틸 파일이 나왔습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>~Controller.java</th>
+          <th>~DAO.java</th>
+          <th>~DTO.java</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Badge</td>
+          <td>IBadge</td>
+          <td>Badge</td>
+        </tr>
+        <tr>
+          <td>Cs</td>
+          <td>ICs</td>
+          <td>Cs</td>
+        </tr>
+        <tr>
+          <td>Follow</td>
+          <td>IFollow</td>
+          <td>Follow</td>
+        </tr>
+        <tr>
+          <td>Message</td>
+          <td>IMessage</td>
+          <td>Message</td>
+        </tr>
+        <tr>
+          <td>LogIn</td>
+          <td>IInter</td>
+          <td>Inter</td>
+        </tr>
+        <tr>
+          <td>Main</td>
+          <td>IJoin</td>
+          <td>Join</td>
+        </tr>
+        <tr>
+          <td>FindIdPw</td>
+          <td>IAddr</td>
+          <td>Addr</td>
+        </tr>
+        <tr>
+          <td>Mypage</td>
+          <td>IPost</td>
+          <td>Post</td>
+        </tr>
+        <tr>
+          <td>MyProfile</td>
+          <td>IReport</td>
+          <td>Report</td>
+        </tr>
+        <tr>
+          <td>PostReadHost</td>
+          <td>IReview</td>
+          <td>Review</td>
+        </tr>
+        <tr>
+          <td>PostReadJoin</td>
+          <td>IUser</td>
+          <td>User</td>
+        </tr>
+        <tr>
+          <td>PostWrite</td>
+          <td>IWithdrawal</td>
+          <td>Withdrawal</td>
+        </tr>
+        <tr>
+          <td>Search</td>
+          <td><strong>Util 클래스</strong>(*.java)</td>
+          <td>PointLog</td>
+        </tr>
+        <tr>
+          <td>Singup</td>
+          <td>MorphemeAnalyze</td>
+          <td>Search</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="2-기존-url-분류">2. 기존 url 분류</h2>
+
+<hr />
+
+<ul>
+  <li>기존 컨트롤러들에서 요청 url들을 모두 정리해 보니 84개의 url이 나왔습니다.</li>
+</ul>
+
+<h2 id="3-필요한-service-목록">3. 필요한 Service 목록</h2>
+
+<hr />
+
+<ul>
+  <li>MSA 강의와 현재 Sagyo의 기능을 바탕으로 필요한 서비스들을 모두 나열해 보았습니다.
+    <ul>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+:ET
