@@ -1,194 +1,19 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
-  <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>
-    
-      프로젝트 디렉토리 구조 정리 - 사전조사 &middot; 이기승의 끄적끄적..
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/lanyon.css">
-<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/public/favicon.ico">
-
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-</head>
-
-
-  <body>
-    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
-     styles, `#sidebar-checkbox` for behavior. -->
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
-
-<!-- Toggleable sidebar -->
-<div class="sidebar" id="sidebar">
-  <!-- Profile -->
-  <div class="sidebar-item sidebar-profile-box">
-    <img class="sidebar-profile-image" src="/public/image/About%20Me/sidebar_profile.png">
-    <div class="sidebar-profile-description">
-      <span>
-         잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
-      </span>
-    </div>
-  </div>
-  <!-- Profile End -->
-
-  <nav class="sidebar-nav">
-    <!-- Home -->
-    <a class="sidebar-nav-item" href="/">Home</a>
-    <!-- Home End -->
-    <!-- Posts -->
-    
-    
-      
-        <!-- 1 depth post -->
-        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About%20Me">About Me</a>
-      
-    
-      
-        <!-- 1 depth post -->
-        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily%20Thoughts">Daily Thoughts</a>
-      
-    
-      
-        <input id="Projects" class="toggle" type="checkbox">
-        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
-        <div class="collapsible-content subcategories">
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Hwangmaesan">Hwangmaesan</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/The_Oyster_Mine">The_Oyster_Mine</a>
-          
-        
-        </div>
-      
-    
-      
-        <input id="Study" class="toggle" type="checkbox">
-        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
-        <div class="collapsible-content subcategories">
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http%20The%20Definitive%20Guide">Http The Definitive Guide</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/C_Kim_Pope">C_Kim_Pope</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/MSA_Ken_Krueger">MSA_Ken_Krueger</a>
-          
-        
-        </div>
-      
-    
-      
-        <input id="Googling" class="toggle" type="checkbox">
-        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
-        <div class="collapsible-content subcategories">
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/java">java</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/jekyll">jekyll</a>
-          
-        
-          
-            <!-- 2 depth post -->
-            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/linux">linux</a>
-          
-        
-        </div>
-      
-    
-    <!-- Posts End -->
-  </nav>
-
-  <!-- sidebar bottom -->
-  <div class="sidebar-item">
-    <p>
-      © 2020. All rights reserved.
-    </p>
-  </div>
-  <!-- sidebar bottom end -->
-</div>
-
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title" style="font-weight: normal;">
-            <a href="/" title="Home">이기승의 끄적끄적..</a>
-            <small>개발 및 잡다한 포스팅</small>
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
-        <div class="post">
-  <h1 class="post-title">프로젝트 디렉토리 구조 정리 - 사전조사</h1>
-  <span class="post-date">18 Apr 2020</span>
-  
+I"�e
 <ul>
   <li> 프로젝트를 진행할 때도 너무 꼴 뵈기 싫었지만, 당시 프로젝트는 하루 하루가 소중했기 때문에 디렉토리 구조를 바꿀 엄두를 못냈습니다.
     <h2 id="1-현재-디렉토리-구조">1. 현재 디렉토리 구조</h2>
   </li>
 </ul>
 
-<hr>
+<hr />
 
-<p class="p_img"><img src="/public/image/Sagyo_Reboot/dir_now.png" alt="dir_now.png" width="50%"></p>
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/dir_now.png" alt="dir_now.png" width="50%" /></p>
 
 <ul>
   <li> 일단 한 폴더 안에 DAO, DTO, Controller, Service 모두 있는 것도 이해가 안되지만, 그 한 폴더가 왜 test.mybatis인지는… 왜 그랬을까요?</li>
 </ul>
 
-<p class="p_img"><img src="/public/image/Sagyo_Reboot/dir_now2.png" alt="dir_now2.png" width="50%"></p>
+<p class="p_img"><img src="/public/image/Sagyo_Reboot/dir_now2.png" alt="dir_now2.png" width="50%" /></p>
 
 <ul>
   <li> WebContent는 그나마 나은 편이지만 jsp 파일도 조금 분리해 줄 필요가 있는 것 같습니다.</li>
@@ -196,7 +21,7 @@
 
 <h2 id="2-목표-디렉토리-구조">2. 목표 디렉토리 구조</h2>
 
-<hr>
+<hr />
 
 <ul>
   <li>
@@ -205,8 +30,7 @@
   <li>
     <p> 예전에 실무에 나가서 썼던 구조가 직관적으로 사용하기 편하기도 하고, 구글링 해보니 해당 구조를 따르는 사람들도 꽤 있는 것 같아 그 구조를 가져오기로 했습니다.</p>
 
-    <div class="highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>com
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>com
  └ Sagyo
      └ user
          └ DAO
@@ -240,7 +64,7 @@
 
 <h2 id="3-의문점">3. 의문점</h2>
 
-<hr>
+<hr />
 
 <ul>
   <li> 그런데 프로젝트 구조를 생각해보니 의문점들이 생겼습니다.</li>
@@ -279,8 +103,7 @@
   <li>
     <p> 그런데 지금 Sagyo 프로젝트에선 DAO의 인터페이스를 만들고, MyBatis의 SqlSessionTemplate을 이용해 DAO 인터페이스에 주입하는 방식으로 구성되어 있습니다. CRUD중 CRD는 어차피 한 쿼리에서 한 테이블을 건드리니 상관 없지만 Read 같은 경우 아래와 같은 쿼리가 나오게 됐습니다.</p>
 
-    <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span>
 <span class="p">(</span>
     <span class="k">SELECT</span> <span class="n">POSTID</span><span class="p">,</span> <span class="n">USERID</span><span class="p">,</span> <span class="n">NICKNAME</span><span class="p">,</span> <span class="n">TITLE</span><span class="p">,</span> <span class="n">CONTENTS</span><span class="p">,</span> <span class="n">MEETDATE</span><span class="p">,</span> <span class="n">ADDRSINAME</span><span class="p">,</span> <span class="n">ADDRGUNAME</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">URLBAD</span>
@@ -306,8 +129,7 @@
   <li>
     <p> 그리고 Service의 존재를 모르던 저희는 Service가 해야할 일을 Controller에 시켜버렸고 Controller엔 아래와 같은 일이 벌어졌습니다.</p>
 
-    <div class="language-java highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/opbadge.action"</span><span class="o">,</span> <span class="n">method</span><span class="o">=</span><span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/opbadge.action"</span><span class="o">,</span> <span class="n">method</span><span class="o">=</span><span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
 <span class="kd">public</span> <span class="nc">String</span> <span class="nf">opBadgeList</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">,</span> <span class="nc">String</span> <span class="n">userId</span><span class="o">)</span>
 <span class="o">{</span>
     <span class="nc">IBadgeDAO</span> <span class="n">dao</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="nc">IBadgeDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
@@ -356,8 +178,7 @@
       <li>너도 나도 하나씩 추가하다 보니 가장 비대해져버린 게시글DTO입니다.</li>
     </ul>
 
-    <div class="language-java highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PostDTO</span>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PostDTO</span>
 <span class="o">{</span>
 	<span class="kd">private</span> <span class="nc">String</span> <span class="n">userId</span><span class="o">;</span>
 	<span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
@@ -471,7 +292,7 @@
 
 <h2 id="4-아이고-골이야">4. 아이고 골이야..</h2>
 
-<hr>
+<hr />
 
 <ul>
   <li>
@@ -480,75 +301,13 @@
     <ol>
       <li> VO를 사용해야할 곳에 DTO를 사용하고 있었습니다. DTO도 테이블 단위로 쪼개 VO로 만들어야 될 것 같습니다. VO로 표현하기 어려운 곳엔 Map을 사용해야 할 것 같습니다.</li>
       <li> Service가 할 일을 Controller가 하고 있었습니다. Controller에서 여러 DAO를 호출하던 걸 Service로 묶어야 겠습니다.</li>
-      <li> 지금과 같은 ‘Controller - Service - DAO - DTO/VO’ 구조에서 Service 가 관습적으로 쓰이는 경우가 많고(기능이 단순해 Service로 묶을 필요 없거나 Sagyo처럼 Controller에서 Service 역할을 해버리기도 하고), 이를 대체하는 DDD 패턴 같은 것도 있고.. 역시 개발자의 길은 멀고 험하구나.. <img class="emoji" title=":sweat_smile:" alt=":sweat_smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png" height="20" width="20">
-</li>
+      <li> 지금과 같은 ‘Controller - Service - DAO - DTO/VO’ 구조에서 Service 가 관습적으로 쓰이는 경우가 많고(기능이 단순해 Service로 묶을 필요 없거나 Sagyo처럼 Controller에서 Service 역할을 해버리기도 하고), 이를 대체하는 DDD 패턴 같은 것도 있고.. 역시 개발자의 길은 멀고 험하구나.. :sweat_smile:</li>
     </ol>
 
-    <p class="p_img"><img src="/public/image/Sagyo_Reboot/headache.jpg" alt="headache.jpg"><small> 1시간 안에 쓱싹 할 줄 있을 줄 알았는데…</small></p>
+    <p class="p_img"><img src="/public/image/Sagyo_Reboot/headache.jpg" alt="headache.jpg" /><small> 1시간 안에 쓱싹 할 줄 있을 줄 알았는데…</small></p>
   </li>
-  <li> 또 다른 걱정은 6명 분량의 어플리케이션을 혼자 수정해야 한다는 것입니다.<img class="emoji" title=":scream:" alt=":scream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png" height="20" width="20">
-</li>
+  <li> 또 다른 걱정은 6명 분량의 어플리케이션을 혼자 수정해야 한다는 것입니다.:scream:</li>
   <li> 한 편의 포스팅에 조사 및 수정을 다 담으려 했는데 포스팅이 길어져 두 편으로 나눠야겠습니다!</li>
 </ul>
 
-
-</div>
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/posts/study/msa_ken_krueger/MSA6/">
-            Microservices with Spring Cloud 6 - API Gateway (Zuul)
-            <small>25 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/study/msa_ken_krueger/MSA5/">
-            Microservices with Spring Cloud 5 - Spring Cloud Hystrix, Bus
-            <small>25 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/study/msa_ken_krueger/MSA4/">
-            Microservices with Spring Cloud 4 - Spring Cloud Eureka, Ribbon, Feign
-            <small>25 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
-</div>
-
-      </div>
-    </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
-
-          checkbox.checked = false;
-        }, false);
-      })(document);
-    </script>
-  </body>
-</html>
+:ET
