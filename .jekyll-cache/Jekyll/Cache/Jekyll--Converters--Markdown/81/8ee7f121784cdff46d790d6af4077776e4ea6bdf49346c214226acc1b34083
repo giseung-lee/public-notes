@@ -1,0 +1,46 @@
+I"b
+<h2 id="근본-찾기-프로젝트">근본 찾기 프로젝트</h2>
+
+<hr />
+
+<ul>
+  <li> 프로그래밍을 시작한지 1년이 지난 시점에서 갑자기 C 언어 강의를 듣는 이유는 ‘근본 찾기 프로젝트’의 일환입니다.</li>
+  <li> 본 포스팅은 Kim Pope 선생님의 <a href="https://www.udemy.com/course/c-unmanaged-programming-by-pocu/">C 언매니지드 프로그래밍</a>강의를 정리한 것입니다.</li>
+</ul>
+
+<p class="p_img"><img src="/public/image/C_Kim_Pope/main.png" alt="imgurl" /><small>출처 : https://www.udemy.com/course/c-unmanaged-programming-by-pocu/</small></p>
+
+<ul>
+  <li> 본 강의의 개인적인 <strong>학습 목표는 언매니지드 언어를 학습해 하드웨어 수준에서 코드가 어떻게 돌아가는지, 하드웨어 수준에서 어떤 코드가 좋은 코드인지 아는 것</strong>입니다. (C 개발자가 되고자 함이 아닙니다.)</li>
+  <li> 총 14장, 342개, 38시간 분량의 강의입니다. 포스팅은 각 장별로 나눠 올립니다.</li>
+</ul>
+
+<h2 id="목록">목록</h2>
+
+<hr />
+
+<ol>
+  <li><a href="http://localhost:4000/posts/study/c_kim_pope/C1">과목 소개</a></li>
+  <li><a href="http://localhost:4000/posts/study/c_kim_pope/C2">C언어 기본 문법 1</a></li>
+  <li><a href="http://localhost:4000/posts/study/c_kim_pope/C3">C언어 기본 문법 2</a>, <a href="http://localhost:4000/posts/study/c_kim_pope/C3-2">빌드 단계</a></li>
+  <li><a href="http://localhost:4000/posts/study/c_kim_pope/C4">포인터</a></li>
+  <li>C 스타일 문자열, 출력</li>
+  <li>콘솔 입력, 파일 입출력, 커맨드 라인 인자</li>
+  <li>구조체, 공용체, 함수 포인터</li>
+  <li>가변 인자 함수, 올바른 오류 처리 방법</li>
+  <li>레지스터, 스택&amp;힙, 동적 메모리, 다중 포인터</li>
+  <li>자료구조</li>
+  <li>전처리기</li>
+  <li>나만의 라이브러리 만들기, C99</li>
+  <li>C99, C11</li>
+  <li>Type-Generic 함수 만들기, 정적어서트, 메모리 정렬, 멀티스레딩</li>
+</ol>
+
+<h2 id="후기">후기</h2>
+
+<hr />
+
+<ul>
+  <li>다 듣고 작성 예정</li>
+</ul>
+:ET
