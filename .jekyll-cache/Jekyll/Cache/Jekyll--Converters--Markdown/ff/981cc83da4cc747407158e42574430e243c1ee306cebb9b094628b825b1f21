@@ -1,0 +1,37 @@
+I"�
+<h2 id="sagyo-reboot-firefirefire">Sagyo-Reboot :fire::fire::fire:</h2>
+<hr />
+
+<ul>
+  <li>
+    <p>Sagyo-Reboot 프로젝트는 2019.06~2019.07에 진행한 Sagyo 프로젝트를 업그레이드하는 프로젝트입니다.</p>
+  </li>
+  <li>
+    <p>본 프로젝트는 끝이 없는 프로젝트로, 적용해보고 싶은 기술이 있을 때 적용해 보는 곳입니다.</p>
+  </li>
+</ul>
+
+<h2 id="목차">목차</h2>
+<hr />
+
+<p><a href="/posts/projects/sagyo_reboot/Sagyo1/"> 1. 기존 Sagyo 프로젝트 알아보기. </a></p>
+
+<p><a href="/posts/projects/sagyo_reboot/Sagyo2/"> 2. 프로젝트 디렉토리 구조 정리 - 사전조사 </a></p>
+
+<p><a href="/posts/projects/sagyo_reboot/Sagyo3/"> 3. 디렉터리 구조 개편 및 MSA 설계 </a></p>
+
+<p><a href="/posts/projects/sagyo_reboot/Sagyo4/"> 4. Sagyo MSA 개편 1 - common, contact 서비스 </a></p>
+
+<h2 id="예정---다-할-수-있을까-후-">예정  <small><small>( 다 할 수 있을까?.. 후… ) </small></small></h2>
+<hr />
+<ul>
+  <li><del>프로젝트 폴더 구조 정리 (현재는 한 폴더에 모든 파일…)</del></li>
+  <li>자바스크립트 정리</li>
+  <li><del>DTO를 VO, Map 뭘 써야 할까</del></li>
+  <li><del>Ant 혹은 Maven 적용 (현재는 모조리 수동…)</del></li>
+  <li>작업은 윈도우로, 서비스는 리눅스로 엑소더스! (실제 서비스 할 건 아니지만, 개발서버와 운영서버를 나눠 보는 차원에서)</li>
+  <li>OAuth2.0 혹은 JWT로 로그인 인증 방식 변경 (현재는 로그인 성공시 세션에 유저 id 넣어두고, 요청 올때 세션을 검사)</li>
+  <li>MSA 구조 적용 - <del>contact, common,</del> oauth, user, post, search, web client, config, api gateway</li>
+</ul>
+
+:ET
