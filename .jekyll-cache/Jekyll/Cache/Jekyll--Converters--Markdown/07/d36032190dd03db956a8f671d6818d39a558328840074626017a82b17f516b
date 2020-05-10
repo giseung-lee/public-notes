@@ -1,0 +1,298 @@
+I"�S
+<p>본 About Me 페이지는 구직 기간용 <strong><em>TMI가 가득한 버전의 About Me</em></strong> 입니다! :muscle:</p>
+
+<h2 id="안녕하세요">안녕하세요!</h2>
+
+<hr />
+
+<p> 안녕하세요 주니어 개발자 이기승입니다. 서울대학교에서 조경학을 전공한 뒤 2019년 부터 본격적으로 프로그래밍을 배우기 시작했습니다.  2019.09 ~ 2020.03 7개월 간 이미지 인식 관련 솔루션 회사에 다니다 퇴사한 후, 현재 공부를 하며 구직중입니다.</p>
+
+<p> 앞으로 저에대한 소개는 아래의 순서로 진행하겠습니다. 순서는 크게 상관 없으니 관심있는 태그를 따라오셔도 됩니다.</p>
+
+<ul>
+  <li><a href="#조경학을-선택한-이유와-떠난-이유">조경학을 선택한 이유와 떠난 이유</a></li>
+  <li><a href="#방황의-시기">방황의 시기</a></li>
+  <li><a href="#개발자가-된-계기">개발자가 된 계기</a></li>
+  <li><a href="#학원-출신-프로그래머">학원 출신 프로그래머?</a></li>
+  <li><a href="#프로젝트-및-경력">프로젝트 및 경력</a></li>
+  <li><a href="#사용-가능-기술">사용 가능 기술</a></li>
+  <li><a href="#강점-및-약점">강점 및 약점</a></li>
+  <li><a href="#관심-있는-분야">관심 있는 분야</a></li>
+  <li><a href="#가치관">가치관</a></li>
+</ul>
+
+<h2 id="조경학을-선택한-이유와-떠난-이유">조경학을 선택한 이유와 떠난 이유</h2>
+
+<hr />
+
+<p> 저는 제가 공대생이 될 줄 알았습니다. 어릴 적엔 흔히 그렇듯 과학자가 꿈이었고, 고등학생 땐 명확한 꿈은 없었지만 막연히 공대생이 되겠구나 생각했습니다.</p>
+
+<p> 그러던 와중, 고등학교 3학년 때 건축가 가우디에 관한 다큐멘터리를 보게됩니다. 미적 감각과 공학적 지식을 자유자재로 넘나드는 가우디를 보고 건축계열에 꽂혀버렸습니다.<del>(그러지 말았어야 했습니다…)</del> 수능을 보고 지원 가능한 곳을 쭉 훑어보다가 조경학과가 눈에 들었왔고 많은 고등학생들이 그러하듯이 충동적으로 지원하게 됐습니다.</p>
+
+<p class="p_img"><img src="/public/image/About Me/guell_park.jpg" alt="guell_park.jpg" /><small>조경학도가 되면 모두 이런 공원을 만들 수 있을 줄 알았습니다. (출처 : https://parkguell.barcelona/) </small></p>
+
+<p> 조경학과의 생활은 재미있었습니다. 수학, 과학이 전부인 줄 알았던 고등학생이 디자인을 하고, 문화와 역사를 탐구하고, 뉴스와 보고서를 뒤지고 있었습니다.</p>
+
+<p> 일주일에 한, 두번은 캐드, 라이노, 포토샵, 일러스트레이터와 씨름하며 밤을 샜지만 그것도 재미있었습니다. 무언가에 몰입할 때 느낄수 있는 고양감을 매주 느낄 수 있었습니다.</p>
+
+<p class="p_img"><img src="/public/image/About Me/all_panels.png" alt="all_panels.png" /><small>조경학과에서 만든 판넬들. 2~3개 없어진 것 같은데..</small></p>
+
+<p> 그러던 저도 4학년이 되고 이제 직업을 가져야 할 때가 되었습니다. 하지만 고민이 됐습니다. 직업은 단순히 흥미만으로 결정할 순 없었기 때입니다. 흥미도 중요하겠지만 현업에선 무슨 일을 하는지, 현재 시장 상황은 어떻고 앞으로의 전망은 어떤지 등을 생각해야 했습니다.</p>
+
+<p> 조경학을 배우는건 재미있었지만 조경학과 현업에서 조경이 하는일은 괴리가 컸고, 현재 시장 상황은 안좋았으며 앞으로도 좋아질 전망은 아니었습니다. 다른 직업을 찾는게 좋겠다고 생각하고 조경을 떠나게 됩니다.</p>
+
+<h2 id="방황의-시기">방황의 시기</h2>
+
+<hr />
+
+<p>  2018년 2월 졸업을 하고 다른 직업을 찾기 위한 방황의 시기에 들어갑니다. 가장 먼저 한 일은 대학원을 나와 연구원이 되는 것이었습니다. 조경학과에 환경 분야를 다루는 연구실이 있었고 당시 교수님께서 저를 꽤나 마음에 들어하셨습니다. 물리를 잘하고 파이썬을 잘 다룬다는 이유때문이었습니다.</p>
+
+<p class="p_img"><img src="/public/image/About Me/kyosoo_want_you.png" alt="kyosoo_want_you.png" class="center" /><small>교수는 너를 원한다!!</small></p>
+
+<p> 당시 그 연구실에선 소프트웨어를 수동으로 조작하는 방식에서 이제 막 벗어나 프로그래밍을 이용해 연구를 시작하고 있었습니다.</p>
+
+<p> 학부생들에게도 파이썬을 이용해서 ArcGIS라는 소프트웨어를 다루는 방법을 알려줬고, 제가 학부생들 중에선 파이썬을 꽤 유용하게 사용하고 있었습니다. 그래서 교수님께서 저에게 한번 대학원 보조연구원(인턴)을 해보고, 연구가 재미있으면 연구실에 들어오라고 제안해주셨습니다.</p>
+
+<p class="p_img"><img src="/public/image/About Me/arcpy.png" alt="arcpy.png" class="center" /><small>Python과 ArcGIS. 그리고 ArcGIS의 Python라이브러리인 ArcPy</small></p>
+
+<p> 그 곳에서 8개월 가량을 보냈지만, 환경분야 연구는 제 적성이 아니었습니다. 환경 분야의 특성상 연구의 성과가 가시적으로 보이지 않았고, 흔히 말하는 연구를 위한 연구도 많았기 때문입니다.</p>
+
+<p class="p_img"><img src="/public/image//About Me/lecca.png" alt="lecca.png" class="center" /><small>당시 연구실에서 하던 작업</small></p>
+
+<p> 그렇게 대학원을 나오고 마음이 약해진 저는 너도나도 해본다는 공무원 공부를 하게됩니다. 뭔가 일의 성과가 눈에 보이고, 의미 있는 일을 하고 싶던 저는 소방 간부를 준비하게 됩니다. 2년전부터 운동에 심취해 있던 터라 실기 시험 준비를 핑계로 운동도 할 수 있어서 좋았습니다.</p>
+
+<p> 하지만 운동이 과했던 탓일까요. 허리디스크와 척추분리증이 터지고 말았습니다. :scream: 검사 결과, 뼈에 10명에 1명정도는 있는, 흔한 유전적 결함이 있었고, 보통은 나이가 들어 문제가 되는데 과도한 운동으로 일찌감치 터지게 된 것이었습니다.</p>
+
+<p> 소방간부와 제 허리를 맞바꿀 순 없었기 때문에 소방간부 역시 3개월만에 막을 내리고 맙니다. 하는 것 마다 모두 안되는 조금 비참한 시기였습니다.</p>
+
+<h2 id="개발자가-된-계기">개발자가 된 계기</h2>
+
+<hr />
+
+<p> 학부생 시절부터 프로그래밍과 개발자에 대한 관심이 있었습니다. 대학교 3학년 때 쯤 수업에서 파이썬을 처음 접했고, 여름방학엔 위에서 언급한 대학원에서 진행한 파이썬 스터디에 참여 했습니다.</p>
+
+<p> 제 전공인 조경은 주민들의 이해관계, 디자인, 문화 등 논리로 설명되지 않는 요소들이 많았는데, 프로그래밍은 논리적으로 전개한대로 구현하기만 하면 돌아가니 너무 속이 시원했습니다! (물론 안돌아 갈때는… :disappointed_relieved: )</p>
+
+<p class="p_img"><img src="/public/image//About Me/first_python.png" alt="first_python.png" /><small>프로그래밍으로 처음 해본 의미있는 작업</small></p>
+
+<p> 그리고 어깨너머로 보는 개발자들의 세계도 멋져 보였습니다. 같은 대학생임에도 벌써부터 사회에 의미있는 것들을 만들어내는 대학생 개발자들을 보며 개발자는 무척 흥미로운 직업이라고 생각했습니다.</p>
+
+<p> 하지만 개발자로 진로를 바꾸기 까지 심리적 장벽이 있었습니다. 인터넷에서 볼 수 있는 비전공자 개발자에 대한 부정적인 글들이었습니다. ‘학원 출신은 서류에서부터 거른다.’, ‘몸값 저렴할 때 땔감처럼 쓰다가 버려진다.’, ‘아무리 잘해봐야 한계가 있다.’ 등의 글이었습니다. 이런 글들 때문에 바로 개발자로 전향하지 못하고 이곳 저곳 방황했었습니다.</p>
+
+<blockquote>
+  <p> 취업을 하면 정작 들어가는 곳은 개발자가 아닌 똑같은 코딩만 반복적으로 입력하는 단순 코더로 취업 하게 됩니다.</p>
+
+  <p>.. (중략) ..</p>
+
+  <p> 초봉 1800으로 프로젝트가 주어지지 않아 제대로 된 경력과 경험도 쌓을 수 없고 포트폴리오에 넣을 수 있는 무엇도 없어 이직시에 연봉협상을 하더라도 연봉을 올릴 수 있는 수단도 없습니다.</p>
+</blockquote>
+
+<p><small>국비지원에 관한 자극적인 글. 이런 글을 볼 때마다 겁이 들면서 동시에 오기가 생긴다.:smiling_imp:</small></p>
+
+<p> 방황하던 시기에 시도한게 모두 뜻대로 이루어지지 않자, 오기가 생겼습니다. ‘개발자가 돼서 그들이 맞나 틀리나 한 번 해보자!’ 라는 생각이었습니다.</p>
+
+<p> 개발자로 일하고 있는 친구에게 몇 차례 조언을 구했습니다. 그 친구가 ‘그런 글들은 실력이 없는 사람들이 쓰는 푸념이다. 자기 주변에도 잘하고 인정받는 비전공자 개발자가 많다. 네가 그런 취급을 받게 된다면, 그건 실력이 없어서이지 비전공자여서가 아니다.’라는 친구의 조언에 힘입어 개발자의 세계로 들어서게 됩니다.</p>
+
+<h2 id="학원-출신-프로그래머">학원 출신 프로그래머?</h2>
+
+<hr />
+
+<p> 개발자로의 이직을 꿈꾸는 학생들에게 국비지원 학원은 굉장히 달콤해 보입니다. 교육비까지 쥐어주며 웹 개발 전반에 대해 알려준다니 구미가 당길 수 밖에 없습니다. 하지만, 비전공자 중에서도 국비지원 출신 비전공자는 시선이 더 곱지 않았던 것 같습니다.</p>
+
+<p> 고민 끝에 국비지원 학원을 다니기 시작했고, 저는 굉장히 만족했습니다. 웹 개발의 시작과 끝을 얇고 빠르게 훑는 방식이어서 수업만 잘 이해해도 간단한 웹 서비스는 구현할 수 있었고, 더 깊게 파고들면 웬만한 학부 전공자보다 실무에 있어선 더 나을 것 같다고 생각합니다.</p>
+
+<p> 물론, 부정적인 의견들도 어느정도 용납이 되었습니다. 실제로 큰 의욕 없이 출석 도장만 찍는 학생도 있었고, 열심히 해도 따라오기 힘들어 하는 학생들도 있었습니다. 또, 스스로도 기초 지식에 부족함을 느끼면서 왜 비전공자는 한계가 있다고 했는지 이해하게 되었습니다.</p>
+
+<h2 id="프로젝트-및-경력">프로젝트 및 경력</h2>
+
+<hr />
+
+<ul>
+  <li><a href="http://localhost:4000/posts/Projects/Hwangmaesan/">2017.08, [짧] 황매산 등산경로 중첩분석</a>
+    <ul>
+      <li>다른 연구실 친구의 요청으로 500여 개의 등산경로 파일을 가공해 주었습니다.</li>
+      <li>20줄 남짓의 짧은 스크립트였지만, 프로그래밍을 이용해 처음으로 의미있는 일을 했습니다.</li>
+    </ul>
+  </li>
+  <li>2018.02 ~ 2018.08, 기후변화 적응형 도시열환경 설계시스템 기술 개발
+    <ul>
+      <li>서울대학교 경관생태학 및 기후변화 적응 연구실 근무 시절 맡은 프로젝트입니다.</li>
+      <li>python을 사용한 ArcGIS라는 프로그램의 자동화를 맡았습니다.</li>
+      <li>비록 프로그래밍은 arcpy라는 라이브러리를 조합하는 정도였지만, 프로그래밍을 처음으로 실무에 사용한 경험입니다.</li>
+    </ul>
+  </li>
+  <li><a href="http://localhost:4000/posts/projects/sagyo_reboot/Sagyo1/">2019.06~2019.07, Sagyo</a>
+    <ul>
+      <li>Java, Oracle, jsp, Spring, Apache/Tomcat을 사용했습니다.</li>
+      <li>학원에서 진행한 6인 프로젝트로, 소셜다이닝 웹 어플리케이션을 구현했습니다.</li>
+    </ul>
+  </li>
+  <li><a href="http://localhost:4000/posts/projects/twitch_chat_analysis/TCA1/">2019.08, Twitch Chat Analysis</a>
+    <ul>
+      <li>Node JS, MongoDB, Express, React, Redux 를 사용했습니다.</li>
+      <li>인터넷 방송 트위치의 채팅을 분석하여 다시보기의 최적지점을 찾아주는 웹 어플리케이션 프로젝트입니다.</li>
+    </ul>
+  </li>
+  <li>2019.09~2020.03, 인지소프트
+    <ul>
+      <li>C#을 이용한 PC 클라이언트 개발, 전자정부프레임워크를 이용한 관리자용 웹 페이지 개발을 맡았습니다.</li>
+      <li>인지소프트에서 이미지 서버(금융권의 서류를 이미지로 전산화 하는 것) 재구축 프로젝트, 전자문서 디지털 창구(요즘 은행에서 볼 수 있는 타블렛 화면 기반 전자문서) 프로젝트를 진행했습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="사용-가능-기술">사용 가능 기술</h2>
+
+<hr />
+
+<ul>
+  <li>아래와 같은 등급을 사용합니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">등급</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>기본 기능 구현에도 참고자료가 필요합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>기본 기능 구현 정도는 참고자료가 없이 가능합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>기술이 어떻게 동작하는 지 알고,<br /> 참고자료가 있다면 고급 기능도 구현할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">:star::star::star::star:</td>
+      <td>참고자료 없이도 고급 기능을 다룰 수 있습니다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>각 기술별 사용 능력은 다음과 같습니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>기술1</th>
+      <th style="text-align: center">등급1</th>
+      <th>기술2</th>
+      <th style="text-align: center">등급2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>언어) Java</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) HTML</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>언어) Python</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) CSS</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>언어) C#</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>웹) JavaScript</td>
+      <td style="text-align: center">:star::star::star:<span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>DB) Oracle / MySQL</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>Server) Apache</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>DB) Mongo DB</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>Server) WebtoB</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>Framework) Spring</td>
+      <td style="text-align: center">:star::star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>WAS) Tomcat</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+    <tr>
+      <td>Framework) Express</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+      <td>WAS) JEUS</td>
+      <td style="text-align: center">:star:<span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span><span style="filter: grayscale(1)">:star:</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="강점-및-약점">강점 및 약점</h2>
+
+<hr />
+
+<ul>
+  <li>강점
+    <ul>
+      <li>경쟁심이 강하다.</li>
+      <li>학습 속도가 빠르다.</li>
+      <li>2020.04.17 현재 코딩테스트 3전 3승</li>
+      <li>조경학에서 익혀온 잡기, 잡지식이 많다.</li>
+      <li>개발이 재미있고 소중한 분야라는 걸 전공자들보다 잘 안다.</li>
+    </ul>
+  </li>
+  <li>약점
+    <ul>
+      <li>이론적 지식이 부족하다.</li>
+      <li>프로젝트 경험이 부족하다.</li>
+      <li>프로그래밍 관련 인적 네트워크가 부족하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="관심-있는-분야">관심 있는 분야</h2>
+
+<hr />
+
+<p> 개발자로서의 저의 <strong>최종 목표는 한 웹 서비스의 모든 부분을 파악하고 지휘할 수 있는 실력을 갖춘 뒤 저의 회사를 설립하는 것입니다.</strong> 언제가 될 지, 어떤 사업 분야가 될 진 모르지만, 꼭 저의 회사를 만들고 싶습니다.</p>
+
+<p> 이를 이루기위한 단기적인 목표는 웹 백엔드를 익히는 것입니다. 프론트엔드는 유행하는 기술이 자주 바뀌니 나중에 프론트엔드 쪽이 직접적으로 필요할 때, 그때 인기 있는 프론트엔드 기술을 익힐 예정입니다.</p>
+
+<p> 인공지능 분야 역시 관심있습니다. 다만, 인공지능 분야를 직업으로 갖기 위해선 정말 많은 지식이 필요하다는 것을 알기 때문에 지금은 관심 정도만 두고 있습니다.</p>
+
+<h2 id="가치관">가치관</h2>
+
+<hr />
+
+<ul>
+  <li>전투력을 상승 시키는 니체와 관련한 구절들을 좋아합니다.
+    <ul>
+      <li>‘니체는 그리스도교나 불교와 달리 사람들 간의 호승심과 승부욕을 부정적으로 보지 않고, 오히려 그러한 심리나 욕망이 문화 발전의 원동력이 될 수 있다고 여겼습니다.’ <small>- 『사는 게 힘드냐고 니체가 물었다』, 박찬국</small></li>
+      <li>‘건강한 승부욕이 사회를 지배할 때만 그 사회는 활력이 넘치고 서로 간에 존경심이 넘치는 곳이 될 수 있을 것입니다.’ <small>- 『사는 게 힘드냐고 니체가 물었다』, 박찬국</small></li>
+      <li>‘전쟁을 일으키는 삶을 살도록 하라! 오래 연명하는 삶에 무슨 가치가 있는가?’<small>- 니체</small></li>
+      <li>‘나를 죽이지 못하는 것은 나를 더욱 강하게 만든다.’ <small>- 니체</small></li>
+    </ul>
+  </li>
+  <li>하지만 완벽한 자기통제가 되는 초인이 되어야 한다는 말엔 동의하지 않습니다. 인간은 환경에 따라 행동한다고 생각합니다.
+    <ul>
+      <li>‘우리는 마음을 형성하는 이 세 가지 뇌(전두엽, 변연계, 두정엽)를 각각 인간, 침프, 컴퓨터라고 부르겠다. ..(중략).. 이 세 개의 뇌는 함께 작동하지만, 서로 충돌하고 통제권을 놓고 다투는 경우가 많다. 그리고 종종 침프(변연계)가 승리를 거둔다!’ <small>- 『침프 패러독스』, 스티브 피터스</small></li>
+      <li>인간의 뇌 속엔 인간과 침팬지와 공존합니다. 침팬지는 강력해 의지로 누르는데 한계가 있습니다.(뇌과학에서 입증) 환경을 구성해 침팬지를 관리해야 합니다. 책 『침프 패러독스』를 강력 추천합니다.</li>
+    </ul>
+  </li>
+  <li>순수한 ‘열정’이 존재하는 지 의문입니다. 자기계발서, 미디어의 클리셰라고 생각합니다. 저는 아래의 구절을 따릅니다.
+    <ul>
+      <li>‘직업 만족의 가장 큰 조건은 ‘가슴이 뛰느냐’가 아니다. ‘정신이 참여할 수 있느냐’가 결정한다.’ <small>- 『타이탄의 도구들』 中 윌 맥어스킬 인터뷰</small></li>
+      <li>‘더 극단적으로 말하면 열정은 삶과 아무런 상관이 없다. 지금 하고 있는 일이 다양한 관점을 제시하고, 좋은 피드백을 주고, 자립심을 발휘하게 되며, 더 큰 세상에 자신이 기여하게 만드는지와 같은 이성적인 측정 기준이 중요하다.’ <small>- 『타이탄의 도구들』 中 윌 맥어스킬 인터뷰</small></li>
+    </ul>
+  </li>
+</ul>
+
+:ET
