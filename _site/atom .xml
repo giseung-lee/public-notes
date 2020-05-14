@@ -4,13 +4,572 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-05-12T11:26:17+09:00</updated>
+ <updated>2020-05-14T23:35:11+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Web Server와 WAS의 차이점</title>
+   <link href="http://localhost:4000/posts/googling/etc/WebServer-WAS/"/>
+   <updated>2020-05-14T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/WebServer-WAS</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 &lt;a href=&quot;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&quot;&gt;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&lt;/a&gt;를 참고하였습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;static-resource-vs-dynamic-resource&quot;&gt;Static Resource vs Dynamic Resource&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Web Server와 WAS의 차이를 알려면 Static Resource와 Dynamic Resource를 알아야 합니다.&lt;/li&gt;
+  &lt;li&gt;둘의 차이는 말 그대로 어떤 요청에도 변하지 않는 정적인 자원이냐, 요청에 따라 변하는 동적인 자원이냐입니다.&lt;/li&gt;
+  &lt;li&gt;Static Resource
+    &lt;ul&gt;
+      &lt;li&gt;예시 - 이미지, 비디오, 오디오, html 페이지, css파일, js 파일 등&lt;/li&gt;
+      &lt;li&gt;어떤 클라이언트가 요청하든 같은 Resource를 받게 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dynamic Resource
+    &lt;ul&gt;
+      &lt;li&gt;예시 - jsp, asp php 페이지 등&lt;/li&gt;
+      &lt;li&gt;요청한 클라이언트에 따라 바뀌는 자원입니다.
+        &lt;ul&gt;
+          &lt;li&gt;예를들어, 네이버 카페에 들어가면 로그인한 유저에 따라 가입한 카페의 내역이 다를 것이고, 마이페이지에 로드되는 내용들이 다를 것입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;web-server-vs-web-application-server&quot;&gt;Web Server vs Web Application Server&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 서버와 WAS의 차이를 정말 단순화 시켜 말한다면, 웹 서버는 Static Resource을 제공해주고, WAS는 Static, Dynamic Resource 모두를 제공해준다는 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;web-server&quot;&gt;Web Server&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시 - Apache, Nginx, IIS 등&lt;/li&gt;
+  &lt;li&gt;웹 서버는 클라이언트와 HTTP 메세지를 주고 받는 역할을 합니다.&lt;/li&gt;
+  &lt;li&gt;메세지를 주고 받을 때 따로 추가적인 처리가 필요하지 않은 Static Resource를 웹 서버 차원에서 제공해 줄 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;web-application-server&quot;&gt;Web Application Server&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시 - Tomcat, JBoss, JEUS 등&lt;/li&gt;
+  &lt;li&gt;WAS = 웹 서버 + 웹 컨테이너&lt;/li&gt;
+  &lt;li&gt;웹 컨테이너
+    &lt;ul&gt;
+      &lt;li&gt;웹 컨테이너란 jsp, asp, php 등 동적인 페이지를 만들어주는 어플리케이션을 실행시킬 수 있는 환경입니다.&lt;/li&gt;
+      &lt;li&gt;WAS는 jsp, asp 등의 실행 환경을 제공한다고 볼 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;web-server는-왜-필요할까&quot;&gt;Web Server는 왜 필요할까&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 WAS = Web Server + Web Container 라고 했습니다. 하지만 &lt;strong&gt;실제론 WAS 앞에 Web Server를 따로 두기도 합니다.&lt;/strong&gt; WAS에 Web Server가 있는데 왜 Web Server를 따로 둘까요?&lt;/li&gt;
+  &lt;li&gt;Web Server의 필요성
+    &lt;ul&gt;
+      &lt;li&gt;Static Resource 처리
+        &lt;ul&gt;
+          &lt;li&gt;Static Resource 요청이 WAS 까지 가지 않고 Web Server 단에서 처리되게 할 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;이를 통해 WAS의 부하를 줄일 수 있습니다. WAS는 Dynamic Resource를 처리하는 것으로도 부담이 큽니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;보안 강화
+        &lt;ul&gt;
+          &lt;li&gt;HTTPS 프로토콜 같은 경우 SSL 암복호화 처리를 해야 하는데 이를 WAS가 하지 않고 Web Server 단에서 처리해 줄 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;또한, 접근 허용 IP 관리를 앞의 Web Server 단에서 처리할 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;로드밸런싱
+        &lt;ul&gt;
+          &lt;li&gt;하나의 웹 서버 뒤에 여로 복제 WAS를 두어 로드밸런싱을 통해 각 WAS의 부담을 줄일 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;무중단 운영
+        &lt;ul&gt;
+          &lt;li&gt;여러 복제 WAS를 두고 새로운 WAS 배포시 차례차례 WAS를 배포해 무중단 운영을 이어갈 수도 있습니다.&lt;/li&gt;
+          &lt;li&gt;또한, 하나의 WAS가 죽어도 다른 WAS를 사용하도록 할 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;A/B 테스트
+        &lt;ul&gt;
+          &lt;li&gt;두 가지 버전의 UI의 유저 반응을 테스트할 때 한쪽 클라이언트 집단에겐 A버전의 WAS를, 다른 클라이언트 집단에겐 B버전의 WAS를 연결해 주어 A/B 테스트를 진행할 수도 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>인터프리터 언어? 컴파일 언어? - C, Java, Python, Javascript 빌드 및 실행 과정</title>
+   <link href="http://localhost:4000/posts/googling/etc/Interpreter-Compile-Language/"/>
+   <updated>2020-05-14T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/Interpreter-Compile-Language</id>
+   <content type="html">
+&lt;h2 id=&quot;인터프리터-언어-컴파일-언어&quot;&gt;인터프리터 언어? 컴파일 언어?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로그래밍을 배우면서 계속 헷갈렸던 개념이 있습니다. 언어를 인터프리터 언어 / 컴파일 언어로 나누는 것입니다.&lt;/li&gt;
+  &lt;li&gt;컴파일 언어는 받아들이기 쉬웠습니다. ‘실행 전에 컴파일이 되고, 컴파일된 파일로 실행한다.’&lt;/li&gt;
+  &lt;li&gt;하지만 인터프리터 언어들은 ‘인터프리터 언어’라는 개념으로 배운 내용이 Python, Javascript가 동작하는 원리와 잘 들어맞지 않았습니다.
+    &lt;ul&gt;
+      &lt;li&gt;인터프리터 언어는 프로그램 실행시 소스코드 한 줄 한 줄을 기계어로 바꿔 실행한다고 합니다.&lt;/li&gt;
+      &lt;li&gt;그런데 ‘How does Python works’를 찾아보니, Python 소스코드는 CPython으로 컴파일해 bytecode인 .pyc 파일을 만들어 .pyc를 Python VM에서 실행한다고 합니다.&lt;/li&gt;
+      &lt;li&gt;그런데 이는 Java를 java bytecode인 .class 파일로 만들고 JVM의 JIT 컴파일러로 실행하는 것과 같아 보였습니다. 그런데 Java는 컴파일 언어라고 합니다. 오잉?? 🤔🤔&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;그러던 와중 &lt;a href=&quot;https://soooprmx.com/archives/11330&quot;&gt;https://soooprmx.com/archives/11330&lt;/a&gt; 글을 읽게 됐고, C, Java, Python의 빌드 및 실행 과정을 구글링 해보며 어느 정도 정리가 된 것 같아 포스팅으로 남깁니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;인터프리터-언어-컴파일-언어--옛날-얘기&quot;&gt;인터프리터 언어? 컴파일 언어? 👉 옛날 얘기!&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;우선, 프로그래밍 언어를 인터프리터 언어 / 컴파일 언어로 나누는 분류는 잘못됐습니다. 프로그래밍의 초기에나 가능한 얘기이지, JIT 컴파일러, Virtual Machine 등의 등장 이후론 이와 같은 분류는 더이상 유효하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;컴파일 언어
+    &lt;ul&gt;
+      &lt;li&gt;‘컴파일’ 이란 한 언어에서 다른 언어로 변환 되는 것입니다.
+        &lt;ul&gt;
+          &lt;li&gt;C 소스코드를 컴파일 하면 (컴파일의 범위를 어디까지 잡느냐에 따라) 어셈블리 코드 혹은 기계어 코드가 나옵니다.&lt;/li&gt;
+          &lt;li&gt;Java 소스코드를 컴파일 하면 자바 바이트코드 (.class)가 나옵니다.&lt;/li&gt;
+          &lt;li&gt;Python 소스코드를 CPython으로 컴파일하면 .pyc 코드가 나오고 Jython으로 컴파일 하면 .class 코드가 나옵니다.&lt;/li&gt;
+          &lt;li&gt;Typescript는 Javascript로 컴파일 됩니다.&lt;/li&gt;
+          &lt;li&gt;Javascript는 엔진에 따라 다양하게 컴파일됩니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인터프리터 언어, 스크립트 언어라고 알고 있는 Python, Javascript, Typescript 모두 컴파일 과정을 거칩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인터프리터 언어
+    &lt;ul&gt;
+      &lt;li&gt;전통적인 의미의 인터프리터 언어는 컴파일 과정 없이 인터프리터에 의해 소스 코드가 바로 해석되어 실행됩니다.&lt;/li&gt;
+      &lt;li&gt;cmd나 bash같은 쉘이 대표적인 인터프리터 언어입니다.&lt;/li&gt;
+      &lt;li&gt;Python의 경우 쉘을 제공하기 때문에 인터프리터 언어로 분류되었던 것 같습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;c의-빌드-과정&quot;&gt;C의 빌드 과정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C의 빌드 과정은 수강중인 &lt;a href=&quot;https://www.udemy.com/course/c-unmanaged-programming-by-pocu/&quot;&gt;C 강의 - 빌드 단계&lt;/a&gt;를 참고하였습니다.&lt;/li&gt;
+  &lt;li&gt;C계열 언어의 조상이라고 할 수 있는 C는 다음과 같은 과정을 따라 빌드됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;전처리(preprocessing)
+        &lt;ul&gt;
+          &lt;li&gt;input : 소스코드(.h, .c) 👉 output : 확장된 소스코드(translation unit, .pre)&lt;/li&gt;
+          &lt;li&gt;담당 : 전처리기&lt;/li&gt;
+          &lt;li&gt;주석 제거, 매크로 확장(==텍스트 복붙), include 확장(==텍스트 복붙)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;컴파일(compilation)
+        &lt;ul&gt;
+          &lt;li&gt;input : 확장된 소스코드(translation unit, .pre) 👉 output : 어셈블리 코드(.s)&lt;/li&gt;
+          &lt;li&gt;담당 : 컴파일러&lt;/li&gt;
+          &lt;li&gt;소스코드를 어셈블리 코드로 변환&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;어셈블(assembling)
+        &lt;ul&gt;
+          &lt;li&gt;input : 어셈블리 코드(.s) 👉 output : 오브젝트 코드(.o)&lt;/li&gt;
+          &lt;li&gt;담당 : 어셈블러&lt;/li&gt;
+          &lt;li&gt;어셈블리어를 기계어로 변환&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;링크(linking)
+        &lt;ul&gt;
+          &lt;li&gt;input : 오브젝트 코드&lt;strong&gt;들&lt;/strong&gt;(.o) 👉 output : 실행 파일(.exe - 윈도우)&lt;/li&gt;
+          &lt;li&gt;담당 : 링커&lt;/li&gt;
+          &lt;li&gt;한 소스코드에서 다른 소스코드에 있는 함수를 호출하는 등의 행위가 오브젝트 코드까진 빈칸으로 남겨져 있습니다. 링크 과정에서 빈칸들에 알맞은 주소를 넣어줍니다. 모든 오브젝트 코드들을 연결해 하나의 실행 파일을 만듭니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;전처리, 컴파일, 어셈블을 합쳐 컴파일이라고 부르기도 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;java의-빌드-및-실행-과정&quot;&gt;Java의 빌드 및 실행 과정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자바의 빌드 및 실행 과정은 &lt;a href=&quot;http://tcpschool.com/java/java_intro_programming&quot;&gt;http://tcpschool.com/java/java_intro_programming&lt;/a&gt;를 참고했습니다.&lt;/li&gt;
+  &lt;li&gt;자바 파일의 빌드 및 실행 과정은 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;컴파일
+        &lt;ul&gt;
+          &lt;li&gt;input : 소스코드(.java) 👉 output : 자바 바이트코드(JVM이 이해할 수 있는 코드, .class)&lt;/li&gt;
+          &lt;li&gt;담당 : 컴파일러&lt;/li&gt;
+          &lt;li&gt;java 소스코드를 자바 바이트코드로 컴파일 합니다.&lt;/li&gt;
+          &lt;li&gt;컴파일 할 때 상세한 과정은 &lt;a href=&quot;https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-컴파일에서-실행까지-1/&quot;&gt;여기&lt;/a&gt;에 자세히 나와있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;실행 - JVM
+        &lt;ul&gt;
+          &lt;li&gt;클래스 로더
+            &lt;ul&gt;
+              &lt;li&gt;자바 바이트 코드는 JVM의 클래스 로더에 의해 JVM 메모리 상에 올라가게 됩니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;자바 인터프리터
+            &lt;ul&gt;
+              &lt;li&gt;기본적으론 자바 인터프리터가 자바 바이트 코드를 기계어로 해석해 실행 가능하도록 만듭니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;JIT(Just In Time) 컴파일러
+            &lt;ul&gt;
+              &lt;li&gt;인터프리터만으론 실행이 느리기 때문에 만들어진 것이 JIT 컴파일러 입니다. 자바 바이트 코드를 모두 기계어로 컴파일해 캐시해 둡니다. 한 번 기계어로 해석하는 건 인터프리터보다 느리지만, 컴파일한 바이트코드를 캐시해둬 다음 시행시엔 빠르게 수행됩니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;python-동작-과정&quot;&gt;Python 동작 과정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Python은 정말 자유분방합니다. C나 Java 같은 다른 언어도 다양한 컴파일러가 있지만 어느 정도는 유사한데, Python의 컴파일러들은 정말 다양합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Python의 컴파일러들&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;CPython
+        &lt;ul&gt;
+          &lt;li&gt;가장 기본적인 컴파일러이며 C로 구현되어 있습니다. &lt;a href=&quot;https://github.com/python/cpython&quot;&gt;https://github.com/python/cpython&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;.pyc로 컴파일 됩니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Jython에선 .class로 컴파일 되어 JVM에서 돌아갑니다.&lt;/li&gt;
+      &lt;li&gt;Pypy는 JIT 컴파일러 입니다.&lt;/li&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;javascript-동작-과정&quot;&gt;Javascript 동작 과정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>JAVA Garbage Collection</title>
+   <link href="http://localhost:4000/posts/googling/java/Garbage-Collection/"/>
+   <updated>2020-05-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/java/Garbage-Collection</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt; 본 포스팅은 네이버 D2의 &lt;a href=&quot;https://d2.naver.com/helloworld/1329&quot;&gt;Java Garbage Collection&lt;/a&gt;을 정리한 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gc란&quot;&gt;GC란?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메모리를 사용했으면 참조관계를 끊어 해제해야 합니다. C에선 malloc()으로 힙메모리를 할당하고 free()를 해주어 개발자가 직접 메모리 관리를 해줘야 하지만 자바에선 GC가 이를 해줍니다.&lt;/li&gt;
+  &lt;li&gt;GC란, 더이상 사용하지 않는 메모리의 참조관계를 끊어주는(메모리를 해제하는) 작업입니다.&lt;/li&gt;
+  &lt;li&gt;자바에서도 객체를 null로 둔다거나 System.gc()를 써서 직접 메모리를 해제할 수도 있지만, System.gc()는 잘못 쓰면 성능에 매우 큰 영향을 미치므로 웬만해선 사용을 금지합니다. (저는 사실 처음 봤습니다.. ㅎㅎ)&lt;/li&gt;
+  &lt;li&gt;Stop The World
+    &lt;ul&gt;
+      &lt;li&gt;GC를 실행하기 위해 JVM이 애플리케이션을 멈추는 것입니다. GC를 수행하는 쓰레드 외에 모든 쓰레드가 멈춥니다.&lt;/li&gt;
+      &lt;li&gt;GC튜닝의 핵심은 Stop The World의 시간을 줄이는 것입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gc가-일어나는-영역&quot;&gt;GC가 일어나는 영역&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GC는 힙 메모리에서 일어납니다. 그리고 힙 메모리는 객체의 지속 여부에 따라 아래와 같이 나뉩니다.
+    &lt;ul&gt;
+      &lt;li&gt;Young Generation
+        &lt;ul&gt;
+          &lt;li&gt;Eden&lt;/li&gt;
+          &lt;li&gt;Survivor1&lt;/li&gt;
+          &lt;li&gt;Survivor2&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Old Generation
+        &lt;ul&gt;
+          &lt;li&gt;Tenured&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Permanet Generation == Method Area&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Method Area라고 더 잘 알려져 있는 Perm 영역은 클래스 로드시 static 변수, intern 변수 등이 저장됩니다.&lt;/li&gt;
+  &lt;li&gt;Young / Old Generation이 구성되는 과정은 다음과 같습니다.
+    &lt;ul&gt;
+      &lt;li&gt;객체가 생성되면 Eden 영역에 들어있습니다.&lt;/li&gt;
+      &lt;li&gt;GC가 일어나고 살아남은 Eden의 객체는 Survivor중 하나로 이동합니다.&lt;/li&gt;
+      &lt;li&gt;GC가 일어나며 하나의 Survivor가 가득차면 그 중 살아남은 객체를 다른 Survivor영역으로 옮기고 가득찬 Survivor영역의 참조는 모두 끊깁니다.&lt;/li&gt;
+      &lt;li&gt;Survivor영역에서도 계속 살아남는 객체는 Tenured 영역으로 이동합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gc의-방식&quot;&gt;GC의 방식&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Young Generation에서 GC가 일어나는 방식엔 다음과 같은 것들이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;bump-the-pointer&lt;/li&gt;
+      &lt;li&gt;TLABs(Thread-Local Allocation Buffers)
+        &lt;ul&gt;
+          &lt;li&gt;bump-the-pointer는 다중 스레드 환경에서 스레드락이 걸릴수 있기 때문에 각 스레드마다 Eden영역의 작은 부분을 할당해주는 방법입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Old Generation에서 GC가 일어나는 방법은 JDK7을 기준으로 5가지 방법이 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;Serial GC&lt;/li&gt;
+      &lt;li&gt;Parallel GC&lt;/li&gt;
+      &lt;li&gt;Parallel Old GC (Parallel Compacting GC)&lt;/li&gt;
+      &lt;li&gt;Concurrent Mark &amp;amp; Sweep GC (이하 CMS)&lt;/li&gt;
+      &lt;li&gt;G1 (Garbage First) GC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>URL입력 부터 브라우저 출력까지</title>
+   <link href="http://localhost:4000/posts/googling/etc/Web-flow/"/>
+   <updated>2020-05-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/Web-flow</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;클라이언트의 URL 입력&lt;/li&gt;
+  &lt;li&gt;해당 URL에 대한 브라우저의 캐시 탐색&lt;/li&gt;
+  &lt;li&gt;DNS 서버에서 입력받은 도메인명에 대한 IP 주소 탐색
+    &lt;ul&gt;
+      &lt;li&gt;보통 하나의 도메인은 여러 IP를 갖는데 DNS 수준에서 로드밸런싱이 일어나기도 합니다. (라운드로빈 방식으로..)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;URL 파싱 (포트번호 찾고, 파라미터 정리하고 등등..)&lt;/li&gt;
+  &lt;li&gt;서버와 TCP 커넥션 연결
+    &lt;ul&gt;
+      &lt;li&gt;3 way handshake - “SYN”, “SYN+ACK”, “ACK”&lt;/li&gt;
+      &lt;li&gt;바로 목적지 서버와 연결되는 경우는 거의 없습니다. 브라우저가 거치는 프록시, ISP업체의 캐시 서버, 요청한 url의 캐시 서버 등..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클라이언트의 HTTP 요청 발신
+    &lt;ul&gt;
+      &lt;li&gt;중간에 여러 캐시, 프록시, 게이트웨이를 거칩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버의 HTTP 요청 수신
+    &lt;ul&gt;
+      &lt;li&gt;IP 패킷의 checksum 검사 손상된 패킷 다시 요구, sequence 맞추기 등..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버의 웹 서버 / WAS를 거쳐 돌려줄 HTTP 메세지가 만들어집니다.&lt;/li&gt;
+  &lt;li&gt;서버의 HTTP 응답 발신&lt;/li&gt;
+  &lt;li&gt;클라이언트의 HTTP 응답 수신&lt;/li&gt;
+  &lt;li&gt;브라우저에 렌더링
+    &lt;ul&gt;
+      &lt;li&gt;한번의 HTTP 요청-응답으로 브라우저의 모든 내용을 그릴 수 있는 건 아니고 첫 HTTP 교환으론 HTTP의 뼈대와 페이지를 채우기 위해 필요한 추가 리소스를 요청할 url들을 가져옵니다.&lt;/li&gt;
+      &lt;li&gt;페이지를 만들기 위해 필요한 추가 url들을 다시 요청해 받아와 렌더링합니다.&lt;/li&gt;
+      &lt;li&gt;브라우저 렌더링에 관한 자세한 사항은… 나중에…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>TCP/IP 동작원리, UDP와 차이, handshake</title>
+   <link href="http://localhost:4000/posts/googling/etc/TCP/"/>
+   <updated>2020-05-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/TCP</id>
+   <content type="html">
+&lt;h2 id=&quot;tcpip-동작-원리&quot;&gt;TCP/IP 동작 원리&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP : Transmission Control Protocol, OSI 전송 계층&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IP : Internet Protocol, OSI 네트워크 계층&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP는 데이터가 손실 되지 않은 안전한 통신인데 이 안정성을 TCP/IP가 보장해줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP 프로토콜에선 HTTP 메세지를 통째로 전달하지 않습니다. IP 패킷(IP 데이터그램)이라는 작은 조각으로 나눠 전송합니다. (패킷 통신은 서킷 통신의 단점을 보완하고자 나왔습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IP 패킷은 아래와 같이 이루어져 있습니다.&lt;/p&gt;
+
+    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/ip_packet.png&quot; alt=&quot;ip_packet.png&quot; /&gt;&lt;small&gt;출처 : https://learning.oreilly.com/library/view/http-the-definitive/1565925092/ch04s01.html&lt;/small&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IP 패킷 헤더
+    &lt;ul&gt;
+      &lt;li&gt;발신지에서 목적지로 이동하는 데에 필요한 정보를 가지고 있습니다.&lt;/li&gt;
+      &lt;li&gt;그런데, 여러 조각으로 나뉜 HTTP의 조각들이 순서대로, 손실 없이 목적지에 도착하리란 보장은 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;TCP Segment 헤더
+    &lt;ul&gt;
+      &lt;li&gt;IP 패킷들의 순서를 맞춰주고 손실이 없는걸 보장해주기 위한 것이 TCP 세그먼트 헤더입니다.&lt;/li&gt;
+      &lt;li&gt;TCP Checksum을 통해 메세지가 손실 됐는지 판별합니다. 손실 됐다면 해당 패킷을 다시 요청합니다.&lt;/li&gt;
+      &lt;li&gt;TCP Sequence Number를 통해 IP패킷들의 순서를 맞춥니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;통신-과정--3-way-handshake-4-way-handshake-&quot;&gt;통신 과정( + 3 way handshake, 4 way handshake )&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트와 서버가 TCP 커넥션을 맺습니다.
+    &lt;ul&gt;
+      &lt;li&gt;TCP 커넥션은 3 way handshake로 맺어지며 쉽게 요약하면, “연결해달라 오바” - “연결했다 오바” - “알았다 오바” 입니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;3 way handshake&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;클라이언트 👉 서버, ‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트, 서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버, 커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;분할 된 IP 패킷들을 보냅니다.&lt;/li&gt;
+  &lt;li&gt;IP 패킷을 받은 쪽에선 각 IP 패킷의 TCP checksum을 검사해 손실된 패킷은 다시 요청하고 손실되지 않은 패킷들은 순서를 맞춥니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 HTTP 요청을 보내고, 서버의 HTTP 응답을 받았다면 커넥션을 끊게 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;커넥션을 끊는 과정은 4 way handshake로 이루어집니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;4 way handshake&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;클라이언트 👉 서버, 연결을 종료하겠다는 ‘FIN’플래그 전송&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트, 확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 TIME_WAIT 상태가 됩니다.
+            &lt;ul&gt;
+              &lt;li&gt;TIME_WAIT은 통신을 끊기 전, 클라이언트가 이전에 보냈지만 도착하지 않은 잉여 패킷이 있는 지 기다립니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트, 통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버, 확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
+            &lt;ul&gt;
+              &lt;li&gt;연결을 끊기 전에 서버가 ‘FIN’플래그를 보내기전에 보냈으나 ‘FIN’플래그보다 늦게 도착한 메세지를 기다리기 위해 일정 시간 세션을 남겨 잉여 패킷을 기다립니다. 이 과정을 TIME_WAIT이라고 합니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tcp와-udp의-차이&quot;&gt;TCP와 UDP의 차이&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2000년대 이전 생 대한민국 남성이라면 스타크래프트를 안해봤을리 없고, PC방에서 친구들과 스타크래프트를 할 때 UDP로 연결한 경험이 있을 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/starcraft_udp.jpg&quot; alt=&quot;starcraft_udp.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;어렸을 땐 그냥 옆자리 친구와 하고 싶을 땐 UDP! 이렇게 알고 있었지만, 이제 UDP가 무엇이었는지 알아야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP와 UDP의 차이는 &lt;a href=&quot;https://mangkyu.tistory.com/15&quot;&gt;https://mangkyu.tistory.com/15&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;데이터의 교환 방식을 아래와 같이 나눌 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;교환방식
+  └ 회선교환
+  └ 축적후 교환
+      └ 메세지 교환
+      └ 패킷 교환
+          └ 가상회선 방식 -&amp;gt; TCP
+          └ 데이터그램 방식 -&amp;gt; UDP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP와 UDP의 핵심 차이는 신뢰성을 중시하느냐, 연속성을 중시하느냐 입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;tcp&quot;&gt;TCP&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위에서 언급하지 않은 가상회선 방식이란, 발신지와 수신지 사이의 논리적인 경로를 정한다는 것입니다. 이런 특징 때문에 연결형 프로토콜이라고도 불립니다.&lt;/li&gt;
+  &lt;li&gt;TCP는 신뢰성 있는 통신을 보장하는게 목적입니다.
+    &lt;ul&gt;
+      &lt;li&gt;TCP연결을 맺어야 하며 맺는 과정도 3 way handshake를 사용합니다.&lt;/li&gt;
+      &lt;li&gt;Checksum을 검사해 손실된 데이터를 확인하고, 재전송을 요구합니다.&lt;/li&gt;
+      &lt;li&gt;Sequence를 확인해 순서를 보장합니다.&lt;/li&gt;
+      &lt;li&gt;위에선 언급되지 않았지만 흐름제어, 혼잡제어와 같은 기능도 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;흐름제어 : 수신자의 버퍼 오버플로 방지를 위해 송, 수신지의 데이터 처리 속도를 조절하는 것&lt;/li&gt;
+          &lt;li&gt;혼잡제어 : 네트워크 내 패킷수가 넘치지 않기 위해 조절하는 것.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;신뢰성 있는 데이터를 주고받아야 하는 통신에 TCP를 사용합니다. (UDP가 아닌 대부분이 TCP라고 보면 됩니다.)&lt;/li&gt;
+  &lt;li&gt;서버와 클라이언트가 1:1로 연결됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;udp-user-datagram-protocol&quot;&gt;UDP (User Datagram Protocol)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데이터그램 방식이란 보내지는 패킷들이 서로 독립적인 관계를 지니는 것을 뜻합니다. TCP에서 가상회선이 정해지면 패킷들이 해당 회선으로 전송됐다면, UDP에서의 패킷들은 각자 독립적인 경로를 선택합니다. 이를 비연결형 프로토콜이라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;UDP는 연속성을 지향합니다.
+    &lt;ul&gt;
+      &lt;li&gt;커넥션을 맺고 끊는 과정이 없습니다.&lt;/li&gt;
+      &lt;li&gt;checksum을 계산하거나 sequence를 맞추지도 않습니다. 패킷들의 순서는 RTP(Real-Time Protocol)같은 기술을 통해 맞추거나 어플리케이션 수준에서 맞춥니다.&lt;/li&gt;
+      &lt;li&gt;흐름제어, 혼잡제어 이런 것도 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;UDP는 연속성이 중요한 스트리밍 서비스나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Sagyo MSA 개편 1 - common, contact 서비스</title>
@@ -541,9 +1100,9 @@ Hibernate: insert into direct_question (contents, title, userid, id) values (?, 
  
  <entry>
    <title>Spring Data, Spring Data JPA, JPA, Hibernate, JDBC, DBCP 용어정리</title>
-   <link href="http://localhost:4000/posts/googling/etc/Spring-Data,-JPA,-Hibernate/"/>
+   <link href="http://localhost:4000/posts/googling/etc/Spring-Data,-JPA,-Hibernate-%EB%B3%B5%EC%82%AC%EB%B3%B8/"/>
    <updated>2020-05-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/Spring Data, JPA, Hibernate</id>
+   <id>http://localhost:4000/posts/googling/etc/Spring Data, JPA, Hibernate - 복사본</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt;Spring Data로 프로젝트를 개편하던 중에 검색시 Order By를 해야할 일이 있었습니다. 그런데 ‘JPA order by’로 검색할 지, ‘hibernate order by’로 검색할 지, ‘Spring Data order by’로 검색할 지 고민이 됐습니다.&lt;/li&gt;
@@ -4645,36 +5204,6 @@ spring.mvc.view.suffix=.jsp
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;method-area&quot;&gt;Method Area&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt; 로드한 class 와 관련한 데이터들이 저장됩니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt; JVM이 시작될 때 생성됩니다.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt; 클래스의 메서드에 관한 정보들이 저장됩니다.&lt;/li&gt;
-      &lt;li&gt; static 변수(class 변수, 멤버 변수), static 메서드들이 이곳에 저장됩니다.
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt; static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt; static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt; static 메서드는 객체를 만들지 않아도 사용할 수 있는데, 클래스를 로드할 때 static 메서드를 미리 로드하기 때문입니다.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;h3 id=&quot;heap-area&quot;&gt;Heap Area&lt;/h3&gt;
 
 &lt;hr /&gt;
@@ -4688,7 +5217,43 @@ spring.mvc.view.suffix=.jsp
       &lt;li&gt; 멀티 스레드 환경에서 작업한다면 주의해야 합니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt; GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 Eden-Survivor-Tenure 영역으로 나뉩니다.&lt;/li&gt;
+  &lt;li&gt; GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 아래와 같이 나뉩니다.
+    &lt;ul&gt;
+      &lt;li&gt;Young Generation
+        &lt;ul&gt;
+          &lt;li&gt;Eden&lt;/li&gt;
+          &lt;li&gt;Survivor1&lt;/li&gt;
+          &lt;li&gt;Survivor2&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Old Generation
+        &lt;ul&gt;
+          &lt;li&gt;Tenured&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;method-area&quot;&gt;Method Area&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt; 로드한 class 와 관련한 데이터들이 저장됩니다.
+    &lt;ul&gt;
+      &lt;li&gt; JVM이 시작될 때 생성됩니다.&lt;/li&gt;
+      &lt;li&gt; 클래스의 메서드에 관한 정보들이 저장됩니다.&lt;/li&gt;
+      &lt;li&gt; static 변수(class 변수, 멤버 변수), static 메서드들이 이곳에 저장됩니다.
+        &lt;ul&gt;
+          &lt;li&gt; static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.&lt;/li&gt;
+          &lt;li&gt; static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.&lt;/li&gt;
+          &lt;li&gt; static 메서드는 객체를 만들지 않아도 사용할 수 있는데, 클래스를 로드할 때 static 메서드를 미리 로드하기 때문입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Heap메모리의 일부로 Permanent Generation라고도 불립니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;stack-area&quot;&gt;Stack Area&lt;/h3&gt;
@@ -4696,23 +5261,15 @@ spring.mvc.view.suffix=.jsp
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt; 하나의 스레드에 하나의 스택이 할당됩니다.&lt;/p&gt;
-
+  &lt;li&gt; 하나의 스레드에 하나의 스택이 할당됩니다.
     &lt;ul&gt;
       &lt;li&gt; 스레드가 생성될 때 하나의 Stack이 생성됩니다.&lt;/li&gt;
       &lt;li&gt; 크기를 고정적으로 줄 수도 있고, 동적으로 할당되게 할 수도 있습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 하나의 메소드를 호출 할 때마다 메소드의 frame을 스택에 추가합니다. 메소드가 종료되면 프레임이 제거 됩니다.  frame을 통해 흔히 알고 있는 변수들의 scope가 정해집니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 지역 변수들이 저장됩니다. 지역변수들은 Heap에 할당된 인스턴스 참조 주소를 갖고 있습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 원시 타입(byte, short, int, long, double, float, boolean, char) 변수가 ‘값과 함께’ 저장됩니다.&lt;/p&gt;
-
+  &lt;li&gt; 하나의 메소드를 호출 할 때마다 메소드의 frame을 스택에 추가합니다. 메소드 frame크기는 해당 메소드에서 사용할 변수들의 크기를 계산해 컴파일시 미리 산정됩니다. 메소드가 종료되면 프레임이 제거 됩니다.  frame을 통해 흔히 알고 있는 변수들의 scope가 정해집니다.&lt;/li&gt;
+  &lt;li&gt; 지역 변수들이 저장됩니다. 지역변수들은 Heap에 할당된 인스턴스 참조 주소를 갖고 있습니다.&lt;/li&gt;
+  &lt;li&gt; 원시 타입(byte, short, int, long, double, float, boolean, char) 변수가 ‘값과 함께’ 저장됩니다.
     &lt;ul&gt;
       &lt;li&gt;
         &lt;p&gt; 기본적으로 값과 함께 저장되기 때문에 원시타입은 null 을 갖을 수 없습니다. 아래 구문은 컴파일 과정에서 에러가 납니다.&lt;/p&gt;
@@ -4748,9 +5305,7 @@ spring.mvc.view.suffix=.jsp
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt; PC = Program Counter&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt; PC = Program Counter&lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt; 한 스레드에 하나의 PC Register가 생성됩니다.&lt;/p&gt;
 
@@ -17496,19 +18051,19 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
 
 &lt;hr /&gt;
 
-&lt;p&gt;새해가 시작한지 2달이 지났는데 이제서야 2020년의 목표를 다잡는 이유는… 퇴사를 했기 때문입니다! 전 직장이 생각했던것과 다른 점이 많아 일찍 나오게 됐고, 조용히 공부에 집중할 수 있는 시간이 주어졌습니다.&lt;/p&gt;
+&lt;p&gt; 새해가 시작한지 2달이 지났는데 이제서야 2020년의 목표를 다잡는 이유는… 퇴사를 했기 때문입니다! 전 직장이 생각했던것과 다른 점이 많아 일찍 나오게 됐고, 조용히 공부에 집중할 수 있는 시간이 주어졌습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;작년은 무지와 호기심의 환상적인 조합으로 잡다하게 많은 기술을 사용 했습니다.&lt;/strong&gt; &lt;strong&gt;html, css, js&lt;/strong&gt;같은 웹의 기본 언어부터  학원에서 공부한 &lt;strong&gt;java, oracle, jsp, spring&lt;/strong&gt;, 혼자 프로젝트하면서 써본 &lt;strong&gt;python, node js, mongodb, express, react+redux&lt;/strong&gt;, 회사에서 처음배워본 &lt;strong&gt;C#+winform, 전자정부프레임워크&lt;/strong&gt; 까지 뭔가 넓고 얕게 &lt;strong&gt;‘How to use’ 위주로 공부&lt;/strong&gt;를 한 것 같습니다.(그나마 다행인건 ‘How to use’는 무난하게 하는 것 같습니다.)&lt;/p&gt;
+&lt;p&gt; 작년은 무지와 호기심의 조합으로 잡다하게 많은 기술을 사용 했습니다. html, css, js같은 웹의 기본 언어부터  학원에서 공부한 java, oracle, jsp, spring, 혼자 프로젝트하면서 써본 python, node js, mongodb, express, react+redux, 회사에서 처음배워본 C#+winform, 전자정부프레임워크까지 뭔가 넓고 얕게 ‘How to use’ 위주로 공부를 한 것 같습니다.(그나마 다행인건 ‘How to use’는 무난하게 하는 것 같습니다.)&lt;/p&gt;
 
-&lt;p&gt;하지만 몇몇 에러를 접할때 마다 &lt;strong&gt;더 깊은 지식이 필요함을 느꼈습니다.&lt;/strong&gt; 그래서 올해는, 위의 기술스택 밖으로 나가지 않고 &lt;strong&gt;더 깊게 내려가볼 생각&lt;/strong&gt;입니다.(다음 직장에서 ) ‘How it works’를 이해해야 더 실력있는 개발자가 되지 않을까합니다.&lt;/p&gt;
+&lt;p&gt; 하지만 몇몇 에러를 접할때 마다 더 깊은 지식이 필요함을 느꼈습니다. 그래서 올해는, 위의 기술스택 밖으로 나가지 않고 더 깊게 내려가볼 생각입니다.(다음 직장에서 ) ‘How it works’를 이해해야 더 실력있는 개발자가 되지 않을까합니다.&lt;/p&gt;
 
-&lt;p&gt;잠깐 생각해본 공부할 것들은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt; 잠깐 생각해본 공부할 것들은 다음과 같습니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;지금까지 썼던 기술들의 동작 방식과 장단점 파악하기&lt;/li&gt;
-  &lt;li&gt;Http 통신의 이론적인 기초를 알아보기&lt;/li&gt;
-  &lt;li&gt;C, C++ 언매니지드언어를 배워, 하드웨어 수준에서 어떤 코드 및 프로그램이 더 좋은 프로그램인지 알아보기&lt;/li&gt;
-  &lt;li&gt;코딩테스트도 준비할 겸 알고리즘 연습하기&lt;/li&gt;
+  &lt;li&gt; 지금까지 썼던 기술들의 동작 방식과 장단점 파악하기&lt;/li&gt;
+  &lt;li&gt; Http 통신의 이론적인 기초를 알아보기&lt;/li&gt;
+  &lt;li&gt; C, C++ 언매니지드언어를 배워, 하드웨어 수준에서 어떤 코드 및 프로그램이 더 좋은 프로그램인지 알아보기&lt;/li&gt;
+  &lt;li&gt; 코딩테스트도 준비할 겸 알고리즘 연습하기&lt;/li&gt;
 &lt;/ul&gt;
 </content>
  </entry>
@@ -17522,11 +18077,11 @@ HTTP 2.0 : 1.1 버전의 성능을 개선하기 위해 구글의 SPDY 프로토�
 
 &lt;hr /&gt;
 
-&lt;p&gt;개발을 시작하고 난 뒤 느낀 충격적이었던 것 중 하나는 개발자들의 문화였습니다. 다른 분야에선 보통 자기 지식은 자기만 고이 간직하려는 경향이 강한데, &lt;strong&gt;개발자들은 서로 못알려줘서 안달난것 같은 그런 느낌&lt;/strong&gt;이었습니다. Stackoverflow는 말할 것도 없고, 한글로 된 블로그들에도 정보들이 정말 많았습니다.&lt;/p&gt;
+&lt;p&gt; 개발을 시작하고 난 뒤 느낀 충격적이었던 것 중 하나는 개발자들의 공유 문화였습니다. 다른 분야에선 보통 자기 지식은 자기만 고이 간직하려는 경향이 강한데, 개발자들은 서로 못알려줘서 안달난것 같은 그런 느낌이었습니다. Stackoverflow는 말할 것도 없고, 한글로 된 블로그들에도 정보들이 정말 많았습니다.&lt;/p&gt;
 
-&lt;p&gt;개발하면서 정말 많은 블로그들을 참고했습니다. 빠르게 코드만 보고 나온 블로그부터 북마크 해놓고 몇번이고 다시 본 블로그까지 아마 블로그, 포스팅이 없었으면 지금 수준에 1/4이나 되었을까 싶습니다. (​​블로그들이 많지 않던 시절에 개발하신 선배님들 존경… :flushed:)&lt;/p&gt;
+&lt;p&gt; 개발하면서 정말 많은 블로그들을 참고했습니다. 빠르게 코드만 보고 나온 블로그부터 북마크 해놓고 몇번이고 다시 본 블로그까지 아마 블로그, 포스팅이 없었으면 지금 수준에 1/4이나 되었을까 싶습니다. (블로그들이 많지 않던 시절에 개발하신 선배님들 존경… :flushed:)&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;저도 이런 생태계에 보탬이 되고 싶었습니다.&lt;/strong&gt; 물론 아직 제가 생산할 포스팅들이 깊은 수준은 아니겠지만 그래도 제가 다른 블로그에서 코드나 설명 한줄 슥 보고 나온것 처럼 다른 사람들도 제 블로그에서 짧막한 지식이라도 슥 얻어 갈 수 있으면 좋겠습니다.&lt;/p&gt;
+&lt;p&gt; 저도 이런 생태계에 보탬이 되고 싶었습니다. 물론 아직 제가 생산할 포스팅들이 깊은 수준은 아니겠지만 그래도 제가 다른 블로그에서 코드나 설명 한줄 슥 보고 나온것 처럼 다른 사람들도 제 블로그에서 짧막한 지식이라도 슥 얻어 갈 수 있으면 좋겠습니다.&lt;/p&gt;
 
 </content>
  </entry>

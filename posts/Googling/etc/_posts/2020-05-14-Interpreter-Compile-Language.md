@@ -1,0 +1,107 @@
+---
+layout: post
+title: 인터프리터 언어? 컴파일 언어? - C, Java, Python, Javascript 빌드 및 실행 과정
+---
+
+{% assign imgurl=site.imgbase|append: page.categories[-1] %}
+
+## 인터프리터 언어? 컴파일 언어?
+
+---
+
+- 프로그래밍을 배우면서 계속 헷갈렸던 개념이 있습니다. 언어를 인터프리터 언어 / 컴파일 언어로 나누는 것입니다.
+- 컴파일 언어는 받아들이기 쉬웠습니다. '실행 전에 컴파일이 되고, 컴파일된 파일로 실행한다.'
+- 하지만 인터프리터 언어들은 '인터프리터 언어'라는 개념으로 배운 내용이 Python, Javascript가 동작하는 원리와 잘 들어맞지 않았습니다.
+  - 인터프리터 언어는 프로그램 실행시 소스코드 한 줄 한 줄을 기계어로 바꿔 실행한다고 합니다.
+  - 그런데 'How does Python works'를 찾아보니, Python 소스코드는 CPython으로 컴파일해 bytecode인 .pyc 파일을 만들어 .pyc를 Python VM에서 실행한다고 합니다. 
+  - 그런데 이는 Java를 java bytecode인 .class 파일로 만들고 JVM의 JIT 컴파일러로 실행하는 것과 같아 보였습니다. 그런데 Java는 컴파일 언어라고 합니다. 오잉?? 🤔🤔
+- 그러던 와중 [https://soooprmx.com/archives/11330](https://soooprmx.com/archives/11330) 글을 읽게 됐고, C, Java, Python의 빌드 및 실행 과정을 구글링 해보며 어느 정도 정리가 된 것 같아 포스팅으로 남깁니다.
+
+### 인터프리터 언어? 컴파일 언어? 👉 옛날 얘기!
+
+- 우선, 프로그래밍 언어를 인터프리터 언어 / 컴파일 언어로 나누는 분류는 잘못됐습니다. 프로그래밍의 초기에나 가능한 얘기이지, JIT 컴파일러, Virtual Machine 등의 등장 이후론 이와 같은 분류는 더이상 유효하지 않습니다.
+- 컴파일 언어
+  - '컴파일' 이란 한 언어에서 다른 언어로 변환 되는 것입니다.
+    - C 소스코드를 컴파일 하면 (컴파일의 범위를 어디까지 잡느냐에 따라) 어셈블리 코드 혹은 기계어 코드가 나옵니다.
+    - Java 소스코드를 컴파일 하면 자바 바이트코드 (.class)가 나옵니다.
+    - Python 소스코드를 CPython으로 컴파일하면 .pyc 코드가 나오고 Jython으로 컴파일 하면 .class 코드가 나옵니다.
+    - Typescript는 Javascript로 컴파일 됩니다.
+    - Javascript는 엔진에 따라 다양하게 컴파일됩니다.
+  - 인터프리터 언어, 스크립트 언어라고 알고 있는 Python, Javascript, Typescript 모두 컴파일 과정을 거칩니다. 
+- 인터프리터 언어
+  - 전통적인 의미의 인터프리터 언어는 컴파일 과정 없이 인터프리터에 의해 소스 코드가 바로 해석되어 실행됩니다.
+  - cmd나 bash같은 쉘이 대표적인 인터프리터 언어입니다.
+  - Python의 경우 쉘을 제공하기 때문에 인터프리터 언어로 분류되었던 것 같습니다.
+
+
+
+## C의 빌드 과정
+
+---
+
+- C의 빌드 과정은 수강중인 [C 강의 - 빌드 단계](https://www.udemy.com/course/c-unmanaged-programming-by-pocu/)를 참고하였습니다.
+- C계열 언어의 조상이라고 할 수 있는 C는 다음과 같은 과정을 따라 빌드됩니다.
+  - 전처리(preprocessing)
+    - input : 소스코드(.h, .c) 👉 output : 확장된 소스코드(translation unit, .pre)
+    - 담당 : 전처리기
+    - 주석 제거, 매크로 확장(==텍스트 복붙), include 확장(==텍스트 복붙)
+  - 컴파일(compilation)
+    - input : 확장된 소스코드(translation unit, .pre) 👉 output : 어셈블리 코드(.s)
+    - 담당 : 컴파일러
+    - 소스코드를 어셈블리 코드로 변환
+  - 어셈블(assembling)
+    - input : 어셈블리 코드(.s) 👉 output : 오브젝트 코드(.o)
+    - 담당 : 어셈블러
+    - 어셈블리어를 기계어로 변환
+  - 링크(linking)
+    - input : 오브젝트 코드**들**(.o) 👉 output : 실행 파일(.exe - 윈도우)
+    - 담당 : 링커
+    - 한 소스코드에서 다른 소스코드에 있는 함수를 호출하는 등의 행위가 오브젝트 코드까진 빈칸으로 남겨져 있습니다. 링크 과정에서 빈칸들에 알맞은 주소를 넣어줍니다. 모든 오브젝트 코드들을 연결해 하나의 실행 파일을 만듭니다.
+- 전처리, 컴파일, 어셈블을 합쳐 컴파일이라고 부르기도 합니다.
+
+
+
+## Java의 빌드 및 실행 과정
+
+---
+
+- 자바의 빌드 및 실행 과정은 [http://tcpschool.com/java/java_intro_programming](http://tcpschool.com/java/java_intro_programming)를 참고했습니다.
+- 자바 파일의 빌드 및 실행 과정은 다음과 같습니다.
+  - 컴파일
+    - input : 소스코드(.java) 👉 output : 자바 바이트코드(JVM이 이해할 수 있는 코드, .class) 
+    - 담당 : 컴파일러
+    - java 소스코드를 자바 바이트코드로 컴파일 합니다.
+    - 컴파일 할 때 상세한 과정은 [여기](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-컴파일에서-실행까지-1/)에 자세히 나와있습니다.
+  - 실행 - JVM
+    - 클래스 로더
+      - 자바 바이트 코드는 JVM의 클래스 로더에 의해 JVM 메모리 상에 올라가게 됩니다.
+    - 자바 인터프리터
+      - 기본적으론 자바 인터프리터가 자바 바이트 코드를 기계어로 해석해 실행 가능하도록 만듭니다.
+    - JIT(Just In Time) 컴파일러
+      - 인터프리터만으론 실행이 느리기 때문에 만들어진 것이 JIT 컴파일러 입니다. 자바 바이트 코드를 모두 기계어로 컴파일해 캐시해 둡니다. 한 번 기계어로 해석하는 건 인터프리터보다 느리지만, 컴파일한 바이트코드를 캐시해둬 다음 시행시엔 빠르게 수행됩니다.
+
+
+
+## Python 동작 과정
+
+---
+
+- Python은 정말 자유분방합니다. C나 Java 같은 다른 언어도 다양한 컴파일러가 있지만 어느 정도는 유사한데, Python의 컴파일러들은 정말 다양합니다.
+
+- Python의 컴파일러들
+
+  - CPython
+    - 가장 기본적인 컴파일러이며 C로 구현되어 있습니다. [https://github.com/python/cpython](https://github.com/python/cpython) 
+    - .pyc로 컴파일 됩니다.
+  - Jython에선 .class로 컴파일 되어 JVM에서 돌아갑니다.
+  - Pypy는 JIT 컴파일러 입니다.
+  - 
+
+  
+
+
+
+## Javascript 동작 과정
+
+---
+

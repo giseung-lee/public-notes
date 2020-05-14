@@ -11,7 +11,7 @@
 
   <title>
     
-      Spring Data, Spring Data JPA, JPA, Hibernate, JDBC, DBCP 용어정리 &middot; 이기승의 끄적끄적..
+      이기승의 끄적끄적.. &middot; 개발 및 잡다한 포스팅
     
   </title>
 
@@ -170,102 +170,65 @@
       </div>
 
       <div class="container content">
-        <div class="post">
-  <h1 class="post-title">Spring Data, Spring Data JPA, JPA, Hibernate, JDBC, DBCP 용어정리</h1>
-  <span class="post-date">07 May 2020</span>
+        <div style="margin-bottom: 1em; text-align: center;">
+  <h3 style="margin-bottom: 1em; font-weight: normal;">Recent Posts 👇</h3>
+  <hr>
+</div>
+
+<div class="posts">
   
-<ul>
-  <li>Spring Data로 프로젝트를 개편하던 중에 검색시 Order By를 해야할 일이 있었습니다. 그런데 ‘JPA order by’로 검색할 지, ‘hibernate order by’로 검색할 지, ‘Spring Data order by’로 검색할 지 고민이 됐습니다.</li>
-  <li>이 외에도, 가벼운 클론 코딩을 맛보고 프로젝트에 들어가니 클론 코딩 때 쏟아진 다양한 기술들이 서로 엉켜 각 기술의 관계나 역할을 제대로 정립하지 못한 것 같아 용어와 역할 등을 정리해둡니다.</li>
-</ul>
-
-<h2 id="용어-정리">용어 정리</h2>
-
-<hr />
-
-<h3 id="jpa">JPA</h3>
-
-<ul>
-  <li>Java Persistence API 로, 자바 어플리케이션과 RDB가 함께할 때 사용되는 인터페이스입니다.</li>
-  <li>즉, 자바 어플리케이션에 RDB를 붙이고 싶으면 JPA를 구현해서 붙이라는 것입니다.</li>
-  <li>인터페이스이기 때문에 구현해줘야 합니다.</li>
-  <li>Java기술이기 때문에 공식 명세는 oracle 홈페이지에서 찾을 수 있습니다. javax.persistence 패키지입니다. <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/package-summary.html">여기</a>를 참고해주세요.</li>
-</ul>
-
-<h3 id="hibernate">Hibernate</h3>
-
-<ul>
-  <li>JPA를 구현한 기술들 중 하나입니다. Hibernate 외에도 JPA를 구현한 다양한 기술들이 있습니다.</li>
-  <li>Hibernate ORM이라고도 불리는데 ORM은 Object-relational mapping로 데이터베이스 어플리케이션과 객체지향 어플리케이션이 호환될 수 있도록 데이터를 변환하는 프로그램입니다.</li>
-  <li>JPA의 인터페이스를 구현합니다.</li>
-  <li>소개부터 구현 클래스까지 <a href="https://hibernate.org/orm/documentation/5.4/">여기</a>에 자세히 설명되어 있습니다.</li>
-</ul>
-
-<h3 id="spring-data">Spring Data</h3>
-
-<ul>
-  <li>Spring Data는 자바어플리케이션에서 데이터를 다뤄야 하는 기술들을 Spring과 연동하기 쉽게 모듈화 해놓은 기술들입니다.</li>
-  <li>JPA를 Spring과 연동하기 쉽게 묶어둔 게 Spring Data JPA이고, 이 외에도 Spring Data JDBC, Spring Data MongoDB, Spring Data Redis 등 다양한 Spring Data family가 있습니다.</li>
-</ul>
-
-<h3 id="spring-data-jpa">Spring Data JPA</h3>
-
-<ul>
-  <li>Spring Data JPA는 JPA를 Spring과 연동하기 쉽도록 묶어둔 것입니다. 즉, Spring Data JPA 자체 역시 인터페이스입니다.</li>
-  <li>Spring Data JPA에서 기본 구현체로 Hibernate로 사용합니다.</li>
-</ul>
-
-<h3 id="jdbc">JDBC</h3>
-
-<ul>
-  <li>JDBC는 Java DataBase Connectivity로, 자바 애플리케이션에서 DB에 연결하기 위한 인터페이스입니다.</li>
-  <li>자바애플리케이션과 데이터베이스를 연결해주는 인터페이스라는 점에서 JPA와 유사하지만 JPA는 데이터를 변환해주고 JDBC는 데이터베이스 연결을 해줍니다.</li>
-  <li>인터페이스이기 때문에 역시 구현체가 필요합니다.</li>
-</ul>
-
-<h3 id="dbcp">DBCP</h3>
-
-<ul>
-  <li>DBCP는 DataBase Connection Pool로, 데이터베이스의 커넥션을 관리하는 기술입니다.</li>
-  <li>주로 사용되는 기술은 Apache의 Commons DBCP, BoneCP, HikariCP 등이 있습니다.</li>
-</ul>
-
+  <div class="post">
+    <h3 class="post-title" style="font-weight: normal;">
+      <a href="/posts/daily%20thoughts/%EC%9E%A1%ED%94%8C%EB%9E%98%EB%8B%9B-%ED%81%AC%EB%A1%A4%EB%9F%AC/">
+        잡플래닛 면접 후기 크롤러
+      </a>
+    </h3>
+    <span class="post-date">8th Mar 2020</span>
+    <hr />
+  </div>
+  
+  <div class="post">
+    <h3 class="post-title" style="font-weight: normal;">
+      <a href="/posts/study/http%20the%20definitive%20guide/Http%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C1/">
+        HTTP 1 -  HTTP 개관
+      </a>
+    </h3>
+    <span class="post-date">3rd Mar 2020</span>
+    <hr />
+  </div>
+  
+  <div class="post">
+    <h3 class="post-title" style="font-weight: normal;">
+      <a href="/posts/daily%20thoughts/2020%EB%85%84-%EB%AA%A9%ED%91%9C-%EB%B0%8F-%EB%B0%A9%ED%96%A5/">
+        2020년 목표 및 방향
+      </a>
+    </h3>
+    <span class="post-date">1st Mar 2020</span>
+    <hr />
+  </div>
+  
+  <div class="post">
+    <h3 class="post-title" style="font-weight: normal;">
+      <a href="/posts/daily%20thoughts/%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%A5%BC-%EC%8B%9C%EC%9E%91%ED%95%98%EB%A9%B0/">
+        github 블로그를 시작하며
+      </a>
+    </h3>
+    <span class="post-date">28th Feb 2020</span>
+    <hr />
+  </div>
+  
 </div>
 
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
+<div class="pagination">
+  
+    <span class="pagination-item older">이전</span>
+  
+  
     
-      <li>
-        <h3>
-          <a href="/posts/projects/sagyo_reboot/Sagyo4/">
-            Sagyo MSA 개편 1 - common, contact 서비스
-            <small>07 May 2020</small>
-          </a>
-        </h3>
-      </li>
+      <a class="pagination-item newer" href="http://localhost:4000/page9">다음</a>
     
-      <li>
-        <h3>
-          <a href="/posts/daily%20thoughts/%EA%B7%BC%ED%99%A9/">
-            하루 고정 루틴을 찾아야 되는데..
-            <small>07 May 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/projects/sagyo_reboot/Sagyo3/">
-            디렉터리 구조 개편 및 MSA 설계
-            <small>28 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
+  
 </div>
-
       </div>
     </div>
 

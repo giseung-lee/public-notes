@@ -22,23 +22,6 @@ title: JVM 메모리 구조
   - Native Method Stacks
 
 
-### Method Area
-
----
-
-- &nbsp;로드한 class 와 관련한 데이터들이 저장됩니다.
-
-  - &nbsp;JVM이 시작될 때 생성됩니다.
-
-  - &nbsp;클래스의 메서드에 관한 정보들이 저장됩니다.
-  - &nbsp;static 변수(class 변수, 멤버 변수), static 메서드들이 이곳에 저장됩니다.
-    - &nbsp;static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.
-
-    - &nbsp;static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.
-
-    - &nbsp;static 메서드는 객체를 만들지 않아도 사용할 수 있는데, 클래스를 로드할 때 static 메서드를 미리 로드하기 때문입니다.
-
-      
 
 ### Heap Area
 
@@ -49,7 +32,29 @@ title: JVM 메모리 구조
 - &nbsp;하나의 JVM에 하나의 Heap Area가 존재하며, JVM안의 여러 스레드가 공유하는 영역입니다.
   - &nbsp;thread-safe 하지 않다고 합니다.
   - &nbsp;멀티 스레드 환경에서 작업한다면 주의해야 합니다.
-- &nbsp;GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 Eden-Survivor-Tenure 영역으로 나뉩니다.
+- &nbsp;GC의 대상이 되며, GC의 대상이 됐는지 안됐는지에 따라 아래와 같이 나뉩니다.
+  - Young Generation
+    - Eden
+    - Survivor1
+    - Survivor2
+  - Old Generation
+    - Tenured
+
+
+
+
+### Method Area
+
+---
+
+- &nbsp;로드한 class 와 관련한 데이터들이 저장됩니다.
+  - &nbsp;JVM이 시작될 때 생성됩니다.
+  - &nbsp;클래스의 메서드에 관한 정보들이 저장됩니다.
+  - &nbsp;static 변수(class 변수, 멤버 변수), static 메서드들이 이곳에 저장됩니다.
+    - &nbsp;static 변수는 한 class의 인스턴스들이 모두 공유하기 때문에 class 변수라고도 합니다.
+    - &nbsp;static 변수는 static 초기화 블럭에서 초기화되는데, static 블럭은 클래스가 로딩될때 생성됩니다. 즉, 한 클래스의 인스턴스가 생성되지 않더라도 해당 class의 static 변수는 생성됩니다.
+    - &nbsp;static 메서드는 객체를 만들지 않아도 사용할 수 있는데, 클래스를 로드할 때 static 메서드를 미리 로드하기 때문입니다.
+- Heap메모리의 일부로 Permanent Generation라고도 불립니다.
 
 
 
@@ -59,16 +64,11 @@ title: JVM 메모리 구조
 ---
 
 - &nbsp;하나의 스레드에 하나의 스택이 할당됩니다.
-
   - &nbsp;스레드가 생성될 때 하나의 Stack이 생성됩니다.
   - &nbsp;크기를 고정적으로 줄 수도 있고, 동적으로 할당되게 할 수도 있습니다.
-
-- &nbsp;하나의 메소드를 호출 할 때마다 메소드의 frame을 스택에 추가합니다. 메소드가 종료되면 프레임이 제거 됩니다.  frame을 통해 흔히 알고 있는 변수들의 scope가 정해집니다.
-
+- &nbsp;하나의 메소드를 호출 할 때마다 메소드의 frame을 스택에 추가합니다. 메소드 frame크기는 해당 메소드에서 사용할 변수들의 크기를 계산해 컴파일시 미리 산정됩니다. 메소드가 종료되면 프레임이 제거 됩니다.  frame을 통해 흔히 알고 있는 변수들의 scope가 정해집니다.
 - &nbsp;지역 변수들이 저장됩니다. 지역변수들은 Heap에 할당된 인스턴스 참조 주소를 갖고 있습니다.
-
 - &nbsp;원시 타입(byte, short, int, long, double, float, boolean, char) 변수가 '값과 함께' 저장됩니다.
-
   - &nbsp;기본적으로 값과 함께 저장되기 때문에 원시타입은 null 을 갖을 수 없습니다. 아래 구문은 컴파일 과정에서 에러가 납니다.
 
     ```java
@@ -104,7 +104,6 @@ title: JVM 메모리 구조
 ---
 
 - &nbsp;PC = Program Counter
-
 - &nbsp;한 스레드에 하나의 PC Register가 생성됩니다.
 
   >  Each Java Virtual Machine thread has its own `pc` (program counter) register
