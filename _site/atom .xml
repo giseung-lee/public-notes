@@ -4,13 +4,120 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-05-14T23:35:11+09:00</updated>
+ <updated>2020-05-15T14:47:54+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Javascript 실행 과정 및 비동기</title>
+   <link href="http://localhost:4000/posts/googling/etc/Javascript-run-async/"/>
+   <updated>2020-05-15T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/Javascript-run-async</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 아래의 글을 참고했습니다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf&quot;&gt;https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e&quot;&gt;https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5&quot;&gt;https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;javascript-엔진&quot;&gt;Javascript 엔진&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;자바스크립트 엔진이란 자바스크립트 코드를 해석하고 실행하는 프로그램 또는 인터프리터입니다. (다른 언어에선 컴파일러, 인터프리터라고 부르는데 왜 자바스크립트에선 엔진이라 부르는지는 모르겠습니다..)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;자바스크립트 엔진은 대부분 웹 브라우저, Node JS에서 실행됩니다. (물론, 자바스크립트 엔진을 사용하는 다른 프로그램들도 있습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;자바스크립트 엔진에 따라 구현하는 ECMAScript의 버전이 다릅니다. (흔히 말하는 ES6, ES7, ES8…)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;유명한 자바스크립트 엔진엔 다음과 같은 것들이 있습니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;V8 : 구글에서 개발, 크롬, NodeJS에서 사용중.&lt;/li&gt;
+      &lt;li&gt;Rhino : 모질라재단에서 개발&lt;/li&gt;
+      &lt;li&gt;SpiderMonkey : 최초의 자바스크립트 엔진, 파이어폭스에서 사용중&lt;/li&gt;
+      &lt;li&gt;Chakra(JScript9) : 인터넷익스플로러에서 사용&lt;/li&gt;
+      &lt;li&gt;Chakra(Javascript) : 마이크로소프트 엣지에서 사용&lt;/li&gt;
+      &lt;li&gt;Jerryscript : IoT 에서 많이 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;v8&quot;&gt;V8&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;대부분 엔진은 비슷하게 동작하지만, 엔진마다 다소간의 차이가 있으므로 현재 가장 유명한 엔진인 V8엔진을 알아보겠습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구성요소&quot;&gt;구성요소&lt;/h3&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/v8-engine.png&quot; alt=&quot;v8-engine.png&quot; /&gt;&lt;small&gt;출처 : https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;V8 엔진은 위와 같이 두 부분으로 이루어집니다.
+    &lt;ul&gt;
+      &lt;li&gt;메모리 힙(Memory Heap) : 다른 언어들의 힙 메모리 처럼 메모리 할당이 이루어집니다.&lt;/li&gt;
+      &lt;li&gt;콜 스택(Call Stack) : 다른 언어들의 스택 메모리 처럼 함수의 스택 프레임이 쌓입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;그런데, 우리가 실제로 자바스크립트를 이용할 땐 V8 엔진만 가지고 동작하는 것은 아닙니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/v8-engine-web-api.png&quot; alt=&quot;v8-engine-web-api.png&quot; /&gt;&lt;small&gt;출처 : https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DOM, AJAX(XMLHttpRequest), Timeout과 같이 자바스크립트를 사용하면 반드시 마주치게 되는 것들이 브라우저의 Web API에서 지원되는 것들입니다. Web API에 대한 자세한 사항은 &lt;a href=&quot;https://developer.chrome.com/apps/api_other&quot;&gt;크롬의 Web API 문서&lt;/a&gt;를 참조해주세요.&lt;/li&gt;
+  &lt;li&gt;Event Loop와 Callback Queue는 뒤에서 살펴볼 자바스크립트의 비동기에 있어 필수적인 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;call-stack&quot;&gt;Call Stack&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자바스크립트는 싱글 스레드 언어라는 말을 들어보셨을 겁니다. 대부분 언어에서 한 스레드당 하나의 스택 메모리를 할당 받는데, 자바스크립트는 오직 하나의 콜 스택을 갖습니다. 때문에, 자바스크립트를 싱글 스레드 언어라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;콜 스택의 작동방식은 다른 언어의 스택 메모리와 크게 다르지 않습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;javascript-비동기&quot;&gt;Javascript 비동기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;비동기 방식은 한 개의 작업을 기다리는 동안 다른 작업을 수행할 수 있는것입니다. 그런데 스택 메모리가 1개인데 어떻게 한개를 기다리며 다른 작업을 할 수 있을까요?&lt;/li&gt;
+  &lt;li&gt;Web API와 Callback Queue, Event Loop를 통해 가능합니다.
+    &lt;ul&gt;
+      &lt;li&gt;Web API는 앞서 말했듯이 브라우저 차원에서 지원해주는 SetTimeOut, DOM 같은 API입니다.&lt;/li&gt;
+      &lt;li&gt;Callback Queue는 onClick, onLoad, onDone과 같은 이벤트와 콜백 함수들이 저장되는 곳입니다.&lt;/li&gt;
+      &lt;li&gt;Event Loop는 JS의 Call Stack과 브라우저의 Callback Queue를 감시하고 있다가 Call Stack이 비었을 때 Callback Queue에 있는 작업을 Call Stack에 옮깁니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/v8-engine-web-api.png&quot; alt=&quot;v8-engine-web-api.png&quot; /&gt;&lt;small&gt;출처 : https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자바스크립트가 싱글스레드라는 것은 위 그림에서 JS의 Call Stack이 하나라는 것입니다. Web API는 별도의 스레드를 가지고 있습니다.&lt;/li&gt;
+  &lt;li&gt;비동기 작업(SetTimeOut이나 외부 API 호출 등..)은 Web API의 스레드로 옮겨집니다.&lt;/li&gt;
+  &lt;li&gt;작업이 끝나고 이후의 작업을 할 준비가 됐다면 Callback Queue로 옮겨집니다.&lt;/li&gt;
+  &lt;li&gt;Event Loop가 Call Stack을 보고있다가 Callback Queue의 콜백 함수를 Call Stack에 옮겨줍니다.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D&quot;&gt;latentflip&lt;/a&gt;에서 코드의 진행에 따라 각 메모리가 어떻게 변하는 지 확인할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Web Server와 WAS의 차이점</title>
@@ -120,7 +227,7 @@
  </entry>
  
  <entry>
-   <title>인터프리터 언어? 컴파일 언어? - C, Java, Python, Javascript 빌드 및 실행 과정</title>
+   <title>인터프리터 언어? 컴파일 언어? - C, Java, Python 빌드 및 실행 과정</title>
    <link href="http://localhost:4000/posts/googling/etc/Interpreter-Compile-Language/"/>
    <updated>2020-05-14T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/googling/etc/Interpreter-Compile-Language</id>
@@ -131,21 +238,22 @@
 
 &lt;ul&gt;
   &lt;li&gt;프로그래밍을 배우면서 계속 헷갈렸던 개념이 있습니다. 언어를 인터프리터 언어 / 컴파일 언어로 나누는 것입니다.&lt;/li&gt;
-  &lt;li&gt;컴파일 언어는 받아들이기 쉬웠습니다. ‘실행 전에 컴파일이 되고, 컴파일된 파일로 실행한다.’&lt;/li&gt;
-  &lt;li&gt;하지만 인터프리터 언어들은 ‘인터프리터 언어’라는 개념으로 배운 내용이 Python, Javascript가 동작하는 원리와 잘 들어맞지 않았습니다.
-    &lt;ul&gt;
-      &lt;li&gt;인터프리터 언어는 프로그램 실행시 소스코드 한 줄 한 줄을 기계어로 바꿔 실행한다고 합니다.&lt;/li&gt;
-      &lt;li&gt;그런데 ‘How does Python works’를 찾아보니, Python 소스코드는 CPython으로 컴파일해 bytecode인 .pyc 파일을 만들어 .pyc를 Python VM에서 실행한다고 합니다.&lt;/li&gt;
-      &lt;li&gt;그런데 이는 Java를 java bytecode인 .class 파일로 만들고 JVM의 JIT 컴파일러로 실행하는 것과 같아 보였습니다. 그런데 Java는 컴파일 언어라고 합니다. 오잉?? 🤔🤔&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;컴파일 언어는 받아들이기 쉬웠습니다. ‘실행 전에 컴파일이 되고, 컴파일 및 빌드된 파일로 실행한다.’&lt;/li&gt;
+  &lt;li&gt;하지만 인터프리터 언어는 개념이 애매하게 느껴집니다. 인터프리터 언어의 설명들을 보면 인터프리터 언어란 컴파일러 없이 인터프리터가 소스코드를 한줄씩 바로바로 해석하는 언어라고 합니다.&lt;/li&gt;
+  &lt;li&gt;그런데 인터프리터 언어라고 알려진 파이썬의 동작 과정을 살펴보면 컴파일 과정도 있고 컴파일러도 있습니다. 또, 컴파일 언어라고 알려진 Java는 자바 바이트코드를 실행시 한줄씩 JVM에서 해석한다고 합니다. 오잉?? 🤔🤔&lt;/li&gt;
   &lt;li&gt;그러던 와중 &lt;a href=&quot;https://soooprmx.com/archives/11330&quot;&gt;https://soooprmx.com/archives/11330&lt;/a&gt; 글을 읽게 됐고, C, Java, Python의 빌드 및 실행 과정을 구글링 해보며 어느 정도 정리가 된 것 같아 포스팅으로 남깁니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;인터프리터-언어-컴파일-언어--옛날-얘기&quot;&gt;인터프리터 언어? 컴파일 언어? 👉 옛날 얘기!&lt;/h3&gt;
+&lt;h2 id=&quot;인터프리터-언어-컴파일-언어--옛날-얘기&quot;&gt;인터프리터 언어? 컴파일 언어? 👉 옛날 얘기!&lt;/h2&gt;
+
+&lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;우선, 프로그래밍 언어를 인터프리터 언어 / 컴파일 언어로 나누는 분류는 잘못됐습니다. 프로그래밍의 초기에나 가능한 얘기이지, JIT 컴파일러, Virtual Machine 등의 등장 이후론 이와 같은 분류는 더이상 유효하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;우선, 프로그래밍 언어를 인터프리터 언어 / 컴파일 언어로 나누는 분류는 잘못됐습니다. 프로그래밍의 초기에나 가능한 얘기이지, JIT 컴파일러, Virtual Machine 등의 등장 이후론 이와 같은 분류는 더이상 유효하지 않습니다.
+    &lt;ul&gt;
+      &lt;li&gt;물론, ‘컴파일 언어’와 ‘인터프리터 언어’의 개념을 선 긋듯이 명확히 하면 구분 가능할 수 있겠으나, 현재는 이미 다양한 개념과 해석이 있는 것 같습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;컴파일 언어
     &lt;ul&gt;
       &lt;li&gt;‘컴파일’ 이란 한 언어에서 다른 언어로 변환 되는 것입니다.
@@ -164,9 +272,13 @@
     &lt;ul&gt;
       &lt;li&gt;전통적인 의미의 인터프리터 언어는 컴파일 과정 없이 인터프리터에 의해 소스 코드가 바로 해석되어 실행됩니다.&lt;/li&gt;
       &lt;li&gt;cmd나 bash같은 쉘이 대표적인 인터프리터 언어입니다.&lt;/li&gt;
-      &lt;li&gt;Python의 경우 쉘을 제공하기 때문에 인터프리터 언어로 분류되었던 것 같습니다.&lt;/li&gt;
+      &lt;li&gt;Python의 경우 내부적으론 컴파일러가 있지만, 실행 전까진 소스코드의 형태로만 있고 실행 시에 컴파일이 이루어지기 때문에 인터프리터 언어라고 불리는 것 같습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;C는 확실하게 컴파일 언어라고 할 수 있습니다. 빌드를 끝내면 기계어로 이루어진 실행 파일이 남기 때문입니다.&lt;/li&gt;
+  &lt;li&gt;Java는 어플리케이션 실행 전에 컴파일을 하지만 완전한 기계어 코드가 아닙니다. 어플리케이션 실행 시 바이트코드를 기계어 코드로 다시 번역해야 합니다. 컴파일 언어와 인터프리터 언어의 특징을 모두 가지고 있습니다.&lt;/li&gt;
+  &lt;li&gt;Python은 실행 전엔 Python 소스코드의 형태로 존재하기 때문에 ‘인터프리터 언어’의 정의에 따라 인터프리터 언어라고 부를 수도 있지만, 분명히 컴파일러도 존재하고 컴파일 과정도 존재합니다.&lt;/li&gt;
+  &lt;li&gt;그런데, Java나 Python 모두 미리 컴파일과 빌드를 마쳐 실행 파일을 만들어 놓을 수도 있습니다. 이 경우엔 Java와 Python도 어플리케이션 실행 전에 기계어 코드로 번역을 끝내 놓으니 컴파일 언어라고 부를 수도 있을 것 같습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;c의-빌드-과정&quot;&gt;C의 빌드 과정&lt;/h2&gt;
@@ -255,10 +367,20 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Python은 정말 자유분방합니다. C나 Java 같은 다른 언어도 다양한 컴파일러가 있지만 어느 정도는 유사한데, Python의 컴파일러들은 정말 다양합니다.&lt;/p&gt;
+    &lt;p&gt;Python의 기본 동작&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;소스코드를 컴파일해 바이트코드를 만듭니다. (컴파일러 종류가 많습니다..)&lt;/li&gt;
+      &lt;li&gt;바이트코드가 Python Virtual Machine에서 기계어로 번역되어 실행됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Java파일이 Java 바이트코드로 컴파일 되고 JVM에서 실행 되는 것과 유사합니다. 다만, Java는 JVM 실행 전에 Java 바이트코드를 컴파일 하지만, Python은 실행시에 바이트 코드를 만듭니다.
+    &lt;ul&gt;
+      &lt;li&gt;컴파일 과정이 있지만 실행 후에 컴파일이 되므로 컴파일 과정을 인터프리팅 과정에 포함시켜 인터프리터 언어라고 불리는 것 같습니다.&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Python의 컴파일러들&lt;/p&gt;
+    &lt;p&gt;Python의 인터프리터(컴파일러)들&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;CPython
@@ -267,16 +389,26 @@
           &lt;li&gt;.pyc로 컴파일 됩니다.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;Jython에선 .class로 컴파일 되어 JVM에서 돌아갑니다.&lt;/li&gt;
-      &lt;li&gt;Pypy는 JIT 컴파일러 입니다.&lt;/li&gt;
-      &lt;li&gt;&lt;/li&gt;
+      &lt;li&gt;Jython
+        &lt;ul&gt;
+          &lt;li&gt;.class로 컴파일 되어 JVM에서 돌아갈 수 있게 해줍니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;IronPython
+        &lt;ul&gt;
+          &lt;li&gt;.NET 프레임워크의 언어들과 Python을 호환 시키기 위한 파이썬입니다.&lt;/li&gt;
+          &lt;li&gt;Python 코드를 다른 .NET 프레임워크 언어로 바꿀 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Pypy (RPython)
+    &lt;ul&gt;
+      &lt;li&gt;JIT 컴파일러를 지원합니다.&lt;/li&gt;
+      &lt;li&gt;Python 코드를 Python 코드로 컴파일 하여… 추후에 보강하겠습니다..&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&quot;javascript-동작-과정&quot;&gt;Javascript 동작 과정&lt;/h2&gt;
-
-&lt;hr /&gt;
 
 </content>
  </entry>
