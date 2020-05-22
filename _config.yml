@@ -32,6 +32,8 @@ rootfolder:
       The_Oyster_Mine :
          subfolder : false
    Study :
+      Short_Books:
+         subfolder : false
       Http The Definitive Guide : 
          subfolder : false
       C_Kim_Pope :

@@ -4,13 +4,245 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-05-17T23:52:01+09:00</updated>
+ <updated>2020-05-22T23:10:30+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>객체지향의 사실과 오해(작성중)</title>
+   <link href="http://localhost:4000/posts/study/short_books/OOP_Truth_Misunderstanding/"/>
+   <updated>2020-05-22T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/short_books/OOP_Truth_Misunderstanding</id>
+   <content type="html">
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Short_Books/OOP_Truth_Misunderstanding.png&quot; alt=&quot;OOP_Truth_Misunderstanding.png&quot; class=&quot;center&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;0-후기&quot;&gt;0. 후기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;후기&quot;&gt;후기&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3장 읽는 중…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;내가-정의하는-객체-지향-프로그래밍&quot;&gt;내가 정의하는 객체 지향 프로그래밍&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한 어플리케이션을 이루는 구성요소들을 효과적으로 구성하고 관리하기 위한 프로그래밍 방법론이다.&lt;/li&gt;
+  &lt;li&gt;효과적으로 구성하고 관리하기 위한 방법으로 객체들의 행동을 &lt;strong&gt;추상화&lt;/strong&gt; 하고 추상화 한 행동들을 &lt;strong&gt;캡슐화&lt;/strong&gt;한다.&lt;/li&gt;
+  &lt;li&gt;추상화한 객체를 &lt;strong&gt;구현&lt;/strong&gt;하고 &lt;strong&gt;상속&lt;/strong&gt;해 사용 가능한 객체를 만든다. 구현과 상속은 1:1로 대응하는 게 아니라 1:다로 대응할 수 있는데 이런 특징을 &lt;strong&gt;다형성&lt;/strong&gt;이라고 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-협력하는-객체들의-공동체&quot;&gt;1. 협력하는 객체들의 공동체&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;11-실세계의-비유&quot;&gt;1.1. 실세계의 비유&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;흔히 사용하는 기존의 객체 지향 설명
+    &lt;ul&gt;
+      &lt;li&gt;“객체지향이란 실세계를 직접적이고 직관적으로 모델링할 수 있는 패러다임”&lt;/li&gt;
+      &lt;li&gt;위와 같은 실세계의 비유로 객체 지향 전부를 설명하려면 맞지 않는 부분이 많습니다. 하지만 그럼에도 불구하고 아직까지도 실세계의 비유를 객체 지향 프로그래밍에 사용하는 이유는 실세계의 비유로 쉽게 설명할 수 있는 특징들도 많기 때문입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;실세계의 비유를 하나 보겠습니다.
+    &lt;ul&gt;
+      &lt;li&gt;손님이 커피를 주문합니다.&lt;/li&gt;
+      &lt;li&gt;캐셔는 주문을 받고 계산을 합니다.&lt;/li&gt;
+      &lt;li&gt;캐셔는 손님에겐 벨을 주고, 바리스타에겐 주문 쪽지를 넘겨줍니다.&lt;/li&gt;
+      &lt;li&gt;바리스타는 쪽지에 있는 대록 제조를 한 뒤 캐셔에게 넘겨줍니다.&lt;/li&gt;
+      &lt;li&gt;캐셔는 제조된 커피를 받고 손님의 호출벨을 울립니다.&lt;/li&gt;
+      &lt;li&gt;손님을 커피를 받고 벨을 반납합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같은 과정이 일어나기 위해선 손님, 캐셔, 바리스타가 &lt;strong&gt;협력&lt;/strong&gt;해야 합니다. 협력을 하기위한 각자의 &lt;strong&gt;역할&lt;/strong&gt;이 있고, 각 역할엔 역할에 맞는 &lt;strong&gt;책임&lt;/strong&gt;이 따릅니다.&lt;/li&gt;
+  &lt;li&gt;위의 예시를 비유로 객체 지향 프로그래밍을 설명한다면, 각 사람은 &lt;strong&gt;객체&lt;/strong&gt;가 됩니다. 서로 주고 받는 요청과 응답은 &lt;strong&gt;메세지&lt;/strong&gt;로 처리될 것이고, 손님이 어떤말로 주문을 할지, 캐셔가 어떻게 계산을 해줄지, 바리스타가 어떻게 커피를 만들지 각 방법들은 &lt;strong&gt;메소드&lt;/strong&gt;가 됩니다.&lt;/li&gt;
+  &lt;li&gt;객체들은 &lt;strong&gt;협력적&lt;/strong&gt;이어야 합니다. 다른 객체와의 협력 없이 홀로 작동하는 객체는 없습니다.
+    &lt;ul&gt;
+      &lt;li&gt;“어떤 객체도 섬이 아니다” - Kent Beck 1989&lt;/li&gt;
+      &lt;li&gt;협력을 위해 명확한 역할이 필요하고 역할엔 책임이 따릅니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;객체는 &lt;strong&gt;자율적&lt;/strong&gt;이어야 합니다. 바리스타가 어떻게 제조를 하는 지 캐셔는 몰라도 되는 것 처럼, 객체들은 다른 객체들에게 자신이 어떻게 작동하는지 등을 노출할 필요가 없습니다.
+    &lt;ul&gt;
+      &lt;li&gt;자율적인 객체는 각자의 &lt;strong&gt;상태&lt;/strong&gt;와 &lt;strong&gt;행위&lt;/strong&gt;를 갖습니다.&lt;/li&gt;
+      &lt;li&gt;주고 받는 메세지와 메세지를 처리하는 메서드를 분리하는 것 역시 자율성의 하나입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;12-객체를-지향하라&quot;&gt;1.2. 객체를 지향하라&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;객체 지향에서 흔히 통용되는 잘못된 생각중 하나는 “클래스”를 객체 지향의 핵심 개념으로 보는 것입니다. 객체 지향이 무엇인지 설명하라고 하면 클래스가 갖고 있는 추상화, 상속 등의 특징에 대해 설명하는 사람들이 많습니다.&lt;/li&gt;
+  &lt;li&gt;클래스는 많은 객체 지향 프로그래밍의 중요 요소긴 하지만, 그 자체가 핵심은 아닙니다. 클래스가 존재하지 않는 객체 지향 언어도 있습니다.(Javascript와 같은 Prototype 기반의 언어들)&lt;/li&gt;
+  &lt;li&gt;클래스는 객체 지향 프로그래밍의 구현 메커니즘 중 하나일 뿐입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-이상한-나라의-객체&quot;&gt;2. 이상한 나라의 객체&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 장에선 객체의 &lt;strong&gt;상태&lt;/strong&gt;와 &lt;strong&gt;행동&lt;/strong&gt;, &lt;strong&gt;식별자&lt;/strong&gt;를 중점으로 알아봅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;상태는 행동이 결정하지만, 행동의 결과를 결정하는 것은 상태 입니다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;상태1 –[행동1]–&amp;gt; 상태2 –[행동2]–&amp;gt; 상태2 –[행동3]–&amp;gt; 상태3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;21-상태&quot;&gt;2.1. 상태&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;상태란 특정 시점에 객체가 가지고 있는 정보의 집합으로, 객체의 구조적 특징을 표현한다. 객체의 상태는 객체에 존재하는 정적인 프로퍼티와 동적인 프로퍼티 값으로 구성된다. 객체의 프로퍼티는 단순한 값과 다른 객체를 참조하는 링크로 구분할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;상태
+    &lt;ul&gt;
+      &lt;li&gt;정적 프로퍼티&lt;/li&gt;
+      &lt;li&gt;동적 프로퍼티&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로퍼티
+    &lt;ul&gt;
+      &lt;li&gt;값&lt;/li&gt;
+      &lt;li&gt;링크&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;설명을 위해 이상한 나라의 사람 객체와 체중 증가 포션, 체중 감소 포션을 가정해봅시다.
+    &lt;ul&gt;
+      &lt;li&gt;사람
+        &lt;ul&gt;
+          &lt;li&gt;이름 : 민수&lt;/li&gt;
+          &lt;li&gt;체중 : 60kg&lt;/li&gt;
+          &lt;li&gt;왼쪽 주머니 : 체중 증가 포션&lt;/li&gt;
+          &lt;li&gt;오른쪽 주머니 : 체중 감소 포션&lt;/li&gt;
+          &lt;li&gt;행동
+            &lt;ul&gt;
+              &lt;li&gt;포션 먹기&lt;/li&gt;
+              &lt;li&gt;체중 변화&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;체중 증가 포션
+        &lt;ul&gt;
+          &lt;li&gt;용량 : 10 회분&lt;/li&gt;
+          &lt;li&gt;행동 :
+            &lt;ul&gt;
+              &lt;li&gt;용량 변화&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;체중 감소 포션
+        &lt;ul&gt;
+          &lt;li&gt;용량 : 10회분&lt;/li&gt;
+          &lt;li&gt;행동 :
+            &lt;ul&gt;
+              &lt;li&gt;용량 변화&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이름인 ‘민수’는 바뀔 수 없는 정적 프로퍼티 입니다. 체중인 ‘60kg’은 동적 값 프로퍼티입니다. 왼쪽 주머니와 오른쪽 주머니는 동적 링크 프로퍼티입니다. 체중 증가 포션과 체중 감소 포션에 링크되어 있습니다.&lt;/li&gt;
+  &lt;li&gt;민수가 왼쪽 주머니의 포션을 3번 마시고 오른족 주머니의 포션을 2번 마셨다면 체중은 60 -&amp;gt; 61 -&amp;gt; 62 -&amp;gt; 63 -&amp;gt; 62 -&amp;gt; 61 순으로 변합니다.
+    &lt;ul&gt;
+      &lt;li&gt;상태는 행동의 결과들이 쌓인 결과입니다.&lt;/li&gt;
+      &lt;li&gt;상태를 이용하면 과거 모든 행동을 설명하지 않고도 모든 행동의 결과를 말해줄 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;현실 세계에선 포션을 마신다면 포션의 용량이 마신 사람에 의해 줄어들 것입니다. 하지만, 객체 지향의 세계의 객체들은 자율적이기 때문에 자신의 상태를 다른 객체가 바꾸는걸 용납하지 않습니다. 다만 다른 객체가 자신의 상태를 변화시킬 수 있도록 요청할 수 있는 창구를 만들어 놓습니다. &lt;strong&gt;행동&lt;/strong&gt;으로 넘어갑시다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;22-행동&quot;&gt;2.2. 행동&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;행동이란 외부의 요청 또는 수신된 메세지에 응답하기 위해 동작하고 반응하는 활동이다. 행동의 결과로 자신의 상태를 변경하거나 다른 객체에 메세지를 전달할 수 있다. 객체는 행동을 통해 다른 객체와의 협력에 참여하므로 행동은 외부에 가시적이어야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;객체의 상태를 변경하는 것은 행동입니다.
+    &lt;ul&gt;
+      &lt;li&gt;행동은 객체 스스로 수행할 수도 있고, 다른 객체가 행동을 하도록 요청할 수도 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;앞서 말했듯이, 객체지향의 세계의 객체들은 자율적이어야 하기 때문에 다른 객체가 자신의 상태에 직접 접근하도록 허락하지 않습니다. 객체가 다른 객체의 상태를 변경할 수 있는건 다른 객체에게 상태를 변경하는 행동을 해달라고 요청하는 것 뿐입니다. 마찬가지로, 상태를 조회하는 것 역시 직접 접근하지 못하고 요청을 할 뿐입니다.
+    &lt;ul&gt;
+      &lt;li&gt;이렇게 자신의 상태와 상태를 조작하는 행동을 묶는 방법을 캡슐화라고 합니다. 또한, 외부에서 자신의 상태에 직접 접근하지 못하도록 하는 것을 정보은닉이라고 합니다.&lt;/li&gt;
+      &lt;li&gt;java에서 properties를 private로 두고(정보은닉) getter/setter(혹은 다른 메서드)로 properties로 다룹니다.(캡슐화)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;캡슐화는 객체의 자율성을 높여 협력을 단순하고 유연하게 만듭니다.(즉, 객체간의 결합도를 떨어뜨립니다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;23-식별자&quot;&gt;2.3. 식별자&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;식별자란 어떤 객체를 다른 객체와 구분하는 데 사용하는 객체의 프로퍼티다. 값은 식별자를 가지지 않기 때문에 상태를 이용한 동등성 검사를 통해 두 인스턴스를 비교해야 한다. 객체는 상태가 변경될 수 있기 때문에 식별자를 이용한 동일성 검사를 통해 두 인스턴스를 비교할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;식별자는 말 그대로 객체들 간에 구별을 하는 기준이 되는 프로퍼티입니다.&lt;/li&gt;
+  &lt;li&gt;어느 두 객체가 있을때, 두 객체의 상태가 모두 같더라도 두 객체의 식별자가 다르다면 다른 객체입니다. 반대로, 어느 두 객체가 있을때, 두 객체의 상태가 다르더라도 객체의 식별자가 같으면 같은 객체입니다.(같은 객체이지만 시점이 다르다던지 등..)&lt;/li&gt;
+  &lt;li&gt;한편, 상태가 같음으로서 식별을 완료하는 것들을 값이라고 부릅니다.(키, 몸무게 등..)&lt;/li&gt;
+  &lt;li&gt;값 vs 객체
+    &lt;ul&gt;
+      &lt;li&gt;값과 객체를 혼란스러워 하는 이유는 두 개념 모두 클래스를 이용해 구현되기 때문입니다.
+        &lt;ul&gt;
+          &lt;li&gt;책엔 그냥 ‘값’과 ‘객체’라고 나오지만 사견으론 ‘값 객체’와 ‘값이 아닌 객체’? 혹은 아래 처럼 ‘참조 객체’라고 표현하는게 낫지 않을까 생각합니다. ‘값’이라고 하니 primitive 자료형만 말하는 것 같은 느낌이 듭니다. 아래 value object가 언급된 걸 보면 primitive 자료형이 아니어도 ‘==’에서 객체 주소 비교가 아니라 값 비교로 비교되는 모든 객체들을 일컫는 것 같은데..&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;일부 서적에선 오해를 없애기 위해 객체는 reference object 나 entity라는 이름을 쓰고 값은 value object 라는 이름을 쓰기도 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;24-행동이-상태를-결정한다&quot;&gt;2.4. 행동이 상태를 결정한다.&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;객체 지향 입문자들이 흔히 하는 실수는 객체를 상태 중심으로 바라보는 것입니다. 설계할 때도 객체에 필요한 상태가 무엇인지 먼저 결정하고 상태에 필요한 행동을 결정합니다.&lt;/li&gt;
+  &lt;li&gt;하지만 이와 같이 상태를 먼저 고려하는건 다음과 같은 문제들을 야기할 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;첫째, 캡슐화가 저해됩니다.상태가 객체 내부로 깔끔하게 캡슐화 되지 못하고 밖으로 노출될 수 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;사견) properties에 private 같은 접근 지시자를 깜빡하는 경우를 말하는 것이라면 그렇게 큰 우려거리는 아닐것 같습니다만..&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;둘째, 객체를 협력자가 아닌 고립된 섬으로 만듭니다. 객체의 존재 이유는 다른 객체와의 협력을 위해서입니다. 상태를 먼저 고려한다면 객체를 고립된 섬으로 만들 수 있습니다.&lt;/li&gt;
+      &lt;li&gt;셋째, 객체의 재사용성이 저하됩니다. 둘째이유에서 파생되는 결과입니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;객체의 행동은 객체의 역할과 책임을 나타냅니다.&lt;/li&gt;
+  &lt;li&gt;사견) 개인적으로 이 문제는 닭이 먼저냐 달걀이 먼저냐의 논리 같긴 합니다. 오히려 ‘역할’을 먼저 생각하라고 했다면 더 말이 되었을 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;25-현실-세계의-비유&quot;&gt;2.5. 현실 세계의 비유&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사견) 아직까진 현실 세계의 비유가 맞지 않는 이유가 ‘현실 세계와 다르게 객체는 자율적이어서 자신의 상태를 능동적으로 조절한다.’ 밖에 없는데… 이게 끝이라면 저도 다른 데서 객체지향을 설명하는데 현실 세계의 비유를 사용할 것 같습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-타입과-추상화&quot;&gt;3. 타입과 추상화&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Javascript 실행 과정 및 비동기</title>
