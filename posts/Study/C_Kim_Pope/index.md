@@ -46,10 +46,10 @@ title: Unmanged Language C - Kim pope
 6. 콘솔 입력, 파일 입출력, 커맨드 라인 인자 ✅
 7. 구조체, 공용체, 함수 포인터 ✅
 8. 가변 인자 함수, 올바른 오류 처리 방법 ✅
-9. 레지스터, 스택&힙, 동적 메모리, 다중 포인터 [5/23 예정] ✅
-10. 자료구조 [5/24 예정] <span style='filter: grayscale(1)'>✅</span>
-11. 전처리기 <span style='filter: grayscale(1)'>✅</span>
-12. 나만의 라이브러리 만들기, C99 <span style='filter: grayscale(1)'>✅</span>
+9. 레지스터, 스택&힙, 동적 메모리, 다중 포인터 ✅
+10. 자료구조 ✅
+11. 전처리기 [5/30 예정] <span style='filter: grayscale(1)'>✅</span>
+12. 나만의 라이브러리 만들기, C99 [5/31 예정] <span style='filter: grayscale(1)'>✅</span>
 13. C99, C11 <span style='filter: grayscale(1)'>✅</span>
 14. Type-Generic 함수 만들기, 정적어서트, 메모리 정렬, 멀티스레딩 <span style='filter: grayscale(1)'>✅</span>
 

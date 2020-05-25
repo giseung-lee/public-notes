@@ -1,0 +1,185 @@
+I"�
+<ul>
+  <li>본 포스팅은 아래 포스팅들을 참고하여 작성되었습니다.
+    <ul>
+      <li><a href="https://velopert.com/2350">https://velopert.com/2350</a>, <a href="https://velopert.com/2389">https://velopert.com/2389</a>
+        <ul>
+          <li>쿠키/세션 방식에서 토큰 방식으로의 이행</li>
+          <li>JWT 토큰의 구성</li>
+        </ul>
+      </li>
+      <li><a href="https://www.sauru.so/blog/basic-of-oauth2-and-jwt/">https://www.sauru.so/blog/basic-of-oauth2-and-jwt/</a>
+        <ul>
+          <li>Oauth2와 JWT의 동작 원리</li>
+        </ul>
+      </li>
+      <li><a href="https://bcho.tistory.com/999">https://bcho.tistory.com/999</a>
+        <ul>
+          <li>Oauth에서 JWT로의 이행</li>
+        </ul>
+      </li>
+      <li><a href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a>
+        <ul>
+          <li>Oauth2.0 Specification (RFC 6749)</li>
+        </ul>
+      </li>
+      <li><a href="https://tools.ietf.org/html/rfc7519">https://tools.ietf.org/html/rfc7519</a>
+        <ul>
+          <li>JWT Specification (RFC 7519)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Sagyo_Reboot 프로젝트에서 로그인/인증 기능을 새로 구현하고 싶은데 어깨 넘어로 듣기로 Oauth2가 요즘 가장 많이 쓰이는 것 같았습니다. 그래서 Oauth2에 대해 찾다보니 인증방식에 대한 정보들이 줄줄이 계속 나오길래 정리해서 올립니다.</p>
+  </li>
+  <li>
+    <p>아래의 것들을 알아보겠습니다.</p>
+
+    <ol>
+      <li>
+        <p>쿠키 / 세션 (서버 기반 인증)</p>
+      </li>
+      <li>
+        <p>토큰 기반 인증</p>
+
+        <p>2.1. Oauth 2.0</p>
+
+        <p>2.2. JWT</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="1-쿠키--세션-서버-기반-인증">1. 쿠키 / 세션 (서버 기반 인증)</h2>
+
+<hr />
+
+<ul>
+  <li>인증의 가장 기본적인 방법입니다.</li>
+</ul>
+
+<h3 id="동작과정">동작과정</h3>
+
+<ul>
+  <li>Client -&gt; Server
+    <ul>
+      <li>Id와 Pw를 보내 로그인을 합니다.</li>
+    </ul>
+  </li>
+  <li>Server -&gt; Client
+    <ul>
+      <li>Id와 Pw가 맞다면 Session Id를 발급해 서버에 저장하고 클라이언트에도 전송합니다.</li>
+      <li>Session Id의 유효기간을 정하는건 서버 나름입니다.</li>
+      <li>Session Id 관리엔 Redis, Memcached 등을 사용할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>Client -&gt; Server
+    <ul>
+      <li>받은 Session Id는 쿠키에 저장합니다.</li>
+      <li>다음 요청시 Session Id를 같이 보내 인증을 합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="장점">장점</h3>
+
+<ul>
+  <li>쉬운 구현</li>
+</ul>
+
+<h3 id="단점">단점</h3>
+
+<ul>
+  <li>Session Id를 탈취 당할 경우 보안에 취약합니다.</li>
+  <li>세션은 한 서버마다 저장되기 때문에 여러 복제 서버를 사용하는 현대의 큰 웹 서비스엔 적합하지 않습니다.
+    <ul>
+      <li>WAS 인스턴스 3개(A1, A2, A3 서버)를 사용중인데 웹 서버에서 로드밸런싱을 하며 A1, A2, A3 중 어느 인스턴스로 요청을 보낼 지 모릅니다. 이때, A1서버에서 받은 Session Id는 A2 서버에서 동작하지 않을 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>마찬가지로, 현대의 웹은 서버의 유연한 Scale Out을 지향하기 때문에 한 서버에 귀속된 세션은 사용에 어려움이 따릅니다.</li>
+  <li>HTTP서버는 Stateless를 지향합니다. (요청과 응답이 끝나면 그로 인한 상태들을 남기지 않는 것) 하지만, 세션 방식에선 지속 로그인을 위해 접속 했던 클라이언트의 세션을 살려둬야 합니다. 즉, Stateful 해집니다.
+    <ul>
+      <li>Stateless 한 서버를 지향하면 서버와 클라이언트의 연결고리가 없기 때문에 서버의 확장성이 높아집니다.</li>
+    </ul>
+  </li>
+  <li>CORS (Cross-Origin Resource Sharing)
+    <ul>
+      <li>쿠키는 해당 쿠키를 생성한 단일 도메인 및 서브 도메인에서만 작동합니다. 어플리케이션이 여러 도메인을 가지고 작동한다면 CORS를 피해 쿠키를 다룰 방법을 찾아야 합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-token-기반">2. Token 기반</h2>
+
+<hr />
+
+<ul>
+  <li>Session Id를 발급받는 대신 Token을 발급 받습니다. Session Id는 서버가 Session Id를 기억하고 있어야 하지만 Token 방식은 서버가 Token을 저장해두지 않고 요청이 올때 Token을 검증합니다.</li>
+</ul>
+
+<h3 id="대략적인-동작-과정">(대략적인) 동작 과정</h3>
+
+<ul>
+  <li>Client -&gt; Server
+    <ul>
+      <li>Id와 Pw를 보내 로그인을 요청합니다.</li>
+    </ul>
+  </li>
+  <li>Server -&gt; Client
+    <ul>
+      <li>Id와 Pw가 맞다면 Signed Token을 발급해줍니다.</li>
+    </ul>
+  </li>
+  <li>Client -&gt; Server
+    <ul>
+      <li>Token을 쿠키에 저장해둡니다.</li>
+      <li>다음 요청시 Token을 같이 보내 인증합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="특징">특징</h3>
+
+<ul>
+  <li>위의 동작과정만 보면 Session Id를 발급 받는 것과 크게 다를 바 없어 보입니다.</li>
+  <li>우선 핵심적인 차이는 서버에 흔적이 남지 않는 다는 것입니다. Stateless한 서버를 구현할 수 있고 여러 WAS를 사용할 수도 있고 Scale Out도 용이합니다.</li>
+  <li>다만, 그렇다면 한 가지 의문이 생깁니다. <strong>“서버에 아무 것도 남기지 않는데 어떻게 Token을 인증할 것인가”</strong> 그에 대해선 Oauth 2.0과 JWT를 살펴보며 더 알아보겠습니다.</li>
+</ul>
+
+<h3 id="장점-1">장점</h3>
+
+<ul>
+  <li>서버가 따로 저장할 것이 없습니다(서버의 부담이 줄어듭니다.)</li>
+  <li>Scale Out에 강합니다.</li>
+  <li>관련 기술들이 웹 표준으로 등록되어 있습니다. 다양한 프레임워크, 언어에서 호환가능 합니다.
+    <ul>
+      <li>인증 프레임워크인 Oauth 2.0은 RFC 6749에 등록되어 있습니다.</li>
+      <li>표준 토큰인 JWT는 RFC 7519에 등록되어 있습니다.</li>
+    </ul>
+  </li>
+  <li>보안상 완벽한 기술은 없지만, 그래도 현재는 가장 널리 쓰이는 인증 방식입니다.</li>
+</ul>
+
+<h3 id="단점-1">단점</h3>
+
+<ul>
+  <li>Token관련 기술을 학습해야 하는 부담감.</li>
+</ul>
+
+<h2 id="21-oauth-20">2.1. Oauth 2.0</h2>
+
+<hr />
+
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="22-jwt">2.2. JWT</h2>
+
+<hr />
+
+<ul>
+  <li></li>
+</ul>
+:ET
