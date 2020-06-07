@@ -4,13 +4,315 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-06-03T23:04:05+09:00</updated>
+ <updated>2020-06-08T00:00:22+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>해시관련 정리(90% 작성)</title>
+   <link href="http://localhost:4000/posts/googling/etc/Hash/"/>
+   <updated>2020-06-07T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/etc/Hash</id>
+   <content type="html">
+&lt;p&gt; 면접 보는데 해시 관련 질문이 나왔습니다. 예전에 자료구조 공부 하면서 보고 구현도 해봤기 때문에 나름 알고는 있다고 생각했는데, 막상 면접에선 머릿속에 있던 명확하지 않은 개념들 때문에 어버버버 하면서 원하는 만큼의 답변을 못했던 것 같습니다. 그런 의미에서 해시 관련 내용들을 정리해보기로 했습니다. 다음에 누가 해시 관련해서 물어보면 술술술 대답할 수 있도록!&lt;/p&gt;
+
+&lt;h2 id=&quot;해시-테이블-동작-방식&quot;&gt;해시 테이블 동작 방식&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow.png&quot; alt=&quot;hash_flow.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow_example.png&quot; alt=&quot;hash_flow_example.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 해시 테이블은 배열입니다. 단, 한 데이터의 해시 값(해시 코드, 해시)을 그 데이터가 배열에 들어갈 인덱스로 사용하는 배열입니다. 해시 테이블의 가장 큰 장점은 데이터의 삽입, 검색, 삭제가 모두 O(1)으로 일어난다는 것입니다.&lt;/p&gt;
+
+&lt;p&gt; 위 해시 테이블 예시 다이어그램은 자바의 기본 Object 메서드인 hashCode()를 이용해 해시 값을 뽑고 해시 값을 모듈로 연산을 통해 배열의 인덱스를 뽑은 것입니다.&lt;/p&gt;
+
+&lt;p&gt; 위 예시에선 해시 값을 만들고 모듈로 연산으로 색인을 만드는 과정을 분리해서 설명했지만, 두 과정을 합쳐서 해시 함수라고 부르고 결과로 나온 색인을 해시 값이라고 하기도 합니다.&lt;/p&gt;
+
+&lt;p&gt; ‘해시 함수’의 범위를 어디까지 볼 거냐는 무의미한 질문입니다. 해시 함수의 정의상 모듈로 연산을 끼든 안끼든 둘 다 해시함수이기 때문입니다. 모듈로 연산 자체도 해시 함수의 성격을 갖습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;해시-함수란-좋은-해시-함수란&quot;&gt;해시 함수란? 좋은 해시 함수란?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 위키 피디아의 정의를 빌리자면 해시 함수는 다음과 같습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A hash function is any function that can be used to map data of arbitrary size to fixed-size values.&lt;br /&gt;해시함수란 임의의 길이를 갖는 데이터를 고정된 사이즈의 값으로 맵핑 하는 함수이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow_range.png&quot; alt=&quot;hash_flow_range.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 문자열, 정수, 객체 등 모든 데이터는 해시 함수를 통해 고정된 크기인 int 범위 안으로 압축될 수 있습니다. 그리고 int 범위로 좁혀진 해시 값을 모듈로 연산을 통해 해시 테이블 크기안의 범위로 압축 시킬 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 모듈로 연산은 한 수로 나눈 나머지를 가져오면 되니 어려울게 없습니다. 그렇다면 모든 타입의 데이터를 int 범위로 압축 시키는 해시 함수는 어떤 방식으로 동작할까요?&lt;/p&gt;
+
+&lt;p&gt; 우선 해시 함수는 모든 타입의 데이터를 받아들일 수 있어야 합니다. 모든 타입의 데이터를 받아들이기 위해선 임의의 길이의 문자열만 받아들일 수 있으면 됩니다. 어차피 메모리의 입장에서 볼 때의 데이터들은 char 단위(해당 아키텍쳐에서 사용하는 가장 작은 단위) 데이터의 배열이기 때문입니다.(문자열은 char의 배열이고 다른 객체들의 비트 패턴도 결국 char 단위의 배열로 읽어 들일 수 있기 때문.)&lt;/p&gt;
+
+&lt;p&gt; 받아 들인 데이터를 char 배열로 읽어들여 하나의 int 값으로 압축하는 방법은 다양합니다. 가장 간단한 방법으로 char 배열 각 요소의 ASCII 코드를 산술적으로 더해 int 값을 뽑을 수도 있습니다. 아래의 C 코드처럼 말이죠.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hash_loselose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Hello hash!&quot;&lt;/code&gt; 를 위 해시 함수에 넣으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;104 + 101 + 108 + 108 + 111 + 32 + 119 + 111 + 114 + 108 + 100 = 1116&lt;/code&gt;의 결과가 나옵니다.&lt;/p&gt;
+
+&lt;p&gt; 하지만 위 해시 함수는 나쁜 해시 함수입니다. 다른 데이터에 대해 같은 해시 값이 너무 많이 나오기 때문입니다. 이렇게 다른 입력에 대해 같은 해시 값이 나오는 것을 충돌(Collision)이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt; 아래는 간단하면서도 실무에서 쓸 수 있을 정도로 성능도 꽤 좋은 해시함수인 65599 해시 함수입니다. 해시 코드에 65599를 곱하고 char 배열 한 요소의 ASCII 값을 산술적으로 더해 새로운 해시 코드로 삼습니다. char 배열을 돌면서 이걸 반복하고 끝까지 돈 해시 코드와 그 해시 코드를 16비트만큼 left shift 한 비트 패턴을 xor 연산 해줍니다.(size_t는 8바이트=32비트이니, 계산된 해시코드와 해시코드를 절반만큼 옮긴 해시코드를 xor로 섞어줍니다.)&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hash_65599&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;65599&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; 또 하나의 예로, java의 String 클래스의 hashCode() 함수를 보겠습니다. 마찬가지로 해시 값에 31을 곱하고 char의 ASCII 값을 더하는 걸 반복합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/* hash : static 변수, 기본값 0 */&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; &lt;a href=&quot;https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed&quot;&gt;https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed&lt;/a&gt;에서 여러 해시 함수들을 비교분석 해준 결과를 아래 첨부합니다.  216,553 개의 영단어, 216,553개의 랜덤한 GUID, 1~216,553의 숫자를 테스트한 결과(평균 해시 계산 시간, 총 충돌 수)입니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Hash&lt;/th&gt;
+      &lt;th&gt;words&lt;/th&gt;
+      &lt;th&gt;GUIDs&lt;/th&gt;
+      &lt;th&gt;Numbers&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Murmur&lt;/td&gt;
+      &lt;td&gt;145 ns / 6 개&lt;/td&gt;
+      &lt;td&gt;259 ns / 5 개&lt;/td&gt;
+      &lt;td&gt;92 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;FNV-1a&lt;/td&gt;
+      &lt;td&gt;152 ns / 4 개&lt;/td&gt;
+      &lt;td&gt;504 ns / 4 개&lt;/td&gt;
+      &lt;td&gt;86 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;FNV-1&lt;/td&gt;
+      &lt;td&gt;184 ns / 1 개&lt;/td&gt;
+      &lt;td&gt;730 ns / 5 개&lt;/td&gt;
+      &lt;td&gt;92 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DBJ2a&lt;/td&gt;
+      &lt;td&gt;158 ns / 5 개&lt;/td&gt;
+      &lt;td&gt;443 ns / 6 개&lt;/td&gt;
+      &lt;td&gt;91 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DJB2&lt;/td&gt;
+      &lt;td&gt;156 ns / 7 개&lt;/td&gt;
+      &lt;td&gt;437 ns / 6 개&lt;/td&gt;
+      &lt;td&gt;93 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SDBM&lt;/td&gt;
+      &lt;td&gt;148 ns / 4 개&lt;/td&gt;
+      &lt;td&gt;484 ns / 6 개&lt;/td&gt;
+      &lt;td&gt;90 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SuperFastHash&lt;/td&gt;
+      &lt;td&gt;164 ns / 85 개&lt;/td&gt;
+      &lt;td&gt;344 ns / 4 개&lt;/td&gt;
+      &lt;td&gt;118 ns / 18,742 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CRC32&lt;/td&gt;
+      &lt;td&gt;250 ns / 2 개&lt;/td&gt;
+      &lt;td&gt;946 ns / 0 개&lt;/td&gt;
+      &lt;td&gt;130 ns / 0 개&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LoseLose&lt;/td&gt;
+      &lt;td&gt;338 ns / 215,178 개&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt; 위 해시 함수들의 비교를 보면 각 해시 함수마다 장단점이 있다는 것을 알 수 있습니다. FNV-1의 경우 words에서 충돌이 1개 밖에 나지 않았지만 평균 해시 계산 시간이 184ns로 다른 함수들보다 조금 느립니다. 하지만 GUID에선 해시 계산시간이 현저히 느립니다. 참고로 엄청나게 충돌이 많이 나는 LoseLose 해시 함수는 위에서 살펴본 char의 ASCII 값을 산술적으로 더하는 해시 함수입니다. 다른 해시 함수들에서 어떤 단어가 충돌이 났는지는 위 링크를 따라가면 보실 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 좋은 해시 함수는 해시 계산 속도가 빠르고, 충돌이 적은 함수입니다. 본인이 다루는 데이터의 형식에 따라 좋은 해시함수는 달라질 수 있습니다. 유저에게 데이터를 입력받지 않는 프로그램의 경우엔 들어올 수 있는 모든 입력의 풀을 검토해서 충돌이 아예 안나는 해시 함수 중 빠른 해시 함수를 선택할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 아래는 DJB2 해시 함수입니다. 65599 해시 함수랑 크게 다르진 않습니다. 다만 처음 해시 값을 5381로 두고, 문자열을 돌면서 해시 값에 33을 곱하고 문자열의 ASCII 값을 더해줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hash_djb2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5381&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* hash * 33 + c */&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* source : http://www.cse.yorku.ca/~oz/hash.html */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그런데 위 해시 함수들에 나오는 수를 봅시다. 65599, 31, 5381의 공통점은 모두 소수라는 것입니다. 또한, 제가 처음 글을 시작할때 모듈로 연산에서 나누는 값으로 쓴 수 역시 23으로 소수였습니다. 왜 해시 함수는 이렇게 소수를 좋아할까요?&lt;/p&gt;
+
+&lt;h2 id=&quot;왜-소수를-쓰는가&quot;&gt;왜 소수를 쓰는가&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 해시 값을 구하는 데도, 구한 해시 값을 모듈로 연산으로 나눠 인덱스를 구하는 데도 소수를 씁니다.(버킷의 수를 소수 개로 사용합니다.) 왜 소수를 쓸까요? 일단 궁극적인 목적은 충돌(입력 데이터가 다른데 해시 값이나 색인 값이 같은 경우)의 가능성을 줄이기 위해서 입니다. 그렇다면 왜 소수를 사용하면 충돌의 가능성이 줄어들까요?&lt;/p&gt;
+
+&lt;p&gt; 대강의 느낌을 받기 위해 매미가 동안 땅 속에서 기다리는 얘기를 해드리겠습니다. 매미는 종에 따라 5년, 7년, 13년, 17년 등의 주기로 땅속에서 있다가 다 같이 한 번에 땅 밖으로 나온다고 합니다. 이 매미들의 생존 전략엔 두가지 특징이 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 우선, 다 같이 한 번에 나온다는 것입니다. 이것은 단순히 종의 보전을 위한 인해전술입니다. 천적들이 아무리 많아도 천적들이 잡아먹는 매미의 수는 한정되어 있습니다. 서로 엇갈려 나와서 매년 같은 수의 매미들이 잡아 먹히기 보단, 한 번에 다 같이 나와서 살아 돌아가는 매미의 수를 많이 남기려는 전략입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/maemi.png&quot; alt=&quot;maemi.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 두 번째 특징이 진짜 말하려는 특징입니다. 5년, 7년, 13년, 17년. 모두 소수입니다. 왜 매미들은 소수년도를 주기로 올라올까요?  대부분의 생물 개체수는 일정 주기를 갖습니다. 매미의 천적들도 주기를 갖습니다. 그런데 매미의 천적들은 새, 다람쥐, 거북, 거미, 고양이, 개, 물고기 등 매우 많습니다. 천적들과의 주기를 피하기 위한 매미들의 전략이 소수입니다.(엄밀히 말하자면, 소수의 주기로 나오는 매미들이 살아남은 것이겠지만)&lt;/p&gt;
+
+&lt;p&gt; 매미의 주기가 8같은 수였다면, 8의 약수인 1, 2, 4, 8년 주기로 올라오는 천적들과 항상 마주칠 것입니다. 하지만 주기가 7년이라면, 주기가 n인 천적과는 7*n년에 한번씩만 만나도 되는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;(추가 정리 필요)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/1145217/why-should-hash-functions-use-a-prime-number-modulus&quot;&gt;https://stackoverflow.com/questions/1145217/why-should-hash-functions-use-a-prime-number-modulus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;충돌---해시-충돌-색인-충돌&quot;&gt;충돌 - 해시 충돌, 색인 충돌&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 앞에서 해시 함수들을 소개하면서 충돌의 가능성을 얘기했습니다. 그리고 모듈로 연산 역시 충돌의 가능성을 가지고 있습니다. 중간 해시 값이 같은 것을 “해시 충돌”, 모듈로 연산의 결과로 나온 색인이 충돌 하는 것을 “색인 충돌”이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt; 사실 색인 충돌을 해결하면 해시 충돌은 해결 안해도 될 수도 있습니다. 어차피 해시 충돌이 났으면 색인 충돌도 날 것이고, 해시 충돌은 그냥 방치하고 색인 충돌만 해결해도 되기 때문입니다.&lt;/p&gt;
+
+&lt;p&gt; 하지만 해시 충돌을 완전히 해결할 수 있으면 하나의 이점을 얻게 됩니다. “Teemo”와 “Yasuo”가 A 해시 함수에 의해서 같은 해시 값인 12345를 갖는다고 가정합시다. 충돌을 해결하기 위해서 여러 방법이 쓰이지만 결국 입력 데이터인 “Teemo”와 “Yasuo” 자체를 기억해야 합니다.&lt;/p&gt;
+
+&lt;p&gt; 미지의 데이터 x를 해시 테이블에서 찾을 때 미지의 데이터 x의 해시 값이 12345가 나왔다고 하더라도 x가 “Teemo”인지 “Yasuo”인지 확인해야 하기 때문입니다.&lt;/p&gt;
+
+&lt;p&gt; 하지만 해시 충돌을 완벽히 해결했다면, 입력 데이터는 기억할 필요가 없습니다. int 형의 해시 값만 기억하면 됩니다. 입력 문자열 전체를 기억하는 상황 대비 int의 해시 값만 기억하는 상황은 매우 큰 이득이 아닐 수 없습니다.&lt;/p&gt;
+
+&lt;p&gt; 하지만, 이 세상에 완벽한 해시 함수는 없으며, 사용자로부터 임의의 데이터를 받는 프로그램에선 해시 충돌을 완벽히 해결할 순 없습니다. 다만, 사용자로부터 데이터를 입력받는 프로그램이 아니라 들어올 수 있는 데이터를 한정 할 수 있는 프로그램이라면 해시 충돌을 완벽히 방지하여 데이터 소모를 크게 줄일 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 주로 알아봐야 할 것은 색인 충돌을 해결하는 방법입니다. 색인 충돌 해결엔 크게 ‘주소 개방법(Open Addressing)’과 ‘체이닝(Chaining)’ 방법이 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;충돌-해결---open-addressing&quot;&gt;충돌 해결 - Open Addressing&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linear_probing.png&quot; alt=&quot;collision_linear_probing.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; Open Addressing은 인덱스 주소를 Open 하겠다는 것입니다. 예를들어 위 그림처럼 “Teemo”를 해시 함수 A에 넣어서 index 3을 얻었다고 가정합시다. 그런데, “Yasuo”를 해시 함수 A에 넣었더니 똑같이 index 3이 나왔습니다. 이렇게 색인이 충돌할 때, “Yasuo”를 굳이 index 3에 저장하려 하지 않고, 빈 주소를 찾아서 그곳에 넣도록 합니다. 이렇게 빈 주소를 찾아가는 방법을 Linear Probing (선형 탐색법)이라고 합니다.&lt;/p&gt;
+
+&lt;p&gt; 다음으로 “Vayne”을 해시 함수 A에 넣었더니 index 4가 나왔습니다. 그런데 4 자리는 “Yasuo”가 차지하고 있습니다. 따라서 “Vayne”은 다음 빈 곳인 5번에 들어가게 됩니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;장점과-단점&quot;&gt;장점과 단점&lt;/h3&gt;
+
+&lt;p&gt; Open Addressing 방식으로 충돌을 해결한다면 공간을 절약할 수 있습니다. 처음 선언해 둔 해시 테이블 배열만 가지고도 충돌을 해결할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linear_probing_weak.png&quot; alt=&quot;collision_linear_probing_weak.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 하지만, 검색시에 시간이 더 걸릴 수도 있습니다. 위처럼 크기 23짜리 해시 테이블에서 0~14가 모두 차있고 다음에 넣을 데이터 “something”이 index 2로 충돌을 일으킨다고 가정합시다. “something”은 빈자리를 찾아 index 15 까지 검사해야 합니다. 마찬가지로 다시 “something”을 검색할 때도 찾을때 까지 Linear Probing을 돌아야 합니다.&lt;/p&gt;
+
+&lt;p&gt; 더 문제는 없는 값을 검색 할 때도 해시 테이블을 모두 돌아봐야 한다는 것입니다.(Linear Probing 하게 검사도중 빈 값이 있으면 검색 결과가 없다고 반환하도록 구현한다면, 중간에 해시 값을 삭제하는 경우에 문제가 될 수 있습니다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;완전히-꽉-차버린다면&quot;&gt;완전히 꽉 차버린다면?&lt;/h3&gt;
+
+&lt;p&gt; 그런데 만약 Bucket 사이즈가 23이고 충돌도 일어나고 하면서 해시 테이블 배열이 꽉 차면 어떻게 될까요? 간단합니다. 배열 자료구조를 동적 할당 하듯이 해시 테이블도 더 큰 사이즈로 resizing 해주면 됩니다. resizing 하면 모듈로 연산에서 나누는 값(버킷 사이즈)도 달라질텐데, 그로인해 바뀌는 인덱스들을 다시 계산 할 지 말 지는 구현에 따라 달라집니다.&lt;/p&gt;
+
+&lt;p&gt; 인덱스를 다시 계산해서 배열 해놓는다면 resizing 하는데에 시간이 좀 걸리겠지만, 다음에 해시 테이블에서 검색을 할 때 빠를 수 있습니다. 반면에 다시 계산하지 않고 그대로 복사해서 사용한다면 resizing 하는 데 시간이 적게 걸리겠지만 해시 테이블 검색 할 때 맞지 않는 인덱스를 계속 뒤져가며 찾으니 시간이 더 걸릴 것입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;충돌-해결---chaining&quot;&gt;충돌 해결 - Chaining&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; Chaining 기법은 index는 같은 index로 유지하되, Bucket에 바로 데이터를 넣는게 아니라 연결 리스트의 노드 혹은 일정 사이즈의 배열을 할당하는 것입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;연결-리스트-활용&quot;&gt;연결 리스트 활용&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linked_list.png&quot; alt=&quot;collision_linked_list.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; Bucket에 데이터 자체를 담는게 아니라 연결 리스트의 노드 주소를 담습니다.(구현에 따라 기본적으론 데이터를 넣고 충돌 시에 연결 리스트의 노드를 활용할 수도 있습니다.) 위처럼 “Teemo”가 먼저 해시 테이블에 들어가있는데 “Yasuo”가 색인 충돌을 일으킨다면, 연결 리스트를 따라 “Teemo”가 들어있는 노드 뒤에 “Yasuo”노드가 만들어져 연결 됩니다.&lt;/p&gt;
+
+&lt;p&gt; 연결 리스트를 사용하면 필요한 노드만큼만 사용하면 되기 때문에 공간을 절약할 수 있습니다. 하지만 충돌이 일어날 때마다 연결 리스트의 노드를 동적 할당 해야 하기 때문에 동적 할당하는 시간이 필요하며 메모리 전체에 노드들이 퍼져있기 때문에 접근 시간이 느릴 수 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;동적-할당-배열-활용&quot;&gt;동적 할당 배열 활용&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_array.png&quot; alt=&quot;collision_array.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 연결 리스트의 노드들을 필요할 때마다 붙이는게 아니라 일정 크기의 배열을 미리 할당해줍니다. 충돌이 날때마다 해야하는 동적 할당의 부담을 줄일 수 있습니다. 충돌이 많이 일어나 정해진 크기의 배열이 꽉 찼다면 더 큰 사이즈의 배열로 다시 할당해줍니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;마치며&quot;&gt;마치며&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 면접 얘기로 시작했으니 면접 얘기로 끝내야 겠습니다. 면접 중에 스스로 뜨끔했던 게 있습니다. 객체지향에 관한 대화를 주고 받다보니 제가 이런 말을 뱉었습니다.&lt;/p&gt;
+
+&lt;p&gt; “이론적으로는 그렇게 알고 있는데, 실제로 그 이론적 지식이 활용될 프로젝트를 해보지 않아 직접 써본적은 없습니다.”&lt;/p&gt;
+
+&lt;p&gt; 웬지 오늘 해시에 대해 정리한 내용도 비슷한 맥락일 것 같습니다. 학습의 목적으로는 이론적으로 정리도 하고 구현도 해봤는데, 실제 프로젝트에서 해시 함수의 시간적 성능과 충돌의 가능성을 저울질 해가며 해시 테이블을 커스터마이징 할 일이 빠르게 오진 않을 것 같습니다. 😥&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Line 면접 및 학습 방향에 대한 고민</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/%ED%95%99%EC%8A%B5%EB%B0%A9%ED%96%A5/"/>
+   <updated>2020-06-06T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/학습방향</id>
+   <content type="html">
+&lt;h3 id=&quot;line-면접&quot;&gt;Line 면접&lt;/h3&gt;
+
+&lt;p&gt; 얼마전 라인 2차 면접을 봤다. 흔히 개발자 면접이 그러하듯이 몇 번 질문에 밑천이 금방 드러났다. 😅 뭔가 아는걸 100% 전달 못한것 같아 아쉽지만 어찌됐든 그것도 실력이니까 만족한다. 사실, 라인이라는 회사에 2차 면접까지 간 것만 해도 엄청나게 감격할 일이긴 하지만.. 그래도 붙었으면.. ㅎㅎ 바로 판교 방향으로 절 해야지&lt;/p&gt;
+
+&lt;h3 id=&quot;학습-방향에-대한-고민&quot;&gt;학습 방향에 대한 고민&lt;/h3&gt;
+
+&lt;p&gt; 그런데 면접 도중에 면접관님께서 아주 정곡을 찌르는 말을 해주셨다. 비전공자로서 이제 막 달려가고 있는 것 같은데 학습 방향을 제시해줄 멘토를 구하는게 어떠냐는 것이었다.&lt;/p&gt;
+
+&lt;p&gt; 사실 나 스스로도 학습 방향이 너무 중구난방이 아닌가 생각하고 있긴했다. 이론지식도 쌓아야지, C도 연습해봐야지, 코딩테스트 위해서 알고리즘 연습도 해야지, 프로젝트도 해야지.. 지금 벌여놓은 공부가 너무 많다. 취준생 입장에서 불안한 마음에 이것 저것 동시에 진행하고 있는데 확실히 하나에 대한 집중도도 떨어지거니와, 전체의 방향성을 스스로도 모르겠다.&lt;/p&gt;
+
+&lt;p&gt; 3월에 퇴사했을 때의 마음가짐은 ‘꼼꼼하게 공부해서 올해 안에만 취업하자’ 였는데, 괜찮은 회사들 2~3개씩 지원하다 보니 꼼꼼히 공부하자는 마음가짐이 조금 흐트러지는 것 같다. 코딩테스트 볼 때면 매번 1주일은 빡세게 코딩테스트만 잡고 있고, 프로젝트가 부실한 것 같아 프로젝트 붙잡고 있자니 진도도 잘 안나가고.. 후.. 그러다 보니 정작 계획했던 이론공부도 늦춰진다.&lt;/p&gt;
+
+&lt;p&gt;  역시 공부할게 예쁘게 짜여져 있던 고등학교 공부가 가장 쉬운 것 같다.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Sagyo MSA 개편 2 - Spring Cloud Oauth2를 이용한 인증 서비스(작성중)</title>
@@ -1310,9 +1612,9 @@
       &lt;li&gt;TCP 커넥션은 3 way handshake로 맺어지며 쉽게 요약하면, “연결해달라 오바” - “연결했다 오바” - “알았다 오바” 입니다.&lt;/li&gt;
       &lt;li&gt;&lt;strong&gt;3 way handshake&lt;/strong&gt;
         &lt;ul&gt;
-          &lt;li&gt;클라이언트 👉 서버, ‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.&lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트, 서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.&lt;/li&gt;
-          &lt;li&gt;클라이언트 👉 서버, 커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -1324,14 +1626,10 @@
       &lt;li&gt;커넥션을 끊는 과정은 4 way handshake로 이루어집니다.&lt;/li&gt;
       &lt;li&gt;&lt;strong&gt;4 way handshake&lt;/strong&gt;
         &lt;ul&gt;
-          &lt;li&gt;클라이언트 👉 서버, 연결을 종료하겠다는 ‘FIN’플래그 전송&lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트, 확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 TIME_WAIT 상태가 됩니다.
-            &lt;ul&gt;
-              &lt;li&gt;TIME_WAIT은 통신을 끊기 전, 클라이언트가 이전에 보냈지만 도착하지 않은 잉여 패킷이 있는 지 기다립니다.&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트, 통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.&lt;/li&gt;
-          &lt;li&gt;클라이언트 👉 서버, 확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;연결을 종료하겠다는 ‘FIN’플래그 전송&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 CLOSE_WAIT 상태가 됩니다.&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
             &lt;ul&gt;
               &lt;li&gt;연결을 끊기 전에 서버가 ‘FIN’플래그를 보내기전에 보냈으나 ‘FIN’플래그보다 늦게 도착한 메세지를 기다리기 위해 일정 시간 세션을 남겨 잉여 패킷을 기다립니다. 이 과정을 TIME_WAIT이라고 합니다.&lt;/li&gt;
             &lt;/ul&gt;
@@ -1408,7 +1706,7 @@
       &lt;li&gt;흐름제어, 혼잡제어 이런 것도 없습니다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;UDP는 연속성이 중요한 스트리밍 서비스나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다.&lt;/li&gt;
+  &lt;li&gt;UDP는 연속성이 중요한 스트리밍 서비스(RTSP 프로토콜)나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다. 안정성이 중요하지 않은 프로토콜(DNS)에서 사용되기도 합니다.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
  </entry>
@@ -2001,16 +2299,6 @@ Hibernate: insert into direct_question (contents, title, userid, id) values (?, 
   &lt;li&gt;DBCP는 DataBase Connection Pool로, 데이터베이스의 커넥션을 관리하는 기술입니다.&lt;/li&gt;
   &lt;li&gt;주로 사용되는 기술은 Apache의 Commons DBCP, BoneCP, HikariCP 등이 있습니다.&lt;/li&gt;
 &lt;/ul&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>하루 고정 루틴을 찾아야 되는데..</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/%EA%B7%BC%ED%99%A9/"/>
-   <updated>2020-05-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/근황</id>
-   <content type="html">
-&lt;p&gt;  집안에 일이 생겨서 고향에 내려와 지내는 중이다. 서울에 혼자 있으면 공부시간을 고정적으로 뺄 수 있는데 집에  이것저것 처리할 게 많아 스케쥴이 들쑥날쑥이다. 무엇보다 계획을 짤 수가 없다!! 보통 못해도 일주일 계획은 세워놓는데 집에선 당장 내일 계획도 막 바뀐다. 😥😥 빨리 급한 일만 없애고 집에서도 뭔가 고정적인 루틴을 가져갈 수 있으면 좋겠다.&lt;/p&gt;
 </content>
  </entry>
  

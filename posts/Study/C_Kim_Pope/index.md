@@ -48,9 +48,9 @@ title: Unmanged Language C - Kim pope
 8. 가변 인자 함수, 올바른 오류 처리 방법 ✅
 9. 레지스터, 스택&힙, 동적 메모리, 다중 포인터 ✅
 10. 자료구조 ✅
-11. 전처리기 [6/6 예정] <span style='filter: grayscale(1)'>✅</span>
-12. 나만의 라이브러리 만들기, C99 [6/7 예정] <span style='filter: grayscale(1)'>✅</span>
-13. C99, C11 <span style='filter: grayscale(1)'>✅</span>
+11. 전처리기 ✅
+12. 나만의 라이브러리 만들기, C99 ✅
+13. C99, C11 [6/14 예정] <span style='filter: grayscale(1)'>✅</span>
 14. Type-Generic 함수 만들기, 정적어서트, 메모리 정렬, 멀티스레딩 <span style='filter: grayscale(1)'>✅</span>
 
 

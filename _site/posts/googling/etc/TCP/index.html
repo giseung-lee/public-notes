@@ -226,9 +226,9 @@
       <li>TCP 커넥션은 3 way handshake로 맺어지며 쉽게 요약하면, “연결해달라 오바” - “연결했다 오바” - “알았다 오바” 입니다.</li>
       <li><strong>3 way handshake</strong>
         <ul>
-          <li>클라이언트 👉 서버, ‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.</li>
-          <li>서버 👉 클라이언트, 서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.</li>
-          <li>클라이언트 👉 서버, 커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.</li>
+          <li>클라이언트 👉 서버<br />‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.</li>
+          <li>서버 👉 클라이언트<br />서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.</li>
+          <li>클라이언트 👉 서버<br />커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.</li>
         </ul>
       </li>
     </ul>
@@ -240,14 +240,10 @@
       <li>커넥션을 끊는 과정은 4 way handshake로 이루어집니다.</li>
       <li><strong>4 way handshake</strong>
         <ul>
-          <li>클라이언트 👉 서버, 연결을 종료하겠다는 ‘FIN’플래그 전송</li>
-          <li>서버 👉 클라이언트, 확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 TIME_WAIT 상태가 됩니다.
-            <ul>
-              <li>TIME_WAIT은 통신을 끊기 전, 클라이언트가 이전에 보냈지만 도착하지 않은 잉여 패킷이 있는 지 기다립니다.</li>
-            </ul>
-          </li>
-          <li>서버 👉 클라이언트, 통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.</li>
-          <li>클라이언트 👉 서버, 확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
+          <li>클라이언트 👉 서버<br />연결을 종료하겠다는 ‘FIN’플래그 전송</li>
+          <li>서버 👉 클라이언트<br />확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 CLOSE_WAIT 상태가 됩니다.</li>
+          <li>서버 👉 클라이언트<br />통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.</li>
+          <li>클라이언트 👉 서버<br />확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
             <ul>
               <li>연결을 끊기 전에 서버가 ‘FIN’플래그를 보내기전에 보냈으나 ‘FIN’플래그보다 늦게 도착한 메세지를 기다리기 위해 일정 시간 세션을 남겨 잉여 패킷을 기다립니다. 이 과정을 TIME_WAIT이라고 합니다.</li>
             </ul>
@@ -324,7 +320,7 @@
       <li>흐름제어, 혼잡제어 이런 것도 없습니다.</li>
     </ul>
   </li>
-  <li>UDP는 연속성이 중요한 스트리밍 서비스나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다.</li>
+  <li>UDP는 연속성이 중요한 스트리밍 서비스(RTSP 프로토콜)나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다. 안정성이 중요하지 않은 프로토콜(DNS)에서 사용되기도 합니다.</li>
 </ul>
 
 </div>
@@ -335,27 +331,27 @@
     
       <li>
         <h3>
+          <a href="/posts/googling/etc/Hash/">
+            해시관련 정리(90% 작성)
+            <small>07 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/daily%20thoughts/%ED%95%99%EC%8A%B5%EB%B0%A9%ED%96%A5/">
+            Line 면접 및 학습 방향에 대한 고민
+            <small>06 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/posts/projects/sagyo_reboot/Sagyo5/">
             Sagyo MSA 개편 2 - Spring Cloud Oauth2를 이용한 인증 서비스(작성중)
             <small>27 May 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/googling/etc/Oauth/">
-            인증 관련 개념들 - 쿠키+세션, Token, JWT, OAuth2
-            <small>25 May 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/posts/study/short_books/OOP_Truth_Misunderstanding/">
-            객체지향의 사실과 오해(작성중)
-            <small>22 May 2020</small>
           </a>
         </h3>
       </li>

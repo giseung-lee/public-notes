@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 객체지향의 사실과 오해(작성중)
+title: 객체지향의 사실과 오해
 ---
 {% assign imgurl=site.imgbase|append: page.categories[-1] %}
 

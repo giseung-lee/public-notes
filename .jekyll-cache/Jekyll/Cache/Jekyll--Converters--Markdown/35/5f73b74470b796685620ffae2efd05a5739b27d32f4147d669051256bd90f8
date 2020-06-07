@@ -1,0 +1,545 @@
+I"�o
+<h2 id="272-전처리기-복습">272. 전처리기 복습</h2>
+
+<hr />
+
+<ul>
+  <li>앞서 빌드과정을 알아볼 때 전처리기에 대해서 살짝 설명한적이 있습니다. 이번 시간에는 전처리기를 적극적으로 알아봅시다.</li>
+  <li>전처리기는 소스코드를 확장된 소스 코드(트랜스레이션 유닛)으로 만드는 일을 했습니다.
+    <ul>
+      <li>주석 날려버리고</li>
+      <li>매크로를 확장하고</li>
+      <li><code class="highlighter-rouge">#include</code>를 복붙 해줍니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="273-전처리기로-할-수-있는-일들">273. 전처리기로 할 수 있는 일들</h2>
+
+<hr />
+
+<ul>
+  <li>전처리기로 할 수 있는 일
+    <ul>
+      <li>다른 파일을 인클루드</li>
+      <li>매크로를 다른 텍스트로 대체
+        <ul>
+          <li><code class="highlighter-rouge">#define</code>, <code class="highlighter-rouge">#undef</code> 같은 것들</li>
+        </ul>
+      </li>
+      <li>소스 파일의 일부를 조건부로 컴파일
+        <ul>
+          <li><code class="highlighter-rouge">#if</code>, <code class="highlighter-rouge">#ifdef</code>, <code class="highlighter-rouge">#ifndef</code>, <code class="highlighter-rouge">#else</code>, <code class="highlighter-rouge">#elif</code>, <code class="highlighter-rouge">#endif</code> 같은 것들</li>
+        </ul>
+      </li>
+      <li>일부러 오류를 발생
+        <ul>
+          <li><code class="highlighter-rouge">#error</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="274-매크로-대체와-조건부-컴파일">274. 매크로 대체와 조건부 컴파일</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">#define 식별자 대체_목록(선택)</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">#define A (10)</code></p>
+
+    <ul>
+      <li>전처리기가 소스를 보다가 A가 보이면 모두 10으로 바꿔줍니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">#define A</code></p>
+
+    <ul>
+      <li>이렇게만 쓸 수도 있습니다. 하지만 바꿔줄 내용이 없죠?</li>
+      <li>대신 다른 전처리기 지시어로 A가 정의 되어있는지 판단 가능합니다. 조건부 컴파일을 보면서 다시 봅시다~</li>
+    </ul>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define TRUE (1)
+#define FALSE (0)
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">#define 식별자(매개변수) 대체_목록</code></p>
+
+    <ul>
+      <li>함수처럼 쓰는 것도 가능합니다. 매크로 함수라고 부르는데 뒤에서 자세히 살펴봅니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">#undef 식별자</code></p>
+
+    <ul>
+      <li>
+        <p>이미 정의된 식별자를 없앱니다.</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NUMBER (3)
+#undef NUMBER
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>미리 정의되어 있는 매크로</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">__FILE__</code> : 현재 파일의 이름을 문자열로 표시</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">__LINE__</code> : 현재 코드의 줄 번호를 정수형으로 표시</p>
+      </li>
+      <li>
+        <p>오류 출력시 자주 사용됩니다.</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"internal error : %s, line %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">__STDC_VERSION__</code> : (C95 부터 지원) 현재 컴파일에 사용중인 C 표준</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>컴파일러 별로 각자 정의하고 있는 매크로가 있을 수도 있습니다.</p>
+  </li>
+  <li>
+    <p>조건부 컴파일</p>
+
+    <ul>
+      <li>
+        <p>조건에 따라 특정 부분의 코드를 컴파일에 포함/배제 시킵니다.</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#if 표현식
+#ifdef 식별자 / #if defined 식별자
+#ifndef 식별자 / #if !defined 식별자
+#elif 표현식
+#else
+#endif
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>예전에 배운 인클루드 가드가 조건부 컴파일입니다. 헤더 꼬임 방지할 때 썼던 거</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef FOO_H
+#define FOO_H
+</span><span class="cm">/* code */</span>
+<span class="cp">#endif
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>컴파일러에 따라 다를 수도 있는 예약 매크로를 확실하게 해두기 (여기선 NULL을 0으로 확실하게 정의하기)</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* NULL이 정의되지 않았다면 0으로 정의 */</span>
+<span class="cp">#ifndef NULL
+#define NULL (0)
+#endif
+</span>    
+<span class="cm">/* NULL이 정의되지 않았다면 0으로 정의 */</span>
+<span class="cp">#if !defined(NULL)
+#define NULL (0)
+#endif
+</span>    
+<span class="cm">/* NULL이 정의되었다면 지우고 0으로 확실히 정의 */</span>
+<span class="cp">#if defined (NULL)
+#undef NULL
+#endif
+</span>    
+<span class="cp">#define NULL (0)
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>주의할 점</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define A
+</span>    
+<span class="cp">#if defined(A) </span><span class="cm">/* 이건 참. 정의되어 있으니 */</span><span class="cp">
+#define LENGTH (10)
+#endif
+</span>    
+<span class="cp">#if A </span><span class="cm">/* 이건 거짓. A를 어떤 값으로 정의해뒀으면 참인데 define만 해놓고 값을 안넣어서 0으로 보고 거짓 때립니다. */</span><span class="cp">
+#define LENGTH (10)
+#endif
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>매크로를 이용해 버전 관리하기</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">spawn_monster</span><span class="p">(...){</span>
+	<span class="n">get_monster_skin</span><span class="p">();</span>
+  <span class="n">get_monster_stat</span><span class="p">();</span>
+  	
+	<span class="cp">#if defined(FILE_VERSION_2)
+</span>	<span class="n">use_custom_skin</span><span class="p">(...);</span>
+	<span class="cp">#endif
+</span>	<span class="n">calculate_spawn_location</span><span class="p">();</span>
+	<span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#if defined (FILE_VERSION_2)
+</span>	<span class="n">user_custom_skin</span><span class="p">();</span>
+<span class="cp">#elif defined (FILE_VERSION_3)
+</span>	<span class="n">user_custom_stat</span><span class="p">();</span>
+<span class="cp">#else
+</span>	<span class="n">user_custom_skill</span><span class="p">();</span>
+<span class="cp">#endif
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>주석처럼 사용할 수도 있습니다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#if 0 /* 활성화 시킬땐 0을 1로만 바꾸면 됩니다. */
+code...
+#endif
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="275-컴파일-오류-만들기-컴파일-중에-매크로-정의하기">275. 컴파일 오류 만들기, 컴파일 중에 매크로 정의하기</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>컴파일 도중에 강제로 오류를 발생시킬 수 있습니다. (주로 아래처럼 if와 함께 사용합니다.)</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#if VERSION != 11
+#error "unsupported version"
+#endif
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>컴파일 할때 -D 옵션을 주면 컴파일 중에 매크로를 정의할 수 있습니다.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; clang -std=c89 -W -Wall -pedantic-errors -DA=52 *.c
+</code></pre></div>    </div>
+
+    <ul>
+      <li>#define A (52)와 같은 역할입니다.</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; clang -std=c89 -W -Wall -pedantic-errors -DNDEBUG *.c
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>NDEBUG (not debug)라고 해서 배포용으로 컴파일하도록 하는 데에 많이 씁니다.</p>
+      </li>
+      <li>
+        <p>디버그 모드에서만 실행될 코드를 아래처럼 만들어 놓습니다.</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#if !defined(NDEBUG) </span><span class="cm">/* NDEBUG가 정의되지 않았다면 */</span><span class="cp">
+</span><span class="p">...</span>
+<span class="cp">#endif
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="276-매크로-함수">276. 매크로 함수</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>#define을 할때 ‘대체 가능한 매개변수 목록’을 받는 매크로 함수를 알아봅시다. 주어진 매크로를 쓰면 정해둔 함수로 바꿔줍니다.(복붙으로)</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define SQUARE(a) a*a
+#define ADD(a,b) a+b
+</span></code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* main함수 */</span>
+<span class="kt">int</span> <span class="n">num1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+  
+<span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ADD</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span> <span class="cm">/* --&gt; 30 */</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">SQUARE</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span> <span class="cm">/* --&gt; 100 */</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>단, 이 함수는 복붙으로 작동한다는걸 항상 인지하고 있어야 합니다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* main함수 */</span>
+<span class="kt">int</span> <span class="n">num1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+  
+<span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="nf">ADD</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>위의 경우에선 result의 우변이 아래와 같이 바뀝니다.</li>
+    </ul>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>물론, 매크로를 정의할때 괄호를 붙여주면 원하는 대로 작동하도록 할 수 있습니다. <strong>그래서 보통 매크로 정의할 때 괄호를 항상 붙여줍니다.</strong></li>
+    </ul>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define ADD(a,b) (a+b)
+</span>  
+<span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="nf">ADD</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="277-매크로-함수의-활용">277. 매크로 함수의 활용</h2>
+
+<hr />
+
+<ul>
+  <li>
+    <p>\를 사용하면 매크로를 길게 여러줄 작성할 수 있습니다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define POW(n, p, i, r) r = 1;                 \
+						for (i=0 ; i&lt;p ; ++i){ \
+							r *= n;            \
+						}                      \
+</span></code></pre></div>    </div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">exp</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  
+<span class="n">num</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">POW</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>C의 기본 assert 함수는 문제가 좀 있어서 아래처럼 재정의해서 사용하기도 합니다.</p>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#define ASSERT(condition, msg) \
+  		if(!(condition)){	\
+  			fprintf(stderr, "%s(%s: %d)\n", msg, __FILE__, __LINE__);	\
+  			__asm { int 3 }	\
+  		}
+</span></code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/* 메인함수 */</span>
+  <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="n">ASSERT</span><span class="p">(</span><span class="n">month</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">,</span> <span class="s">"invalid month number"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>C의 기본 assert() 함수로 실패를 검사하면 실패 했을때 call stack이 assert 함수 스택 프레임 속입니다. 하지만 보고 싶은건 assert 함수의 call stack이 아니라 실제로 실패한 call stack 이겠죠? 기존엔 추가로 누가 assert를 불렀는지 찾아야 합니다.</li>
+  <li><code class="highlighter-rouge">__asm { int 3 }</code>에서 <code class="highlighter-rouge">int 3</code> 은 x86 어셈블리에서 프로그램 실행을 중지하는 인터럽트입니다. <code class="highlighter-rouge">__asm { int 3 }</code>를 하면 실제로 실패한 코드의 call stack을 바로 볼 수 있습니다.</li>
+  <li>
+    <p>또한, ASSERT 할때 에러 메세지도 같이 넣어줄 수 있어서 어떤 에러인지 쉽게 확인할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>전처리기를 위한 명령어도 있습니다. # 명령어 입니다. #명령어 뒤에 있는 문자를 string 데이터로 바꿔줍니다.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define str(s) #s
+</span>  
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="err">\</span><span class="n">n</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="kt">int</span> <span class="n">main</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="n">num1</span><span class="p">));</span>
+  
+<span class="cm">/*
+출력
+  
+"\n"
+int main
+"Hello world"
+num1
+*/</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>두번째 전처리기 명령어로 ## 명령어가 있습니다. string 데이터로 만드는게 아니라 그냥 텍스트로 만들어줍니다. (#명령어보다 자주 씁니다.) 예전에 하고싶었던 변수 명을 동적으로 생성하는걸 이걸로 꼼수처럼 쓸 수 있겠구나.(실제 동적 생성은 아니지만)</p>
+
+    <pre><code class="language-CQL">#include &lt;stdio.h&gt;
+  
+#define print(n) printf("%d\n", g_id##n)
+  
+int g_id_none = 0;
+int g_id_teacher = 1;
+int g_id_student = 2;
+  
+int main(void){
+	print(number); /* g_id_number라는 변수가 없기 때문에 이건 컴파일 오류 */
+	print(none); /* g_id_none의 값인 0 출력 */
+	print(student); /* g_id_student의 값인 2 출력 */
+}
+</code></pre>
+  </li>
+  <li>
+    <p>#과 ## 비교</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define combine1(a, b) (a#b)
+#define combine2(a, b) (a##b)
+</span>  
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+  
+<span class="kt">int</span> <span class="n">student_id</span> <span class="o">=</span> <span class="mi">98765</span><span class="p">;</span>
+  
+<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">combine1</span><span class="p">(</span><span class="n">student_</span><span class="p">,</span> <span class="n">id</span><span class="p">));</span>
+<span class="cm">/* 컴파일 오류 student_"id" */</span>
+  
+<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">combine2</span><span class="p">(</span><span class="n">student_</span><span class="p">,</span> <span class="n">id</span><span class="p">));</span>
+<span class="cm">/* student_id의 값 98765 출력 */</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>매크로 함수의 장점</p>
+
+    <ul>
+      <li>함수 호출이 아니라 코드를 복붙하는 개념이라 함수 호출에 따른 부하가 없습니다.</li>
+      <li>C에서 불편한 것들 중 일부를 꼼수로 해결가능합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>단점</p>
+
+    <ul>
+      <li>디버깅이 아주아주 어려워집니다. 매크로 중간을 까볼 수가 없습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="278-코드-보기--전처리기를-이용한-튜플">278. 코드 보기 : 전처리기를 이용한 튜플</h2>
+
+<hr />
+
+<ul>
+  <li>전처리기를 이용해서 다른 언어에서 쓰는 튜플을 만들어 봅시다. 다양한 타입의 데이터를 한 번에 관리하는 방법입니다.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="cp">#define MONSTER_DATA \
+    MONSTER_ENTRY(0, "pope", 100) \
+    MONSTER_ENTRY(1, "big rat", 30)\
+    MONSTER_ENTRY(2, "mana", 255) \
+    MONSTER_ENTRY(3, "dragon", 300000)\
+
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="kt">size_t</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">ids</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="cm">/* MONSTER_ENTRY(id, name, hp) 가 오면 id로 텍스트 복붙 한다고 다시 정의 */</span>
+        <span class="cp">#define MONSTER_ENTRY(id, name, hp) id,
+</span>        <span class="cm">/* MONSTER_DATA를 쓰면 */</span>
+        <span class="cm">/*
+            MONSTER_ENTRY(0, "pope", 100) \
+            MONSTER_ENTRY(1, "big rat", 30)\
+            MONSTER_ENTRY(2, "mana", 255) \
+            MONSTER_ENTRY(3, "dragon", 300000)\        
+        	가 복붙 되고 또 이게 방금 정의한 define에 의해
+        	
+        	0,
+        	1,
+        	2,
+        	3, 
+        	으로 다시 복붙 됩니다.
+        */</span>
+                <span class="n">MONSTER_DATA</span>
+        <span class="cp">#undef MONSTER_ENTRY
+</span>    <span class="p">};</span>
+
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">names</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="cp">#define MONSTER_ENTRY(id, name, hp) name,
+</span>                <span class="n">MONSTER_DATA</span>
+        <span class="cp">#undef MONSTER_ENTRY
+</span>    <span class="p">};</span>
+
+    <span class="kt">int</span> <span class="n">healths</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="cp">#define MONSTER_ENTRY(id, name, hp) hp,
+</span>                <span class="n">MONSTER_DATA</span>
+        <span class="cp">#undef MONSTER_ENTRY
+</span>    <span class="p">};</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%3d %6d %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">healths</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="279-코드-보기--getter-만들기">279. 코드 보기 : getter 만들기</h2>
+
+<hr />
+
+<ul>
+  <li>getter를 전처리기를 이용해 만들어 봅시다.</li>
+  <li>getter는 원래 OOP에서 쓰는 것이지만 C에서 OOP를 하는 개발자들도 있습니다.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="cm">/* (type, name) */</span>
+<span class="cp">#define MONSTER_STRUCT                  \
+    MONSTER_MEMBER(int, id)             \
+    MONSTER_MEMBER(const char*, name)   \
+    MONSTER_MEMBER(int, hp)             \
+
+</span><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+<span class="cp">#define MONSTER_MEMBER(type, name) type name;
+</span>    <span class="n">MONSTER_STRUCT</span>
+<span class="cp">#undef MONSTER_MEMBER    
+</span><span class="p">}</span> <span class="n">monster_t</span><span class="p">;</span>
+
+<span class="cp">#define MONSTER_MEMBER(type, name)          \
+</span><span class="cm">/* 다른 모든 언어에서도 getter의 첫번째 변수는 내부적으로 객체의 주소를 받아옵니다. 안보일뿐 */</span><span class="cp">
+</span><span class="n">type</span> <span class="n">get_mob_</span><span class="err">##</span><span class="n">name</span><span class="p">(</span><span class="k">const</span> <span class="n">monster_t</span><span class="o">*</span> <span class="n">mob</span><span class="p">)</span>   \
+<span class="p">{</span>                                           \
+    <span class="k">return</span> <span class="n">mob</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">;</span>                       \
+<span class="p">}</span>                                           \
+
+<span class="n">MONSTER_STRUCT</span>
+
+<span class="cp">#undef MONSTER_MEMBER
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">monster_t</span> <span class="n">mob</span><span class="p">;</span>
+    <span class="n">mob</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">mob</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Teemo"</span><span class="p">;</span>
+    <span class="n">mob</span><span class="p">.</span><span class="n">hp</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%3d %6d %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+        <span class="n">get_mob_id</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mob</span><span class="p">),</span>
+        <span class="n">get_mob_hp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mob</span><span class="p">),</span>
+        <span class="n">get_mob_name</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mob</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>대단하다. C의 세계는 심오하구나.</li>
+</ul>
+
+<h2 id="280-정리">280. 정리</h2>
+
+<hr />
+
+<ul>
+  <li>깊은 지식 없이 가볍게 얘기했다는데… 솔직히 신기했습니다.</li>
+</ul>
+
+:ET
