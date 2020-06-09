@@ -4,13 +4,216 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-06-09T01:07:23+09:00</updated>
+ <updated>2020-06-09T23:49:20+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>알고리즘 - 크루스칼 알고리즘, Union-Find, 최소 신장 트리</title>
+   <link href="http://localhost:4000/posts/study/algorithm/Kruskal/"/>
+   <updated>2020-06-09T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/study/algorithm/Kruskal</id>
+   <content type="html">
+&lt;h2 id=&quot;가장-적은-비용으로-모든-노드-방문하기&quot;&gt;가장 적은 비용으로 모든 노드 방문하기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Algorithm/kruskal_graph.png&quot; alt=&quot;kruskal_graph.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&quot;&gt;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt; 위와 같은 그래프가 있다고 가정합시다. 간선들엔 방향이 없으며, 간선의 숫자들은 A, B, C, …, G 노드를 연결하는데 필요한 비용입니다. 이때, 최소 비용으로 모든 노드들이 서로 연결되도록 하고 싶습니다. 최소 비용으로 연결했을 때 비용은 어떻게 될까요?&lt;/p&gt;
+
+&lt;p&gt; 관련 문제&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42861?language=python3&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/42861?language=python3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1774&quot;&gt;https://www.acmicpc.net/problem/1774&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/4386&quot;&gt;https://www.acmicpc.net/problem/4386&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;크루스칼-알고리즘&quot;&gt;크루스칼 알고리즘&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 이런 상황에서 사용하는 알고리즘으로 크루스칼(Kruskal) 알고리즘, 프림(Prim’s) 알고리즘이 있습니다. 프림 알고리즘은 다음에 알아보도록 하고… 😅 크루스칼 알고리즘을 알아보겠습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;동작과정&quot;&gt;동작과정&lt;/h3&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Algorithm/kruskal_graph.png&quot; alt=&quot;kruskal_graph.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&quot;&gt;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt; 앞에서 본 위의 그래프가 주어졌다고 가정합시다. 크루스칼 알고리즘은 다음과 같은 과정으로 이루어집니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;간선들을 비용 기준으로 오름차순 정렬합니다.&lt;/li&gt;
+  &lt;li&gt;정렬한 간선을 하나씩 선택합니다.
+    &lt;ol&gt;
+      &lt;li&gt;간선을 선택했을 때 사이클이 생성되는지 확인합니다.&lt;/li&gt;
+      &lt;li&gt;사이클이 생성되지 않는다면 해당 간선을 선택해 트리에 추가합니다.&lt;/li&gt;
+      &lt;li&gt;사이클이 생성된다면 해당 간선은 무시하고 다음 간선을 진행합니다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt; 위의 그래프의 경우 아래처럼 연결됩니다.&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Algorithm/kruskal_graph3.png&quot; alt=&quot;kruskal_graph3.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&quot;&gt;https://ko.wikipedia.org/wiki/크러스컬_알고리즘&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;[노드, 노드, 비용] 기준으로 [A, D, 5] 간선과 [C, E, 5] 간선 중 임의로 1개를 선택합니다. (여기선 [A, D, 5] 간선 부터 골랐습니다.) A, D를 이어도 사이클은 형성되지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[C, E, 5] 간선을 선택합니다. 역시 이어도 사이클은 형성되지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[D, F, 6] 간선을 선택합니다. 사이클을 형성하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[A, B, 7] 간선을 선택합니다. 사이클을 형성하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[B, E, 7] 간선을 선택합니다. 사이클을 형성하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[B, C, 8] 간선을 선택합니다. 이 간선을 연결할 시에 B-C-E 노드가 사이클을 이루게 됩니다. 이 간선은 배제합니다.&lt;/li&gt;
+  &lt;li&gt;[F, E, 8] 간선을 선택합니다. 이 간선을 연결할 시에 A-B-E-F-D 노드가 사이클을 이루게 됩니다. 이 간선은 배제합니다.&lt;/li&gt;
+  &lt;li&gt;[D, B, 9] 간선을 선택합니다. 이 간선을 연결할 시 A-B-D 노드가 사이클을 이루게 됩니다.&lt;/li&gt;
+  &lt;li&gt;[E, G, 9] 간선을 선택합니다. 사이클을 형성하지 않습니다.&lt;/li&gt;
+  &lt;li&gt;[F, G, 11] 간선을 선택합니다. 이 간선을 연결할 시 A-B-E-G-F-D 노드가 사이클을 이루게 됩니다. 이 간선은 배제합니다.&lt;/li&gt;
+  &lt;li&gt;[D, E, 15] 간선을 선택합니다. 이 간선을 연결할 시 A-B-E-D 노드가 사이클을 이루게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;사이클-검사---union---find&quot;&gt;사이클 검사 - Union - Find&lt;/h3&gt;
+
+&lt;p&gt; 위 과정은 ‘간선 정렬’, ‘간선 선택’, ‘사이클 검사’, ‘트리에 포함’ 4가지만 수행하면 됩니다. 정렬은 말 그대로 너무 익숙한 정렬, 선택은 foreach문과 같은 걸로 하나씩 선택하면 됩니다. ‘트리에 포함’은 문제의 요구사항에 따라 구현이 달라지긴 하겠지만, 최소 비용 자체를 구하는 문제라면 최소 비용을 더하는 변수를 하나 둬서 비용을 더하는 방식으로 트리에 포함시킬 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt; 그렇다면 사이클 검사는 어떻게 할까요? Union-Find 알고리즘이 하나의 방법이 될 수 있습니다. 개인적으로 부모 찾기라고 부르는 방법입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find1.png&quot; alt=&quot;union_find1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 우선 각 노드는 각자 스스로를 부모로 갖고 시작합니다. 처음으로 [A, D, 5] 간선을 연결 시도합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find2.png&quot; alt=&quot;union_find2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 이때 A노드와 D노드의 &lt;strong&gt;부모를 찾습니다.(Find)&lt;/strong&gt; 두 부모가 다르다면 사이클을 형성하지 않습니다. &lt;strong&gt;둘을 연결합니다. 둘을 연결하며 D의 부모를 A의 부모로 바꿔줍니다.(Union)&lt;/strong&gt; 문제의 최종 목표인 모든 노드가 연결 된다는 것은 결국 모든 노드가 같은 부모를 갖고 있게 된다는 얘기입니다. 다음 [C, E, 5] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find3.png&quot; alt=&quot;union_find3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 마찬가지로 C, E 노드의 부모를 찾고 두 부모가 다르다면 사이클을 형성 하지 않으니 둘을 연결해줍니다. E의 부모를 C로 바꿔줍니다. 다음 [D, F, 6] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find4.png&quot; alt=&quot;union_find4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; D의 부모는 A, F의 부모는 F였기 때문에 둘을 연결해줍니다. F의 부모를 D의 부모인 A로 바꿔줍니다. 다음 [A, B, 7] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find5.png&quot; alt=&quot;union_find5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; A의 부모는 A, B의 부모는 B였기 때문에 B의 부모를 A로 바꿔 둘을 연결해줍니다. 다음은 [B, E, 7] 간선입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find6.png&quot; alt=&quot;union_find6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; B의 부모는 A, E의 부모는 C였기 때문에 E의 부모인 C를 A에 연결해줍니다. 다음은 [B, C, 8] 간선입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find7.png&quot; alt=&quot;union_find7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; B의 부모는 A, C의 부모도 A입니다. 이 상황이 사이클이 생기는 상황입니다. 둘은 아무 행동도 취하지 않고 다음 [E, F, 8] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find8.png&quot; alt=&quot;union_find8.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; E의 부모는 A, F의 부모도 A이기 때문에 역시 사이클입니다. 다음 [B, D, 9] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find9.png&quot; alt=&quot;union_find9.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; B의 부모 A, D의 부모 A이기 때문에 역시 사이클입니다. 다음 [E, G, 9] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find10.png&quot; alt=&quot;union_find10.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; E의 부모는 A, G의 부모는 G였기 때문에 둘을 연결해줍니다. G의 부모를 A로 바꿉니다. 이렇게 되면 모든 노드가 같은 부모를 갖고 있습니다. 즉, 모든 노드들이 서로 연결 되어 있습니다. 이 이후로는 더 이상 수행하지 않아도 되지만 구현에 따라 나머지 간선들을 끝까지 검사할 수도 있습니다. 다음 [F, G, 11] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find11.png&quot; alt=&quot;union_find11.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; F, G 부모 모두 A입니다. 마지막 [D, E, 15] 간선을 봅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/image/Algorithm/union_find12.png&quot; alt=&quot;union_find12.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 역시 D, E의 부모 모두 A입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;참고자료&quot;&gt;참고자료&lt;/h3&gt;
+
+&lt;p&gt; &lt;a href=&quot;https://www.cs.usfca.edu/~galles/visualization/Kruskal.html&quot;&gt;https://www.cs.usfca.edu/~galles/visualization/Kruskal.html&lt;/a&gt; 를 보시면 동작과정이 애니메이션으로 설명되어 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;코드-보기&quot;&gt;코드 보기&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 위의 상황을 python 코드로 보겠습니다. 아래는 그래프 input입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# input
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'C'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'F'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'C'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'F'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'G'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'F'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'G'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; edges를 정렬해주고 총 비용을 저장할 g_total_cost변수를 선언해줍시다. 그리고 Union-Find 에서 사용할 부모 딕셔너리를 만들어줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;g_total_cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'C'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'F'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'G'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; Union-Find 알고리즘 중 Find를 먼저 만들어줍니다. 부모 딕셔너리에 노드를 넣었을 때 자기 자신이 나올때 까지 while문이 돌아갑니다.&lt;/p&gt;
+
+&lt;p&gt; 만약 x의 부모가 x이고, y의 부모가 x이고, z의 부모가 y인 경우를 가정합시다. find함수에 z를 넣으면 z-&amp;gt;y-&amp;gt;x-&amp;gt;x 의 결과로 x가 나오게 됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; union 함수도 만들어줍시다. x와 y를 합칠때 숫자가 작은 쪽으로 합치도록 했습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;union&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_total_cost&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;g_total_cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; 정렬한 간선을 하나씩 꺼내 부모를 Find하고, 부모가 서로 다르다면(사이클을 만들지 않는다면) Union 해줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Find
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Union
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;union&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;결과를 확인해봅니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'total cost : '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_total_cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# total cost :  39
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;' -&amp;gt; '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# A  -&amp;gt;  A
+# B  -&amp;gt;  A
+# C  -&amp;gt;  A
+# D  -&amp;gt;  A
+# E  -&amp;gt;  C
+# F  -&amp;gt;  A
+# G  -&amp;gt;  A
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;최소-신장-트리minimum-spanning-tree&quot;&gt;최소 신장 트리(Minimum Spanning Tree)&lt;/h2&gt;
+
+&lt;p&gt; 이렇게 얻어진 그래프를 &lt;strong&gt;최소 신장 트리(Minimum Spanning Tree)&lt;/strong&gt; 라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt; 트리(Tree)는 사이클이 없는 그래프를 뜻합니다. &lt;strong&gt;신장 트리(Spanning Tree)&lt;/strong&gt;는 모든 노드들을 최소 간선으로 연결하는 트리를 말합니다. n개의 노드를 연결한 신장 트리는 n-1개의 간선으로 연결됩니다.&lt;/p&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Algorithm/spanning_tree.png&quot; alt=&quot;spanning_tree.png&quot; /&gt;&lt;small&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/신장_부분_그래프&quot;&gt;https://ko.wikipedia.org/wiki/신장_부분_그래프&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt; 위와 같이 4개의 노드와 6개의 간선이 있는 그래프의 신장 트리는 총 16개가 나옵니다.&lt;/p&gt;
+
+&lt;p&gt; 최소 신장 트리는 간선에 비용이 있을때 모든 신장 트리 중 비용을 최소로 하는 신장 트리를 말합니다.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>DB 인덱스 관련(작성중)</title>

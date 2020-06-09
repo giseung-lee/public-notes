@@ -34,6 +34,8 @@ rootfolder:
    Study :
       Short_Books:
          subfolder : false
+      Algorithm:
+         subfolder : false
       Http The Definitive Guide : 
          subfolder : false
       C_Kim_Pope :
