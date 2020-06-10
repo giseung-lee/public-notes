@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      알고리즘 - 이진탐색 문제풀이 잡기술 &middot; 이기승의 끄적끄적..
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Profile -->
+  <div class="sidebar-item sidebar-profile-box">
+    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <div class="sidebar-profile-description">
+      <span>
+        &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
+      </span>
+    </div>
+  </div>
+  <!-- Profile End -->
+
+  <nav class="sidebar-nav">
+    <!-- Home -->
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <!-- Home End -->
+    <!-- Posts -->
+    
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About Me">About Me</a>
+      
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily Thoughts">Daily Thoughts</a>
+      
+    
+      
+        <input id="Projects" class="toggle" type="checkbox">
+        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Hwangmaesan">Hwangmaesan</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/The_Oyster_Mine">The_Oyster_Mine</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Study" class="toggle" type="checkbox">
+        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Short_Books">Short_Books</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Algorithm">Algorithm</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http The Definitive Guide">Http The Definitive Guide</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/C_Kim_Pope">C_Kim_Pope</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/MSA_Ken_Krueger">MSA_Ken_Krueger</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Googling" class="toggle" type="checkbox">
+        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/java">java</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/jekyll">jekyll</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/linux">linux</a>
+          
+        
+        </div>
+      
+    
+    <!-- Posts End -->
+  </nav>
+
+  <!-- sidebar bottom -->
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+  <!-- sidebar bottom end -->
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title" style="font-weight: normal;">
+            <a href="/" title="Home">이기승의 끄적끄적..</a>
+            <small>개발 및 잡다한 포스팅</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">알고리즘 - 이진탐색 문제풀이 잡기술</h1>
+  <span class="post-date">10 Jun 2020</span>
+  
+<h2 id="이진탐색-풀이-프레임워크">이진탐색 풀이 프레임워크</h2>
+
+<hr />
+
+<p> 이진 탐색 문제를 풀어봤다면 대부분의 이진탐색 문제는 아래와 같은 구조로 진행 되는 걸 알수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="err">최소값</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="err">최대값</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="err">가</span> <span class="n">right</span><span class="err">보다</span> <span class="err">작을</span> <span class="err">때</span><span class="p">):</span>
+		<span class="n">mid</span> <span class="o">=</span> <span class="n">left</span><span class="err">와</span> <span class="n">right</span><span class="err">의</span> <span class="err">중간쯤</span>
+		<span class="k">if</span> <span class="n">is_possible</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">mid</span><span class="p">):</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+            
+<span class="k">def</span> <span class="nf">is_possible</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">mid</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="err">문제에</span> <span class="err">따라</span> <span class="err">많이</span> <span class="err">다름</span>
+    <span class="o">...</span>
+    <span class="k">if</span> <span class="o">...</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+   	<span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+<p> left와 right, mid를 잡고 mid일때 문제의 풀이가 가능하다면 left나 right를 mid로 옮기고 계속 반복하는 구조입니다. 문제에 따라 is_possible 함수는 상이하지만 binary_search 함수 부분은 거의 모든 문제에서 동일합니다.</p>
+
+<p> 그런데 개인적으로 이진 탐색 관련 문제를 여러개 풀다보니 +-1, &lt;=, &lt;, &gt;, &gt;= 처럼 한 끗 차이로 틀리고 애먹는 경우가 많았습니다.</p>
+
+<p> <code class="highlighter-rouge">mid = (left+right)//2</code> 로 잡아야 하는지 <code class="highlighter-rouge">mid = (left+right)//2 +-1</code>로 잡아야 하는지…  <code class="highlighter-rouge">left, right</code>를 옮길 때 <code class="highlighter-rouge">mid</code>로 잡아야 하는지, <code class="highlighter-rouge">mid+-1</code>로 잡아야 하는 지…  <code class="highlighter-rouge">while ( left &lt; right )</code>로 해야하는지 <code class="highlighter-rouge">while ( left &lt;= right )</code>로 해야 하는지… 어떤 강의에서 이런식으로 잡으라고 했는데 다른 문제에 적용하면 틀리고..</p>
+
+<p> 문제 마다 고심에 고심을 해가며 문제 조건에 맞게 디테일을 조정하며 풀고 있었습니다. 그런데 매번 이진 탐색 문제 풀 때 마다 푸는 시간의 반정도를 디테일을 조정하는데 쓰고 있자니 화가나서 정리해두었습니다.</p>
+
+<h2 id="이진-탐색-문제-디테일-잡기술">이진 탐색 문제 디테일 잡기술</h2>
+
+<hr />
+
+<p> 10문제 남짓한 이진 탐색 문제들을 분석하면서 아래와 같은 이진 탐색 문제 잡기술을 마련했습니다.</p>
+
+<ol>
+  <li>while ( <strong>left&lt;=right</strong> )</li>
+  <li>mid = <strong>( left + right ) // 2</strong></li>
+  <li>left = <strong>mid + 1</strong></li>
+  <li>right = <strong>mid - 1</strong></li>
+  <li><strong>중요</strong>
+    <ol>
+      <li><strong>가능한 최댓값 찾기 : return right</strong></li>
+      <li><strong>가능한 최솟값 찾기 : return left</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<p> 디테일을 조정할 때 위의 원칙을 따르면 되는 것 같습니다! 프로그래머스와 백준의 이진탐색 문제에서 10개 조금 안되게 테스트 했는데 다 통과했습니다.</p>
+
+<p> 물론 안 되는 문제가 있을 수도 있습니다. 😅😅</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/googling/etc/REST-API/">
+            그런 REST API로 괜찮은가
+            <small>10 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study/algorithm/Kruskal/">
+            알고리즘 - 크루스칼 알고리즘, Union-Find, 최소 신장 트리
+            <small>09 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/googling/etc/index/">
+            DB 인덱스 관련(작성중)
+            <small>08 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
