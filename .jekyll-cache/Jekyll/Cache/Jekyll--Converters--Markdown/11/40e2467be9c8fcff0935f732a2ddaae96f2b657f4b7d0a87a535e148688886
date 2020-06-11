@@ -1,0 +1,74 @@
+I"�
+<ul>
+  <li>
+    <p>Spring MVC의 동작 과정을 알아봅시다!</p>
+  </li>
+  <li>
+    <p>참고한 <a href="http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html">사이트</a>에는 각 요소들의 구현체들도 소개해주는데, 거기까진 가지 않고 아래 다이어그램으로 알 수 있는 큰 흐름만 살펴봅니다.</p>
+  </li>
+  <li>
+    <p>아래 다이어그램을 보시면 알겠지만, 이 많은 과정에서 개발자가 직접 작성해야 될 부분은 보라색, 연두색 부분 밖에 없습니다. 갓스프링…</p>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Spring/RequestLifecycle.png" alt="RequestLifecycle.png" /><small>출처 : <a href="http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html">http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html</a></small></p>
+
+<ol>
+  <li>
+    <p>DispatcherServlet 이 요청을 받습니다.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 HandlerMapping에게 해당 요청을 다룰 Controller가 누구인지 찾아달라고 합니다. HandlerMapping은 요청 URL을 읽어 적합한 (selected hander)와 Controller를 찾아 DispatcherServlet에게 알려줍니다.</p>
+  </li>
+  <li>
+    <p>DispathcerServlet은 돌려받은 Controller를 실행 시키는 일을 HandlerAdapter에게 넘겨줍니다.</p>
+  </li>
+  <li>
+    <p>HandlerAdapter가 Controller의 비즈니스 로직을 호출합니다.</p>
+  </li>
+  <li>
+    <p>Controller는 정해진 비즈니스 로직을 수행하고, 수행한 결과를 Model담고, 결과를 보여줄 View의 이름을 HandlerAdapter에게 넘겨줍니다. (View자체를 넘기는게 아니라 View의 logical한 이름만 돌려줍니다. 실제 View를 찾는건 다음 과정입니다.)</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 View의 이름을 Resolve 하는 일을 ViewResolver에게 넘겨줍니다. ViewResolver는 넘겨받은 View의 이름을 토대로 적절한 View 오브젝트를 찾아줍니다.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 렌더링 과정을 View에게 넘겨줍니다.(여기서 View는 ViewResolver가 찾아준 View)</p>
+  </li>
+  <li>
+    <p>View가 Model에 있는 데이터를 이용해 렌더링하고 응답을 돌려줍니다.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+<ul>
+  <li>아래는 위 다이어그램에 대한 원문입니다.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>DispatcherServlet receives the request.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of selecting an appropriate controller to HandlerMapping. HandlerMapping selects the controller which is mapped to the incoming request URL and returns the (selected Handler) and Controller to DispatcherServlet.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of executing of business logic of Controller to HandlerAdapter.</p>
+  </li>
+  <li>
+    <p>HandlerAdapter calls the business logic process of Controller.</p>
+  </li>
+  <li>
+    <p>Controller executes the business logic, sets the processing result in Model and returns the logical name of view to HandlerAdapter.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of resolving the View corresponding to the View name to ViewResolver. ViewResolver returns the View mapped to View name.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the rendering process to returned View.</p>
+  </li>
+  <li>
+    <p>View renders Model data and returns the response.</p>
+  </li>
+</ol>
+:ET

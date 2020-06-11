@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Spring MVC의 동작 과정 &middot; 이기승의 끄적끄적..
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Profile -->
+  <div class="sidebar-item sidebar-profile-box">
+    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <div class="sidebar-profile-description">
+      <span>
+        &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
+      </span>
+    </div>
+  </div>
+  <!-- Profile End -->
+
+  <nav class="sidebar-nav">
+    <!-- Home -->
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <!-- Home End -->
+    <!-- Posts -->
+    
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About Me">About Me</a>
+      
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily Thoughts">Daily Thoughts</a>
+      
+    
+      
+        <input id="Projects" class="toggle" type="checkbox">
+        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Hwangmaesan">Hwangmaesan</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/The_Oyster_Mine">The_Oyster_Mine</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Study" class="toggle" type="checkbox">
+        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Short_Books">Short_Books</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Algorithm">Algorithm</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http The Definitive Guide">Http The Definitive Guide</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/C_Kim_Pope">C_Kim_Pope</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/MSA_Ken_Krueger">MSA_Ken_Krueger</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Googling" class="toggle" type="checkbox">
+        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Java">Java</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Spring">Spring</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Data_Structure">Data_Structure</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Network">Network</a>
+          
+        
+        </div>
+      
+    
+    <!-- Posts End -->
+  </nav>
+
+  <!-- sidebar bottom -->
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+  <!-- sidebar bottom end -->
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title" style="font-weight: normal;">
+            <a href="/" title="Home">이기승의 끄적끄적..</a>
+            <small>개발 및 잡다한 포스팅</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Spring MVC의 동작 과정</h1>
+  <span class="post-date">16 Apr 2020</span>
+  
+<ul>
+  <li>
+    <p>Spring MVC의 동작 과정을 알아봅시다!</p>
+  </li>
+  <li>
+    <p>참고한 <a href="http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html">사이트</a>에는 각 요소들의 구현체들도 소개해주는데, 거기까진 가지 않고 아래 다이어그램으로 알 수 있는 큰 흐름만 살펴봅니다.</p>
+  </li>
+  <li>
+    <p>아래 다이어그램을 보시면 알겠지만, 이 많은 과정에서 개발자가 직접 작성해야 될 부분은 보라색, 연두색 부분 밖에 없습니다. 갓스프링…</p>
+  </li>
+</ul>
+
+<p class="p_img"><img src="/public/image/Spring/RequestLifecycle.png" alt="RequestLifecycle.png" /><small>출처 : <a href="http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html">http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html</a></small></p>
+
+<ol>
+  <li>
+    <p>DispatcherServlet 이 요청을 받습니다.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 HandlerMapping에게 해당 요청을 다룰 Controller가 누구인지 찾아달라고 합니다. HandlerMapping은 요청 URL을 읽어 적합한 (selected hander)와 Controller를 찾아 DispatcherServlet에게 알려줍니다.</p>
+  </li>
+  <li>
+    <p>DispathcerServlet은 돌려받은 Controller를 실행 시키는 일을 HandlerAdapter에게 넘겨줍니다.</p>
+  </li>
+  <li>
+    <p>HandlerAdapter가 Controller의 비즈니스 로직을 호출합니다.</p>
+  </li>
+  <li>
+    <p>Controller는 정해진 비즈니스 로직을 수행하고, 수행한 결과를 Model담고, 결과를 보여줄 View의 이름을 HandlerAdapter에게 넘겨줍니다. (View자체를 넘기는게 아니라 View의 logical한 이름만 돌려줍니다. 실제 View를 찾는건 다음 과정입니다.)</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 View의 이름을 Resolve 하는 일을 ViewResolver에게 넘겨줍니다. ViewResolver는 넘겨받은 View의 이름을 토대로 적절한 View 오브젝트를 찾아줍니다.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet은 렌더링 과정을 View에게 넘겨줍니다.(여기서 View는 ViewResolver가 찾아준 View)</p>
+  </li>
+  <li>
+    <p>View가 Model에 있는 데이터를 이용해 렌더링하고 응답을 돌려줍니다.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+<ul>
+  <li>아래는 위 다이어그램에 대한 원문입니다.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>DispatcherServlet receives the request.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of selecting an appropriate controller to HandlerMapping. HandlerMapping selects the controller which is mapped to the incoming request URL and returns the (selected Handler) and Controller to DispatcherServlet.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of executing of business logic of Controller to HandlerAdapter.</p>
+  </li>
+  <li>
+    <p>HandlerAdapter calls the business logic process of Controller.</p>
+  </li>
+  <li>
+    <p>Controller executes the business logic, sets the processing result in Model and returns the logical name of view to HandlerAdapter.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the task of resolving the View corresponding to the View name to ViewResolver. ViewResolver returns the View mapped to View name.</p>
+  </li>
+  <li>
+    <p>DispatcherServlet dispatches the rendering process to returned View.</p>
+  </li>
+  <li>
+    <p>View renders Model data and returns the response.</p>
+  </li>
+</ol>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study/algorithm/binary-search/">
+            알고리즘 - 이진탐색 문제풀이 잡기술
+            <small>10 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/googling/network/REST-API/">
+            그런 REST API로 괜찮은가
+            <small>10 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study/algorithm/Kruskal/">
+            알고리즘 - 크루스칼 알고리즘, Union-Find, 최소 신장 트리
+            <small>09 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

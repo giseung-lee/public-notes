@@ -4,7 +4,7 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-06-10T23:05:00+09:00</updated>
+ <updated>2020-06-11T15:12:49+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
@@ -80,9 +80,9 @@
  
  <entry>
    <title>그런 REST API로 괜찮은가</title>
-   <link href="http://localhost:4000/posts/googling/etc/REST-API/"/>
+   <link href="http://localhost:4000/posts/googling/network/REST-API/"/>
    <updated>2020-06-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/REST-API</id>
+   <id>http://localhost:4000/posts/googling/network/REST-API</id>
    <content type="html">
 &lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 
@@ -752,9 +752,9 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
  
  <entry>
    <title>해시관련 정리</title>
-   <link href="http://localhost:4000/posts/googling/etc/Hash/"/>
+   <link href="http://localhost:4000/posts/googling/data_structure/Hash/"/>
    <updated>2020-06-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/Hash</id>
+   <id>http://localhost:4000/posts/googling/data_structure/Hash</id>
    <content type="html">
 &lt;p&gt; 면접 보는데 해시 관련 질문이 나왔습니다. 예전에 자료구조 공부 하면서 보고 구현도 해봤기 때문에 나름 알고는 있다고 생각했는데, 막상 면접에선 머릿속에 있던 명확하지 않은 개념들 때문에 어버버버 하면서 원하는 만큼의 답변을 못했던 것 같습니다. 그런 의미에서 해시 관련 내용들을 정리해보기로 했습니다. 다음에 누가 해시 관련해서 물어보면 술술술 대답할 수 있도록!&lt;/p&gt;
 
@@ -762,9 +762,9 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow.png&quot; alt=&quot;hash_flow.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/hash_flow.png&quot; alt=&quot;hash_flow.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow_example.png&quot; alt=&quot;hash_flow_example.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/hash_flow_example.png&quot; alt=&quot;hash_flow_example.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 해시 테이블은 배열입니다. 단, 한 데이터의 해시 값(해시 코드, 해시)을 그 데이터가 배열에 들어갈 인덱스로 사용하는 배열입니다. 해시 테이블의 가장 큰 장점은 데이터의 삽입, 검색, 삭제가 모두 O(1)으로 일어난다는 것입니다.&lt;/p&gt;
 
@@ -784,7 +784,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
   &lt;p&gt;A hash function is any function that can be used to map data of arbitrary size to fixed-size values.&lt;br /&gt;해시함수란 임의의 길이를 갖는 데이터를 고정된 사이즈의 값으로 맵핑 하는 함수이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/hash_flow_range.png&quot; alt=&quot;hash_flow_range.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/hash_flow_range.png&quot; alt=&quot;hash_flow_range.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 문자열, 정수, 객체 등 모든 데이터는 해시 함수를 통해 고정된 크기인 int 범위 안으로 압축될 수 있습니다. 그리고 int 범위로 좁혀진 해시 값을 모듈로 연산을 통해 해시 테이블 크기안의 범위로 압축 시킬 수 있습니다.&lt;/p&gt;
 
@@ -946,7 +946,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;p&gt; 우선, 다 같이 한 번에 나온다는 것입니다. 이것은 단순히 종의 보전을 위한 인해전술입니다. 천적들이 아무리 많아도 천적들이 잡아먹는 매미의 수는 한정되어 있습니다. 서로 엇갈려 나와서 매년 같은 수의 매미들이 잡아 먹히기 보단, 한 번에 다 같이 나와서 살아 돌아가는 매미의 수를 많이 남기려는 전략입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/maemi.png&quot; alt=&quot;maemi.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/maemi.png&quot; alt=&quot;maemi.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 두 번째 특징이 진짜 말하려는 특징입니다. 5년, 7년, 13년, 17년. 모두 소수입니다. 왜 매미들은 소수년도를 주기로 올라올까요?  대부분의 생물 개체수는 일정 주기를 갖습니다. 매미의 천적들도 주기를 갖습니다. 그런데 매미의 천적들은 새, 다람쥐, 거북, 거미, 고양이, 개, 물고기 등 매우 많습니다. 천적들과의 주기를 피하기 위한 매미들의 전략이 소수입니다.(엄밀히 말하자면, 소수의 주기로 나오는 매미들이 살아남은 것이겠지만)&lt;/p&gt;
 
@@ -958,13 +958,13 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;p&gt; 소수를 사용하면 왜 분산이 잘 되는지에 대해 이해하기 쉽고 납득할만한 수학적 증명을 찾으려 했습니다만… 나왔는데 이해를 못하고 넘어간건지, 인터넷엔 쉽게 볼 수 없는 정보인건지.. 쉽게 풀어 쓸만한 증명은 찾지 못했습니다. 다만, 소수를 사용하지 않으면 분산이 덜 되는 것을 보여드리겠습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/power_series.png&quot; alt=&quot;power_series.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/power_series.png&quot; alt=&quot;power_series.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 해시 함수의 세부 사항은 구현에 따라 다르지만, 대부분의 해시 함수는 위와 같이 일정 수에대한 거듭 제곱의 형태로 표현되어 있습니다. 마지막 문자열(a0)가 같은 임의의 문자열들을 가정합시다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/power_series2.png&quot; alt=&quot;power_series2.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/power_series2.png&quot; alt=&quot;power_series2.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/power_series3.png&quot; alt=&quot;power_series3.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/power_series3.png&quot; alt=&quot;power_series3.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 해시 값은 k*X의 형태로 표현될 수 있습니다. 이때, X는 1~10이고 k가  30인 경우와 31인 경우를 생각해봅시다. k가 30 = 2*3*5 인 경우에 X가 어떤 값이 오더라도 해시 값은 2, 3, 5의 배수가 됩니다. 한편, k가 31인 경우엔 X값에 따라 2의 배수가 될 지, 3의 배수가 될 지, 5의 배수가 될 지, 혹은 2, 3, 5의 배수가 모두 아닐 수도 있게됩니다.&lt;/p&gt;
 
@@ -1016,7 +1016,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linear_probing.png&quot; alt=&quot;collision_linear_probing.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/collision_linear_probing.png&quot; alt=&quot;collision_linear_probing.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; Open Addressing은 인덱스 주소를 Open 하겠다는 것입니다. 예를들어 위 그림처럼 “Teemo”를 해시 함수 A에 넣어서 index 3을 얻었다고 가정합시다. 그런데, “Yasuo”를 해시 함수 A에 넣었더니 똑같이 index 3이 나왔습니다. 이렇게 색인이 충돌할 때, “Yasuo”를 굳이 index 3에 저장하려 하지 않고, 빈 주소를 찾아서 그곳에 넣도록 합니다. 이렇게 빈 주소를 찾아가는 방법을 Probing (탐색법)이라고 하고, 위 예시처럼 일정 간격으로 찾아가는 걸 Linear Probing (선형 탐색법)이라고 합니다. (여기선 다루지 않지만 탐색 폭이 제곱으로 늘어나는Quadratic probing(제곱 탐색법)도 있습니다.)&lt;/p&gt;
 
@@ -1026,7 +1026,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;p&gt; Open Addressing 방식으로 충돌을 해결한다면 공간을 절약할 수 있습니다. 처음 선언해 둔 해시 테이블 배열만 가지고도 충돌을 해결할 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linear_probing_weak.png&quot; alt=&quot;collision_linear_probing_weak.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/collision_linear_probing_weak.png&quot; alt=&quot;collision_linear_probing_weak.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 하지만, 검색시에 시간이 더 걸릴 수도 있습니다. 위처럼 크기 23짜리 해시 테이블에서 0~14가 모두 차있고 다음에 넣을 데이터 “something”이 index 2로 충돌을 일으킨다고 가정합시다. “something”은 빈자리를 찾아 index 15 까지 검사해야 합니다. 마찬가지로 다시 “something”을 검색할 때도 찾을때 까지 Linear Probing을 돌아야 합니다.&lt;/p&gt;
 
@@ -1046,7 +1046,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;h3 id=&quot;연결-리스트-활용&quot;&gt;연결 리스트 활용&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_linked_list.png&quot; alt=&quot;collision_linked_list.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/collision_linked_list.png&quot; alt=&quot;collision_linked_list.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; Bucket에 데이터 자체를 담는게 아니라 연결 리스트의 노드 주소를 담습니다.(구현에 따라 기본적으론 데이터를 넣고 충돌 시에 연결 리스트의 노드를 활용할 수도 있습니다.) 위처럼 “Teemo”가 먼저 해시 테이블에 들어가있는데 “Yasuo”가 색인 충돌을 일으킨다면, 연결 리스트를 따라 “Teemo”가 들어있는 노드 뒤에 “Yasuo”노드가 만들어져 연결 됩니다.&lt;/p&gt;
 
@@ -1054,7 +1054,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
 
 &lt;h3 id=&quot;동적-할당-배열-활용&quot;&gt;동적 할당 배열 활용&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/image/etc/collision_array.png&quot; alt=&quot;collision_array.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/image/Data_Structure/collision_array.png&quot; alt=&quot;collision_array.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt; 연결 리스트의 노드들을 필요할 때마다 붙이는게 아니라 일정 크기의 배열을 미리 할당해줍니다. 충돌이 날때마다 해야하는 동적 할당의 부담을 줄일 수 있습니다. 충돌이 많이 일어나 정해진 크기의 배열이 꽉 찼다면 더 큰 사이즈의 배열로 다시 할당해줍니다.&lt;/p&gt;
 
@@ -1135,9 +1135,9 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
  
  <entry>
    <title>인증 관련 개념들 - 쿠키+세션, Token, JWT, OAuth2</title>
-   <link href="http://localhost:4000/posts/googling/etc/Oauth/"/>
+   <link href="http://localhost:4000/posts/googling/network/Oauth/"/>
    <updated>2020-05-25T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/Oauth</id>
+   <id>http://localhost:4000/posts/googling/network/Oauth</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt;본 포스팅은 아래 포스팅들을 참고하여 작성되었습니다.
@@ -1332,7 +1332,7 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
   &lt;li&gt;토큰 기반인증의 대표적인 프레임워크인 Oauth2.0은 다음과 같은 방식으로 작동합니다. Oracle의 설명이 너무 깊지도 얕지도 않아 적당하다고 생각해 가져왔습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/oauth_web_server_flow.png&quot; alt=&quot;oauth_web_server_flow.png&quot; /&gt;&lt;small&gt;출처 : https://docs.oracle.com/cd/E39820_01/doc.11121/gateway_docs/content/oauth_flows.html&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Network/oauth_web_server_flow.png&quot; alt=&quot;oauth_web_server_flow.png&quot; /&gt;&lt;small&gt;출처 : https://docs.oracle.com/cd/E39820_01/doc.11121/gateway_docs/content/oauth_flows.html&lt;/small&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -1910,113 +1910,6 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
  </entry>
  
  <entry>
-   <title>Web Server와 WAS의 차이점</title>
-   <link href="http://localhost:4000/posts/googling/etc/WebServer-WAS/"/>
-   <updated>2020-05-14T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/WebServer-WAS</id>
-   <content type="html">
-&lt;ul&gt;
-  &lt;li&gt;본 포스팅은 &lt;a href=&quot;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&quot;&gt;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&lt;/a&gt;를 참고하였습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;static-resource-vs-dynamic-resource&quot;&gt;Static Resource vs Dynamic Resource&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Web Server와 WAS의 차이를 알려면 Static Resource와 Dynamic Resource를 알아야 합니다.&lt;/li&gt;
-  &lt;li&gt;둘의 차이는 말 그대로 어떤 요청에도 변하지 않는 정적인 자원이냐, 요청에 따라 변하는 동적인 자원이냐입니다.&lt;/li&gt;
-  &lt;li&gt;Static Resource
-    &lt;ul&gt;
-      &lt;li&gt;예시 - 이미지, 비디오, 오디오, html 페이지, css파일, js 파일 등&lt;/li&gt;
-      &lt;li&gt;어떤 클라이언트가 요청하든 같은 Resource를 받게 됩니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Dynamic Resource
-    &lt;ul&gt;
-      &lt;li&gt;예시 - jsp, asp php 페이지 등&lt;/li&gt;
-      &lt;li&gt;요청한 클라이언트에 따라 바뀌는 자원입니다.
-        &lt;ul&gt;
-          &lt;li&gt;예를들어, 네이버 카페에 들어가면 로그인한 유저에 따라 가입한 카페의 내역이 다를 것이고, 마이페이지에 로드되는 내용들이 다를 것입니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;web-server-vs-web-application-server&quot;&gt;Web Server vs Web Application Server&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;웹 서버와 WAS의 차이를 정말 단순화 시켜 말한다면, 웹 서버는 Static Resource을 제공해주고, WAS는 Static, Dynamic Resource 모두를 제공해준다는 것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;web-server&quot;&gt;Web Server&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;예시 - Apache, Nginx, IIS 등&lt;/li&gt;
-  &lt;li&gt;웹 서버는 클라이언트와 HTTP 메세지를 주고 받는 역할을 합니다.&lt;/li&gt;
-  &lt;li&gt;메세지를 주고 받을 때 따로 추가적인 처리가 필요하지 않은 Static Resource를 웹 서버 차원에서 제공해 줄 수 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;web-application-server&quot;&gt;Web Application Server&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;예시 - Tomcat, JBoss, JEUS 등&lt;/li&gt;
-  &lt;li&gt;WAS = 웹 서버 + 웹 컨테이너&lt;/li&gt;
-  &lt;li&gt;웹 컨테이너
-    &lt;ul&gt;
-      &lt;li&gt;웹 컨테이너란 jsp, asp, php 등 동적인 페이지를 만들어주는 어플리케이션을 실행시킬 수 있는 환경입니다.&lt;/li&gt;
-      &lt;li&gt;WAS는 jsp, asp 등의 실행 환경을 제공한다고 볼 수 있습니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;web-server는-왜-필요할까&quot;&gt;Web Server는 왜 필요할까&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앞서 WAS = Web Server + Web Container 라고 했습니다. 하지만 &lt;strong&gt;실제론 WAS 앞에 Web Server를 따로 두기도 합니다.&lt;/strong&gt; WAS에 Web Server가 있는데 왜 Web Server를 따로 둘까요?&lt;/li&gt;
-  &lt;li&gt;Web Server의 필요성
-    &lt;ul&gt;
-      &lt;li&gt;Static Resource 처리
-        &lt;ul&gt;
-          &lt;li&gt;Static Resource 요청이 WAS 까지 가지 않고 Web Server 단에서 처리되게 할 수 있습니다.&lt;/li&gt;
-          &lt;li&gt;이를 통해 WAS의 부하를 줄일 수 있습니다. WAS는 Dynamic Resource를 처리하는 것으로도 부담이 큽니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;보안 강화
-        &lt;ul&gt;
-          &lt;li&gt;HTTPS 프로토콜 같은 경우 SSL 암복호화 처리를 해야 하는데 이를 WAS가 하지 않고 Web Server 단에서 처리해 줄 수 있습니다.&lt;/li&gt;
-          &lt;li&gt;또한, 접근 허용 IP 관리를 앞의 Web Server 단에서 처리할 수 있습니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;로드밸런싱
-        &lt;ul&gt;
-          &lt;li&gt;하나의 웹 서버 뒤에 여로 복제 WAS를 두어 로드밸런싱을 통해 각 WAS의 부담을 줄일 수 있습니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;무중단 운영
-        &lt;ul&gt;
-          &lt;li&gt;여러 복제 WAS를 두고 새로운 WAS 배포시 차례차례 WAS를 배포해 무중단 운영을 이어갈 수도 있습니다.&lt;/li&gt;
-          &lt;li&gt;또한, 하나의 WAS가 죽어도 다른 WAS를 사용하도록 할 수 있습니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;A/B 테스트
-        &lt;ul&gt;
-          &lt;li&gt;두 가지 버전의 UI의 유저 반응을 테스트할 때 한쪽 클라이언트 집단에겐 A버전의 WAS를, 다른 클라이언트 집단에겐 B버전의 WAS를 연결해 주어 A/B 테스트를 진행할 수도 있습니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
- </entry>
- 
- <entry>
    <title>인터프리터 언어? 컴파일 언어? - C, Java, Python 빌드 및 실행 과정</title>
    <link href="http://localhost:4000/posts/googling/etc/Interpreter-Compile-Language/"/>
    <updated>2020-05-14T00:00:00+09:00</updated>
@@ -2204,6 +2097,311 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
  </entry>
  
  <entry>
+   <title>Web Server와 WAS의 차이점</title>
+   <link href="http://localhost:4000/posts/googling/network/WebServer-WAS/"/>
+   <updated>2020-05-14T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/network/WebServer-WAS</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;본 포스팅은 &lt;a href=&quot;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&quot;&gt;https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html&lt;/a&gt;를 참고하였습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;static-resource-vs-dynamic-resource&quot;&gt;Static Resource vs Dynamic Resource&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Web Server와 WAS의 차이를 알려면 Static Resource와 Dynamic Resource를 알아야 합니다.&lt;/li&gt;
+  &lt;li&gt;둘의 차이는 말 그대로 어떤 요청에도 변하지 않는 정적인 자원이냐, 요청에 따라 변하는 동적인 자원이냐입니다.&lt;/li&gt;
+  &lt;li&gt;Static Resource
+    &lt;ul&gt;
+      &lt;li&gt;예시 - 이미지, 비디오, 오디오, html 페이지, css파일, js 파일 등&lt;/li&gt;
+      &lt;li&gt;어떤 클라이언트가 요청하든 같은 Resource를 받게 됩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dynamic Resource
+    &lt;ul&gt;
+      &lt;li&gt;예시 - jsp, asp php 페이지 등&lt;/li&gt;
+      &lt;li&gt;요청한 클라이언트에 따라 바뀌는 자원입니다.
+        &lt;ul&gt;
+          &lt;li&gt;예를들어, 네이버 카페에 들어가면 로그인한 유저에 따라 가입한 카페의 내역이 다를 것이고, 마이페이지에 로드되는 내용들이 다를 것입니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;web-server-vs-web-application-server&quot;&gt;Web Server vs Web Application Server&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 서버와 WAS의 차이를 정말 단순화 시켜 말한다면, 웹 서버는 Static Resource을 제공해주고, WAS는 Static, Dynamic Resource 모두를 제공해준다는 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;web-server&quot;&gt;Web Server&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시 - Apache, Nginx, IIS 등&lt;/li&gt;
+  &lt;li&gt;웹 서버는 클라이언트와 HTTP 메세지를 주고 받는 역할을 합니다.&lt;/li&gt;
+  &lt;li&gt;메세지를 주고 받을 때 따로 추가적인 처리가 필요하지 않은 Static Resource를 웹 서버 차원에서 제공해 줄 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;web-application-server&quot;&gt;Web Application Server&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시 - Tomcat, JBoss, JEUS 등&lt;/li&gt;
+  &lt;li&gt;WAS = 웹 서버 + 웹 컨테이너&lt;/li&gt;
+  &lt;li&gt;웹 컨테이너
+    &lt;ul&gt;
+      &lt;li&gt;웹 컨테이너란 jsp, asp, php 등 동적인 페이지를 만들어주는 어플리케이션을 실행시킬 수 있는 환경입니다.&lt;/li&gt;
+      &lt;li&gt;WAS는 jsp, asp 등의 실행 환경을 제공한다고 볼 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;web-server는-왜-필요할까&quot;&gt;Web Server는 왜 필요할까&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;앞서 WAS = Web Server + Web Container 라고 했습니다. 하지만 &lt;strong&gt;실제론 WAS 앞에 Web Server를 따로 두기도 합니다.&lt;/strong&gt; WAS에 Web Server가 있는데 왜 Web Server를 따로 둘까요?&lt;/li&gt;
+  &lt;li&gt;Web Server의 필요성
+    &lt;ul&gt;
+      &lt;li&gt;Static Resource 처리
+        &lt;ul&gt;
+          &lt;li&gt;Static Resource 요청이 WAS 까지 가지 않고 Web Server 단에서 처리되게 할 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;이를 통해 WAS의 부하를 줄일 수 있습니다. WAS는 Dynamic Resource를 처리하는 것으로도 부담이 큽니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;보안 강화
+        &lt;ul&gt;
+          &lt;li&gt;HTTPS 프로토콜 같은 경우 SSL 암복호화 처리를 해야 하는데 이를 WAS가 하지 않고 Web Server 단에서 처리해 줄 수 있습니다.&lt;/li&gt;
+          &lt;li&gt;또한, 접근 허용 IP 관리를 앞의 Web Server 단에서 처리할 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;로드밸런싱
+        &lt;ul&gt;
+          &lt;li&gt;하나의 웹 서버 뒤에 여로 복제 WAS를 두어 로드밸런싱을 통해 각 WAS의 부담을 줄일 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;무중단 운영
+        &lt;ul&gt;
+          &lt;li&gt;여러 복제 WAS를 두고 새로운 WAS 배포시 차례차례 WAS를 배포해 무중단 운영을 이어갈 수도 있습니다.&lt;/li&gt;
+          &lt;li&gt;또한, 하나의 WAS가 죽어도 다른 WAS를 사용하도록 할 수 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;A/B 테스트
+        &lt;ul&gt;
+          &lt;li&gt;두 가지 버전의 UI의 유저 반응을 테스트할 때 한쪽 클라이언트 집단에겐 A버전의 WAS를, 다른 클라이언트 집단에겐 B버전의 WAS를 연결해 주어 A/B 테스트를 진행할 수도 있습니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>URL입력 부터 브라우저 출력까지</title>
+   <link href="http://localhost:4000/posts/googling/network/Web-flow/"/>
+   <updated>2020-05-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/network/Web-flow</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;클라이언트의 URL 입력&lt;/li&gt;
+  &lt;li&gt;해당 URL에 대한 브라우저의 캐시 탐색&lt;/li&gt;
+  &lt;li&gt;DNS 서버에서 입력받은 도메인명에 대한 IP 주소 탐색
+    &lt;ul&gt;
+      &lt;li&gt;보통 하나의 도메인은 여러 IP를 갖는데 DNS 수준에서 로드밸런싱이 일어나기도 합니다. (라운드로빈 방식으로..)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;URL 파싱 (포트번호 찾고, 파라미터 정리하고 등등..)&lt;/li&gt;
+  &lt;li&gt;서버와 TCP 커넥션 연결
+    &lt;ul&gt;
+      &lt;li&gt;3 way handshake - “SYN”, “SYN+ACK”, “ACK”&lt;/li&gt;
+      &lt;li&gt;바로 목적지 서버와 연결되는 경우는 거의 없습니다. 브라우저가 거치는 프록시, ISP업체의 캐시 서버, 요청한 url의 캐시 서버 등..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클라이언트의 HTTP 요청 발신
+    &lt;ul&gt;
+      &lt;li&gt;중간에 여러 캐시, 프록시, 게이트웨이를 거칩니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버의 HTTP 요청 수신
+    &lt;ul&gt;
+      &lt;li&gt;IP 패킷의 checksum 검사 손상된 패킷 다시 요구, sequence 맞추기 등..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버의 웹 서버 / WAS를 거쳐 돌려줄 HTTP 메세지가 만들어집니다.&lt;/li&gt;
+  &lt;li&gt;서버의 HTTP 응답 발신&lt;/li&gt;
+  &lt;li&gt;클라이언트의 HTTP 응답 수신&lt;/li&gt;
+  &lt;li&gt;브라우저에 렌더링
+    &lt;ul&gt;
+      &lt;li&gt;한번의 HTTP 요청-응답으로 브라우저의 모든 내용을 그릴 수 있는 건 아니고 첫 HTTP 교환으론 HTTP의 뼈대와 페이지를 채우기 위해 필요한 추가 리소스를 요청할 url들을 가져옵니다.&lt;/li&gt;
+      &lt;li&gt;페이지를 만들기 위해 필요한 추가 url들을 다시 요청해 받아와 렌더링합니다.&lt;/li&gt;
+      &lt;li&gt;브라우저 렌더링에 관한 자세한 사항은… 나중에…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>TCP/IP 동작원리, UDP와 차이, handshake</title>
+   <link href="http://localhost:4000/posts/googling/network/TCP/"/>
+   <updated>2020-05-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/googling/network/TCP</id>
+   <content type="html">
+&lt;h2 id=&quot;tcpip-동작-원리&quot;&gt;TCP/IP 동작 원리&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP : Transmission Control Protocol, OSI 전송 계층&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IP : Internet Protocol, OSI 네트워크 계층&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP는 데이터가 손실 되지 않은 안전한 통신인데 이 안정성을 TCP/IP가 보장해줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP 프로토콜에선 HTTP 메세지를 통째로 전달하지 않습니다. IP 패킷(IP 데이터그램)이라는 작은 조각으로 나눠 전송합니다. (패킷 통신은 서킷 통신의 단점을 보완하고자 나왔습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IP 패킷은 아래와 같이 이루어져 있습니다.&lt;/p&gt;
+
+    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Network/ip_packet.png&quot; alt=&quot;ip_packet.png&quot; /&gt;&lt;small&gt;출처 : https://learning.oreilly.com/library/view/http-the-definitive/1565925092/ch04s01.html&lt;/small&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IP 패킷 헤더
+    &lt;ul&gt;
+      &lt;li&gt;발신지에서 목적지로 이동하는 데에 필요한 정보를 가지고 있습니다.&lt;/li&gt;
+      &lt;li&gt;그런데, 여러 조각으로 나뉜 HTTP의 조각들이 순서대로, 손실 없이 목적지에 도착하리란 보장은 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;TCP Segment 헤더
+    &lt;ul&gt;
+      &lt;li&gt;IP 패킷들의 순서를 맞춰주고 손실이 없는걸 보장해주기 위한 것이 TCP 세그먼트 헤더입니다.&lt;/li&gt;
+      &lt;li&gt;TCP Checksum을 통해 메세지가 손실 됐는지 판별합니다. 손실 됐다면 해당 패킷을 다시 요청합니다.&lt;/li&gt;
+      &lt;li&gt;TCP Sequence Number를 통해 IP패킷들의 순서를 맞춥니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;통신-과정--3-way-handshake-4-way-handshake-&quot;&gt;통신 과정( + 3 way handshake, 4 way handshake )&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트와 서버가 TCP 커넥션을 맺습니다.
+    &lt;ul&gt;
+      &lt;li&gt;TCP 커넥션은 3 way handshake로 맺어지며 쉽게 요약하면, “연결해달라 오바” - “연결했다 오바” - “알았다 오바” 입니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;3 way handshake&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;분할 된 IP 패킷들을 보냅니다.&lt;/li&gt;
+  &lt;li&gt;IP 패킷을 받은 쪽에선 각 IP 패킷의 TCP checksum을 검사해 손실된 패킷은 다시 요청하고 손실되지 않은 패킷들은 순서를 맞춥니다.&lt;/li&gt;
+  &lt;li&gt;클라이언트가 HTTP 요청을 보내고, 서버의 HTTP 응답을 받았다면 커넥션을 끊게 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;커넥션을 끊는 과정은 4 way handshake로 이루어집니다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;4 way handshake&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;연결을 종료하겠다는 ‘FIN’플래그 전송&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 CLOSE_WAIT 상태가 됩니다.&lt;/li&gt;
+          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.&lt;/li&gt;
+          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
+            &lt;ul&gt;
+              &lt;li&gt;연결을 끊기 전에 서버가 ‘FIN’플래그를 보내기전에 보냈으나 ‘FIN’플래그보다 늦게 도착한 메세지를 기다리기 위해 일정 시간 세션을 남겨 잉여 패킷을 기다립니다. 이 과정을 TIME_WAIT이라고 합니다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tcp와-udp의-차이&quot;&gt;TCP와 UDP의 차이&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2000년대 이전 생 대한민국 남성이라면 스타크래프트를 안해봤을리 없고, PC방에서 친구들과 스타크래프트를 할 때 UDP로 연결한 경험이 있을 것입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Network/starcraft_udp.jpg&quot; alt=&quot;starcraft_udp.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;어렸을 땐 그냥 옆자리 친구와 하고 싶을 땐 UDP! 이렇게 알고 있었지만, 이제 UDP가 무엇이었는지 알아야 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP와 UDP의 차이는 &lt;a href=&quot;https://mangkyu.tistory.com/15&quot;&gt;https://mangkyu.tistory.com/15&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;데이터의 교환 방식을 아래와 같이 나눌 수 있습니다.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;교환방식
+  └ 회선교환
+  └ 축적후 교환
+      └ 메세지 교환
+      └ 패킷 교환
+          └ 가상회선 방식 -&amp;gt; TCP
+          └ 데이터그램 방식 -&amp;gt; UDP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCP와 UDP의 핵심 차이는 신뢰성을 중시하느냐, 연속성을 중시하느냐 입니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;tcp&quot;&gt;TCP&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위에서 언급하지 않은 가상회선 방식이란, 발신지와 수신지 사이의 논리적인 경로를 정한다는 것입니다. 이런 특징 때문에 연결형 프로토콜이라고도 불립니다.&lt;/li&gt;
+  &lt;li&gt;TCP는 신뢰성 있는 통신을 보장하는게 목적입니다.
+    &lt;ul&gt;
+      &lt;li&gt;TCP연결을 맺어야 하며 맺는 과정도 3 way handshake를 사용합니다.&lt;/li&gt;
+      &lt;li&gt;Checksum을 검사해 손실된 데이터를 확인하고, 재전송을 요구합니다.&lt;/li&gt;
+      &lt;li&gt;Sequence를 확인해 순서를 보장합니다.&lt;/li&gt;
+      &lt;li&gt;위에선 언급되지 않았지만 흐름제어, 혼잡제어와 같은 기능도 있습니다.
+        &lt;ul&gt;
+          &lt;li&gt;흐름제어 : 수신자의 버퍼 오버플로 방지를 위해 송, 수신지의 데이터 처리 속도를 조절하는 것&lt;/li&gt;
+          &lt;li&gt;혼잡제어 : 네트워크 내 패킷수가 넘치지 않기 위해 조절하는 것.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;신뢰성 있는 데이터를 주고받아야 하는 통신에 TCP를 사용합니다. (UDP가 아닌 대부분이 TCP라고 보면 됩니다.)&lt;/li&gt;
+  &lt;li&gt;서버와 클라이언트가 1:1로 연결됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;udp-user-datagram-protocol&quot;&gt;UDP (User Datagram Protocol)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데이터그램 방식이란 보내지는 패킷들이 서로 독립적인 관계를 지니는 것을 뜻합니다. TCP에서 가상회선이 정해지면 패킷들이 해당 회선으로 전송됐다면, UDP에서의 패킷들은 각자 독립적인 경로를 선택합니다. 이를 비연결형 프로토콜이라고 부릅니다.&lt;/li&gt;
+  &lt;li&gt;UDP는 연속성을 지향합니다.
+    &lt;ul&gt;
+      &lt;li&gt;커넥션을 맺고 끊는 과정이 없습니다.&lt;/li&gt;
+      &lt;li&gt;checksum을 계산하거나 sequence를 맞추지도 않습니다. 패킷들의 순서는 RTP(Real-Time Protocol)같은 기술을 통해 맞추거나 어플리케이션 수준에서 맞춥니다.&lt;/li&gt;
+      &lt;li&gt;흐름제어, 혼잡제어 이런 것도 없습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;UDP는 연속성이 중요한 스트리밍 서비스(RTSP 프로토콜)나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다. 안정성이 중요하지 않은 프로토콜(DNS)에서 사용되기도 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>JAVA Garbage Collection</title>
    <link href="http://localhost:4000/posts/googling/java/Garbage-Collection/"/>
    <updated>2020-05-13T00:00:00+09:00</updated>
@@ -2288,204 +2486,6 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-</content>
- </entry>
- 
- <entry>
-   <title>URL입력 부터 브라우저 출력까지</title>
-   <link href="http://localhost:4000/posts/googling/etc/Web-flow/"/>
-   <updated>2020-05-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/Web-flow</id>
-   <content type="html">
-&lt;ul&gt;
-  &lt;li&gt;클라이언트의 URL 입력&lt;/li&gt;
-  &lt;li&gt;해당 URL에 대한 브라우저의 캐시 탐색&lt;/li&gt;
-  &lt;li&gt;DNS 서버에서 입력받은 도메인명에 대한 IP 주소 탐색
-    &lt;ul&gt;
-      &lt;li&gt;보통 하나의 도메인은 여러 IP를 갖는데 DNS 수준에서 로드밸런싱이 일어나기도 합니다. (라운드로빈 방식으로..)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;URL 파싱 (포트번호 찾고, 파라미터 정리하고 등등..)&lt;/li&gt;
-  &lt;li&gt;서버와 TCP 커넥션 연결
-    &lt;ul&gt;
-      &lt;li&gt;3 way handshake - “SYN”, “SYN+ACK”, “ACK”&lt;/li&gt;
-      &lt;li&gt;바로 목적지 서버와 연결되는 경우는 거의 없습니다. 브라우저가 거치는 프록시, ISP업체의 캐시 서버, 요청한 url의 캐시 서버 등..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;클라이언트의 HTTP 요청 발신
-    &lt;ul&gt;
-      &lt;li&gt;중간에 여러 캐시, 프록시, 게이트웨이를 거칩니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;서버의 HTTP 요청 수신
-    &lt;ul&gt;
-      &lt;li&gt;IP 패킷의 checksum 검사 손상된 패킷 다시 요구, sequence 맞추기 등..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;서버의 웹 서버 / WAS를 거쳐 돌려줄 HTTP 메세지가 만들어집니다.&lt;/li&gt;
-  &lt;li&gt;서버의 HTTP 응답 발신&lt;/li&gt;
-  &lt;li&gt;클라이언트의 HTTP 응답 수신&lt;/li&gt;
-  &lt;li&gt;브라우저에 렌더링
-    &lt;ul&gt;
-      &lt;li&gt;한번의 HTTP 요청-응답으로 브라우저의 모든 내용을 그릴 수 있는 건 아니고 첫 HTTP 교환으론 HTTP의 뼈대와 페이지를 채우기 위해 필요한 추가 리소스를 요청할 url들을 가져옵니다.&lt;/li&gt;
-      &lt;li&gt;페이지를 만들기 위해 필요한 추가 url들을 다시 요청해 받아와 렌더링합니다.&lt;/li&gt;
-      &lt;li&gt;브라우저 렌더링에 관한 자세한 사항은… 나중에…&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>TCP/IP 동작원리, UDP와 차이, handshake</title>
-   <link href="http://localhost:4000/posts/googling/etc/TCP/"/>
-   <updated>2020-05-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/TCP</id>
-   <content type="html">
-&lt;h2 id=&quot;tcpip-동작-원리&quot;&gt;TCP/IP 동작 원리&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;TCP : Transmission Control Protocol, OSI 전송 계층&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IP : Internet Protocol, OSI 네트워크 계층&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;HTTP는 데이터가 손실 되지 않은 안전한 통신인데 이 안정성을 TCP/IP가 보장해줍니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;TCP 프로토콜에선 HTTP 메세지를 통째로 전달하지 않습니다. IP 패킷(IP 데이터그램)이라는 작은 조각으로 나눠 전송합니다. (패킷 통신은 서킷 통신의 단점을 보완하고자 나왔습니다.)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IP 패킷은 아래와 같이 이루어져 있습니다.&lt;/p&gt;
-
-    &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/ip_packet.png&quot; alt=&quot;ip_packet.png&quot; /&gt;&lt;small&gt;출처 : https://learning.oreilly.com/library/view/http-the-definitive/1565925092/ch04s01.html&lt;/small&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;IP 패킷 헤더
-    &lt;ul&gt;
-      &lt;li&gt;발신지에서 목적지로 이동하는 데에 필요한 정보를 가지고 있습니다.&lt;/li&gt;
-      &lt;li&gt;그런데, 여러 조각으로 나뉜 HTTP의 조각들이 순서대로, 손실 없이 목적지에 도착하리란 보장은 없습니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;TCP Segment 헤더
-    &lt;ul&gt;
-      &lt;li&gt;IP 패킷들의 순서를 맞춰주고 손실이 없는걸 보장해주기 위한 것이 TCP 세그먼트 헤더입니다.&lt;/li&gt;
-      &lt;li&gt;TCP Checksum을 통해 메세지가 손실 됐는지 판별합니다. 손실 됐다면 해당 패킷을 다시 요청합니다.&lt;/li&gt;
-      &lt;li&gt;TCP Sequence Number를 통해 IP패킷들의 순서를 맞춥니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;통신-과정--3-way-handshake-4-way-handshake-&quot;&gt;통신 과정( + 3 way handshake, 4 way handshake )&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;클라이언트와 서버가 TCP 커넥션을 맺습니다.
-    &lt;ul&gt;
-      &lt;li&gt;TCP 커넥션은 3 way handshake로 맺어지며 쉽게 요약하면, “연결해달라 오바” - “연결했다 오바” - “알았다 오바” 입니다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;3 way handshake&lt;/strong&gt;
-        &lt;ul&gt;
-          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;‘SYN’ 플래그를 가진 40~60 Byte의 TCP 패킷을 보냅니다. 커넥션 생성 요청입니다.&lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;서버가 커넥션을 생성 후 ‘SYN + ACK’ 플래그를 가진 TCP 패킷을 클라이언트에게 보냅니다.  요청 승낙을 뜻합니다.&lt;/li&gt;
-          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;커넥션 연결을 확인했다, 이제 메세지를 보내겠다는 ‘ACK’ 플래그를 가진 확인 응답 신호를 보냅니다. 요즘 TCP는 이 확인응답 신호를 보낼 데이터와 함께 보냅니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;분할 된 IP 패킷들을 보냅니다.&lt;/li&gt;
-  &lt;li&gt;IP 패킷을 받은 쪽에선 각 IP 패킷의 TCP checksum을 검사해 손실된 패킷은 다시 요청하고 손실되지 않은 패킷들은 순서를 맞춥니다.&lt;/li&gt;
-  &lt;li&gt;클라이언트가 HTTP 요청을 보내고, 서버의 HTTP 응답을 받았다면 커넥션을 끊게 됩니다.
-    &lt;ul&gt;
-      &lt;li&gt;커넥션을 끊는 과정은 4 way handshake로 이루어집니다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;4 way handshake&lt;/strong&gt;
-        &lt;ul&gt;
-          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;연결을 종료하겠다는 ‘FIN’플래그 전송&lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;확인 플래그인 ‘ACK’ 플래그를 전송 하고 서버의 통신이 끝나길 기다립니다. 이때 CLOSE_WAIT 상태가 됩니다.&lt;/li&gt;
-          &lt;li&gt;서버 👉 클라이언트&lt;br /&gt;통신이 끝났으면 연결을 끊겠다는 ‘FIN’ 플래그를 전송합니다.&lt;/li&gt;
-          &lt;li&gt;클라이언트 👉 서버&lt;br /&gt;확인 했다는 ‘ACK’ 플래그를 보내고 연결을 끊습니다.
-            &lt;ul&gt;
-              &lt;li&gt;연결을 끊기 전에 서버가 ‘FIN’플래그를 보내기전에 보냈으나 ‘FIN’플래그보다 늦게 도착한 메세지를 기다리기 위해 일정 시간 세션을 남겨 잉여 패킷을 기다립니다. 이 과정을 TIME_WAIT이라고 합니다.&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;tcp와-udp의-차이&quot;&gt;TCP와 UDP의 차이&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;2000년대 이전 생 대한민국 남성이라면 스타크래프트를 안해봤을리 없고, PC방에서 친구들과 스타크래프트를 할 때 UDP로 연결한 경험이 있을 것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/etc/starcraft_udp.jpg&quot; alt=&quot;starcraft_udp.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;어렸을 땐 그냥 옆자리 친구와 하고 싶을 땐 UDP! 이렇게 알고 있었지만, 이제 UDP가 무엇이었는지 알아야 합니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;TCP와 UDP의 차이는 &lt;a href=&quot;https://mangkyu.tistory.com/15&quot;&gt;https://mangkyu.tistory.com/15&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;데이터의 교환 방식을 아래와 같이 나눌 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;교환방식
-  └ 회선교환
-  └ 축적후 교환
-      └ 메세지 교환
-      └ 패킷 교환
-          └ 가상회선 방식 -&amp;gt; TCP
-          └ 데이터그램 방식 -&amp;gt; UDP
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;TCP와 UDP의 핵심 차이는 신뢰성을 중시하느냐, 연속성을 중시하느냐 입니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;tcp&quot;&gt;TCP&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위에서 언급하지 않은 가상회선 방식이란, 발신지와 수신지 사이의 논리적인 경로를 정한다는 것입니다. 이런 특징 때문에 연결형 프로토콜이라고도 불립니다.&lt;/li&gt;
-  &lt;li&gt;TCP는 신뢰성 있는 통신을 보장하는게 목적입니다.
-    &lt;ul&gt;
-      &lt;li&gt;TCP연결을 맺어야 하며 맺는 과정도 3 way handshake를 사용합니다.&lt;/li&gt;
-      &lt;li&gt;Checksum을 검사해 손실된 데이터를 확인하고, 재전송을 요구합니다.&lt;/li&gt;
-      &lt;li&gt;Sequence를 확인해 순서를 보장합니다.&lt;/li&gt;
-      &lt;li&gt;위에선 언급되지 않았지만 흐름제어, 혼잡제어와 같은 기능도 있습니다.
-        &lt;ul&gt;
-          &lt;li&gt;흐름제어 : 수신자의 버퍼 오버플로 방지를 위해 송, 수신지의 데이터 처리 속도를 조절하는 것&lt;/li&gt;
-          &lt;li&gt;혼잡제어 : 네트워크 내 패킷수가 넘치지 않기 위해 조절하는 것.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;신뢰성 있는 데이터를 주고받아야 하는 통신에 TCP를 사용합니다. (UDP가 아닌 대부분이 TCP라고 보면 됩니다.)&lt;/li&gt;
-  &lt;li&gt;서버와 클라이언트가 1:1로 연결됩니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;udp-user-datagram-protocol&quot;&gt;UDP (User Datagram Protocol)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;데이터그램 방식이란 보내지는 패킷들이 서로 독립적인 관계를 지니는 것을 뜻합니다. TCP에서 가상회선이 정해지면 패킷들이 해당 회선으로 전송됐다면, UDP에서의 패킷들은 각자 독립적인 경로를 선택합니다. 이를 비연결형 프로토콜이라고 부릅니다.&lt;/li&gt;
-  &lt;li&gt;UDP는 연속성을 지향합니다.
-    &lt;ul&gt;
-      &lt;li&gt;커넥션을 맺고 끊는 과정이 없습니다.&lt;/li&gt;
-      &lt;li&gt;checksum을 계산하거나 sequence를 맞추지도 않습니다. 패킷들의 순서는 RTP(Real-Time Protocol)같은 기술을 통해 맞추거나 어플리케이션 수준에서 맞춥니다.&lt;/li&gt;
-      &lt;li&gt;흐름제어, 혼잡제어 이런 것도 없습니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;UDP는 연속성이 중요한 스트리밍 서비스(RTSP 프로토콜)나 한 서버가 여러 클라이언트를 상대하는 Multicast 서비스에 사용됩니다. 안정성이 중요하지 않은 프로토콜(DNS)에서 사용되기도 합니다.&lt;/li&gt;
-&lt;/ul&gt;
 </content>
  </entry>
  
@@ -3018,9 +3018,9 @@ Hibernate: insert into direct_question (contents, title, userid, id) values (?, 
  
  <entry>
    <title>Spring Data, Spring Data JPA, JPA, Hibernate, JDBC, DBCP 용어정리</title>
-   <link href="http://localhost:4000/posts/googling/etc/Spring-Data,-JPA,-Hibernate-%EB%B3%B5%EC%82%AC%EB%B3%B8/"/>
+   <link href="http://localhost:4000/posts/googling/spring/Spring-Data,-JPA,-Hibernate-%EB%B3%B5%EC%82%AC%EB%B3%B8/"/>
    <updated>2020-05-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/etc/Spring Data, JPA, Hibernate - 복사본</id>
+   <id>http://localhost:4000/posts/googling/spring/Spring Data, JPA, Hibernate - 복사본</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt;Spring Data로 프로젝트를 개편하던 중에 검색시 Order By를 해야할 일이 있었습니다. 그런데 ‘JPA order by’로 검색할 지, ‘hibernate order by’로 검색할 지, ‘Spring Data order by’로 검색할 지 고민이 됐습니다.&lt;/li&gt;
@@ -6791,9 +6791,9 @@ spring.mvc.view.suffix=.jsp
  
  <entry>
    <title>Spring 특징</title>
-   <link href="http://localhost:4000/posts/googling/java/Spring%ED%8A%B9%EC%A7%95/"/>
+   <link href="http://localhost:4000/posts/googling/spring/Spring%ED%8A%B9%EC%A7%95/"/>
    <updated>2020-04-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/java/Spring특징</id>
+   <id>http://localhost:4000/posts/googling/spring/Spring특징</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt; Spring 특징이라고 검색하면 무조건 나오는 3개만 정리해둡니다.
@@ -6957,7 +6957,7 @@ spring.mvc.view.suffix=.jsp
       &lt;li&gt;
         &lt;p&gt; 이런 상황에선 아래와 같이 pojo.foo() 를 호출하면 Plain Pojo 객체에서 foo()를 실행시킵니다.&lt;/p&gt;
 
-        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-proxy-plain-pojo-call.png&quot; alt=&quot;aop-proxy-plain-pojo-call.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;&lt;small&gt;일반 메서드 호출 ( 출처 : https://docs.spring.io/spring/docs/2.0.x/reference/aop.html#aop-understanding-aop-proxies )&lt;/small&gt;&lt;/p&gt;
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Spring/aop-proxy-plain-pojo-call.png&quot; alt=&quot;aop-proxy-plain-pojo-call.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;&lt;small&gt;일반 메서드 호출 ( 출처 : https://docs.spring.io/spring/docs/2.0.x/reference/aop.html#aop-understanding-aop-proxies )&lt;/small&gt;&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt; 위 상황에 AOP를 적용해 보조 업무를 추가시키면 다음과 같습니다.
         &lt;ul&gt;
@@ -6995,7 +6995,7 @@ spring.mvc.view.suffix=.jsp
       &lt;li&gt;
         &lt;p&gt; 위 상황은 아래와 같습니다. factory.getProxy()로 만들어진 Proxy Pojo 객체에서 pojo.foo()를 호출하면 등록해 둔 보조 업무를 실행 시킨 뒤, Plain Pojo의 foo를 실행 시킵니다.&lt;/p&gt;
 
-        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/aop-proxy-call.png&quot; alt=&quot;aop-proxy-call.png&quot; /&gt;&lt;small&gt;proxy를 이용한 aop&lt;/small&gt;&lt;/p&gt;
+        &lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Spring/aop-proxy-call.png&quot; alt=&quot;aop-proxy-call.png&quot; /&gt;&lt;small&gt;proxy를 이용한 aop&lt;/small&gt;&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -7007,9 +7007,9 @@ spring.mvc.view.suffix=.jsp
  
  <entry>
    <title>Spring MVC의 동작 과정</title>
-   <link href="http://localhost:4000/posts/googling/java/Spring-%EB%8F%99%EC%9E%91%EA%B3%BC%EC%A0%95/"/>
+   <link href="http://localhost:4000/posts/googling/spring/Spring-%EB%8F%99%EC%9E%91%EA%B3%BC%EC%A0%95/"/>
    <updated>2020-04-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/java/Spring 동작과정</id>
+   <id>http://localhost:4000/posts/googling/spring/Spring 동작과정</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt;
@@ -7023,7 +7023,7 @@ spring.mvc.view.suffix=.jsp
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/RequestLifecycle.png&quot; alt=&quot;RequestLifecycle.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&quot;&gt;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Spring/RequestLifecycle.png&quot; alt=&quot;RequestLifecycle.png&quot; /&gt;&lt;small&gt;출처 : &lt;a href=&quot;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&quot;&gt;http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -7097,7 +7097,7 @@ spring.mvc.view.suffix=.jsp
   &lt;li&gt; 많은 곳을 참고했고 내용 역시 거진 비슷하여 따로 출처를 남기지 않았습니다. 다만, PC Register와 Native Method Stack의 경우 포스팅 마다 내용이 상이해서 jvm 공식 문서를 참고했습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/java/jvm-architecture.png&quot; alt=&quot;jvm-architecture.png&quot; /&gt;&lt;small&gt;출처 : https://javatutorial.net/jvm-explained&lt;/small&gt;&lt;/p&gt;
+&lt;p class=&quot;p_img&quot;&gt;&lt;img src=&quot;/public/image/Java/jvm-architecture.png&quot; alt=&quot;jvm-architecture.png&quot; /&gt;&lt;small&gt;출처 : https://javatutorial.net/jvm-explained&lt;/small&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt; 이번 포스팅에선 위의 다이어그램중 Runtime Data Area에 대해 알아봅니다.&lt;/li&gt;
@@ -10441,189 +10441,6 @@ Allow: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, COPY, MOVE, PROPFIND,PROPPATCH,SE
   &lt;li&gt;지금까지 모든 장들이 어깨너머 적어도 한 두번은 들어본 내용이었다면 이번 장의 FrontPage와 WebDAV는 정말 처음 보는 주제였습니다.&lt;/li&gt;
   &lt;li&gt;그만큼 요즘엔 잘 쓰이지 않는 기술들이라 의욕이 조금 떨어졌지만, 과거의 기술을 알아야 그 기술의 한계와 문제를 해결하기 위해 나온 신기술을 이해할 수 있다고 생각하기에 열심히 알아보았습니다.&lt;/li&gt;
 &lt;/ul&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>우분투(리눅스) GtkWarning(작성중)</title>
-   <link href="http://localhost:4000/posts/googling/linux/GtkWarning/"/>
-   <updated>2020-03-31T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/linux/GtkWarning</id>
-   <content type="html">
-&lt;h3 id=&quot;1-gtkwarning&quot;&gt;1. GtkWarning&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;우분투를 다루다 보니 &lt;code class=&quot;highlighter-rouge&quot;&gt;GtkWarning&lt;/code&gt; 라고 뜨며 GUI들이 안켜질 때가 있습니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Gtk는 &lt;strong&gt;G&lt;/strong&gt;imp &lt;strong&gt;T&lt;/strong&gt;ool&lt;strong&gt;K&lt;/strong&gt;it 이라고 합니다. GUI를 만들기 위한 라이브러리라고 보면 됩니다.(&lt;a href=&quot;https://www.gtk.org/&quot;&gt;https://www.gtk.org/&lt;/a&gt;)
-        &lt;ul&gt;
-          &lt;li&gt;Gimp는 그림 편집 소프트웨어이며 &lt;a href=&quot;[https://ko.wikipedia.org/wiki/%EA%B7%B8%EB%86%88](https://ko.wikipedia.org/wiki/그놈)&quot;&gt;GNOME&lt;/a&gt; 프로젝트의 일환입니다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;해당 문제는 아래와 같은 권한 문제입니다.&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;우분투의 디스플레이 환경은 GNOME을 따릅니다.&lt;/li&gt;
-      &lt;li&gt;근데 GNOME은 &lt;a href=&quot;https://ko.wikipedia.org/wiki/X_윈도_시스템&quot;&gt;X 서버&lt;/a&gt; 기반입니다.&lt;/li&gt;
-      &lt;li&gt;우분투 사용자가 X 서버에 대한 권한이 없습니다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;xhost 명령어로 X서버에 대한 권한을 주어야 합니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xhost +si:localuser:root
-xhost +si:localuser:{ubuntuUserName}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;xhost는 X서버 접근 허용 목록에 사용자를 추가하는 명령어 입니다.&lt;/li&gt;
-      &lt;li&gt;+si는 Server Interpreted에 추가한다는 것입니다.&lt;/li&gt;
-      &lt;li&gt;자세한 사항은 X서버 &lt;a href=&quot;https://www.x.org/archive/X11R7.5/doc/man/man1/xhost.1.html&quot;&gt;명세&lt;/a&gt;를 남깁니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;2-xhost--unable-to-open-display---sweat&quot;&gt;2. xhost:  unable to open display “” ??? :sweat:&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;xhost:  unable to open display &quot;&quot;&lt;/code&gt; 에러가 뜰 수 있습니다. 제가 그랬거든요..&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;이는 보통 우분투를 설치했을땐 GUI가 없는 CLI 버전으로 설치되기 때문에 GUI를 띄우기 위한 온갖 것들이 부족해서 입니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;우분투 GUI를 설치해 줍시다. https://wlsvud84.tistory.com/26&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>Samba를 이용한 윈도우 우분투 권한 공유(작성중)</title>
-   <link href="http://localhost:4000/posts/googling/jekyll/%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%9A%B0%EB%B6%84%ED%88%AC-%EA%B6%8C%ED%95%9C%EA%B3%B5%EC%9C%A0/"/>
-   <updated>2020-03-31T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/jekyll/윈도우 우분투 권한공유</id>
-   <content type="html">
-&lt;h2 id=&quot;1-지난번-문제&quot;&gt;1. 지난번 문제&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;지난 jekyll 관련 &lt;a href=&quot;/권한문제&quot;&gt;포스팅&lt;/a&gt;은 윈도우에서 수정한 파일을 우분투 사용자가 접근 할 수 있도록 권한을 변경하는 것이었습니다.&lt;/li&gt;
-  &lt;li&gt;하지만 지난 번엔 임시 방편으로 권한을 수동 변경한 것입니다.&lt;/li&gt;
-  &lt;li&gt;이번 포스팅에선 Samba를 이용해 윈도우와 우분투가 권한을 공유하는 방법을 알아볼 것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-samba&quot;&gt;2. Samba?&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;우선 Samba에 대해 간략히 알아보겠습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;21-samba란-무엇인가&quot;&gt;2.1. Samba란 무엇인가!&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Samba의 공식 홈페이지(&lt;a href=&quot;https://www.samba.org/&quot;&gt;https://www.samba.org/&lt;/a&gt;)에선 Samba를 다음과 같이 정의합니다.
-    &lt;ul&gt;
-      &lt;li&gt;Samba is the standard Windows &lt;strong&gt;interoperability suite of programs&lt;/strong&gt; for Linux and Unix.&lt;/li&gt;
-      &lt;li&gt;&amp;gt;&amp;gt; Samba는 Linux와 Unix를 위한 표준 Windows 상호운용 프로그램 제품군(suite)입니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;쉽게 말해, Windows와 Linux, Unix를 동시에 운용할 때 필요한 프로그램이라는 것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;22-samba는-어떻게-동작하는가&quot;&gt;2.2. Samba는 어떻게 동작하는가&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;####&lt;/p&gt;
-
-&lt;h2 id=&quot;3-samba-설치-및-공유폴더-생성&quot;&gt;3. Samba 설치 및 공유폴더 생성&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Samba 설치는 &lt;a href=&quot;https://wlsvud84.tistory.com/29?category=828685&quot;&gt;이곳&lt;/a&gt;을 참고하였습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;31-samba-설치&quot;&gt;3.1. Samba 설치&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래의 명령어로 samba를 설치해줍니다. sambafil&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install samba
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;32-samba-계정-설정&quot;&gt;3.2. Samba 계정 설정&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Samba 계정을 설정하기 위해선 우분투 사용자 계정이 있어야 합니다. 대부분 root 계정 이외에 사용자 계정을 이미 가지고 있겠지만, 사용자 계정이 없거나 samba를 위한 계정을 따로 만드실 분은 아래 커맨드로 계정을 생성합니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo useradd {username}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;아래 커맨드로 Samba 계정의 비밀번호를 설정합니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo smbpasswd -a {username}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;33-samba-설정-파일&quot;&gt;3.3. Samba 설정 파일&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;samba 설정파일이 있는 /etc/samba로 이동해줍니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /etc/samba
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;우선 /etc/samba/smb.conf 파일이 기본적으로 읽기전용으로 되어 있기 때문에 쓰기 가능하도록 변경해줍니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt; 로 변경한 권한을 확인할 수 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/etc/samba $ sudo chmod 666 smb.conf
-/etc/samba $ ls -l
--rw-r--r-- 1 root root    8 Jan 15 01:11 gdbcommands
--rw-rw-rw- 1 root root 9542 Mar 31 23:03 smb.conf
-drwxr-xr-x 1 root root 4096 Jan 15 01:11 tls
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;/etc/samba/smb.conf 설정파일을 원하는 에디터로 켜줍니다. 가장 아랫 부분에 다음과 같은 설정을 추가해줍니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/etc/samba $ vim smb.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/samba_conf.png&quot; alt=&quot;samba_conf.png&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다음으로 samba 데몬을 재시작해줍니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo service smbd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
 </content>
  </entry>
  
@@ -15317,222 +15134,6 @@ Expires : Frie, 05 Jul 2020, 05:00:00 GMT&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;마치며&quot;&gt;마치며&lt;/h3&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>윈도우에서 수정한 우분투 파일 권한 수정</title>
-   <link href="http://localhost:4000/posts/googling/jekyll/%EA%B6%8C%ED%95%9C%EB%AC%B8%EC%A0%9C/"/>
-   <updated>2020-03-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/googling/jekyll/권한문제</id>
-   <content type="html">
-&lt;h3 id=&quot;0-코린이들에게-바칩니다&quot;&gt;0. 코린이들에게 바칩니다…&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;윈도우와 우분투를 섞어쓰다 Permission denied 난 저 같은 코린이들에게 바칩니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;해결하는 과정에서 리눅스의 명령어 및 권한에 좀 친해진것 같은 느낌이 들어 포스팅 합니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;1-깃헙-페이지-만들기&quot;&gt;1. 깃헙 페이지 만들기&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;처음 깃헙 페이지를 만들때 &lt;a href=&quot;https://devinlife.com/howto/&quot;&gt;이 포스팅&lt;/a&gt;을 보고 따라했습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;위 포스팅은 리눅스 환경에서 실행되고 있었습니다.&lt;/li&gt;
-  &lt;li&gt;제가 사용하는건 윈도우였기 때문에 이 &lt;a href=&quot;https://m.blog.naver.com/6116949/221244246623&quot;&gt;포스팅&lt;/a&gt;을 따라 우분투를 설치해 리눅스 환경을 구성했습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;2-설치-완료-및-작업환경-셋팅&quot;&gt;2. 설치 완료 및 작업환경 셋팅&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;jekyll 설치하고, Github page 만들고, 깔끔한 테마(&lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;Laynon&lt;/a&gt;)도 받아 설치했습니다.&lt;/li&gt;
-  &lt;li&gt;새 글을 쓰고 Git에 연결해 Push까지 했습니다.&lt;/li&gt;
-  &lt;li&gt;이후 제가 기존에 써오던 작업 환경을 셋팅하기 시작했습니다.
-    &lt;ul&gt;
-      &lt;li&gt;git을 CLI로 다루는게 어색해 sourcetree를 설치했습니다.&lt;/li&gt;
-      &lt;li&gt;편집을 위해 &lt;a href=&quot;https://typora.io/&quot;&gt;Typora&lt;/a&gt;라는 markdown 편집기도 설치했습니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;작업 환경을 구성한 뒤, 윈도우 디렉토리로 새 폴더를 만들고 md 파일들도 복사하고, 윈도우 Typora를 실행해 md 파일을 수정했습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;3-에러-발견&quot;&gt;3. 에러 발견&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;그리고 이제 jekyll 서버를 켜서 확인해 보려는데…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionError.png&quot; alt=&quot;에러발생&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;에러가 났습니다.  &lt;code class=&quot;highlighter-rouge&quot;&gt;--trace&lt;/code&gt;옵션을 줘보니&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionError2.png&quot; alt=&quot;에러발생2&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Errno::EACCES, Permission denied&lt;/code&gt; 에러가 났습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;4-임시해결&quot;&gt;4. (임시)해결&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Permission denied 를 보는 순간 윈도우와 우분투를 섞어 사용해 발생한 것 같다는 느낌을 받았습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;여자저차 구글링해 권한에 대해 찾아보고, 권한을 확인하는법, 변경하는 법을 찾았습니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;41-권한확인&quot;&gt;4.1. 권한확인&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;권한확인은 &lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt; 명령어(&lt;strong&gt;l&lt;/strong&gt;ist &lt;strong&gt;s&lt;/strong&gt;egment -&lt;strong&gt;l&lt;/strong&gt;ong format)를 통해 할 수 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission1.png&quot; alt=&quot;viewPermission1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위 사진을 보시면  &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-rw-&lt;/code&gt;로 되어 있는 파일들이 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;로 되어있는 파일들이 있습니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 파일들은 리눅스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt;명령어로 가져온 파일들이고&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;파일은 윈도우에서 리눅수 디렉토리로 직접 저장한 파일들입니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls -l&lt;/code&gt;로 조회한 파일권한은 다음과 같습니다. 이중 권한 부분에 대해 알보았습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drwxrwxrwx 1 ki ki   4096 Mar 17 21:42  study_book
--rw-rw-rw- 1 ki ki  65410 Mar 17 21:42 'relative url parsing.png'
----------- 1 ki ki  29027 Mar 17 21:59  viewPermission1.png
----------- - -- --  ----- ------------ ----------------------------
-권한 링크수 소유자 그룹 파일크기 수정시간              파일이름
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;42-권한&quot;&gt;4.2. 권한&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;권한은 크게 4부분으로 이루어져 있습니다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-  rw-  rw-  rw-
-1   2    3    4 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;1 : 해당 항목이 파일(-)인지, 디렉토리(d)인지 구분&lt;/li&gt;
-      &lt;li&gt;2 : 사용자(소유자)의 권한 정보&lt;/li&gt;
-      &lt;li&gt;3 : 그룹 권한 정보&lt;/li&gt;
-      &lt;li&gt;4 : 다른 사용자 권한 정보&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;권한 정보는 각각 &lt;strong&gt;r&lt;/strong&gt;ead, &lt;strong&gt;w&lt;/strong&gt;rite, e&lt;strong&gt;x&lt;/strong&gt;ecute 값을 갖을 수 있습니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission1.png&quot; alt=&quot;viewPermission1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;다시 에러가 났던 파일을 보겠습니다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;다른 항목들은 파일이며(-) 사용자, 그룹, 다른 사용자에 대해 모두 읽기(r), 쓰기(w) 권한을 가지고 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;에러가 났던 파일은 사용자, 그룹, 다른 사용자 모두에게 아무 권한이 없습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;43-임시-방편&quot;&gt;4.3. 임시 방편&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Permission denied 에러를 해결하기 위해선 윈도우에서 만든 파일들의 권한을 우분투의 사용자가 사용할 수 있게 권한 변경을 해줘야 합니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;권한 변경을 하기위해선 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod {permission} {filename}&lt;/code&gt; 명령어를 사용합니다.&lt;/li&gt;
-  &lt;li&gt;이때 {permission} 부분은 3자리 숫자로 표현됩니다.
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;r&lt;/strong&gt;ead = 4, &lt;strong&gt;w&lt;/strong&gt;rite = 2, e&lt;strong&gt;x&lt;/strong&gt;ecute = 1&lt;/li&gt;
-      &lt;li&gt;각 권한은 위와 값을 갖습니다.&lt;/li&gt;
-      &lt;li&gt;사용자/권한/다른사용자 순서대로 허용된 권한들의 값의 합을 기입해주면 됩니다.&lt;/li&gt;
-      &lt;li&gt;rwx = 7, rw- = 6, r-x = 5, — = 0&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;윈도우에서 만든 파일을 다른 파일들과 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rx-rx-rx-&lt;/code&gt;로 만들겠습니다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission2.png&quot; alt=&quot;viewPermission2.png&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;파일 1개의 권한이 &lt;code class=&quot;highlighter-rouge&quot;&gt;----------&lt;/code&gt; 에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-rw-rw-rw-&lt;/code&gt; 로 변경되었습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;이 작업을 디렉토리 아래 모든 파일에 대해 하고 싶다면 아래와 같은 명령어를 사용하면 됩니다.&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find -type f -exec chmod 666 {} \;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;ul&gt;
-      &lt;li&gt;현재 디렉토리 아래에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt; 타입이 파일(f)인 것을 찾고(현 디렉토리의 하위 디렉토리아래 있는 파일들도 탐색합니다)&lt;/li&gt;
-      &lt;li&gt;찾은 각 파일에 &lt;code class=&quot;highlighter-rouge&quot;&gt;-exec&lt;/code&gt;뒤에 명령어를 실행합니다.&lt;/li&gt;
-      &lt;li&gt;뒤의 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod 666 {} \;&lt;/code&gt;는 권한 변경입니다.
-        &lt;ul&gt;
-          &lt;li&gt;파일명 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;{} \;&lt;/code&gt;가 들어가는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;find -type f&lt;/code&gt;에서 찾은 파일들을 그대로 입력한다고 생각하면 됩니다.(자세한 부분은 나중에 추가하겠습니다 :sweat_smile:)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;권한을 바꾼뒤 다시 서버를 켜보면…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/viewPermission3.png&quot; alt=&quot;viewPermission3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/public/image/jekyll/permissionErrorClear.png&quot; alt=&quot;permissionErrorClear.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;해결이 됐습니다! :happy:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;5-제대로-해결하려면&quot;&gt;5. 제대로 해결하려면…&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;물론 이건 리눅스의 명령어와 권한과 친해지기 위해 해본 임시 해결책입니다. 근본적인 해결책은&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;작업환경을 리눅스로 통일 하던가(사실 시도하다가 Typora 설치에서 에러가…)&lt;/li&gt;
-      &lt;li&gt;ruby와 jekyll을 윈도우 환경에서 다시 셋팅 하던가&lt;/li&gt;
-      &lt;li&gt;윈도우와 리눅스가 권한을 공유할 수 있게 자동 설정 하는 것입니다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이것들 중에 하나가 될 것 같습니다.&lt;/li&gt;
-  &lt;li&gt;작업 속도를 위해선 2번이 나을것 같긴 한데… 앞으로 개발자 하면서 어차피 친해져야할 리눅스이니 빨리 1번을 할까 싶기도 하고… 3번도 간단해 보이고…&lt;/li&gt;
-&lt;/ul&gt;
-
 </content>
  </entry>
  

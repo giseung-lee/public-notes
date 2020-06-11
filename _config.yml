@@ -45,11 +45,13 @@ rootfolder:
    Googling :
       etc :
          subfolder : false
-      java : 
+      Java : 
          subfolder : false
-      jekyll :
+      Spring:
          subfolder : false
-      linux :
+      Data_Structure:
+         subfolder : false
+      Network:
          subfolder : false
 
 

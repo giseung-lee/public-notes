@@ -1,21 +1,15 @@
 ---
 layout: page
-title: [알고리즘]
+title: 알고리즘 관련 포스팅
 ---
-
-{% assign imgurl=site.imgbase|append: page.categories[-1] %}
-{% assign dirs = page.url | split: "/" %}
+{% assign dirs = page.dir | split: "/" %}
 {% assign category = dirs[-1] %}
 
-## 알고리즘 관련 포스팅
-
+### 글 목록
 ---
 
-{% assign list = site.categories['Algorithm'] %}
+{% for post in site.categories[category] %}
 
-{% for post in list %}
-
-	[{{ post.title }}]({{ post.url }})
+​	[{{ post.date | slice: 0, 10 }} {{ post.title }}]({{ post.url }})
 
 {% endfor  %}
-
