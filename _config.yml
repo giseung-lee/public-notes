@@ -16,7 +16,6 @@ studybase:              '/posts/study/'
 paginate:            6
 gems:                [jekyll-paginate, gemoji, jemoji]
 plugins:		[jekyll-paginate, gemoji, jemoji]
-highlighter: rouge
 postroot:   'posts'
 rootfolder:
    About Me : 

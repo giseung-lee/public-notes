@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      알고리즘 - 다익스트라(Dijkstra) 알고리즘 &middot; 이기승의 끄적끄적..
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <!-- Profile -->
+  <div class="sidebar-item sidebar-profile-box">
+    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <div class="sidebar-profile-description">
+      <span>
+        &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
+      </span>
+    </div>
+  </div>
+  <!-- Profile End -->
+
+  <nav class="sidebar-nav">
+    <!-- Home -->
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <!-- Home End -->
+    <!-- Posts -->
+    
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/About Me">About Me</a>
+      
+    
+      
+        <!-- 1 depth post -->
+        <a class="sidebar-nav-item" href="http://localhost:4000/posts/Daily Thoughts">Daily Thoughts</a>
+      
+    
+      
+        <input id="Projects" class="toggle" type="checkbox">
+        <label for="Projects" class="lbl-toggle sidebar-nav-item" tabindex="0">Projects</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Sagyo_Reboot">Sagyo_Reboot</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Twitch_Chat_Analysis">Twitch_Chat_Analysis</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/Hwangmaesan">Hwangmaesan</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Projects/The_Oyster_Mine">The_Oyster_Mine</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Study" class="toggle" type="checkbox">
+        <label for="Study" class="lbl-toggle sidebar-nav-item" tabindex="0">Study</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Short_Books">Short_Books</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Algorithm">Algorithm</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/Http The Definitive Guide">Http The Definitive Guide</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/C_Kim_Pope">C_Kim_Pope</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Study/MSA_Ken_Krueger">MSA_Ken_Krueger</a>
+          
+        
+        </div>
+      
+    
+      
+        <input id="Googling" class="toggle" type="checkbox">
+        <label for="Googling" class="lbl-toggle sidebar-nav-item" tabindex="0">Googling</label>
+        <div class="collapsible-content subcategories">
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/etc">etc</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Java">Java</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Spring">Spring</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Data_Structure">Data_Structure</a>
+          
+        
+          
+            <!-- 2 depth post -->
+            <a class="sidebar-nav-item" href="http://localhost:4000/posts/Googling/Network">Network</a>
+          
+        
+        </div>
+      
+    
+    <!-- Posts End -->
+  </nav>
+
+  <!-- sidebar bottom -->
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+  <!-- sidebar bottom end -->
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title" style="font-weight: normal;">
+            <a href="/" title="Home">이기승의 끄적끄적..</a>
+            <small>개발 및 잡다한 포스팅</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">알고리즘 - 다익스트라(Dijkstra) 알고리즘</h1>
+  <span class="post-date">12 Jun 2020</span>
+  
+<h2 id="노드간-최단-거리비용-찾기">노드간 최단 거리(비용) 찾기</h2>
+
+<hr />
+
+<p> 원래 다익스트라 알고리즘은 두 노드 간의 가장 짧은 경로를 찾는 알고리즘이었지만, 요즘은 일반적으로 한 노드에서 다른 노드들까지의 최단 경로를 찾는 알고리즘으로 통용되고 있습니다.</p>
+
+<p> 아래는 다익스트라 알고리즘의 작동 방식입니다.</p>
+
+<p class="p_img"><img src="/public/image/Algorithm/Dijkstra_Animation.gif" alt="Dijkstra_Animation.gif" /><small>출처 : <a href="https://ko.wikipedia.org/wiki/데이크스트라_알고리즘">https://ko.wikipedia.org/wiki/데이크스트라_알고리즘</a></small></p>
+
+<p> 작동 방식은 매우 간단합니다. <strong>그래프를 탐색하면서 cost를 기록하기만 하면 됩니다. 이미 cost가 기록된 노드라면 더 작은 cost를 사용하면 됩니다.</strong> 위 gif를 단순 탐색으로 한 번, 다익스트라 알고리즘으로 한 번 수행해보겠습니다.</p>
+
+<p> <strong>지금부터 나오는 코드들은 input의 노드가 0번부터가 아니라 1번부터 시작했다는걸 가정했습니다.</strong></p>
+
+<h2 id="예시---일반-bfs-탐색">예시 - 일반 BFS 탐색</h2>
+
+<hr />
+
+<p> 아래 텍스트를 input으로 받습니다. 첫 번재 줄은 노드 수, 간선 수 이고 뒤로는 간선들의 정보 (노드1, 노드2, 비용)들입니다. 무방향 그래프를 가정하겠습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 9
+1 2 7
+1 3 9
+1 6 14
+2 4 15
+2 3 10
+3 6 2
+3 4 11
+6 5 9
+4 5 6
+</code></pre></div></div>
+
+<p> 아래와 같이 input을 받고 노드별 간선정보를 딕셔너리에 저장합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># n : 노드 수, m : 간선 수
+</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+
+<span class="c1"># nodes : 한 노드를 key로 하고, 그 노드의 간선 정보 (목적지, 비용) 배열을 value로 갖음
+</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+<span class="c1"># 간선 정보 입력
+</span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>    
+</code></pre></div></div>
+
+<p> 기본적인 BFS 탐색을 해줍니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="c1"># 방문한 노드를 기록, 시작노드는 True로
+</span><span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="c1"># 방문할 노드를 갖는 queue
+</span><span class="n">visit_queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># 방문 노드를 기록할 배열
+</span><span class="n">visited_result</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># BFS
+</span><span class="k">while</span> <span class="n">visit_queue</span><span class="p">:</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">visit_queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">next_</span><span class="p">,</span> <span class="n">cost</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="n">now</span><span class="p">]:</span>
+        <span class="c1"># 방문 안했던 곳이면 대기열에 추가
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]:</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">visited_result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_</span><span class="p">)</span>
+            <span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p> 방문한 결과를 출력합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 결과 출력
+</span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">visited_result</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s">' '</span><span class="p">)</span>
+<span class="c1"># &gt;&gt; 1 2 3 6 4 5 
+</span></code></pre></div></div>
+
+<p> 1, 2, 3, 6, 4, 5 번 순서로 탐색했습니다.</p>
+
+<h2 id="예시---다익스트라-알고리즘">예시 - 다익스트라 알고리즘</h2>
+
+<hr />
+
+<p> 이번엔 다익스트라 알고리즘으로 1번 노드에서 각 노드들 까지의 최단 비용을 알아보겠습니다.</p>
+
+<p class="p_img"><img src="/public/image/Algorithm/Dijkstra_Animation.gif" alt="Dijkstra_Animation.gif" /><small>출처 : <a href="https://ko.wikipedia.org/wiki/데이크스트라_알고리즘">https://ko.wikipedia.org/wiki/데이크스트라_알고리즘</a></small></p>
+
+<p> 입력은 똑같이 받습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 9
+1 2 7
+1 3 9
+1 6 14
+2 4 15
+2 3 10
+3 6 2
+3 4 11
+6 5 9
+4 5 6
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># n : 노드 수, m : 간선 수
+</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+
+<span class="c1"># nodes : 한 노드를 key로 하고, 그 노드의 간선 정보 (목적지, 비용) 배열을 value로 갖음
+</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+<span class="c1"># 간선 정보 입력
+</span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>    
+</code></pre></div></div>
+
+<p> 위의 BFS를 토대로, 비용을 기록할 costs 배열을 추가 선언해줍니다. 그리고 최단 비용을 업데이트 하는 부분을 추가합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 다익스트라 알고리즘
+</span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># 방문한 노드를 기록, 시작노드는 True로
+</span><span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="c1"># 방문할 노드를 갖는 queue
+</span><span class="n">visit_queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># 다익스트라) 비용을 기록할 배열
+</span><span class="n">costs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sys</span><span class="p">.</span><span class="n">maxsize</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">costs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">visit_queue</span><span class="p">:</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">visit_queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">next_</span><span class="p">,</span> <span class="n">cost</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="n">now</span><span class="p">]:</span>
+        <span class="c1"># 다익스트라) 다음 노드에 현재 기록된 비용보다 낮은 비용이면 업데이트
+</span>        <span class="k">if</span> <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span><span class="p">:</span>
+            <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span>
+        <span class="c1"># 방문 안했던 곳이면 대기열에 추가
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]:</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_</span><span class="p">)</span>        
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 결과 출력
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'1 -&gt; '</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">' : '</span><span class="p">,</span> <span class="n">costs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+<span class="c1"># 1 -&gt;  1  :  0
+# 1 -&gt;  2  :  7
+# 1 -&gt;  3  :  9
+# 1 -&gt;  4  :  20
+# 1 -&gt;  5  :  20
+# 1 -&gt;  6  :  11
+</span></code></pre></div></div>
+
+<h2 id="예시---경로-추적">예시 - 경로 추적</h2>
+
+<hr />
+
+<p> 한 노드에서 각 노드까지 걸리는 최단 비용은 위와 같이 구할 수 있습니다. 이런 다익스트라 알고리즘은 지도상의 최단경로를 찾는 문제에 적용할 수 있습니다.</p>
+
+<p> 그런데, 지도상 최단경로 문제에 적용하기 위해선 한 노드에서 목적지 노드까지의 총 비용만 알아서 되는게 아닙니다. 최단 비용으로 목적지 노드까지 가는 경로를 알아야 합니다.</p>
+
+<p> 한 노드에서 각 노드까지 최단 비용으로 도달하는 경로 역시 위 다익스트라 알고리즘 코드에 조금만 로직을 추가하면 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">if</span> <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span><span class="p">:</span>
+            <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span>
+</code></pre></div></div>
+
+<p> 위 비용을 업데이트 하는 부분에 어느 노드로부터 업데이트를 받았는지를 기록할 배열만 추가하면 됩니다. input은 동일하니 생략하겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 다익스트라 알고리즘
+</span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># 방문한 노드를 기록, 시작노드는 True로
+</span><span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="c1"># 방문할 노드를 갖는 queue
+</span><span class="n">visit_queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># 다익스트라) 비용을 기록할 배열
+</span><span class="n">costs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sys</span><span class="p">.</span><span class="n">maxsize</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">costs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="c1"># 경로 추적) prev_arr[idx] : idx노드의 비용을 어디서 업데이트 받았는가(== 직전 노드가 어디인가)
+</span><span class="n">prev_arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+
+<span class="k">while</span> <span class="n">visit_queue</span><span class="p">:</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">visit_queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">next_</span><span class="p">,</span> <span class="n">cost</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="n">now</span><span class="p">]:</span>
+        <span class="c1"># 다익스트라) 다음 노드에 현재 기록된 비용보다 낮은 비용이면 업데이트
+</span>        <span class="k">if</span> <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span><span class="p">:</span>
+            <span class="n">costs</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="n">costs</span><span class="p">[</span><span class="n">now</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span>
+            <span class="c1"># 경로 추적) 어디서 업데이트 받았는지 기록
+</span>            <span class="n">prev_arr</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="n">now</span>
+        <span class="c1"># 방문 안했던 곳이면 대기열에 추가
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]:</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">next_</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">visit_queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_</span><span class="p">)</span>      
+</code></pre></div></div>
+
+<p> 비용을 업데이트 할 때 어디서 어디로 업데이트 했는지를 남겨줍니다. 결과를 출력해봅시다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'1 -&gt; '</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">' : '</span><span class="p">,</span> <span class="n">costs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">i</span><span class="o">!=</span><span class="n">prev_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">prev_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'path : '</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">()</span>
+    
+<span class="c1"># 1 -&gt;  1  :  0
+# path :  [1]
+</span>
+<span class="c1"># 1 -&gt;  2  :  7
+# path :  [1, 2]
+</span>
+<span class="c1"># 1 -&gt;  3  :  9
+# path :  [1, 3]
+</span>
+<span class="c1"># 1 -&gt;  4  :  20
+# path :  [1, 3, 4]
+</span>
+<span class="c1"># 1 -&gt;  5  :  20
+# path :  [1, 3, 6, 5]
+</span>
+<span class="c1"># 1 -&gt;  6  :  11
+# path :  [1, 3, 6]
+</span></code></pre></div></div>
+
+<h2 id="관련-문제">관련 문제</h2>
+
+<hr />
+
+<p><a href="https://www.acmicpc.net/problem/10282">https://www.acmicpc.net/problem/10282</a></p>
+
+<p><a href="https://www.acmicpc.net/problem/5719">https://www.acmicpc.net/problem/5719</a></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/posts/study/algorithm/binary-search/">
+            알고리즘 - 이진탐색 문제풀이 잡기술
+            <small>10 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/googling/network/REST-API/">
+            그런 REST API로 괜찮은가
+            <small>10 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/posts/study/algorithm/Kruskal/">
+            알고리즘 - 크루스칼 알고리즘, Union-Find, 최소 신장 트리
+            <small>09 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

@@ -23,6 +23,9 @@
 
 .p_img {
  text-align: center;
+ display: flex;
+ align-items: center;
+ flex-direction: column;
 }
 
 .border-gray{
