@@ -4,13 +4,57 @@
  <title>이기승의 끄적끄적..</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-06-13T00:14:34+09:00</updated>
+ <updated>2020-06-13T19:49:37+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Lee Kiseung</name>
    <email>ntz4kiseung@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>코딩테스트 하루 두 탕...</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/CodingTest-Review/"/>
+   <updated>2020-06-13T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/CodingTest-Review</id>
+   <content type="html">
+&lt;p&gt; 우선, 앞으로 블로그에 기업명은 맨 앞글자만 남기기로 했습니다! (직접 언급하면서 코딩테스트나 면접이 어땠느니 하면 안 좋아할 회사도 있을 것 같아서 😅😅)&lt;/p&gt;
+
+&lt;h2 id=&quot;코딩테스트가-겹쳤다&quot;&gt;코딩테스트가 겹쳤다!!&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; W사, S사를 지원했는데, 지원할 때부터 둘 다 코딩 테스트가 6/13일로 예정 되어 있었다. 같은 날이어도 오전 / 오후 갈리면 둘 다 볼만하지 않을까 하고 기다리고 있었는데… S사 12시 ~ 15시, W사14시 ~ 17시!! 1시간이 겹친다! 😥😥&lt;/p&gt;
+
+&lt;p&gt; 2시간 30분씩 나눠서 볼까? 괜히 나눠했다가 둘 다 떨어질 수도 있으니까 한 개 3시간 전부 투자하고 하나는 포기할까? 고민했다. 일단 S사를 12시 부터 보다가 2시에 W사 문제를 한 번 훑어 보고 더 쉬워 보이는 쪽에 과감하게 시간 투자를 하기로 마음 먹었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;코딩테스트---s사&quot;&gt;코딩테스트 - S사&lt;/h2&gt;
+
+&lt;p&gt; 12시가 됐고, S사의 문제를 한 번 훑어봤다. ‘할만한데…?’ 솔직히 쉬웠다. 180분 4문제라길래 문제가 얼마나 어려울려고 문제당 45분을 잡아주지? 했는데 너무 쉬웠다. 단순히 돌아가기만 하는 코드 작성하는데엔 1시간 조금 더 걸렸던 것 같다.&lt;/p&gt;
+
+&lt;p&gt; 4문제 중 2문제는 크게 머리 쓸 것도 없는 문제 였고 1문제는 약간의 고민이 필요해 보였다. 그리고 나머지 1문제는 O(n^2)으로 풀면 누구나 쉽게 풀 수 있는 문제였지만 딱 봐도 O(n^2)보다 좋은 풀이가 있어보였다. 여차저차 해서 O(n)으로 줄였는데 여기에 시간을 좀 쓴 것 같다.&lt;/p&gt;
+
+&lt;p&gt; S사에선 구름이라는 곳을 이용해 코딩테스트를 진행했다. 좋았던 점은 코드창에 복붙이 된다는 점, 나쁜 점은 우선 ‘실행’만 눌러선 실행이 안된다.😅 실행 시킬 수 있는 방법이 바로 ‘실행’ 버튼을 누르는 것과 ‘테스트 케이스 추가하기’에 들어가서 ‘실행’을 누르는 것인데.. 내가 사용을 잘못한건 지 몰라도 그냥 ‘실행’을 눌러선 코드 실행이 안됐다. 그래도 ‘테스트 케이스 추가하기’에서 실행하면 잘 됐다. 그리고 또 다른 단점으론 코드 제출이 너무 오래 걸린다. 시간이 여유로웠어서 크게 문제가 안됐지만, 시간이 부족했으면 아마 많이 답답했을 것 같다.&lt;/p&gt;
+
+&lt;h2 id=&quot;코딩테스트---w사&quot;&gt;코딩테스트 - W사&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 아무튼, 2시간 30분 정도 S사에 쓰고 W사로 넘어갔다. W사의 문제도 예전에 본 C사, L사의 문제보단 쉬웠지만 S사 보단 어려워보였다. W사도 180분 4문제 였다. 2문제는 쉬운 문제였고 1문제는 구현이 조금 까다롭지만 쉽게 볼 수 있는 유형의 문제, 1문제는 조금 생각이 필요한 문제였다.&lt;/p&gt;
+
+&lt;p&gt; 구현이 까다로운 문제를 푸는데 시간을 좀 잡아먹었다. 로직은 금방 세웠는데 바보같은 실수를 몇 번 하면서 시간을 좀 까먹었다. 생각이 조금 필요했던 마지막 문제는 꽤 재밌는 문제였다. 까다로운 조건을 풀어내기 위한 로직을 세우는게 조금 어려웠는데 구현은 까다롭지 않아서 적당히 시간안에 푼 것 같다.&lt;/p&gt;
+
+&lt;p&gt; W사는 프로그래머스를 이용했다. 프로그래머스는 자주 사용하는 곳이라 인터페이이스도 익숙하고 실행도 잘 됐다. 코드 제출도 빠르다! 그런데 이번 W사의 프로그래머스 코딩테스트에선 복붙이 금지됐다. 후…. 😤 문제를 옮겨 적는 데도 몇 번 실수했다… 개인적으로 복붙 못하게 하는 건 이해가 안간다. 부정행위를 막는 효용보단(사실 효용이 있는지도 모르겠다) 선량한 유저의 불편을 초래하는 게 더 큰 것 같다.&lt;/p&gt;
+
+&lt;h2 id=&quot;둘-다-합격했으면&quot;&gt;둘 다 합격했으면!&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt; 그래도 확실히 코딩테스트 능력이 좀 늘은 것 같다. 예전보다 구현도 깔끔해졌고, 로직 세우는 속도도 늘었다. 또, 처음 로직에서 고려하지 못한 부분을 찾았을 때 침착하게 대처하는 능력도 좀 생긴 것 같다.&lt;/p&gt;
+
+&lt;p&gt; 5시간 동안 8문제를 모두 풀었다. 뿌듯😀 (물론 테스트 케이스만 맞고 다른 코너 케이스를 발견 못했을 수도 있다.) S사, W사 둘 다 합격을 기대해도 좋지 않을까 생각한다.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>알고리즘 - 다익스트라(Dijkstra) 알고리즘</title>
@@ -226,7 +270,8 @@
 
 &lt;p&gt; 비용을 업데이트 할 때 어디서 어디로 업데이트 했는지를 남겨줍니다. 결과를 출력해봅시다.&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# 결과 출력
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1 -&amp;gt; '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' : '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;costs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev_arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
@@ -1324,22 +1369,22 @@ Link: &amp;lt;/todos/&amp;gt;; rel = &quot;collections&quot;
  </entry>
  
  <entry>
-   <title>Line 면접 및 학습 방향에 대한 고민</title>
+   <title>L사 2차 면접 및 학습 방향에 대한 고민</title>
    <link href="http://localhost:4000/posts/daily%20thoughts/%ED%95%99%EC%8A%B5%EB%B0%A9%ED%96%A5/"/>
    <updated>2020-06-06T00:00:00+09:00</updated>
    <id>http://localhost:4000/posts/daily%20thoughts/학습방향</id>
    <content type="html">
-&lt;h3 id=&quot;line-면접&quot;&gt;Line 면접&lt;/h3&gt;
+&lt;h3 id=&quot;l사-2차-면접&quot;&gt;L사 2차 면접&lt;/h3&gt;
 
-&lt;p&gt; 얼마전 라인 2차 면접을 봤다. 흔히 개발자 면접이 그러하듯이 몇 번 질문에 밑천이 금방 드러났다. 😅 뭔가 아는걸 100% 전달 못한것 같아 아쉽지만 어찌됐든 그것도 실력이니까 만족한다. 사실, 라인이라는 회사에 2차 면접까지 간 것만 해도 엄청나게 감격할 일이긴 하지만.. 그래도 붙었으면.. ㅎㅎ 바로 판교 방향으로 절 해야지&lt;/p&gt;
+&lt;p&gt; 얼마전 L사 2차 면접을 봤다. 흔히 개발자 면접이 그러하듯이 몇 번 질문에 밑천이 금방 드러났다. 😅 뭔가 아는걸 100% 전달 못한것 같아 아쉽지만 어찌됐든 그것도 실력이니까 만족한다. 사실, L사라는 회사에 2차 면접까지 간 것만 해도 엄청나게 감격할 일이긴 하지만.. 그래도 붙었으면.. ㅎㅎ 바로 판교 방향으로 절 해야지&lt;/p&gt;
 
 &lt;h3 id=&quot;학습-방향에-대한-고민&quot;&gt;학습 방향에 대한 고민&lt;/h3&gt;
 
-&lt;p&gt; 그런데 면접 도중에 면접관님께서 아주 정곡을 찌르는 말을 해주셨다. 비전공자로서 이제 막 달려가고 있는 것 같은데 학습 방향을 제시해줄 멘토를 구하는게 어떠냐는 것이었다.&lt;/p&gt;
+&lt;p&gt; 그런데 면접 도중에 면접관님께서 정곡을 찌르면서도 도움이 되는 말을 해주셨다. 비전공자로서 이제 막 열심히 달려가고 있는 것 같은데 학습 방향을 제시해줄 멘토를 구하는게 어떠냐는 것이었다.&lt;/p&gt;
 
 &lt;p&gt; 사실 나 스스로도 학습 방향이 너무 중구난방이 아닌가 생각하고 있긴했다. 이론지식도 쌓아야지, C도 연습해봐야지, 코딩테스트 위해서 알고리즘 연습도 해야지, 프로젝트도 해야지.. 지금 벌여놓은 공부가 너무 많다. 취준생 입장에서 불안한 마음에 이것 저것 동시에 진행하고 있는데 확실히 하나에 대한 집중도도 떨어지거니와, 전체의 방향성을 스스로도 모르겠다.&lt;/p&gt;
 
-&lt;p&gt; 3월에 퇴사했을 때의 마음가짐은 ‘꼼꼼하게 공부해서 올해 안에만 취업하자’ 였는데, 괜찮은 회사들 2~3개씩 지원하다 보니 꼼꼼히 공부하자는 마음가짐이 조금 흐트러지는 것 같다. 코딩테스트 볼 때면 매번 1주일은 빡세게 코딩테스트만 잡고 있고, 프로젝트가 부실한 것 같아 프로젝트 붙잡고 있자니 진도도 잘 안나가고.. 후.. 그러다 보니 정작 계획했던 이론공부도 늦춰진다.&lt;/p&gt;
+&lt;p&gt; 3월에 퇴사했을 때의 마음가짐은 ‘꼼꼼하게 공부해서 올해 안에만 취업하자’ 였는데, 괜찮은 회사들 2~3개씩 지원하다 보니 꼼꼼히 공부하자는 마음가짐이 조금 흐트러지는 것 같다.(빨리 취업해야 하는 이유도 생겼고..) 코딩테스트 볼 때면 매번 1주일은 빡세게 코딩테스트만 잡고 있고, 프로젝트가 부실한 것 같아 프로젝트 붙잡고 있자니 진도도 잘 안나가고.. 후.. 그러다 보니 정작 계획했던 이론공부도 늦춰진다.&lt;/p&gt;
 
 &lt;p&gt;  역시 공부할게 예쁘게 짜여져 있던 고등학교 공부가 가장 쉬운 것 같다.&lt;/p&gt;
 </content>
@@ -7537,36 +7582,27 @@ spring.mvc.view.suffix=.jsp
  </entry>
  
  <entry>
-   <title>Line 코딩테스트 합격 및 그 외 진행 상황</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%A9%EA%B2%A9-%EB%B0%8F-%EC%A7%84%ED%96%89%EC%83%81%ED%99%A9/"/>
+   <title>L사 코딩테스트 합격 및 그 외 진행 상황</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/L-Pass-CodingTest-etc/"/>
    <updated>2020-04-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/Line코딩테스트 합격 및 진행상황</id>
-   <content type="html">&lt;h3 id=&quot;라인-코딩테스트-합격&quot;&gt;라인 코딩테스트 합격&lt;/h3&gt;
+   <id>http://localhost:4000/posts/daily%20thoughts/L-Pass-CodingTest-etc</id>
+   <content type="html">&lt;h3 id=&quot;l사-코딩테스트-합격&quot;&gt;L사 코딩테스트 합격&lt;/h3&gt;
 
 &lt;hr /&gt;
 
-&lt;ul&gt;
-  &lt;li&gt; 음.. 일단 괜찮게 본대로 코딩테스트는 합격을 했다. 그리고 자기소개서를 작성하려 안내 메일에 준 Line-Style과 기타 등등을 읽어보는데… :sweat: 후… 라인이 바라는게 많은 걸까 내가 못난걸까.. 내가 못난거겠지.. 그래도 일단 서류는 써 보고, 떨어져도 좋으니 면접이나 한 번 봤으면!&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt; 음.. 일단 코딩테스트는 합격을 했다. 그리고 자기소개서를 작성하려 안내 메일에 준 L-Style과 기타 등등을 읽어보는데… :sweat: 후… L사가 바라는게 많은 걸까 내가 못난걸까.. 내가 못난거겠지.. 그래도 일단 서류는 써 보고, 떨어져도 좋으니 면접이나 한 번 봤으면!&lt;/p&gt;
 
 &lt;h3 id=&quot;그-외-진행-상황&quot;&gt;그 외 진행 상황&lt;/h3&gt;
 
 &lt;hr /&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt; 롯데 e커머스 지원했는데 롯데는 코로나 때문에 서류 발표조차 5월 중순으로 연기가 됐다. 한달 후에 봐요!&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 삼성SDS SCSA도 지원했다. 진정한 융복합 인생 코스를 밟고 있으니 SCSA에 적합한 인물일것도 같다. 다만, SCSA 전형에선 코딩테스트를 안보는게 조금 아쉽다.. 지금 코딩테스트 3전 3승인데 이 기세를 모아서 삼성 코딩테스트까지 봤으면 좋으련만..&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 프로그래머스에서 하는 Dev-Matching에도 참여하려 했으나 코딩테스트를 보는 날인 4/18에 뺄 수 없는 일이 있어서 아쉽지만.. ㅜㅜ&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt; 코로나의 여파가 있지만 그래도 확실히 개발쪽은 꾸준히 채용하는 것 같아 다행이다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt; 코딩 테스트를 본 L사 외에 다른 L사도 지원했다. 다른 L사는 코로나 때문에 서류 발표조차 5월 중순으로 연기 됐다. 한 달 후에 봐요!&lt;/p&gt;
+
+&lt;p&gt; S사의 SCSA코스라는 것도 지원했다. SCSA는 S사의 비전공자를 위한 전형이다. 6개월의 교육을 받고 취업을 하게 되는데 사실 나는 SCSA전형보다 바로 일 할 수 있도록 일반전형에 지원하려 했으나.. 대기업중 대기업인 S사이기 때문에 일반전형으로 지원하면 서류에서 컷 당할 것 같아 SCSA로 지원했다. SCSA는 코딩테스트를 안 보는게 조금 아쉽다. 지금 코딩테스트 3전 3승으로 꽤 자신 있는 상태인데..&lt;/p&gt;
+
+&lt;p&gt; 프로그래머스에서 하는 Dev-Matching에도 참여하려 했으나 코딩테스트를 보는 날인 4/18에 뺄 수 없는 일이 있어서 아쉽지만… ㅜㅜ&lt;/p&gt;
+
+&lt;p&gt; 코로나의 여파가 있지만 그래도 개발쪽은 꾸준히 채용하는 것 같다.&lt;/p&gt;
 </content>
  </entry>
  
@@ -8684,23 +8720,26 @@ ORA-12505, TNS:&lt;strong&gt;listener does not currently know of SID given&lt;/s
  </entry>
  
  <entry>
-   <title>Line 코딩테스트 후기</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/Line%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0/"/>
+   <title>L사 코딩테스트 후기</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/L-Company-CodingTest/"/>
    <updated>2020-04-05T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/Line코딩테스트 후기</id>
-   <content type="html">&lt;h3 id=&quot;라인-코딩테스트-후기&quot;&gt;라인 코딩테스트 후기&lt;/h3&gt;
+   <id>http://localhost:4000/posts/daily%20thoughts/L-Company-CodingTest</id>
+   <content type="html">&lt;h2 id=&quot;l사-코딩테스트&quot;&gt;L사 코딩테스트&lt;/h2&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt; 4월 5일 라인 코딩테스트를 봤다. 자세한 사항은 남길 수 없으나 전체적인 총평, 후기를 기록해둔다.&lt;/p&gt;
+&lt;p&gt; 4월 5일 L사 코딩테스트를 봤다. 자세한 사항은 남길 수 없으나 전체적인 총평, 후기를 기록해둔다.&lt;/p&gt;
 
-&lt;p&gt; 처음 6문제 150분인걸 들었을 때 난이도를 대충 그려봤다. 2문제 정도는 10분 내로 바로 풀리는게 나오고, 2문제 정도는 30분 정도 되는 중간 난이도, 나머지 2문제는 정답을 맞춘다기 보단 최선을 다하는데 목표를 둘만한 문제가 나오지 않을까 생각했다.&lt;/p&gt;
+&lt;p&gt; 처음 6문제 150분인걸 들었을 때 난이도를 대충 그려봤다. 2문제 정도는 10분 내로 바로 풀리는게 나오고, 2문제 정도는 30~45분 정도 걸리는 중간 난이도, 나머지 2문제는 정답을 맞춘다기 보단 최선을 다하는데 목표를 둘만한 문제가 나오지 않을까 생각했다.&lt;/p&gt;
 
-&lt;p&gt; 그런데 문제를 받고 슥 훑어보니 보자마자 코드가 쓱 그려지는 문제가 없어서 당황했다. 6문제 나왔으면 몸풀기 문제가 1~2문제는 있을 법 한데, 어떻게 풀어야 할 지 대강 감은 왔지만 코드까지 바로 그려지는 문제는 없었다. 그런데 더 이상한건, ‘야~ 이건 힘들겠는데’하는 문제도 없었다. 6문제면 마찬가지로 1~2문제는 한숨부터 나오는 문제들이 있어야 하는데 딱히 그 정도 난이도는 보이지 않았다.&lt;/p&gt;
+&lt;p&gt; 그런데 문제를 받고 슥 훑어보니 보자마자 코드가 쓱 그려지는 문제가 없어서 당황했다. 6문제 나왔으면 몸풀기 문제가 1~2문제는 있을 법 한데, 어떻게 풀어야 할 지 대강 감은 왔지만 코드까지 바로 그려지는 문제는 없었다.&lt;/p&gt;
+
+&lt;p&gt; 그런데 더 이상한건, ‘야~ 이건 힘들겠는데’하는 문제도 없었다. 6문제면 1~2문제는 한숨부터 나오는 문제들이 있어야 하는데 딱히 그 정도 난이도는 보이지 않았다.&lt;/p&gt;
 
 &lt;p&gt;  풀이를 시작하니 술술 풀리진 않지만 그렇다고 꽉 막힌 것도 아닌, 20~30분에 한 문제씩 풀려나갔다. 결국 6문제 중 5문제는 다 풀었고 (물론 더 좋은 풀이들이 있을것 같았지만), 마지막 한 문제는 완성은 못했어도 꽤 많이 채운걸로 기억한다.&lt;/p&gt;
 
 &lt;p&gt; 결과는 나와봐야 알겠지만 나름 만족스러운 코딩테스트였다.&lt;/p&gt;
+
 </content>
  </entry>
  
@@ -19279,64 +19318,10 @@ http://www.joes-hardware.com/inventory-check.cgi?item=12731&amp;amp;color=blue&l
  </entry>
  
  <entry>
-   <title>쿠팡 지원, 코딩테스트, 면접</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/%EC%BF%A0%ED%8C%A1/"/>
+   <title>잡플래닛 면접 후기 스크래퍼</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/Job-Planet-Scraper/"/>
    <updated>2020-03-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/쿠팡</id>
-   <content type="html">&lt;ul&gt;
-  &lt;li&gt;2월 초에 쿠팡 지원했다가 결과나 나온 지 꽤 됐지만, 기록을 남길 겸 해서 끄적여 봅니다!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;쿠팡-지원&quot;&gt;쿠팡 지원&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;퇴사를 결심하고 이직을 준비하던 중 쿠팡 신입개발자 공고를 보았습니다. 쿠팡은 신입 채용보다 경력 채용 비중이 많이 높은 걸로 알고 있어서 신입 채용 공고나 나올거라고 기대하지 않았는데 공고가 떴습니다!&lt;/li&gt;
-  &lt;li&gt;쿠팡에서 이력서 양식을 제공해 주었기 때문에 양식에 맞춰서 꾸역꾸역 채워 넣었습니다.&lt;/li&gt;
-  &lt;li&gt;서류 지원 결과는… 통과!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;쿠팡-코딩테스트&quot;&gt;쿠팡 코딩테스트&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;부랴부랴 코딩테스트를 준비했습니다. 3문제가 나왔는데 정확히 상, 중, 하 난이도로 나왔습니다. 중, 하는 대부분의 지원자들이 풀 수 있을거라 생각했고, 상 문제는 완성까지 하는 사람은 적을거라 생각했습니다. 저도 중, 하를 푼 뒤에 상 문제를 풀다가 제출했습니다.&lt;/li&gt;
-  &lt;li&gt;중, 하 문제는 다른 지원자들도 다 풀었을거라 생각했기에 코딩테스트 합격 할 지 긴가민가 했습니다. 결과는… 합격!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;쿠팡-면접&quot;&gt;쿠팡 면접&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;면접도 회사를 다니며 준비했습니다. 잡플래닛에 있는 모든 면접 후기를 크롤링 하여 질문들을 뽑아냈습니다. CS지식을 많이 물어 본다길래 열심히 준비해 갔습니다.
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;./temp&quot;&gt;간단한 파이썬 잡플래닛 크롤러&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;면접을 보러 갔는데 올해부터 면접의 유형이 바뀌었다고 하며 CS지식을 물어보기 보단, 면접 3시간 내내 1:1 오프라인 코딩테스트를 보고 왔습니다! :flushed:&lt;/li&gt;
-  &lt;li&gt;면접에서 코딩테스트를 보는 건 처음이라 어버버버 했던 것 같습니다. 나름 얘기 많이 하며 제 사고과정을 보여주려 했는데 그냥 말 없이 후딱 푸는데 집중할 걸 그랬습니다.&lt;/li&gt;
-  &lt;li&gt;결과는.. 탈락 ㅜㅜ  회사 재직중에 준비한 면접이라 부족하기도 했고, 당시엔 제출한 이력서 외에 딱히 보여줄 게 없어 어느정도 예상한 결과이긴 했습니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;여담&quot;&gt;여담&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;비록 떨어졌지만, 애초에 지원할 때 목표가 ‘면접이라도 한 번 보고 오자!’였으니 소기의 목적은 달성한 것 같습니다.&lt;/li&gt;
-  &lt;li&gt;약 2주 뒤 쿠팡에서 탈락 메일이 또 왔습니다! 팀별 재고려 대상이라 한 번 더 심사했다가 떨어졌다는데 팀별 재고려대상까진 갔다는 거에 기뻐해야 할 지, 같은 탈락 메일 두 번 받은 거에 마음 아파 해야할지..&lt;/li&gt;
-&lt;/ul&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>잡플래닛 면접 후기 크롤러</title>
-   <link href="http://localhost:4000/posts/daily%20thoughts/%EC%9E%A1%ED%94%8C%EB%9E%98%EB%8B%9B-%ED%81%AC%EB%A1%A4%EB%9F%AC/"/>
-   <updated>2020-03-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/posts/daily%20thoughts/잡플래닛 크롤러</id>
+   <id>http://localhost:4000/posts/daily%20thoughts/Job-Planet-Scraper</id>
    <content type="html">
 &lt;ul&gt;
   &lt;li&gt;
@@ -19482,6 +19467,47 @@ http://www.joes-hardware.com/inventory-check.cgi?item=12731&amp;amp;color=blue&l
   &lt;/li&gt;
 &lt;/ul&gt;
 
+</content>
+ </entry>
+ 
+ <entry>
+   <title>C사 지원, 코딩테스트, 면접</title>
+   <link href="http://localhost:4000/posts/daily%20thoughts/C-Company/"/>
+   <updated>2020-03-08T00:00:00+09:00</updated>
+   <id>http://localhost:4000/posts/daily%20thoughts/C-Company</id>
+   <content type="html">&lt;p&gt; 2월 초에 회사에 다니며 C사에 지원했다가 결과나 나온 지 꽤 됐지만, 기록을 남길 겸 해서 끄적여 봅니다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;지원&quot;&gt;지원&lt;/h3&gt;
+
+&lt;p&gt; 퇴사를 결심하고 이직을 준비 하던 중 C사의 신입 개발자 공고를 봤다. C사는 신입보다 경력자를 많이 뽑는다고 알고 있어서 기대하고 있지 않았는데 발견하고 부랴부랴 지원했다. C사에서 제공한 이력서에 있는 거 없는 거 모아서 꾸역꾸역 채워넣었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;코딩테스트&quot;&gt;코딩테스트&lt;/h3&gt;
+
+&lt;p&gt; 당시 재직중이기도 하고, 이제 막 이직 준비를 시작했던 터라 사실 코딩테스트에 자신이 좀 없었다. 3문제가 나왔는데 정확히 상, 중, 하 난이도로 나왔다. 중, 하는 대부분의 지원자가 풀 수 있을거라 생각했고, 상 문제는 다들 시도는 하지만 완성까지는 힘들지 않을까 생각했다. 물론, 나도 중, 하는 모두 풀고 상 문제를 건드리다가 끝났다.&lt;/p&gt;
+
+&lt;p&gt; 코딩테스트가 7시여서 퇴근하고 집에 가면 좀 늦을 것 같았다. 당시 프로젝트 PM님안테 30분만 일찍 보내달라고 할지.. 끝나고 카페에서 볼 지 고민하다가 당시 파견중이던 회사의 프로젝트 룸에서 보게됐다. 😂  다행히 우리 회사는 야근을 안해서 눈치 안보고 코딩테스트 볼 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;면접&quot;&gt;면접&lt;/h3&gt;
+
+&lt;p&gt; 면접도 회사를 다니면서 준비했다. 간단한 파이썬 크롤러..?까진 아니고 &lt;a href=&quot;/posts/daily%20thoughts/Job-Planet-Scraper/&quot;&gt;스크래퍼&lt;/a&gt; 정도를 만들어서 C사의 모든 면접 후기를 뽑아냈다. CS 지식을 많이 물어본다길래 열심히 준비해갔다!&lt;/p&gt;
+
+&lt;p&gt; 면접을 보러 갔는데, 올해부터 면접의 유형이 바뀌었다고 면접 3시간 내내 CS 지식관련 질문은 단 1개만 받았다. 그 외의 시간은 면접관님과의 1:1 라이브코딩… 숨막히는 줄 알았다…&lt;/p&gt;
+
+&lt;p&gt; 면접에서 라이브코딩을 하는건 난생 처음이라 너무 어버버버 했다. 3시간 내내 어버버버 했지만 2차 면접 같은 거 없이 한 번에 결정난 다는건 좋았다. 하지만 결과는.. 탈락 😥😥&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;여담&quot;&gt;여담&lt;/h3&gt;
+
+&lt;p&gt; 비록 떨어졌지만 애초에 지원할 때 목표가 ‘C사같은 좋은 회사에 면접이라도 한 번 보자!’ 였으니 소기의 목적은 달성했다.&lt;/p&gt;
+
+&lt;p&gt; 그런데 약 2주 뒤 C사에서 탈락 메일이 또 왔다! 팀별 재고려 대상이라 한 번 더 심사했다가 떨어졌다고 한다. 팀별 재고려 대상까지 갔다는 거에 기뻐해야 할 지, 같은 탈락 메일 두 번 받은 거에 마음 아파 해야할지..&lt;/p&gt;
 </content>
  </entry>
  

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 잡플래닛 면접 후기 크롤러
+title: 잡플래닛 면접 후기 스크래퍼
 ---
 
 {% assign imgurl=site.imgbase|append: page.categories[-1] %}
