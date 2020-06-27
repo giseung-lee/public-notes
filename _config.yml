@@ -18,15 +18,15 @@ gems:                [jekyll-paginate, gemoji, jemoji]
 plugins:		[jekyll-paginate, gemoji, jemoji]
 postroot:   'posts'
 rootfolder:
-   About Me : 
-      subfolder : false
+#   About Me : 
+#      subfolder : false
    Daily Thoughts : 
       subfolder : false
    Projects: 
-      Sagyo_Reboot:
-         subfolder : false
-      Twitch_Chat_Analysis:
-         subfolder : false
+#      Sagyo_Reboot:
+#         subfolder : false
+#      Twitch_Chat_Analysis:
+#         subfolder : false
       Hwangmaesan :
          subfolder : false
       The_Oyster_Mine :

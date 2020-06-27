@@ -171,7 +171,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'total cost : '</span><span class="p">,</span> <span class="n">g_total_cost</span><span class="p">)</span>
 <span class="c1"># total cost :  39
 </span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">g_parent</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">g_parent</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="s">' -&gt; '</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="c1"># A  -&gt;  A
 # B  -&gt;  A

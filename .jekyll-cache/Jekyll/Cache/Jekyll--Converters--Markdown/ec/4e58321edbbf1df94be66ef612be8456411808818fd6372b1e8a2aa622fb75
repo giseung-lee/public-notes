@@ -39,12 +39,12 @@
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">arcpy</span>
   
 <span class="c1"># 폴더 지정 및 파일 리스트업
-</span><span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="s">"C:/kml_source"</span>
-<span class="nb">list</span> <span class="o">=</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">ListFiles</span><span class="p">()</span>
+</span><span class="n">arcpy</span><span class="p">.</span><span class="n">env</span><span class="p">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="s">"C:/kml_source"</span>
+<span class="nb">list</span> <span class="o">=</span> <span class="n">arcpy</span><span class="p">.</span><span class="n">ListFiles</span><span class="p">()</span>
   
 <span class="c1"># KMLToLayer 메서드로 kml파일을 벡터파일로 변환
 </span><span class="k">for</span> <span class="n">kml</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">arcpy</span><span class="o">.</span><span class="n">conversion</span><span class="o">.</span><span class="n">KMLToLayer</span><span class="p">(</span><span class="n">kml</span><span class="p">,</span> <span class="s">"C:/feature_data"</span><span class="p">)</span>
+    <span class="n">arcpy</span><span class="p">.</span><span class="n">conversion</span><span class="p">.</span><span class="n">KMLToLayer</span><span class="p">(</span><span class="n">kml</span><span class="p">,</span> <span class="s">"C:/feature_data"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -59,17 +59,17 @@
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">arcpy</span>
   
 <span class="c1"># 폴더 지정 및 파일 읽어오기
-</span><span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="s">"C:/mxd"</span>
-<span class="n">mxd</span> <span class="o">=</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">MapDocument</span><span class="p">(</span><span class="s">"C:/mxd/feature_total.mxd"</span><span class="p">)</span>
+</span><span class="n">arcpy</span><span class="p">.</span><span class="n">env</span><span class="p">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="s">"C:/mxd"</span>
+<span class="n">mxd</span> <span class="o">=</span> <span class="n">arcpy</span><span class="p">.</span><span class="n">mapping</span><span class="p">.</span><span class="n">MapDocument</span><span class="p">(</span><span class="s">"C:/mxd/feature_total.mxd"</span><span class="p">)</span>
   
 <span class="c1"># 벡터 파일안의 여러 feature중 Polyline만 뽑아냄
-</span><span class="n">df</span> <span class="o">=</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">ListDataFrames</span><span class="p">(</span><span class="n">mxd</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">list</span> <span class="o">=</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">ListLayers</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">"Polylines"</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">arcpy</span><span class="p">.</span><span class="n">mapping</span><span class="p">.</span><span class="n">ListDataFrames</span><span class="p">(</span><span class="n">mxd</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">list</span> <span class="o">=</span> <span class="n">arcpy</span><span class="p">.</span><span class="n">mapping</span><span class="p">.</span><span class="n">ListLayers</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">"Polylines"</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
   
 <span class="c1"># Polyline을 raster 데이터로 변환
 </span><span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">arcpy</span><span class="o">.</span><span class="n">conversion</span><span class="o">.</span><span class="n">FeatureToRaster</span><span class="p">(</span><span class="n">pl</span><span class="p">,</span> <span class="s">"OID"</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">longName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span>
-    <span class="k">print</span> <span class="n">pl</span><span class="o">.</span><span class="n">longName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+    <span class="n">arcpy</span><span class="p">.</span><span class="n">conversion</span><span class="p">.</span><span class="n">FeatureToRaster</span><span class="p">(</span><span class="n">pl</span><span class="p">,</span> <span class="s">"OID"</span><span class="p">,</span> <span class="n">pl</span><span class="p">.</span><span class="n">longName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span>
+    <span class="k">print</span> <span class="n">pl</span><span class="p">.</span><span class="n">longName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
 </code></pre></div>    </div>
   </li>
 </ul>

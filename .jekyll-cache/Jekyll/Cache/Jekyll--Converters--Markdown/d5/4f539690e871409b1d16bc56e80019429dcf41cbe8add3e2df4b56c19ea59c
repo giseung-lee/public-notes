@@ -1,4 +1,4 @@
-I"�
+I"
 <h2 id="이진탐색-풀이-프레임워크">이진탐색 풀이 프레임워크</h2>
 
 <hr />
@@ -6,21 +6,21 @@
 <p> 이진 탐색 문제를 풀어봤다면 대부분의 이진탐색 문제는 아래와 같은 구조로 진행 되는 걸 알수 있습니다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="err">최소값</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="err">최대값</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">최소값</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">최대값</span>
 
-    <span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="err">가</span> <span class="n">right</span><span class="err">보다</span> <span class="err">작을</span> <span class="err">때</span><span class="p">):</span>
-		<span class="n">mid</span> <span class="o">=</span> <span class="n">left</span><span class="err">와</span> <span class="n">right</span><span class="err">의</span> <span class="err">중간쯤</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">left가</span> <span class="n">right보다</span> <span class="n">작을</span> <span class="n">때</span><span class="p">):</span>
+		<span class="n">mid</span> <span class="o">=</span> <span class="n">left와</span> <span class="n">right의</span> <span class="n">중간쯤</span>
 		<span class="k">if</span> <span class="n">is_possible</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">mid</span><span class="p">):</span>
             <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
             
 <span class="k">def</span> <span class="nf">is_possible</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">mid</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="err">문제에</span> <span class="err">따라</span> <span class="err">많이</span> <span class="err">다름</span>
-    <span class="o">...</span>
-    <span class="k">if</span> <span class="o">...</span><span class="p">:</span>
+    <span class="p">...</span>
+    <span class="n">문제에</span> <span class="n">따라</span> <span class="n">많이</span> <span class="n">다름</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">...:</span>
         <span class="k">return</span> <span class="bp">True</span>
    	<span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
