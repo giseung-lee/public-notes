@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/public/css/poole.css">
   <link rel="stylesheet" href="/public/css/syntax.css">
   <link rel="stylesheet" href="/public/css/lanyon.css">
-<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+<link rel="stylesheet" href="/nonuse/static/ntz4kiseung.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
   <!-- Icons -->
@@ -40,7 +40,7 @@
 <div class="sidebar" id="sidebar">
   <!-- Profile -->
   <div class="sidebar-item sidebar-profile-box">
-    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <img class="sidebar-profile-image" src="/nonuse/static/image/About Me/sidebar_profile.png" >
     <div class="sidebar-profile-description">
       <span>
         &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
@@ -196,7 +196,7 @@
 
 <p>크롤러를 풀어 놓기위해선 출발지점을 주어야 합니다. 크롤러가 방문을 시작하는 출발지점의 URL들을 모아놓은 집합을 루트 집합(root set)이라고 부릅니다.</p>
 
-<p><img src="/public/image/Http The Definitive Guide/root_set.png" alt="root_set.png" /></p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/root_set.png" alt="root_set.png" /></p>
 
 <p>이 root set을 설정하는 것은 매우 중요합니다. 웹에 있는 모든 문서를 탐색가능하게 하는 하나의 문서는 없기 때문이죠.</p>
 
@@ -220,7 +220,7 @@
 
 <p>크롤러를 사용할때 주의해야 할 점은 크롤러가 순환에 빠지지 않도록 하는 것입니다.</p>
 
-<p><img src="/public/image/Http The Definitive Guide/crawler_loop.png" alt="crawler_loop.png" /></p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/crawler_loop.png" alt="crawler_loop.png" /></p>
 
 <p>위 상황에선 크롤러가 <code class="highlighter-rouge">A - B - C - A - B ...</code> 순환에 빠져버렸습니다.</p>
 
@@ -238,7 +238,7 @@
 
 <h4 id="915-빵-부스러기의-흔적">9.1.5. 빵 부스러기의 흔적</h4>
 
-<p><img src="/public/image/Http The Definitive Guide/number_of_websites.png" alt="number_of_websites.png" />[https://news.netcraft.com/archives/2018/08/24/august-2018-web-server-survey.html]</p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/number_of_websites.png" alt="number_of_websites.png" />[https://news.netcraft.com/archives/2018/08/24/august-2018-web-server-survey.html]</p>
 
 <p>위는 netcraft에서 조사한 전 세계 hostname 갯수입니다. 본 책에서 인터넷엔 수십억 개의 서로 다른 <strong>웹 페이지</strong>가 존재한다고 했는데 2002년 기준이기 때문에 얼마나 늘었을가 궁금해 찾아봤습니다.</p>
 
@@ -345,7 +345,7 @@
 
 <p>이 심볼릭 링크가 URL상에 올라가게 되면 순환을 만들어 낼 수도 있습니다. 대부분 심볼릭 링크로 인한 순환은 개발자의 실수로 일어납니다. 아래와 같은 상황을 보겠습니다.</p>
 
-<p><img src="/public/image/Http The Definitive Guide/symbolic_link.png" alt="symbolic_link.png" /></p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/symbolic_link.png" alt="symbolic_link.png" /></p>
 
 <p>나중에 추가</p>
 
@@ -517,11 +517,11 @@ User-agent : ShopBot 1.0
 
 <p>어떤 로봇들은 사적인 데이터혹은 밖으로 드러나길 원하지 않는 컨텐츠에 대한 URL을 얻어 접근을 시도합니다. 이런 일은 개발자의 실수로 공개되면 안될 URL이 링크로 노출될때 발생합니다. 또, 직접적으로 URL을 노출하지 않더라도 디렉토리 URL로 접근시 index.html같은 기본 페이지를 내놓지 않고 해당 디렉토리 아래있는 콘텐츠들을 보여주는 경우에 발생할 수 있습니다.</p>
 
-<p><img src="/public/image/Http The Definitive Guide/directory_url.png" alt="directory_url.png" /></p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/directory_url.png" alt="directory_url.png" /></p>
 
 <p>포스트를 작성하고 있는 jekyll 서버는 디렉토리 url을 요청시 index.html 파일이 없으면 위와 같은 디렉토리 구조를 노출합니다.</p>
 
-<p><img src="/public/image/Http The Definitive Guide/directory_url2.png" alt="directory_url2.png" /></p>
+<p><img src="/nonuse/static/image/Http The Definitive Guide/directory_url2.png" alt="directory_url2.png" /></p>
 
 <p>Github page에선 index.html이 없는 디렉토리 url을 요청시 404  Not Found 페이지를 돌려줍니다.</p>
 

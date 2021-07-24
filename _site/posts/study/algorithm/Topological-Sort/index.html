@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/public/css/poole.css">
   <link rel="stylesheet" href="/public/css/syntax.css">
   <link rel="stylesheet" href="/public/css/lanyon.css">
-<link rel="stylesheet" href="/public/css/ntz4kiseung.css">
+<link rel="stylesheet" href="/nonuse/static/ntz4kiseung.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
   <!-- Icons -->
@@ -40,7 +40,7 @@
 <div class="sidebar" id="sidebar">
   <!-- Profile -->
   <div class="sidebar-item sidebar-profile-box">
-    <img class="sidebar-profile-image" src="/public/image/About Me/sidebar_profile.png" >
+    <img class="sidebar-profile-image" src="/nonuse/static/image/About Me/sidebar_profile.png" >
     <div class="sidebar-profile-description">
       <span>
         &nbsp;잡기에 능한 개발자입니다. 잡기보다 개발 실력이 좋아야 할 텐데 걱정입니다.
@@ -182,7 +182,7 @@
 
 <p> 위상 정렬은 쉽게 말해 <strong>방향 그래프에서의 순서 있는 노드 방문</strong>입니다. RPG게임에서 흔히 볼 수 있는 스킬 트리나 대학에서의 선수 과목과 같이 노드들 간에 순서가 있는 그래프에서 사용됩니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort1.png" alt="Topological_Sort1.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort1.png" alt="Topological_Sort1.png" /></p>
 
 <p> 위와 같은 학습 로드맵이 있다고 가정합시다. 과목간의 우선순위를 지키면서 위의 모든 수업을 들을 수 있는 경우의 수는 아래와 같이 다섯 가지입니다. (아래와 같이 위상정렬로 방문한 노드의 순서를 위상 순서(Topology Order)라고 합니다.)</p>
 
@@ -216,27 +216,27 @@
 
 <p> 위의 예시를 보며 설명드리겠습니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort2.png" alt="Topological_Sort2.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort2.png" alt="Topological_Sort2.png" /></p>
 
 <p> 각 노드의 초기 진입 차수를 기록하고 진입차수가 0인 Java부터 시작합니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort3.png" alt="Topological_Sort3.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort3.png" alt="Topological_Sort3.png" /></p>
 
 <p> Java를 선행 과목으로 가지고 있던 JPA와 Spring의 진입 차수를 감소 시키고 다음 진입차수가 0인 Oracle을 방문합니다.(물론, Spring 부터 방문할 수도 있습니다.)</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort4.png" alt="Topological_Sort4.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort4.png" alt="Topological_Sort4.png" /></p>
 
 <p> Oracle을 선행 과목으로 가지고 있던 JPA와 Spring JPA의 진입차수를 감소시킵니다. 다음으론 JPA를 방문합니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort5.png" alt="Topological_Sort5.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort5.png" alt="Topological_Sort5.png" /></p>
 
 <p> Spring JPA의 진입차수를 감소시키고 Spring에 방문합니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort6.png" alt="Topological_Sort6.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort6.png" alt="Topological_Sort6.png" /></p>
 
 <p> 마지막으로 Spring JPA에 방문합니다.</p>
 
-<p><img src="/public/image/Algorithm/Topological_Sort7.png" alt="Topological_Sort7.png" /></p>
+<p><img src="/nonuse/static/image/Algorithm/Topological_Sort7.png" alt="Topological_Sort7.png" /></p>
 
 <p> 우선 순위를 지키며 모든 노드에 방문했습니다.</p>
 

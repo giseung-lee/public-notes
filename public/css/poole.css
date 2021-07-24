@@ -48,13 +48,13 @@ body {
 }
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
   line-height: 1.5;
 }
 @media (min-width: 38em) {
   html {
-    font-size: 0.95em;
+    font-size: 20px;
   }
 }
 
@@ -91,11 +91,11 @@ h1 {
   font-size: 2rem;
 }
 h2 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 1.5rem;
 }
 h3 {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-size: 1.25rem;
 }
 h4, h5, h6 {
@@ -130,9 +130,9 @@ dd {
 /* Misc */
 hr {
   position: relative;
-  margin: 0.7rem 0;
+  margin: 1.5rem 0;
   border: 0;
-  border-top: 1.5px solid #eee;
+  border-top: 1px solid #eee;
   border-bottom: 1px solid #fff;
 }
 
@@ -150,13 +150,13 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-family: Menlo, Monaco, "Courier New", monospace;
 }
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #d0d0d0;
-  background-color: #202020;
+  color: #bf616a;
+  background-color: #f9f9f9;
   border-radius: 3px;
 }
 pre {
@@ -174,7 +174,7 @@ pre {
 }
 pre code {
   padding: 0;
-  font-size: 110%;
+  font-size: 100%;
   color: inherit;
   background-color: transparent;
 }
@@ -230,7 +230,8 @@ blockquote p:last-child {
 img {
   display: block;
   max-width: 100%;
-  margin: 0 0 0.5rem;
+  margin: 0 0 1rem;
+  border-radius: 5px;
 }
 
 /* Tables */
