@@ -1,0 +1,10 @@
+.sidebar-profile-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-profile-img {
+  border-radius: 100rem;
+}

@@ -1,0 +1,7 @@
+categories:
+  - spring
+  - network
+  - etc
+
+root-path:
+  image: /public/image

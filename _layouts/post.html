@@ -8,20 +8,11 @@ layout: default
   {{ content }}
 </div>
 
-{% if site.related_posts.size >= 1 %}
-<div class="related">
-  <h2>Related posts</h2>
-  <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <h3>
-          <a href="{{ site.baseurl }}{{ post.url }}">
-            {{ post.title }}
-            <small>{{ post.date | date_to_string }}</small>
-          </a>
-        </h3>
-      </li>
-    {% endfor %}
+<hr>
+<div>
+  {% assign splitUrl = page.url | split: "/" %}
+  <a href="/posts/{{ splitUrl[2] }}"><h3>Back to category</h3></a>
   </ul>
 </div>
-{% endif %}
+<br>
+<br>
