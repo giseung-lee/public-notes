@@ -2,38 +2,36 @@
 layout: default
 title: Home
 ---
-<div style="margin-bottom: 1em; text-align: center;">
-  <h3 style="margin-bottom: 1em; font-weight: normal;">Recent Posts 👇</h3>
-  <hr>
-</div>
 
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
-    <h3 class="post-title" style="font-weight: normal;">
-      <a href="{{ site.baseurl }}{{ post.url }}">
+    <h1 class="post-title">
+      <a href="{{ post.url | absolute_url }}">
         {{ post.title }}
       </a>
-    </h3>
-    <span class="post-date">{{ post.date | date_to_string: "ordinal", "KR" }}</span>
-    <hr />
+    </h1>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
   </div>
   {% endfor %}
 </div>
 
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.url }}/page{{paginator.next_page}}">이전</a>
+  <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}">Older</a>
   {% else %}
-    <span class="pagination-item older">이전</span>
+  <span class="pagination-item older">Older</span>
   {% endif %}
   {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.url }}/">다음</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.url }}/page{{paginator.previous_page}}">다음</a>
-    {% endif %}
+  {% if paginator.page == 2 %}
+  <a class="pagination-item newer" href="{{ '/' | absolute_url }}">Newer</a>
   {% else %}
-    <span class="pagination-item newer">다음</span>
+  <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}">Newer</a>
+  {% endif %}
+  {% else %}
+  <span class="pagination-item newer">Newer</span>
   {% endif %}
 </div>
