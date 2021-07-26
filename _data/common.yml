@@ -1,7 +1,16 @@
 categories:
-  - spring
-  - network
-  - etc
+  - key: web
+    display: Web
+  - key: spring
+    display: Spring
+  - key: network
+    display: Network
+  - key: algorithm
+    display: Algorithm
+  - key: etc
+    display: etc
+  - key: http_the_definitive_guide
+    display: '[Book] Http 완벽 가이드'
 
-root-path:
+path:
   image: /public/image

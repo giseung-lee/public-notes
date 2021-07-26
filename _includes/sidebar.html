@@ -6,14 +6,14 @@
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
     <div class="sidebar-profile-box">
-      <img class="sidebar-profile-img" src="{{ site.data.common.root-path.image }}/profile.png">
+      <img class="sidebar-profile-img" src="{{ site.data.common.path.image }}/profile.png">
     </div>
   </div>
 
   <nav class="sidebar-nav">
     {% for category in site.data.common.categories %}
       {% assign splitUrl = page.url | split: "/" %}
-      <a class="sidebar-nav-item{% if category == splitUrl[2] %} active{% endif %}" href="/posts/{{ category }}">{{ category }}</a>
+      <a class="sidebar-nav-item{% if category.key == splitUrl[2] %} active{% endif %}" href="/posts/{{ category.key }}">{{ category.display }}</a>
     {% endfor %}
   </nav>
 
