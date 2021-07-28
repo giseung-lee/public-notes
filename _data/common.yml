@@ -11,6 +11,8 @@ categories:
     display: etc
   - key: http_the_definitive_guide
     display: '[Book] Http 완벽 가이드'
+  - key: linux_kernel
+    display: '[Book] Devops와 SE를 위한 리눅스 커널 이야기'
 
 path:
   image: /public/image
