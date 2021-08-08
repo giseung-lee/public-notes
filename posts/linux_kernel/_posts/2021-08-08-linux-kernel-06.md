@@ -9,7 +9,7 @@ title: NUMA, 메모리 관리의 새로운 세계
 
 # NUMA 아키텍처
 
-![linux-kernel-02-uma-numa.png]({{ imgurl }}/linux-kernel-02-uma-numa.png)
+![linux-kernel-02-uma-numa.png]({{ imgurl }}/linux-kernel-02-uma-numa.png)<small>출처 : Realizing High Performance NFV Service Chains</small>
 
 NUMA : Non-Uniform Memory Access. 불균형 메모리 접근. 
 
