@@ -456,3 +456,13 @@ Unchecked Exception에 대한 결론도 호출한 쪽에서 처리하는 것이�
 # TODO
 
 다음엔 다른 언어들의 Exception 처리를 좀 더 알아보고 비교해보고 싶다.
+<br>
+
+
+### 참고 링크
+
+- [Are checked exceptions good or bad?](https://www.infoworld.com/article/3142626/are-checked-exceptions-good-or-bad.html)
+- [Failure and Exceptions A Conversation with James Gosling, Part II](https://www.artima.com/articles/failure-and-exceptions)
+- [Java에서 Checked Exception은 언제 써야 하는가?](https://blog.benelog.net/1901121)
+- [When to choose checked and unchecked exceptions](https://stackoverflow.com/questions/27578/when-to-choose-checked-and-unchecked-exceptions)
+
