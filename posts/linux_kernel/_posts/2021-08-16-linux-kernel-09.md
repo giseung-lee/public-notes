@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TCP 재전송과 타임아웃 [미완]
+title: TCP 재전송과 타임아웃
 ---
 
 {% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
@@ -15,7 +15,7 @@ TCP는 항상 패킷 유실에 대비해야 한다. 그렇기 때문에 보낸 �
 
 TCP는 이렇게 보낸 패킷에 대한 응답을 항상 확인하기 때문에 흔히 '신뢰성 있는' 통신이라고 한다. 반대로, UDP는 이런 패킷 유실에 대해 신경쓰지 않는다. (대신, 그만큼 전송이 빠르다. 중간에 데이터가 조금 유실되어도 큰 상관없는 서비스 or 신뢰성 보다 속도가 더 중요한 서비스는 UDP를 사용한다.)
 
-// TODO 그림 첨부
+![linux-kernel-13.png]({{ imgurl }}/linux-kernel-13.png)
 
 패킷을 주고 받을때 보낸쪽이 SYN, FIN 등을 보내고 받는쪽의 ACK 패킷을 기다린다. 
 
@@ -126,7 +126,27 @@ ip route change default via 172.31.32.1 dev eth0 rto_min 100ms
 
 # 애플리케이션 타임아웃
 
+TCP 재전송이 일어나게 되면 애플리케이션에 영향이 가게 된다.
 
+이때, 애플리케이션 쪽에서 발생할 수 있는 timeout은 크게 두 가지로 나뉜다.
 
+|종류|발생경로|최소 권장 설정 값|
+|--|--|--|
+|Connection Timeout|TCP Handshake 과정에서 TCP 재전송이 일어날 경우 발생|3s 이상|
+|Read Timeout|맺어진 세션에서 데이터를 주고 받을 때 발생|300ms 이상|
 
+## Connection Timeout
 
+Connection Timeout은 최초 TCP Handshake 과정시 TCP 재전송이 일어날 때 발생한다. 
+SYN 패킷 유실 or SYN+ACK 패킷 유실시 발생 한다는 얘기이다.
+
+timeout 값은 최소 한 번의 재전송은 커버 할 수 있도록 설정해야 한다.(패킷 유실은 불가피하기 때문에)
+
+SYN, SYN+ACK 패킷의 재전송에는 거의 1초 이상이 필요하다. 
+클라이언트쪽에서 한 번, 서버 쪽에서 한 번 총 2번의 재전송은 커버 가능하도록 3초 이상을 권장한다. 
+
+## Read Timeout
+
+Read Timeout은 이미 맺어진 세션에서 읽기 작업시 타임아웃이 발생하는 것이다. 
+
+Read Timeout 역시 한 번의 재전송은 허용할 정도로 설정해야 한다. 최소 300ms 이상을 권장하는 바이다.

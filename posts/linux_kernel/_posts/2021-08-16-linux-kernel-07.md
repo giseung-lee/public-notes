@@ -1,35 +1,30 @@
 ---
 layout: post
-title: TIME_WAIT 소켓이 서비스에 미치는 영향 [미완]
+title: TIME_WAIT 소켓이 서비스에 미치는 영향
 ---
 
 {% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
 
-
-
 # TCP 통신 과정
 
-// TODO 그림 첨부
+![linux-kernel-07.png]({{ imgurl }}/linux-kernel-07.png)
 
-TCP 커넥션을 맺을 때 -> 3 way handshake
+## 3 way handshake : 커넥션 연결
 
-​	Client --SYNC--> Server 
+|from|packet|to|description|
+|--|--|--|
+|Client|SYNC|Server|연결 요청|
+|Server|SYNC+ACK|Client|연결 요청에 대한 응답|
+|Client|ACK|Server|연결 요청 응답에 대한 응답|
 
-​	Server --SYNC + ACK --> Client
+## 4 way handshake : 연결 종료 (서버에서 먼저 끊을 경우 가정)
 
-​	Client --ACK--> Server
-
-TCP 커넥션을 끊을 때 -> 4 way handshake
-
-​	Server --FIN--> Client
-
-​	Client --ACK--> Server
-
-​	Client --FIN--> Server
-
-​	Server --ACK--> Client
-
-
+|from|packet|to|description|
+|--|--|--|
+|Server|FIN|Client|연결 종료 통보|
+|Client|ACK|Server|연결 종료 통보에 대한 응답|
+|Client|FIN|Server|연결 종료 통보|
+|Server|FIN|Client|연결 종료 통보에 대한 응답|
 
 # TIME_WAIT 소켓의 문제점
 
@@ -98,7 +93,7 @@ RTO는 보통 ms 단위이기 때문에 2번 과정에서 TIME_WAIT 소켓이 �
 
 두 클라이언트 C1, C2가 같은 통신사를 사용한다고 하면 두 클라이언트는 동일한 NAT를 사용할 수 있다. 서버 입장에서 C1, C2를 같은 클라이언트로 보는 것이다.
 
-// TODO 그림 첨부
+![linux-kernel-08.png]({{ imgurl }}/linux-kernel-08.png)
 
 서버가 C1과의 통신을 끝내고 커낵션을 정리하는 도중에, C2에서의 연결 요청이 들어오는 상황을 가정해보자. C2가 보낸 연결 요청 패킷이 C1의 FIN 패킷보다 빠르다면 C1과의 커낵션 종료후 C2에서 오는 패킷을 버릴 가능성이 있다.(서버 입장에선 같은 클라이언트에서 오는 것이기 때문에. )
 
