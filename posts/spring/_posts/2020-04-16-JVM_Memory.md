@@ -3,7 +3,7 @@ layout: post
 title: JVM 메모리 구조
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 - &nbsp;이미 많은 포스팅들이 JVM 메모리 구조를 설명하고 있습니다. 본 포스팅은 저의 이해를 돕고자 남기는 포스팅입니다.
 - &nbsp;많은 곳을 참고했고 내용 역시 거진 비슷하여 따로 출처를 남기지 않았습니다. 다만, PC Register와 Native Method Stack의 경우 포스팅 마다 내용이 상이해서 jvm 공식 문서를 참고했습니다.

@@ -3,7 +3,7 @@ layout: post
 title: TIME_WAIT 소켓이 서비스에 미치는 영향
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 # TCP 통신 과정
 

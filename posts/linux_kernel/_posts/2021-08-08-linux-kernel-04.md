@@ -3,7 +3,7 @@ layout: post
 title: free 명령이 숨기고 있는 것들
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 
 

@@ -3,7 +3,7 @@ layout: post
 title: I/O 작업이 지나가는 관문, I/O 스케줄
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 # I/O 스케줄러의 필요성
 

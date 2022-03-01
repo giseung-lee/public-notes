@@ -3,7 +3,7 @@ layout: post
 title: dirty page가 I/O에 끼치는 영향
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 # dirty page란
 

@@ -3,7 +3,7 @@ layout: post
 title: 애플리케이션 성능 측정과 튜닝
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 # 테스트 환경 구성
 

@@ -3,7 +3,7 @@ layout: post
 title: Java Exception
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %}
 
 # 개요
 

@@ -3,7 +3,7 @@ layout: post
 title: 시스템 구성 정보 확인하기
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 
 

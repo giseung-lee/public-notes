@@ -3,7 +3,7 @@ layout: post
 title: NUMA, 메모리 관리의 새로운 세계
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 
 
