@@ -3,7 +3,7 @@ layout: post
 title: JAVA Garbage Collection
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 - &nbsp;본 포스팅은 네이버 D2의 [Java Garbage Collection](https://d2.naver.com/helloworld/1329)을 정리한 것입니다.
 

@@ -3,7 +3,7 @@ layout: post
 title: swap, 메모리 증설의 포인트
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 
 

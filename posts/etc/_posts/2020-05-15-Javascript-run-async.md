@@ -3,7 +3,7 @@ layout: post
 title: Javascript 실행 과정 및 비동기
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %}
 
 - 본 포스팅은 아래의 글을 참고했습니다.
   - [https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf](https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf)

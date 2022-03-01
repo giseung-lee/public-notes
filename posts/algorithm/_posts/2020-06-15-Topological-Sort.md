@@ -5,7 +5,7 @@ title : 알고리즘 - 위상정렬(Topological Sort)
 
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %}
 
 ## 위상정렬 - 순서 있는 노드 방문
 

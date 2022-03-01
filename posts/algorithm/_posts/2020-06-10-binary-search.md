@@ -5,7 +5,7 @@ title: 알고리즘 - 이진탐색 문제풀이 잡기술
 
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %}
 
 ## 이진탐색 풀이 프레임워크
 

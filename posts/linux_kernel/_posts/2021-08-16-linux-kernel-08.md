@@ -3,7 +3,7 @@ layout: post
 title: TCP Keepalive를 이용한 세션 유지
 ---
 
-{% assign imgurl=site.data.common.path.image|append: '/'|append: page.categories[1] %}
+{% assign imgurl=site.baseurl |append: site.data.common.path.image|append: '/'|append: page.categories[1] %} 
 
 # TCP Keepalive 란
 
