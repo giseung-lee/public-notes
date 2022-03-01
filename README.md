@@ -1,5 +1,5 @@
 # Run in local
 
 ```shell script
-jekyll server --livereload
+jekyll serve --livereload --config _config.local.yml
 ```
