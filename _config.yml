@@ -1,11 +1,11 @@
 ﻿# Setup
-title:               내가 보려고 쓰는 블로그
-url:                 https://ntz4kiseung.github.io/
+title:               Just a note
+url:                 https://giseung-lee.github.io/
 baseurl:             ''
 permalink:           pretty
 
 # About/contact
 author:
    name:              giseung.lee
-   url:               https://ntz4kiseung.github.io/
-   email:             ntz4kiseung@gmail.com
+   url:               https://giseung-lee.github.io/
+   email:             goodexample.lee@gmail.com

@@ -22,3 +22,7 @@ pre.highlight {
 #post-content h1:not(:first-child) {
   margin-top: 3rem;
 }
+
+.masthead-title {
+  font-size: 1.5rem;
+}
