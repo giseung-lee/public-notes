@@ -1,4 +1,4 @@
-baseURL = "https://gokarna-hugo.netlify.app"
+baseURL = "https://giseung-lee.github.io/public-notes"
 title = "Giseung Lee"
 theme = "gokarna"
 languageCode = "en"
