@@ -46,3 +46,5 @@ node_modules
 bower_components
 ata
 
+# build
+public
